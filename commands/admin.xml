@@ -4,14 +4,14 @@
         <name>connect</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -20,30 +20,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
+> stellard connect 53.23.56.110 5000
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="rpc">
+        </rpc_example>
+        <ws_example>
 
-        </example>
-        <example type="ws">
-
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>ledger_accept</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -52,30 +52,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>log_level</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -84,30 +84,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>logrotate</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -116,30 +116,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>peers</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -148,30 +148,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>server_info</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -180,30 +180,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>stop</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -212,30 +212,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>unl_add</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -244,30 +244,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>unl_delete</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -276,30 +276,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>unl_list</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -308,30 +308,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>unl_load</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -340,30 +340,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>validation_create</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -372,30 +372,30 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
     <command>
         <name>wallet_propose</name>
         <admin>true</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
-        <arguments>
+        
             <argument>
                 <name>account</name>
                 <required>true</required>
                 <desc></desc>
             </argument>
-        </arguments>
-        <results>
+        
+        
             <result>
                 <name>receive_currencies</name>
                 <desc></desc>
@@ -404,16 +404,16 @@
                 <name>send_currencies</name>
                 <desc></desc>
             </result>
-        </results>
-        <example type="cli">
+        
+        <cli_example>
 
-        </example>
-        <example type="rpc">
+        </cli_example>
+        <rpc_example>
 
-        </example>
-        <example type="ws">
+        </rpc_example>
+        <ws_example>
 
-        </example>
+        </ws_example>
     </command>
 
 </commands>

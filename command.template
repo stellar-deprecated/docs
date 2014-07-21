@@ -1,6 +1,15 @@
+
 <h3>{{name}}</h3>
 {{{desc}}}
-{{#arguments.argument}}
-<b>{{argument.name}}</b> : {{{argument.desc}}}
-{{/arguments.argument}}
+Arguments:
+{{#argument}}
+<b>{{name}}</b> : {{{desc}}}
+{{/argument}}
+Results:
+<b>{{name}}</b> : {{{desc}}}
+{{{cli_example}}}
+{{{ws_example}}}
+{{{rpc_example}}}
+
 <hr>
+

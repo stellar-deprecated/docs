@@ -1,0 +1,38 @@
+<commands>
+    <command>
+        <name>submit Payment</name>
+        <admin>false</admin>
+        <desc>Submit a payment transaction.</desc>
+    </command>
+
+    <command>
+        <name>submit AccountSet</name>
+        <admin>false</admin>
+        <desc>Submit an AccountSet transaction. This set various flags of the account entry.</desc>
+    </command>
+
+    <command>
+        <name>submit SetRegularKey</name>
+        <admin>false</admin>
+        <desc>Submit an SetRegularKey transaction. This set various flags of the account entry.</desc>
+    </command>
+
+    <command>
+        <name>submit OfferCreate</name>
+        <admin>false</admin>
+        <desc>Submit an OfferCreate transaction. This set various flags of the account entry.</desc>
+    </command>
+
+    <command>
+        <name>submit OfferCancel</name>
+        <admin>false</admin>
+        <desc>Submit an OfferCancel transaction. This set various flags of the account entry.</desc>
+    </command>
+
+    <command>
+        <name>submit TrustSet</name>
+        <admin>false</admin>
+        <desc>Submit a TrustSet transaction. This set various flags of the account entry.</desc>
+    </command>
+
+</commands>
