@@ -11,15 +11,32 @@ parser.addListener('end', doneParsing );
 var commandTemplate='';
 var navTemplate='';
 
+var loadCount=0;
+var adminCommands=[];
+var publicCommands=[];
+
 fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, data) {
     navTemplate=data;
     fs.readFile(__dirname + '/command.template', { encoding: 'utf-8' }, function(err, data) {
         commandTemplate=data;
-        fs.readFile(__dirname + '/api.xml', function(err, data) {
-            parser.parseString(data);
-        });
+        loadCommandXML();
     });
 });
+
+
+function loadCommandXML() {
+    var files = fs.readdirSync(__dirname + '/commands');
+
+    loadCount=files.length;
+    for (var i in files) {
+
+        fs.readFile(__dirname +'/commands/'+ files[i], function (err, data) {
+            parser.parseString(data);
+            loadCount--;
+            if(loadCount==0) writeHTML();
+        });
+    }
+}
 
 
 function byName(a, b){
@@ -28,23 +45,27 @@ function byName(a, b){
     return 0;
 };
 
+
+
 function doneParsing(result)
 {
-    var adminCommands=[];
-    var publicCommands=[];
-
-    var navHTML='';
-    var commandsHTML='';
-    console.log(result);
-    var commandArray=result.api_docs.commands[0].command;
+    //console.log(result);
+    var commandArray=result.commands.command;
     for(var i=0; i<commandArray.length; i++)
     {
         var cHTML = Mustache.render(commandTemplate, commandArray[i]);
         var nHTML = Mustache.render(navTemplate, commandArray[i]);
         var obj={'name': commandArray[i].name[0],'html':cHTML,'nav': nHTML};
-        if(commandArray[i].admin[0]==true) adminCommands.push( obj );
+        if(commandArray[i].admin[0]==='true') adminCommands.push( obj );
         else publicCommands.push(obj);
     }
+}
+
+
+function writeHTML()
+{
+    var navHTML='';
+    var commandsHTML='';
 
     adminCommands.sort(byName);
     publicCommands.sort(byName);
