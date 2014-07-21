@@ -5,11 +5,14 @@ var xml2js = require('xml2js');
 /*
  */
 
-var parser = new xml2js.Parser();
-parser.addListener('end', doneParsing );
+//var parser = new xml2js.Parser();
+//parser.addListener('end', doneParsing );
 
 var commandTemplate='';
 var navTemplate='';
+var afterNavHTML='';
+var footerHTML='';
+var headerHTML='';
 
 var loadCount=0;
 var adminCommands=[];
@@ -19,7 +22,20 @@ fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, da
     navTemplate=data;
     fs.readFile(__dirname + '/command.template', { encoding: 'utf-8' }, function(err, data) {
         commandTemplate=data;
-        loadCommandXML();
+
+        fs.readFile(__dirname + '/html/afternav.html', { encoding: 'utf-8' }, function(err, data) {
+            afterNavHTML=data;
+
+            fs.readFile(__dirname + '/html/footer.html', { encoding: 'utf-8' }, function(err, data) {
+                footerHTML=data;
+
+                fs.readFile(__dirname + '/html/header.html', { encoding: 'utf-8' }, function(err, data) {
+                    headerHTML=data;
+
+                    loadCommandXML();
+                });
+            });
+        });
     });
 });
 
@@ -31,7 +47,7 @@ function loadCommandXML() {
     for (var i in files) {
 
         fs.readFile(__dirname +'/commands/'+ files[i], function (err, data) {
-            parser.parseString(data);
+            xml2js.parseString(data, doneParsing );
             loadCount--;
             if(loadCount==0) writeHTML();
         });
@@ -47,8 +63,13 @@ function byName(a, b){
 
 
 
-function doneParsing(result)
+function doneParsing(err,result)
 {
+    if(err)
+    {
+        console.log(err);
+        return;
+    }
     //console.log(result);
     var commandArray=result.commands.command;
     for(var i=0; i<commandArray.length; i++)
@@ -82,7 +103,7 @@ function writeHTML()
         commandsHTML += adminCommands[i].html;
     }
 
-    var allHTML=navHTML + commandsHTML;
+    var allHTML=headerHTML + navHTML + afterNavHTML + commandsHTML + footerHTML;
 
     fs.writeFile(__dirname + '/out.html',allHTML);
 }

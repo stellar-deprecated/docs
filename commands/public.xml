@@ -271,12 +271,11 @@
                 <required>true</required>
                 <desc></desc>
             </argument>
-            <argument type="ledger_index"></argument>
-            <argument type="ledger_hash"></argument>
+
         
         <cli_example>
 
-        </rpc_example>
+        </cli_example>
         <rpc_example>
 
         </rpc_example>
