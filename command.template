@@ -1,12 +1,14 @@
 
 <h3>{{name}}</h3>
 {{{desc}}}
-Arguments:
+{{#argument.0}}Arguments:{{/argument.0}}
 {{#argument}}
-<b>{{name}}</b> : {{{desc}}}
+<b>{{name}}</b> : {{#required}}required{{/required}} {{^required}}optional{{/required}} {{#default}}<i>default: {{default}}</i>{{/default}} {{{desc}}}
 {{/argument}}
-Results:
+{{#result.0}}Results:{{/result.0}}
+{{#result}}
 <b>{{name}}</b> : {{{desc}}}
+{{/result}}
 {{{cli_example}}}
 {{{ws_example}}}
 {{{rpc_example}}}

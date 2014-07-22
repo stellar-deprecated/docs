@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
     <command>
+        <name>submit</name>
+        <admin>false</admin>
+        <desc>Submits a transaction to the network. The transaction can be submitted unsigned if you include your secret key and stellard will sign it for you.</desc>
+
+        <argument>
+            <name>secret</name>
+            <required>false</required>
+            <desc>The signer's secret key. Do not provide this field to untrusted servers. Required to submit tx_json transactions.</desc>
+        </argument>
+        <argument>
+            <name>tx_json</name>
+            <required>false</required>
+            <desc>This is the JSON representation of the transaction to submit. See the specific transactions for details.</desc>
+        </argument>
+        <argument>
+            <name>tx_blob</name>
+            <required>false</required>
+            <desc>This is a signed and serialized transaction. Use this version if you don't want to expose your secret key to stellard.</desc>
+        </argument>
+    </command>
+
+    <command>
         <name>submit Payment</name>
         <admin>false</admin>
         <desc>Submit a payment transaction.</desc>
+
+        <argument>
+            <name>TransactionType</name>
+            <required>true</required>
+            <desc>Set to "Payment".</desc>
+        </argument>
+        <argument>
+            <name>Account</name>
+            <required>true</required>
+            <desc>The account sending the payment.</desc>
+        </argument>
+        <argument>
+            <name>Destination</name>
+            <required>true</required>
+            <desc>The account receiving the payment.</desc>
+        </argument>
+        <argument>
+            <name>Amount</name>
+            <required>true</required>
+            <desc>The amount to send. This is either a number of satoshis for sending STR or a {currency,issuer,value} triplet for sending credits.</desc>
+        </argument>
+
+        <cli_example>
+>stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
+
+        </cli_example>
+        <rpc_example>
+>curl -X POST -d \
+ '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.gostellar.org:9002
+
+        </rpc_example>
+
+        <ws_example>
+            { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :  { "TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"1000000000"} }
+
+            {"result":{"engine_result":"tesSUCCESS","engine_result_code":0,"engine_result_message":"The transaction was applied.","tx_blob":"12000022...","hash":"D384E8A..."}},"status":"success","type":"response"}
+
+        </ws_example>
     </command>
 
     <command>

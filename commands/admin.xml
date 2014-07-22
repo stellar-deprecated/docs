@@ -291,25 +291,34 @@
     <command>
         <name>unl_list</name>
         <admin>true</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
+        <desc>Lists this servers UNL.</desc>
             <result>
-                <name>receive_currencies</name>
-                <desc></desc>
+                <name>publicKey</name>
+                <desc>The validator's public key.</desc>
             </result>
             <result>
-                <name>send_currencies</name>
-                <desc></desc>
+                <name>comment</name>
+                <desc>A comment associated with the publicKey.</desc>
             </result>
         
         <cli_example>
+>stellard validation_create
+
+            {
+"result" : {
+"status" : "success",
+"unl" : [
+{
+"comment" : "",
+"publicKey" : "n3gVwaSDBtVi4Xd2XBh7rvcwis4uBabu5aNn7WKtEqazJbLHR9n"
+},
+{
+"comment" : "",
+"publicKey" : "naSBAykwFkmw6JLKqPG7HPFMK1GZqu1rdnwbhtTxyTmVX1b6b8z"
+}
+]
+}
+}
 
         </cli_example>
         <rpc_example>
@@ -323,58 +332,39 @@
     <command>
         <name>unl_load</name>
         <admin>true</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
-        <cli_example>
+        <desc>Reload the UNL from the config file.</desc>
 
-        </cli_example>
-        <rpc_example>
 
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
     </command>
 
     <command>
         <name>validation_create</name>
         <admin>true</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
+        <desc>Generate a random public private key pair to use for a stellard validator.</desc>
         
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
+
         
         
             <result>
-                <name>receive_currencies</name>
-                <desc></desc>
+                <name>validation_public_key</name>
+                <desc>Validation public key, base58 encoded. Give this to other stellard operators so they can add your server to their UNL.</desc>
             </result>
             <result>
-                <name>send_currencies</name>
-                <desc></desc>
+                <name>validation_seed</name>
+                <desc>Validation secret key, base58 encoded. Put in your stellard.cfg if you want this to be a validating server.</desc>
             </result>
         
         <cli_example>
+>stellard validation_create
 
+Connecting to: 0.0.0.0:39002
+{
+    "result" : {
+    "status" : "success",
+    "validation_public_key" : "naW1LwJkeJ6tBBZ6S8U4T1PstZLsduxAeDLHPfxVYKB9Zxdbpfb",
+    "validation_seed" : "s3TEeZabAYLg1f9MSvoeb1ce8Xy2UJYjRosop6hN1TSdvg4K96z"
+    }
+}
         </cli_example>
         <rpc_example>
 
@@ -384,37 +374,7 @@
         </ws_example>
     </command>
 
-    <command>
-        <name>wallet_propose</name>
-        <admin>true</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
-        <cli_example>
 
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
-    </command>
 
 </commands>
 

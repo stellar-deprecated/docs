@@ -13,7 +13,6 @@
         </argument>
         <argument>
             <name>ledger_index</name>
-            <required>false</required>
             <default>current</default>
             <values>
                 <value>
@@ -37,7 +36,6 @@
         </argument>
         <argument>
             <name>ledger_hash</name>
-            <required>false</required>
             <value>A 20 byte hexadecimal value.</value>
             <desc>Specify a ledger by its hash to get this information from.</desc>
         </argument>
@@ -104,8 +102,7 @@
             <argument>
                 <name>account</name>
                 <required>true</required>
-                <value>AccountID</value>
-                <desc>The account ID you are interested in.</desc>
+                <desc>The account you are interested in.</desc>
             </argument>
           
         
@@ -188,8 +185,8 @@
             </argument>
             <argument>
                 <name>peer</name>
-                <value>Account ID</value>
-                <required>false</required>
+
+                
                 <desc>If specified will only return the trust lines from Account A to this peer.</desc>
             </argument>
 
@@ -298,21 +295,21 @@
                 <name>ledger_min</name>
                 <value>integer</value>
                 <default>0</default>
-                <required>false</required>
+                
                 <desc>The earliest ledger to fech transactions from.</desc>
             </argument>
             <argument>
                 <name>ledger_max</name>
                 <value>integer</value>
                 <default>-1</default>
-                <required>false</required>
+                
                 <desc>The latest ledger to fetch transactions from. Set to -1 to use the current ledger as the maximum.</desc>
             </argument>
             <argument>
                 <name>limit</name>
                 <value>integer</value>
                 <default>-1</default>
-                <required>false</required>
+                
                 <desc>Limit the number of transactions stellard will send back to you. stellard is configured with its own limits so you may not receive as many transactions as you ask for. Set to -1 to use the limit set by stellard.</desc>
             </argument>
         
@@ -371,28 +368,28 @@
         
             <argument>
                 <name>full</name>
-                <required>false</required>
+                
                 <value>bool</value>
                 <default>false</default>
                 <desc>Return all the ledger entries. This is equivalent to setting accounts, transactions, and expand all to true. stellard can be configured to support this or not.</desc>
             </argument>
             <argument>
                 <name>accounts</name>
-                <required>false</required>
+                
                 <value>bool</value>
                 <default>false</default>
                 <desc>If set to true, it will return the accounts tree for that public ledger block.</desc>
             </argument>
             <argument>
                 <name>transactions</name>
-                <required>false</required>
+                
                 <value>bool</value>
                 <default>false</default>
                 <desc>If true, return the transactions for the ledger.</desc>
             </argument>
             <argument>
                 <name>expand</name>
-                <required>false</required>
+                
                 <value>bool</value>
                 <default>false</default>
                 <desc>If set to true, returns the ledger and transaction entries in JSON format. Otherwise, returns their identifying hashes.</desc>
@@ -540,37 +537,7 @@
         </ws_example>
     </command>
 
-    <command>
-        <name>submit</name>
-        <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
-        <cli_example>
 
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
-    </command>
 
     <command>
         <name>subscribe</name>
@@ -601,6 +568,9 @@
         </rpc_example>
         <ws_example>
 { "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }
+...
+ {"engine_result":"tesSUCCESS","engine_result_code":0,"engine_result_message":"The transaction was applied.","ledger_hash":"7C78761D95CC3C34C99163192637B2725FC2444279E983CCEF5A63A6BB121F67","ledger_index":7,"meta":{"AffectedNodes":[{"ModifiedNode":{"FinalFields":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"99999979999999988","Flags":0,"OwnerCount":0,"Sequence":2},"LedgerEntryType":"AccountRoot","LedgerIndex":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45","PreviousFields":{"Balance":"100000000000000000","Sequence":1}}},{"CreatedNode":{"LedgerEntryType":"AccountRoot","LedgerIndex":"6C38D0E3F8D58366F1D8208236B8B0B83C20BAC877617379BDDE45D74993F1A9","NewFields":{"Account":"gL4ki816G4PpoGUzbv5C8BefKLz3ab9wDs","Balance":"20000000000","Sequence":1}}}],"TransactionIndex":0,"TransactionResult":"tesSUCCESS"},"status":"closed","transaction":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Amount":"20000000000","Destination":"gL4ki816G4PpoGUzbv5C8BefKLz3ab9wDs","Fee":"12","Flags":2147483648,"LastLedgerSequence":15,"Sequence":1,"SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4","TransactionType":"Payment","TxnSignature":"162008E178B101001AFEA49B14540A493FEFCE1F9CF86843CD73F952BA0800097F6DCB5ABB9C143FB3AD066388478713FE4947DC2CADC8562ABC223870569D05","date":459297000,"hash":"12CEB75F6FCE23C05A668A3472B375EAFC51F79EB0EA0CBE1BD9FD56054AD569"},"type":"transaction","validated":true}
+...
         </ws_example>
     </command>
 
@@ -671,23 +641,74 @@
     <command>
         <name>tx_history</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
+        <desc>Returns the last N transactions starting from the given index. Returns from latest to earliest. N is set by stellard.</desc>
         
             <argument>
-                <name>account</name>
+                <name>start</name>
                 <required>true</required>
-                <desc></desc>
+                <desc>Index to start returning transactions from.</desc>
             </argument>
         
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
+        <cli_example>
+
+        </cli_example>
+        <rpc_example>
+
+        </rpc_example>
+        <ws_example>
+{ "command" : "tx_history", "start" : "5" }
+
+ {"result":{
+    "index":5,
+    "txs":[{
+        "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "Amount":"24000000000",
+        "Destination":"gJar3pA4cj8W5SvKg9JZ4PtiKkLj8613k3",
+        "Fee":"12",
+        "Flags":2147483648,
+        "LastLedgerSequence":21498,
+        "Sequence":30,
+        "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
+        "TransactionType":"Payment",
+        "TxnSignature":"75B068D4...",
+        "hash":"498AE15B...",
+        "inLedger":21490,
+        "ledger_index":21490
+            },
+    ...
+    ]},
+    "status":"success",
+    "type":"response"
+  }
+        </ws_example>
+    </command>
+
+    <command>
+        <name>unsubscribe</name>
+        <admin>false</admin>
+        <desc><![CDATA[ Unsubscribe from events that were previously subscribed to. See <a href="#subscribe">subscribe<a>. ]]></desc>
+
+            <argument>
+                <name>streams</name>
+                
+                <desc>List of streams you no longer want events on.</desc>
+            </argument>
+        <argument>
+            <name>accounts</name>
+            
+            <desc>List of accounts you no longer want events on.</desc>
+        </argument>
+        <argument>
+            <name>rt_accounts</name>
+            
+            <desc>List of rt_accounts you no longer want events on.</desc>
+        </argument>
+        <argument>
+            <name>url</name>
+            
+            <desc>URL to stop sending events to.</desc>
+        </argument>
+
         
         <cli_example>
 
@@ -701,26 +722,38 @@
     </command>
 
     <command>
-        <name>unsubscribe</name>
+        <name>wallet_propose</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
+        <desc>Generates a random secret key and an accountID based on this key.</desc>
+
+        <argument>
+            <name>passphrase</name>
+            
+            <desc>If specified it will create the secret key from a hash of the passphrase.</desc>
+        </argument>
+
+
+        <result>
+            <name>account_id</name>
+            <desc>The generated accountID. It will become a usable stellar account if someone sends stellars to it.</desc>
+        </result>
+        <result>
+            <name>master_seed</name>
+            <desc>The secret key in base58 format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>master_seed_hex</name>
+            <desc>The secret key in hex format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>public_key</name>
+            <desc>The public key in base58 format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>public_key_hex</name>
+            <desc>The public key in hex format that corresponds to the accountID.</desc>
+        </result>
+
         <cli_example>
 
         </cli_example>
@@ -728,7 +761,15 @@
 
         </rpc_example>
         <ws_example>
-
+{ "command" : "wallet_propose" }
+{"result":{
+    "account_id":"g9yMgy1dxac5UBSxc1nxtVUyhw11qYPLcs",
+     "master_seed":"s3YBKJpSJkyfoJQHHSaKwGPZyW73ThahyVjh7oehcQPq5T4ncHU",
+     "master_seed_hex":"B70A1108710883663AE1B18356FB1BF99FAF3581939B1E6FC72A1FD83DE12910",
+     "public_key":"pGFGGYRCkQHbHMbjQJJHU4SuduR5hU77kqr7EkhDd8quZF2xTAR",
+     "public_key_hex":"CF8165969EEC1B05DC79CD0CE472AE827FC1CD6E0F8FEFDB394C2ED6379219E6"},
+  "status":"success","type":"response"
+}
         </ws_example>
     </command>
 </commands>
