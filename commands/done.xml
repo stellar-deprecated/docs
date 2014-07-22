@@ -1,0 +1,276 @@
+<commands>
+    <command>
+        <name>account_currencies</name>
+        <admin>false</admin>
+        <desc>Lists the currencies an account can send or receive.</desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The ID of the account you are interested in.</desc>
+        </argument>
+        <argument>
+            <name>ledger_index</name>
+            <default>current</default>
+            <values>
+                <value>
+                    <name>#</name>
+                    <desc>Some particular ledger number.</desc>
+                </value>
+                <value>
+                    <name>current</name>
+                    <desc>This is the server's own computation of the current ledger. It is subject to change.</desc>
+                </value>
+                <value>
+                    <name>closed</name>
+                    <desc>select the last closed ledger. This is the server's own computation of the last ledger. It is only a proposal.</desc>
+                </value>
+                <value>
+                    <name>validated</name>
+                    <desc>select the last validated ledger. This a definitive ledger which will not be reversed without consent of the network. Only a network wide catastrophe might cause a reversal to be agreed upon.</desc>
+                </value>
+            </values>
+            <desc>A particular ledger to get this information from.</desc>
+        </argument>
+        <argument>
+            <name>ledger_hash</name>
+            <value>A 20 byte hexadecimal value.</value>
+            <desc>Specify a ledger by its hash to get this information from.</desc>
+        </argument>
+
+
+        <result>
+            <name>receive_currencies</name>
+            <desc>Array of currencies this account is able to receive.</desc>
+        </result>
+        <result>
+            <name>send_currencies</name>
+            <desc>Array of currencies this account is able to send.</desc>
+        </result>
+
+        <cli_example>
+            > stellard account_currencies gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
+
+            Connecting to: 0.0.0.0:9002
+            {
+            "result" : {
+            "ledger_current_index" : 21741,
+            "receive_currencies" : ["USD","LTC"],
+            "send_currencies" : ["USD","LTC"],
+            "status" : "success"
+            }
+            }
+        </cli_example>
+        <rpc_example>
+            > curl -X POST -d \
+            '{ "method" : "account_currencies", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_index" : 400 } ] }' \
+            http://public-01.gostellar.org:9002
+
+            {
+            "result":{
+            "ledger_index":400,
+            "receive_currencies":["USD","EUR"],
+            "send_currencies":["USD","BTC"],
+            "status":"success"
+            }
+            }
+        </rpc_example>
+        <ws_example>
+            { "command" : "account_currencies", "id":4, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_hash":"876BD33202CBBF87D756E61DA74F5235B38D819BFD2E1C17DE7B2334EFDD0B2D" }
+
+            {
+            "id":4,
+            "result":{
+            "ledger_hash":"876BD33202CBBF87D756E61DA74F5235B38D819BFD2E1C17DE7B2334EFDD0B2D",
+            "ledger_index":21755,
+            "receive_currencies":["ZAR"],
+            "send_currencies":["ZAR"]
+            },
+            "status":"success",
+            "type":"response"
+            }
+        </ws_example>
+    </command>
+    <command>
+        <name>account_info</name>
+        <admin>false</admin>
+        <desc>Returns information about the given account.</desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The account you are interested in.</desc>
+        </argument>
+
+
+
+        <result>
+            <name>Balance</name>
+            <desc>The number of STRs this account holds , in satoshis.</desc>
+        </result>
+        <result>
+            <name>Flags</name>
+            <desc>What account flags are set.</desc>
+        </result>
+        <result>
+            <name>OwnerCount</name>
+            <desc>The number of offers and trust lines created by this account. Useful for calculating the account's reserve.</desc>
+        </result>
+        <result>
+            <name>PreviousTxnID</name>
+            <desc>The Transaction ID of the last transaction creatd by this account.</desc>
+        </result>
+        <result>
+            <name>PreviousTxnLgrSeq</name>
+            <desc>The ledger sequence number this account's last transaction appeared in.</desc>
+        </result>
+        <result>
+            <name>Sequence</name>
+            <desc>The current transaction sequence number of this account.</desc>
+        </result>
+        <result>
+            <name>index</name>
+            <desc>The index in the ledger of this account entry.</desc>
+        </result>
+
+        <cli_example>
+            > stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+            {
+            "result" : {
+            "account_data" : {
+            "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+            "Balance" : "9974964999552",
+            "Flags" : 0,
+            "LedgerEntryType" : "AccountRoot",
+            "OwnerCount" : 1,
+            "PreviousTxnID" : "61BF46D3EB11A513FCC885EBD76615A83361E163BD9E7155B4396C8A4FF9FC58",
+            "PreviousTxnLgrSeq" : 3486,
+            "Sequence" : 41,
+            "index" : "6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"
+            },
+            "ledger_current_index" : 3698,
+            "status" : "success"
+            }
+            }
+
+        </cli_example>
+        <rpc_example>
+            > curl -X POST -d \
+            '{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }' \
+            http://public-01.gostellar.org:9002
+
+            {"result":{"account_data":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"999999970","Flags":0,"LedgerEntryType":"AccountRoot","OwnerCount":0,"PreviousTxnID":"710E124A6B8B891DF0B271AD1EF869A9BAE3690786883C5D81F3C64E5AB57AAC","PreviousTxnLgrSeq":113,"Sequence":4,"index":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"},"ledger_index":400,"status":"success"}}
+        </rpc_example>
+        <ws_example>
+            { "command" : "account_info", "id":24, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }
+
+            {
+            "id":24,
+            "result":{
+            "account_data":{
+            "Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
+            "Balance":"53999960",
+            "Flags":0,
+            "LedgerEntryType": "AccountRoot",
+            "OwnerCount":1,
+            "PreviousTxnID":"E0DB3587248BAC7D0C9F86BFAFA238BD54586363B45762D17FF793EE6908AB33",
+            "PreviousTxnLgrSeq":19217,
+            "Sequence":5,
+            "index":"0E72998F3A8AD5005C8796FFB7B984BCCDA91683150CAD95CE59B6C8781BFEB7"
+            },
+            "ledger_current_index":21861
+            },
+            "status":"success",
+            "type":"response"
+            }
+        </ws_example>
+    </command>
+    <command>
+        <name>account_lines</name>
+        <admin>false</admin>
+        <desc>
+            Gets a list of all trust lines a particular account is a part of. A trust line is how credits are tracked in the Stellar network.
+            A trust line has an account on either end, a currency , the amount each account trusts the other for in that currency, and a current balance.
+        </desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The account you are fetching the lines of. Account A.</desc>
+        </argument>
+        <argument>
+            <name>peer</name>
+            <desc>The account ID of another account. If specified will only return the trust lines from Account A to this peer.</desc>
+        </argument>
+
+        <result>
+            <name>account</name>
+            <desc>The account on the other side of the trust line. Account B.</desc>
+        </result>
+        <result>
+            <name>balance</name>
+            <desc>The current balance of credit between A and B. Balance is positive if A is holding IOUs from B.</desc>
+        </result>
+        <result>
+            <name>currency</name>
+            <desc>The currency of the trust line.</desc>
+        </result>
+        <result>
+            <name>limit</name>
+            <desc>How much account A trusts account B for.</desc>
+        </result>
+        <result>
+            <name>limit_peer</name>
+            <desc>How much account B trusts account A for.</desc>
+        </result>
+        <result>
+            <name>quality_in</name>
+            <desc></desc>
+        </result>
+        <result>
+            <name>quality_out</name>
+            <desc></desc>
+        </result>
+
+        <cli_example>
+            C:\internet\stellar2>rippled account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
+            Loading: "C:\internet\stellar2\rippled.cfg"
+            Connecting to: 127.0.0.1:9002
+            {
+            "result" : {
+            "account" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+            "lines" : [
+            {
+            "account" : "gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU",
+            "balance" : "-5000",
+            "currency" : "USD",
+            "limit" : "0",
+            "limit_peer" : "10000",
+            "quality_in" : 0,
+            "quality_out" : 0
+            },
+            {
+            "account" : "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+            "balance" : "0",
+            "currency" : "USD",
+            "limit" : "0",
+            "limit_peer" : "10000",
+            "quality_in" : 0,
+            "quality_out" : 0
+            }
+            ],
+            "status" : "success"
+            }
+            }
+        </cli_example>
+        <rpc_example>
+            > curl -X POST -d '{ "method" : "account_lines", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://127.0.0.1:9002
+            {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}],"status":"success"}}
+
+        </rpc_example>
+        <ws_example>
+            { "command" : "account_lines", "id":24, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
+            {"id":24,"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}]},"status":"success","type":"response"}
+        </ws_example>
+    </command>
+</commands>

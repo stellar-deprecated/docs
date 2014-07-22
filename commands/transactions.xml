@@ -81,19 +81,69 @@
     <command>
         <name>submit OfferCreate</name>
         <admin>false</admin>
-        <desc>Submit an OfferCreate transaction. This set various flags of the account entry.</desc>
+        <desc>Submit an OfferCreate transaction. This adds an offer to the distributed order book.
+            Offers are commitments by the offerer to trade a certain amount of one currency for another. Offers can be partially taken.
+            Creating an offer might result in an immediate trade if the created offer crosses with an existing one.</desc>
+        <argument>
+            <name>Account</name>
+            <required>true</required>
+            <desc>The account creating the offer.</desc>
+        </argument>
+        <argument>
+            <name>TakerGets</name>
+            <required>true</required>
+            <desc>This is an amount. It is what the account taking the offer will get. It is what the offer creator is agreeing to pay.</desc>
+        </argument>
+        <argument>
+            <name>TakerPays</name>
+            <required>true</required>
+            <desc>The is an amount. It is what the offer creator will get and what the offer taker will pay.</desc>
+        </argument>
+        <argument>
+            <name>OfferSequence</name>
+            <required>false</required>
+            <desc>The sequence number of a previous offer. If specified the previous offer will be replaced with this one.</desc>
+        </argument>
+
+        <ws_example>
+            { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
+            { "TransactionType":"OfferCreate", "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "TakerGets": { "currency":"USD", "value":"1500", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }, "TakerPays": { "currency":"BTC", "value":"2.5", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }
+
+            {"result":{"engine_result":"tesSUCCESS","engine_result_code":0,"engine_result_message":"The transaction was applied.","tx_blob":"12000022...","hash":"D384E8A..."}},"status":"success","type":"response"}
+
+        </ws_example>
     </command>
 
     <command>
         <name>submit OfferCancel</name>
         <admin>false</admin>
-        <desc>Submit an OfferCancel transaction. This set various flags of the account entry.</desc>
+        <desc>Cancels an offer this account has made.</desc>
+        <argument>
+            <name>Account</name>
+            <required>true</required>
+            <desc>The account canceling the offer.</desc>
+        </argument>
+        <argument>
+            <name>OfferSequence</name>
+            <required>true</required>
+            <desc>The sequence number of the offer to cancel.</desc>
+        </argument>
     </command>
 
     <command>
         <name>submit TrustSet</name>
         <admin>false</admin>
-        <desc>Submit a TrustSet transaction. This set various flags of the account entry.</desc>
+        <desc>Allows this account to hold credit in some currency from some other account. Any account say that it trusts another account for a particular currency up to a particular limit. Once an account trusts another it can hold credit from that other account.</desc>
+        <argument>
+            <name>Account</name>
+            <required>true</required>
+            <desc>The account extending trust.</desc>
+        </argument>
+        <argument>
+            <name>LimitAmount</name>
+            <required>true</required>
+            <desc>An amount field specifying the type and amount of credit this account is willing to hold.</desc>
+        </argument>
     </command>
 
 </commands>
