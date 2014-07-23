@@ -1,17 +1,45 @@
-
-<h3>{{name}}</h3>
-{{{desc}}}
-{{#argument.0}}Arguments:{{/argument.0}}
+<div class="api-content">
+	<div id="api-{{link}}" class="api-section">
+		<div class="api-text">
+			<h3>{{name}}</h3>
+            			<p>{{{desc}}}</p>
+{{#argument.0}}<h4>Arguments:</h4><div class="api-table">{{/argument.0}}
 {{#argument}}
-<b>{{name}}</b> : {{#required}}required{{/required}} {{^required}}optional{{/required}} {{#default}}<i>default: {{default}}</i>{{/default}} {{{desc}}}
+<div class="api-detail">
+    <div class="api-detail-name">{{name}}</div>
+    <div class="api-detail-info">
+        <p>{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
+        {{{desc}}}</p>
+    </div>
+</div>
 {{/argument}}
-{{#result.0}}Results:{{/result.0}}
-{{#result}}
-<b>{{name}}</b> : {{{desc}}}
-{{/result}}
-{{{cli_example}}}
-{{{ws_example}}}
-{{{rpc_example}}}
+{{#argument.0}}</div>{{/argument.0}}
 
-<hr>
+{{#result.0}}<h4>Results:</h4><div class="api-table">{{/result.0}}
+{{#result}}
+<div class="api-detail">
+    <div class="api-detail-name">{{name}}</div>
+    <div class="api-detail-info">
+        <p>{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
+        {{{desc}}}</p>
+    </div>
+</div>
+{{/result}}
+{{#result.0}}</div>{{/result.0}}
+		</div>
+		<div class="api-code api-tabs">
+<h4>rpc</h4>
+<section>
+<pre><code class="bash">{{{rpc_example}}}</code></pre>
+</section>
+<h4>websocket</h4>
+<section>
+<pre><code class="bash">{{{ws_example}}}</code></pre>
+</section>
+<h4>command line</h4>
+<section>
+<pre><code class="bash">{{{cli_example}}}</code></pre>
+</section>
+		</div>
+	</div>
 

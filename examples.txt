@@ -1,0 +1,214 @@
+
+
+gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
+sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr
+
+
+
+
+stellard submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr '{"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount":"1000000"}'
+stellard account_info gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
+stellard submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr '{"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+stellard submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr '{"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+
+
+curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.gostellar.org:9002
+
+curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "Amount":"1000000", "Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt" }} ] }'  http://public-01.gostellar.org:9002
+curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.gostellar.org:9002
+curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.gostellar.org:9002
+
+
+
+curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La" } ] }' http://public-01.gostellar.org:9002
+curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La", "ledger_min": "0" } ] }' http://public-01.gostellar.org:9002
+
+
+ghDkyLZDx3DduFNpRyz1eud9d1rzh2qMst
+sfz5faaMZSvY4z3GnMUE8XENxiGrJDzzP7FPBvaeY4Dhdk95HJo
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr '{"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount":"1000000"}'
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr '{"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg submit sfz5faaMZSvY4z3GnMUE8XENxiGrJDzzP7FPBvaeY4Dhdk95HJo '{"TransactionType":"TrustSet","Account":"ghDkyLZDx3DduFNpRyz1eud9d1rzh2qMst","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg submit sfknxgShW1cqntLyFeECje1LDafW9YoTcTr597MznMRZDR6dAz7 '{"TransactionType":"Payment","Account":"gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B","Destination":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Amount": { "currency":"USD", "value":"10", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr '{"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"ghDkyLZDx3DduFNpRyz1eud9d1rzh2qMst","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+
+
+
+ledger_index_min: ledger_index, // required, set to -1 for the first fully-validated ledger.
+  ledger_index_max: ledger_index, // required, set to -1 for the last fully-validated ledger.
+  binary: boolean,                // optional, defaults to false
+  forward: boolean,               // optional, defaults to false
+  limit: integer,                 // optional
+  marker: opaque
+
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg account_tx gnnVq3ghZ3xoRE9tG78zCh5AWodVmEey32  '{ "ledger_index_min":"0","ledger_index_max":"999999","limit":"3"}'
+
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg account_currencies gnnVq3ghZ3xoRE9tG78zCh5AWodVmEey32
+
+
+
+====
+    <h3>Stellar API</h3>
+ Here are some examples of using the Stellar API. <br>
+  Your accountID: gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
+  Your secret key: sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr
+
+  <h4>Using stellard</h4>
+
+
+Check your account balance:
+  [bash]
+stellard account_info gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
+  [/bash]
+
+  Send a 1 STR payment:
+  [bash]
+> stellard submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr \
+  '{"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount":"1000000"}'
+[/bash]
+
+  Allow your account to hold another currency:
+  [bash]
+> stellard submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr \
+  '{"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+  [/bash]
+
+  Send a payment in another currency:
+  [bash]
+> stellard submit sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr \
+  '{"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" } }'
+ [/bash]
+
+  <h4>Using RPC</h4>
+  Check your account balance:
+    [bash]curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.gostellar.org:9002
+  [/bash]
+
+  Send a payment:
+     [bash]
+> curl -X POST -d \
+  '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "Amount":"1000000", "Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt" }} ] }' \
+  http://public-01.gostellar.org:9002
+    [/bash]
+
+  Allow your account to hold another currency:
+    [bash]
+> curl -X POST -d \
+  '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }' \
+    http://public-01.gostellar.org:9002
+  [/bash]
+
+    Send a payment in another currency:
+  [bash]
+> curl -X POST -d \
+  '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }' \
+    http://public-01.gostellar.org:9002
+  [/bash]
+
+
+==== Docs ====
+
+command name
+Admin (true | false)
+description
+arguments (optional | required) (default value) description
+results
+CLI example
+CLI return
+RPC example
+RPC return
+websocket example
+websocket return
+
+
+=============
+
+
+<h3>Overview</h3>
+There are 3 ways to issue commands to stellard.
+<ul>
+  	<li><strong>Command line</strong>- This is the usual method when you are running stellard locally.</li>
+
+ 	<li><strong>RPC</strong>- stellard can be configured to listen for http requests on an arbitrary port. You can then make normal PUT requests with the command and parameters sent as a JSON string in the data.</li>
+
+  	<li><strong>Websocket</strong>- stellard can also be configured to create a websocket. You can send all the RPC commands through the websocket. It is useful if you want to subscribe to events from stellard like when a particular account gets a transaction.</li>
+
+</ul>
+
+
+{ "command" : "wallet_propose" }
+
+{ "command" : "tx_history" }
+
+{ "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }
+
+./stellard --conf stellard.cfg  submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{\"TransactionType\":\"Payment\",\"Account\":\"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb\",\"Destination\":\"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq\",\"Amount\":\"250000000000000\"}"
+
+{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :  { "TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"100000000"} }
+
+
+curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://127.0.0.1:9002
+
+==== Order book set up  ===
+
+{ "command" : "account_info", "id":24, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
+{ "command" : "account_lines", "id":24, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
+{ "command" : "account_offers", "id":120, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
+
+Create Gateway:
+{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
+    {"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","Amount":"250000000000000"} }
+
+Trust Gateway BTC:
+{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
+    {"TransactionType":"TrustSet","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","LimitAmount": { "currency":"BTC", "value":"10000", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" } } }
+
+Trust Gateway USD:
+{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
+    {"TransactionType":"TrustSet","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","LimitAmount": { "currency":"BTC", "value":"10000", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" } } }
+
+Fund Root:
+{ "command" : "submit", "secret" : "sf7vvRTpdsRZZh7w1zGHwnWTmcv6hravdWTJHV3RGbwXVHqugNL", "tx_json" :
+    {"TransactionType":"Payment","Account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","Destination":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Amount":{ "currency":"BTC", "value":"10", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }
+
+Root makes offer:
+{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
+    { "TransactionType":"OfferCreate", "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+      "TakerPays": { "currency":"USD", "value":"1500", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" },
+       "TakerGets": { "currency":"BTC", "value":"2.5", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }
+
+
+
+
+==== Test set up ====
+root:
+s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN
+ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+
+gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq
+s3MeGTSUMomCcFAHWomNUH6rEkJpWYGjjPPBVBQqyShB4x2f5Xf
+
+
+gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU
+sfZssmUNyoARiVpVD76Jv6LQRkYr3omLoS6TqmtWXq593RNmfJL
+
+Gateway:
+ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
+sf7vvRTpdsRZZh7w1zGHwnWTmcv6hravdWTJHV3RGbwXVHqugNL
+
+
+rippled submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{\"TransactionType\":\"Payment\",\"Account\":\"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb\",\"Destination\":\"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq\",\"Amount\":\"25000000000000000\"}"
+rippled submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{\"TransactionType\":\"Payment\",\"Account\":\"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb\",\"Destination\":\"gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU\",\"Amount\":\"25000000000000000\"}"
+rippled submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{\"TransactionType\":\"Payment\",\"Account\":\"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb\",\"Destination\":\"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C\",\"Amount\":\"25000000000000000\"}"
+
+rippled submit s3MeGTSUMomCcFAHWomNUH6rEkJpWYGjjPPBVBQqyShB4x2f5Xf "{\"TransactionType\":\"TrustSet\",\"Account\":\"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq\",\"LimitAmount\": { \"currency\":\"USD\", \"value\":\"10000\", \"issuer\": \"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C\" } }"
+rippled submit sfZssmUNyoARiVpVD76Jv6LQRkYr3omLoS6TqmtWXq593RNmfJL "{\"TransactionType\":\"TrustSet\",\"Account\":\"gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU\",\"LimitAmount\": { \"currency\":\"USD\", \"value\":\"10000\", \"issuer\": \"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C\" } }"
+
+rippled submit sf7vvRTpdsRZZh7w1zGHwnWTmcv6hravdWTJHV3RGbwXVHqugNL "{\"TransactionType\":\"Payment\",\"Account\":\"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C\",\"Destination\":\"gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU\",\"Amount\": { \"currency\":\"USD\", \"value\":\"9000\", \"issuer\": \"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C\" } }"

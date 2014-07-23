@@ -1,66 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
-
-    <command>
-        <name>account_offers</name>
-        <admin>false</admin>
-        <desc>Gets a list of all the offers this account has made.</desc>
-       
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc>The account you are getting the offers of.</desc>
-            </argument>
-
-        
-        <cli_example>
-
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-            { "command" : "account_offers", "id":120, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
-            {"id":120,"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","offers":[{"flags":0,"seq":47,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1500"}},{"flags":0,"seq":48,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1600"}}]},"status":"success","type":"response"}
-
-        </ws_example>
-    </command>
-
     <command>
         <name>account_tx</name>
         <admin>false</admin>
         <desc>Get a list of transactions that affected this account.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-            <argument>
-                <name>ledger_min</name>
-                <value>integer</value>
-                <default>0</default>
-                
-                <desc>The earliest ledger to fetch transactions from.</desc>
-            </argument>
-            <argument>
-                <name>ledger_max</name>
-                <value>integer</value>
-                <default>-1</default>
-                
-                <desc>The latest ledger to fetch transactions from. Set to -1 to use the current ledger as the maximum.</desc>
-            </argument>
-            <argument>
-                <name>limit</name>
-                <value>integer</value>
-                <default>-1</default>
-                
-                <desc>Limit the number of transactions stellard will send back to you. stellard is configured with its own limits so you may not receive as many transactions as you ask for. Set to -1 to use the limit set by stellard.</desc>
-            </argument>
-        
-        
 
-        
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc></desc>
+        </argument>
+        <argument>
+            <name>ledger_min</name>
+            <value>integer</value>
+            <default>0</default>
+
+            <desc>The earliest ledger to fetch transactions from.</desc>
+        </argument>
+        <argument>
+            <name>ledger_max</name>
+            <value>integer</value>
+            <default>-1</default>
+
+            <desc>The latest ledger to fetch transactions from. Set to -1 to use the current ledger as the maximum.</desc>
+        </argument>
+        <argument>
+            <name>limit</name>
+            <value>integer</value>
+            <default>-1</default>
+
+            <desc>Limit the number of transactions stellard will send back to you. stellard is configured with its own limits so you may not receive as many transactions as you ask for. Set to -1 to use the limit set by stellard.</desc>
+        </argument>
+
+
+
+
         <cli_example>
 
         </cli_example>
@@ -82,9 +56,7 @@
                 <required>true</required>
                 <desc></desc>
             </argument>
-            <argument type="ledger_index"></argument>
-            <argument type="ledger_hash"></argument>
-        
+
         
             <result>
                 <name>receive_currencies</name>
@@ -155,7 +127,7 @@
     </command>
 
     <command>
-        <name>path_find</name>
+        <name>find_path</name>
         <admin>false</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
         
@@ -219,7 +191,7 @@
     </command>
 
     <command>
-        <name>ripple_path_find</name>
+        <name>static_path_find</name>
         <admin>false</admin>
         <desc>Lists the currencies an account can send or receive.</desc>
         

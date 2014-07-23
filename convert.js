@@ -23,6 +23,8 @@ fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, da
     fs.readFile(__dirname + '/command.template', { encoding: 'utf-8' }, function(err, data) {
         commandTemplate=data;
 
+        commandTemplate
+
         fs.readFile(__dirname + '/html/afternav.html', { encoding: 'utf-8' }, function(err, data) {
             afterNavHTML=data;
 
@@ -74,6 +76,8 @@ function doneParsing(err,result)
     var commandArray=result.commands.command;
     for(var i=0; i<commandArray.length; i++)
     {
+        commandArray[i].link=function(){ return( this.name[0].replace(/\s+/g, '-').toLowerCase() ); };
+
         var cHTML = Mustache.render(commandTemplate, commandArray[i]);
         var nHTML = Mustache.render(navTemplate, commandArray[i]);
         var obj={'name': commandArray[i].name[0],'html':cHTML,'nav': nHTML};
@@ -97,6 +101,8 @@ function writeHTML()
         commandsHTML += publicCommands[i].html;
     }
 
+    navHTML += '</ul>       </section><section>    <h3>Admin commands</h3>    <ul>';
+
     for(var i=0; i<adminCommands.length; i++)
     {
         navHTML += adminCommands[i].nav;
@@ -105,5 +111,5 @@ function writeHTML()
 
     var allHTML=headerHTML + navHTML + afterNavHTML + commandsHTML + footerHTML;
 
-    fs.writeFile(__dirname + '/out.html',allHTML);
+    fs.writeFile(__dirname + '/api-docs.html',allHTML);
 }
