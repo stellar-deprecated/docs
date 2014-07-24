@@ -106,7 +106,8 @@
 
         <result>
             <name>Balance</name>
-            <desc>The number of STRs this account holds , in satoshis.</desc>
+            <type>int</type>
+            <desc>The number of stellars this account holds , in <a href="https://wiki.gostellar.org/Stroop">stroops</a>.</desc>
         </result>
         <result>
             <name>Flags</name>
@@ -342,6 +343,101 @@
             "status":"success",
             "type":"response"}
 
+        </ws_example>
+    </command>
+    <command>
+        <name>ping</name>
+        <admin>false</admin>
+        <desc>Command to test connectivity to stellard.</desc>
+
+        <cli_example> ><![CDATA[ > stellard ping
+{
+   "result" : {
+      "status" : "success"
+   }
+}]]></cli_example>
+        <rpc_example>curl -X POST -d '{ "method" : "ping" }' http://public-01.gostellar.org:9002
+
+            {"result":{"status":"success"}}</rpc_example>
+        <ws_example> { "command" : "ping" }
+
+            {"result":{},"status":"success","type":"response"}</ws_example>
+    </command>
+    <command>
+        <name>transaction_entry</name>
+        <admin>false</admin>
+        <desc>Get the details of a particular transaction.</desc>
+
+        <argument>
+            <name>tx_hash</name>
+            <required>true</required>
+            <desc>The hash of the transaction you are interested in.</desc>
+        </argument>
+        <argument>
+            <name>ledger_index</name>
+            <desc>If you only want to look for the transaction in a particular ledger.</desc>
+        </argument>
+
+
+        <cli_example>
+
+        </cli_example>
+        <rpc_example>
+
+        </rpc_example>
+        <ws_example>
+
+        </ws_example>
+    </command>
+    <command>
+        <name>wallet_propose</name>
+        <admin>false</admin>
+        <desc>Generates a random secret key and an accountID based on this key.</desc>
+
+        <argument>
+            <name>passphrase</name>
+            <type>string</type>
+            <desc>If specified it will create the secret key from a hash of the passphrase.</desc>
+        </argument>
+
+
+        <result>
+            <name>account_id</name>
+            <desc>The generated accountID. It will become a usable stellar account if someone sends stellars to it.</desc>
+        </result>
+        <result>
+            <name>master_seed</name>
+            <desc>The secret key in base58 format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>master_seed_hex</name>
+            <desc>The secret key in hex format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>public_key</name>
+            <desc>The public key in base58 format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>public_key_hex</name>
+            <desc>The public key in hex format that corresponds to the accountID.</desc>
+        </result>
+
+        <cli_example>
+
+        </cli_example>
+        <rpc_example>
+
+        </rpc_example>
+        <ws_example>
+            { "command" : "wallet_propose" }
+            {"result":{
+            "account_id":"g9yMgy1dxac5UBSxc1nxtVUyhw11qYPLcs",
+            "master_seed":"s3YBKJpSJkyfoJQHHSaKwGPZyW73ThahyVjh7oehcQPq5T4ncHU",
+            "master_seed_hex":"B70A1108710883663AE1B18356FB1BF99FAF3581939B1E6FC72A1FD83DE12910",
+            "public_key":"pGFGGYRCkQHbHMbjQJJHU4SuduR5hU77kqr7EkhDd8quZF2xTAR",
+            "public_key_hex":"CF8165969EEC1B05DC79CD0CE472AE827FC1CD6E0F8FEFDB394C2ED6379219E6"},
+            "status":"success","type":"response"
+            }
         </ws_example>
     </command>
 </commands>

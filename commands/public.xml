@@ -12,21 +12,21 @@
         </argument>
         <argument>
             <name>ledger_min</name>
-            <value>integer</value>
+            <type>int</type>
             <default>0</default>
 
             <desc>The earliest ledger to fetch transactions from.</desc>
         </argument>
         <argument>
             <name>ledger_max</name>
-            <value>integer</value>
+            <type>int</type>
             <default>-1</default>
 
             <desc>The latest ledger to fetch transactions from. Set to -1 to use the current ledger as the maximum.</desc>
         </argument>
         <argument>
             <name>limit</name>
-            <value>integer</value>
+            <type>int</type>
             <default>-1</default>
 
             <desc>Limit the number of transactions stellard will send back to you. stellard is configured with its own limits so you may not receive as many transactions as you ask for. Set to -1 to use the limit set by stellard.</desc>
@@ -34,8 +34,7 @@
 
 
 
-
-        <cli_example>
+     <cli_example>
 
         </cli_example>
         <rpc_example>
@@ -50,22 +49,9 @@
         <name>book_offers</name>
         <admin>false</admin>
         <desc>Returns the offers in a given orderbook. An orderbook is a particular currency/issuer on the buy side and a different currency/issuer on the sell side.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
 
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
+
+
         
         <cli_example>
 
@@ -86,28 +72,28 @@
             <argument>
                 <name>full</name>
                 
-                <value>bool</value>
+                <type>bool</type>
                 <default>false</default>
                 <desc>Return all the ledger entries. This is equivalent to setting accounts, transactions, and expand all to true. stellard can be configured to support this or not.</desc>
             </argument>
             <argument>
                 <name>accounts</name>
                 
-                <value>bool</value>
+                <type>bool</type>
                 <default>false</default>
                 <desc>If set to true, it will return the accounts tree for that public ledger block.</desc>
             </argument>
             <argument>
                 <name>transactions</name>
                 
-                <value>bool</value>
+                <type>bool</type>
                 <default>false</default>
                 <desc>If true, return the transactions for the ledger.</desc>
             </argument>
             <argument>
                 <name>expand</name>
                 
-                <value>bool</value>
+                <type>bool</type>
                 <default>false</default>
                 <desc>If set to true, returns the ledger and transaction entries in JSON format. Otherwise, returns their identifying hashes.</desc>
             </argument>
@@ -129,88 +115,51 @@
     <command>
         <name>find_path</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
+        <desc><![CDATA[Finds the best path for a transfer. Stellard will continue to send updates as it finds better paths or as the state of the ledger changes until <strong>find_path</strong> is called again with the <strong>close</strong> subcommand.
+
+A websocket connection may only have one open pathfinding request.
+If stellard responds because of a client query the response will have a field <strong>type</strong> set to <em>response</em>.
+If stellard is sending an unsolicited response the <strong>type</strong> field will be set to <em>find_path</em>.
+This command is only available via the Websocket API. If you want to use as RPC or command line or you don't want ongoing path updates use <a href="#api-static_path_find">static_path_find</a> instead.
+            ]]></desc>
+
             <argument>
-                <name>account</name>
+                <name>source_account</name>
                 <required>true</required>
-                <desc></desc>
+                <desc>Sender's Stellar address.</desc>
             </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
-        <cli_example>
+        <argument>
+            <name>destination_account</name>
+            <required>true</required>
+            <desc>Receiver's Stellar address.</desc>
+        </argument>
+        <argument>
+            <name>destination_amount</name>
+            <type>amount</type>
+            <required>true</required>
+            <desc>Amount sender is trying to send to receiver.</desc>
+        </argument>
 
-        </cli_example>
-        <rpc_example>
+        <result>
+            <name>alternatives</name>
+            <desc>Each entry will correspond to one possible source currency.</desc>
+        </result>
 
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
+        <cli_example><![CDATA[ find_path only available over websocket.  ]]></cli_example>
+        <rpc_example><![CDATA[ find_path only available over websocket.  ]]></rpc_example>
+        <ws_example><![CDATA[   ]]></ws_example>
     </command>
 
-    <command>
-        <name>ping</name>
-        <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
-        <cli_example>
 
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
-    </command>
 
     <command>
         <name>static_path_find</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
+        <desc><![CDATA[Finds a path for a transfer. If you want updates to the path as the state of the ledger changes use <a href="#api-find_path">find_path</a> instead.
+            ]]></desc>
         
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
+
+
         <cli_example>
 
         </cli_example>
@@ -225,23 +174,12 @@
     <command>
         <name>sign</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
+        <desc>Sign a transaction.</desc>
         
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
+
         
         
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
+
         
         <cli_example>
 
@@ -259,23 +197,11 @@
     <command>
         <name>subscribe</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
+        <desc>Listen to events. If you are using websocket stellard will send you messages when an event of the type you are listening to happens.
+            You can also specify a URL that is called when an event happens if you are not listening on websocket.</desc>
         
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
+
+
         
         <cli_example>
 
@@ -291,58 +217,13 @@
         </ws_example>
     </command>
 
-    <command>
-        <name>transaction_entry</name>
-        <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
-        
-        <cli_example>
 
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
-    </command>
 
     <command>
         <name>tx</name>
         <admin>false</admin>
-        <desc>Lists the currencies an account can send or receive.</desc>
-        
-            <argument>
-                <name>account</name>
-                <required>true</required>
-                <desc></desc>
-            </argument>
-        
-        
-            <result>
-                <name>receive_currencies</name>
-                <desc></desc>
-            </result>
-            <result>
-                <name>send_currencies</name>
-                <desc></desc>
-            </result>
+        <desc>Get details of a specific transaction.</desc>
+
         
         <cli_example>
 
@@ -372,8 +253,7 @@
         <rpc_example>
 
         </rpc_example>
-        <ws_example>
-{ "command" : "tx_history", "start" : "5" }
+        <ws_example>{ "command" : "tx_history", "start" : "5" }
 
  {"result":{
     "index":5,
@@ -396,14 +276,13 @@
     ]},
     "status":"success",
     "type":"response"
-  }
-        </ws_example>
+  }</ws_example>
     </command>
 
     <command>
         <name>unsubscribe</name>
         <admin>false</admin>
-        <desc><![CDATA[ Unsubscribe from events that were previously subscribed to. See <a href="#subscribe">subscribe<a>. ]]></desc>
+        <desc><![CDATA[ Unsubscribe from events that were previously subscribed to. See <a href="#subscribe">subscribe</a>. ]]></desc>
 
             <argument>
                 <name>streams</name>
@@ -438,57 +317,7 @@
         </ws_example>
     </command>
 
-    <command>
-        <name>wallet_propose</name>
-        <admin>false</admin>
-        <desc>Generates a random secret key and an accountID based on this key.</desc>
 
-        <argument>
-            <name>passphrase</name>
-            
-            <desc>If specified it will create the secret key from a hash of the passphrase.</desc>
-        </argument>
-
-
-        <result>
-            <name>account_id</name>
-            <desc>The generated accountID. It will become a usable stellar account if someone sends stellars to it.</desc>
-        </result>
-        <result>
-            <name>master_seed</name>
-            <desc>The secret key in base58 format that corresponds to the accountID.</desc>
-        </result>
-        <result>
-            <name>master_seed_hex</name>
-            <desc>The secret key in hex format that corresponds to the accountID.</desc>
-        </result>
-        <result>
-            <name>public_key</name>
-            <desc>The public key in base58 format that corresponds to the accountID.</desc>
-        </result>
-        <result>
-            <name>public_key_hex</name>
-            <desc>The public key in hex format that corresponds to the accountID.</desc>
-        </result>
-
-        <cli_example>
-
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-{ "command" : "wallet_propose" }
-{"result":{
-    "account_id":"g9yMgy1dxac5UBSxc1nxtVUyhw11qYPLcs",
-     "master_seed":"s3YBKJpSJkyfoJQHHSaKwGPZyW73ThahyVjh7oehcQPq5T4ncHU",
-     "master_seed_hex":"B70A1108710883663AE1B18356FB1BF99FAF3581939B1E6FC72A1FD83DE12910",
-     "public_key":"pGFGGYRCkQHbHMbjQJJHU4SuduR5hU77kqr7EkhDd8quZF2xTAR",
-     "public_key_hex":"CF8165969EEC1B05DC79CD0CE472AE827FC1CD6E0F8FEFDB394C2ED6379219E6"},
-  "status":"success","type":"response"
-}
-        </ws_example>
-    </command>
 </commands>
 
 

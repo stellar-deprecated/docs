@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
-    <command>
-        <name>submit</name>
-        <admin>false</admin>
-        <desc>Submits a transaction to the network. The transaction can be submitted unsigned if you include your secret key and stellard will sign it for you.</desc>
 
-        <argument>
-            <name>secret</name>
-            <required>false</required>
-            <desc>The signer's secret key. Do not provide this field to untrusted servers. Required to submit tx_json transactions.</desc>
-        </argument>
-        <argument>
-            <name>tx_json</name>
-            <required>false</required>
-            <desc>This is the JSON representation of the transaction to submit. See the specific transactions for details.</desc>
-        </argument>
-        <argument>
-            <name>tx_blob</name>
-            <required>false</required>
-            <desc>This is a signed and serialized transaction. Use this version if you don't want to expose your secret key to stellard.</desc>
-        </argument>
-    </command>
 
     <command>
-        <name>submit Payment</name>
+        <subnav>submit</subnav>
+        <name>Payment</name>
         <admin>false</admin>
         <desc>Submit a payment transaction.</desc>
 
@@ -45,7 +26,11 @@
         <argument>
             <name>Amount</name>
             <required>true</required>
-            <desc>The amount to send. This is either a number of satoshis for sending STR or a {currency,issuer,value} triplet for sending credits.</desc>
+            <desc><![CDATA[ The amount to send. This is either a number of <a href="wiki.gostellar.org/Stroops">stroops</a> for sending STR or a {currency,issuer,value} triplet for sending a credit. ]]></desc>
+        </argument>
+        <argument>
+            <name>Fee</name>
+            <desc>If unspecified stellard will fill in the appropriate amount of fee.</desc>
         </argument>
 
         <cli_example>
@@ -67,19 +52,22 @@
     </command>
 
     <command>
-        <name>submit AccountSet</name>
+        <name>AccountSet</name>
+        <subnav>submit</subnav>
         <admin>false</admin>
         <desc>Submit an AccountSet transaction. This set various flags of the account entry.</desc>
     </command>
 
     <command>
-        <name>submit SetRegularKey</name>
+        <subnav>submit</subnav>
+        <name>SetRegularKey</name>
         <admin>false</admin>
         <desc>Submit an SetRegularKey transaction. This set various flags of the account entry.</desc>
     </command>
 
     <command>
-        <name>submit OfferCreate</name>
+        <name>OfferCreate</name>
+        <subnav>submit</subnav>
         <admin>false</admin>
         <desc>Submit an OfferCreate transaction. This adds an offer to the distributed order book.
             Offers are commitments by the offerer to trade a certain amount of one currency for another. Offers can be partially taken.
@@ -115,7 +103,8 @@
     </command>
 
     <command>
-        <name>submit OfferCancel</name>
+        <subnav>submit</subnav>
+        <name>OfferCancel</name>
         <admin>false</admin>
         <desc>Cancels an offer this account has made.</desc>
         <argument>
@@ -131,7 +120,8 @@
     </command>
 
     <command>
-        <name>submit TrustSet</name>
+        <subnav>submit</subnav>
+        <name>TrustSet</name>
         <admin>false</admin>
         <desc>Allows this account to hold credit in some currency from some other account. Any account say that it trusts another account for a particular currency up to a particular limit. Once an account trusts another it can hold credit from that other account.</desc>
         <argument>
@@ -143,6 +133,28 @@
             <name>LimitAmount</name>
             <required>true</required>
             <desc>An amount field specifying the type and amount of credit this account is willing to hold.</desc>
+        </argument>
+    </command>
+
+    <command>
+        <name>submit</name>
+        <admin>false</admin>
+        <desc>Submits a transaction to the network. The transaction can be submitted unsigned if you include your secret key and stellard will sign it for you.</desc>
+
+        <argument>
+            <name>secret</name>
+            <required>false</required>
+            <desc>The signer's secret key. Do not provide this field to untrusted servers. Required to submit tx_json transactions.</desc>
+        </argument>
+        <argument>
+            <name>tx_json</name>
+            <required>false</required>
+            <desc>This is the JSON representation of the transaction to submit. See the specific transactions for details.</desc>
+        </argument>
+        <argument>
+            <name>tx_blob</name>
+            <required>false</required>
+            <desc>This is a signed and serialized transaction. Use this version if you don't want to expose your secret key to stellard.</desc>
         </argument>
     </command>
 

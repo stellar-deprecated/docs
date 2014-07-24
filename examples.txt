@@ -172,17 +172,27 @@ Trust Gateway BTC:
 
 Trust Gateway USD:
 { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
-    {"TransactionType":"TrustSet","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","LimitAmount": { "currency":"BTC", "value":"10000", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" } } }
+    {"TransactionType":"TrustSet","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","LimitAmount": { "currency":"USD", "value":"10000", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" } } }
 
-Fund Root:
+Fund Root BTC:
 { "command" : "submit", "secret" : "sf7vvRTpdsRZZh7w1zGHwnWTmcv6hravdWTJHV3RGbwXVHqugNL", "tx_json" :
     {"TransactionType":"Payment","Account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","Destination":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Amount":{ "currency":"BTC", "value":"10", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }
+
+Fund Root USD
+{ "command" : "submit", "secret" : "sf7vvRTpdsRZZh7w1zGHwnWTmcv6hravdWTJHV3RGbwXVHqugNL", "tx_json" :
+    {"TransactionType":"Payment","Account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","Destination":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Amount":{ "currency":"USD", "value":"150", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }
 
 Root makes offer:
 { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
     { "TransactionType":"OfferCreate", "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
       "TakerPays": { "currency":"USD", "value":"1500", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" },
        "TakerGets": { "currency":"BTC", "value":"2.5", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }
+
+
+{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
+    { "TransactionType":"OfferCreate", "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+      "TakerPays": { "currency":"USD", "value":"10", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" },
+       "TakerGets": 400000000} }
 
 
 

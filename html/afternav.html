@@ -1,5 +1,61 @@
-<!-- whatever you need after the nav menu here -->
+<!-- after the nav menu here -->
 
     </ul>
 </section>
 </div>
+<div class="api-content-wrapper">
+<div class="api-content">
+    <div id="api-overview" class="api-section">
+        <div class="api-text">
+            <h3>Overview</h3>
+            <p><strong>We are in the process of filling the docs out.</strong></p>
+            <p>There are 3 ways to issue commands to stellard.
+            <ul>
+                <li><strong>Command line</strong>- This is the usual method when you are running stellard locally.</li>
+
+                <li><strong>RPC</strong>- stellard can be configured to listen for http requests on an arbitrary port. You can then make normal PUT requests with the command and parameters sent as a JSON string in the data.</li>
+
+                <li><strong>Websocket</strong>- stellard can also be configured to create a websocket. It is useful if you want to subscribe to events from stellard. For example if you want to know when a particular account gets a transaction.</li>
+            </ul>
+
+            Stellar Foundation runs two instances of stellard you can use if you don't want to run your own.
+            <p>
+            test network: 54.88.219.157 RPC port: 39002  websocket port: 39001<p>
+            live network: public-01.gostellar.org RPC port: 9002  websocket port: 9001
+            </p>
+        </div>
+    </div>
+
+    <div id="api-amount" class="api-section">
+        <div class="api-text">
+            <h3>amount</h3>
+            <p>Many of the API commands have arguments that need an <strong>amount</strong> type. An amount is either an amount of stellars (STR) or an amount of some other currency.</p>
+            <p>If you are wanting to represent an amount of stellars then amount it is just the number of <a href="https://wiki.gostellar.org/Stroop">stroops</a> (1,000,000 stroops in 1 STR).
+            <p>An amount that represents other currencies is composed of 3 things:
+            <ul>
+                <li><strong>currency</strong>- This is the 3 letter code, USD, BTC,EUR etc.</li>
+
+                <li><strong>issuer</strong>- this is the account that issued the credit.</li>
+
+                <li><strong>value</strong>- this is the amount of credit.</li>
+            </ul>
+            <div class="api-code api-tabs">
+                <h4>example</h4>
+                <section>
+<pre><code class="bash">
+ 34.5 BTC:
+ "amount" : {
+    "currency" : "BTC",
+    "issuer" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "value" : "34.5"
+ }
+
+ 55 stellars:
+   "amount" : "55000000"
+</code></pre>
+                </section>
+
+
+    </div>
+</div>
+        </div>

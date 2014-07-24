@@ -63,7 +63,24 @@ function byName(a, b){
     return 0;
 };
 
+function type_link()
+{
+    if(this.type[0]==='amount') return( '<a href="#amount">'+this.type[0]+'</a>');
+    return('<strong>'+this.type[0]+'</strong>');
+}
 
+
+function attachSubnav(commandArray, command)
+{
+    for(var i=0; i<commandArray.length; i++)
+    {
+        if(commandArray[i].name[0]===command.subnav[0])
+        {
+            if(! commandArray[i].sublist) commandArray[i].sublist=[];
+            commandArray[i].sublist.push({'name': command.name[0], 'linkname' : command.name[0].replace(/\s+/g, '-').toLowerCase()}  );
+        }
+    }
+}
 
 function doneParsing(err,result)
 {
@@ -76,14 +93,27 @@ function doneParsing(err,result)
     var commandArray=result.commands.command;
     for(var i=0; i<commandArray.length; i++)
     {
-        commandArray[i].link=function(){ return( this.name[0].replace(/\s+/g, '-').toLowerCase() ); };
+        commandArray[i].link=function(){
+            return( this.name[0].replace(/\s+/g, '-').toLowerCase() );
+        };
 
+        commandArray[i].type_link=function(){
+            if(this.type[0]==='amount') return( '<a href="#amount">'+this.type[0]+'</a>');
+            return('<strong>'+this.type[0]+'</strong>');
+        };
+
+        if(commandArray[i].subnav)
+        {
+            attachSubnav(commandArray,commandArray[i]);
+            var nHTML='';
+        }else var nHTML = Mustache.render(navTemplate, commandArray[i]);
         var cHTML = Mustache.render(commandTemplate, commandArray[i]);
-        var nHTML = Mustache.render(navTemplate, commandArray[i]);
+
         var obj={'name': commandArray[i].name[0],'html':cHTML,'nav': nHTML};
         if(commandArray[i].admin[0]==='true') adminCommands.push( obj );
         else publicCommands.push(obj);
     }
+
 }
 
 
@@ -97,6 +127,7 @@ function writeHTML()
 
     for(var i=0; i<publicCommands.length; i++)
     {
+        //if(publicCommands[i].name[0]==='submit') navHTML += '<ul>'
         navHTML += publicCommands[i].nav;
         commandsHTML += publicCommands[i].html;
     }
