@@ -62,7 +62,7 @@
             }
             }
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
             > curl -X POST -d \
             '{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }' \

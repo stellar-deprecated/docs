@@ -36,7 +36,7 @@
 
      <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -93,11 +93,9 @@
             <desc>The offers sorted from best to worst. </desc>
         </result>
 
-
-
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -180,7 +178,7 @@
             "status" : "success"
             }
             }
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
             curl -X POST -d '{ "method" : "ledger" }' http://public-01.gostellar.org:9002
 
@@ -291,7 +289,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <desc>Each entry will correspond to one possible source currency.</desc>
         </result>
 
-        <cli_example><![CDATA[ find_path only available over websocket.  ]]><cli_example>
+        <cli_example><![CDATA[ find_path only available over websocket.  ]]></cli_example>
         <rpc_example><![CDATA[ find_path only available over websocket.  ]]></rpc_example>
         <ws_example><![CDATA[   ]]></ws_example>
     </command>
@@ -328,7 +326,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -348,7 +346,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -370,7 +368,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -430,7 +428,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
           ]
        }
     }
-]]><cli_example>
+]]></cli_example>
         <rpc_example><![CDATA[> curl -X POST -d '{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }' public-01-stg.gostellar.org:9002
 {
    "result":{

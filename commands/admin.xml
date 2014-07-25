@@ -23,7 +23,7 @@
         
         <cli_example><![CDATA[
 > stellard connect 53.23.56.110 5000
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -148,7 +148,7 @@
             }
             }
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -198,7 +198,7 @@
         
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
     </command>
 
     <command>
@@ -210,7 +210,7 @@
         
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
     </command>
 
     <command>
@@ -265,7 +265,7 @@ Connecting to: 0.0.0.0:39002
     "validation_seed" : "s3TEeZabAYLg1f9MSvoeb1ce8Xy2UJYjRosop6hN1TSdvg4K96z"
     }
 }
-        ]]><cli_example>
+        ]]></cli_example>
 
     </command>
 

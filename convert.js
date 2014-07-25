@@ -14,8 +14,7 @@ var afterNavHTML='';
 var footerHTML='';
 var headerHTML='';
 var ledgerIndexHTML='';
-
-var loadCount=0;
+var gLoadCount=0;
 var adminCommands=[];
 var publicCommands=[];
 
@@ -50,14 +49,14 @@ fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, da
 function loadCommandXML() {
     var files = fs.readdirSync(__dirname + '/commands');
 
-    loadCount=files.length;
+    gLoadCount=files.length;
     for (var i in files) {
-
+    console.log('parsing: '+files[i]);
         fs.readFile(__dirname +'/commands/'+ files[i], function (err, data) {
             xml2js.parseString(data, doneParsing );
-            loadCount--;
-            if(loadCount==0) writeHTML();
+
         });
+
     }
 }
 
@@ -98,6 +97,7 @@ function doneParsing(err,result)
     var commandArray=result.commands.command;
     for(var i=0; i<commandArray.length; i++)
     {
+        console.log('command: '+commandArray[i].name);
         commandArray[i].link=function(){
             return( this.name[0].replace(/\s+/g, '-').toLowerCase() );
         };
@@ -125,6 +125,8 @@ function doneParsing(err,result)
         else publicCommands.push(obj);
     }
 
+    gLoadCount--;
+    if(gLoadCount==0) writeHTML();
 }
 
 

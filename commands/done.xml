@@ -33,7 +33,7 @@
             "status" : "success"
             }
             }
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
             > curl -X POST -d \
             '{ "method" : "account_currencies", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_index" : 400 } ] }' \
@@ -143,7 +143,7 @@
             "status" : "success"
             }
             }
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
             > curl -X POST -d '{ "method" : "account_lines", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://127.0.0.1:9002
             {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}],"status":"success"}}
@@ -206,7 +206,7 @@
             }
             }
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
             curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://public-01.gostellar.org:9002
             {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","offers":[{"flags":0,"seq":47,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1500"}},{"flags":0,"seq":48,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1600"}}],"status":"success"}}
@@ -235,7 +235,7 @@
    "result" : {
       "status" : "success"
    }
-}]]><cli_example>
+}]]></cli_example>
         <rpc_example><![CDATA[curl -X POST -d '{ "method" : "ping" }' http://public-01.gostellar.org:9002
 
             {"result":{"status":"success"}}]]></rpc_example>
@@ -262,7 +262,7 @@
 
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
@@ -305,7 +305,7 @@
 
         <cli_example><![CDATA[
 
-        ]]><cli_example>
+        ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
