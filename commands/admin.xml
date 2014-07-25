@@ -21,15 +21,15 @@
         
 
         
-        <cli_example>
+        <cli_example><![CDATA[
 > stellard connect 53.23.56.110 5000
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
 
-        </ws_example>
+        ]]></ws_example>
     </command>
 
     <command>
@@ -68,7 +68,7 @@
         </argument>
 
         
-        <cli_example>
+        <cli_example><![CDATA[
             > stellard log_level
             Loading: "stellard.cfg"
             Connecting to: 0.0.0.0:39002
@@ -148,13 +148,13 @@
             }
             }
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
 
-        </ws_example>
+        ]]></ws_example>
     </command>
 
     <command>
@@ -196,9 +196,9 @@
         
 
         
-        <cli_example>
+        <cli_example><![CDATA[
 
-        </cli_example>
+        ]]><cli_example>
     </command>
 
     <command>
@@ -208,9 +208,9 @@
         
 
         
-        <cli_example>
+        <cli_example><![CDATA[
 
-        </cli_example>
+        ]]><cli_example>
     </command>
 
     <command>
@@ -254,7 +254,7 @@
                 <desc>Validation secret key, base58 encoded. Put in your stellard.cfg if you want this to be a validating server.</desc>
             </result>
         
-        <cli_example>
+        <cli_example><![CDATA[
 >stellard validation_create
 
 Connecting to: 0.0.0.0:39002
@@ -265,7 +265,7 @@ Connecting to: 0.0.0.0:39002
     "validation_seed" : "s3TEeZabAYLg1f9MSvoeb1ce8Xy2UJYjRosop6hN1TSdvg4K96z"
     }
 }
-        </cli_example>
+        ]]><cli_example>
 
     </command>
 

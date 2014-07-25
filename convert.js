@@ -13,6 +13,7 @@ var navTemplate='';
 var afterNavHTML='';
 var footerHTML='';
 var headerHTML='';
+var ledgerIndexHTML='';
 
 var loadCount=0;
 var adminCommands=[];
@@ -23,7 +24,7 @@ fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, da
     fs.readFile(__dirname + '/command.template', { encoding: 'utf-8' }, function(err, data) {
         commandTemplate=data;
 
-        commandTemplate
+
 
         fs.readFile(__dirname + '/html/afternav.html', { encoding: 'utf-8' }, function(err, data) {
             afterNavHTML=data;
@@ -34,7 +35,11 @@ fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, da
                 fs.readFile(__dirname + '/html/header.html', { encoding: 'utf-8' }, function(err, data) {
                     headerHTML=data;
 
-                    loadCommandXML();
+                    fs.readFile(__dirname + '/html/ledger_index.html', { encoding: 'utf-8' }, function(err, data) {
+                        ledgerIndexHTML=data;
+
+                        loadCommandXML();
+                    });
                 });
             });
         });
@@ -98,9 +103,15 @@ function doneParsing(err,result)
         };
 
         commandArray[i].type_link=function(){
-            if(this.type[0]==='amount') return( '<a href="#amount">'+this.type[0]+'</a>');
-            return('<strong>'+this.type[0]+'</strong>');
+            var ret='';
+            if((''+this) ==='amount') ret='<a href="#api-amount">'+this +'</a>';
+            else ret="<strong>"+this+'</strong>';
+            return(ret);
         };
+        commandArray[i].insert_common=function(){
+            if(this.common && this.common[0]==='ledger_index') return(ledgerIndexHTML);
+            return('');
+        }
 
         if(commandArray[i].subnav)
         {

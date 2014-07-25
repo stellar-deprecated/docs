@@ -15,13 +15,15 @@
 
                 <li><strong>RPC</strong>- stellard can be configured to listen for http requests on an arbitrary port. You can then make normal PUT requests with the command and parameters sent as a JSON string in the data.</li>
 
-                <li><strong>Websocket</strong>- stellard can also be configured to create a websocket. It is useful if you want to subscribe to events from stellard. For example if you want to know when a particular account gets a transaction.</li>
+                <li><strong>Websocket</strong>- stellard can also be configured to create a websocket. It is useful if you want to subscribe to events from stellard. For example if you want to know when a particular account gets a transaction.
+                    All websocket commands can take an optional <strong>id</strong> integer parameter. This <strong>id</strong> will be reflected in stellard's response.</li>
             </ul>
 
             Stellar Foundation runs two instances of stellard you can use if you don't want to run your own.
+            <div class="alert alert-warning"><strong>test network</strong>: public-01-stg.gostellar.org  RPC port: 9002  websocket port: 9001</div>
+            <div class="alert alert-warning"><strong>live network</strong>: public-01.gostellar.org RPC port: 9002  websocket port: 9001</div>
             <p>
-            test network: 54.88.219.157 RPC port: 39002  websocket port: 39001<p>
-            live network: public-01.gostellar.org RPC port: 9002  websocket port: 9001
+
             </p>
         </div>
     </div>
@@ -33,11 +35,11 @@
             <p>If you are wanting to represent an amount of stellars then amount it is just the number of <a href="https://wiki.gostellar.org/Stroop">stroops</a> (1,000,000 stroops in 1 STR).
             <p>An amount that represents other currencies is composed of 3 things:
             <ul>
-                <li><strong>currency</strong>- This is the 3 letter code, USD, BTC,EUR etc.</li>
+                <li><strong>currency</strong>- the 3 letter currency code, USD, BTC, EUR etc.</li>
 
-                <li><strong>issuer</strong>- this is the account that issued the credit.</li>
+                <li><strong>issuer</strong>- the account that issued the credit.</li>
 
-                <li><strong>value</strong>- this is the amount of credit.</li>
+                <li><strong>value</strong>- the amount of credit.</li>
             </ul>
             <div class="api-code api-tabs">
                 <h4>example</h4>

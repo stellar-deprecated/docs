@@ -1,0 +1,97 @@
+<commands>
+    <command>
+        <name>account_info</name>
+        <admin>false</admin>
+        <desc>Returns information about the given account.</desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The account you are interested in.</desc>
+        </argument>
+
+
+
+        <result>
+            <name>Balance</name>
+            <type>int</type>
+            <desc><![CDATA[ The number of stellars this account holds , in <a href="https://wiki.gostellar.org/Stroop">stroops</a>. ]]></desc>
+        </result>
+        <result>
+            <name>Flags</name>
+            <desc>What account flags are set.</desc>
+        </result>
+        <result>
+            <name>OwnerCount</name>
+            <desc>The number of offers and trust lines created by this account. Useful for calculating the account's reserve.</desc>
+        </result>
+        <result>
+            <name>PreviousTxnID</name>
+            <desc>The Transaction ID of the last transaction creatd by this account.</desc>
+        </result>
+        <result>
+            <name>PreviousTxnLgrSeq</name>
+            <desc>The ledger sequence number this account's last transaction appeared in.</desc>
+        </result>
+        <result>
+            <name>Sequence</name>
+            <desc>The current transaction sequence number of this account.</desc>
+        </result>
+        <result>
+            <name>index</name>
+            <desc>The index in the ledger of this account entry.</desc>
+        </result>
+
+        <cli_example><![CDATA[
+            > stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+            {
+            "result" : {
+            "account_data" : {
+            "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+            "Balance" : "9974964999552",
+            "Flags" : 0,
+            "LedgerEntryType" : "AccountRoot",
+            "OwnerCount" : 1,
+            "PreviousTxnID" : "61BF46D3EB11A513FCC885EBD76615A83361E163BD9E7155B4396C8A4FF9FC58",
+            "PreviousTxnLgrSeq" : 3486,
+            "Sequence" : 41,
+            "index" : "6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"
+            },
+            "ledger_current_index" : 3698,
+            "status" : "success"
+            }
+            }
+
+        ]]><cli_example>
+        <rpc_example><![CDATA[
+            > curl -X POST -d \
+            '{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }' \
+            http://public-01.gostellar.org:9002
+
+            {"result":{"account_data":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"999999970","Flags":0,"LedgerEntryType":"AccountRoot","OwnerCount":0,"PreviousTxnID":"710E124A6B8B891DF0B271AD1EF869A9BAE3690786883C5D81F3C64E5AB57AAC","PreviousTxnLgrSeq":113,"Sequence":4,"index":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"},"ledger_index":400,"status":"success"}}
+        ]]></rpc_example>
+        <ws_example><![CDATA[
+            { "command" : "account_info", "id":24, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }
+
+            {
+            "id":24,
+            "result":{
+            "account_data":{
+            "Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
+            "Balance":"53999960",
+            "Flags":0,
+            "LedgerEntryType": "AccountRoot",
+            "OwnerCount":1,
+            "PreviousTxnID":"E0DB3587248BAC7D0C9F86BFAFA238BD54586363B45762D17FF793EE6908AB33",
+            "PreviousTxnLgrSeq":19217,
+            "Sequence":5,
+            "index":"0E72998F3A8AD5005C8796FFB7B984BCCDA91683150CAD95CE59B6C8781BFEB7"
+            },
+            "ledger_current_index":21861
+            },
+            "status":"success",
+            "type":"response"
+            }
+        ]]></ws_example>
+    </command>
+</commands>

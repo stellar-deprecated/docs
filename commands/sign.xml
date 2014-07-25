@@ -1,0 +1,35 @@
+<commands>
+    <command>
+        <name>sign</name>
+        <admin>false</admin>
+        <desc><![CDATA[ Have stellard sign a transaction for you. You can introduce the transaction later with <a href="#api-submit">submit</a>. ]]></desc>
+
+
+        <argument>
+            <name>tx_json</name>
+            <required>true</required>
+            <desc><![CDATA[This is the JSON representation of the transaction for server to sign with the private key of the secret.</br>
+                If <strong>Sequence</strong> or <strong>Fee</strong> are not filled out then stellard will fill them in for if you.]]></desc>
+        </argument>
+
+        <argument>
+            <name>secret</name>
+            <required>true</required>
+            <desc>The base58 encoded secret key of the signer.</desc>
+        </argument>
+        <argument>
+            <name>offline</name>
+            <type>bool</type>
+            <desc>If true stellard won't attempt to verify that the transaction is valid it will just sign it for you.</desc>
+        </argument>
+
+        <result>
+            <name>hash</name>
+            <desc>The hash of the submitted transaction.</desc>
+        </result>
+        <result>
+            <name>tx_blob</name>
+            <desc>A hex representation of the signed transaction. This result can vary between calls even if supplied the same parameters.</desc>
+        </result>
+    </command>
+</commands>

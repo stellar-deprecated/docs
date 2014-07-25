@@ -9,34 +9,7 @@
             <required>true</required>
             <desc>The ID of the account you are interested in.</desc>
         </argument>
-        <argument>
-            <name>ledger_index</name>
-            <default>current</default>
-            <values>
-                <value>
-                    <name>#</name>
-                    <desc>Some particular ledger number.</desc>
-                </value>
-                <value>
-                    <name>current</name>
-                    <desc>This is the server's own computation of the current ledger. It is subject to change.</desc>
-                </value>
-                <value>
-                    <name>closed</name>
-                    <desc>select the last closed ledger. This is the server's own computation of the last ledger. It is only a proposal.</desc>
-                </value>
-                <value>
-                    <name>validated</name>
-                    <desc>select the last validated ledger. This a definitive ledger which will not be reversed without consent of the network. Only a network wide catastrophe might cause a reversal to be agreed upon.</desc>
-                </value>
-            </values>
-            <desc>A particular ledger to get this information from.</desc>
-        </argument>
-        <argument>
-            <name>ledger_hash</name>
-            <value>A 20 byte hexadecimal value.</value>
-            <desc>Specify a ledger by its hash to get this information from.</desc>
-        </argument>
+        <common>ledger_index</common>
 
 
         <result>
@@ -48,7 +21,7 @@
             <desc>Array of currencies this account is able to send.</desc>
         </result>
 
-        <cli_example>
+        <cli_example><![CDATA[
             > stellard account_currencies gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
 
             Connecting to: 0.0.0.0:9002
@@ -60,8 +33,8 @@
             "status" : "success"
             }
             }
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
             > curl -X POST -d \
             '{ "method" : "account_currencies", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_index" : 400 } ] }' \
             http://public-01.gostellar.org:9002
@@ -74,8 +47,8 @@
             "status":"success"
             }
             }
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
             { "command" : "account_currencies", "id":4, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_hash":"876BD33202CBBF87D756E61DA74F5235B38D819BFD2E1C17DE7B2334EFDD0B2D" }
 
             {
@@ -89,103 +62,9 @@
             "status":"success",
             "type":"response"
             }
-        </ws_example>
+        ]]></ws_example>
     </command>
-    <command>
-        <name>account_info</name>
-        <admin>false</admin>
-        <desc>Returns information about the given account.</desc>
 
-        <argument>
-            <name>account</name>
-            <required>true</required>
-            <desc>The account you are interested in.</desc>
-        </argument>
-
-
-
-        <result>
-            <name>Balance</name>
-            <type>int</type>
-            <desc>The number of stellars this account holds , in <a href="https://wiki.gostellar.org/Stroop">stroops</a>.</desc>
-        </result>
-        <result>
-            <name>Flags</name>
-            <desc>What account flags are set.</desc>
-        </result>
-        <result>
-            <name>OwnerCount</name>
-            <desc>The number of offers and trust lines created by this account. Useful for calculating the account's reserve.</desc>
-        </result>
-        <result>
-            <name>PreviousTxnID</name>
-            <desc>The Transaction ID of the last transaction creatd by this account.</desc>
-        </result>
-        <result>
-            <name>PreviousTxnLgrSeq</name>
-            <desc>The ledger sequence number this account's last transaction appeared in.</desc>
-        </result>
-        <result>
-            <name>Sequence</name>
-            <desc>The current transaction sequence number of this account.</desc>
-        </result>
-        <result>
-            <name>index</name>
-            <desc>The index in the ledger of this account entry.</desc>
-        </result>
-
-        <cli_example>
-            > stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
-            {
-            "result" : {
-            "account_data" : {
-            "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-            "Balance" : "9974964999552",
-            "Flags" : 0,
-            "LedgerEntryType" : "AccountRoot",
-            "OwnerCount" : 1,
-            "PreviousTxnID" : "61BF46D3EB11A513FCC885EBD76615A83361E163BD9E7155B4396C8A4FF9FC58",
-            "PreviousTxnLgrSeq" : 3486,
-            "Sequence" : 41,
-            "index" : "6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"
-            },
-            "ledger_current_index" : 3698,
-            "status" : "success"
-            }
-            }
-
-        </cli_example>
-        <rpc_example>
-            > curl -X POST -d \
-            '{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }' \
-            http://public-01.gostellar.org:9002
-
-            {"result":{"account_data":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"999999970","Flags":0,"LedgerEntryType":"AccountRoot","OwnerCount":0,"PreviousTxnID":"710E124A6B8B891DF0B271AD1EF869A9BAE3690786883C5D81F3C64E5AB57AAC","PreviousTxnLgrSeq":113,"Sequence":4,"index":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"},"ledger_index":400,"status":"success"}}
-        </rpc_example>
-        <ws_example>
-            { "command" : "account_info", "id":24, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }
-
-            {
-            "id":24,
-            "result":{
-            "account_data":{
-            "Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
-            "Balance":"53999960",
-            "Flags":0,
-            "LedgerEntryType": "AccountRoot",
-            "OwnerCount":1,
-            "PreviousTxnID":"E0DB3587248BAC7D0C9F86BFAFA238BD54586363B45762D17FF793EE6908AB33",
-            "PreviousTxnLgrSeq":19217,
-            "Sequence":5,
-            "index":"0E72998F3A8AD5005C8796FFB7B984BCCDA91683150CAD95CE59B6C8781BFEB7"
-            },
-            "ledger_current_index":21861
-            },
-            "status":"success",
-            "type":"response"
-            }
-        </ws_example>
-    </command>
     <command>
         <name>account_lines</name>
         <admin>false</admin>
@@ -203,6 +82,7 @@
             <name>peer</name>
             <desc>The account ID of another account. If specified will only return the trust lines from Account A to this peer.</desc>
         </argument>
+        <common>ledger_index</common>
 
         <result>
             <name>account</name>
@@ -233,7 +113,7 @@
             <desc></desc>
         </result>
 
-        <cli_example>
+        <cli_example><![CDATA[
             C:\internet\stellar2>rippled account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
             Loading: "C:\internet\stellar2\rippled.cfg"
             Connecting to: 127.0.0.1:9002
@@ -263,16 +143,16 @@
             "status" : "success"
             }
             }
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
             > curl -X POST -d '{ "method" : "account_lines", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://127.0.0.1:9002
             {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}],"status":"success"}}
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
             { "command" : "account_lines", "id":24, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
             {"id":24,"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}]},"status":"success","type":"response"}
-        </ws_example>
+        ]]></ws_example>
     </command>
     <command>
         <name>account_offers</name>
@@ -285,7 +165,7 @@
             <desc>The account you are getting the offers of.</desc>
         </argument>
 
-        <cli_example>
+        <cli_example><![CDATA[
             > stellard account_offers ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
             Loading: "stellard.cfg"
             Connecting to: 0.0.0.0:39002
@@ -326,12 +206,12 @@
             }
             }
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
             curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://public-01.gostellar.org:9002
             {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","offers":[{"flags":0,"seq":47,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1500"}},{"flags":0,"seq":48,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1600"}}],"status":"success"}}
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
             { "command" : "account_offers", "id":120, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
             {"id":120,
             "result":{
@@ -343,25 +223,25 @@
             "status":"success",
             "type":"response"}
 
-        </ws_example>
+        ]]></ws_example>
     </command>
     <command>
         <name>ping</name>
         <admin>false</admin>
         <desc>Command to test connectivity to stellard.</desc>
 
-        <cli_example> ><![CDATA[ > stellard ping
+        <cli_example><![CDATA[ > stellard ping
 {
    "result" : {
       "status" : "success"
    }
-}]]></cli_example>
-        <rpc_example>curl -X POST -d '{ "method" : "ping" }' http://public-01.gostellar.org:9002
+}]]><cli_example>
+        <rpc_example><![CDATA[curl -X POST -d '{ "method" : "ping" }' http://public-01.gostellar.org:9002
 
-            {"result":{"status":"success"}}</rpc_example>
-        <ws_example> { "command" : "ping" }
+            {"result":{"status":"success"}}]]></rpc_example>
+        <ws_example><![CDATA[ { "command" : "ping" }
 
-            {"result":{},"status":"success","type":"response"}</ws_example>
+            {"result":{},"status":"success","type":"response"}]]></ws_example>
     </command>
     <command>
         <name>transaction_entry</name>
@@ -375,19 +255,20 @@
         </argument>
         <argument>
             <name>ledger_index</name>
+            <type>int</type>
             <desc>If you only want to look for the transaction in a particular ledger.</desc>
         </argument>
 
 
-        <cli_example>
+        <cli_example><![CDATA[
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
 
-        </ws_example>
+        ]]></ws_example>
     </command>
     <command>
         <name>wallet_propose</name>
@@ -422,13 +303,13 @@
             <desc>The public key in hex format that corresponds to the accountID.</desc>
         </result>
 
-        <cli_example>
+        <cli_example><![CDATA[
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
             { "command" : "wallet_propose" }
             {"result":{
             "account_id":"g9yMgy1dxac5UBSxc1nxtVUyhw11qYPLcs",
@@ -438,6 +319,6 @@
             "public_key_hex":"CF8165969EEC1B05DC79CD0CE472AE827FC1CD6E0F8FEFDB394C2ED6379219E6"},
             "status":"success","type":"response"
             }
-        </ws_example>
+        ]]></ws_example>
     </command>
 </commands>

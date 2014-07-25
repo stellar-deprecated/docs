@@ -7,11 +7,12 @@
 <div class="api-detail">
     <div class="api-detail-name">{{name}}</div>
     <div class="api-detail-info">
-        <p>{{#type}}<strong>{{type}}</strong> | {{/type}}{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
+        <p>{{#type}}{{{type_link}}} | {{/type}}{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
         {{{desc}}}</p>
     </div>
 </div>
 {{/argument}}
+{{{insert_common}}}
 {{#argument.0}}</div>{{/argument.0}}
 
 {{#result.0}}<h4>Results:</h4><div class="api-table">{{/result.0}}
@@ -19,7 +20,7 @@
 <div class="api-detail">
     <div class="api-detail-name">{{name}}</div>
     <div class="api-detail-info">
-        <p>{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
+        <p>{{#type}}{{{type_link}}} | {{/type}}{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
         {{{desc}}}</p>
     </div>
 </div>

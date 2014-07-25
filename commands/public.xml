@@ -34,15 +34,15 @@
 
 
 
-     <cli_example>
+     <cli_example><![CDATA[
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
 
-        </ws_example>
+        ]]></ws_example>
     </command>
 
     <command>
@@ -51,17 +51,59 @@
         <desc>Returns the offers in a given orderbook. An orderbook is a particular currency/issuer on the buy side and a different currency/issuer on the sell side.</desc>
 
 
+        <argument>
+            <name>taker_gets</name>
+            <required>true</required>
+            <type>amount</type>
+            <desc>The amount for the buy side.</desc>
+        </argument>
+        <argument>
+            <name>taker_pays</name>
+            <required>true</required>
+            <type>amount</type>
+            <desc>The amount for the sell side.</desc>
+        </argument>
+        <argument>
+            <name>taker</name>
+            <desc>If specified will show the orderbook from the point of view of taker. </desc>
+        </argument>
+        <argument>
+            <name>marker</name>
+            <desc>Token indicating start of page, it is returned from a previous call.</desc>
+        </argument>
+        <argument>
+            <name>autobridge</name>
+            <default>true</default>
+            <type>bool</type>
+            <desc>True to include orders synthesized through STR books.</desc>
+        </argument>
+        <common>ledger_index</common>
 
-        
-        <cli_example>
+        <result>
+            <name>hash</name>
+            <desc>The hash of the submitted transaction.</desc>
+        </result>
 
-        </cli_example>
-        <rpc_example>
+        <result>
+            <name>marker</name>
+            <desc>Used for subsequent calls to page through the results. Not returned if there are no more results.</desc>
+        </result>
+        <result>
+            <name>offers</name>
+            <desc>The offers sorted from best to worst. </desc>
+        </result>
 
-        </rpc_example>
-        <ws_example>
 
-        </ws_example>
+
+        <cli_example><![CDATA[
+
+        ]]><cli_example>
+        <rpc_example><![CDATA[
+
+        ]]></rpc_example>
+        <ws_example><![CDATA[
+
+        ]]></ws_example>
     </command>
 
     <command>
@@ -97,19 +139,123 @@
                 <default>false</default>
                 <desc>If set to true, returns the ledger and transaction entries in JSON format. Otherwise, returns their identifying hashes.</desc>
             </argument>
+        <common>ledger_index</common>
         
         
 
         
-        <cli_example>
+        <cli_example><![CDATA[
+> stellard ledger
+            Connecting to: 0.0.0.0:9002
+            {
+            "result" : {
+            "closed" : {
+            "ledger" : {
+            "accepted" : true,
+            "account_hash" : "62E646A558E15D64B8F2D0E3EA9D931A678CCE02866D416EE95BC686C58634AC",
+            "close_time" : 459542460,
+            "close_time_human" : "2014-Jul-24 18:41:00",
+            "close_time_resolution" : 10,
+            "closed" : true,
+            "fee_pool" : "0",
+            "hash" : "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
+            "inflate_seq" : "1",
+            "ledger_hash" : "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
+            "ledger_index" : "402",
+            "parent_hash" : "B3DC425B140FC2550F3DF2F69D3259A32A60BC5B46323B015EB889AE36A999F0",
+            "seqNum" : "402",
+            "totalCoins" : "100000000000000000",
+            "total_coins" : "100000000000000000",
+            "transaction_hash" : "0000000000000000000000000000000000000000000000000000000000000000"
+            }
+            },
+            "open" : {
+            "ledger" : {
+            "closed" : false,
+            "ledger_index" : "403",
+            "parent_hash" : "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
+            "seqNum" : "403"
+            }
+            },
+            "status" : "success"
+            }
+            }
+        ]]><cli_example>
+        <rpc_example><![CDATA[
+            curl -X POST -d '{ "method" : "ledger" }' http://public-01.gostellar.org:9002
 
-        </cli_example>
-        <rpc_example>
+            {
+            "result":{
+            "closed":{
+            "ledger":{
+            "accepted":true,
+            "account_hash":"7B2FD91FF69C919A7A2C1395DB22C69D806B6D750EB1D7BB8872329A869CA98B",
+            "close_time":459542140,
+            "close_time_human":"2014-Jul-24 18:35:40",
+            "close_time_resolution":10,
+            "closed":true,
+            "fee_pool":"3826",
+            "hash":"333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
+            "inflate_seq":"3",
+            "ledger_hash":"333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
+            "ledger_index":"46728",
+            "parent_hash":"9BBF29D271C854949BBDB69CA6DFF847A6295A1955E6A862855F147383D8736E",
+            "seqNum":"46728",
+            "totalCoins":"100038147837446155",
+            "total_coins":"100038147837446155",
+            "transaction_hash":"0000000000000000000000000000000000000000000000000000000000000000"
+            }
+            },
+            "open":{
+            "ledger":{
+            "closed":false,
+            "ledger_index":"46729",
+            "parent_hash":"333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
+            "seqNum":"46729"
+            }
+            },
+            "status":"success"
+            }
+            }
+        ]]></rpc_example>
+        <ws_example><![CDATA[
+            { "command" : "ledger" }
 
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
+            {
+            "result":{
+            "closed":{
+            "ledger":{
+            "accepted":true,
+            "account_hash":"2CE104972C7FD1BC9A6FCC5D46B6D13B6F5184AEB105740BBCF69D112D6642EB",
+            "close_time":459542280,
+            "close_time_human":"2014-Jul-24 18:38:00",
+            "close_time_resolution":10,
+            "closed":true,
+            "fee_pool":"0",
+            "hash":"C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
+            "inflate_seq":"1",
+            "ledger_hash":"C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
+            "ledger_index":"393",
+            "parent_hash":"54F9E657F3122A3375C427DEE484F69F020D79FA73B85D8FFCFBA48AC763036C",
+            "seqNum":"393",
+            "totalCoins":"100000000000000000",
+            "total_coins":"100000000000000000",
+            "transaction_hash":"0000000000000000000000000000000000000000000000000000000000000000"
+            }
+            },
+            "open":{
+            "ledger":{
+            "closed":false,
+            "ledger_index":"394",
+            "parent_hash":"C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
+            "seqNum":"394"
+            }
+            }
+            },
+            "status":"success",
+            "type":"response"
+            }
+        ]]></ws_example>
     </command>
 
     <command>
@@ -145,7 +291,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <desc>Each entry will correspond to one possible source currency.</desc>
         </result>
 
-        <cli_example><![CDATA[ find_path only available over websocket.  ]]></cli_example>
+        <cli_example><![CDATA[ find_path only available over websocket.  ]]><cli_example>
         <rpc_example><![CDATA[ find_path only available over websocket.  ]]></rpc_example>
         <ws_example><![CDATA[   ]]></ws_example>
     </command>
@@ -157,42 +303,39 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <admin>false</admin>
         <desc><![CDATA[Finds a path for a transfer. If you want updates to the path as the state of the ledger changes use <a href="#api-find_path">find_path</a> instead.
             ]]></desc>
-        
+        <result>
+            <name>alternatives</name>
+            <desc>List of path choices.</desc>
+        </result>
+        <result>
+            <name>source_amount</name>
+            <type>amount</type>
+            <desc>The cost of this path for the source account.</desc>
+        </result>
+        <result>
+            <name>paths_computed</name>
+            <desc>The path to include in the payment transaction.</desc>
+        </result>
+
+        <result>
+            <name>destination_currencies</name>
+            <desc>List of currencies this destination can hold.</desc>
+        </result>
 
 
-        <cli_example>
 
-        </cli_example>
-        <rpc_example>
 
-        </rpc_example>
-        <ws_example>
 
-        </ws_example>
+        <cli_example><![CDATA[
+
+        ]]><cli_example>
+        <rpc_example><![CDATA[
+
+        ]]></rpc_example>
+        <ws_example><![CDATA[
+            { "command" : "static_path_find",  "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_amount": "10" }
+        ]]></ws_example>
     </command>
-
-    <command>
-        <name>sign</name>
-        <admin>false</admin>
-        <desc>Sign a transaction.</desc>
-        
-
-        
-        
-
-        
-        <cli_example>
-
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
-    </command>
-
-
 
     <command>
         <name>subscribe</name>
@@ -203,18 +346,18 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
 
         
-        <cli_example>
+        <cli_example><![CDATA[
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
 { "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }
 ...
  {"engine_result":"tesSUCCESS","engine_result_code":0,"engine_result_message":"The transaction was applied.","ledger_hash":"7C78761D95CC3C34C99163192637B2725FC2444279E983CCEF5A63A6BB121F67","ledger_index":7,"meta":{"AffectedNodes":[{"ModifiedNode":{"FinalFields":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"99999979999999988","Flags":0,"OwnerCount":0,"Sequence":2},"LedgerEntryType":"AccountRoot","LedgerIndex":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45","PreviousFields":{"Balance":"100000000000000000","Sequence":1}}},{"CreatedNode":{"LedgerEntryType":"AccountRoot","LedgerIndex":"6C38D0E3F8D58366F1D8208236B8B0B83C20BAC877617379BDDE45D74993F1A9","NewFields":{"Account":"gL4ki816G4PpoGUzbv5C8BefKLz3ab9wDs","Balance":"20000000000","Sequence":1}}}],"TransactionIndex":0,"TransactionResult":"tesSUCCESS"},"status":"closed","transaction":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Amount":"20000000000","Destination":"gL4ki816G4PpoGUzbv5C8BefKLz3ab9wDs","Fee":"12","Flags":2147483648,"LastLedgerSequence":15,"Sequence":1,"SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4","TransactionType":"Payment","TxnSignature":"162008E178B101001AFEA49B14540A493FEFCE1F9CF86843CD73F952BA0800097F6DCB5ABB9C143FB3AD066388478713FE4947DC2CADC8562ABC223870569D05","date":459297000,"hash":"12CEB75F6FCE23C05A668A3472B375EAFC51F79EB0EA0CBE1BD9FD56054AD569"},"type":"transaction","validated":true}
 ...
-        </ws_example>
+        ]]></ws_example>
     </command>
 
 
@@ -225,15 +368,15 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <desc>Get details of a specific transaction.</desc>
 
         
-        <cli_example>
+        <cli_example><![CDATA[
 
-        </cli_example>
-        <rpc_example>
+        ]]><cli_example>
+        <rpc_example><![CDATA[
 
-        </rpc_example>
-        <ws_example>
+        ]]></rpc_example>
+        <ws_example><![CDATA[
 
-        </ws_example>
+        ]]></ws_example>
     </command>
 
     <command>
@@ -247,13 +390,95 @@ This command is only available via the Websocket API. If you want to use as RPC 
                 <desc>Index to start returning transactions from.</desc>
             </argument>
         
-        <cli_example>
+        <cli_example><![CDATA[> stellard tx_history 8
 
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>{ "command" : "tx_history", "start" : "5" }
+    {
+       "result":{
+          "index":8,
+          "status":"success",
+          "txs":[
+             {
+                "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                "Amount":"20000999999",
+                "Destination":"gJkfAwXgV6RRSPrRacabETsdujiPiAVuGC",
+                "Fee":"12",
+                "Flags":2147483648,
+                "LastLedgerSequence":465,
+                "Sequence":1,
+                "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
+                "TransactionType":"Payment",
+                "TxnSignature":"12E625A39...",
+                "hash":"1B6C11BFB4FA60C63DFA65A02D5BFB7C8DBDD139B16A872453CEC77BDBF69381",
+                "inLedger":457,
+                "ledger_index":457
+             },
+             {
+                "Account":"gJkfAwXgV6RRSPrRacabETsdujiPiAVuGC",
+                "Amount":"4000000000",
+                "Destination":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                "Fee":"12",
+                "Flags":2147483648,
+                "LastLedgerSequence":469,
+                "Sequence":1,
+                "SigningPubKey":"2A843AEC927E0119DE785D354C1C295414C1136924DB00E2EFBAB760BDF1E812",
+                "TransactionType":"Payment",
+                "TxnSignature":"2A3D35895...",
+                "hash":"45354C7FE33AC84D2B8188CC1DF28EC30259326442CF1EE165970198C1EA124D",
+                "inLedger":461,
+                "ledger_index":461
+             }
+          ]
+       }
+    }
+]]><cli_example>
+        <rpc_example><![CDATA[> curl -X POST -d '{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }' public-01-stg.gostellar.org:9002
+{
+   "result":{
+      "index":10,
+      "status":"success",
+      "txs":[
+         {
+            "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+            "Amount":{
+               "currency":"DBG",
+               "issuer":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
+               "value":"15"
+            },
+            "Destination":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
+            "Fee":"10",
+            "Flags":2147483648,
+            "Sequence":62,
+            "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
+            "TransactionType":"Payment",
+            "TxnSignature":"D23E93C3FBD0...",
+            "hash":"0104046F731D23EBD86FE3BF9AC1D3CCBC5838D0A4D9EB15938E1C995A638481",
+            "inLedger":2484,
+            "ledger_index":2484
+         },
+         {
+            "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+            "Amount":{
+               "currency":"DBG",
+               "issuer":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
+               "value":"1"
+            },
+            "Destination":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
+            "Fee":"10",
+            "Flags":2147483648,
+            "Sequence":61,
+            "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
+            "TransactionType":"Payment",
+            "TxnSignature":"F4DC53BD3046...",
+            "hash":"4FA4B0CC6AD6C64912215125A08E7CE8B3EEC84F6A843D28EA51C9D3EB6C4B6F",
+            "inLedger":2483,
+            "ledger_index":2483
+         },
+        ...
+      ]
+   }
+}
+        ]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "tx_history", "start" : "5" }
 
  {"result":{
     "index":5,
@@ -271,18 +496,18 @@ This command is only available via the Websocket API. If you want to use as RPC 
         "hash":"498AE15B...",
         "inLedger":21490,
         "ledger_index":21490
-            },
+         },
     ...
     ]},
     "status":"success",
     "type":"response"
-  }</ws_example>
+  }]]></ws_example>
     </command>
 
     <command>
         <name>unsubscribe</name>
         <admin>false</admin>
-        <desc><![CDATA[ Unsubscribe from events that were previously subscribed to. See <a href="#subscribe">subscribe</a>. ]]></desc>
+        <desc><![CDATA[ Unsubscribe from events that were previously subscribed to. See <a href="#api-subscribe">subscribe</a>. ]]></desc>
 
             <argument>
                 <name>streams</name>
@@ -291,7 +516,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
             </argument>
         <argument>
             <name>accounts</name>
-            
+            <type>array</type>
             <desc>List of accounts you no longer want events on.</desc>
         </argument>
         <argument>
@@ -305,16 +530,11 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <desc>URL to stop sending events to.</desc>
         </argument>
 
-        
-        <cli_example>
+        <ws_example><![CDATA[
+            { "command" : "unsubscribe", "id": 42,  "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }
 
-        </cli_example>
-        <rpc_example>
-
-        </rpc_example>
-        <ws_example>
-
-        </ws_example>
+            {"id":42,"result":{},"status":"success","type":"response"}
+        ]]></ws_example>
     </command>
 
 
