@@ -104,7 +104,9 @@ stellard account_info gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
 
 /opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg account_currencies gnnVq3ghZ3xoRE9tG78zCh5AWodVmEey32
 
+/opt/stellar/stellard/bin/stellard --conf /opt/stellar/stellard/etc/public.cfg book_offers '{ "currency":"USD", "value":"100", "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }'  '{ "currency":"BTC", "value":"100", "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }'
 
+stellard book_offers "{ \"taker_gets\": { \"currency\":\"USD\", \"value\":\"100\", \"issuer\": \"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb\" }, \"taker_pays\":{ \"currency\":\"BTC\", \"value\":\"100\", \"issuer\": \"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb\" }}"
 
 
 

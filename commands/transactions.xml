@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
-
-
     <command>
         <subnav>submit</subnav>
         <name>Payment</name>
@@ -34,6 +32,7 @@
             <desc>If unspecified stellard will fill in the appropriate amount of fee.</desc>
         </argument>
 
+
         <cli_example><![CDATA[ stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
 
          ]]></cli_example>
@@ -55,23 +54,41 @@
         <name>AccountSet</name>
         <subnav>submit</subnav>
         <admin>false</admin>
-        <desc>Submit an AccountSet transaction. This set various flags of the account entry.</desc>
+        <desc>Submit an AccountSet transaction. This is used to set various flags of the account entry. You can use it to set the inflation destination of an account.</desc>
+
+        <argument>
+            <name>TransactionType</name>
+            <required>true</required>
+            <desc>Set to "AccountSet".</desc>
+        </argument>
     </command>
 
     <command>
         <name>SetRegularKey</name>
         <subnav>submit</subnav>
         <admin>false</admin>
-        <desc>Submit an SetRegularKey transaction. This set various flags of the account entry.</desc>
+        <desc><![CDATA[Accounts have what is called a <strong>regular key</strong>. It can be used to sign transactions instead of the master secret key. This is useful since you can change the regular key if need be without recreating the whole account.]]></desc>
+
+        <argument>
+            <name>TransactionType</name>
+            <required>true</required>
+            <desc>Set to "SetRegularKey".</desc>
+        </argument>
     </command>
 
     <command>
         <name>OfferCreate</name>
         <subnav>submit</subnav>
         <admin>false</admin>
-        <desc>Submit an OfferCreate transaction. This adds an offer to the distributed order book.
+        <desc><![CDATA[Add an offer to the distributed order book.
             Offers are commitments by the offerer to trade a certain amount of one currency for another. Offers can be partially taken.
-            Creating an offer might result in an immediate trade if the created offer crosses with an existing one.</desc>
+            Creating an offer might result in an immediate trade if the created offer crosses with an existing one.]]></desc>
+
+        <argument>
+            <name>TransactionType</name>
+            <required>true</required>
+            <desc>Set to "OfferCreate".</desc>
+        </argument>
         <argument>
             <name>Account</name>
             <required>true</required>
@@ -110,6 +127,11 @@
         <admin>false</admin>
         <desc>Cancels an offer this account has made.</desc>
         <argument>
+            <name>TransactionType</name>
+            <required>true</required>
+            <desc>Set to "OfferCancel".</desc>
+        </argument>
+        <argument>
             <name>Account</name>
             <required>true</required>
             <desc>The account canceling the offer.</desc>
@@ -126,6 +148,11 @@
         <subnav>submit</subnav>
         <admin>false</admin>
         <desc>Allows this account to hold credit in some currency from some other account. Any account say that it trusts another account for a particular currency up to a particular limit. Once an account trusts another it can hold credit from that other account.</desc>
+        <argument>
+            <name>TransactionType</name>
+            <required>true</required>
+            <desc>Set to "TrustSet".</desc>
+        </argument>
         <argument>
             <name>Account</name>
             <required>true</required>
