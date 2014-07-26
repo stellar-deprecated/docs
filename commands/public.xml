@@ -409,7 +409,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <li><strong>snapshot</strong>- if set to true will send you the current state of the order book before it starts streaming the changes. </li>
             </ul>
             Example: { "taker_gets" : { "currency": "USD", "issuer" : address }, "taker_pays" : { "currency": "BTC", "issuer" : address }, "snapshot" : "true" , "both" : "true" }
-     ]]></argument>
+     ]]></desc></argument>
 
 
         <argument>
