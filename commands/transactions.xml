@@ -29,16 +29,21 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc>If unspecified stellard will fill in the appropriate amount of fee.</desc>
+            <desc><![CDATA[Set the <a href="https://wiki.gostellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.gostellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Sequence</name>
+            <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
 
 
-        <cli_example><![CDATA[ stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
+        <cli_example><![CDATA[ > stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN \
+  "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
 
          ]]></cli_example>
         <rpc_example><![CDATA[
->curl -X POST -d \
- '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.gostellar.org:9002
+> curl -X POST http://public-01.gostellar.org:9002 -d \
+ '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'
 
         ]]></rpc_example>
 
@@ -61,18 +66,77 @@
             <required>true</required>
             <desc>Set to "AccountSet".</desc>
         </argument>
+        <argument>
+            <name>InflationDest</name>
+            <type>address</type>
+            <desc><![CDATA[Change the inflation destination for this account. See <a href="https://wiki.gostellar.org/Inflation">inflation</a> in the wiki for more information.]]></desc>
+        </argument>
+        <argument>
+            <name>TransferRate</name>
+            <type>int</type>
+            <default>1000000000</default>
+            <desc><![CDATA[Set the transfer rate that this account will charge any time its credit moves from one account to another.
+            The actual rate charged is equivalent to TransferRate/1000000000.
+            For example if some gateway "WizardPay" has sets their TransferRate to 1020000000, the equivalent of 2%. Now Alice wants to send 100 WizardPay USD to Charlie.
+            Alice will need to send 102 WizardPay USD so 100 gets to Charlie and 2 is essentially returned to "WizardPay" to pay the credit transfer fee.
+            <p>Set the TransferRate to 1000000000 for no fee to move credit. You can't set the TransferRate below 1000000000.
+             ]]></desc>
+        </argument>
+        <argument>
+            <name>SetFlag</name>
+            <type>int</type>
+            <desc><![CDATA[Set to one of the following values:
+             <ul>
+             <li><strong>1</strong>- Require Destination tag flag. This flag is a hint to the client that this account only wants transactions with a destination tag.</li>
+             <li><strong>2</strong>- Require Auth flag. If this flag is set then no one can hold credit from this account without prior authorization from this account. This setting is useful for gateways that need to KYC any that holds credit from them.</li>
+             </ul>]]></desc>
+        </argument>
+        <argument>
+            <name>ClearFlag</name>
+        <type>int</type>
+        <desc><![CDATA[Set to one of the following values:
+             <ul>
+             <li><strong>1</strong>- Require Destination tag flag. This flag is a hint to the client that this account only wants transactions with a destination tag.</li>
+             <li><strong>2</strong>- Require Auth flag. If this flag is set then no one can hold credit from this account without prior authorization from this account. This setting is useful for gateways that need to KYC any that holds credit from them.</li>
+             </ul>
+]]></desc>
+        </argument>
+
+        <argument>
+            <name>Fee</name>
+            <desc><![CDATA[Set the <a href="https://wiki.gostellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.gostellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Sequence</name>
+            <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+        </argument>
     </command>
 
     <command>
         <name>SetRegularKey</name>
         <subnav>submit</subnav>
         <admin>false</admin>
-        <desc><![CDATA[Accounts have what is called a <strong>regular key</strong>. It can be used to sign transactions instead of the master secret key. This is useful since you can change the regular key if need be without recreating the whole account.]]></desc>
+        <desc><![CDATA[Use to set or clear this account's <strong>regular key</strong>. The regular key can be used to sign transactions instead of the master secret key.
+        This is useful since you can change the regular key if need be without recreating the whole account.]]></desc>
 
         <argument>
             <name>TransactionType</name>
             <required>true</required>
-            <desc>Set to "SetRegularKey".</desc>
+            <desc>Should be set "SetRegularKey".</desc>
+        </argument>
+        <argument>
+            <name>RegularKey</name>
+            <required>false</required>
+            <desc>If provided will change the regular key to this new value. If not provided it will clear the regular key so only the master key can sign again.</desc>
+        </argument>
+
+        <argument>
+            <name>Fee</name>
+            <desc><![CDATA[Set the <a href="https://wiki.gostellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.gostellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Sequence</name>
+            <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
     </command>
 
@@ -111,6 +175,14 @@
             <required>false</required>
             <desc>The sequence number of a previous offer. If specified the previous offer will be replaced with this one.</desc>
         </argument>
+        <argument>
+            <name>Fee</name>
+            <desc><![CDATA[Set the <a href="https://wiki.gostellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.gostellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Sequence</name>
+            <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+        </argument>
 
         <ws_example><![CDATA[
             { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
@@ -141,6 +213,14 @@
             <required>true</required>
             <desc>The sequence number of the offer to cancel.</desc>
         </argument>
+        <argument>
+            <name>Fee</name>
+            <desc><![CDATA[Set the <a href="https://wiki.gostellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.gostellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Sequence</name>
+            <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+        </argument>
     </command>
 
     <command>
@@ -163,6 +243,14 @@
             <required>true</required>
             <type>amount</type>
             <desc>An amount field specifying the type and amount of credit this account is willing to hold.</desc>
+        </argument>
+        <argument>
+            <name>Fee</name>
+            <desc><![CDATA[Set the <a href="https://wiki.gostellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.gostellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Sequence</name>
+            <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
     </command>
 
