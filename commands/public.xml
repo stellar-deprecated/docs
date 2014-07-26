@@ -97,10 +97,40 @@
 
         ]]></cli_example>
         <rpc_example><![CDATA[
+        curl -X POST -d '{"method": "book_offers", "params": [{"taker_pays": {"value": "5000","currency": "STR"}, "taker_gets": {"issuer":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}]}' public-01-stg.gostellar.org:9002
+
+        {
+          "result": {
+            "ledger_current_index": 5778,
+            "offers": [],
+            "status": "success"
+          }
+        }
 
         ]]></rpc_example>
         <ws_example><![CDATA[
+        {
+          "command": "book_offers",
+          "taker_pays": {
+            "value": "5000",
+            "currency": "STR"
+          },
+          "taker_gets": {
+            "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+            "currency": "USD",
+            "value": 10
+          }
+        }
 
+
+        {
+          "result": {
+            "ledger_current_index": 5492,
+            "offers": []
+          },
+          "status": "success",
+          "type": "response"
+        }
         ]]></ws_example>
     </command>
 
@@ -108,40 +138,40 @@
         <name>ledger</name>
         <admin>false</admin>
         <desc>Gets info about a particular ledger.</desc>
-        
+
             <argument>
                 <name>full</name>
-                
+
                 <type>bool</type>
                 <default>false</default>
                 <desc>Return all the ledger entries. This is equivalent to setting accounts, transactions, and expand all to true. stellard can be configured to support this or not.</desc>
             </argument>
             <argument>
                 <name>accounts</name>
-                
+
                 <type>bool</type>
                 <default>false</default>
                 <desc>If set to true, it will return the accounts tree for that public ledger block.</desc>
             </argument>
             <argument>
                 <name>transactions</name>
-                
+
                 <type>bool</type>
                 <default>false</default>
                 <desc>If true, return the transactions for the ledger.</desc>
             </argument>
             <argument>
                 <name>expand</name>
-                
+
                 <type>bool</type>
                 <default>false</default>
                 <desc>If set to true, returns the ledger and transaction entries in JSON format. Otherwise, returns their identifying hashes.</desc>
             </argument>
         <common>ledger_index</common>
-        
-        
 
-        
+
+
+
         <cli_example><![CDATA[
 > stellard ledger
             Connecting to: 0.0.0.0:9002
@@ -340,10 +370,10 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <admin>false</admin>
         <desc>Listen to events. If you are using websocket stellard will send you messages when an event of the type you are listening to happens.
             You can also specify a URL that is called when an event happens if you are not listening on websocket.</desc>
-        
 
 
-        
+
+
         <cli_example><![CDATA[
 
         ]]></cli_example>
@@ -365,7 +395,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <admin>false</admin>
         <desc>Get details of a specific transaction.</desc>
 
-        
+
         <cli_example><![CDATA[
 
         ]]></cli_example>
@@ -381,13 +411,13 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <name>tx_history</name>
         <admin>false</admin>
         <desc>Returns the last N transactions starting from the given index. Returns from latest to earliest. N is set by stellard.</desc>
-        
+
             <argument>
                 <name>start</name>
                 <required>true</required>
                 <desc>Index to start returning transactions from.</desc>
             </argument>
-        
+
         <cli_example><![CDATA[> stellard tx_history 8
 
     {
@@ -509,7 +539,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
             <argument>
                 <name>streams</name>
-                
+
                 <desc>List of streams you no longer want events on.</desc>
             </argument>
         <argument>
@@ -519,12 +549,12 @@ This command is only available via the Websocket API. If you want to use as RPC 
         </argument>
         <argument>
             <name>rt_accounts</name>
-            
+
             <desc>List of rt_accounts you no longer want events on.</desc>
         </argument>
         <argument>
             <name>url</name>
-            
+
             <desc>URL to stop sending events to.</desc>
         </argument>
 
