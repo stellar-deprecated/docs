@@ -97,7 +97,7 @@ function doneParsing(err,result)
     var commandArray=result.commands.command;
     for(var i=0; i<commandArray.length; i++)
     {
-        console.log('command: '+commandArray[i].name);
+        //console.log('command: '+commandArray[i].name);
         commandArray[i].link=function(){
             return( this.name[0].replace(/\s+/g, '-').toLowerCase() );
         };

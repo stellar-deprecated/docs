@@ -37,12 +37,8 @@
      <cli_example><![CDATA[
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-
-        ]]></ws_example>
+        <rpc_example><![CDATA[ ]]></rpc_example>
+        <ws_example><![CDATA[ ]]></ws_example>
     </command>
 
     <command>
@@ -96,20 +92,8 @@
         <cli_example><![CDATA[
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
-        curl -X POST -d '{"method": "book_offers", "params": [{"taker_pays": {"value": "5000","currency": "STR"}, "taker_gets": {"issuer":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}]}' public-01-stg.gostellar.org:9002
-
-        {
-          "result": {
-            "ledger_current_index": 5778,
-            "offers": [],
-            "status": "success"
-          }
-        }
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-        {
+        <rpc_example><![CDATA[{"method": "book_offers", "params": [{"taker_pays": {"value": "5000","currency": "STR"}, "taker_gets": {"issuer":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}]}]]></rpc_example>
+        <ws_example><![CDATA[{
           "command": "book_offers",
           "taker_pays": {
             "value": "5000",
@@ -120,18 +104,7 @@
             "currency": "USD",
             "value": 10
           }
-        }
-
-
-        {
-          "result": {
-            "ledger_current_index": 5492,
-            "offers": []
-          },
-          "status": "success",
-          "type": "response"
-        }
-        ]]></ws_example>
+        }]]></ws_example>
     </command>
 
     <command>
@@ -209,9 +182,8 @@
             }
             }
         ]]></cli_example>
-        <rpc_example><![CDATA[
-            curl -X POST -d '{ "method" : "ledger" }' http://public-01.gostellar.org:9002
-
+        <rpc_example><![CDATA[{ "method" : "ledger" }]]></rpc_example>
+<rpc_result>
             {
             "result":{
             "closed":{
@@ -245,11 +217,9 @@
             "status":"success"
             }
             }
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "ledger" }
-
-            {
+</rpc_result>
+        <ws_example><![CDATA[{ "command" : "ledger" }]]></ws_example>
+        <ws_result>{
             "result":{
             "closed":{
             "ledger":{
@@ -282,8 +252,9 @@
             },
             "status":"success",
             "type":"response"
-            }
-        ]]></ws_example>
+            }</ws_result>
+
+
     </command>
 
     <command>
@@ -350,26 +321,22 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <desc>List of currencies this destination can hold.</desc>
         </result>
 
-
-
-
-
         <cli_example><![CDATA[
 
         ]]></cli_example>
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "static_path_find",  "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_amount": "10" }
-        ]]></ws_example>
+        <ws_example><![CDATA[{ "command" : "static_path_find",  "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_amount": "10" } ]]></ws_example>
     </command>
 
     <command>
         <name>subscribe</name>
         <admin>false</admin>
         <desc>Listen to events. If you are using websocket stellard will send you messages when an event of the type you are listening to happens.
-            You can also specify a URL that is called when an event happens if you are not listening on websocket.</desc>
+            You can also specify a URL that is called when an event happens if you are not listening on websocket.
+            <p>See <a href="#api-unsubscribe">unsubscribe</a> for when you want to stop the event stream.
+            </p></desc>
 
         <argument>
             <name>streams</name>
@@ -399,7 +366,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <argument>
             <name>books</name>
             <type>array</type>
-            <desc><![CDATA[An array of objects specifying <a href="wiki.gostellar.org/Order_Book>order books</a> to listen to.
+            <desc><![CDATA[An array of objects specifying <a href="wiki.gostellar.org/Order_Book">order books</a> to listen to.
             Stellard will send a message any time one of the specified order books change.
             Order book object is:
             <ul>
@@ -441,12 +408,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <rpc_example><![CDATA[
 
         ]]></rpc_example>
-        <ws_example><![CDATA[
-{ "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }
-...
- {"engine_result":"tesSUCCESS","engine_result_code":0,"engine_result_message":"The transaction was applied.","ledger_hash":"7C78761D95CC3C34C99163192637B2725FC2444279E983CCEF5A63A6BB121F67","ledger_index":7,"meta":{"AffectedNodes":[{"ModifiedNode":{"FinalFields":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"99999979999999988","Flags":0,"OwnerCount":0,"Sequence":2},"LedgerEntryType":"AccountRoot","LedgerIndex":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45","PreviousFields":{"Balance":"100000000000000000","Sequence":1}}},{"CreatedNode":{"LedgerEntryType":"AccountRoot","LedgerIndex":"6C38D0E3F8D58366F1D8208236B8B0B83C20BAC877617379BDDE45D74993F1A9","NewFields":{"Account":"gL4ki816G4PpoGUzbv5C8BefKLz3ab9wDs","Balance":"20000000000","Sequence":1}}}],"TransactionIndex":0,"TransactionResult":"tesSUCCESS"},"status":"closed","transaction":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Amount":"20000000000","Destination":"gL4ki816G4PpoGUzbv5C8BefKLz3ab9wDs","Fee":"12","Flags":2147483648,"LastLedgerSequence":15,"Sequence":1,"SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4","TransactionType":"Payment","TxnSignature":"162008E178B101001AFEA49B14540A493FEFCE1F9CF86843CD73F952BA0800097F6DCB5ABB9C143FB3AD066388478713FE4947DC2CADC8562ABC223870569D05","date":459297000,"hash":"12CEB75F6FCE23C05A668A3472B375EAFC51F79EB0EA0CBE1BD9FD56054AD569"},"type":"transaction","validated":true}
-...
-        ]]></ws_example>
+        <ws_example><![CDATA[{ "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }]]></ws_example>
     </command>
 
 
@@ -520,77 +482,8 @@ This command is only available via the Websocket API. If you want to use as RPC 
        }
     }
 ]]></cli_example>
-        <rpc_example><![CDATA[> curl -X POST -d '{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }' public-01-stg.gostellar.org:9002
-{
-   "result":{
-      "index":10,
-      "status":"success",
-      "txs":[
-         {
-            "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-            "Amount":{
-               "currency":"DBG",
-               "issuer":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
-               "value":"15"
-            },
-            "Destination":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
-            "Fee":"10",
-            "Flags":2147483648,
-            "Sequence":62,
-            "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
-            "TransactionType":"Payment",
-            "TxnSignature":"D23E93C3FBD0...",
-            "hash":"0104046F731D23EBD86FE3BF9AC1D3CCBC5838D0A4D9EB15938E1C995A638481",
-            "inLedger":2484,
-            "ledger_index":2484
-         },
-         {
-            "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-            "Amount":{
-               "currency":"DBG",
-               "issuer":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
-               "value":"1"
-            },
-            "Destination":"gQ9FwPh5bRyS3K5uH47ZGpKZ4JdjJe7jJ8",
-            "Fee":"10",
-            "Flags":2147483648,
-            "Sequence":61,
-            "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
-            "TransactionType":"Payment",
-            "TxnSignature":"F4DC53BD3046...",
-            "hash":"4FA4B0CC6AD6C64912215125A08E7CE8B3EEC84F6A843D28EA51C9D3EB6C4B6F",
-            "inLedger":2483,
-            "ledger_index":2483
-         },
-        ...
-      ]
-   }
-}
-        ]]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "tx_history", "start" : "5" }
-
- {"result":{
-    "index":5,
-    "txs":[{
-        "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-        "Amount":"24000000000",
-        "Destination":"gJar3pA4cj8W5SvKg9JZ4PtiKkLj8613k3",
-        "Fee":"12",
-        "Flags":2147483648,
-        "LastLedgerSequence":21498,
-        "Sequence":30,
-        "SigningPubKey":"BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4",
-        "TransactionType":"Payment",
-        "TxnSignature":"75B068D4...",
-        "hash":"498AE15B...",
-        "inLedger":21490,
-        "ledger_index":21490
-         },
-    ...
-    ]},
-    "status":"success",
-    "type":"response"
-  }]]></ws_example>
+        <rpc_example><![CDATA[{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "tx_history", "start" : "5" }]]></ws_example>
     </command>
 
     <command>
@@ -600,11 +493,9 @@ This command is only available via the Websocket API. If you want to use as RPC 
         To unsubscribe from events previously subscribed to just specify them in the same way. ]]></desc>
 
 
-        <ws_example><![CDATA[
-            { "command" : "unsubscribe", "id": 42,  "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }
-
-            {"id":42,"result":{},"status":"success","type":"response"}
-        ]]></ws_example>
+        <rpc_example><![CDATA[ ]]></rpc_example>
+        <cli_example><![CDATA[ ]]></cli_example>
+        <ws_example><![CDATA[{ "command" : "unsubscribe", "id": 42,  "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }]]></ws_example>
     </command>
 
 

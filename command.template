@@ -27,20 +27,10 @@
 {{/result}}
 {{#result.0}}</div>{{/result.0}}
 		</div>
-		<div class="api-code api-tabs">
-<h4>rpc</h4>
-<section>
-<pre><code class="bash">{{{rpc_example}}}</code></pre>
-</section>
-<h4>websocket</h4>
-<section>
-<pre><code class="bash">{{{ws_example}}}</code></pre>
-</section>
-<h4>command line</h4>
-<section>
-<pre><code class="bash">{{{cli_example}}}</code></pre>
-</section>
-		</div>
-	</div>
+
+		<span class='ws_command'>{{{ws_example}}}</span>
+		<span class='rpc_command'>{{{rpc_example}}}</span>
+		<span class='cli_command'>{{{cli_example}}}</span>
+</div>
 
 

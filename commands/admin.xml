@@ -24,12 +24,8 @@
         <cli_example><![CDATA[
 > stellard connect 53.23.56.110 5000
         ]]></cli_example>
-        <rpc_example><![CDATA[
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-
-        ]]></ws_example>
+        <rpc_example><![CDATA[ ]]></rpc_example>
+        <ws_example><![CDATA[ ]]></ws_example>
     </command>
 
     <command>
@@ -149,12 +145,8 @@
             }
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-
-        ]]></ws_example>
+        <rpc_example><![CDATA[ ]]></rpc_example>
+        <ws_example><![CDATA[ ]]></ws_example>
     </command>
 
     <command>

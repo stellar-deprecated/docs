@@ -34,35 +34,8 @@
             }
             }
         ]]></cli_example>
-        <rpc_example><![CDATA[
-            > curl -X POST -d \
-            '{ "method" : "account_currencies", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_index" : 400 } ] }' \
-            http://public-01.gostellar.org:9002
-
-            {
-            "result":{
-            "ledger_index":400,
-            "receive_currencies":["USD","EUR"],
-            "send_currencies":["USD","BTC"],
-            "status":"success"
-            }
-            }
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "account_currencies", "id":4, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_hash":"876BD33202CBBF87D756E61DA74F5235B38D819BFD2E1C17DE7B2334EFDD0B2D" }
-
-            {
-            "id":4,
-            "result":{
-            "ledger_hash":"876BD33202CBBF87D756E61DA74F5235B38D819BFD2E1C17DE7B2334EFDD0B2D",
-            "ledger_index":21755,
-            "receive_currencies":["ZAR"],
-            "send_currencies":["ZAR"]
-            },
-            "status":"success",
-            "type":"response"
-            }
-        ]]></ws_example>
+        <rpc_example><![CDATA[{ "method" : "account_currencies", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "ledger_index" : 400 } ] }]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "account_currencies", "id":4, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }]]></ws_example>
     </command>
 
     <command>
@@ -144,15 +117,8 @@
             }
             }
         ]]></cli_example>
-        <rpc_example><![CDATA[
-            > curl -X POST -d '{ "method" : "account_lines", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://127.0.0.1:9002
-            {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}],"status":"success"}}
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "account_lines", "id":24, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
-            {"id":24,"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","lines":[{"account":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","balance":"10","currency":"BTC","limit":"10000","limit_peer":"0","quality_in":0,"quality_out":0}]},"status":"success","type":"response"}
-        ]]></ws_example>
+        <rpc_example><![CDATA[{ "method" : "account_lines", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "account_lines", "id":24, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ]]></ws_example>
     </command>
     <command>
         <name>account_offers</name>
@@ -207,12 +173,9 @@
             }
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
-            curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }' http://public-01.gostellar.org:9002
-            {"result":{"account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","offers":[{"flags":0,"seq":47,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1500"}},{"flags":0,"seq":48,"taker_gets":{"currency":"BTC","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"2.5"},"taker_pays":{"currency":"USD","issuer":"ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C","value":"1600"}}],"status":"success"}}
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "account_offers", "id":120, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }
+        <rpc_example><![CDATA[{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "account_offers", "id":120, "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" }]]></ws_example>
+        <ws_result>
             {"id":120,
             "result":{
             "account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
@@ -223,7 +186,7 @@
             "status":"success",
             "type":"response"}
 
-        ]]></ws_example>
+        </ws_result>
     </command>
     <command>
         <name>ping</name>
@@ -236,12 +199,8 @@
       "status" : "success"
    }
 }]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST -d '{ "method" : "ping" }' http://public-01.gostellar.org:9002
-
-            {"result":{"status":"success"}}]]></rpc_example>
-        <ws_example><![CDATA[ { "command" : "ping" }
-
-            {"result":{},"status":"success","type":"response"}]]></ws_example>
+        <rpc_example><![CDATA[{ "method" : "ping" }]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "ping" }]]></ws_example>
     </command>
     <command>
         <name>transaction_entry</name>
@@ -260,65 +219,9 @@
         </argument>
 
 
-        <cli_example><![CDATA[
-
-        ]]></cli_example>
-        <rpc_example><![CDATA[
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-
-        ]]></ws_example>
+        <cli_example><![CDATA[ ]]></cli_example>
+        <rpc_example><![CDATA[ ]]></rpc_example>
+        <ws_example><![CDATA[ ]]></ws_example>
     </command>
-    <command>
-        <name>wallet_propose</name>
-        <admin>false</admin>
-        <desc>Generates a random secret key and an accountID based on this key.</desc>
 
-        <argument>
-            <name>passphrase</name>
-            <type>string</type>
-            <desc>If specified it will create the secret key from a hash of the passphrase.</desc>
-        </argument>
-
-
-        <result>
-            <name>account_id</name>
-            <desc>The generated accountID. It will become a usable stellar account if someone sends stellars to it.</desc>
-        </result>
-        <result>
-            <name>master_seed</name>
-            <desc>The secret key in base58 format that corresponds to the accountID.</desc>
-        </result>
-        <result>
-            <name>master_seed_hex</name>
-            <desc>The secret key in hex format that corresponds to the accountID.</desc>
-        </result>
-        <result>
-            <name>public_key</name>
-            <desc>The public key in base58 format that corresponds to the accountID.</desc>
-        </result>
-        <result>
-            <name>public_key_hex</name>
-            <desc>The public key in hex format that corresponds to the accountID.</desc>
-        </result>
-
-        <cli_example><![CDATA[
-
-        ]]></cli_example>
-        <rpc_example><![CDATA[
-
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "wallet_propose" }
-            {"result":{
-            "account_id":"g9yMgy1dxac5UBSxc1nxtVUyhw11qYPLcs",
-            "master_seed":"s3YBKJpSJkyfoJQHHSaKwGPZyW73ThahyVjh7oehcQPq5T4ncHU",
-            "master_seed_hex":"B70A1108710883663AE1B18356FB1BF99FAF3581939B1E6FC72A1FD83DE12910",
-            "public_key":"pGFGGYRCkQHbHMbjQJJHU4SuduR5hU77kqr7EkhDd8quZF2xTAR",
-            "public_key_hex":"CF8165969EEC1B05DC79CD0CE472AE827FC1CD6E0F8FEFDB394C2ED6379219E6"},
-            "status":"success","type":"response"
-            }
-        ]]></ws_example>
-    </command>
 </commands>

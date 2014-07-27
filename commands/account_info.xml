@@ -63,35 +63,7 @@
             }
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
-            > curl -X POST -d \
-            '{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }' \
-            http://public-01.gostellar.org:9002
-
-            {"result":{"account_data":{"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Balance":"999999970","Flags":0,"LedgerEntryType":"AccountRoot","OwnerCount":0,"PreviousTxnID":"710E124A6B8B891DF0B271AD1EF869A9BAE3690786883C5D81F3C64E5AB57AAC","PreviousTxnLgrSeq":113,"Sequence":4,"index":"6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"},"ledger_index":400,"status":"success"}}
-        ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "account_info", "id":24, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }
-
-            {
-            "id":24,
-            "result":{
-            "account_data":{
-            "Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
-            "Balance":"53999960",
-            "Flags":0,
-            "LedgerEntryType": "AccountRoot",
-            "OwnerCount":1,
-            "PreviousTxnID":"E0DB3587248BAC7D0C9F86BFAFA238BD54586363B45762D17FF793EE6908AB33",
-            "PreviousTxnLgrSeq":19217,
-            "Sequence":5,
-            "index":"0E72998F3A8AD5005C8796FFB7B984BCCDA91683150CAD95CE59B6C8781BFEB7"
-            },
-            "ledger_current_index":21861
-            },
-            "status":"success",
-            "type":"response"
-            }
-        ]]></ws_example>
+        <rpc_example><![CDATA[{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }]]></rpc_example>
+        <ws_example><![CDATA[{ "command" : "account_info", "id":24, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }]]></ws_example>
     </command>
 </commands>
