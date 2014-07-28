@@ -438,7 +438,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <argument>
             <name>accounts</name>
             <type>array</type>
-            <desc><![CDATA[An array of accountIDs you want events on. Sends a message for any transaction that effects these accounts when each ledger is closed.]]></desc>
+            <desc><![CDATA[An array of accountIDs you want events on. Will subscribe you to transaction streams for the given accounts.]]></desc>
         </argument>
 
         <argument>
@@ -491,9 +491,10 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <name>Stream type 'server'</name>
             <desc><![CDATA[A Returned message from a subscribe of the "server" stream".
             <ul>
-            <li><strong><a href="wiki.gostellar.org/load_base">load_base</a></strong></li>
-            <li><strong><a href="wiki.gostellar.org/load_factor">load_base</a></strong></li>
-            <li><strong><a href="wiki.gostellar.org/server_status">server_status</a></strong></li>
+            <li><strong>type</strong> - "serverStatus"</li>
+            <li><strong>load_base</strong> - the minimum/normal load factor (256)</li>
+            <li><strong>load_factor</strong> - This value reflects the load the stellard node is under.</li>
+            <li><strong>server_status</strong>/li>
             <li><strong>random</strong> - a random value generated for this event</li>
             </ul>
             ]]></desc>
@@ -503,12 +504,24 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <name>Stream type 'ledger'</name>
             <desc><![CDATA[A Returned message from a subscribe of the "server" stream". Issued once the ledger is validated, for each ledger close.
             <ul>
-            <li><strong>type</strong> - always "ledgerClosed"</li>
+            <li><strong>type</strong> - "ledgerClosed"</li>
             <li><strong>txn_count</strong> - number of transactions that will be published in this ledger.</strong></li>
             <li><strong>reserve_base</strong> - minimum reserve balance for an account to be created with.</strong></li>
             <li><strong>reserve_inc</strong> - For each "entry" that corresponds to your account (eg. offers or trust lines), your minimum reserver increments by this amount</li>
             <li><strong>fee_base</strong> - The "base" fee is the cost to send a reference transaction under no load,
-    expressed in millionths of one STR.</strong></li>
+    expressed in millionths of one STR.</li>
+            <li><strong>fee_ref</strong> - The units used to scale the fee base.</li>
+            </ul>
+            ]]></desc>
+        </result>
+
+        <result>
+            <name>Stream type 'transactions'</name>
+            <desc><![CDATA[A Returned message from a subscribe of the "server" stream".
+            <ul>
+            <li><strong>type</strong> - "transaction"</li>
+            <li><strong>transaction</strong> - Transaction information</li>
+            <li><strong>meta</strong> - Includes "AffectedNodes" for this transaction.</li>
             </ul>
             ]]></desc>
         </result>
@@ -537,15 +550,33 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <admin>false</admin>
         <desc>Get details of a specific transaction.</desc>
 
+        <argument>
+            <name>transaction</name>
+            <required>true</required>
+            <desc>Index (hash) of the transaction to fetch.</desc>
+        </argument>
+
+        <argument>
+            <name>binary</name>
+            <required>false</required>
+            <desc>If true, will return the binary representation of this transaction.</desc>
+        </argument>
 
         <cli_example><![CDATA[
-
+            stellar tx 002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC
         ]]></cli_example>
         <rpc_example><![CDATA[
-
+            {
+                "method": "tx",
+                "params": [
+                    {
+                        "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC"
+                    }
+                ]
+            }
         ]]></rpc_example>
         <ws_example><![CDATA[
-
+            { "command" : "tx", "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC" }
         ]]></ws_example>
     </command>
 
@@ -554,11 +585,11 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <admin>false</admin>
         <desc>Returns the last N transactions starting from the given index. Returns from latest to earliest. N is set by stellard.</desc>
 
-            <argument>
-                <name>start</name>
-                <required>true</required>
-                <desc>Index to start returning transactions from.</desc>
-            </argument>
+        <argument>
+            <name>startIndex</name>
+            <required>true</required>
+            <desc>Index to start returning transactions from.</desc>
+        </argument>
 
         <cli_example><![CDATA[> stellard tx_history 8
 
