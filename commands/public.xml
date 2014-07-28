@@ -35,10 +35,24 @@
 
 
      <cli_example><![CDATA[
-
+        stellar account_tx ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
         ]]></cli_example>
-        <rpc_example><![CDATA[ ]]></rpc_example>
-        <ws_example><![CDATA[ ]]></ws_example>
+        <rpc_example><![CDATA[
+            {
+              "method": "account_tx",
+              "params": [{
+                "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                "ledger_min": 0
+              }]
+            }
+            ]]></rpc_example>
+        <ws_example><![CDATA[
+            {
+                "command": "account_tx",
+                "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                "ledger_min": 0
+            }
+            ]]></ws_example>
     </command>
 
     <command>
@@ -90,21 +104,39 @@
         </result>
 
         <cli_example><![CDATA[
-
+            stellar book_offers {"method": "book_offers","params": [{"taker_pays": {"value": "5000","currency": "STR"},"taker_gets": {"issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}}
         ]]></cli_example>
-        <rpc_example><![CDATA[{"method": "book_offers", "params": [{"taker_pays": {"value": "5000","currency": "STR"}, "taker_gets": {"issuer":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}]}]]></rpc_example>
-        <ws_example><![CDATA[{
-          "command": "book_offers",
-          "taker_pays": {
-            "value": "5000",
-            "currency": "STR"
-          },
-          "taker_gets": {
-            "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-            "currency": "USD",
-            "value": 10
-          }
-        }]]></ws_example>
+        <rpc_example><![CDATA[
+            {
+              "method": "book_offers",
+              "params": [
+                {
+                  "taker_pays": {
+                    "value": "5000",
+                    "currency": "STR"
+                  },
+                  "taker_gets": {
+                    "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                    "currency": "USD",
+                    "value": 10
+                  }
+                }
+            }
+        ]]></rpc_example>
+        <ws_example><![CDATA[
+            {
+              "command": "book_offers",
+              "taker_pays": {
+                "value": "5000",
+                "currency": "STR"
+              },
+              "taker_gets": {
+                "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                "currency": "USD",
+                "value": 10
+              }
+            }
+        ]]></ws_example>
     </command>
 
     <command>
@@ -149,110 +181,112 @@
 > stellard ledger
             Connecting to: 0.0.0.0:9002
             {
-            "result" : {
-            "closed" : {
-            "ledger" : {
-            "accepted" : true,
-            "account_hash" : "62E646A558E15D64B8F2D0E3EA9D931A678CCE02866D416EE95BC686C58634AC",
-            "close_time" : 459542460,
-            "close_time_human" : "2014-Jul-24 18:41:00",
-            "close_time_resolution" : 10,
-            "closed" : true,
-            "fee_pool" : "0",
-            "hash" : "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
-            "inflate_seq" : "1",
-            "ledger_hash" : "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
-            "ledger_index" : "402",
-            "parent_hash" : "B3DC425B140FC2550F3DF2F69D3259A32A60BC5B46323B015EB889AE36A999F0",
-            "seqNum" : "402",
-            "totalCoins" : "100000000000000000",
-            "total_coins" : "100000000000000000",
-            "transaction_hash" : "0000000000000000000000000000000000000000000000000000000000000000"
-            }
-            },
-            "open" : {
-            "ledger" : {
-            "closed" : false,
-            "ledger_index" : "403",
-            "parent_hash" : "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
-            "seqNum" : "403"
-            }
-            },
-            "status" : "success"
-            }
+              "result": {
+                "closed": {
+                  "ledger": {
+                    "accepted": true,
+                    "account_hash": "62E646A558E15D64B8F2D0E3EA9D931A678CCE02866D416EE95BC686C58634AC",
+                    "close_time": 459542460,
+                    "close_time_human": "2014-Jul-24 18:41:00",
+                    "close_time_resolution": 10,
+                    "closed": true,
+                    "fee_pool": "0",
+                    "hash": "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
+                    "inflate_seq": "1",
+                    "ledger_hash": "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
+                    "ledger_index": "402",
+                    "parent_hash": "B3DC425B140FC2550F3DF2F69D3259A32A60BC5B46323B015EB889AE36A999F0",
+                    "seqNum": "402",
+                    "totalCoins": "100000000000000000",
+                    "total_coins": "100000000000000000",
+                    "transaction_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+                  }
+                },
+                "open": {
+                  "ledger": {
+                    "closed": false,
+                    "ledger_index": "403",
+                    "parent_hash": "A2243364D4426DC0CD979FB977D3095DB60A53308F8275D4B05D03E625743FCB",
+                    "seqNum": "403"
+                  }
+                },
+                "status": "success"
+              }
             }
         ]]></cli_example>
         <rpc_example><![CDATA[{ "method" : "ledger" }]]></rpc_example>
 <rpc_result>
             {
-            "result":{
-            "closed":{
-            "ledger":{
-            "accepted":true,
-            "account_hash":"7B2FD91FF69C919A7A2C1395DB22C69D806B6D750EB1D7BB8872329A869CA98B",
-            "close_time":459542140,
-            "close_time_human":"2014-Jul-24 18:35:40",
-            "close_time_resolution":10,
-            "closed":true,
-            "fee_pool":"3826",
-            "hash":"333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
-            "inflate_seq":"3",
-            "ledger_hash":"333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
-            "ledger_index":"46728",
-            "parent_hash":"9BBF29D271C854949BBDB69CA6DFF847A6295A1955E6A862855F147383D8736E",
-            "seqNum":"46728",
-            "totalCoins":"100038147837446155",
-            "total_coins":"100038147837446155",
-            "transaction_hash":"0000000000000000000000000000000000000000000000000000000000000000"
-            }
-            },
-            "open":{
-            "ledger":{
-            "closed":false,
-            "ledger_index":"46729",
-            "parent_hash":"333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
-            "seqNum":"46729"
-            }
-            },
-            "status":"success"
-            }
+              "result": {
+                "closed": {
+                  "ledger": {
+                    "accepted": true,
+                    "account_hash": "7B2FD91FF69C919A7A2C1395DB22C69D806B6D750EB1D7BB8872329A869CA98B",
+                    "close_time": 459542140,
+                    "close_time_human": "2014-Jul-24 18:35:40",
+                    "close_time_resolution": 10,
+                    "closed": true,
+                    "fee_pool": "3826",
+                    "hash": "333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
+                    "inflate_seq": "3",
+                    "ledger_hash": "333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
+                    "ledger_index": "46728",
+                    "parent_hash": "9BBF29D271C854949BBDB69CA6DFF847A6295A1955E6A862855F147383D8736E",
+                    "seqNum": "46728",
+                    "totalCoins": "100038147837446155",
+                    "total_coins": "100038147837446155",
+                    "transaction_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+                  }
+                },
+                "open": {
+                  "ledger": {
+                    "closed": false,
+                    "ledger_index": "46729",
+                    "parent_hash": "333090A67B65A8CCD97D8168674D3819E94B9D42D89D7A42F5A768702099B6C7",
+                    "seqNum": "46729"
+                  }
+                },
+                "status": "success"
+              }
             }
 </rpc_result>
         <ws_example><![CDATA[{ "command" : "ledger" }]]></ws_example>
-        <ws_result>{
-            "result":{
-            "closed":{
-            "ledger":{
-            "accepted":true,
-            "account_hash":"2CE104972C7FD1BC9A6FCC5D46B6D13B6F5184AEB105740BBCF69D112D6642EB",
-            "close_time":459542280,
-            "close_time_human":"2014-Jul-24 18:38:00",
-            "close_time_resolution":10,
-            "closed":true,
-            "fee_pool":"0",
-            "hash":"C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
-            "inflate_seq":"1",
-            "ledger_hash":"C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
-            "ledger_index":"393",
-            "parent_hash":"54F9E657F3122A3375C427DEE484F69F020D79FA73B85D8FFCFBA48AC763036C",
-            "seqNum":"393",
-            "totalCoins":"100000000000000000",
-            "total_coins":"100000000000000000",
-            "transaction_hash":"0000000000000000000000000000000000000000000000000000000000000000"
+        <ws_result>
+            {
+              "result": {
+                "closed": {
+                  "ledger": {
+                    "accepted": true,
+                    "account_hash": "2CE104972C7FD1BC9A6FCC5D46B6D13B6F5184AEB105740BBCF69D112D6642EB",
+                    "close_time": 459542280,
+                    "close_time_human": "2014-Jul-24 18:38:00",
+                    "close_time_resolution": 10,
+                    "closed": true,
+                    "fee_pool": "0",
+                    "hash": "C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
+                    "inflate_seq": "1",
+                    "ledger_hash": "C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
+                    "ledger_index": "393",
+                    "parent_hash": "54F9E657F3122A3375C427DEE484F69F020D79FA73B85D8FFCFBA48AC763036C",
+                    "seqNum": "393",
+                    "totalCoins": "100000000000000000",
+                    "total_coins": "100000000000000000",
+                    "transaction_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+                  }
+                },
+                "open": {
+                  "ledger": {
+                    "closed": false,
+                    "ledger_index": "394",
+                    "parent_hash": "C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
+                    "seqNum": "394"
+                  }
+                }
+              },
+              "status": "success",
+              "type": "response"
             }
-            },
-            "open":{
-            "ledger":{
-            "closed":false,
-            "ledger_index":"394",
-            "parent_hash":"C4EDC2FF215FDE662E1771A4383C1204BB66CEFCDF375E6554DEE4229520CD20",
-            "seqNum":"394"
-            }
-            }
-            },
-            "status":"success",
-            "type":"response"
-            }</ws_result>
+        </ws_result>
 
 
     </command>
@@ -268,11 +302,16 @@ If stellard is sending an unsolicited response the <strong>type</strong> field w
 This command is only available via the Websocket API. If you want to use as RPC or command line or you don't want ongoing path updates use <a href="#api-static_path_find">static_path_find</a> instead.
             ]]></desc>
 
-            <argument>
-                <name>source_account</name>
-                <required>true</required>
-                <desc>Sender's Stellar address.</desc>
-            </argument>
+        <argument>
+          <name>subcommand</name>
+          <required>true</required>
+          <desc><![CDATA[subcommand can be either <ul><li>create</li><li>status</li><li>close</li></ul>]]></desc>
+        </argument>
+        <argument>
+            <name>source_account</name>
+            <required>true</required>
+            <desc>Sender's Stellar address.</desc>
+        </argument>
         <argument>
             <name>destination_account</name>
             <required>true</required>
@@ -292,7 +331,19 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
         <cli_example><![CDATA[ find_path only available over websocket.  ]]></cli_example>
         <rpc_example><![CDATA[ find_path only available over websocket.  ]]></rpc_example>
-        <ws_example><![CDATA[   ]]></ws_example>
+        <ws_example><![CDATA[
+            {
+              "command": "find_path",
+              "subcommand": "create",
+              "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+              "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
+              "destination_amount": {
+                "currency": "USD",
+                "value": "50",
+                "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
+              }
+            }
+         ]]></ws_example>
     </command>
 
 
@@ -322,12 +373,36 @@ This command is only available via the Websocket API. If you want to use as RPC 
         </result>
 
         <cli_example><![CDATA[
-
+          stellar static_path_find <json_object> [ledger]
         ]]></cli_example>
         <rpc_example><![CDATA[
-
+          {
+            "method": "static_path_find",
+            "params": [
+              {
+                "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+                "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
+                "destination_amount": {
+                  "currency": "USD",
+                  "value": "50",
+                  "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
+                }
+              }
+            ]
+          }
         ]]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "static_path_find",  "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",  "destination_amount": "10" } ]]></ws_example>
+        <ws_example><![CDATA[
+          {
+            "command": "static_path_find",
+            "source_account": "gPeFowjy2izeVYvhmu6gZRr6jMobxTyGUU",
+            "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
+            "destination_amount": {
+              "currency": "USD",
+              "value": "50",
+              "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
+            }
+          }
+        ]]></ws_example>
     </command>
 
     <command>
@@ -403,7 +478,14 @@ This command is only available via the Websocket API. If you want to use as RPC 
         </argument>
 
         <cli_example><![CDATA[
-
+          {
+            "method": "subscribe",
+            "params": [
+              {
+                "accounts": ["ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"]
+              }
+            ]
+          }
         ]]></cli_example>
         <rpc_example><![CDATA[
 
