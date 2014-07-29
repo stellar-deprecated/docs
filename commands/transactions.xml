@@ -25,7 +25,7 @@
             <name>Amount</name>
             <type>amount</type>
             <required>true</required>
-            <desc><![CDATA[ The amount to send. This is either a number of <a href="wiki.gostellar.org/Stroop">stroops</a> for sending STR or a {currency,issuer,value} triplet for sending a credit. ]]></desc>
+            <desc><![CDATA[ The amount to send. This is either a number of <a href="https://wiki.gostellar.org/Stroop">stroops</a> for sending STR or a {currency,issuer,value} triplet for sending a credit. ]]></desc>
         </argument>
         <argument>
             <name>Fee</name>

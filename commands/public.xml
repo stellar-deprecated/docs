@@ -49,24 +49,24 @@
 
 
 
-     <cli_example><![CDATA[
-        stellar account_tx ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
-        ]]></cli_example>
+     <cli_example><![CDATA[> stellar account_tx ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb]]></cli_example>
         <rpc_example><![CDATA[
-            {
-              "method": "account_tx",
-              "params": [{
-                "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-                "ledger_min": 0
-              }]
-            }
+{
+  "method": "account_tx",
+  "params": [{
+    "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "ledger_min": 0,
+    "limit" : 4
+  }]
+}
             ]]></rpc_example>
         <ws_example><![CDATA[
-            {
-                "command": "account_tx",
-                "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-                "ledger_min": 0
-            }
+{
+    "command": "account_tx",
+    "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "ledger_min": 500,
+    "limit" : 3
+}
             ]]></ws_example>
     </command>
 
@@ -112,40 +112,39 @@
             <desc>The offers sorted from best to worst. </desc>
         </result>
 
-        <cli_example><![CDATA[
-            stellar book_offers {"method": "book_offers","params": [{"taker_pays": {"value": "5000","currency": "STR"},"taker_gets": {"issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}}
+        <cli_example><![CDATA[>stellar book_offers {"method": "book_offers","params": [{"taker_pays": {"value": "5000","currency": "STR"},"taker_gets": {"issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}}
         ]]></cli_example>
         <rpc_example><![CDATA[
-            {
-             "method": "book_offers",
-             "params": [
-                {
-                  "taker_pays": {
-                     "value": "5000",
-                     "currency": "STR"
-                   },
-                  "taker_gets": {
-                     "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-                      "currency": "USD",
-                      "value": 10
-                   }
-                 }
-              ]
-            }
+{
+ "method": "book_offers",
+ "params": [
+    {
+      "taker_pays": {
+         "value": "5000",
+         "currency": "STR"
+       },
+      "taker_gets": {
+         "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+          "currency": "USD",
+          "value": 10
+       }
+     }
+  ]
+}
         ]]></rpc_example>
         <ws_example><![CDATA[
-            {
-              "command": "book_offers",
-              "taker_pays": {
-                "value": "5000",
-                "currency": "STR"
-              },
-              "taker_gets": {
-                "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-                "currency": "USD",
-                "value": 10
-              }
-            }
+{
+  "command": "book_offers",
+  "taker_pays": {
+    "value": "5000",
+    "currency": "STR"
+  },
+  "taker_gets": {
+    "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "currency": "USD",
+    "value": 10
+  }
+}
         ]]></ws_example>
     </command>
 
@@ -342,17 +341,17 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <cli_example><![CDATA[ find_path only available over websocket.  ]]></cli_example>
         <rpc_example><![CDATA[ find_path only available over websocket.  ]]></rpc_example>
         <ws_example><![CDATA[
-            {
-              "command": "find_path",
-              "subcommand": "create",
-              "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-              "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
-              "destination_amount": {
-                "currency": "USD",
-                "value": "50",
-                "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
-              }
-            }
+{
+  "command": "find_path",
+  "subcommand": "create",
+  "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+  "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
+  "destination_amount": {
+    "currency": "USD",
+    "value": "50",
+    "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
+  }
+}
          ]]></ws_example>
     </command>
 
@@ -385,32 +384,32 @@ This command is only available via the Websocket API. If you want to use as RPC 
           stellar static_path_find <json_object> [ledger]
         ]]></cli_example>
         <rpc_example><![CDATA[
-          {
-            "method": "static_path_find",
-            "params": [
-              {
-                "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-                "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
-                "destination_amount": {
-                  "currency": "USD",
-                  "value": "50",
-                  "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
-                }
-              }
-            ]
-          }
+{
+    "method": "static_path_find",
+    "params": [
+      {
+        "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
+        "destination_amount": {
+          "currency": "USD",
+          "value": "50",
+          "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
+        }
+      }
+    ]
+}
         ]]></rpc_example>
         <ws_example><![CDATA[
-          {
-            "command": "static_path_find",
-            "source_account": "gPeFowjy2izeVYvhmu6gZRr6jMobxTyGUU",
-            "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
-            "destination_amount": {
-              "currency": "USD",
-              "value": "50",
-              "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
-            }
-          }
+{
+    "command": "static_path_find",
+    "source_account": "gPeFowjy2izeVYvhmu6gZRr6jMobxTyGUU",
+    "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
+    "destination_amount": {
+      "currency": "USD",
+      "value": "50",
+      "issuer": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz"
+    }
+}
         ]]></ws_example>
     </command>
 
@@ -450,7 +449,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <argument>
             <name>books</name>
             <type>array</type>
-            <desc><![CDATA[An array of objects specifying <a href="wiki.gostellar.org/Order_Book">order books</a> to listen to.
+            <desc><![CDATA[An array of objects specifying <a href="https://wiki.gostellar.org/Order_Book">order books</a> to listen to.
             Stellard will send a message any time one of the specified order books change.
             Order book object is:
             <ul>
@@ -530,15 +529,15 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
         ]]></cli_example>
         <rpc_example><![CDATA[
-          {
-            "method": "subscribe",
-            "params": [
-              {
-                "accounts": ["ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"],
-                "url": "localhost:8000/callback-endpoint"
-              }
-            ]
-          }
+  {
+    "method": "subscribe",
+    "params": [
+      {
+        "accounts": ["ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"],
+        "url": "localhost:8000/callback-endpoint"
+      }
+    ]
+  }
         ]]></rpc_example>
         <ws_example><![CDATA[{ "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }]]></ws_example>
     </command>
@@ -562,22 +561,19 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <desc>If true, will return the binary representation of this transaction.</desc>
         </argument>
 
-        <cli_example><![CDATA[
-            stellar tx 002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC
+        <cli_example><![CDATA[> stellar tx 002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC
         ]]></cli_example>
         <rpc_example><![CDATA[
-            {
-                "method": "tx",
-                "params": [
-                    {
-                        "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC"
-                    }
-                ]
-            }
+{
+    "method": "tx",
+    "params": [
+        {
+            "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC"
+        }
+    ]
+}
         ]]></rpc_example>
-        <ws_example><![CDATA[
-            { "command" : "tx", "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC" }
-        ]]></ws_example>
+        <ws_example><![CDATA[{ "command" : "tx", "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC" }]]></ws_example>
     </command>
 
     <command>

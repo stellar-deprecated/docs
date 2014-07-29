@@ -19,140 +19,25 @@
             <desc>The port to connect to.</desc>
         </argument>
 
-        <cli_example><![CDATA[
-> stellard connect 53.23.56.110 5000
-        ]]></cli_example>
-        <rpc_example><![CDATA[ ]]></rpc_example>
-        <ws_example><![CDATA[ ]]></ws_example>
+        <cli_example><![CDATA[> stellard connect 53.23.56.110 5000]]></cli_example>
+
     </command>
 
     <command>
         <name>ledger_accept</name>
         <admin>true</admin>
         <desc>ledger_accept is only used for testing. If stellard is started with -a then the ledger won't close until stellard receives this command.</desc>
-
-
-
+        <cli_example><![CDATA[> stellard ledger_accept]]></cli_example>
     </command>
 
-    <command>
-        <name>log_level</name>
-        <admin>true</admin>
-        <desc>Shows the current log level for all partitions or changes the log level.</desc>
 
-            <argument>
-                <name>severity</name>
-                <required>optional</required>
-                <desc><![CDATA[ If specified alone will set the log_level to the severity for all the partitions. Possible choices are:
-                    <ul>
-                        <li>trace</li>
-                        <li>debug</li>
-                        <li>info</li>
-                        <li>warn</li>
-                        <li>error</li>
-                        <li>fatal</li>
-                    </ul>
-
-                ]]></desc>
-            </argument>
-        <argument>
-            <name>partition</name>
-            <required>optional</required>
-            <desc>If specified will set the log_level to the given severity for all the specified partition.</desc>
-        </argument>
-
-
-        <cli_example><![CDATA[> stellard log_level
-
-Loading: "stellard.cfg"
-Connecting to: 0.0.0.0:39002
-{
-  "result": {
-    "levels": {
-      "AmendmentTable": "Debug",
-      "Application": "Debug",
-      "AutoSocket": "Debug",
-      "Change": "Warning",
-      "Collector": "Debug",
-      "FeeVote": "Debug",
-      "HTTPClient": "Debug",
-      "HTTPRequest": "Debug",
-      "InLedger": "Warning",
-      "InflationTransactor": "Debug",
-      "JobQueue": "Debug",
-      "Ledger": "Debug",
-      "LedgerCleaner": "Debug",
-      "LedgerConsensus": "Debug",
-      "LedgerEntrySet": "Debug",
-      "LedgerMaster": "Debug",
-      "LedgerTiming": "Debug",
-      "LoadManager": "Debug",
-      "LoadMonitor": "Debug",
-      "NameResolver": "Debug",
-      "NetworkOPs": "Debug",
-      "NodeObject": "Debug",
-      "OfferCreate": "Warning",
-      "OrderBookDB": "Debug",
-      "Overlay": "Warning",
-      "ParseSection": "Debug",
-      "PathRequest": "Debug",
-      "Pathfinder": "Debug",
-      "Payment": "Warning",
-      "Peer": "Debug",
-      "PeerDoor": "Debug",
-      "PeerFinder": "Debug",
-      "ProofOfWork": "Debug",
-      "RPC": "Debug",
-      "RPCDoor": "Debug",
-      "RPCErr": "Debug",
-      "RPCHandler": "Debug",
-      "RPCManager": "Debug",
-      "RPCParser": "Debug",
-      "RPCServer": "Debug",
-      "RPCSub": "Debug",
-      "RangeSet": "Debug",
-      "ResourceManager": "Debug",
-      "RippleAddress": "Debug",
-      "RippleCalc": "Debug",
-      "SHAMap": "Debug",
-      "SHAMapNode": "Debug",
-      "SNTPClient": "Debug",
-      "STAmount": "Debug",
-      "STObject": "Debug",
-      "SerializedLedger": "Debug",
-      "SerializedTransaction": "Debug",
-      "SerializedType": "Debug",
-      "Serializer": "Debug",
-      "SiteFiles": "Debug",
-      "SqliteDatabase": "Debug",
-      "TaggedCache": "Debug",
-      "TransactionEngine": "Debug",
-      "TransactionMetaSet": "Debug",
-      "TrustSet": "Warning",
-      "UniqueNodeList": "Debug",
-      "Validations": "Debug",
-      "Validators": "Debug",
-      "WSConnection": "Debug",
-      "WSDoor": "Debug",
-      "WSServerHandler": "Debug",
-      "WebSocket": "Debug",
-      "base": "Info"
-    },
-    "status": "success"
-  }
-}
-
-        ]]></cli_example>
-        <rpc_example><![CDATA[ ]]></rpc_example>
-        <ws_example><![CDATA[ ]]></ws_example>
-    </command>
 
     <command>
         <name>logrotate</name>
         <admin>true</admin>
         <desc>Rotate the log file. This closes and re-opens the file. Typically this is used with a cron job or a manual command line process to first move the existing log file before calling logrotate so that the new log file starts out empty again.</desc>
 
-
+        <cli_example><![CDATA[> stellard logrotate]]></cli_example>
     </command>
 
     <command>
@@ -160,6 +45,7 @@ Connecting to: 0.0.0.0:39002
         <admin>true</admin>
         <desc>Gets a list of peers this server is connected to.</desc>
 
+        <cli_example><![CDATA[> stellard peers]]></cli_example>
     </command>
 
     <command>
@@ -167,6 +53,7 @@ Connecting to: 0.0.0.0:39002
         <admin>true</admin>
         <desc>Returns various information about this server.</desc>
 
+        <cli_example><![CDATA[> stellard server_info]]></cli_example>
     </command>
 
     <command>
@@ -174,16 +61,13 @@ Connecting to: 0.0.0.0:39002
         <admin>true</admin>
         <desc>Stops the server.</desc>
 
+        <cli_example><![CDATA[> stellard stop]]></cli_example>
     </command>
 
     <command>
         <name>unl_add</name>
         <admin>true</admin>
         <desc>Adds an entry to this server's UNL.</desc>
-
-
-
-
 
 
         <cli_example><![CDATA[
@@ -216,6 +100,7 @@ Connecting to: 0.0.0.0:39002
                 <desc>A comment associated with the publicKey.</desc>
             </result>
 
+        <cli_example><![CDATA[> stellard unl_list]]></cli_example>
 
     </command>
 
@@ -244,8 +129,7 @@ Connecting to: 0.0.0.0:39002
                 <desc>Validation secret key, base58 encoded. Put in your stellard.cfg if you want this to be a validating server.</desc>
             </result>
 
-        <cli_example><![CDATA[
->stellard validation_create
+        <cli_example><![CDATA[>stellard validation_create
 
 Connecting to: 0.0.0.0:39002
 {
