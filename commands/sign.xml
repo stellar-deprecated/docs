@@ -2,7 +2,7 @@
     <command>
         <name>sign</name>
         <admin>false</admin>
-        <desc><![CDATA[ Have stellard sign a transaction for you. You can introduce the transaction later with <a href="#api-submit">submit</a>. ]]></desc>
+        <desc><![CDATA[ Have stellard sign a transaction for you. You can introduce the transaction later with <a href="#api-submit">submit</a> by just including the tx_blob. ]]></desc>
 
 
         <argument>
@@ -31,5 +31,43 @@
             <name>tx_blob</name>
             <desc>A hex representation of the signed transaction. This result can vary between calls even if supplied the same parameters.</desc>
         </result>
+
+        <cli_example><![CDATA[
+
+        ]]></cli_example>
+        <rpc_example><![CDATA[
+{
+    "command": "sign",
+    "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+    "tx_json" : {
+        "TransactionType": "Payment",
+        "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+        "Amount": {
+            "currency": "USD",
+            "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+            "value": 10
+        }
+    }
+}
+            ]]></rpc_example>
+        <ws_example><![CDATA[
+{
+    "method": "sign",
+    "params": [{
+        "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+        "tx_json" : {
+            "TransactionType": "Payment",
+            "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+            "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+            "Amount": {
+                "currency": "USD",
+                "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+                "value": 10
+            }
+        }
+    }]
+}
+            ]]></ws_example>
     </command>
 </commands>

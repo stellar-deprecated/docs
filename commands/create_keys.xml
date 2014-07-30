@@ -10,7 +10,6 @@
             <desc>If specified it will create the secret key from a hash of the passphrase.</desc>
         </argument>
 
-
         <result>
             <name>account_id</name>
             <desc>The generated accountID. It will become a usable stellar account if someone sends stellars to it.</desc>

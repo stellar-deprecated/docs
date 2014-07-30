@@ -29,13 +29,11 @@
 
         <argument>
             <name>binary</name>
-            <required>false</required>
             <desc>Returns the transaction in hex instead of JSON.</desc>
         </argument>
 
         <argument>
             <name>forward</name>
-            <required>false</required>
             <desc>Returns the transactions in ascending order by ledger.</desc>
         </argument>
 
@@ -155,28 +153,27 @@
 
             <argument>
                 <name>full</name>
-
                 <type>bool</type>
                 <default>false</default>
                 <desc>Return all the ledger entries. This is equivalent to setting accounts, transactions, and expand all to true. stellard can be configured to support this or not.</desc>
             </argument>
+
             <argument>
                 <name>accounts</name>
-
                 <type>bool</type>
                 <default>false</default>
                 <desc>If set to true, it will return the accounts tree for that public ledger block.</desc>
             </argument>
+
             <argument>
                 <name>transactions</name>
-
                 <type>bool</type>
                 <default>false</default>
                 <desc>If true, return the transactions for the ledger.</desc>
             </argument>
+
             <argument>
                 <name>expand</name>
-
                 <type>bool</type>
                 <default>false</default>
                 <desc>If set to true, returns the ledger and transaction entries in JSON format. Otherwise, returns their identifying hashes.</desc>
@@ -361,6 +358,26 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <admin>false</admin>
         <desc><![CDATA[Finds a path for a transfer. If you want updates to the path as the state of the ledger changes use <a href="#api-find_path">find_path</a> instead.
             ]]></desc>
+
+        <argument>
+            <name>source_account</name>
+            <required>true</required>
+            <desc>Sender's Stellar address.</desc>
+        </argument>
+
+        <argument>
+            <name>destination_account</name>
+            <required>true</required>
+            <desc>Receiver's Stellar address.</desc>
+        </argument>
+
+        <argument>
+            <name>destination_amount</name>
+            <type>amount</type>
+            <required>true</required>
+            <desc>Amount sender is trying to send to receiver.</desc>
+        </argument>
+
         <result>
             <name>alternatives</name>
             <desc>List of path choices.</desc>

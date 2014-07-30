@@ -44,26 +44,41 @@
 
         <cli_example><![CDATA[
             > stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
-            {
-            "result" : {
-            "account_data" : {
-            "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-            "Balance" : "9974964999552",
-            "Flags" : 0,
-            "LedgerEntryType" : "AccountRoot",
-            "OwnerCount" : 1,
-            "PreviousTxnID" : "61BF46D3EB11A513FCC885EBD76615A83361E163BD9E7155B4396C8A4FF9FC58",
-            "PreviousTxnLgrSeq" : 3486,
-            "Sequence" : 41,
-            "index" : "6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"
-            },
-            "ledger_current_index" : 3698,
-            "status" : "success"
-            }
-            }
-
+{
+  "result": {
+    "account_data": {
+      "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+      "Balance": "9974964999552",
+      "Flags": 0,
+      "LedgerEntryType": "AccountRoot",
+      "OwnerCount": 1,
+      "PreviousTxnID": "61BF46D3EB11A513FCC885EBD76615A83361E163BD9E7155B4396C8A4FF9FC58",
+      "PreviousTxnLgrSeq": 3486,
+      "Sequence": 41,
+      "index": "6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"
+    },
+    "ledger_current_index": 3698,
+    "status": "success"
+  }
+}
         ]]></cli_example>
-        <rpc_example><![CDATA[{ "method" : "account_info", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "ledger_index" : 400 } ] }]]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "account_info", "id":24, "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" }]]></ws_example>
+        <rpc_example><![CDATA[
+{
+  "method": "account_info",
+  "params": [
+    {
+      "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+      "ledger_index": 400
+    }
+  ]
+}
+            ]]></rpc_example>
+        <ws_example><![CDATA[
+{
+  "command": "account_info",
+  "id": 24,
+  "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+}
+            ]]></ws_example>
     </command>
 </commands>
