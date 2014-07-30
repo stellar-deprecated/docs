@@ -20,7 +20,7 @@
 <div class="api-detail">
     <div class="api-detail-name">{{name}}</div>
     <div class="api-detail-info">
-        <p>{{#type}}{{{type_link}}} | {{/type}}{{#required}}<strong>{{#required}}</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
+        <p>{{#type}}{{{type_link}}} | {{/type}}{{#required}}<strong>required</strong>{{/required}} {{^required}}<strong>optional</strong>{{/required}}  {{#default}}| <em>default: {{default}}</em>{{/default}} <br />
         {{{desc}}}</p>
     </div>
 </div>
