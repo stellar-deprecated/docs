@@ -1,44 +1,44 @@
 
 
 ==============RPC==============
-curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.gostellar.org:9002
+curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.stellar.org:9002
 
-curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "Amount":"1000000", "Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt" }} ] }'  http://public-01.gostellar.org:9002
-curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.gostellar.org:9002
-curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.gostellar.org:9002
-
-
-
-curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }'  http://public-01.gostellar.org:9002
-curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }'  http://public-01.gostellar.org:9002
+curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "Amount":"1000000", "Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt" }} ] }'  http://public-01.stellar.org:9002
+curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.stellar.org:9002
+curl -X POST -d '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }'  http://public-01.stellar.org:9002
 
 
-curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La" } ] }' http://public-01.gostellar.org:9002
-curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La", "ledger_min": "0" } ] }' http://public-01.gostellar.org:9002
+
+curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }'  http://public-01.stellar.org:9002
+curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" } ] }'  http://public-01.stellar.org:9002
+
+
+curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La" } ] }' http://public-01.stellar.org:9002
+curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La", "ledger_min": "0" } ] }' http://public-01.stellar.org:9002
 
  Check your account balance:
-    [bash]curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.gostellar.org:9002
+    [bash]curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.stellar.org:9002
   [/bash]
 
   Send a payment:
      [bash]
 > curl -X POST -d \
   '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U", "Amount":"1000000", "Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt" }} ] }' \
-  http://public-01.gostellar.org:9002
+  http://public-01.stellar.org:9002
     [/bash]
 
   Allow your account to hold another currency:
     [bash]
 > curl -X POST -d \
   '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"TrustSet","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","LimitAmount": { "currency":"USD", "value":"100", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }' \
-    http://public-01.gostellar.org:9002
+    http://public-01.stellar.org:9002
   [/bash]
 
     Send a payment in another currency:
   [bash]
 > curl -X POST -d \
   '{ "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }' \
-    http://public-01.gostellar.org:9002
+    http://public-01.stellar.org:9002
 
 ============================WEBSOCKET=====================
 
