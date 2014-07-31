@@ -15,7 +15,7 @@
         <result>
             <name>Balance</name>
             <type>int</type>
-            <desc><![CDATA[ The number of stellars this account holds , in <a href="https://wiki.stellar.org/Stroop">stroops</a>. ]]></desc>
+            <desc><![CDATA[ The number of stellars this account holds, in microstellars. ]]></desc>
         </result>
         <result>
             <name>Flags</name>
