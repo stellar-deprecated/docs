@@ -33,7 +33,7 @@
             }
             }
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_currencies",
   "params": [
@@ -131,7 +131,7 @@
     }
 }
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_lines",
   "params": [
@@ -201,7 +201,7 @@
             }
 
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_offers",
   "params": [
@@ -270,7 +270,7 @@
       "status" : "success"
    }
 }]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '{ "method" : "ping" }']]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "ping" }']]></rpc_example>
         <ws_example><![CDATA[{ "command" : "ping" }]]></ws_example>
     </command>
     <command>

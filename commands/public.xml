@@ -48,7 +48,7 @@
 
 
      <cli_example><![CDATA[> stellar account_tx ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_tx",
   "params": [{
@@ -111,7 +111,7 @@
 
         <cli_example><![CDATA[>stellar book_offers {"method": "book_offers","params": [{"taker_pays": {"value": "5000","currency": "STR"},"taker_gets": {"issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","currency": "USD","value": 10}}}
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
  "method": "book_offers",
  "params": [
@@ -218,7 +218,7 @@ Connecting to: 0.0.0.0:9002
   }
 }
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '{ "method" : "ledger" }']]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "ledger" }']]></rpc_example>
 <rpc_result>
             {
               "result": {
@@ -398,7 +398,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <cli_example><![CDATA[
           stellar static_path_find <json_object> [ledger]
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
     "method": "static_path_find",
     "params": [
@@ -542,7 +542,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <cli_example><![CDATA[
 
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
   {
     "method": "subscribe",
     "params": [
@@ -576,7 +576,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
         <cli_example><![CDATA[> stellar tx 002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC
         ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
     "method": "tx",
     "params": [
@@ -640,7 +640,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
        }
     }
 ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }']]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }']]></rpc_example>
         <ws_example><![CDATA[{ "command" : "tx_history", "start" : "5" }]]></ws_example>
     </command>
 

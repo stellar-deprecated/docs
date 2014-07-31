@@ -41,7 +41,7 @@
   "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
 
          ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d ' { "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }']]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d ' { "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }']]></rpc_example>
 
         <ws_example><![CDATA[ { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :  { "TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"1000000000"} } ]]></ws_example>
     </command>
