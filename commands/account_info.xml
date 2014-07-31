@@ -62,7 +62,7 @@
   }
 }
         ]]></cli_example>
-        <rpc_example><![CDATA[
+        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
 {
   "method": "account_info",
   "params": [
@@ -71,8 +71,7 @@
       "ledger_index": 400
     }
   ]
-}
-            ]]></rpc_example>
+}']]></rpc_example>
         <ws_example><![CDATA[
 {
   "command": "account_info",

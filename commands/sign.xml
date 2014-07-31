@@ -35,7 +35,7 @@
         <cli_example><![CDATA[
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
+        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
 {
     "command": "sign",
     "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
@@ -49,8 +49,7 @@
             "value": 10
         }
     }
-}
-            ]]></rpc_example>
+}']]></rpc_example>
         <ws_example><![CDATA[
 {
     "method": "sign",
