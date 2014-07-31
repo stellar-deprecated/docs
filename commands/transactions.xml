@@ -29,7 +29,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -60,7 +60,7 @@
         <argument>
             <name>InflationDest</name>
             <type>address</type>
-            <desc><![CDATA[Change the inflation destination for this account. See <a href="https://wiki.stellar.org/Inflation">inflation</a> in the wiki for more information.]]></desc>
+            <desc><![CDATA[Change the inflation destination for this account. ]]></desc>
         </argument>
         <argument>
             <name>TransferRate</name>
@@ -95,7 +95,7 @@
 
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -123,7 +123,7 @@
 
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -168,7 +168,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -201,7 +201,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -232,7 +232,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>

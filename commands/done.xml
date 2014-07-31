@@ -102,36 +102,34 @@
             <desc></desc>
         </result>
 
-        <cli_example><![CDATA[
-            C:\internet\stellar2>rippled account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
-            Loading: "C:\internet\stellar2\rippled.cfg"
-            Connecting to: 127.0.0.1:9002
+        <cli_example><![CDATA[>stellard account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
+
+{
+    "result": {
+        "account": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+        "lines": [
             {
-            "result" : {
-            "account" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
-            "lines" : [
-            {
-            "account" : "gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU",
-            "balance" : "-5000",
-            "currency" : "USD",
-            "limit" : "0",
-            "limit_peer" : "10000",
-            "quality_in" : 0,
-            "quality_out" : 0
+                "account": "gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU",
+                "balance": "-5000",
+                "currency": "USD",
+                "limit": "0",
+                "limit_peer": "10000",
+                "quality_in": 0,
+                "quality_out": 0
             },
             {
-            "account" : "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
-            "balance" : "0",
-            "currency" : "USD",
-            "limit" : "0",
-            "limit_peer" : "10000",
-            "quality_in" : 0,
-            "quality_out" : 0
+                "account": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+                "balance": "0",
+                "currency": "USD",
+                "limit": "0",
+                "limit_peer": "10000",
+                "quality_in": 0,
+                "quality_out": 0
             }
-            ],
-            "status" : "success"
-            }
-            }
+        ],
+        "status": "success"
+    }
+}
         ]]></cli_example>
         <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
 {

@@ -463,7 +463,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <argument>
             <name>books</name>
             <type>array</type>
-            <desc><![CDATA[An array of objects specifying <a href="https://wiki.stellar.org/Order_Book">order books</a> to listen to.
+            <desc><![CDATA[An array of objects specifying an order books to listen to.
             Stellard will send a message any time one of the specified order books change.
             Order book object is:
             <ul>
