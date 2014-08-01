@@ -25,11 +25,11 @@
             <name>Amount</name>
             <type>amount</type>
             <required>true</required>
-            <desc><![CDATA[ The amount to send. This is either a number of <a href="https://wiki.stellar.org/Stroop">stroops</a> for sending STR or a {currency,issuer,value} triplet for sending a credit. ]]></desc>
+            <desc><![CDATA[ The amount to send. This is either a number of microstellars (if sending STR) or a {value,currency,issuer} triplet for sending a credit. ]]></desc>
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.stellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -41,7 +41,7 @@
   "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
 
          ]]></cli_example>
-        <rpc_example><![CDATA[ { "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }]]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d ' { "method" : "submit", "params" : [ { "secret" : "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr", "tx_json" : {"TransactionType":"Payment","Account":"gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U","Destination":"g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt","Amount": { "currency":"USD", "value":"2", "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B" }} ] }']]></rpc_example>
 
         <ws_example><![CDATA[ { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :  { "TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"1000000000"} } ]]></ws_example>
     </command>
@@ -60,7 +60,7 @@
         <argument>
             <name>InflationDest</name>
             <type>address</type>
-            <desc><![CDATA[Change the inflation destination for this account. See <a href="https://wiki.stellar.org/Inflation">inflation</a> in the wiki for more information.]]></desc>
+            <desc><![CDATA[Change the inflation destination for this account. ]]></desc>
         </argument>
         <argument>
             <name>TransferRate</name>
@@ -95,7 +95,7 @@
 
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.stellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -123,7 +123,7 @@
 
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.stellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -168,7 +168,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.stellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -201,7 +201,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.stellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
@@ -232,7 +232,7 @@
         </argument>
         <argument>
             <name>Fee</name>
-            <desc><![CDATA[Set the <a href="https://wiki.stellar.org/Transaction_Fee">transaction fee</a> in <a href="https://wiki.stellar.org/Stroop">stroops</a> that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+            <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>

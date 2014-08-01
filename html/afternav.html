@@ -7,8 +7,23 @@
 <div class="api-content">
     <div id="api-overview" class="api-section">
         <div class="api-text">
-            <h3>Overview</h3>
-            <p>Stellar is <a href="https://github.com/stellar" target="_blank">open source</a>.
+	    <h3> Software </h3>
+
+            <p>Stellar is <a href="https://github.com/stellar">open source</a>. Here's an overview of our current projects: </p>
+
+	    <ul>
+	      <li> <a href="https://github.com/stellar/stellard" target="_blank">stellard</a>: The network is compromised of peers running stellards. It validates the ledger and introduces transactions onto the network. </li>
+
+	      <li> <a href="https://github.com/stellar/stellar-client">Stellar Client</a>: A reference client implementation. It provides a user friendly interface for interacting with stellard. You can see an example of it running <a href="https://launch.stellar.org">here</a>. </li>
+
+	      <li> <a href="https://github.com/stellar/stellar-lib">stellar-lib</a>: A JavaScript API for interacting with stellard. </li>
+
+	      <li> <a href="https://github.com/stellar/stellar-wallet">Stellar Wallet</a>: A safe web-based store of your secret key. The wallet stores your secret key encrypted with a username and password, which are never actually sent to the wallet. This allows users to store and retrieve their credentials without exposing them to a third party. </li>
+
+	      <li> <a href="https://github.com/stellar/stellar-viewer">Stellar Viewer</a>: A viewer of the status of any Stellar account. You can see it in action <a href="https://www.stellar.org/viewer/">here</a>. </li>
+	    </ul>
+
+	    <h3> Communicating with the network </h3>
 
             <p>There are 3 ways to issue commands to stellard.
             <ul>
@@ -30,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>test</td>
-                    <td>testnet.stellar.org</td>
+                    <td>test.stellar.org</td>
                     <td class="port">9002</td>
                     <td class="port">9001</td>
                 </tr>
@@ -43,7 +58,7 @@
             </table>
             <p>
 
-            <p>Talk and discuss in the <a href="https://forum.stellar.org/t/development-technical-discussion/43">Developer forum</a> or find us <a href="https://www.irccloud.com/#!/ircs://irc.freenode.net:6697/#stellar﻿">on IRC</a>, ircs://irc.freenode.net:6697/#stellar
+            <p>Talk and discuss in the <a href="https://forum.stellar.org/t/development-technical-discussion/43">developer forum</a> or find us <a href="ircs://irc.freenode.net:6697/#stellar-dev">on IRC</a>.
 
             </p>
         </div>
@@ -52,33 +67,40 @@
     <div id="api-amount" class="api-section">
         <div class="api-text">
             <h3>amount</h3>
-            <p>Many of the API commands have arguments that need an <strong>amount</strong> type. An amount is either an amount of stellars (STR) or an amount of some other currency.</p>
-            <p>If you are wanting to represent an amount of stellars then amount it is just the number of <a href="https://wiki.stellar.org/Stroop">stroops</a> (1,000,000 stroops in 1 STR).
-            <p>An amount that represents other currencies is composed of 3 things:
+            <p>Many of the API commands accept an argument of <strong>amount</strong> type. An amount is either an amount of stellars (STR) or an amount of some other currency.</p>
+            <p> An amount of stellars is always represented in microstellars (the smallest divisible stellar unit). </p>
+
+            <div class="api-code api-tabs">
+                <h4>example</h4>
+                <section>
+<pre><code class="bash">
+ 55 stellars:
+   "amount" : "55000000"
+</code></pre>
+                </section>
+            </div>
+
+            <p>An amount that represents a currency credit is a triplet of the following parameters:
             <ul>
-                <li><strong>currency</strong>- the 3 letter currency code, USD, BTC, EUR etc.</li>
+                <li><strong>value</strong>: the amount of credit.</li>
+                <li><strong>currency</strong>: the 3 letter currency code, USD, BTC, EUR etc.</li>
+                <li><strong>issuer</strong>: the Stellar account that issued the credit.</li>
 
-                <li><strong>issuer</strong>- the account that issued the credit.</li>
-
-                <li><strong>value</strong>- the amount of credit.</li>
             </ul>
+
             <div class="api-code api-tabs">
                 <h4>example</h4>
                 <section>
 <pre><code class="bash">
  34.5 BTC:
  "amount" : {
+    "value" : "34.5"
     "currency" : "BTC",
     "issuer" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-    "value" : "34.5"
  }
-
- 55 stellars:
-   "amount" : "55000000"
 </code></pre>
                 </section>
-
-
+            </div>
     </div>
 </div>
         </div>

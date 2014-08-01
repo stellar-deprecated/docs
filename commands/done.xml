@@ -33,7 +33,7 @@
             }
             }
         ]]></cli_example>
-        <rpc_example><![CDATA[
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_currencies",
   "params": [
@@ -42,8 +42,7 @@
       "ledger_index": 400
     }
   ]
-}
-            ]]></rpc_example>
+}']]></rpc_example>
         <ws_example><![CDATA[
 {
   "command": "account_currencies",
@@ -103,38 +102,36 @@
             <desc></desc>
         </result>
 
-        <cli_example><![CDATA[
-            C:\internet\stellar2>rippled account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
-            Loading: "C:\internet\stellar2\rippled.cfg"
-            Connecting to: 127.0.0.1:9002
+        <cli_example><![CDATA[>stellard account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
+
+{
+    "result": {
+        "account": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+        "lines": [
             {
-            "result" : {
-            "account" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
-            "lines" : [
-            {
-            "account" : "gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU",
-            "balance" : "-5000",
-            "currency" : "USD",
-            "limit" : "0",
-            "limit_peer" : "10000",
-            "quality_in" : 0,
-            "quality_out" : 0
+                "account": "gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU",
+                "balance": "-5000",
+                "currency": "USD",
+                "limit": "0",
+                "limit_peer": "10000",
+                "quality_in": 0,
+                "quality_out": 0
             },
             {
-            "account" : "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
-            "balance" : "0",
-            "currency" : "USD",
-            "limit" : "0",
-            "limit_peer" : "10000",
-            "quality_in" : 0,
-            "quality_out" : 0
+                "account": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+                "balance": "0",
+                "currency": "USD",
+                "limit": "0",
+                "limit_peer": "10000",
+                "quality_in": 0,
+                "quality_out": 0
             }
-            ],
-            "status" : "success"
-            }
-            }
+        ],
+        "status": "success"
+    }
+}
         ]]></cli_example>
-        <rpc_example><![CDATA[
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_lines",
   "params": [
@@ -142,8 +139,7 @@
       "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
     }
   ]
-}
-            ]]></rpc_example>
+}' ]]></rpc_example>
         <ws_example><![CDATA[
 {
   "command": "account_lines",
@@ -205,7 +201,7 @@
             }
 
         ]]></cli_example>
-        <rpc_example><![CDATA[
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_offers",
   "params": [
@@ -213,8 +209,7 @@
       "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
     }
   ]
-}
-            ]]></rpc_example>
+}' ]]></rpc_example>
         <ws_example><![CDATA[
 {
   "command": "account_offers",
@@ -275,7 +270,7 @@
       "status" : "success"
    }
 }]]></cli_example>
-        <rpc_example><![CDATA[{ "method" : "ping" }]]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "ping" }']]></rpc_example>
         <ws_example><![CDATA[{ "command" : "ping" }]]></ws_example>
     </command>
     <command>
@@ -296,7 +291,7 @@
 
 
         <cli_example><![CDATA[ ]]></cli_example>
-        <rpc_example><![CDATA[ ]]></rpc_example>
+        <rpc_example><![CDATA[]]></rpc_example>
         <ws_example><![CDATA[ ]]></ws_example>
     </command>
 
