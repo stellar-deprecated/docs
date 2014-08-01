@@ -175,8 +175,51 @@
             <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
 
-        <ws_example><![CDATA[{ "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :
-            { "TransactionType":"OfferCreate", "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb", "TakerGets": { "currency":"USD", "value":"1500", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }, "TakerPays": { "currency":"BTC", "value":"2.5", "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C" }} }]]></ws_example>
+        <ws_example><![CDATA[
+{
+  "command": "submit",
+  "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+  "tx_json": {
+    "TransactionType": "OfferCreate",
+    "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "TakerGets": {
+      "currency": "USD",
+      "value": "1500",
+      "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+    },
+    "TakerPays": {
+      "currency": "BTC",
+      "value": "2.5",
+      "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+    }
+  }
+}
+            ]]></ws_example>
+
+        <rpc_example><![CDATA[
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr",
+      "tx_json": {
+        "TransactionType": "OfferCreate",
+        "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "TakerGets": {
+          "currency": "USD",
+          "value": "1500",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+        },
+        "TakerPays": {
+          "currency": "BTC",
+          "value": "2.5",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+        }
+      }
+    }
+  ]
+}
+        ]]></rpc_example>
     </command>
 
     <command>
