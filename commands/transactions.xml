@@ -247,18 +247,15 @@
 
         <argument>
             <name>secret</name>
-            <required>false</required>
-            <desc>The signer's secret key. Do not provide this field to untrusted servers. Required to submit tx_json transactions.</desc>
+            <desc>The signer's secret key. Do not provide this field to untrusted servers. Required if submitting with tx_json parameter.</desc>
         </argument>
         <argument>
             <name>tx_json</name>
-            <required>false</required>
             <desc>This is the JSON representation of the transaction to submit. See the specific transactions for details.</desc>
         </argument>
         <argument>
             <name>tx_blob</name>
-            <required>false</required>
-            <desc>This is a signed and serialized transaction. Use this version if you don't want to expose your secret key to stellard.</desc>
+            <desc>This is a signed and serialized transaction. Obtain a signed transaction blob by either signing the transaction yourself using the javascript-lib, or by calling the <a href="#api-sign">sign</a> command first with the transaction's details. Use this version if you don't want to expose your secret key to stellard.</desc>
         </argument>
     </command>
 
