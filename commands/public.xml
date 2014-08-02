@@ -570,7 +570,6 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
         <argument>
             <name>binary</name>
-            <required>false</required>
             <desc>If true, will return the binary representation of this transaction.</desc>
         </argument>
 
