@@ -314,9 +314,10 @@
             <name>tx_json</name>
             <desc>This is the JSON representation of the transaction to submit. See the specific transactions for details.</desc>
         </argument>
+
         <argument>
             <name>tx_blob</name>
-            <desc>This is a signed and serialized transaction. Obtain a signed transaction blob by either signing the transaction yourself using the javascript-lib, or by calling the <a href="#api-sign">sign</a> command first with the transaction's details. Use this version if you don't want to expose your secret key to stellard.</desc>
+            <desc><![CDATA[This is a signed and serialized transaction. Obtain a signed transaction blob by either signing the transaction yourself using the javascript-lib, or by calling the <a href="#api-sign">sign</a> command first with the transaction's details. Use this version if you don't want to expose your secret key to stellard.]]></desc>
         </argument>
     </command>
 

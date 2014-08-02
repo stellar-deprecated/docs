@@ -385,9 +385,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
             <desc>List of currencies this destination can hold.</desc>
         </result>
 
-        <cli_example><![CDATA[
-          stellar static_path_find <json_object> [ledger]
-        ]]></cli_example>
+        <cli_example><![CDATA[stellard static_path_find [json_object] [ledger]]]></cli_example>
         <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "static_path_find",
