@@ -133,13 +133,12 @@
 
 Connecting to: 0.0.0.0:39002
 {
-    "result" : {
+  "result" : {
     "status" : "success",
     "validation_public_key" : "naW1LwJkeJ6tBBZ6S8U4T1PstZLsduxAeDLHPfxVYKB9Zxdbpfb",
     "validation_seed" : "s3TEeZabAYLg1f9MSvoeb1ce8Xy2UJYjRosop6hN1TSdvg4K96z"
-    }
-}
-        ]]></cli_example>
+  }
+}]]></cli_example>
 
     </command>
 

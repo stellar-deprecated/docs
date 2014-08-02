@@ -38,30 +38,36 @@
 
 
         <cli_example><![CDATA[ > stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN \
-  "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
-
-         ]]></cli_example>
+  "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"]]></cli_example>
         <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-    "method": "submit",
-    "params": [
-        {
-            "secret": "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr",
-            "tx_json": {
-                "TransactionType": "Payment",
-                "Account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
-                "Destination": "g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt",
-                "Amount": {
-                    "currency": "USD",
-                    "value": "2",
-                    "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
-                }
-            }
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr",
+      "tx_json": {
+        "TransactionType": "Payment",
+        "Account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
+        "Destination": "g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt",
+        "Amount": {
+          "currency": "USD",
+          "value": "2",
+          "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
         }
-    ]
+      }
+    }
+  ]
 }' ]]></rpc_example>
 
-        <ws_example><![CDATA[ { "command" : "submit", "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN", "tx_json" :  { "TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"1000000000"} } ]]></ws_example>
+        <ws_example><![CDATA[{
+  "command" : "submit",
+  "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+  "tx_json" : { "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "Amount" : "1000000000",
+    "Destination" : "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+    "TransactionType" : "Payment"
+  }
+}]]></ws_example>
     </command>
 
     <command>
@@ -191,8 +197,7 @@
             <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
 
-        <ws_example><![CDATA[
-{
+        <ws_example><![CDATA[{
   "command": "submit",
   "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
   "tx_json": {
@@ -209,11 +214,9 @@
       "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
     }
   }
-}
-            ]]></ws_example>
+}]]></ws_example>
 
-        <rpc_example><![CDATA[
-{
+        <rpc_example><![CDATA[{
   "method": "submit",
   "params": [
     {
@@ -234,8 +237,7 @@
       }
     }
   ]
-}
-        ]]></rpc_example>
+}]]></rpc_example>
     </command>
 
     <command>

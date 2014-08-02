@@ -42,8 +42,8 @@
             <desc>The index in the ledger of this account entry.</desc>
         </result>
 
-        <cli_example><![CDATA[
-            > stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+        <cli_example><![CDATA[> stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+
 {
   "result": {
     "account_data": {
@@ -60,8 +60,7 @@
     "ledger_current_index": 3698,
     "status": "success"
   }
-}
-        ]]></cli_example>
+}]]></cli_example>
         <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "account_info",
@@ -72,12 +71,10 @@
     }
   ]
 }']]></rpc_example>
-        <ws_example><![CDATA[
-{
+        <ws_example><![CDATA[{
   "command": "account_info",
   "id": 24,
   "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
-}
-            ]]></ws_example>
+}]]></ws_example>
     </command>
 </commands>
