@@ -46,7 +46,7 @@
  }
 
                 ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '{ "method" : "create_keys" }']]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "create_keys" }']]></rpc_example>
         <ws_example><![CDATA[{ "command" : "create_keys" }]]></ws_example>
     </command>
 </commands>
