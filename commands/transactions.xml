@@ -41,7 +41,7 @@
   "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"
 
          ]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST http://test.stellar.org:9002 -d '
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
     "method": "submit",
     "params": [
