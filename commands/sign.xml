@@ -48,8 +48,7 @@
     }
   }
 }']]></rpc_example>
-        <ws_example><![CDATA[
-{
+        <ws_example><![CDATA[{
   "method": "sign",
   "params": [{
     "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
