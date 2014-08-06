@@ -1,3 +1,4 @@
 node_modules
 .idea
-/out.html
+api-docs/api-docs.html
+.DS_Store
