@@ -73,8 +73,8 @@
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "account_info",
-  "id": 24,
-  "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+  "ledger_index": 400,
+  "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
 }]]></ws_example>
     </command>
 </commands>
