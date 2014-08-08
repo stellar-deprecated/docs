@@ -27,7 +27,7 @@
         </result>
         <result>
             <name>PreviousTxnID</name>
-            <desc>The Transaction ID of the last transaction creatd by this account.</desc>
+            <desc>The Transaction ID of the last transaction sent by this account.</desc>
         </result>
         <result>
             <name>PreviousTxnLgrSeq</name>
