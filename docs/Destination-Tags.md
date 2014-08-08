@@ -22,7 +22,7 @@ Destination tags (abbreviated as dt) are used to distinguish what a specific pay
 
 Exchanges can use destination tags to create a unique deposit target for each user — namely, each user gets assigned their own destination tag. The user just includes that destination tag on all of their payments, which lets the exchange identify whose deposit it is.
 
-A destination tag is stored as a `unit32` that contains a number ranging from `0` to `4294967295` (2^32-1). Note: dt's greater than `4294967289` might be a bit buggy ([stellard issue #39](https://github.com/stellar/stellard/issues/39)).
+A destination tag is stored as a `unit32` that contains a number ranging from `0` to `4294967295` (2^32-1).
 
 ## Requiring Destination Tags
 
