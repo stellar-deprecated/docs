@@ -45,6 +45,10 @@
             <desc>Limit the number of transactions stellard will send back to you. stellard is configured with its own limits so you may not receive as many transactions as you ask for. Set to -1 to use the limit set by stellard.</desc>
         </argument>
 
+        <argument>
+            <name>marker</name>
+            <desc>Can be used to resume previous query. Use 'marker' value returned in result of query you want resumed. </desc>
+        </argument>
 
 
      <cli_example><![CDATA[> stellard account_tx ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb]]></cli_example>
