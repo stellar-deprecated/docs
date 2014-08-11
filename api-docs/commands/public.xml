@@ -12,7 +12,7 @@
         </argument>
 
         <argument>
-            <name>ledger_min</name>
+            <name>ledger_index_min</name>
             <type>int</type>
             <default>0</default>
 
@@ -20,7 +20,7 @@
         </argument>
 
         <argument>
-            <name>ledger_max</name>
+            <name>ledger_index_max</name>
             <type>int</type>
             <default>-1</default>
 
@@ -54,7 +54,7 @@
   "params": [
     {
       "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-      "ledger_min": 0,
+      "ledger_index_min": 0,
       "limit" : 4
     }
   ]
@@ -62,7 +62,7 @@
         <ws_example><![CDATA[{
   "command": "account_tx",
   "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-  "ledger_min": 500,
+  "ledger_index_min": 500,
   "limit" : 3
 }]]></ws_example>
     </command>

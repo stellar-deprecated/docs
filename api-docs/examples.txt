@@ -14,7 +14,7 @@ curl -X POST -d '{ "method" : "account_offers", "params" : [ { "account" : "ganV
 
 
 curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La" } ] }' http://public-01.stellar.org:9002
-curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La", "ledger_min": "0" } ] }' http://public-01.stellar.org:9002
+curl -X POST -d '{ "method" : "account_tx", "params" : [ { "account" : "gLt7CfjHYm68uezH8FZRoiWYKeWih393La", "ledger_index_min": "0" } ] }' http://public-01.stellar.org:9002
 
  Check your account balance:
     [bash]curl -X POST -d '{ "method" : "account_info", "params" : [ { "account" : "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U" } ] }' http://public-01.stellar.org:9002
