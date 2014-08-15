@@ -32,7 +32,7 @@ fs.readFile(__dirname + '/nav.template', { encoding: 'utf-8' }, function(err, da
                 footerHTML=data;
 
                 fs.readFile(__dirname + '/html/header.html', { encoding: 'utf-8' }, function(err, data) {
-                    headerHTML=data;
+                    headerHTML="<!-- THIS IS AN AUTOMATICALLY GENERATED FILE, DON'T EDIT IT  -->"+data;
 
                     fs.readFile(__dirname + '/html/ledger_index.html', { encoding: 'utf-8' }, function(err, data) {
                         ledgerIndexHTML=data;
