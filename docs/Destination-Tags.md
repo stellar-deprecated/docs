@@ -10,9 +10,9 @@ This sub-section is tailored for developers already familiar with Bitcoin and wa
 
 In Bitcoin, addresses have no minimum balance and and anyone can generate thousands of Bitcoin addresses. For example, an exchange could create a new Bitcoin address for each user, and thus know which user any given transaction belongs to.
 
-Stellar is designed differently and uses the concept of accounts. Accounts are required to have a minimum balance to keep bloat down (50 STR as of August 2014). The minimum balance helps prevent spam and ledger bloat.
+Stellar is designed differently and uses the concept of accounts. Accounts are required to have a minimum balance to keep bloat down (20 STR as of August 2014). The minimum balance helps prevent spam and ledger bloat.
 
-An exchange creating one account per user (or a merchant creating one account per payment) would have to keep a 50 STR minimum balance in each account. This would be quite cumbersome.
+An exchange creating one account per user (or a merchant creating one account per payment) would have to keep a 20 STR minimum balance in each account. This would be quite cumbersome.
 
 As a result, the Stellar system has a feature that makes things a lot easier: **destination tags**.
 
