@@ -26,7 +26,7 @@ A destination tag is stored as a `unit32` that contains a number ranging from `0
 
 ## Requiring Destination Tags
 
-An account can be configured to reject payments that are missing a destination tag. This safeguard prevents users from forgetting to add a destination tag to their payment. To make destination tags required, submit an AccountSet transaction with a flag of `65536` (use `131072` to make it optional).
+An account can be configured to reject payments that are missing a destination tag. This safeguard prevents users from forgetting to add a destination tag to their payment. To make destination tags required, submit an AccountSet transaction with a flag of `65536` (use `131072` to make destination tags optional).
 
 ```json
 curl -X POST https://live.stellar.org:9002 -d '
