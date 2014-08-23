@@ -1,6 +1,6 @@
 Stellar Destination Tags
 ========================
-Destination tags are identifiers that can be attached to a transaction. This is useful for those (such as exchanges and merchants) that want to accept payments to a single account and identify what the payment is for.
+Destination tags are identifiers that can be attached to a transaction. This is useful for those (such as gateways and merchants) that want to accept payments to a single account and identify what the payment is for.
 
 This guide describes the use cases for destination tags as well as the process of using them.
 
@@ -8,11 +8,11 @@ This guide describes the use cases for destination tags as well as the process o
 
 This sub-section is tailored for developers already familiar with Bitcoin and wanting to understand the motivation behind destination tags.
 
-In Bitcoin, addresses have no minimum balance and and anyone can generate thousands of Bitcoin addresses. For example, an exchange could create a new Bitcoin address for each user, and thus know which user any given transaction belongs to.
+In Bitcoin, addresses have no minimum balance and and anyone can generate thousands of Bitcoin addresses. For example, a gateway could create a new Bitcoin address for each user, and thus know which user any given transaction belongs to.
 
 Stellar is designed differently and uses the concept of accounts. Accounts are required to have a minimum balance to keep bloat down (20 STR as of August 2014). The minimum balance helps prevent spam and ledger bloat.
 
-An exchange creating one account per user (or a merchant creating one account per payment) would have to keep a 20 STR minimum balance in each account. This would be quite cumbersome.
+A gateway creating one account per user (or a merchant creating one account per payment) would have to keep a 20 STR minimum balance in each account. This would be quite cumbersome.
 
 As a result, the Stellar system has a feature that makes things a lot easier: **destination tags**.
 
@@ -20,7 +20,7 @@ As a result, the Stellar system has a feature that makes things a lot easier: **
 
 Destination tags (abbreviated as dt) are used to distinguish what a specific payment was intended for.
 
-Exchanges can use destination tags to create a unique deposit target for each user — namely, each user gets assigned their own destination tag. The user just includes that destination tag on all of their payments, which lets the exchange identify whose deposit it is.
+Gateways can use destination tags to create a unique deposit target for each user — namely, each user gets assigned their own destination tag. The user just includes that destination tag on all of their payments, which lets the gateway identify whose deposit it is.
 
 A destination tag is stored as a `unit32` that contains a number ranging from `0` to `4294967295` (2^32-1).
 
