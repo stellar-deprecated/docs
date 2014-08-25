@@ -34,5 +34,5 @@ If a user wants to send credits issued by a gateway that the user does not trust
 
 To manually use the distributed exchange, the user can go into the client and buy or sell credits.
 
-## Fees
-A gateway can impose transit fees on every time a user sends credits they issue. This fee would apply to any transaction that moves credit issued by the gateway, even on the distributed exchange.
+## Gateway imposed fees
+A gateway can impose transfer fees on every time a user sends credits they issue. This fee would apply to any transaction that moves credit issued by the gateway, even on the distributed exchange.
