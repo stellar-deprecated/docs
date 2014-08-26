@@ -4,7 +4,7 @@ Stellar.txt
 
 Any web site can publish Stellar network information. This is useful to announce your validation key, your federation server, peers you are running, other validators in your UNL, if you are a gateway etc.
 
-###= Publishing stellar.txt
+### Publishing stellar.txt
 
 Given the domain "DOMAIN", the stellar.txt will be searched for in this order:
 
