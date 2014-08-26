@@ -3,10 +3,10 @@ Stellar Gateway Implementation Guide
 
 This is an implementation guide for those who want to set up a gateway on the Stellar network. It assumes that the reader already understands how gateways work. To learn more about the concept of gateways, read [Introduction to Stellar Gateways](Introduction-Gateways.md). This guide will also be code heavy as it contains specific commands necessary to running a gateway.
 
-This guide might not covery everything necessary for running a gateway, but gateway operators should understand everything in this document.
+This guide might not cover everything necessary for running a gateway, but gateway operators should understand everything in this document.
 
 ## Cold and hot wallet organization - Bank Wallet Paradigm
-We recommend gateways to set up their cold and hot wallets using the "bank wallet paradigm". There are other ways of organizing wallets but this one is preferred.
+We recommend gateways to set up their cold and hot wallets using the bank wallet paradigm. There are other ways of organizing wallets but this one is preferred.
 
 A gateway does not need to use a cold wallet to operate, but doing so reduces security in the event of a security breach.
 
@@ -84,27 +84,46 @@ curl --head https://stellar.stellar.org/stellar.txt
 Gateways should use the hot wallet to send credits to the users. It is important that all actions be logged and transactions sent and managed robustly.
 
 ## Sending transactions robustly
-Infrastructure is never perfectly reliable. Software, hardware and networks can all fail some times. There are many ways in which a transaction can go wrong--it might never be sent or might even be sent multiple times. Mistakes are costly, especially when dealing with money. By using transaction robustness techniques, one can handle these transactions safely.
+Infrastructure is never perfectly reliable. Software, hardware and networks can all fail encounter hiccups. There are many ways in which a transaction can go wrong--it might never be sent or might even be sent multiple times. Mistakes are costly, especially when dealing with money. By using transaction robustness techniques, one can handle these transactions safely.
 
-Read more about transaction robustness. It is critical that gateways use techniques like this.
+Only one machine should be using the hot wallet if using techniques described on the transaction robustness page.
+
+Read more about [transaction robustness](Transaction-Robustness.md). It is critical that gateways use techniques like this.
 
 ## Receiving credits (for users to exit the Stellar network)
 When a user wants to exit the Stellar network through a gateway, the user sends the credits to the gateway cold wallet.
 
 The gateway should require [Destination Tags](Destination-Tags.md) in payments to the cold wallet. This tag is a number assigned to a user so that the gateway can receive funds and know to whom the deposit belongs to. Before a user sends credits to the gateway, the gateway tells them what destination tag to use.
 
-The gateway software can then [subscribe](https://www.stellar.org/api/#api-subscribe) to incoming transactions and listen for incoming transactions. The software can also 
+The gateway software can then [subscribe](https://www.stellar.org/api/#api-subscribe) to incoming transactions and listen for incoming transactions.
 
-## Operational concerns
+The gateway software should also have functionality to [scan through previous transactions](Gateway-API.md#previous-transactions) and search through previous transactions and find ones that have yet to be processed. This is important so that the gateway can automatically resume operation after downtime.
+
+## Important operational concerns
 
 ### Hot wallet depletion alerts
 The gateway software should send automated alerts to the gateway operator and notify when the hot wallet is low on funds and needs to be replenished from the cold wallet.
 
+### Unsolicited receiving of funds / non-existent destination tag
+Users might send payments to the cold wallet with a destination tag that isn't associated with any account. Users might also send funds to the hot wallet for no reason. It is up to the gateway to decide how to deal with these incidents.
+
+Most gateways will just send the funds back. However, this makes the gateway hot wallet vulnerable to a denial of service attack.
+
 ### Hot wallet denial of service
-- Hot wallet draining
+Users (intentional or not) could cause a denial of service on the hot wallet. This is possible by depleting the hot wallet. Here are several ways how this could happen:
+- User sends funds (credits or STR) to the cold wallet with a non-existent destination tag and the gateway uses the hot wallet to send them back
+- User sends funds (credits or STR) to the hot wallet and the gateway sends the funds back
+- User deposits credits to the gateway cold wallet then withdraws back to their Stellar account (from the gateway hot wallet); user repeats and drains the hot wallet
 
-### Unsolicited receiving of funds 
-- People deposit funds into cold wallet .. how will the gateway send them back, or do they? Gateways need to figure this out.
+As a result, the gateway would be unable to send from their hot until a human operator replenishes the hot wallet manually.
 
-## Security Enhancements
+## Checklist
+- Stuff
+
+## Extra features
+
+### SetRegularKey security enhancement
 For extra security, gateway wallets can use `SetRegularKey` to create a new temporary key that can sign transactions from a secondary key. If this key is compromised, the gateway can use the master seed to revoke this secondary key and create a new one.
+
+### Authorized accounts
+Stellar provides the ability for gateways to restrict access for who is allowed to send and receive credits issued by a gateway.
