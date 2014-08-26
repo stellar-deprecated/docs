@@ -10,6 +10,7 @@ The docs folder contains a bunch of guides intended to be read by developers. Th
 * [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
 * [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/Transaction-Robustness.md)
 * [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/Stellar.txt.md)
+* [Federation](https://github.com/stellar/docs/blob/master/docs/Federation.md)
 
 ## api-docs
 The api-docs currently contains docs that are used on [https://www.stellar.org/api/](https://www.stellar.org/api/). `convert.js` is used to compile all the xml into a html page (api-docs.html). It will be refactored in the future to use markdown and be human readable.
