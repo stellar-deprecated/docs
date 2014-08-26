@@ -1,10 +1,15 @@
 Stellar Docs
 ============
 
-This repository will turn into a source of a lot of Stellar documentation.
+This repository is home to the Stellar documentation.
 
 ## docs
 The docs folder contains a bunch of guides intended to be read by developers. These docs may occasionally contain API call snippets.
+* [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
+* [Introduction to Stellar Gateways](https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md)
+* [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
+* [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/Transaction-Robustness.md)
+
 
 ## api-docs
 The api-docs currently contains docs that are used on https://www.stellar.org/api/
