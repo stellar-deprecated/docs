@@ -1,11 +1,10 @@
 Stellar.txt
 ===========
-
-### Introduction
+## Introduction
 
 Any web site can publish Stellar network information. This is useful to announce your validation key, your federation server, peers you are running, other validators in your UNL, if you are a gateway etc.
 
-### Publishing stellar.txt
+###= Publishing stellar.txt
 
 Given the domain "DOMAIN", the stellar.txt will be searched for in this order:
 
@@ -13,6 +12,7 @@ Given the domain "DOMAIN", the stellar.txt will be searched for in this order:
 - https:<span></span>//www.DOMAIN/stellar.txt
 - https:<span></span>//DOMAIN/stellar.txt
 
+### Enabling cross-origin resource sharing (CORS)
 You must enable CORS on the stellar.txt so people can access this file from other sites, the following HTTP header MUST be set for all requests to stellar.txt and its dependent files.
 
  Access-Control-Allow-Origin: *
@@ -53,11 +53,8 @@ Content-length: 482
 ```
 3. Also run the command on a page that should not have it and verify `Access-Control-Allow-Origin` the header is missing.
 
+## Stellar.txt example
 
-
-### Example
-
-https:<span></span>//domain/stellar.txt
 ```ini
 Sample stellar.txt
 
