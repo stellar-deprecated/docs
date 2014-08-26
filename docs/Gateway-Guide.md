@@ -40,7 +40,7 @@ When a user wants to redeem their credit and exit the Stellar network, the user 
 ## Stellar reference client user flow
 Important for gateway operators to understand how end users and consumers will interact with gateways.
 
-In the Stellar reference client ([launch.stellar.org](https://launch.stellar.org)), one must add a gateway before being able to receive credit issued by that gateway. The user specifies the domain of the gateway and the client scans for the [stellar.txt](https://wiki.stellar.org/Stellar.txt) file of that domain to find the currencies that the gateway supports.
+In the Stellar reference client ([launch.stellar.org](https://launch.stellar.org)), one must add a gateway before being able to receive credit issued by that gateway. The user specifies the domain of the gateway and the client scans for the [stellar.txt](Stellar.txt.md) file of that domain to find the currencies that the gateway supports.
 
 ## Stellard setup
 [stellard](https://github.com/stellar/stellard) is the daemon that powers the backend of the Stellar network. Gateways should run their own `stellard` instances so that they do not have to rely on other `stellard` instances being up and running. Another benefit is that if gateway software relies on `stellard` to do key signing, it must be run locally so tha secret keys are not sent to a third party.
@@ -56,7 +56,7 @@ When running a `stellard` instance, make sure that RPC and WebSocket access to t
 ## stellar.txt setup
 `stellar.txt` is a file that contains data about Stellar-related services a domain provides in a machine readable format. Gateways use this file to tell clients what currencies they support and  how to use the gateway.
 
-Read more about stellar.txt on the [wiki entry](https://wiki.stellar.org/Stellar.txt).
+Read more about [stellar.txt](Stellar.txt.md) and how to set it up correctly.
 
 ### [currencies]
 A gateway defines the currencies that it supports and the issuing accounts (cold wallets as specified above) of the currencies. Multiple currencies are allowed to use the same accounts but do not necessarily have to.
@@ -69,15 +69,6 @@ Currencies are denoted with their 3 letter symbol and the corresponding issuing 
 USD gazAaB4WtLjLz5RMqvL1LB4KvxWFXEe5tX
 BTC gazAaB4WtLjLz5RMqvL1LB4KvxWFXEe5tX
 CHF gUuPMNHLxkd98o3xe8CKjYGR4vyuYPZuYE
-```
-
-### Accessibility
-Make sure that stellar.txt is accessible via SSL and that cross-origin resource sharing headers are correctly set.
-
-To verify that the stellar.txt file is accessible, run the following command in the terminal and make sure that stellar.txt is served with the correct CORS header (`Access-Control-Allow-Origin` should be in the output.).
-```bash
-# Replace stellar.stellar.org with your domain url
-curl --head https://stellar.stellar.org/stellar.txt
 ```
 
 ## Sending credit (for users to enter the Stellar network)
