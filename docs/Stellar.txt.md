@@ -27,7 +27,7 @@ You must enable CORS on the stellar.txt so people can access this file from othe
 
 Or in nginx:
 
-```
+```json
 location /stellar.txt {
  add_header 'Access-Control-Allow-Origin' '*';
 }
@@ -38,11 +38,11 @@ For other webservers, see: http://enable-cors.org/server.html
 ### Testing CORS
 
 1. Run a curl command in your terminal similar to this (replace stellar.stellar.org with where your stellar.txt file is hosted): 
-```
+```bash
 curl --head https://stellar.stellar.org/stellar.txt
 ```
 2. Verify the `Access-Control-Allow-Origin` header is present as shown below.
-```
+```bash
 curl --head https://stellar.stellar.org/stellar.txt
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
