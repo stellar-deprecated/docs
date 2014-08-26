@@ -25,7 +25,7 @@ The gateway's [stellar.txt](Stellar.txt.md) indicates if and where the payment s
 ```
 # Inside stellar.txt
 [federation_url]
-https:<span></span>//wallet.com/stellar_federation
+https://wallet.com/stellar_federation
 ```
 #### federation_url
 > Specifies the url where the federation API is provided.
@@ -45,33 +45,35 @@ A federation request parameters:
 
 
 Example request:
- GET /stellar_federation?type=federation&user=johndoe&domain=wallet.com
+`GET /stellar_federation?type=federation&user=johndoe&domain=wallet.com`
 
 Successful response JSON:
- {
-   "result" : "success",
-   "federation_json" : {
+```
+{
+  "result" : "success",
+  "federation_json" : {
      "type" : "federation_record",           // All signed objects should have a type.
-     "domain" : <I>string</I>,               // Required.
-     "user" : <I>string</I>,                 // Required.
-     "destination_address" : <I>address</I>, // Required. Destination stellar address.
-     "dt" : <I>string</I>,                   // Optional. Destination tag.
+     "domain" : *string*,               // Required.
+     "user" : *string*,                 // Required.
+     "destination_address" : *address*, // Required. Destination stellar address.
+     "dt" : *string*,                   // Optional. Destination tag.
      "currencies" : [                        // Optional. Restrict to specific currencies.
         {
-           "currency" : <I>currency</I>,     // Can be STR.
-           "issuer" : <I>issuer</I>,         // Optional. (null is not valid)
+           "currency" : *currency*,     // Can be STR.
+           "issuer" : *issuer*,         // Optional. (null is not valid)
         }
      ],
-     "service_address" : <I>address</I>,     // Optional. stellar address of the federation service provider.
-     "expires" : <I>date</I>,                // Optional. (defaults to forever)
-     "signer" : <I>address</I>,
-   },
-   "public_key" : <I>string</I>,
-   "signature" : <I>string</I>
- }
+     "service_address" : *address*,     // Optional. stellar address of the federation service provider.
+     "expires" : *date*,                // Optional. (defaults to forever)
+     "signer" : *address*,
+  },
+  "public_key" : *string*,
+  "signature" : *string*
+}
+```
 
 #### domain
-> The domain for the payment system as per `[[stellar.txt]]`. No leading "`www.`". Echoed from the request.
+> The domain for the payment system as per `stellar.txt`. No leading `www.`. Echoed from the request.
 
 #### user
 > The UTF-8 string used to identify the recipient. Echoed from the request.
@@ -83,8 +85,8 @@ Successful response JSON:
 > The 32 bit integer associated with the user. To be used when a payment is made.
 
 #### currencies
-> If not provided, all payments are accepted. Specify "STR" to enable STR. To accept no payments and merely provide the historical 
-mapping specify `[]`.
+> If not provided, all payments are accepted. Specify "STR" to enable STR. To accept no payments and merely provide the historical mapping specify `[]`.
+
 #### service_address
 > The account providing federation naming service.
 
@@ -98,7 +100,7 @@ mapping specify `[]`.
 > The signer of the address.
 
 #### signature
-> The hex signature of `federation_json`. See [[RPC API#data_sign|RPC data_sign]].
+> The hex signature of `federation_json`.
 
 Error response JSON:
 ```json

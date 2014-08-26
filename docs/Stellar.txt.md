@@ -8,9 +8,9 @@ Any web site can publish Stellar network information. This is useful to announce
 
 Given the domain "DOMAIN", the stellar.txt will be searched for in this order:
 
-- https:<span></span>//stellar.DOMAIN/stellar.txt
-- https:<span></span>//www.DOMAIN/stellar.txt
-- https:<span></span>//DOMAIN/stellar.txt
+- https:/<span></span>/stellar.DOMAIN/stellar.txt
+- https:/<span></span>/www.DOMAIN/stellar.txt
+- https:/<span></span>/DOMAIN/stellar.txt
 
 ### Enabling cross-origin resource sharing (CORS)
 You must enable CORS on the stellar.txt so people can access this file from other sites, the following HTTP header MUST be set for all requests to stellar.txt and its dependent files.
@@ -33,8 +33,7 @@ location /stellar.txt {
 }
 ```
 
-For other webservers, see also: <I>[http://enable-cors.org/server.html I want to add CORS support to my server]</I>
-
+For other webservers, see: http://enable-cors.org/server.html
 
 ### Testing CORS
 
