@@ -88,6 +88,16 @@ Connecting to: 0.0.0.0:9002
             <desc>How much account B trusts account A for.</desc>
         </result>
         <result>
+            <name>authorized</name>
+            <type>bool</type>
+            <desc>This is present if the peer has authorized this account to hold its credit.</desc>
+        </result>
+        <result>
+            <name>authorized_peer</name>
+            <type>bool</type>
+            <desc>This is present if this account has authorized the peer to hold its credit.</desc>
+        </result>
+        <result>
             <name>quality_in</name>
             <type>int</type>
             <desc></desc>
