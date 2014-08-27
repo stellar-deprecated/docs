@@ -8,25 +8,25 @@ This guide might not cover everything necessary for running a gateway, but gatew
 ## Cold and hot wallet organization - Bank Wallet Paradigm
 We recommend gateways to set up their cold and hot wallets using the bank wallet paradigm. There are other ways of organizing wallets but this one is preferred.
 
-A gateway does not need to use a cold wallet to operate, but doing so reduces security in the event of a security breach.
+A gateway does not need to use a cold wallet to operate, but doing so reduces the severity of a security breach.
 
 ### Cold wallet
-A cold wallet is a Stellar account whose secret keys are not on any devices that touch the internet. Transactions are manually initiated by a human and are signed locally on the offline machine. This is possible by using stellard's `sign` api to create a tx_blob containing the signed transaction. This tx blob can be transported to a machine connected to the internet via offline methods such as usb or by hand. This makes the cold wallet much harder to steal from.
+A cold wallet is a Stellar account whose secret keys are not on any devices that touch the internet. Transactions are manually initiated by a human and are signed locally on the offline machine. This is possible by using stellard's [`sign` api](https://www.stellar.org/api/#api-sign) to create a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the internet via offline methods such as usb or by hand. This makes the cold wallet much harder to steal from.
 
 ### Hot wallet
-Conversely, a hot wallet is an account that is used on an account that is connected to the internet. This hot wallet is used to send credits to a user when they enter into the Stellar system. This hot wallet has a limited amount of funds so that in the event of a security breach, only the limited funds in the hot wallet are stolen.
+Conversely, a hot wallet is an account that is used on a machine that is connected to the internet. This hot wallet is used to send the gateway's credit to the users of the gateway. A hot wallet has a limited amount of funds to limit the amount lost in the event of a security breach.
 
 ### Trust lines
 There are only two instances where trust needs to be extended:
-- Gateway hot wallet(s) extends trust to the cold wallet limited to a small amount
-- User extends trusts to gateway cold wallet so that they can receive funds
+- Gateway hot wallet(s) extends trust to the cold wallet limited to a small amount.
+- Users extend trust to the gateway cold wallet so that they can receive funds.
 
 ### Flow of credits
 First, the gateway cold wallet sends funds to the hot wallet so that the gateway can quickly send the money.
 
-When a user enters the Stellar network (by depositing cash into the gateway), the gateway hot wallet sends credits to the user. For example, if user deposits $20 USD in cash into the gateway, the gateway hot wallet sends 20 USD credits to the user.
+When a user enters the Stellar network (by depositing cash into the gateway), the gateway hot wallet sends credit to the user. For example, if user deposits $20 USD in cash into the gateway, the gateway hot wallet sends $20 USD credit to the user.
 
-When a user wants to redeem their credits and exit the Stellar network, the user sends the funds to a cold wallet.
+When a user wants to redeem their credit and exit the Stellar network, the user sends the funds to the cold wallet.
 
 ```
 +------+      +-----+      +------+      
@@ -40,26 +40,26 @@ When a user wants to redeem their credits and exit the Stellar network, the user
 ## Stellar reference client user flow
 Important for gateway operators to understand how end users and consumers will interact with gateways.
 
-In the Stellar reference client ([launch.stellar.org](https://launch.stellar.org)), one must add a gateway before being able to receive credits issued by that gateway. The user specifies the domain of the gateway and the client scans the stellar.txt file of that domain to find currencies that the gateway supports.
+In the Stellar reference client ([launch.stellar.org](https://launch.stellar.org)), one must add a gateway before being able to receive credit issued by that gateway. The user specifies the domain of the gateway and the client scans for the [stellar.txt](Stellar.txt.md) file of that domain to find the currencies that the gateway supports.
 
 ## Stellard setup
 [stellard](https://github.com/stellar/stellard) is the daemon that powers the backend of the Stellar network. Gateways should run their own `stellard` instances so that they do not have to rely on other `stellard` instances being up and running. Another benefit is that if gateway software relies on `stellard` to do key signing, it must be run locally so tha secret keys are not sent to a third party.
 
-When running a `stellard` instance, make sure that rpc and WebSocket access to the gateway `stellard` is not accessible from the outside world. If it is accessible to the outside world, the `stellard` instance can be vulnerable to a denial-of-service attack.
+When running a `stellard` instance, make sure that RPC and WebSocket access to the gateway `stellard` is not accessible from the outside world. If it is accessible to the outside world, the `stellard` instance can be vulnerable to a denial-of-service attack.
 
 ## Account setup
 - Create both the cold and hot wallet accounts. The keys for the cold wallet should be created on an computer that does not have access to the internet after generating the keys. For example, the keys can be safely generated on a live boot of ubuntu in which data is wiped after it is run.
-- Fund the cold wallet and hot wallets so that they have well above the minimum deposit so that it can pay the transaction fees necessary to operate
-- Hot wallet account has to extend trust to the root account using the `stellard` api call `submit TrustSet`. The amount of trust should be high enough to be able to last handle many transactions before requiring refunding from the cold wallet while not low enough that if compromised, places the gateway's future at great risk.
-- Cold wallet should require [destination tags](Destination-Tags.md) for all incoming transactions. It is useful when receiving credits from users
+- Fund the cold wallet and hot wallets so that they have well above the minimum deposit so that it can pay the transaction fees necessary to operate.
+- The hot wallet account has to extend trust to the cold wallet account using the `stellard` api call [`submit TrustSet`](https://www.stellar.org/api/#api-trustset). The amount of trust should be high enough to be able to handle many transactions before requiring refunding from the cold wallet while also low enough that if compromised, places the gateway's future at great risk.
+- The cold wallet should require [destination tags](Destination-Tags.md) for all incoming transactions. It is useful when receiving credits from users.
 
 ## stellar.txt setup
 `stellar.txt` is a file that contains data about Stellar-related services a domain provides in a machine readable format. Gateways use this file to tell clients what currencies they support and  how to use the gateway.
 
-Read more about stellar.txt on the [wiki entry](https://wiki.stellar.org/Stellar.txt).
+Read more about [stellar.txt](Stellar.txt.md) and how to set it up correctly.
 
 ### [currencies]
-A gateway defines the currencies that it supports and the issuing accounts (cold wallets as specified above) of the currency. Multiple currencies are allowed to use the same accounts but do not necessarily have to.
+A gateway defines the currencies that it supports and the issuing accounts (cold wallets as specified above) of the currencies. Multiple currencies are allowed to use the same accounts but do not necessarily have to.
 
 As noted in the client user flow explanation above, a client will look at the stellar.txt file to find out which currencies a gateway supports so that it can extend trust to the issuing account.
 
@@ -71,29 +71,20 @@ BTC gazAaB4WtLjLz5RMqvL1LB4KvxWFXEe5tX
 CHF gUuPMNHLxkd98o3xe8CKjYGR4vyuYPZuYE
 ```
 
-### Accessibility
-Make sure that stellar.txt is accessible via SSL and that cross-origin resource sharing headers are correctly set.
-
-To verify that the stellar.txt file is accessible, run the following command in the terminal and make sure that stellar.txt is served with the correct CORS header (`Access-Control-Allow-Origin` should be in the output.).
-```bash
-# Replace stellar.stellar.org with your domain url
-curl --head https://stellar.stellar.org/stellar.txt
-```
-
-## Sending credits (for users to enter the Stellar network)
-Gateways should use the hot wallet to send credits to the users. It is important that all actions be logged and transactions sent and managed robustly.
+## Sending credit (for users to enter the Stellar network)
+Gateways should use the hot wallet to send credit to users. It is important that all actions be logged and transactions sent and managed robustly.
 
 ## Sending transactions robustly
-Infrastructure is never perfectly reliable. Software, hardware and networks can all fail encounter hiccups. There are many ways in which a transaction can go wrong--it might never be sent or might even be sent multiple times. Mistakes are costly, especially when dealing with money. By using transaction robustness techniques, one can handle these transactions safely.
+Infrastructure is never perfectly reliable. Software, hardware and networks can all encounter hiccups. There are many ways in which a transaction can go wrong--it might never be sent or might even be sent multiple times. Mistakes are costly, especially when dealing with money. By using transaction robustness techniques, one can handle these transactions safely.
 
 Only one machine should be using the hot wallet if using techniques described on the transaction robustness page.
 
 Read more about [transaction robustness](Transaction-Robustness.md). It is critical that gateways use techniques like this.
 
-## Receiving credits (for users to exit the Stellar network)
-When a user wants to exit the Stellar network through a gateway, the user sends the credits to the gateway cold wallet.
+## Receiving credit (for users redeeming their credit from the gateway)
+When a user wants redeem some credit they have from a gateway, the user sends the credit to the gateway cold wallet.
 
-The gateway should require [Destination Tags](Destination-Tags.md) in payments to the cold wallet. This tag is a number assigned to a user so that the gateway can receive funds and know to whom the deposit belongs to. Before a user sends credits to the gateway, the gateway tells them what destination tag to use.
+The gateway should require [Destination Tags](Destination-Tags.md) in payments to the cold wallet. This tag is a number assigned to a user so that the gateway can receive funds and know whom the deposit belongs to. Before a user sends credit to the gateway, the gateway tells them what destination tag to use.
 
 The gateway software can then [subscribe](https://www.stellar.org/api/#api-subscribe) to incoming transactions and listen for incoming transactions.
 
@@ -110,12 +101,12 @@ Users might send payments to the cold wallet with a destination tag that isn't a
 Most gateways will just send the funds back. However, this makes the gateway hot wallet vulnerable to a denial of service attack.
 
 ### Hot wallet denial of service
-Users (intentional or not) could cause a denial of service on the hot wallet. This is possible by depleting the hot wallet. Here are several ways how this could happen:
-- User sends funds (credits or STR) to the cold wallet with a non-existent destination tag and the gateway uses the hot wallet to send them back
-- User sends funds (credits or STR) to the hot wallet and the gateway sends the funds back
-- User deposits credits to the gateway cold wallet then withdraws back to their Stellar account (from the gateway hot wallet); user repeats and drains the hot wallet
+Users (intentional or not) could cause a denial of service on the hot wallet. This is possible by depleting the hot wallet. Here are several ways this could happen:
+- User sends funds (credit or STR) to the cold wallet with a non-existent destination tag and the gateway uses the hot wallet to send them back.
+- User sends funds (credit or STR) to the hot wallet and the gateway sends the funds back.
+- User deposits credit to the gateway cold wallet then withdraws back to their Stellar account (from the gateway hot wallet); user repeats and drains the hot wallet.
 
-As a result, the gateway would be unable to send from their hot until a human operator replenishes the hot wallet manually.
+As a result, the gateway would be unable to send from their hot wallet until a human operator replenishes the hot wallet manually.
 
 ## Checklist
 - Stuff
@@ -123,7 +114,7 @@ As a result, the gateway would be unable to send from their hot until a human op
 ## Extra features
 
 ### SetRegularKey security enhancement
-For extra security, gateway wallets can use `SetRegularKey` to create a new temporary key that can sign transactions from a secondary key. If this key is compromised, the gateway can use the master seed to revoke this secondary key and create a new one.
+For extra security, gateway wallets can use `SetRegularKey` to create a new temporary key that can sign transactions from a secondary key. If this key is compromised, the gateway can use the master key to revoke this secondary key and create a new one.
 
 ### Authorized accounts
 Stellar provides the ability for gateways to restrict access for who is allowed to send and receive credits issued by a gateway.
