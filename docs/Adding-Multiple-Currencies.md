@@ -1,4 +1,4 @@
-# Adding multiple currencies on Stellar
+Adding multiple currencies on Stellar
 =======================================
 
 * To add balances in other currencies on Stellar, you need to create the balance in the desired currency via a [gateway](https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md). 
