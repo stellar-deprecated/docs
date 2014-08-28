@@ -35,6 +35,16 @@
             <name>Sequence</name>
             <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
+        <argument>
+            <name>DestinationTag</name>
+            <type>int</type>
+            <desc>Optional tag to associate with the transaction. </desc>
+        </argument>
+        
+        <argument>
+            <name>Paths</name>
+            <desc>List of paths to send through.</desc>
+        </argument>
 
 
         <cli_example><![CDATA[ > stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN \
