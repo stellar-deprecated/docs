@@ -6,6 +6,8 @@ This repository is home to the Stellar documentation.
 ## docs
 The docs folder contains a bunch of guides intended to be read by developers. These docs may occasionally contain example API calls.
 * [Introduction to Stellar Gateways](https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md)
+* [Adding Multiple Currencies on the Stellar client](docs/Adding-Multiple-Currencies.md)
+* [Gateways supporting multi-currency on the Stellar client](docs/gateway-list.md)
 * [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
 * [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
 * [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/Transaction-Robustness.md)
