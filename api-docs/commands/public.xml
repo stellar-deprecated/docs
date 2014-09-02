@@ -119,12 +119,10 @@
   "params" : [
     { "taker_gets" : {
       "currency" : "USD",
-      "issuer" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-      "value" : 10
+      "issuer" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
     },
     "taker_pays" : {
-      "currency" : "STR",
-      "value" : "5000"
+      "currency" : "STR"
     }
   ]
 }
@@ -136,13 +134,11 @@
   "params": [
     {
       "taker_pays": {
-        "value": "5000",
         "currency": "STR"
       },
       "taker_gets": {
         "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-        "currency": "USD",
-        "value": 10
+        "currency": "USD"
       }
     }
   ]
@@ -150,13 +146,11 @@
         <ws_example><![CDATA[{
   "command": "book_offers",
   "taker_pays": {
-    "value": "5000",
     "currency": "STR"
   },
   "taker_gets": {
     "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-    "currency": "USD",
-    "value": 10
+    "currency": "USD"
   }
 }]]></ws_example>
     </command>

@@ -40,7 +40,7 @@
             <type>int</type>
             <desc>Optional tag to associate with the transaction. </desc>
         </argument>
-        
+
         <argument>
             <name>Paths</name>
             <desc>List of paths to send through.</desc>
@@ -304,6 +304,17 @@
         <argument>
             <name>Fee</name>
             <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+        </argument>
+        <argument>
+            <name>Flags</name>
+            <type>int</type>
+            <desc><![CDATA[Allows you to change settings of this line. Possible flags are:
+            <ul>
+            <li>tfSetAuth (0x00010000) | Set lsfLowAuth or lsfHighAuth as appropriate.</li>
+            <li>tfSetNoRipple (x00020000) | Set lsfLowNoRipple or lsfHighNoRipple as appropriate.</li>
+            <li>tfClearNoRipple (x00040000) | Clear lsfLowNoRipple or lsfHighNoRipple as appropriate.</li>
+            </ul>
+               ]]></desc>
         </argument>
         <argument>
             <name>Sequence</name>
