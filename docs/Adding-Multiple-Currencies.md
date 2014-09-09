@@ -1,8 +1,11 @@
-Adding multiple currencies on Stellar
+Adding a new currency to your account.
 =======================================
 
-* To add balances in other currencies on Stellar, you need to create the balance in the desired currency via a [gateway](https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md). 
-* Here's [a list of gateways](gateway-list.md) issuing credit on the Stellar network, and they offer different ways of depositing money in various currencies.
-* Adding a gateway also extends trust lines to it. 
-* The client will display your available balances on the added gateway.
+* A [gateway](https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md) is any network participant you trust to accept a deposit in exchange for credit on the network. 
+* To transact in other currencies on Stellar, you need to add a gateway to your account. (You will need to use the full name of the gateway including the top-level domain such as .com, .co, .org)
+* Once you have added a gateway, you can send and receive the currencies supported by the gateway.
+* Adding a gateway also extends [trust lines] (https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md#trust) to it. 
+* Here's [a list of community-contributed gateways](gateway-list.md) issuing credit on the Stellar network,and they offer different ways of accepting deposits in various currencies. Please do your own research in deciding if you want to transact with a gateway.
+
+
 
