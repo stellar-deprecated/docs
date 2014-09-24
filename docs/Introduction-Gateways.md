@@ -14,7 +14,7 @@ This concept is not only limited to currency but can also be applied to other as
 ## Credits
 Credits are tokens issued by gateways that represent an amount of an asset. The credits have value because they can be redeemed at a gateway for the represented asset outside of Stellar.
 
-They are represented as represented as a 3 letter currency code. If users trust two different gateways for the same currency (represented by the same 3 letter code), it could cause confusion for the client/user. For this reason, we do not recommend users to trust multiple gateways using the same currency code.
+They are represented as a 3 letter currency code. If users trust two different gateways for the same currency (represented by the same 3 letter code), it could cause confusion for the client/user. For this reason, we do not recommend users to trust multiple gateways using the same currency code.
 
 A user must "trust" a gateway issuing account before they can receive credits issued by the gateway.
 
