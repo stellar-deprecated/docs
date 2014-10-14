@@ -8,7 +8,7 @@ This guide describes the use cases for destination tags as well as the process o
 
 This sub-section is tailored for developers already familiar with Bitcoin and wanting to understand the motivation behind destination tags.
 
-In Bitcoin, addresses have no minimum balance and and anyone can generate thousands of Bitcoin addresses. For example, a gateway could create a new Bitcoin address for each user, and thus know which user any given transaction belongs to.
+In Bitcoin, addresses have no minimum balance and anyone can generate thousands of Bitcoin addresses. For example, a gateway could create a new Bitcoin address for each user, and thus know which user any given transaction belongs to.
 
 Stellar is designed differently and uses the concept of accounts. Accounts are required to have a minimum balance to keep bloat down (20 STR as of August 2014). The minimum balance helps prevent spam and ledger bloat.
 
