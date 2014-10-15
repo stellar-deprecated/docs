@@ -5,7 +5,7 @@ Adding a new currency to your account.
 * To transact in other currencies on Stellar, you need to add a gateway to your account. (You will need to use the full name of the gateway including the top-level domain such as .com, .co, .org)
 * Once you have added a gateway, you can send and receive the currencies supported by the gateway.
 * Adding a gateway also extends [trust lines] (https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md#trust) to it. 
-* Here's [a list of community-contributed gateways](gateway-list.md) issuing credit on the Stellar network,and they offer different ways of accepting deposits in various currencies. Please do your own research in deciding if you want to transact with a gateway.
+* Here's [a list of community-contributed gateways](gateway-list.md) issuing credit on the Stellar network, and they offer different ways of accepting deposits in various currencies. Please do your own research in deciding if you want to transact with a gateway.
 
 
 
