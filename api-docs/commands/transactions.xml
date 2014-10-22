@@ -322,7 +322,69 @@
             <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
     </command>
+  
+    <command>
+      <subnav>submit</subnav>
+      <name>AccountMerge</name>
+      <admin>false</admin>
+      <desc><![CDATA[An account merge transaction.<p>Balances are moved to the destination account.</p>
+<p>Note that the destination account's trust lines must be able to accomodate for the updated balances:
+<ul>
+<li>balance must be positive</li>
+<li>resulting balance must not be over limit</li>
+<li>destination must be authorized if the source account was authorized with a gateway.</li>
+</ul></p>]]></desc>
 
+      <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Set to "AccountMerge".</desc>
+      </argument>
+      <argument>
+        <name>Account</name>
+        <required>true</required>
+        <desc>The source account to merge.</desc>
+      </argument>
+      <argument>
+        <name>Destination</name>
+        <required>true</required>
+        <desc>The account to merge the source account into.</desc>
+      </argument>
+
+      <cli_example>
+        <![CDATA[ > stellard submit sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv \
+  "{"TransactionType":"AccountMerge","Account":"gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ","Destination":"gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"}"]]>
+      </cli_example>
+      <rpc_example>
+        <![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+      "tx_json": {
+        "TransactionType": "AccountMerge",
+        "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+        "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"
+        }
+      }
+    }
+  ]
+}' ]]>
+      </rpc_example>
+
+      <ws_example>
+        <![CDATA[{
+  "command" : "submit",
+  "secret" : "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+  "tx_json" : { "Account" : "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+    "Destination" : "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
+    "TransactionType" : "AccountMerge"
+  }
+}]]>
+      </ws_example>
+    </command>
+  
     <command>
         <name>submit</name>
         <admin>false</admin>
