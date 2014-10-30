@@ -351,12 +351,10 @@
         <desc>The account to merge the source account into.</desc>
       </argument>
 
-      <cli_example>
-        <![CDATA[ > stellard submit sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv \
-  "{"TransactionType":"AccountMerge","Account":"gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ","Destination":"gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"}"]]>
-      </cli_example>
-      <rpc_example>
-        <![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+      <cli_example><![CDATA[> stellard submit sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv \
+  "{"TransactionType":"AccountMerge","Account":"gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ","Destination":"gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"}"]]><!--
+      --></cli_example>
+      <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
   "method": "submit",
   "params": [
@@ -370,19 +368,17 @@
       }
     }
   ]
-}' ]]>
-      </rpc_example>
+}']]></rpc_example>
 
-      <ws_example>
-        <![CDATA[{
+      <ws_example><![CDATA[{
   "command" : "submit",
   "secret" : "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
-  "tx_json" : { "Account" : "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+  "tx_json" : {
+    "Account" : "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
     "Destination" : "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
     "TransactionType" : "AccountMerge"
   }
-}]]>
-      </ws_example>
+}]]></ws_example>
     </command>
   
     <command>
