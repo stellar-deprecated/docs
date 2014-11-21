@@ -36,14 +36,13 @@ Connecting to: 0.0.0.0:9002
   "method": "account_currencies",
   "params": [
     {
-      "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
-      "ledger_index": 400
+      "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
     }
   ]
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "account_currencies",
-  "id": 4,
+  "id": 1234567,
   "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
 }]]></ws_example>
     </command>
@@ -147,7 +146,7 @@ Connecting to: 0.0.0.0:9002
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "account_lines",
-  "id": 24,
+  "id": 1234567,
   "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
 }]]></ws_example>
     </command>
@@ -213,7 +212,7 @@ Connecting to: 0.0.0.0:39002
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "account_offers",
-  "id": 120,
+  "id": 1234567,
   "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
 }]]></ws_example>
         <ws_result><![CDATA[{
@@ -268,7 +267,10 @@ Connecting to: 0.0.0.0:39002
   }
 }]]></cli_example>
         <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "ping" }']]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "ping" }]]></ws_example>
+        <ws_example><![CDATA[{
+  "command" : "ping",
+  "id": 1234567
+}]]></ws_example>
     </command>
     <command>
         <name>transaction_entry</name>

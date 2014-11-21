@@ -66,14 +66,13 @@
   "method": "account_info",
   "params": [
     {
-      "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-      "ledger_index": 400
+      "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
     }
   ]
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "account_info",
-  "id": 24,
+  "id": 1234567,
   "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
 }]]></ws_example>
     </command>

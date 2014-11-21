@@ -71,6 +71,7 @@
 
         <ws_example><![CDATA[{
   "command" : "submit",
+  "id": 1234567,
   "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
   "tx_json" : { "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
     "Amount" : "1000000000",
@@ -209,6 +210,7 @@
 
         <ws_example><![CDATA[{
   "command": "submit",
+  "id": 1234567,
   "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
   "tx_json": {
     "TransactionType": "OfferCreate",
@@ -364,7 +366,6 @@
         "TransactionType": "AccountMerge",
         "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
         "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"
-        }
       }
     }
   ]
@@ -372,6 +373,7 @@
 
       <ws_example><![CDATA[{
   "command" : "submit",
+  "id": 1234567,
   "secret" : "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
   "tx_json" : {
     "Account" : "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",

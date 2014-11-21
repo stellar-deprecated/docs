@@ -58,16 +58,15 @@
   "params": [
     {
       "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-      "ledger_index_min": 0,
-      "limit" : 4
+      "limit": 4
     }
   ]
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "account_tx",
+  "id": 1234567,
   "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-  "ledger_index_min": 500,
-  "limit" : 3
+  "limit": 4
 }]]></ws_example>
     </command>
 
@@ -116,6 +115,7 @@
         <cli_example><![CDATA[> stellard book_offers
 
 { "method" : "book_offers",
+  "id": 1234567,
   "params" : [
     { "taker_gets" : {
       "currency" : "USD",
@@ -145,6 +145,7 @@
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "book_offers",
+  "id": 1234567,
   "taker_pays": {
     "currency": "STR"
   },
@@ -263,7 +264,10 @@ Connecting to: 0.0.0.0:9002
   }
 }]]>
 </rpc_result>
-        <ws_example><![CDATA[{ "command" : "ledger" }]]></ws_example>
+        <ws_example><![CDATA[{
+  "command": "ledger",
+  "id": 1234567
+}]]></ws_example>
         <ws_result><![CDATA[{
   "result": {
     "closed": {
@@ -343,6 +347,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <rpc_example><![CDATA[find_path only available over websocket.]]></rpc_example>
         <ws_example><![CDATA[{
   "command": "find_path",
+  "id": 1234567,
   "subcommand": "create",
   "source_account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
   "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
@@ -416,6 +421,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "static_path_find",
+  "id": 1234567,
   "source_account": "gPeFowjy2izeVYvhmu6gZRr6jMobxTyGUU",
   "destination_account": "gBV8kvK1rkFPmNRFzFkipHy2cZAeUf6RPz",
   "destination_amount": {
@@ -546,12 +552,22 @@ This command is only available via the Websocket API. If you want to use as RPC 
   "method": "subscribe",
   "params": [
     {
-      "accounts": ["ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"],
+      "accounts": [
+        "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+      ],
       "url": "localhost:8000/callback-endpoint"
     }
   ]
 }']]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "subscribe",   "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }]]></ws_example>
+        <ws_example><![CDATA[{
+  "command" : "subscribe",
+  "id": 1234567,
+  "accounts": [
+    "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+  ]
+}]]></ws_example>
     </command>
 
 
@@ -583,7 +599,11 @@ This command is only available via the Websocket API. If you want to use as RPC 
     }
   ]
 }']]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "tx", "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC" }]]></ws_example>
+        <ws_example><![CDATA[{
+  "command": "tx",
+  "id": 1234567,
+  "transaction": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC"
+}]]></ws_example>
     </command>
 
     <command>
@@ -637,8 +657,19 @@ This command is only available via the Websocket API. If you want to use as RPC 
     ]
   }
 }]]></cli_example>
-        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "tx_history", "params" : [ { "start" : "10" } ] }']]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "tx_history", "start" : "5" }]]></ws_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{
+  "method": "tx_history",
+  "params": [
+    {
+      "start": 5
+    }
+  ]
+}']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "tx_history",
+  "id": 1234567,
+  "start": 5
+}]]></ws_example>
     </command>
 
     <command>
@@ -648,9 +679,28 @@ This command is only available via the Websocket API. If you want to use as RPC 
         To unsubscribe from events previously subscribed to just specify them in the same way. ]]></desc>
 
 
-        <rpc_example><![CDATA[ ]]></rpc_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "unsubscribe",
+  "params": [
+    {
+      "accounts": [
+        "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+      ],
+      "url": "localhost:8000/callback-endpoint"
+    }
+  ]
+}']]></rpc_example>
         <cli_example><![CDATA[ ]]></cli_example>
-        <ws_example><![CDATA[{ "command" : "unsubscribe", "id": 42,  "accounts" : [ "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb" ] }]]></ws_example>
+        <ws_example><![CDATA[{
+  "command": "unsubscribe",
+  "id": 1234567,
+  "accounts": [
+    "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+  ]
+}]]></ws_example>
     </command>
 
 

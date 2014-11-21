@@ -45,6 +45,9 @@ Connecting to: 0.0.0.0:9002
   }
 }]]></cli_example>
         <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "create_keys" }']]></rpc_example>
-        <ws_example><![CDATA[{ "command" : "create_keys" }]]></ws_example>
+        <ws_example><![CDATA[{
+  "command": "create_keys",
+  "id": 1234567
+}]]></ws_example>
     </command>
 </commands>

@@ -52,6 +52,7 @@
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "sign",
+  "id": 1234567,
   "secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
   "tx_json" : {
     "TransactionType": "Payment",
@@ -63,7 +64,6 @@
       "value": 10
     }
   }
-}
-            ]]></ws_example>
+}]]></ws_example>
     </command>
 </commands>
