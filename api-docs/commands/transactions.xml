@@ -372,13 +372,13 @@
 }']]></rpc_example>
 
       <ws_example><![CDATA[{
-  "command" : "submit",
+  "command": "submit",
   "id": 1234567,
-  "secret" : "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
-  "tx_json" : {
-    "Account" : "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
-    "Destination" : "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
-    "TransactionType" : "AccountMerge"
+  "secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+  "tx_json": {
+    "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+    "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
+    "TransactionType": "AccountMerge"
   }
 }]]></ws_example>
     </command>
@@ -401,6 +401,21 @@
             <name>tx_blob</name>
             <desc><![CDATA[This is a signed and serialized transaction. Obtain a signed transaction blob by either signing the transaction yourself using the javascript-lib, or by calling the <a href="#api-sign">sign</a> command first with the transaction's details. Use this version if you don't want to expose your secret key to stellard.]]></desc>
         </argument>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
+    }
+  ]
+}']]></rpc_example>
+
+      <ws_example><![CDATA[{
+  "command": "submit",
+  "id": 1234567,
+  "tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
+}]]></ws_example>
     </command>
 
 </commands>
