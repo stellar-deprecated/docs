@@ -117,12 +117,14 @@
 { "method" : "book_offers",
   "id": 1234567,
   "params" : [
-    { "taker_gets" : {
-      "currency" : "USD",
-      "issuer" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
-    },
-    "taker_pays" : {
-      "currency" : "STR"
+    {
+      "taker_gets": {
+        "currency": "STR"
+      },
+      "taker_pays": {
+        "issuer": "gnhPFpbYXcYGMkGxfWdQGFfuKEdJoEThVo",
+        "currency": "BTC"
+      }
     }
   ]
 }
@@ -133,12 +135,12 @@
   "method": "book_offers",
   "params": [
     {
-      "taker_pays": {
+      "taker_gets": {
         "currency": "STR"
       },
-      "taker_gets": {
-        "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-        "currency": "USD"
+      "taker_pays": {
+        "issuer": "gnhPFpbYXcYGMkGxfWdQGFfuKEdJoEThVo",
+        "currency": "BTC"
       }
     }
   ]
@@ -146,12 +148,12 @@
         <ws_example><![CDATA[{
   "command": "book_offers",
   "id": 1234567,
-  "taker_pays": {
+  "taker_gets": {
     "currency": "STR"
   },
-  "taker_gets": {
-    "issuer": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-    "currency": "USD"
+  "taker_pays": {
+    "issuer": "gnhPFpbYXcYGMkGxfWdQGFfuKEdJoEThVo",
+    "currency": "BTC"
   }
 }]]></ws_example>
     </command>
