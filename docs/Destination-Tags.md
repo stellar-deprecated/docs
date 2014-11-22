@@ -80,6 +80,4 @@ For example, an address with a destination tag of `215923937` would look like th
 gHQWDV1qa55xQmGRUEdYhuYP14yJnDtGkS&dt=215923937
 ```
 
-Clients may support sending to a federated address with destination tag such as `name*stellar.org&dt=15923937` but it is best to use just the address since some clients might not support it.
-
 Some clients will also show a prompt to enter a destination tag if the recipient has enabled requiring of destination tags.
