@@ -115,6 +115,7 @@
              <ul>
              <li><strong>1</strong>- Require Destination tag flag. This flag is a hint to the client that this account only wants transactions with a destination tag.</li>
              <li><strong>2</strong>- Require Auth flag. If this flag is set then no one can hold credit from this account without prior authorization from this account. This setting is useful for gateways that need to KYC any that holds credit from them.</li>
+             <li><strong>4</strong>- Disable Master key flag. If this flag is set then the master secret key will not be used to sign any transactions. Account can only be accessed using the regular key (designated with <a href="#SetRegularKey">SetRegularKey</a>. This flag can then only be cleared by the regular key.<br />If master key is disabled and regular key is lost or invalid, the account will never be able to get a transaction into a ledger anymore. One use case for this is to lock/burn an account and associated STR/credits.</li>
              </ul>]]></desc>
         </argument>
         <argument>
@@ -124,6 +125,7 @@
              <ul>
              <li><strong>1</strong>- Require Destination tag flag. This flag is a hint to the client that this account only wants transactions with a destination tag.</li>
              <li><strong>2</strong>- Require Auth flag. If this flag is set then no one can hold credit from this account without prior authorization from this account. This setting is useful for gateways that need to KYC any that holds credit from them.</li>
+             <li><strong>4</strong>- Disable Master key flag. If this flag is set then the master secret key will not be used to sign any transactions. Account can only be accessed using the regular key (designated with <a href="#SetRegularKey">SetRegularKey</a>. This flag can then only be cleared by the regular key.<br />If master key is disabled and regular key is lost or invalid, the account will never be able to get a transaction into a ledger anymore. One use case for this is to lock/burn an account and associated STR/credits.</li>
              </ul>
 ]]></desc>
         </argument>
@@ -136,6 +138,31 @@
             <name>Sequence</name>
             <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
         </argument>
+
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
+      "tx_json": {
+        "TransactionType": "AccountSet",
+        "Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
+        "SetFlag": "1"
+      }
+    }
+  ]
+}']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "submit",
+  "id": 1234567,
+  "secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
+  "tx_json": {
+    "TransactionType": "AccountSet",
+    "Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
+    "SetFlag": "1"
+  }
+}]]></ws_example>
     </command>
 
     <command>
