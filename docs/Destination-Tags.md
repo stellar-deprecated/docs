@@ -26,7 +26,7 @@ A destination tag is stored as a `unit32` that contains a number ranging from `0
 
 ## Requiring Destination Tags
 
-An account can be configured to reject payments that are missing a destination tag. This safeguard prevents users from forgetting to add a destination tag to their payment. To make destination tags required, submit an AccountSet transaction with a flag of `65536` (use `131072` to make destination tags optional).
+An account can be configured to reject payments that are missing a destination tag. This safeguard prevents users from forgetting to add a destination tag to their payment. To require destination tags on an account, submit an AccountSet transaction and use `SetFlag` with a value of `1`. To make destination tags optional, use `ClearFlag` with the same value of `1`.
 
 ```json
 curl -X POST https://live.stellar.org:9002 -d '
@@ -38,14 +38,14 @@ curl -X POST https://live.stellar.org:9002 -d '
       "tx_json": {
         "TransactionType": "AccountSet",
         "Account": "gAccountIDHereXXXXXXXXXXXXXXXXXXXX",
-        "Flags": "65536"
+        "SetFlag": 1
       }
     }
   ]
 }'
 ```
 
-If you query the [account_info](https://www.stellar.org/api/#api-account_info) endpoint, the returned JSON should then indicate a non-zero value for the flags. It'll likely be something other than `65536` (often `131072`).
+To check whether an account requires destination tags, make a request to the  [account_info](https://www.stellar.org/api/#api-account_info) endpoint. Assuming that there are no other flags set, it will show that `Flags` is `65536` if destination tags are required or `131072` if optional.
 
 ## Sending a transaction with a destination tag
 To send a transaction using the dev api, add `DestinationTag` to the `tx_json` parameter in a payment.
