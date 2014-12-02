@@ -116,10 +116,6 @@
         <name>validation_create</name>
         <admin>true</admin>
         <desc>Generate a random public private key pair to use for a stellard validator.</desc>
-
-
-
-
             <result>
                 <name>validation_public_key</name>
                 <desc>Validation public key, base58 encoded. Give this to other stellard operators so they can add your server to their UNL.</desc>
@@ -141,9 +137,4 @@ Connecting to: 0.0.0.0:39002
 }]]></cli_example>
 
     </command>
-
-
-
 </commands>
-
-

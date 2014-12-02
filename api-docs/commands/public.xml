@@ -1,6 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
     <command>
+        <name>account_currencies</name>
+        <admin>false</admin>
+        <desc>Lists the currencies an account can send or receive.</desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The ID of the account you are interested in.</desc>
+        </argument>
+        <common>ledger_index</common>
+
+        <result>
+            <name>receive_currencies</name>
+            <desc>Array of currencies this account is able to receive.</desc>
+        </result>
+        <result>
+            <name>send_currencies</name>
+            <desc>Array of currencies this account is able to send.</desc>
+        </result>
+
+        <cli_example><![CDATA[> stellard account_currencies gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U
+
+Connecting to: 0.0.0.0:9002
+{
+  "result" : {
+    "ledger_current_index" : 21741,
+    "receive_currencies" : ["USD","LTC"],
+    "send_currencies" : ["USD","LTC"],
+    "status" : "success"
+  }
+}]]></cli_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "account_currencies",
+  "params": [
+    {
+      "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+    }
+  ]
+}']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "account_currencies",
+  "id": 1234567,
+  "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+}]]></ws_example>
+    </command>
+<command>
+    <name>account_info</name>
+    <admin>false</admin>
+    <desc>Returns information about the given account.</desc>
+
+    <argument>
+        <name>account</name>
+        <required>true</required>
+        <desc>The account you are interested in.</desc>
+    </argument>
+
+
+
+    <result>
+        <name>Balance</name>
+        <type>int</type>
+        <desc><![CDATA[ The number of stellars this account holds, in microstellars. ]]></desc>
+    </result>
+    <result>
+        <name>Flags</name>
+        <desc>What account flags are set.</desc>
+    </result>
+    <result>
+        <name>OwnerCount</name>
+        <desc>The number of offers and trust lines created by this account. Useful for calculating the account's reserve.</desc>
+    </result>
+    <result>
+        <name>PreviousTxnID</name>
+        <desc>The Transaction ID of the last transaction sent by this account.</desc>
+    </result>
+    <result>
+        <name>PreviousTxnLgrSeq</name>
+        <desc>The ledger sequence number this account's last transaction appeared in.</desc>
+    </result>
+    <result>
+        <name>Sequence</name>
+        <desc>The current transaction sequence number of this account.</desc>
+    </result>
+    <result>
+        <name>index</name>
+        <desc>The index in the ledger of this account entry.</desc>
+    </result>
+
+    <cli_example><![CDATA[> stellard account_info ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+
+{
+"result": {
+"account_data": {
+  "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+  "Balance": "9974964999552",
+  "Flags": 0,
+  "LedgerEntryType": "AccountRoot",
+  "OwnerCount": 1,
+  "PreviousTxnID": "61BF46D3EB11A513FCC885EBD76615A83361E163BD9E7155B4396C8A4FF9FC58",
+  "PreviousTxnLgrSeq": 3486,
+  "Sequence": 41,
+  "index": "6047FB9C7976F2D0554618F5ABFF423E7136205BAF19E92BE9D295E549442C45"
+},
+"ledger_current_index": 3698,
+"status": "success"
+}
+}]]></cli_example>
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "account_info",
+"params": [
+{
+  "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
+}
+]
+}']]></rpc_example>
+    <ws_example><![CDATA[{
+"command": "account_info",
+"id": 1234567,
+"account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+}]]></ws_example>
+    </command>
+    <command>
+        <name>account_lines</name>
+        <admin>false</admin>
+        <desc>
+            Gets a list of all trust lines a particular account is a part of. A trust line is how credits are tracked in the Stellar network.
+            A trust line has an account on either end, a currency , the amount each account trusts the other for in that currency, and a current balance.
+        </desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The account you are fetching the lines of. Account A.</desc>
+        </argument>
+        <argument>
+            <name>peer</name>
+            <desc>The account ID of another account. If specified will only return the trust lines from Account A to this peer.</desc>
+        </argument>
+        <common>ledger_index</common>
+
+        <result>
+            <name>account</name>
+            <desc>The account on the other side of the trust line. Account B.</desc>
+        </result>
+        <result>
+            <name>balance</name>
+            <desc>The current balance of credit between A and B. Balance is positive if A is holding IOUs from B.</desc>
+        </result>
+        <result>
+            <name>currency</name>
+            <desc>The currency of the trust line.</desc>
+        </result>
+        <result>
+            <name>limit</name>
+            <desc>How much account A trusts account B for.</desc>
+        </result>
+        <result>
+            <name>limit_peer</name>
+            <desc>How much account B trusts account A for.</desc>
+        </result>
+        <result>
+            <name>authorized</name>
+            <type>bool</type>
+            <desc>This is present if the peer has authorized this account to hold its credit.</desc>
+        </result>
+        <result>
+            <name>authorized_peer</name>
+            <type>bool</type>
+            <desc>This is present if this account has authorized the peer to hold its credit.</desc>
+        </result>
+        <result>
+            <name>quality_in</name>
+            <type>int</type>
+            <desc></desc>
+        </result>
+        <result>
+            <name>quality_out</name>
+            <type>int</type>
+            <desc></desc>
+        </result>
+
+        <cli_example><![CDATA[>stellard account_lines ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C
+
+{
+  "result": {
+    "account": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+    "lines": [
+      {
+        "account": "gT5KkmymioQvnwjuRkWZVRzsszfPxLCvU",
+        "balance": "-5000",
+        "currency": "USD",
+        "limit": "0",
+        "limit_peer": "10000",
+        "quality_in": 0,
+        "quality_out": 0
+      },
+      {
+        "account": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+        "balance": "0",
+        "currency": "USD",
+        "limit": "0",
+        "limit_peer": "10000",
+        "quality_in": 0,
+        "quality_out": 0
+      }
+    ],
+    "status": "success"
+  }
+}]]></cli_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "account_lines",
+  "params": [
+    {
+      "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
+    }
+  ]
+}']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "account_lines",
+  "id": 1234567,
+  "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
+}]]></ws_example>
+    </command>
+    <command>
+        <name>account_offers</name>
+        <admin>false</admin>
+        <desc>Gets a list of all the offers this account has made.</desc>
+
+        <argument>
+            <name>account</name>
+            <required>true</required>
+            <desc>The account you are getting the offers of.</desc>
+        </argument>
+
+        <cli_example><![CDATA[> stellard account_offers ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb
+
+Loading: "stellard.cfg"
+Connecting to: 0.0.0.0:39002
+{
+  "result" : {
+    "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "offers" : [
+      {
+        "flags" : 0,
+        "seq" : 47,
+        "taker_gets" : {
+          "currency" : "BTC",
+          "issuer" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value" : "2.5"
+        },
+        "taker_pays" : {
+          "currency" : "USD",
+          "issuer" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value" : "1500"
+        }
+      },
+      {
+        "flags" : 0,
+        "seq" : 48,
+        "taker_gets" : {
+          "currency" : "BTC",
+          "issuer" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value" : "2.5"
+        },
+        "taker_pays" : {
+          "currency" : "USD",
+          "issuer" : "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value" : "1600"
+        }
+      }
+    ],
+    "status" : "success"
+  }
+}]]></cli_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "account_offers",
+  "params": [
+    {
+      "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
+    }
+  ]
+}']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "account_offers",
+  "id": 1234567,
+  "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
+}]]></ws_example>
+        <ws_result><![CDATA[{
+  "id": 120,
+  "result": {
+    "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "offers": [
+      {
+        "flags": 0,
+        "seq": 47,
+        "taker_gets": {
+          "currency": "BTC",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value": "2.5"
+        },
+        "taker_pays": {
+          "currency": "USD",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value": "1500"
+        }
+      },
+      {
+        "flags": 0,
+        "seq": 48,
+        "taker_gets": {
+          "currency": "BTC",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value": "2.5"
+        },
+        "taker_pays": {
+          "currency": "USD",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+          "value": "1600"
+        }
+      }
+    ]
+  },
+  "status": "success",
+  "type": "response"
+}]]></ws_result>
+    </command>
+    <command>
+        <name>ping</name>
+        <admin>false</admin>
+        <desc>Command to test connectivity to stellard.</desc>
+
+        <cli_example><![CDATA[ > stellard ping
+
+{
+  "result" : {
+    "status" : "success"
+  }
+}]]></cli_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "ping" }']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command" : "ping",
+  "id": 1234567
+}]]></ws_example>
+    </command>
+    <command>
+        <name>transaction_entry</name>
+        <admin>false</admin>
+        <desc>Get the details of a particular transaction.</desc>
+
+        <argument>
+            <name>tx_hash</name>
+            <required>true</required>
+            <desc>The hash of the transaction you are interested in.</desc>
+        </argument>
+        <argument>
+            <name>ledger_index</name>
+            <type>int</type>
+            <desc>If you only want to look for the transaction in a particular ledger.</desc>
+        </argument>
+
+
+        <cli_example><![CDATA[]]></cli_example>
+        <rpc_example><![CDATA[]]></rpc_example>
+        <ws_example><![CDATA[]]></ws_example>
+    </command>
+    
+    <command>
         <name>account_tx</name>
         <admin>false</admin>
         <desc>Get a list of transactions that affected this account.</desc>
@@ -155,6 +526,57 @@
     "issuer": "gnhPFpbYXcYGMkGxfWdQGFfuKEdJoEThVo",
     "currency": "BTC"
   }
+}]]></ws_example>
+    </command>
+    <command>
+        <name>create_keys</name>
+        <admin>false</admin>
+        <desc>Generates public/private key pair for use as a Stellar account.</desc>
+
+        <argument>
+            <name>passphrase</name>
+            <type>string</type>
+            <desc>If specified it will create the secret key from a hash of the passphrase.</desc>
+        </argument>
+
+        <result>
+            <name>account_id</name>
+            <desc>The generated accountID. It will become a usable stellar account if someone sends stellars to it.</desc>
+        </result>
+        <result>
+            <name>master_seed</name>
+            <desc>The secret key in base58 format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>master_seed_hex</name>
+            <desc>The secret key in hex format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>public_key</name>
+            <desc>The public key in base58 format that corresponds to the accountID.</desc>
+        </result>
+        <result>
+            <name>public_key_hex</name>
+            <desc>The public key in hex format that corresponds to the accountID.</desc>
+        </result>
+
+        <cli_example><![CDATA[> stellard create_keys
+
+Connecting to: 0.0.0.0:9002
+{
+  "result" : {
+    "account_id" : "gppi8qEBctnubQKUJGNLjBypw4VWah5F7B",
+    "master_seed" : "s3NRKFaJgTqKajhWubLk3zbnBXhbo8L2hEojhe3pvmhDzKzxH25",
+    "master_seed_hex" : "8EB76FE8F0A06088383C3E4B22089710ED556D39DDFAE6360AEA606D4EE944B2",
+    "public_key" : "pGz2rDZDCWVhyk9M3Fu3kgydAVsfovQgcVbLX66xQirxQ4YQ1hj",
+    "public_key_hex" : "E6EEAD890F8305986298E7ED77F3854A992D8CD3927DD81DE0EF41144C5E151C",
+    "status" : "success"
+  }
+}]]></cli_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "create_keys" }']]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "create_keys",
+  "id": 1234567
 }]]></ws_example>
     </command>
 
@@ -361,7 +783,73 @@ This command is only available via the Websocket API. If you want to use as RPC 
 }]]></ws_example>
     </command>
 
+<command>
+    <name>sign</name>
+    <admin>false</admin>
+    <desc><![CDATA[ Have stellard sign a transaction for you. You can introduce the transaction later with <a href="#api-submit">submit</a> by just including the tx_blob. ]]></desc>
 
+
+    <argument>
+        <name>tx_json</name>
+        <required>true</required>
+        <desc><![CDATA[This is the JSON representation of the transaction for server to sign with the private key of the secret.</br>
+            If <strong>Sequence</strong> or <strong>Fee</strong> are not filled out then stellard will fill them in for if you.]]></desc>
+    </argument>
+
+    <argument>
+        <name>secret</name>
+        <required>true</required>
+        <desc>The base58 encoded secret key of the signer.</desc>
+    </argument>
+    <argument>
+        <name>offline</name>
+        <type>bool</type>
+        <desc>If true stellard won't attempt to verify that the transaction is valid it will just sign it for you.</desc>
+    </argument>
+
+    <result>
+        <name>hash</name>
+        <desc>The hash of the submitted transaction.</desc>
+    </result>
+    <result>
+        <name>tx_blob</name>
+        <desc>A hex representation of the signed transaction. This result can vary between calls even if supplied the same parameters.</desc>
+    </result>
+
+    <cli_example><![CDATA[]]></cli_example>
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "sign",
+"params": [{
+"secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+"tx_json" : {
+  "TransactionType": "Payment",
+  "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+  "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+  "Amount": {
+    "currency": "USD",
+    "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+    "value": 10
+  }
+}
+}]
+}']]></rpc_example>
+    <ws_example><![CDATA[{
+"command": "sign",
+"id": 1234567,
+"secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+"tx_json" : {
+"TransactionType": "Payment",
+"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+"Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+"Amount": {
+  "currency": "USD",
+  "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+  "value": 10
+}
+}
+}]]></ws_example>
+</command>
     <command>
         <name>static_path_find</name>
         <admin>false</admin>
@@ -433,6 +921,451 @@ This command is only available via the Websocket API. If you want to use as RPC 
   }
 }]]></ws_example>
     </command>
+
+<command>
+    <subnav>submit</subnav>
+    <name>Payment</name>
+    <admin>false</admin>
+    <desc>Submit a payment transaction.</desc>
+
+    <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Set to "Payment".</desc>
+    </argument>
+    <argument>
+        <name>Account</name>
+        <required>true</required>
+        <desc>The account sending the payment.</desc>
+    </argument>
+    <argument>
+        <name>Destination</name>
+        <required>true</required>
+        <desc>The account receiving the payment.</desc>
+    </argument>
+    <argument>
+        <name>Amount</name>
+        <type>amount</type>
+        <required>true</required>
+        <desc><![CDATA[ The amount to send. This is either a number of microstellars (if sending STR) or a {value,currency,issuer} triplet for sending a credit. ]]></desc>
+    </argument>
+    <argument>
+        <name>Fee</name>
+        <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+    </argument>
+    <argument>
+        <name>Sequence</name>
+        <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+    </argument>
+    <argument>
+        <name>DestinationTag</name>
+        <type>int</type>
+        <desc>Optional tag to associate with the transaction. </desc>
+    </argument>
+
+    <argument>
+        <name>Paths</name>
+        <desc>List of paths to send through.</desc>
+    </argument>
+
+
+    <cli_example><![CDATA[ > stellard submit s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN \
+"{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"]]></cli_example>
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "submit",
+"params": [
+{
+  "secret": "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr",
+  "tx_json": {
+    "TransactionType": "Payment",
+    "Account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
+    "Destination": "g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt",
+    "Amount": {
+      "currency": "USD",
+      "value": "2",
+      "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
+    }
+  }
+}
+]
+}' ]]></rpc_example>
+
+    <ws_example><![CDATA[{
+"command" : "submit",
+"id": 1234567,
+"secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+"tx_json" : { "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+"Amount" : "1000000000",
+"Destination" : "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+"TransactionType" : "Payment"
+}
+}]]></ws_example>
+</command>
+
+<command>
+    <name>AccountSet</name>
+    <subnav>submit</subnav>
+    <admin>false</admin>
+    <desc>Submit an AccountSet transaction. This is used to set various flags of the account entry. You can use it to set the inflation destination of an account.</desc>
+
+    <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Set to "AccountSet".</desc>
+    </argument>
+    <argument>
+        <name>InflationDest</name>
+        <type>address</type>
+        <desc><![CDATA[Change the inflation destination for this account. ]]></desc>
+    </argument>
+    <argument>
+        <name>TransferRate</name>
+        <type>int</type>
+        <default>1000000000</default>
+        <desc><![CDATA[Set the transfer rate that this account will charge any time its credit moves from one account to another.
+        The actual rate charged is equivalent to TransferRate/1000000000.
+        For example if some gateway "WizardPay" has sets their TransferRate to 1020000000, the equivalent of 2%. Now Alice wants to send 100 WizardPay USD to Charlie.
+        Alice will need to send 102 WizardPay USD so 100 gets to Charlie and 2 is essentially returned to "WizardPay" to pay the credit transfer fee.
+        <p>Set the TransferRate to 1000000000 for no fee to move credit. You can't set the TransferRate below 1000000000.
+         ]]></desc>
+    </argument>
+    <argument>
+        <name>SetFlag</name>
+        <type>int</type>
+        <desc><![CDATA[Set to one of the following values:
+         <ul>
+         <li><strong>1</strong>- Require Destination tag flag. This flag is a hint to the client that this account only wants transactions with a destination tag.</li>
+         <li><strong>2</strong>- Require Auth flag. If this flag is set then no one can hold credit from this account without prior authorization from this account. This setting is useful for gateways that need to KYC any that holds credit from them.</li>
+         <li><strong>4</strong>- Disable Master key flag. If this flag is set then the master secret key will not be used to sign any transactions. Account can only be accessed using the regular key (designated with <a href="#SetRegularKey">SetRegularKey</a>. This flag can then only be cleared by the regular key.<br />If master key is disabled and regular key is lost or invalid, the account will never be able to get a transaction into a ledger anymore. One use case for this is to lock/burn an account and associated STR/credits.</li>
+         </ul>]]></desc>
+    </argument>
+    <argument>
+        <name>ClearFlag</name>
+    <type>int</type>
+    <desc><![CDATA[Set to one of the following values:
+         <ul>
+         <li><strong>1</strong>- Require Destination tag flag. This flag is a hint to the client that this account only wants transactions with a destination tag.</li>
+         <li><strong>2</strong>- Require Auth flag. If this flag is set then no one can hold credit from this account without prior authorization from this account. This setting is useful for gateways that need to KYC any that holds credit from them.</li>
+         <li><strong>4</strong>- Disable Master key flag. If this flag is set then the master secret key will not be used to sign any transactions. Account can only be accessed using the regular key (designated with <a href="#SetRegularKey">SetRegularKey</a>. This flag can then only be cleared by the regular key.<br />If master key is disabled and regular key is lost or invalid, the account will never be able to get a transaction into a ledger anymore. One use case for this is to lock/burn an account and associated STR/credits.</li>
+         </ul>
+]]></desc>
+    </argument>
+
+    <argument>
+        <name>Fee</name>
+        <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+    </argument>
+    <argument>
+        <name>Sequence</name>
+        <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+    </argument>
+
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "submit",
+"params": [
+{
+  "secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
+  "tx_json": {
+    "TransactionType": "AccountSet",
+    "Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
+    "SetFlag": "1"
+  }
+}
+]
+}']]></rpc_example>
+    <ws_example><![CDATA[{
+"command": "submit",
+"id": 1234567,
+"secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
+"tx_json": {
+"TransactionType": "AccountSet",
+"Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
+"SetFlag": "1"
+}
+}]]></ws_example>
+</command>
+
+<command>
+    <name>SetRegularKey</name>
+    <subnav>submit</subnav>
+    <admin>false</admin>
+    <desc><![CDATA[Use to set or clear this account's <strong>regular key</strong>. The regular key can be used to sign transactions instead of the master secret key.
+    This is useful since you can change the regular key if need be without recreating the whole account.]]></desc>
+
+    <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Should be set "SetRegularKey".</desc>
+    </argument>
+    <argument>
+        <name>RegularKey</name>
+        <desc>If provided will change the regular key to this new value. If not provided it will clear the regular key so only the master key can sign again.</desc>
+    </argument>
+
+    <argument>
+        <name>Fee</name>
+        <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+    </argument>
+    <argument>
+        <name>Sequence</name>
+        <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+    </argument>
+</command>
+
+<command>
+    <name>OfferCreate</name>
+    <subnav>submit</subnav>
+    <admin>false</admin>
+    <desc><![CDATA[Add an offer to the distributed order book.
+        Offers are commitments by the offerer to trade a certain amount of one currency for another. Offers can be partially taken.
+        Creating an offer might result in an immediate trade if the created offer crosses with an existing one.]]></desc>
+
+    <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Set to "OfferCreate".</desc>
+    </argument>
+    <argument>
+        <name>Account</name>
+        <required>true</required>
+        <desc>The account creating the offer.</desc>
+    </argument>
+    <argument>
+        <name>TakerGets</name>
+        <required>true</required>
+        <type>amount</type>
+        <desc>This is what the account taking the offer will get. It is what the offer creator is agreeing to pay.</desc>
+    </argument>
+    <argument>
+        <name>TakerPays</name>
+        <type>amount</type>
+        <required>true</required>
+        <desc>This is what the offer creator will get and what the offer taker will pay.</desc>
+    </argument>
+    <argument>
+        <name>OfferSequence</name>
+        <desc>The sequence number of a previous offer. If specified the previous offer will be replaced with this one.</desc>
+    </argument>
+    <argument>
+        <name>Fee</name>
+        <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+    </argument>
+    <argument>
+        <name>Sequence</name>
+        <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+    </argument>
+
+    <ws_example><![CDATA[{
+"command": "submit",
+"id": 1234567,
+"secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+"tx_json": {
+"TransactionType": "OfferCreate",
+"Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+"TakerGets": {
+  "currency": "USD",
+  "value": "1500",
+  "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+},
+"TakerPays": {
+  "currency": "BTC",
+  "value": "2.5",
+  "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+}
+}
+}]]></ws_example>
+
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "submit",
+"params": [
+{
+  "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+  "tx_json": {
+    "TransactionType": "OfferCreate",
+    "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "TakerGets": {
+      "currency": "USD",
+      "value": "1500",
+      "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+    },
+    "TakerPays": {
+      "currency": "BTC",
+      "value": "2.5",
+      "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+    }
+  }
+}
+]
+}']]></rpc_example>
+</command>
+
+<command>
+    <name>OfferCancel</name>
+    <subnav>submit</subnav>
+    <admin>false</admin>
+    <desc>Cancels an offer this account has made.</desc>
+    <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Set to "OfferCancel".</desc>
+    </argument>
+    <argument>
+        <name>Account</name>
+        <required>true</required>
+        <desc>The account canceling the offer.</desc>
+    </argument>
+    <argument>
+        <name>OfferSequence</name>
+        <required>true</required>
+        <desc>The sequence number of the offer to cancel.</desc>
+    </argument>
+    <argument>
+        <name>Fee</name>
+        <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+    </argument>
+    <argument>
+        <name>Sequence</name>
+        <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+    </argument>
+</command>
+
+<command>
+    <name>TrustSet</name>
+    <subnav>submit</subnav>
+    <admin>false</admin>
+    <desc>Allows this account to hold credit in some currency from some other account. Any account say that it trusts another account for a particular currency up to a particular limit. Once an account trusts another it can hold credit from that other account.</desc>
+    <argument>
+        <name>TransactionType</name>
+        <required>true</required>
+        <desc>Set to "TrustSet".</desc>
+    </argument>
+    <argument>
+        <name>Account</name>
+        <required>true</required>
+        <desc>The account extending trust.</desc>
+    </argument>
+    <argument>
+        <name>LimitAmount</name>
+        <required>true</required>
+        <type>amount</type>
+        <desc>An amount field specifying the type and amount of credit this account is willing to hold.</desc>
+    </argument>
+    <argument>
+        <name>Fee</name>
+        <desc><![CDATA[Set the transaction fee in microstellars that is attached to this transaction. If the fee isn't specified it will be set by the server.]]></desc>
+    </argument>
+    <argument>
+        <name>Flags</name>
+        <type>int</type>
+        <desc><![CDATA[Allows you to change settings of this line. Possible flags are:
+        <ul>
+        <li>tfSetAuth (0x00010000) | Set lsfLowAuth or lsfHighAuth as appropriate.</li>
+        <li>tfSetNoRipple (x00020000) | Set lsfLowNoRipple or lsfHighNoRipple as appropriate.</li>
+        <li>tfClearNoRipple (x00040000) | Clear lsfLowNoRipple or lsfHighNoRipple as appropriate.</li>
+        </ul>
+           ]]></desc>
+    </argument>
+    <argument>
+        <name>Sequence</name>
+        <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
+    </argument>
+</command>
+
+<command>
+  <subnav>submit</subnav>
+  <name>AccountMerge</name>
+  <admin>false</admin>
+  <desc><![CDATA[An account merge transaction.<p>Balances are moved to the destination account.</p>
+<p>Note that the destination account's trust lines must be able to accomodate for the updated balances:
+<ul>
+<li>balance must be positive</li>
+<li>resulting balance must not be over limit</li>
+<li>destination must be authorized if the source account was authorized with a gateway.</li>
+</ul></p>]]></desc>
+
+  <argument>
+    <name>TransactionType</name>
+    <required>true</required>
+    <desc>Set to "AccountMerge".</desc>
+  </argument>
+  <argument>
+    <name>Account</name>
+    <required>true</required>
+    <desc>The source account to merge.</desc>
+  </argument>
+  <argument>
+    <name>Destination</name>
+    <required>true</required>
+    <desc>The account to merge the source account into.</desc>
+  </argument>
+
+  <cli_example><![CDATA[> stellard submit sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv \
+"{"TransactionType":"AccountMerge","Account":"gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ","Destination":"gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"}"]]><!--
+  --></cli_example>
+  <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "submit",
+"params": [
+{
+  "secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+  "tx_json": {
+    "TransactionType": "AccountMerge",
+    "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+    "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"
+  }
+}
+]
+}']]></rpc_example>
+
+  <ws_example><![CDATA[{
+"command": "submit",
+"id": 1234567,
+"secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+"tx_json": {
+"Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+"Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
+"TransactionType": "AccountMerge"
+}
+}]]></ws_example>
+</command>
+
+<command>
+    <name>submit</name>
+    <admin>false</admin>
+    <desc>Submits a transaction to the network. The transaction can be submitted unsigned if you include your secret key and stellard will sign it for you.</desc>
+
+    <argument>
+        <name>secret</name>
+        <desc>The signer's secret key. Do not provide this field to untrusted servers. Required if submitting with tx_json parameter.</desc>
+    </argument>
+    <argument>
+        <name>tx_json</name>
+        <desc>This is the JSON representation of the transaction to submit. See the specific transactions for details.</desc>
+    </argument>
+
+    <argument>
+        <name>tx_blob</name>
+        <desc><![CDATA[This is a signed and serialized transaction. Obtain a signed transaction blob by either signing the transaction yourself using the javascript-lib, or by calling the <a href="#api-sign">sign</a> command first with the transaction's details. Use this version if you don't want to expose your secret key to stellard.]]></desc>
+    </argument>
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+"method": "submit",
+"params": [
+{
+  "tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
+}
+]
+}']]></rpc_example>
+
+  <ws_example><![CDATA[{
+"command": "submit",
+"id": 1234567,
+"tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
+}]]></ws_example>
+</command>
 
     <command>
         <name>subscribe</name>
@@ -707,5 +1640,3 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
 
 </commands>
-
-
