@@ -51,12 +51,16 @@ function loadCommandXML() {
 
     gLoadCount=files.length;
     for (var i in files) {
-    console.log('parsing: '+files[i]);
-        fs.readFile(__dirname +'/commands/'+ files[i], function (err, data) {
-            xml2js.parseString(data, doneParsing );
-
-        });
-
+        (function(filename) {
+            if (filename.match(/xml$/) !== null) { // Only load xml files
+                fs.readFile(__dirname +'/commands/'+ filename, function (err, data) {
+                    console.log('Parsing file: ' + filename);
+                    xml2js.parseString(data, doneParsing);
+                });
+            } else {
+                console.log('Ignored file: ' + filename);
+            }
+        })(files[i]);
     }
 }
 
