@@ -111,17 +111,17 @@ Connecting to: 0.0.0.0:9002
 }]]></cli_example>
     <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-"method": "account_info",
-"params": [
-{
-  "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
-}
-]
+  "method": "account_info",
+  "params": [
+    {
+      "account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb"
+    }
+  ]
 }']]></rpc_example>
     <ws_example><![CDATA[{
-"command": "account_info",
-"id": 1234567,
-"account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
+  "command": "account_info",
+  "id": 1234567,
+  "account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U"
 }]]></ws_example>
     </command>
     <command>
@@ -244,7 +244,7 @@ Loading: "stellard.cfg"
 Connecting to: 0.0.0.0:39002
 {
   "result" : {
-    "account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
     "offers" : [
       {
         "flags" : 0,
@@ -345,7 +345,7 @@ Connecting to: 0.0.0.0:39002
 }]]></cli_example>
         <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '{ "method" : "ping" }']]></rpc_example>
         <ws_example><![CDATA[{
-  "command" : "ping",
+  "command": "ping",
   "id": 1234567
 }]]></ws_example>
     </command>
@@ -819,35 +819,35 @@ This command is only available via the Websocket API. If you want to use as RPC 
     <cli_example><![CDATA[]]></cli_example>
     <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-"method": "sign",
-"params": [{
-"secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
-"tx_json" : {
-  "TransactionType": "Payment",
-  "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-  "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
-  "Amount": {
-    "currency": "USD",
-    "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
-    "value": 10
-  }
-}
-}]
+  "method": "sign",
+  "params": [{
+    "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+    "tx_json": {
+      "TransactionType": "Payment",
+      "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+      "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+      "Amount": {
+        "currency": "USD",
+        "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+        "value": "10"
+      }
+    }
+  }]
 }']]></rpc_example>
     <ws_example><![CDATA[{
-"command": "sign",
-"id": 1234567,
-"secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
-"tx_json" : {
-"TransactionType": "Payment",
-"Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-"Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
-"Amount": {
-  "currency": "USD",
-  "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
-  "value": 10
-}
-}
+  "command": "sign",
+  "id": 1234567,
+  "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+  "tx_json": {
+    "TransactionType": "Payment",
+    "Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+    "Amount": {
+      "currency": "USD",
+      "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C",
+      "value": "10"
+    }
+  }
 }]]></ws_example>
 </command>
     <command>
@@ -973,33 +973,34 @@ This command is only available via the Websocket API. If you want to use as RPC 
 "{"TransactionType":"Payment","Account":"ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb","Destination":"gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq","Amount":"2500000000"}"]]></cli_example>
     <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-"method": "submit",
-"params": [
-{
-  "secret": "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr",
-  "tx_json": {
-    "TransactionType": "Payment",
-    "Account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
-    "Destination": "g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt",
-    "Amount": {
-      "currency": "USD",
-      "value": "2",
-      "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfwtwgV3zHekZMm6F2cNPzEGzogQqPMEZcdVftKnrstngZvotYr",
+      "tx_json": {
+        "TransactionType": "Payment",
+        "Account": "gM4Fpv2QuHY4knJsQyYGKEHFGw3eMBwc1U",
+        "Destination": "g4eRqgZfzfj3132y17iaf2fp6HQj1gofjt",
+        "Amount": {
+          "currency": "USD",
+          "value": "2",
+          "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
+        }
+      }
     }
-  }
-}
-]
+  ]
 }' ]]></rpc_example>
 
     <ws_example><![CDATA[{
-"command" : "submit",
-"id": 1234567,
-"secret" : "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
-"tx_json" : { "Account" : "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-"Amount" : "1000000000",
-"Destination" : "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
-"TransactionType" : "Payment"
-}
+  "command": "submit",
+  "id": 1234567,
+  "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+  "tx_json": {
+    "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "Amount": "1000000000",
+    "Destination": "gHJPw9kW8v4BsUyDnBR8ZHWo8aEkhUMeAq",
+    "TransactionType": "Payment"
+  }
 }]]></ws_example>
 </command>
 
@@ -1063,27 +1064,27 @@ This command is only available via the Websocket API. If you want to use as RPC 
 
     <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-"method": "submit",
-"params": [
-{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
+      "tx_json": {
+        "TransactionType": "AccountSet",
+        "Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
+        "SetFlag": "1"
+      }
+    }
+  ]
+}']]></rpc_example>
+    <ws_example><![CDATA[{
+  "command": "submit",
+  "id": 1234567,
   "secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
   "tx_json": {
     "TransactionType": "AccountSet",
     "Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
     "SetFlag": "1"
   }
-}
-]
-}']]></rpc_example>
-    <ws_example><![CDATA[{
-"command": "submit",
-"id": 1234567,
-"secret": "sfVPRS5KEGzyNAk3pwvV1cdkztkEEUAEZJQ8ydwiGpR9hDz4R9K",
-"tx_json": {
-"TransactionType": "AccountSet",
-"Account": "gEr9GxER4E3zTyX4RvF4HhgZBVZJBqE68M",
-"SetFlag": "1"
-}
 }]]></ws_example>
 </command>
 
@@ -1158,30 +1159,8 @@ This command is only available via the Websocket API. If you want to use as RPC 
     </argument>
 
     <ws_example><![CDATA[{
-"command": "submit",
-"id": 1234567,
-"secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
-"tx_json": {
-"TransactionType": "OfferCreate",
-"Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
-"TakerGets": {
-  "currency": "USD",
-  "value": "1500",
-  "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
-},
-"TakerPays": {
-  "currency": "BTC",
-  "value": "2.5",
-  "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
-}
-}
-}]]></ws_example>
-
-    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
-{
-"method": "submit",
-"params": [
-{
+  "command": "submit",
+  "id": 1234567,
   "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
   "tx_json": {
     "TransactionType": "OfferCreate",
@@ -1197,8 +1176,30 @@ This command is only available via the Websocket API. If you want to use as RPC 
       "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
     }
   }
-}
-]
+}]]></ws_example>
+
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+      "tx_json": {
+        "TransactionType": "OfferCreate",
+        "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "TakerGets": {
+          "currency": "USD",
+          "value": "1500",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+        },
+        "TakerPays": {
+          "currency": "BTC",
+          "value": "2.5",
+          "issuer": "ghj4kXtHfQcCaLQwpLJ11q2hq6248R7k9C"
+        }
+      }
+    }
+  ]
 }']]></rpc_example>
 </command>
 
@@ -1307,28 +1308,28 @@ This command is only available via the Websocket API. If you want to use as RPC 
   --></cli_example>
   <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-"method": "submit",
-"params": [
-{
-  "secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
-  "tx_json": {
-    "TransactionType": "AccountMerge",
-    "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
-    "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"
-  }
-}
-]
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+      "tx_json": {
+        "TransactionType": "AccountMerge",
+        "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+        "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ"
+      }
+    }
+  ]
 }']]></rpc_example>
 
   <ws_example><![CDATA[{
-"command": "submit",
-"id": 1234567,
-"secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
-"tx_json": {
-"Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
-"Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
-"TransactionType": "AccountMerge"
-}
+  "command": "submit",
+  "id": 1234567,
+  "secret": "sfHTRZFpsX7yc2VJLvhJzpzjiag5W6ofy9xgZSwuubcLhS1atmv",
+  "tx_json": {
+    "Account": "gD1RB8jG5DTSEnjJ1PQyoHEWXGbGCfCLAZ",
+    "Destination": "gUK9iE1ZdTcPFM4dBYKzKpweHxU45vMouQ",
+    "TransactionType": "AccountMerge"
+  }
 }]]></ws_example>
 </command>
 
@@ -1352,18 +1353,18 @@ This command is only available via the Websocket API. If you want to use as RPC 
     </argument>
     <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
 {
-"method": "submit",
-"params": [
-{
-  "tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
-}
-]
+  "method": "submit",
+  "params": [
+    {
+      "tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
+    }
+  ]
 }']]></rpc_example>
 
   <ws_example><![CDATA[{
-"command": "submit",
-"id": 1234567,
-"tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
+  "command": "submit",
+  "id": 1234567,
+  "tx_blob": "1200002280000000243ADE68B16140000000000F424068400000000000000A7320BE3900393891A2A2244E28A82C43BA94CA94DD6BFE36D523576A22BFF86055D4744052F5A5A7342F5E1254CFB29FE7DFAC36D12E0274CBC1569B35B8C9FC251996DA6E78BB84CCF91299CF9C60A2F95761F034DCA58B1C3C465B23754E89520DEA0C811437B1B26BE3C91C55D51586C3F0E5C4B03E9CEA7F8314DF8286CDBB009AA5C29F526B5C3B4C480B44EABE"
 }]]></ws_example>
 </command>
 
@@ -1496,7 +1497,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
   ]
 }']]></rpc_example>
         <ws_example><![CDATA[{
-  "command" : "subscribe",
+  "command": "subscribe",
   "id": 1234567,
   "accounts": [
     "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
@@ -1596,14 +1597,14 @@ This command is only available via the Websocket API. If you want to use as RPC 
   "method": "tx_history",
   "params": [
     {
-      "start": 5
+      "start": "5"
     }
   ]
 }']]></rpc_example>
         <ws_example><![CDATA[{
   "command": "tx_history",
   "id": 1234567,
-  "start": 5
+  "start": "5"
 }]]></ws_example>
     </command>
 
