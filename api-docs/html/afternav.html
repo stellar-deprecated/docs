@@ -99,5 +99,8 @@
   }</code></pre>
                 </section>
             </div>
+            <br />
+            <h4>Quoting numbers</h4>
+            <p><strong>When directly submitting transactions to stellard, make sure to quote the numbers.</strong> Normally, numbers would not be quotd in JSON so that they are interpreted as a number. However, when used to sign transactions, stellard is unable to parse JSON integers greater than 4,294,967,295 (2^32-1). This can cause transactions (such as one with more than 4294.967295 STR being sent) to be rejected by the stellard you are submitting to. Fortunately, stellard accepts quoted numbers and correctly interprets them.</p>
         </div>
     </div>
