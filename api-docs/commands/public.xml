@@ -1234,7 +1234,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
     <name>OfferCancel</name>
     <subnav>submit</subnav>
     <admin>false</admin>
-    <desc>Cancels an offer this account has made.</desc>
+    <desc><![CDATA[Cancels an offer this account has made. The sequence number for an offer can be obtained through <a href="#api-account_offers">account_offers</a> or recorded when the offer was first <a href="#api-offercreate">created</a>.]]></desc>
     <argument>
         <name>TransactionType</name>
         <required>true</required>
@@ -1258,6 +1258,33 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <name>Sequence</name>
         <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
     </argument>
+
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+      "tx_json": {
+        "TransactionType": "OfferCancel",
+        "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+        "OfferSequence": "4217"
+      }
+    }
+  ]
+}']]></rpc_example>
+    <ws_example><![CDATA[{
+  "command": "submit",
+  "id": 1234567,
+  "secret": "s3q5ZGX2ScQK2rJ4JATp7rND6X5npG3De8jMbB7tuvm2HAVHcCN",
+  "tx_json": {
+    "TransactionType": "OfferCancel",
+    "Account": "ganVp9o5emfzpwrG5QVUXqMv8AgLcdvySb",
+    "OfferSequence": "4217"
+  }
+}]]></ws_example>
+
+
 </command>
 
 <command>
