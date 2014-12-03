@@ -1093,7 +1093,8 @@ This command is only available via the Websocket API. If you want to use as RPC 
     <subnav>submit</subnav>
     <admin>false</admin>
     <desc><![CDATA[Use to set or clear this account's <strong>regular key</strong>. The regular key can be used to sign transactions instead of the master secret key.
-    This is useful since you can change the regular key if need be without recreating the whole account.]]></desc>
+    This is useful since you can change the regular key if need be without recreating the whole account.
+    A regular key is just a normal key pair that can be generated with <a href="#api-create_keys">create keys</a> or any other Stellar account key generator. The master key can also be disabled using <a href="#api-accountset">AccountSet</a>.]]></desc>
 
     <argument>
         <name>TransactionType</name>
@@ -1113,6 +1114,32 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <name>Sequence</name>
         <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
     </argument>
+
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "sMasterSecretKeyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "tx_json": {
+        "TransactionType": "SetRegularKey",
+        "Account": "gMasterAccountAddressXXXXXXXXXXXXX",
+        "RegularKey": "gNewRegularKeyAddressXXXXXXXXXXXXX"
+      }
+    }
+  ]
+}']]></rpc_example>
+
+    <ws_example><![CDATA[{
+  "command": "submit",
+  "id": 1234567,
+  "secret": "sMasterSecretKeyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "tx_json": {
+    "TransactionType": "SetRegularKey",
+    "Account": "gMasterAccountAddressXXXXXXXXXXXXX",
+    "RegularKey": "gNewRegularKeyAddressXXXXXXXXXXXXX"
+  }
+}]]></ws_example>
 </command>
 
 <command>
