@@ -1291,7 +1291,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
     <name>TrustSet</name>
     <subnav>submit</subnav>
     <admin>false</admin>
-    <desc>Allows this account to hold credit in some currency from some other account. Any account say that it trusts another account for a particular currency up to a particular limit. Once an account trusts another it can hold credit from that other account.</desc>
+    <desc><![CDATA[Creates a trust line allowing the source account account to hold credits from another account up to a specified limit.<br /><br />It is recommended that you set the NoRipple flag (131072). To delete a trust line, set the LimitAmount value to 0 and use the ClearNoRipple (262144) flag (when NoRipple flag is set).]]></desc>
     <argument>
         <name>TransactionType</name>
         <required>true</required>
@@ -1306,7 +1306,7 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <name>LimitAmount</name>
         <required>true</required>
         <type>amount</type>
-        <desc>An amount field specifying the type and amount of credit this account is willing to hold.</desc>
+        <desc><![CDATA[An <a href="#api-amount">amount triplet</a> specifying the currency code, credit amount limit, and credit issuer of this trust line. Transactions that cause the account to hold more credits than specified in this amount will fail. For most use cases, setting an extremely large trust limit such is recommended.]]></desc>
     </argument>
     <argument>
         <name>Fee</name>
@@ -1315,18 +1315,52 @@ This command is only available via the Websocket API. If you want to use as RPC 
     <argument>
         <name>Flags</name>
         <type>int</type>
-        <desc><![CDATA[Allows you to change settings of this line. Possible flags are:
+        <desc><![CDATA[Allows you to change settings of this line. <strong>NoRipple is recommended</strong> and ClearNoRipple flags is required to cancel the trust line. Possible bit flags are:
         <ul>
-        <li>tfSetAuth (0x00010000) | Set lsfLowAuth or lsfHighAuth as appropriate.</li>
-        <li>tfSetNoRipple (x00020000) | Set lsfLowNoRipple or lsfHighNoRipple as appropriate.</li>
-        <li>tfClearNoRipple (x00040000) | Clear lsfLowNoRipple or lsfHighNoRipple as appropriate.</li>
-        </ul>
-           ]]></desc>
+        <li>tfSetAuth (0x00010000; 65536) | Used by a gateway account to authorize a target account to receive credits issued by this account.</li>
+        <li>tfSetNoRipple (0x00020000; 131072) | Sets the NoRipple flag to prevent rippling through this trust line. <strong>Disabling rippling is highly recommended</strong>.</li>
+        <li>tfClearNoRipple (0x00040000; 262144) | Clears NoRipple flag if set and allows deleting of this trust line. <strong>Necessary when deleting a trust line with the NoRipple flag active</strong>.</li>
+        </ul>]]></desc>
     </argument>
     <argument>
         <name>Sequence</name>
         <desc>Set the correct sequence number for the signing account. If the sequence isn't specified it will be set by the server.</desc>
     </argument>
+
+    <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "submit",
+  "params": [
+    {
+      "secret": "s3wmYWJWM1uG3dHfnibU1NHy5isPuAWkBqnZ9KaaSqQVmFAgteM",
+      "tx_json": {
+        "TransactionType": "TrustSet",
+        "Account": "gnwVmV3hDZWsLonhyUzYWReeVYS8AvvohP",
+        "LimitAmount": {
+          "currency": "USD",
+          "value": "1e+19",
+          "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
+        },
+        "Flags": 131072
+      }
+    }
+  ]
+}']]></rpc_example>
+    <ws_example><![CDATA[{
+  "command": "submit",
+  "id": 1234567,
+  "secret": "s3wmYWJWM1uG3dHfnibU1NHy5isPuAWkBqnZ9KaaSqQVmFAgteM",
+  "tx_json": {
+    "TransactionType": "TrustSet",
+    "Account": "gnwVmV3hDZWsLonhyUzYWReeVYS8AvvohP",
+    "LimitAmount": {
+      "currency": "USD",
+      "value": "1e+19",
+      "issuer": "gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B"
+    },
+    "Flags": 131072
+  }
+}]]></ws_example>
 </command>
 
 <command>
