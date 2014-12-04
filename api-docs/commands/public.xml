@@ -352,23 +352,38 @@ Connecting to: 0.0.0.0:39002
     <command>
         <name>transaction_entry</name>
         <admin>false</admin>
-        <desc>Get the details of a particular transaction.</desc>
+        <desc><![CDATA[Get the details of a particular transaction from a hash and a ledger index. It is useful since it is usually faster since it only has to search one ledger. However, it only works if you already know that the ledger index of this confirmed transaction. To search all ledgers, use the <a href="#api-tx">tx</a> command instead.]]></desc>
 
         <argument>
             <name>tx_hash</name>
             <required>true</required>
+            <type>hash</type>
             <desc>The hash of the transaction you are interested in.</desc>
         </argument>
         <argument>
             <name>ledger_index</name>
+            <required>true</required>
             <type>int</type>
-            <desc>If you only want to look for the transaction in a particular ledger.</desc>
+            <desc><![CDATA[Ledger index in which to search for the transaction. If you do not absolutely know it, use the <a href="#api-tx">tx</a> command instead.]]></desc>
         </argument>
 
-
-        <cli_example><![CDATA[]]></cli_example>
-        <rpc_example><![CDATA[]]></rpc_example>
-        <ws_example><![CDATA[]]></ws_example>
+        <rpc_example><![CDATA[curl -X POST https://test.stellar.org:9002 -d '
+{
+  "method": "transaction_entry",
+  "params": [
+    {
+      "tx_hash": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC",
+      "ledger_index": 18518
+    }
+  ]
+}'
+]]></rpc_example>
+        <ws_example><![CDATA[{
+  "command": "transaction_entry",
+  "id": 1234567,
+  "tx_hash": "002F9E7ACA1F5A00CE8288B2E07DB3A363F37D9BD12B4E71CAAFC0F7BC9746AC",
+  "ledger_index": 18518
+}]]></ws_example>
     </command>
     
     <command>
