@@ -41,6 +41,32 @@
     </command>
 
     <command>
+        <name>log_level</name>
+        <admin>true</admin>
+        <desc><![CDATA[Sets the log level of how much information should be shown. Pick from the following:
+        <ul>
+            <li>trace</li>
+            <li>debug</li>
+            <li>info</li>
+            <li>warning</li>
+            <li>error</li>
+            <li>fatal</li>
+        </ul>]]></desc>
+
+        <cli_example><![CDATA[> stellard log_level debug
+
+Loading: "/root/.config/stellar/stellard.cfg"
+Connecting to: 0.0.0.0:9002
+{
+   "result" : {
+      "status" : "success"
+   }
+}
+]]></cli_example>
+    </command>
+
+
+    <command>
         <name>peers</name>
         <admin>true</admin>
         <desc>Gets a list of peers this server is connected to.</desc>
