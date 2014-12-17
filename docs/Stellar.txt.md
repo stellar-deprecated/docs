@@ -2,7 +2,7 @@ Stellar.txt
 ===========
 ## Introduction
 
-Any web site can publish Stellar network information. This is useful to announce your validation key, your federation server, peers you are running, other validators in your UNL, if you are a gateway etc.
+The Stellar.txt file is used to provide the internet information about your domain’s Stellar integration. Any web site can publish Stellar network information. This is useful to announce your validation key, your federation server, peers you are running, other validators in your UNL, if you are a gateway etc.
 
 ### Publishing stellar.txt
 
@@ -37,7 +37,7 @@ For other webservers, see: http://enable-cors.org/server.html
 
 ### Testing CORS
 
-1. Run a curl command in your terminal similar to this (replace stellar.stellar.org with where your stellar.txt file is hosted): 
+1. Run a curl command in your terminal similar to this (replace stellar.stellar.org with where your stellar.txt file is hosted):
 
   ```bash
   curl --head https://stellar.stellar.org/stellar.txt
@@ -67,13 +67,13 @@ Undefined sections are reserved.
 No escapes are currently defined.
 
 
-#   A list of accounts that are controlled by this domain.  
+#   A list of accounts that are controlled by this domain.
 [accounts]
 gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B
 
 #   A validation public key that is declared
 #   to be used by this domain for validating ledgers and that it is the
-#   authorized signature for the domain. 
+#   authorized signature for the domain.
 [validation_public_key]
 n3gVwaSDBtVi4Xd2XBh7rvcwis4uBabu5aNn7WKtEqazJbLHR9n
 
@@ -96,15 +96,13 @@ reddit.com
 n3gVwaSDBtVi4Xd2XBh7rvcwis4uBabu5aNn7WKtEqazJbLHR9n
 n3gVwaSDBtVi4Xd2XBh7rvcwis4uBabu5aNn7WKtEqazJbLHR9n John Doe
 
-
+#   The endpoint which clients should query to resolve stellar addresses
+#   for users on your domain.
 [federation_url]
 https://api.stellar.org/federation
 
-
-[reverse_federation_url]
-https://api.stellar.org/reverseFederation
-
 #   This section allows a gateway to declare currencies it currently issues.
+#   [currency] [issuing address]
 [currencies]
 USD gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B
 BTC gBAde4mkDijZatAdNhBzCsuC7GP4MzhA3B

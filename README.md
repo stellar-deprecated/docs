@@ -3,17 +3,19 @@ Stellar Docs
 
 This repository is home to the Stellar documentation.
 
-## docs
+## Gateway Docs
+* [Introduction to Stellar Gateways](https://github.com/stellar/docs/blob/master/docs/gateway-introduction.md)
+* [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
+* [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/transaction-robustness.md)
+* [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/stellar.txt.md)
+* [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
+
+## Other Docs
 The docs folder contains a bunch of guides intended to be read by developers. These docs may occasionally contain example API calls.
-* [Introduction to Stellar Gateways](https://github.com/stellar/docs/blob/master/docs/Introduction-Gateways.md)
 * [Adding Multiple Currencies on the Stellar client](docs/Adding-Multiple-Currencies.md)
 * [Gateways supporting multi-currency on the Stellar client](docs/gateway-list.md)
-* [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
-* [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
-* [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/Transaction-Robustness.md)
-* [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/Stellar.txt.md)
 
-## api-docs
+## Api Docs
 The api-docs currently contains docs that are used on [https://www.stellar.org/api/](https://www.stellar.org/api/). `convert.js` is used to compile all the XML into a HTML page (`api-docs.html`). It will be refactored in the future to use Markdown and be human readable.
 
 ## Contributing
