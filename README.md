@@ -6,6 +6,7 @@ This repository is home to the Stellar documentation.
 ## Gateway Docs
 * [Introduction to Stellar Gateways](https://github.com/stellar/docs/blob/master/docs/gateway-introduction.md)
 * [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
+* [Cold Wallets and Hot Wallets](https://github.com/stellar/docs/blob/master/docs/hot-wallets-cold-wallets.md)
 * [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/transaction-robustness.md)
 * [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/stellar.txt.md)
 * [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
