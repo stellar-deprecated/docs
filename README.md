@@ -8,7 +8,7 @@ This repository is home to the Stellar documentation.
 * [Destination Tags](https://github.com/stellar/docs/blob/master/docs/Destination-Tags.md)
 * [Cold Wallets and Hot Wallets](https://github.com/stellar/docs/blob/master/docs/hot-wallets-cold-wallets.md)
 * [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/Transaction-Robustness.md)
-* [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/stellar.txt.md)
+* [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/Stellar.txt.md)
 * [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
 
 ## Other Docs
