@@ -385,7 +385,7 @@ Connecting to: 0.0.0.0:39002
   "ledger_index": 18518
 }]]></ws_example>
     </command>
-    
+
     <command>
         <name>account_tx</name>
         <admin>false</admin>
@@ -1034,6 +1034,11 @@ This command is only available via the Websocket API. If you want to use as RPC 
         <name>InflationDest</name>
         <type>address</type>
         <desc><![CDATA[Change the inflation destination for this account. ]]></desc>
+    </argument>
+    <argument>
+        <name>SetAuthKey</name>
+        <type>address</type>
+        <desc><![CDATA[Set an account whose secret key can be used to sign "SetAuth" <a href="#TrustSet">TrustSet</a> transactions. This is useful when a Gateway's issuing address key is in cold storage, and can't be used to authorize accounts to hold their credits. Instead, a delegated account can be set to sign SetAuth transactions and stored on the server, without having to store the issuing address key on the server.]]></desc>
     </argument>
     <argument>
         <name>TransferRate</name>
