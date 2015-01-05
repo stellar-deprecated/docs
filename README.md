@@ -9,7 +9,9 @@ This repository is home to the Stellar documentation.
 * [Cold Wallets and Hot Wallets](https://github.com/stellar/docs/blob/master/docs/hot-wallets-cold-wallets.md)
 * [Transaction Robustness](https://github.com/stellar/docs/blob/master/docs/Transaction-Robustness.md)
 * [Stellar.txt](https://github.com/stellar/docs/blob/master/docs/Stellar.txt.md)
+* [Federation](https://github.com/stellar/docs/blob/master/docs/federation.md)
 * [Gateway Implementation Guide](https://github.com/stellar/docs/blob/master/docs/Gateway-Guide.md)
+
 
 ## Other Docs
 The docs folder contains a bunch of guides intended to be read by developers. These docs may occasionally contain example API calls.
