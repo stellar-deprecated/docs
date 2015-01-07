@@ -72,12 +72,12 @@ curl -X POST https://live.stellar.org:9002 -d '
 
 Users can send a payment with a destination tag in several ways.
 
-An address with a destination tag is a normal address appended with `&dt=` and then the tag.
+An address with a destination tag is a normal address appended with `?dt=` and then the tag.
 
 For example, an address with a destination tag of `215923937` would look like this:
 <!-- Ha .. using the C syntax highlighter makes it look nice :D -->
 ```c
-gHQWDV1qa55xQmGRUEdYhuYP14yJnDtGkS&dt=215923937
+gHQWDV1qa55xQmGRUEdYhuYP14yJnDtGkS?dt=215923937
 ```
 
 Some clients will also show a prompt to enter a destination tag if the recipient has enabled requiring of destination tags.
