@@ -1,7 +1,7 @@
 Stellar Gateway Implementation Guide
 ====================================
 
-This is an implementation guide for those who want to set up a gateway on the Stellar network. It assumes that the reader already understands how gateways work. To learn more about the concept of gateways, read [Introduction to Stellar Gateways](Introduction-Gateways.md). This guide will also be code heavy as it contains specific commands necessary to running a gateway.
+This is an implementation guide for those who want to set up a gateway on the Stellar network. It assumes that the reader already understands how gateways work. To learn more about the concept of gateways, read [Introduction to Stellar Gateways](gateway-introduction.md). This guide will also be code heavy as it contains specific commands necessary to running a gateway.
 
 This guide might not cover everything necessary for running a gateway, but gateway operators should understand everything in this document.
 
