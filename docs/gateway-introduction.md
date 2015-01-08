@@ -6,8 +6,5 @@ Gateways are an integral part of the Stellar ecosystem. They accept currency dep
 ## What is a Credit?
 There are two types of assets on Stellar: stellars (the native currency) and credits. Stellars are native, digital assets in themselves, whereas credits represent an external asset (currency) outside of the stellar network. Gateways are issuers of credits; anyone holding a particular credit issued by the Gateway can redeem the credit for the external asset by giving the credit back to the Gateway. In this regard, credits on Stellar are simply a “currency/issuer pair”. They are only worth what the issuer (Gateway) will redeem them for, and credits can be transferred or exchanged on the Stellar network between accounts that accept (trust) the issuing address of the credit. 
 
-## What is Trust?
-
-
 #### Poker Chip Analogy
 As an analogy, credits can be thought of as poker chips, and the casino which issued these poker chips is the issuer (Gateway). A customer gives the casino a currency that it supports (customer’s fiat money -> Gateway), and in return the casino gives the customer that many poker chips (Gateway Stellar account -> customer’s Stellar account). These poker chips are marked with 1) the currency (and amount of the currency) they represent and 2) the casino’s name which issued the chips. In Stellar, credits are the same. Credits are a currency/issuer pair with an associated amount, represented in the protocol as an amount object. In Stellar, the issuer (casino name) is a Stellar address controlled by the Gateway. The customer holding poker chips can go back to the casino which issued them at anytime to redeem them for cash.
