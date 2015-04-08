@@ -4,3 +4,4 @@ This is a community-contributed list of gateways. The Stellar Development Founda
 * [coinexgateway.com](https://coinexgateway.com)
 * [ripplefox](https://ripplefox.com/)
 * [xnftrading](https://xnftrading.com)
+* [dividend rippler](https://dividendrippler.com/)
