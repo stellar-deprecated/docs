@@ -24,6 +24,7 @@ ask contributors to follow so that we can merge your changes quickly.
 ## Submitting Changes
 
 * [Sign the Contributor License Agreement](https://docs.google.com/forms/d/1g7EF6PERciwn7zfmfke5Sir2n10yddGGSXyZsq98tVY/viewform?usp=send_form)
+* All content, comments, and pull requests must follow the [Stellar Community Guidelines](https://www.stellar.org/community-guidelines/). 
 * Push your changes to a topic branch in your fork of the repository.
 * Submit a pull request to the [stellar-wallet-js-sdk repository](https://github.com/stellar/stellar-wallet-js-sdk) in the Stellar organization.
  * Include a descriptive [commit message](https://github.com/erlang/otp/wiki/Writing-good-commit-messages).
