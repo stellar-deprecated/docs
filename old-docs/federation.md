@@ -1,7 +1,3 @@
----
-id: federation
-title: Federation
----
 # Federation Overview
 
 Stellar "federation" is a protocol which maps email style addressess to a stellar address. It's a way for Stellar software to resolve bob@yourdomain.com into gDSSa75HPagWcvQmwH7D51dT5DPmvsKL4q. Federated addresses provide an easy way for your users to share their Stellar address, using a syntax which interoperates across different domains supporting Stellar.
