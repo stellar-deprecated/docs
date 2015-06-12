@@ -4,10 +4,10 @@ title: Federation
 ---
 # Federation Overview
 
-Stellar "federation" is a protocol which maps email style addressess to a stellar address. It's a way for Stellar software to resolve bob@yourdomain.com into gDSSa75HPagWcvQmwH7D51dT5DPmvsKL4q. Federated addresses provide an easy way for your users to share their Stellar address, using a syntax which interoperates across different domains supporting Stellar.
+Stellar "federation" is a protocol which maps email style addressess to a stellar address. It's a way for Stellar software to resolve bob*yourdomain.com into gDSSa75HPagWcvQmwH7D51dT5DPmvsKL4q. Federated addresses provide an easy way for your users to share their Stellar address, using a syntax which interoperates across different domains supporting Stellar.
 
 Additionally, federation can support destination tags. Just return the user's destination tag appended to the address in this format:
-`<address>?dt=tag`. Example: bob@yourdomain.com -> gDSSa75HPagWcvQmwH7D51dT5DPmvsKL4q?dt=123.
+`<address>?dt=tag`. Example: bob*yourdomain.com -> gDSSa75HPagWcvQmwH7D51dT5DPmvsKL4q?dt=123.
 
 # Supporting Federation
 
@@ -28,11 +28,13 @@ Add the following to the stellar.txt file:
 
 #### Step 3: Implement federation url HTTP endpoint
 
-The federation URL specified in your stellar.txt file should accept an HTTP GET request, with a query parameter “destination” to specify the username. It should return a JSON response body of this form:
+The federation URL specified in your stellar.txt file should accept an HTTP GET request, with a query parameter “destination” to specify the username and "domain" set to the domain of the address. It should return a JSON response body of this form:
 
+`
 federation_json: {
   destination: username,
   domain: domain,
   type: "federation_record",
   destination_address: address
 }
+`
