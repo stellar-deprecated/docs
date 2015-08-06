@@ -11,7 +11,7 @@ This repository is home to the Stellar documentation.
 ## Other Docs
 
 The docs folder contains guides intended to be read by developers. These docs may occasionally contain example API calls.
-* [Client Tutorial](https://github.com/stellar/docs/blob/master/docs/how-to-build-a-client.md) - explains how to build a Stlelar web client app from beginning to end.
+* [Client Tutorial](https://github.com/stellar/docs/blob/master/docs/how-to-build-a-client.md) - explains how to build a Stellar web client app from beginning to end.
 * The [old-docs folder](https://github.com/stellar/docs/tree/master/old-docs) contains unmaintained or deprecated documents.
 
 ## API Docs
