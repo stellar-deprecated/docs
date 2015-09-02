@@ -2,7 +2,7 @@
 
 For a description of how operations work in Stellar, see [Operations.md](./operations.md). 
 
-For the protocol specification, see [/src/xdr/stellar-transactions.x](/src/xdr/stellar-transactions.x).
+For the protocol specification, see [stellar-transactions.x](https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-transaction.x).
 
 - [Create Account](#create-account)
 - [Payment](#payment)
@@ -17,7 +17,7 @@ For the protocol specification, see [/src/xdr/stellar-transactions.x](/src/xdr/s
 
 
 ## Create Account
-Creates and funds a new account with the specified starting balance.
+This operation creates and funds a new account with the specified starting balance.
 
 Threshold: Medium
 
@@ -36,9 +36,9 @@ Possible errors:
 | Error | Code | Description |
 | ----- | ---- | ------|
 |CREATE_ACCOUNT_MALFORMED| -1| The `destination` is invalid.|
-|CREATE_ACCOUNT_UNDERFUNDED| -2| The source account performing the command does not have enough funds to give `destination` the `startingBalance` amount of XLM and/or maintain the minimum XLM reserve.  All operations are performed by source accounts, even creating new accounts.|
+|CREATE_ACCOUNT_UNDERFUNDED| -2| The source account performing the command does not have enough funds to give `destination` the `starting balance` amount of XLM and still maintain its minimum XLM reserve.  |
 |CREATE_ACCOUNT_LOW_RESERVE| -3| This operation would create an account with fewer than the minimum number of XLM an account must hold.|
-|CREATE_ACCOUNT_ALREADY_EXIST| -4| The `destination` already exists.|
+|CREATE_ACCOUNT_ALREADY_EXIST| -4| The `destination` account already exists.|
 
 
  
@@ -66,13 +66,13 @@ Possible errors:
 |PAYMENT_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
 |PAYMENT_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment.|
 |PAYMENT_NO_DESTINATION| -5| The receiving account does not exist.|
-|PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
+|PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more information, see the [assets doc](./assets.md).|
 |PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset.|
 |PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
 
 
 ## Path Payment
-Sends an amount in a specific asset to a destination account through a path of offers. This allows the asset sent (e.g., 450 STR) to be different from the asset received (e.g, 6 BTC).
+Sends an amount in a specific asset to a destination account through a path of offers. This allows the asset sent (e.g., 450 XLM) to be different from the asset received (e.g, 6 BTC).
 
 Threshold: Medium
 
@@ -82,12 +82,12 @@ Parameters:
 
 |Parameters| Type| Description|
 | --- | --- | --- |
-|Send asset| Asset| The asset deducted from the sender's account.|
+|Send asset| asset| The asset deducted from the sender's account.|
 |Send max| integer| The maximum amount of `send asset` to deduct (excluding fees).|
 |Destination| account ID| Account ID of the recipient.|
 |Destination asset| asset| The asset the destination account receives.|
 |Destination amount| integer| The amount of `destination asset` the destination account receives.|
-|Path| list of assets| The assets (other than `send asset` and `destination asset`) involved in the offers the path takes. For example, if you can only find a path from USD to EUR through XLM and BTC, the `path` field contains XLM and BTC.|
+|Path| list of assets| The assets (other than `send asset` and `destination asset`) involved in the offers the path takes. For example, if you can only find a path from USD to EUR through XLM and BTC, the path would be USD -> XLM -> BTC -> EUR and the `path` field would contain XLM and BTC.|
 
 Possible errors:
 
@@ -101,8 +101,8 @@ Possible errors:
 |PATH_PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
 |PATH_PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
 |PATH_PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
-|PATH_PAYMENT_TOO_FEW_OFFERS| -9| There is not a path of offers connecting the `sendAsset` and `destAsset`.  Stellar only considers paths of length 5 or shorter.|
-|PATH_PAYMENT_OVER_SENDMAX| -10| The paths that could send `destAmount` of `destAsset` would exceed `sendMax`.|
+|PATH_PAYMENT_TOO_FEW_OFFERS| -9| There is not a path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
+|PATH_PAYMENT_OVER_SENDMAX| -10| The paths that could send `destination amount` of `destintaion asset` would exceed `send max`.|
 
 
 
@@ -118,7 +118,7 @@ Result: `ManageOfferResult`
 | Selling| asset| Asset the offer creator is selling. |
 | Buying| asset| Asset the offer creator is buying. |
 | Amount| integer| Amount of `selling` being sold. |
-| Price| price| Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be 0.1666.|
+| Price| {numerator, denominator} | Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}.|
 | Offer ID| unsigned integer| The ID of the offer.|
 
 Possible errors:
@@ -154,7 +154,7 @@ Result: `CreatePassiveOfferResult`
 |Selling| asset| The asset you would like to sell. |
 |Buying| asset| The asset you would like to buy.|
 |Amount| integer| Amount of `selling` being sold.|
-|Price| price| Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be 0.1666. |
+|Price| {numerator, denominator}| Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}. |
 
 Possible errors:
 
@@ -177,7 +177,7 @@ Possible errors:
 ## Set Options
 This operation sets the options for an account.  
 
-For more information on the signing options, please refer to the [multisig doc](./multisig.md).
+For more information on the signing options, please refer to the [multisig doc](./multi-sig.md).
 
 When updating signers or other thresholds, the threshold of this operation is high.
 
@@ -237,7 +237,7 @@ Possible errors:
 
 
 ## Allow Trust
-Updates the `authorized` flag of an existing trustline. This can only be called by the issuer of a trustline's asset.
+Updates the `authorized` flag of an existing trustline. This can only be called by the issuer of a trustline's [asset](./assets.md).
 
 The issuer can only clear the `authorized` flag if the issuer has the `AUTH_REVOCABLE_FLAG` set. Otherwise, the issuer can only set the `authorized` flag.
 
@@ -248,7 +248,7 @@ Result: `AllowTrustResult`
 |Parameters| Type| Description|
 | --- | --- | --- |
 |Trustor| account ID| The account of the recipient of the trustline.|
-|Type| asset type| The asset of the trustline. For example, if a gateway issues a trustline for 200 USD, the `type` is USD.|
+|Type| asset | The asset of the trustline the source account is authorizing. For example, if a gateway wants to allow another account to hold its USD credit, the `type` is USD.|
 |Authorize| boolean| Flag indicating whether the trustline is authorized.|
 
 Possible errors:
@@ -291,7 +291,7 @@ Possible errors:
 
 | Error | Code | Description |
 | ----- | ---- | ------|
-|INFLATION_NOT_TIME| -1| Inflation only runs once a year. This operation will fail because it is not time for a new inflation round yet.|
+|INFLATION_NOT_TIME| -1| Inflation only runs once a week. This failure means it is not time for a new inflation round yet.|
 
 
 
