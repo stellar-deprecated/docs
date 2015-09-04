@@ -1,6 +1,6 @@
 # Transactions
 
-Transactions are commands that modify the ledger state. Among other things, Transactions are used to send payments, enter orders into the [distributed exchange](./distributed_exchange.md), change settings on accounts, and authorize another account to hold your currency. If you think of the ledger as a database, then transactions are SQL commands. 
+Transactions are commands that modify the ledger state. Among other things, Transactions are used to send payments, enter orders into the [distributed exchange](./exchange.md), change settings on accounts, and authorize another account to hold your currency. If you think of the ledger as a database, then transactions are SQL commands. 
 
 
 Each transaction has the following attributes:
@@ -14,7 +14,7 @@ Note that if several transactions with the same source account make it into the 
 
 - **List of operations**: Transactions contain an arbitrary list of [operations](./operations.md) inside them. Typically there is just one operation, but it's possible to have multiple.  Operations are executed in order as one ACID transaction, meaning that either all operations are applied or none are.  If any operation fails, the whole transaction fails. If operations are on accounts other than the source account, then they require signatures of the accounts in question.
 
-- **List of signatures**: Up to 20 signatures can be attached to a transaction. See [Multisig] (./multisig.md) for more information. A transaction is considered invalid if it includes signatures that aren't needed to authorize the transaction—superfluous signatures aren't allowed.
+- **List of signatures**: Up to 20 signatures can be attached to a transaction. See [Multi-sig] (./multi-sig.md) for more information. A transaction is considered invalid if it includes signatures that aren't needed to authorize the transactionâ€”superfluous signatures aren't allowed.
 
 - **Memo**: *optional* A 32-byte value field that can be used to hold a hash. It is the responsibility of the client to interpret this value.
 
@@ -26,13 +26,13 @@ Between ledger closings, all the nodes in the network are collecting transaction
 
 ##Life cycle
 
-1. **Creation**: The user creates a transaction, fills out all the fields, gives it the correct sequence number, adds whatever operations it wants, etc. Try it with [js-stellar-lib](http://stellar.org/developers/learn/guides/js-stellar-lib).
+1. **Creation**: The user creates a transaction, fills out all the fields, gives it the correct sequence number, adds whatever operations it wants, etc. Try it with [js-stellar-sdk](http://stellar.org/developers/learn/guides/js-stellar-sdk).
 
-2. **Signing**: Once the transaction is filled out, all the needed signatures must be collected and added to the transaction envelope. Commonly it's just the signature of the account doing the transaction, but more complicated setups can require collecting signatures from multiple parties. See [multisig](./multisig.md).
+2. **Signing**: Once the transaction is filled out, all the needed signatures must be collected and added to the transaction envelope. Commonly it's just the signature of the account doing the transaction, but more complicated setups can require collecting signatures from multiple parties. See [multi-sig](./multi-sig.md).
 
 3. **Submitting**: After signing, the transaction should be valid and can now be submitted to the Stellar network. Transactions are typically submitted using [horizon](http://stellar.org/developers/ref/horizon/reference/transactions-create), but you can also submit the transaction directly to an instance of [stellar-core](http://stellar.org/developers/learn/guides/stellar-core/commands#tx).
 
-4. **Propagating**: Once stellar-core receives a transaction, either given to it by a user or another stellar-core, it does preliminary checks to see if the transaction is valid. Among other checks, it makes sure that the transaction is correctly formed and the source account has enough to cover the transaction fee. Stellar-core doesn't check things that require inspecting the state of the ledger beyond looking up the source account—e.g., that the destination account to which the transaction is trying to send exists, that the account has enough of this asset to sell, that it's a valid path. 
+4. **Propagating**: Once stellar-core receives a transaction, either given to it by a user or another stellar-core, it does preliminary checks to see if the transaction is valid. Among other checks, it makes sure that the transaction is correctly formed and the source account has enough to cover the transaction fee. Stellar-core doesn't check things that require inspecting the state of the ledger beyond looking up the source accountâ€”e.g., that the destination account to which the transaction is trying to send exists, that the account has enough of this asset to sell, that it's a valid path. 
 
 If the preliminary checks pass, then stellar-core propagates the transaction to all the other servers to which it's connected. In this way, a valid transaction is flooded to the whole Stellar network.
 5. **Including in a transaction set**: When it's time to close the ledger, stellar-core takes all the transactions it has heard about since last ledger close and collects them into a transaction set. If it hears about any incoming transactions now, it puts them aside for next ledger close. 
