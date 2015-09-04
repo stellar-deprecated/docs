@@ -39,7 +39,7 @@ There are two places in a [transaction life cycle](./transactions.md#life-cycle)
 
 The validity check only looks at the state of the source account. It ensures that: 
 1) the outer transaction has enough signatures for the source account of the operation to meet the threshold for that operation. 
-2) Operations-specific validity checks pass. These checks are ones that would stay true regardless of the ledger state—for example, are the parameters within the expected bounds? Checks that depend on ledger state don't happen until apply time—for example, a send operation won't check if you have enough balance to send until apply time. 
+2) Operations-specific validity checks pass. These checks are ones that would stay true regardless of the ledger stateâ€”for example, are the parameters within the expected bounds? Checks that depend on ledger state don't happen until apply timeâ€”for example, a send operation won't check if you have enough balance to send until apply time. 
 
 Once a transaction passes this first validity check, it is propagated to the network and eventually included in a transaction set. As part of a transaction set, the transaction is applied to the ledger. At that point a fee is taken from the source account. Operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails and the effects of previous operations are rolled back. 
 
@@ -87,7 +87,7 @@ Other, more complex ways of submitting this transaction are possible, but signin
 
    * Each machine gets a private/key pair associated with it. Let's say there are only 3 machines: Machine_1, Machine_2, and Machine_3. (In practice, there can be as many machines as the gateway wants.)
    * All three machines are added as Signers to the gateway's hot wallet account "hotWallet", with 
-     a weight that gives them medium rights. The worker machines can then sign on behalf of the hot wallet account. (For more on signing, please refer to the [multisig documentation](multisig.md).)
+     a weight that gives them medium rights. The worker machines can then sign on behalf of the hot wallet account. (For more on signing, please refer to the [multisig documentation](multi-sig.md).)
    * When a machine (say Machine_2) wants to submit a transaction to the network, it constructs the transaction:
       * source=_public key for Machine_2_
       * sequence number=_sequence number of Machine_2's account_
