@@ -11,6 +11,8 @@ stellar-core accepts a limited amount of [commands](https://github.com/stellar/s
 
 stellar-core writes its state out to a SQL DB that other applications can read to follow changes to the global [ledger](./ledger.md)
 
+It can also be configured to send historical data to a `history store`. Every stellar-core needs to use *some* history store in order to catch up to the network but not every stellar-core needs to write out its own history store.
+
 ## [Horizon](https://github.com/stellar/horizon)
 Horizon is the client facing API server for the Stellar ecosystem. It acts as the interface between stellar-core and applications that want to access the Stellar network. It allows you to submit transactions to the network, check the status of accounts, subscribe to event streams, etc.
 
