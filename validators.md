@@ -8,3 +8,13 @@ If you would like to list your validating node here please make a pull request.
  List of nodes:<br>
 
 ------
+ Name: strllar.org<br>
+ Contact: lab@strllar.org<br>
+ 
+ Description:<br>
+ Nice to be in you quorum slice.<br>
+ Peer ID: GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3<br>
+ Validator ID: GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I<br>
+ 
+ List of nodes:<br>
+ chiyou.strllar.org
