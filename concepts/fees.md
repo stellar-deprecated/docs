@@ -7,7 +7,7 @@ It’s the responsibility of the originator of the transaction to craft a transa
 The entire Stellar network decides during consensus what the minimum **base fee** should be. 
 This base fee is per operation. Therefore, the total minimum fee for a given transaction is simply the base fee multiplied by the number of operations that transaction has.
 
-Currently the base fee is set to 1000 stroops (0.001 XLM).
+Currently the base fee is set to 10 stroops (0.00001 XLM).
 
 ## Surge pricing
 Each Stellar node by default limits the number of transactions that it will include in its nominated transaction set at ledger close. (If the network decides on a larger transaction set, a node will still apply it.) 
