@@ -1,8 +1,0 @@
-{
-    "name": "stellar-docs",
-    "version": "0.0.1",
-    "dependencies": {
-        "mustache": "*",
-        "xml2js": "*"
-    }
-}

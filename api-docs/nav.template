@@ -1,7 +1,0 @@
-<li>
-    <a href="#api-{{link}}">{{name}}</a>{{#sublist.0}}
-    <ul>{{/sublist.0}}{{#sublist}}
-    <li><a href="#api-{{linkname}}">{{name}}</a></li>{{/sublist}}{{#sublist.0}}
-    </ul>{{/sublist.0}}
-</li>
-
