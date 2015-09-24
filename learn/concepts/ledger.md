@@ -12,7 +12,7 @@ We define the sequence number of a ledger recursively:
 * Ledger directly following a ledger with sequence number n has sequence number n+1
 
 ## Ledger header 
-Every ledger has a **ledger header**. This header has references to the actual data within the ledger as well as a reference to the previous ledger. References here are cryptographic hashes of the content being referenced—the hashes behave like pointers in typical data structures but with added security guarantees.
+Every ledger has a **ledger header**. This header has references to the actual data within the ledger as well as a reference to the previous ledger. References here are cryptographic hashes of the content being referencedï¿½the hashes behave like pointers in typical data structures but with added security guarantees.
 
 You can think of the historical ledger chain as a linked list of ledger headers:
 
@@ -41,9 +41,9 @@ Every ledger header has the following fields:
 
 - **Ledger sequence**: The sequence number of this ledger.
  
-- **Total coins**: Total number of lumens in existence. This is denominated in stroops, 1/1000000th of a lumen. (Stroops are the smallest divisible unit of a lumen.)
+- **Total coins**: Total number of lumens in existence. This is denominated in stroops, 1/10,000,000th of a lumen. (Stroops are the smallest divisible unit of a lumen.)
 
-- **Fee pool**: Number of lumens that have been paid in fees. This number will be added to the inflation pool and reset to 0 the next time inflation runs. The fee pool is denominated in stroops, 1/1000000th of a lumen. (Stroops are the smallest divisible unit of a lumen.)
+- **Fee pool**: Number of lumens that have been paid in fees. This number will be added to the inflation pool and reset to 0 the next time inflation runs. The fee pool is denominated in stroops, 1/10,000,000th of a lumen. (Stroops are the smallest divisible unit of a lumen.)
 
 - **Inflation sequence**: Number of times inflation has been run.
  
@@ -70,7 +70,7 @@ account. For details, see [fees and minimum balance] (/concepts/fees.md).
 ## Trustline entry
 [Trustlines] (/concepts/assets.md) are lines of credit the account has given a particular issuer in a specific currency.
 
-Trustline entries define the rules around the use of this currency. Rules can be defined by the user—e.g., setting a balance limit to limit risk—or by the issuer—e.g., an authorized flag.
+Trustline entries define the rules around the use of this currency. Rules can be defined by the userï¿½e.g., setting a balance limit to limit riskï¿½or by the issuerï¿½e.g., an authorized flag.
 
 ## Offer entry
 Offers are entries that an account creates in the orderbook. They are a way to automate simple trading inside the Stellar network. For more on offers, refer to the [distributed exchange documentation](/concepts/exchange.md).

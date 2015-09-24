@@ -4,7 +4,10 @@ title: How to Build a Client
 category: Guides
 ---
 
-In this tutorial, we'll walk through the process of building a Stellar web client application from beginning to end. At each step, we'll focus on a key building block for the application, provide code examples, and explain concepts. If you follow along and write the code, at the end of the tutorial, you'll have built a real, working Stellar application. By the end of the tutorial, you'll have written tools to accomplish the following:
+In this tutorial, we'll walk through the process of building a Stellar web client application from beginning to end. At
+each step, we'll focus on a key building block for the application, provide code examples, and explain concepts. If you
+follow along and write the code, at the end of the tutorial, you'll have built a real, working Stellar application. By
+the end of the tutorial, you'll have written tools to accomplish the following:
 
 * Create and fund a Stellar account
 * View your balances
@@ -14,13 +17,15 @@ In this tutorial, we'll walk through the process of building a Stellar web clien
 
 > Follow along in a JSFiddle here: <a href="https://jsfiddle.net/stellardev/3tnyaf0k/">https://jsfiddle.net/stellardev/3tnyaf0k/</a>
 
-We’ll be using the test network to build the tutorials. The test network is equivalent to the real Stellar network: there are accounts, trust lines, transactions can be made...the only difference is the nodes running the network are all controlled by Stellar, and the ledger can be reset at any time. The applications you build on the test net will work exactly the same on the live Stellar network.
+Weï¿½ll be using the test network to build the tutorials. The test network is equivalent to the real Stellar network: there are accounts, trust lines, transactions can be made...the only difference is the nodes running the network are all controlled by Stellar, and the ledger can be reset at any time. The applications you build on the test net will work exactly the same on the live Stellar network.
 
-In this tutorial we'll be using the [js-stellar-sdk](https://github.com/stellar/js-stellar-sdk) javascript library. This library provides convienent abstractions for building transactions and managing accounts, and interacts with the Stellar network through the [Horizon](https://github.com/stellar/horizon) API server.
+In this tutorial we'll be using the [js-stellar-sdk](https://github.com/stellar/js-stellar-sdk) javascript library. This
+library provides convenient abstractions for building transactions and managing accounts, and interacts with the Stellar network through the [Horizon](https://github.com/stellar/horizon) API server.
 
 # Create a Stellar Address
 
-To create an account in the ledger, you first need to create a valid keypair, which is a Stellar address and its corresponding private key. Stellar accounts are addressed using the public half of an ED25519 public/private keypair. Using ```js-stellar-sdk```, let's create a new keypair.
+To create an account in the ledger, you first need to create a valid keypair, which is a Stellar address and its corresponding
+private key. Stellar accounts are addressed using the public half of an ED25519 public/private keypair. Using ```js-stellar-sdk```, let's create a new keypair.
 
 {% highlight javascript %}
 function generateKeypair() {
@@ -32,9 +37,12 @@ function generateKeypair() {
 }
 {% endhighlight %}
 
-Great! We now have a javascript function that will generate random, valid Stellar keypairs. To actually create the account in the ledger, an existing account needs to send a transaction to the network that contains a [CreateAccount](https://github.com/stellar/docs/blob/master/concepts/list-of-operations.md#create-account) operation with your new address as the destination account.
+Great! We now have a javascript function that will generate random, valid Stellar keypairs. To actually create the account
+in the ledger, an existing account needs to send a transaction to the network that contains a [CreateAccount](https://github.com/stellar/docs/blob/master/concepts/list-of-operations.md#create-account)
+operation with your new address as the destination account.
 
-On the testnet, we've set up an account called "FriendBot" which will submit the `CreateAccount` operation for any new address and send it 1000 XLM. There's a convenience function in js-stellar-sdk for FriendBot in the Server class. Let's write a function that takes a Stellar address and funds it through the friendbot endpoint.
+On the testnet, we've set up an account called "FriendBot" which will submit the `CreateAccount` operation for any new address
+and send it 10000 XLM. There's a convenience function in js-stellar-sdk for FriendBot in the Server class. Let's write a function that takes a Stellar address and funds it through the friendbot endpoint.
 
 {% highlight javascript %}
 // we first need to create a connection to the Server
@@ -69,7 +77,7 @@ function getBalance(address) {
 }
 {% endhighlight %}
 
-Here, we're calling the /accounts endpoint with the given address. This returns an accounts object, which contains the balances on the account. If you just created the account, this should only contain the native currency, 1000 XLM.
+Here, we're calling the /accounts endpoint with the given address. This returns an accounts object, which contains the balances on the account. If you just created the account, this should only contain the native currency, 10000 XLM.
 
 # Send a Simple Payment
 
@@ -128,7 +136,7 @@ Again, we first load the account object through Server.loadAccount() to get the 
 
 # Creating offers
 
-Once your account has a Trustline with and holds credits from another account, it can create offers on the disributed exchange, to buy and sell those credits for 'XLM' or other credits. An offer buys one currency and sells another. Let's create a function using js-stellar-lib to create an offer for a given account and currency pair. Then, we'll walk through and explain each piece of the function step by step.
+Once your account has a Trustline with and holds credits from another account, it can create offers on the distributed exchange, to buy and sell those credits for 'XLM' or other credits. An offer buys one currency and sells another. Let's create a function using js-stellar-lib to create an offer for a given account and currency pair. Then, we'll walk through and explain each piece of the function step by step.
 
 {% highlight javascript %}
 function createOffer(address, secret, sellCode, sellIssuer, buyCode, buyIssuer, amount, price, offerId) {
@@ -149,14 +157,14 @@ function createOffer(address, secret, sellCode, sellIssuer, buyCode, buyIssuer, 
 }
 {% endhighlight %}
 
-First, as in other functions where we send transactions, we first load the account's latest sequence number for the network. As described earlier, this isn't necessary everytime you send a transaction, as the account object should be stored in memory, as TransactionBuilder will automatically increment the Account object's local sequence number variable when build() is called.
+First, as in other functions where we send transactions, we first load the account's latest sequence number for the network. As described earlier, this isn't necessary every time you send a transaction, as the account object should be stored in memory, as TransactionBuilder will automatically increment the Account object's local sequence number variable when build() is called.
 
 Next, we create a TransactionBuilder, and add a "ManageOffer" operation. Manage offer takes the following parameters:
 * takerGets - The currency that you're *selling*.
 * takerPays - The currency that you're *buying*.
 * amount - The amount of the takerGets currency you're selling.
 * price - The price, a floating point number which is takerPays / takerGets.
-* offerId - An ID to assign to the offer (0 to delete an exisitng offer).
+* offerId - An ID to assign to the offer (0 to delete an existing offer).
 
 And then we sign, build, and submit the transaction!
 

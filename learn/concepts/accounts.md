@@ -5,7 +5,7 @@ Accounts are the central data structure in Stellar. Accounts are identified by a
 
 Account are created with the [Create Account](./list-of-operations.md#create-account) operation. 
 
-Account access is controlled by public/private key cryptography. For an account to perform a transaction—e.g., make a payment—the transaction must be signed by the private key that corresponds to that account's public key. You can also set up more complicated [multi-signature] (./multi-sig.md) schemes for authorizing transactions on an account.
+Account access is controlled by public/private key cryptography. For an account to perform a transactionï¿½e.g., make a paymentï¿½the transaction must be signed by the private key that corresponds to that account's public key. You can also set up more complicated [multi-signature] (./multi-sig.md) schemes for authorizing transactions on an account.
 
 
 ## Account fields
@@ -14,7 +14,7 @@ Accounts have the following fields:
 
 - **Account ID**: The public key that was first used to create the account. You can replace the key used for signing the account's transactions with a different public key, but the original account ID will always be used to identify the account. 
 
-- **Balance**: The number of lumens held by the account. The balance is denominated in 1/1000000th of a lumen, the smallest divisible unit of a lumen.
+- **Balance**: The number of lumens held by the account. The balance is denominated in 1/10,000,000th of a lumen, the smallest divisible unit of a lumen.
 
 - **Sequence number**: The current transaction sequence number of the account. This number starts equal to the ledger number at which the account was created. 
 
