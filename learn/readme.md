@@ -32,3 +32,4 @@ It can be thought of as a bootstrap for building Stellar clients. Here is a [blo
 
 
 `stellar-core` <-> `Horizon`  <-> `JS-Stellar-SDK` <-> `Interstellar`
+
