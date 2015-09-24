@@ -1,4 +1,6 @@
-#Fees
+---
+title: Fees
+---
 
 Transaction fees are charged per transaction, to the account attached to the transaction.
 

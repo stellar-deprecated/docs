@@ -1,4 +1,7 @@
-# Inflation
+---
+title: Inflation
+---
+
 The Stellar distributed network has a built-in, fixed nominal inflation mechanism. 1% new lumens are added to the network each year. These lumens are distributed weekly by the protocol. They are received by any account that gets over .05% of the "votes" from other accounts in the network. 
 
 In inflation voting, every account selects another account as its **inflation destination**, or nominee to receive new currency. This is done with the [set options](./list-of-operations.md#set-options) operation. The inflation destination will stay set until changed with another set options operation. Voting is weighted according to the number of lumens the voting account holds. For example, if account A has 120 lumens and sets its inflation destination to B, the network counts 120 votes for B.

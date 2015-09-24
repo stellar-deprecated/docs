@@ -1,11 +1,14 @@
-# Versioning and Upgrading
+---
+title: Versioning and Upgrading
+---
+
 
 This document describes the various mechanisms used to keep the overall system working as it evolves.
 
 # Ledger versioning
 ## ledgerVersion
 This uint32 stored in the ledger header describes the version number of the overall protocol.
-Protocol in this case is defined both as "wire format"—i.e., the serialized forms of all objects stored in the ledger—and its behavior.
+Protocol in this case is defined both as "wire format"--i.e., the serialized forms of all objects stored in the ledger--and its behavior.
 
 This version number is incremented every time the protocol changes.
 
@@ -23,7 +26,7 @@ A node considers a step invalid either because they do not understand it or some
 Upgrade steps are applied before applying the transaction set to ensure that the logic scheduling steps is the same processing it. Otherwise, the steps would have to be applied after the ledger is closed.
 
 ### Supported versions
-Each node has its own way of tracking which version it supports—for example, a "min version", "max version"—but it can also include things like "black listed versions." Supported versions are not tracked from within the protocol.
+Each node has its own way of tracking which version it supports--for example, a "min version", "max version"--but it can also include things like "black listed versions." Supported versions are not tracked from within the protocol.
 
 Note that minProtocolVersion is distinct from the version an instance understands:
 typically an implementation understands versions n .. maxProtocolVersion, where n <= minProtocolVersion.
@@ -77,7 +80,7 @@ The object's schema must be cloned and its parent object must be updated to use 
 
 ## Supported implementations lifetime considerations
 
-In order to keep the codebase in a maintainable state, implementations may not preserve the ability to play back from genesis. Instead they may opt to support a limited range—for example, only preserve the capability to replay the previous 3 months of transactions (assuming that the network's minProtocolVersion is more recent than that).
+In order to keep the codebase in a maintainable state, implementations may not preserve the ability to play back from genesis. Instead they may opt to support a limited range--for example, only preserve the capability to replay the previous 3 months of transactions (assuming that the network's minProtocolVersion is more recent than that).
 
 This does not change the ability of the node to (re)join or participate in the network; it only affects the ability for a node to do historical validation.
 
@@ -94,7 +97,7 @@ Knowing that the older implementation will be deleted anyway, the clone model ma
 
 At this layer, it's acceptable to modify the behavior of older versions as long as it stays compatible.
 
-The implementation may decide to share the underlying code—for example, by converting legacy messages into the new format internally.
+The implementation may decide to share the underlying code--for example, by converting legacy messages into the new format internally.
 
 The "HELLO" message exchanged when peers connect to each other contains the min and max version the instance supports. The other endpoint may decide to disconnect right away if it's not compatible.
 

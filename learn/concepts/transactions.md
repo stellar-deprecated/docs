@@ -1,4 +1,6 @@
-# Transactions
+---
+title: Transactions
+---
 
 Transactions are commands that modify the ledger state. Among other things, Transactions are used to send payments, enter orders into the [distributed exchange](./exchange.md), change settings on accounts, and authorize another account to hold your currency. If you think of the ledger as a database, then transactions are SQL commands. 
 

@@ -1,4 +1,6 @@
-# Operations
+---
+title: Operations
+---
 
 [Transactions](./transactions.md) are made up of a [list of operations](./list-of-operations.md). Each
 operation is an individual command that mutates the ledger.

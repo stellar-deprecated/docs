@@ -1,4 +1,6 @@
-
+---
+title: List of Operations
+---
 
 For a description of how operations work in Stellar, see [Operations.md](./operations.md). 
 

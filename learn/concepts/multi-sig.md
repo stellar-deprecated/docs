@@ -1,4 +1,6 @@
-# Multisig
+---
+title: Multi-sig
+---
 
 ## Transaction signatures
 Stellar uses **signatures** as authorization. Transactions always need authorization from at least one public key in order to be considered valid. Generally, transactions only need authorization from the public key of the source account.
@@ -13,7 +15,7 @@ The threshold for a given level can be set to any number from 0-255. This thresh
 
 Each account can set its own threshold values. By default all thresholds levels are set to 0, and the master key is set to weight 1. 
 
-Let's say Diyang sets the medium threshold on one of her accounts to 4. If that account submits a transaction that includes a payment operation (medium security), the transaction's threshold is 4—the signature weights on it need to exceed 4 in order to run.  If Diyang's master key—the key corresponding to the public key that identifies the account she owns—has a weight below 4, she cannot authorize a transaction without other signers.
+Let's say Diyang sets the medium threshold on one of her accounts to 4. If that account submits a transaction that includes a payment operation (medium security), the transaction's threshold is 4--the signature weights on it need to exceed 4 in order to run.  If Diyang's master key--the key corresponding to the public key that identifies the account she owns--has a weight below 4, she cannot authorize a transaction without other signers.
 
 * Low Security:
  * [Allow Trust] operation
@@ -47,9 +49,9 @@ This scheme is very flexible. You can require many signers to authorize payments
 
 ## Operations
 ### Examples
-1. You run a gateway that would like to keep its issuing key offline. That way, it's less likely a bad actor can get ahold of the gateway's key and start issuing credit improperly. However, your gateway needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
+1. You run a gateway that would like to keep its issuing key offline. That way, it's less likely a bad actor can get a hold of the gateway's key and start issuing credit improperly. However, your gateway needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
 
-Multisig allows you to do all of this without exposing the master key of your gateway. You can add another signing key to your account with the operation `Set Options`.  This additional key should have a weight below your gateway account's medium threshold. Since `Allow Trust` is a low-threshold operation, this extra key authorizes users to hold your gateway's credit. But, since `Payment` is a medium-threshold operation, this key does not allow anyone who compromises your gateway to issue credit. 
+Multi-sig allows you to do all of this without exposing the master key of your gateway. You can add another signing key to your account with the operation `Set Options`.  This additional key should have a weight below your gateway account's medium threshold. Since `Allow Trust` is a low-threshold operation, this extra key authorizes users to hold your gateway's credit. But, since `Payment` is a medium-threshold operation, this key does not allow anyone who compromises your gateway to issue credit.
 
 Your account setup: 
   master key weight:3
@@ -95,7 +97,7 @@ Expense account setup:
   Emil's key weight: 1
 
 
-5. You want to issue a custom currency and ensure that no more will ever be created. You make a source account and issue the maximum amount of currency to a holding account. Then you set the master weight of the source account to below the medium threshold—the source account can no longer issue currency.  
+5. You want to issue a custom currency and ensure that no more will ever be created. You make a source account and issue the maximum amount of currency to a holding account. Then you set the master weight of the source account to below the medium threshold--the source account can no longer issue currency.
 
 Source account setup:
   master key weight: 0

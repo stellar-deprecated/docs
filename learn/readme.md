@@ -19,12 +19,12 @@ It can also be configured to send historical data to a `history store`. Every st
 ## [Horizon](https://github.com/stellar/horizon)
 Horizon is the client facing API server for the Stellar ecosystem. It acts as the interface between stellar-core and applications that want to access the Stellar network. It allows you to submit transactions to the network, check the status of accounts, subscribe to event streams, etc.
 
-Horizon provides a RESTful API to allow client applictaion to interact with the Stellar network. It is possible to communicate with Horizon with curl or just your browser but if you are building a client application you will likely want to use a stellar-sdk in the language of your client.
+Horizon provides a RESTful API to allow client application to interact with the Stellar network. It is possible to communicate with Horizon with curl or just your browser but if you are building a client application you will likely want to use a stellar-sdk in the language of your client.
 
 ## [SDKs](https://github.com/stellar/js-stellar-sdk)
-The SDKs are used to facilitate communicating with Horizon from whatever client application is interacting with the Stellar Network. They are resposible for crafting and signing transactions, submitting requests to and processing the responses from Horizon, etc.
+The SDKs are used to facilitate communicating with Horizon from whatever client application is interacting with the Stellar Network. They are responsible for crafting and signing transactions, submitting requests to and processing the responses from Horizon, etc.
 
-SDF only maintains the JavaScript SDK. We are looking for maintainers for other launguages.
+SDF only maintains the JavaScript SDK. We are looking for maintainers for other languages.
 
 ## [Interstellar](https://github.com/stellar/interstellar)
 The Interstellar Module System is a collection of modules that aims to make it easy to build a web application on the Stellar network. It is built using the JS-Stellar-SDK.
