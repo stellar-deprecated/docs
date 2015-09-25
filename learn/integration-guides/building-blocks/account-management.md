@@ -1,3 +1,7 @@
+---
+title: Account Management
+---
+
 # Creating an account
 [Accounts](https://github.com/stellar/docs/blob/master/concepts/accounts.md) in Stellar are public/private key pairs. Accounts are identified by the public key and anyone who has access to the private key can submit transactions on the account's behalf.
 
