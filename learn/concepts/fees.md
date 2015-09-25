@@ -33,7 +33,7 @@ Additional entries are:
 * offers
 * signers
 
-Currently the base reserve amount is set to 100,000,000 stroops (10 XLM) and can evolve via consensus. For more details, see [versioning] (./versioning.md).
+Currently the base reserve amount is set to 100,000,000 stroops (10 XLM) and can evolve via consensus. For more details, see [versioning](./versioning.md).
 
 You can calculate an account's minimum balance using the following formula:
 (2 + number_of_additional_entries)*base_reserve
