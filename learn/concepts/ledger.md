@@ -6,7 +6,7 @@ A **ledger** represents the state of the Stellar universe at a given point in ti
 
 The first ledger in the history of the network is called the genesis ledger.
 
-Every [Stellar Consensus Protocol (SCP)](https://www.stellar.org/papers/stellar-consensus-protocol.pdf) round, the network reaches consensus on which [transaction set](/concepts/transactions.md#transaction-set) to apply to the last closed ledger; when the new set is applied, a new "last closed ledger" is defined.
+Every [Stellar Consensus Protocol (SCP)](https://www.stellar.org/papers/stellar-consensus-protocol.pdf) round, the network reaches consensus on which [transaction set](./transactions.md#transaction-set) to apply to the last closed ledger; when the new set is applied, a new "last closed ledger" is defined.
 
 Each ledger is cryptographically linked to a unique previous ledger, creating a historical ledger chain that goes back to the genesis ledger. 
 
@@ -22,7 +22,7 @@ You can think of the historical ledger chain as a linked list of ledger headers:
 [Genesis] <---- [LedgerHeader_1] <----- ... <---- [LedgerHeader_n]
 
 See the protocol file for the object definitions.
-[`src/xdr/Stellar-ledger.x`](../xdr/Stellar-ledger.x)
+[`src/xdr/Stellar-ledger.x`](https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-ledger.x)
 
 Every ledger header has the following fields:
 
@@ -36,11 +36,11 @@ Every ledger header has the following fields:
 
   - **Close time**: When the network closed this ledger. UNIX timestamp.
 
-  - **Upgrades**: How the network adjusts the [base fee] (/concepts/fees.md) and moves to a new protocol version. This field is usually empty. For more info, see [versioning] (/concepts/versioning.md).
+  - **Upgrades**: How the network adjusts the [base fee](./fees.md) and moves to a new protocol version. This field is usually empty. For more info, see [versioning](./versioning.md).
 
 - **Transaction set result hash**: Hash of the results of applying the transaction set. This data is not, strictly speaking, necessary for validating the results of the transactions. However, this data makes it easier for entities to validate the result of a given transaction without having to apply the transaction set to the previous ledger. 
 
-- **Bucket list hash**: Hash of all the objects in this ledger. The data structure that contains all the objects is called the [bucket list] (/src/bucket). 
+- **Bucket list hash**: Hash of all the objects in this ledger. The data structure that contains all the objects is called the [bucket list](https://github.com/stellar/stellar-core/tree/master/src/bucket). 
 
 - **Ledger sequence**: The sequence number of this ledger.
  
@@ -52,8 +52,8 @@ Every ledger header has the following fields:
  
 - **ID pool**: The last used global ID. These IDs are used for generating objects.
 
-- **Base fee**: The [fee](/concepts/fees.md) the network charges per [operation](/docs/operations.md) in a [transaction](/docs/transaction.md).
-- **Base reserve**: The [reserve](/concepts/fees.md) the network uses when calculating an account's minimum balance.
+- **Base fee**: The [fee](./fees.md) the network charges per [operation](./operations.md) in a [transaction](./transaction.md).
+- **Base reserve**: The [reserve](./fees.md) the network uses when calculating an account's minimum balance.
 - **Skip list**: Hashes of ledgers in the past. Allows you to jump back in time in the ledger chain without walking back ledger by ledger. There are 4 ledger hashes stored in the skip list. Each slot contains the oldest ledger that is mod of either 50  5000  50000 or 500000 depending on index skipList[0] mod(50), skipList[1] mod(5000), etc.
 
  
