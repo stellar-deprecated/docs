@@ -2,13 +2,17 @@
 title: Transactions
 ---
 
-Transactions are commands that modify the ledger state. Among other things, Transactions are used to send payments, enter orders into the [distributed exchange](./exchange.md), change settings on accounts, and authorize another account to hold your currency. If you think of the ledger as a database, then transactions are SQL commands. 
+Transactions are commands that modify the ledger state. Among other things, Transactions are used to send payments, enter
+orders into the [distributed exchange](./exchange.md), change settings on accounts, and authorize another account to hold
+your currency. If you think of the ledger as a database, then transactions are SQL commands.
 
 
 Each transaction has the following attributes:
-- **Source account**: This is the account that originates the transaction. The transaction must be signed by this account, and the transaction fee must be paid by this account. The sequence number of this transaction is based off this account.
+- **Source account**: This is the account that originates the transaction. The transaction must be signed by this account,
+and the transaction fee must be paid by this account. The sequence number of this transaction is based off this account.
 
-- **Fee**: Each transaction sets a [fee] (./fees.md) that is paid by the source account. If this fee is below the network minimum the transaction will fail. The more operations in the transaction, the greater the required fee.
+- **Fee**: Each transaction sets a [fee] (./fees.md) that is paid by the source account. If this fee is below the network
+minimum the transaction will fail. The more operations in the transaction, the greater the required fee.
 
 - **Sequence number**: Each transaction has a sequence number. Transactions follow a strict ordering rule when it comes to processing of transactions per account. For the transaction to be valid, the sequence number must match the one stored in the source [account entry](./account.md) when the transaction is applied. After the transaction is applied, the source account's stored sequence number is incremented by 1.
 
@@ -32,7 +36,7 @@ Between ledger closings, all the nodes in the network are collecting transaction
 
 2. **Signing**: Once the transaction is filled out, all the needed signatures must be collected and added to the transaction envelope. Commonly it's just the signature of the account doing the transaction, but more complicated setups can require collecting signatures from multiple parties. See [multi-sig](./multi-sig.md).
 
-3. **Submitting**: After signing, the transaction should be valid and can now be submitted to the Stellar network. Transactions are typically submitted using [horizon](http://stellar.org/developers/ref/horizon/reference/transactions-create), but you can also submit the transaction directly to an instance of [stellar-core](https://github.com/stellar/stellar-core).
+3. **Submitting**: After signing, the transaction should be valid and can now be submitted to the Stellar network. Transactions are typically submitted using [horizon](http://stellar.org/developers/horizon/reference/transactions-create/), but you can also submit the transaction directly to an instance of [stellar-core](https://github.com/stellar/stellar-core).
 
 4. **Propagating**: Once stellar-core receives a transaction, either given to it by a user or another stellar-core, it does preliminary checks to see if the transaction is valid. Among other checks, it makes sure that the transaction is correctly formed and the source account has enough to cover the transaction fee. Stellar-core doesn't check things that require inspecting the state of the ledger beyond looking up the source account—e.g., that the destination account to which the transaction is trying to send exists, that the account has enough of this asset to sell, that it's a valid path. 
 If the preliminary checks pass, then stellar-core propagates the transaction to all the other servers to which it's connected. In this way, a valid transaction is flooded to the whole Stellar network.

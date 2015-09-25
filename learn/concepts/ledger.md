@@ -64,14 +64,14 @@ The ledger is a collection of **entries**. Currently there are 3 types of ledger
 [`src/xdr/Stellar-ledger-entries.x`](../xdr/Stellar-ledger-entries.x).
 
 ## Account entry
-This entry represents an [account](/concepts/accounts.md). In Stellar, everything is built around accounts: transactions are performed by accounts, and accounts control the access rights to balances.
+This entry represents an [account](./accounts.md). In Stellar, everything is built around accounts: transactions are performed by accounts, and accounts control the access rights to balances.
 
 Other entries are add-ons, owned by a main account entry. With every new entry
 attached to the account, the minimum balance in XLM goes up for the
-account. For details, see [fees and minimum balance] (/concepts/fees.md).
+account. For details, see [fees and minimum balance] (./fees.md).
 
 ## Trustline entry
-[Trustlines] (/concepts/assets.md) are lines of credit the account has given a particular issuer in a specific currency.
+[Trustlines] (./assets.md) are lines of credit the account has given a particular issuer in a specific currency.
 
 Trustline entries define the rules around the use of this currency. Rules can be defined by the user--e.g., setting a balance limit to limit risk--or by the issuer--e.g., an authorized flag.
 

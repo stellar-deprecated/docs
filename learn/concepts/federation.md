@@ -13,7 +13,7 @@ Example: `name*yourdomain.com` -> `GCCVPYFOHY7ZB7557JKENAX62LUAPLMGIWNZJAFV2MITK
 
 ## Supporting Federation
 
-#### Step 1: Create [stellar.txt](/concepts/stellar.txt.md) file
+#### Step 1: Create [stellar.txt](./stellar.txt.md) file
 
 Create a file called stellar.txt and put it at the root of your domain. The stellar.txt file is typically searched for in this order:
 
@@ -32,12 +32,12 @@ Add the following to the stellar.txt file:
 The federation URL specified in your stellar.txt file should accept an HTTP GET request, with a query parameter --destination--
 to specify the username and "domain" set to the domain of the address. It should return a JSON response body of this form:
 
-`
+```
 federation_json: {
   destination: username,
   domain: domain,
   type: "federation_record",
   destination_address: address
 }
-`
+```
 

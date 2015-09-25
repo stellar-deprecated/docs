@@ -2,7 +2,8 @@
 title: Assets
 ---
 
-The Stellar distributed network can be used to track, hold, and transfer any type of **asset**: dollars, euros, bitcoin, stocks, gold, and other tokens of value. Any asset on the network can be traded and exchanged with any other. 
+The Stellar distributed network can be used to track, hold, and transfer any type of **asset**: dollars, euros, bitcoin,
+stocks, gold, and other tokens of value. Any asset on the network can be traded and exchanged with any other.
 
 Other than lumens (see below), all assets have 
 - **Asset type**: e.g., USD or BTC
@@ -11,16 +12,19 @@ Other than lumens (see below), all assets have
 # Trustlines
 When you hold assets in Stellar, you're actually holding credit from a particular issuer. The issuer has agreed that it
 will trade you its credit on the Stellar network for the corresponding asset--e.g., fiat currency, precious metal--outside
-of Stellar. Let's say that Scott issues oranges as credit on the network. If you hold orange credits, you and Scott have an agreement based on trust, or a trustline: you both agree that when you give Scott an orange credit, he gives you an orange.
+of Stellar. Let's say that Scott issues oranges as credit on the network. If you hold orange credits, you and Scott have
+an agreement based on trust, or a trustline: you both agree that when you give Scott an orange credit, he gives you an orange.
 
 When you hold an asset, you must trust the issuer to properly redeem its credit. Since users of Stellar will not want to
-trust just any issuer, accounts must explicitly trust an issuing account before they're able to hold the issuer's credit. In the example above, you must explicitly trust Scott before you can hold orange credits.
+trust just any issuer, accounts must explicitly trust an issuing account before they're able to hold the issuer's credit.
+In the example above, you must explicitly trust Scott before you can hold orange credits.
 
 To trust an issuing account, you create a **trustline.** Trustlines are entries that persist in the Stellar ledger. They
 track the limit for which your account trusts the issuing account and the amount of credit from the issuing account that your account currently holds.
 
 # Lumens (XLM)
-**Lumens (XLM)** are the native currency of the network. A lumen is the only asset type that can be used on the Stellar network that doesn't require an issuer or a trustline.
+**Lumens (XLM)** are the native currency of the network. A lumen is the only asset type that can be used on the Stellar
+network that doesn't require an issuer or a trustline.
 Any account can hold lumens. You can trade lumens for other assets in the network.
 
 
@@ -46,12 +50,12 @@ Any characters from the set [a-z][A-Z][0-9] are allowed. The code can be any num
 
 ## Controlling asset holders
 As a gateway, you can mark the issuing account `AUTHORIZATION REQUIRED`. With this setting, the gateway must approve anyone
-who wants to hold its credit, allowing it to control who its customers are. `AUTHORIZATION REQUIRED` must be set before anyone holds the gateway's credit--it can't be set retroactively.
+who wants to hold its credit, allowing it to control who its customers are.
 
 ## Revoking access
 As a gateway, you can mark the issuing account `AUTHORIZATION REVOCABLE`. With this setting, the gateway can freeze credit
 held by another account. When credit is frozen for a particular account, that account can only send the credit back to the gateway--it can't transfer the credit to any other account.
-This setting allows the issuing account to revoke credit that it accidently issued or that was obtained improperly. `AUTHORIZATION REVOCABLE` must be set before anyone holds the gateway's credit--it can't be set retroactively.
+This setting allows the issuing account to revoke credit that it accidentally issued or that was obtained improperly.
 
 
 

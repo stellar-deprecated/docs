@@ -54,7 +54,7 @@ Stellar Core queues results in the txhistory table for other components to deriv
 
 ## Transactions involving multiple accounts
 
-Typically transactions only involve operations on a single account. For example, if account A wanted to send  lumens to account B, only account A needs to authorize the transaction. 
+Typically transactions only involve operations on a single account. For example, if account A wanted to send lumens to account B, only account A needs to authorize the transaction.
 
 It's possible, however, to compose a transaction that includes operations on multiple accounts. In this case, to authorize the operations, the transaction envelope must include signatures of every account in question. For example, you can make a transaction where accounts A and B both send to account C. This transaction would need authorization from both account A and B before it's submitted to the network.
 

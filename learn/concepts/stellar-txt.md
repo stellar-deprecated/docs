@@ -4,7 +4,7 @@ title: Stellar.txt
 
 ## Introduction
 
-The stellar.txt file is used to provide the Internet with information about your domain's Stellar integration. Any website can publish Stellar network information. You can announce your validation key, your [federation](/concepts/federation.md) server, peers you are running, other validators in your quorum set, if you are a gateway, etc.
+The stellar.txt file is used to provide the Internet with information about your domain's Stellar integration. Any website can publish Stellar network information. You can announce your validation key, your [federation](./federation.md) server, peers you are running, other validators in your quorum set, if you are a gateway, etc.
 
 ### Publishing stellar.txt
 

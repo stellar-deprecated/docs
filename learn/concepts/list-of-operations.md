@@ -104,7 +104,7 @@ Possible errors:
 |PATH_PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
 |PATH_PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
 |PATH_PAYMENT_TOO_FEW_OFFERS| -9| There is not a path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
-|PATH_PAYMENT_OVER_SENDMAX| -10| The paths that could send `destination amount` of `destintaion asset` would exceed `send max`.|
+|PATH_PAYMENT_OVER_SENDMAX| -10| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
 
 
 
@@ -140,11 +140,15 @@ Possible errors:
 |MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|  
 
 ## Create Passive Offer
-A passive offer is an offer that does not act on and take a reverse offer of equal price. Instead, they only take offers of lesser price. For example, if an offer exists to buy 5 BTC for 30 XLM, and you make a passive offer to buy 30 XLM for 5 BTC, your passive offer *does not* take the first offer.
+A passive offer is an offer that does not act on and take a reverse offer of equal price. Instead, they only take offers
+of lesser price. For example, if an offer exists to buy 5 BTC for 30 XLM, and you make a passive offer to buy 30 XLM for 5 BTC,
+your passive offer *does not* take the first offer.
 
-Note that regular offers made later than your passive offer can act on and take your passive offer, even if the regular offer is of the same price as your passive offer.
+Note that regular offers made later than your passive offer can act on and take your passive offer, even if the regular
+offer is of the same price as your passive offer.
 
-Passive offers allow market makers to have zero spread. If you want to trade EUR for USD at 1:1 price and USD for EUR also at 1:1, you can create two passive offers so the two offers don't immediately act on each other.
+Passive offers allow market makers to have zero spread. If you want to trade EUR for USD at 1:1 price and USD for EUR also
+ at 1:1, you can create two passive offers so the two offers don't immediately act on each other.
  
 
 Threshold: Medium
@@ -179,7 +183,7 @@ Possible errors:
 ## Set Options
 This operation sets the options for an account.  
 
-For more information on the signing options, please refer to the [multisig doc](./multi-sig.md).
+For more information on the signing options, please refer to the [multi-sig doc](./multi-sig.md).
 
 When updating signers or other thresholds, the threshold of this operation is high.
 
