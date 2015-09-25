@@ -32,7 +32,7 @@ Each gateway has an **issuing account** from which it issues the asset.
 
 As a gateway, when you issue an asset, you give it an **asset code**. Assets are uniquely identified by the asset code and the issuer.
 Ultimately, it's up to the issuer to set the asset code. By convention, however, currencies should be represented by the
-appropriate [ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217). For stocks and bonds, use the appropriate [ISIN number] (https://en.wikipedia.org/wiki/International_Securities_Identification_Number).
+appropriate [ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217). For stocks and bonds, use the appropriate [ISIN number](https://en.wikipedia.org/wiki/International_Securities_Identification_Number).
 For your orange, goat, favor, or beer gateways, you're on your own--invent an appropriate code!
 
 Currently there are two supported formats for asset codes.
