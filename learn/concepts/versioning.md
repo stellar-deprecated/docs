@@ -19,11 +19,11 @@ Consensus can also, however, be reached on upgrade steps.
 
 One such upgrade step is "update ledgerVersion to value X after ledger N".
 
-If nodes do not consider that the upgrade set is valid, they simply drop the upgrade step from their vote.
+If nodes do not consider that the upgrade step is valid, they simply drop the upgrade step from their vote.
 
 A node considers a step invalid either because they do not understand it or some condition is not met. In the previous example, it could be that X is not supported by the node or that the ledger number didn't reach N yet.
 
-Upgrade steps are applied before applying the transaction set to ensure that the logic scheduling steps is the same processing it. Otherwise, the steps would have to be applied after the ledger is closed.
+Upgrade steps are applied before applying the transaction set to ensure that the logic scheduling steps is the same that is processing it. Otherwise, the steps would have to be applied after the ledger is closed.
 
 ### Supported versions
 Each node has its own way of tracking which version it supports--for example, a "min version", "max version"--but it can also include things like "black listed versions." Supported versions are not tracked from within the protocol.
