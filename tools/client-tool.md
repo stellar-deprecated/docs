@@ -1,7 +1,5 @@
 ---
-id: how-to-build-a-client
 title: How to Build a Client
-category: Guides
 ---
 
 In this tutorial, we'll walk through the process of building a Stellar web client application from beginning to end. At
@@ -17,7 +15,7 @@ the end of the tutorial, you'll have written tools to accomplish the following:
 
 > Follow along in a JSFiddle here: <a href="https://jsfiddle.net/stellardev/3tnyaf0k/">https://jsfiddle.net/stellardev/3tnyaf0k/</a>
 
-We�ll be using the test network to build the tutorials. The test network is equivalent to the real Stellar network: there are accounts, trust lines, transactions can be made...the only difference is the nodes running the network are all controlled by Stellar, and the ledger can be reset at any time. The applications you build on the test net will work exactly the same on the live Stellar network.
+We'll be using the test network to build the tutorials. The test network is equivalent to the real Stellar network: there are accounts, trust lines, transactions can be made...the only difference is the nodes running the network are all controlled by Stellar, and the ledger can be reset at any time. The applications you build on the test net will work exactly the same on the live Stellar network.
 
 In this tutorial we'll be using the [js-stellar-sdk](https://github.com/stellar/js-stellar-sdk) javascript library. This
 library provides convenient abstractions for building transactions and managing accounts, and interacts with the Stellar network through the [Horizon](https://github.com/stellar/horizon) API server.
