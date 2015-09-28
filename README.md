@@ -12,12 +12,6 @@ This repository is home to the Stellar documentation.
 
 The docs folder contains guides intended to be read by developers. These docs may occasionally contain example API calls.
 * [Client Tutorial](https://github.com/stellar/docs/blob/master/docs/how-to-build-a-client.md) - explains how to build a Stellar web client app from beginning to end.
-* The [old-docs folder](https://github.com/stellar/docs/tree/master/old-docs) contains unmaintained or deprecated documents that may not be relevant to the new [stellar-core](https://github.com/stellar/stellar-core) network.
-
-## API Docs
-#### Note: this is for the stellard network which will be replaced by [stellar-core](https://github.com/stellar/stellar-core) and a different api called [Horizon](https://github.com/stellar/go-horizon)
-
-The api-docs folder currently contains docs that are used on [https://www.stellar.org/api/](https://www.stellar.org/api/). `convert.js` is used to compile all the XML into a HTML page (`api-docs.html`).
 
 ## Contributing
 
