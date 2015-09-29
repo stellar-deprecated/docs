@@ -18,7 +18,7 @@ get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-
 get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-public-002/{0} {1}"
 ```
 
-#None of the following validators are recommended by Stellar Development Foundation.
+##None of the following validators are recommended by Stellar Development Foundation.
 
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes. 
 
