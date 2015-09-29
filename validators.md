@@ -1,7 +1,28 @@
-#None of these validators are recommended by Stellar Development Foundation.
+Stellar.org doesn't currently run a validator. We do run a couple nodes recording and saving network history.
+
+Important snippits from our .cfg
+```
+NETWORK_PASSPHRASE="Public Global Stellar Network ; September 2015"
+
+KNOWN_PEERS=[
+"core-public1.stellar.org",
+"core-public2.stellar.org",
+"chiyou.strllar.org",
+"confucius.strllar.org"]
+
+# Stellar.org history store
+[HISTORY.sdf1]
+get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-public-001/{0} {1}"
+
+[HISTORY.sdf2]
+get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-public-002/{0} {1}"
+```
+
+#None of the following validators are recommended by Stellar Development Foundation.
+
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes. 
 
-If you would like to list your validating node here please make a pull request.
+If you would like to **list your validating node here** please make a pull request.
 
  Name:<br>
  Contact:<br>
