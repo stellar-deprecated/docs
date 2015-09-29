@@ -1,0 +1,484 @@
+<html>
+<head>
+  <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="./bower_components/stellar-sdk/stellar-sdk.min.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body ng-app="myApp" class="container ng-scope">
+
+    <div class="container">
+        <!-- Create Stellar Address Widget -->
+        <div class="widget-row">
+          This tool explores some of the functionality of the <a href="https://github.com/stellar/js-stellar-sdk">js-stellar-sdk</a>.
+          It allows you to generate a new account and fund it on the test net, submit various transactions to the network, and look up information on accounts.
+          You can see how the magic happens by looking in the <a href="https://github.com/stellar/stellar-tutorials/tree/master/client-tool">source code</a>.
+            <div class="widget" ng-controller="CreateStellarAddressCtrl">
+                <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+                <h2>Create a new Stellar Account</h2>
+                <div ng-show="!collapsed">
+                    <h3>Generate a Stellar Keypair</h3>
+                    <p>Generates a new ED25519 keypair valid to use as a Stellar address/secret</p>
+                    <button ng-click="generate()">Generate</button>
+
+                    <div ng-show="data.keypair">
+                        <pre>{{data.keypair | json : spacing}}</pre>
+                    </div>
+
+                    <div ng-show="data.keypair">
+                        <button ng-click="createAccount()">Fund with Friendbot!</button>
+                        <div ng-show="data.result || data.error">
+                            <pre>{{data.result || data.error}}</pre>
+                        </div>
+                    </div>
+
+                    <div ng-show="data.result == 'Created!'">
+                        <h4>Store the account for future reference</h4>
+                        <form role="form">
+                          <label>Name:</label>
+                          <input type="text" ng-model="data.name" placeholder="Enter name for the account"/>
+                          <button ng-click="storeAccount()">Store Account</button>
+                        </form>
+                     </div>
+                 </div>
+             </div>
+        </div>
+
+        <!-- Account Manager -->
+        <div class="account-manager widget-row" id="accountmanager">
+            <div class="widget " ng-controller="AccountManagerCtrl">
+                <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+                <h2>Account Manager</h2>
+                <div ng-show="!collapsed">
+
+                    <p>Used to store accounts for reference</p>
+                    <form role="form">
+                        <label>Name:</label>
+                        <input type="text" ng-model="data.name" placeholder="Enter address"/>
+
+                        <label>Address:</label>
+                        <input type="text" ng-model="data.address" placeholder="Enter address"/>
+
+                        <label>Secret:</label>
+
+                        <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+
+                        <button ng-click="storeAccount()">Store Account</button>
+                    </form>
+
+                    <h3 ng-show="accounts.length">Stored Accounts</h3>
+                    <div ng-class="{top: $index==0}" ng-repeat="account in accounts">
+                        <a class="shrink" ng-click="account.collapsed = !account.collapsed">{{!account.collapsed ? '[ - ]' : '[ + ]'}}</a>
+                        <h4>{{account.name}}</h4>
+                        <div ng-show="!account.collapsed">
+                            <a href="javascript:void(0)" ng-click="removeAccount($index)">[remove]</a>
+                            <section>
+                                <h5>keypair</h5>
+                                <pre>{{account.keypair | json : spacing}}</pre>
+                            </section>
+                            <section>
+                                <h5>balances <a href="javascript:void(0)" ng-click="refreshBalances(account)">[refresh]</a></p>
+                                    <div ng-repeat="balance in account.balances">
+                                        <div ng-switch on="balance.asset_type">
+                                            <div ng-switch-when="native">
+                                                <span>Asset: XLM</span><br/>
+                                                <span>Balance: {{balance.balance}}</span>
+                                            </div>
+                                            <div ng-switch-default>
+                                                <span>Asset: {{balance.asset_code}}</span><br/>
+                                                <span>Issuer: {{balance.issuer}}</span><br/>
+                                                <span>Balance: {{balance.balance}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </section>
+                            <section>
+                                <h5>offers <a href="javascript:void(0)" ng-click="refreshOffers(account)">[refresh]</a></h5>
+                                <div class="section" ng-repeat="offer in account.offers">
+                                    <div class="balance" ng-switch on="offer.asset_type">
+                                          <span><u>Taker Pays</u></span><br/>
+                                          <span>Asset: {{offer.selling.asset_type == 'native' ? 'XLM' : offer.selling.asset_code}}</span><br/>
+                                          <span ng-if="offer.selling.asset_type != 'native'">Issuer: {{offer.selling.issuer}}<br/></span>
+                                          <span><u>Taker Gets</u></span><br/>
+                                          <span>Asset: {{offer.buying.asset_type == 'native' ? 'XLM' : offer.buying.asset_code}}</span><br/>
+                                          <span ng-if="offer.buying.asset_type != 'native'">Issuer: {{offer.buying.issuer}}<br/></span>
+                                          <span>Amount: {{offer.amount}}</span><br/>
+                                          <span>Price: {{offer.price}}</span><br/>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                            <h5>actions</h5>
+                                <ul>
+                                    <li><a ng-click="viewAccount(account)">View Account</a></li>
+                                    <li><a ng-click="setOptions(account)">Set Options</a></li>
+                                    <li><a ng-click="sendSimplePayment(account)">Send Simple Payment</a></li>
+                                    <li><a ng-click="sendPathPayment(account)">Send Path Payment</a></li>
+                                    <li><a ng-click="addTrust(account)">Add Trustline</a></li>
+                                    <li><a ng-click="authorizeTrust(account)">Authorize Trust</a></li>
+                                    <li><a ng-click="createOffer(account)">Create Offer</a></li>
+                                </ul>
+                            </section>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- View Stellar Account Balance Widget -->
+    <div class="widget-row" id="viewaccount">
+        <div class="widget " ng-controller="ViewAccountInfoCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>View Account Info</h2>
+
+            <div ng-show="!collapsed">
+                <p>View account info, sequences, and balances</p>
+                <form role="form" class="form-horizontal">
+                    <label>Address:</label>
+                    <input type="text" ng-model="data.address" placeholder="Enter address"/>
+                    <button ng-click="viewAccountInfo()">View Account Info</button>
+                </form>
+                <div ng-show="data.result || data.error">
+                    <pre>{{data.result || data.error}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Stellar Account Offers Widget -->
+    <div class="widget-row" id="viewoffers">
+        <div class="widget " ng-controller="ViewOffersCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>View Account Offers</h2>
+            <div ng-show="!collapsed">
+                <p>View account offers</p>
+            <form role="form">
+                <label>Address:</label>
+                <input type="text" ng-model="data.address" placeholder="Enter address"/>
+                <button ng-click="viewOffers()">View Account Offers</button>
+            </form>
+            <div ng-show="data.result || data.error">
+                <pre>{{data.result || data.error}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stream Account Transactions -->
+    <div class="widget-row">
+        <div class="widget " ng-controller="StreamAccountTransactionsCtrl">
+    
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Stream Account Transactions</h2>
+            <div ng-show="!collapsed">
+                <p>Demonstrates how to use the streaming account transactions API</p>
+            <form role="form" class="form-horizontal">
+                <label>Address:</label>
+                <input type="text" ng-model="data.address" placeholder="Enter address"/>
+                <button type="submit" ng-click="streamTransactions()">Stream Transactions</button>
+            </form>
+            <div ng-repeat="transaction in data.transactions track by $index">
+                <pre>
+                    {{transaction | json : spacing}}
+                </pre>
+            </div>
+            <div ng-show="data.error">
+                {{data.error}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Set Options Widget -->
+    <div class="widget-row" id="setoptions">
+        <div class="widget " ng-controller="SetOptionsCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Set Options</h2>
+            <div ng-show="!collapsed">
+                <p>Set various account options</p>
+                <form role="form">
+                    <label>Address:</label>
+                    <input type="text" ng-model="data.address" placeholder="Enter address"/>
+                    <label>Secret:</label>
+                    <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+
+
+                    <h3>Set Flags:</h3>
+                    <label class="checkbox-label">AUTH_REQUIRED_FLAG:</label>
+                    <input type="checkbox" ng-model="data.setFlags.AUTH_REQUIRED_FLAG"  ng-true-value="1" ng-false-value="0"/>
+                    
+                    <label class="checkbox-label">AUTH_REVOCABLE_FLAG:</label>
+                    <input type="checkbox" ng-model="data.setFlags.AUTH_REVOCABLE_FLAG" ng-true-value="2" ng-false-value="0"/>
+                    
+                    <h3>Clear Flags:</h3>
+                    <label class="checkbox-label">AUTH_REQUIRED_FLAG:</label>
+                    <input type="checkbox" ng-model="data.clearFlags.AUTH_REQUIRED_FLAG" ng-true-value="1" ng-false-value="0"/>
+  
+                    <label class="checkbox-label">AUTH_REVOCABLE_FLAG:</label>
+                    <input type="checkbox" ng-model="data.clearFlags.AUTH_REVOCABLE_FLAG" ng-true-value="2" ng-false-value="0"/>
+
+  
+                    <h3>Thresholds:</h3>
+                    <label>Weight (master key weight, 0-255):</label>
+                    <input type="number" ng-model="data.thresholds.weight"/>
+                    <label>Low (low threshold level, 0-255):</label>
+                    <input type="number" ng-model="data.thresholds.low"/>
+                    <label>Medium (medium threshold level, 0-255):</label>
+                    <input type="number" ng-model="data.thresholds.medium"/>
+                    <label>High (high threshold level, 0-255):</label>
+                    <input type="number" ng-model="data.thresholds.high"/>
+
+                    <label>Add signer:</label>
+                    <label>Signer Address:</label>
+                    <input type="text" ng-model="data.signer.address"/>
+
+                    <label>Weight (0-255, 0 for delete)</label>
+                    <input type="number" ng-model="data.signer.weight"/>
+
+                    <label>Federation Domain:</label>
+                    <input type="text" ng-model="data.homeDomain" placeholder="Where to look up stellar.txt"/>
+                    <button type="submit" ng-click="setOptions()">Submit Transaction</button>
+                </form>
+                <div ng-show="data.result || data.error">
+                    <pre>{{data.result || data.error}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Send a Payment Widget -->
+    <div class="widget-row" id="payment">
+        <div class="widget " ng-controller="SendPaymentCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Send a Simple Payment</h2>
+            <div ng-show="!collapsed">
+                <p>Sends the same asset/issuer from one account to another.</p>
+            <form role="form">
+                <label>Address:</label>
+                <input type="text" ng-model="data.address" placeholder="Enter address"/>
+    
+                <label>Secret:</label>
+      
+                <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+                <label>Destination:</label>
+  
+                <input type="text" ng-model="data.destination" placeholder="Enter Destination address"/>
+
+                <label>Asset:</label>
+  
+                <input type="text" ng-model="data.asset" placeholder="Enter asset code"/>
+
+                <label>Issuer:</label>
+  
+                <input type="text" ng-model="data.issuer" placeholder="Enter issuer (blank for XLM)"/>
+
+                <label>Amount:</label>
+  
+                <input type="text" ng-model="data.amount" placeholder="Enter amount"/>
+
+
+                <label>Memo:</label>
+  
+                <input type="text" ng-model="data.memo" placeholder="Enter a text memo"/>
+
+                <button type="submit" ng-click="sendPayment()">Submit Transaction</button>
+            </form>
+            <div ng-show="data.result || data.error">
+                <pre>{{data.result || data.error}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send a Path Payment Widget -->
+    <div class="widget-row" id="pathpayment">
+        <div class="widget " ng-controller="SendPathPaymentCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Send a Path Payment</h2>
+            <div ng-show="!collapsed">
+                <p>Sends a payment to another account using a different source asset than the asset the destination receives. If there's an offer on the network for the source asset / destination asset, the payment can be sent, otherwise it needs to go through paths of more than 1 offer. This is why you need to specify a send max, the amount of source asset to send may fluctuate based on what offer is selected.</p>
+            <form role="form">
+        
+                <label>Address:</label>
+          
+                <input type="text" ng-model="data.address" placeholder="Enter address"/>
+    
+                <label>Secret:</label>
+      
+                <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+
+                <label>Source Asset:</label>
+  
+                <input type="text" ng-model="data.sourceasset" placeholder="The asset code to pay with"/>
+
+                <label>Issuer:</label>
+  
+                <input type="text" ng-model="data.sourceissuer" placeholder="The source asset issuer"/>
+
+                <label>Send Max:</label>
+  
+                <input type="number" ng-model="data.sendmax" placeholder="The max amount of this asset to send"/>
+
+                <label>Destination:</label>
+  
+                <input type="text" ng-model="data.destination" placeholder="Enter Destination address"/>
+
+                <label>Asset:</label>
+  
+                <input type="text" ng-model="data.destasset" placeholder="Enter asset destination gets"/>
+
+                <label>Issuer:</label>
+  
+                <input type="text" ng-model="data.destissuer" placeholder="The destination asset issuer"/>
+
+                <label>Amount:</label>
+  
+                <input type="text" ng-model="data.amount" placeholder="Amount of destination asset to send"/>
+
+                <label>Memo:</label>
+  
+                <input type="text" ng-model="data.memo" placeholder="Enter a text memo"/>
+
+                <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="sendPathPayment()">Submit Transaction</button>
+            </form>
+            <div ng-show="data.result || data.error">
+                <pre>{{data.result || data.error}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Trust Line Widget -->
+    <div class="widget-row" id="addtrust">
+        <div class="widget " ng-controller="CreateTrustLineCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Create a Trust Line</h2>
+            <div ng-show="!collapsed">
+                <p>Create a trust line for a asset/issuer</p>
+                <form role="form" class="form-horizontal">
+        
+                    <label>Address:</label>
+          
+                    <input type="text" ng-model="data.address" placeholder="Enter address"/>
+        
+    
+                    <label>Secret:</label>
+      
+                    <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+   
+
+                    <label>Issuer:</label>
+  
+                    <input type="text" ng-model="data.issuer" placeholder="Enter issuer"/>
+
+                    <label>Asset:</label>
+  
+                    <input type="text" ng-model="data.asset" placeholder="Enter asset"/>
+
+                    <label>Amount:</label>
+  
+                    <input type="text" ng-model="data.amount" placeholder="Enter amount"/>
+
+                    <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="createTrustLine()">Submit Transaction</button>
+                </form>
+                <div class="row" ng-show="data.result || data.error">
+                    <pre>{{data.result || data.error}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authorize Trust Line Widget -->
+    <div class="widget-row" id="authorizetrust">
+        <div class="widget " ng-controller="AuthorizeTrustCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Authorize Trust Line</h2>
+            <div ng-show="!collapsed">
+                <p>Allow an account to hold trustline to your account. This requires that your account have AUTH_REQUIRED_FLAG set, and the account you're authorizing has already set a trustline to your account for the asset you're authorizing.</p>
+                <form role="form" class="form-horizontal">
+          
+                    <label>Address:</label>
+                    <input type="text" ng-model="data.address" placeholder="Enter address"/>
+
+      
+                    <label>Secret:</label>
+                    <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+
+                    <label>Authorized Account:</label>
+                    <input type="text" ng-model="data.trustor" placeholder="Enter issuer"/>
+
+                    <label>Asset Code:</label>
+                    <input type="text" ng-model="data.asset" placeholder="Enter asset"/>
+
+                    <h3>Authorize:</h3>
+        
+                    <label class="radio-label">Authorize</label>               
+                    <input type="radio" ng-model="data.authorize" value="true">
+            
+                    <label class="radio-label">Deauthorize </label>  
+                    <input type="radio" ng-model="data.authorize" value="false">
+
+                    <br />
+
+                    <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="authorizeTrust()">Submit Transaction</button>
+                </form>
+            <div ng-show="data.result || data.error">
+                <pre>{{data.result || data.error}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Offer Widget -->
+    <div class="widget-row" id="createoffer">
+        <div class="widget " ng-controller="CreateOfferCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Create Offer</h2>
+            <div ng-show="!collapsed">
+                <form role="form">
+        
+                    <label>Address:</label>
+          
+                    <input type="text" ng-model="data.address" placeholder="Enter address"/>
+        
+    
+                    <label>Secret:</label>
+      
+                    <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
+   
+
+                    <label>Buy:</label>
+  
+                    <input type="text" ng-model="data.buy.code" placeholder="The asset code you're buying"/>
+
+                    <label>Issuer:</label>
+  
+                    <input ng-disabled="data.buy.code.toLowerCase() == 'xlm'" type="text" ng-model="data.buy.issuer" placeholder="The asset's issuer address"/>
+
+                    <label>Sell:</label>
+  
+                    <input type="text" ng-model="data.sell.code" placeholder="The asset you have that you're selling"/>
+
+                    <label>Issuer:</label>
+  
+                    <input ng-disabled="data.sell.code.toLowerCase() == 'xlm'" type="text" ng-model="data.sell.issuer" placeholder="The asset's issuer"/>
+
+
+                    <label>Amount:</label>
+  
+                    <input type="text" ng-model="data.amount" placeholder="The amount of asset you're selling"/>
+
+                    <label>Price:</label>
+  
+                    <input type="text" ng-model="data.price" placeholder="The price you're selling for (sell/buy)"/>
+
+                    <label>OfferId:</label>
+  
+                    <input type="text" ng-model="data.offerid" placeholder="id for the offer (0 to delete the offer)"/>
+
+                    <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="createOffer()">Submit Transaction</button>
+                </form>
+                <div ng-show="data.result || data.error">
+                    <pre>{{data.result || data.error}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!--end container -->
+</body>
+</html>
