@@ -25,7 +25,7 @@ library provides convenient abstractions for building transactions and managing 
 To create an account in the ledger, you first need to create a valid keypair, which is a Stellar address and its corresponding
 private key. Stellar accounts are addressed using the public half of an ED25519 public/private keypair. Using ```js-stellar-sdk```, let's create a new keypair.
 
-{% highlight javascript %}
+```js
 function generateKeypair() {
     var keypair = StellarLib.Keypair.random()
     return {
@@ -33,7 +33,7 @@ function generateKeypair() {
         secret: keypair.seed()
     };
 }
-{% endhighlight %}
+```
 
 Great! We now have a javascript function that will generate random, valid Stellar keypairs. To actually create the account
 in the ledger, an existing account needs to send a transaction to the network that contains a [CreateAccount](https://github.com/stellar/docs/blob/master/concepts/list-of-operations.md#create-account)
@@ -42,7 +42,7 @@ operation with your new address as the destination account.
 On the testnet, we've set up an account called "FriendBot" which will submit the `CreateAccount` operation for any new address
 and send it 10000 XLM. There's a convenience function in js-stellar-sdk for FriendBot in the Server class. Let's write a function that takes a Stellar address and funds it through the friendbot endpoint.
 
-{% highlight javascript %}
+```js
 // we first need to create a connection to the Server
 var Server = new StellarLib.Server({
     hostname: "horizon-testnet.stellar.org",
@@ -54,7 +54,7 @@ var Server = new StellarLib.Server({
 function friendbot(address) {
     return Server.friendbot(address);
 }
-{% endhighlight %}
+```
 
 In this snippet of code, we've connected to the Horizon API server and created + funded our account in the ledger.
 
@@ -66,14 +66,14 @@ In this snippet of code, we've connected to the Horizon API server and created +
 
 Now that we've created an account in the ledger, we'd like to be able to check its balance. For this, we'll use another endpoint in the Horizon API for account information...in the javascript library: Server.accounts().
 
-{% highlight javascript %}
+```js
 function getBalance(address) {
     return Server.accounts(address)
         .then(function (result) {
             return result.balances;
         });
 }
-{% endhighlight %}
+```
 
 Here, we're calling the /accounts endpoint with the given address. This returns an accounts object, which contains the balances on the account. If you just created the account, this should only contain the native currency, 10000 XLM.
 
@@ -81,7 +81,7 @@ Here, we're calling the /accounts endpoint with the given address. This returns 
 
 Alright, we've got an account with some lumens. Now let's send them to another account! If need be, create a second account with friendbot. Let's write a function which creates a transaction with a [Payment](https://github.com/stellar/docs/blob/master/concepts/list-of-operations.md#payment) operation that sends some lumens from one account to another.
 
-{% highlight javascript %}
+```js
 function sendSimplePayment(address, secret, destination, amount, currency, issuer) {
     return Server.loadAccount(address)
     .then(function (account) {
@@ -96,7 +96,7 @@ function sendSimplePayment(address, secret, destination, amount, currency, issue
         return Server.submitTransaction(transaction);
     });
 }
-{% endhighlight %}
+```
 
 Let's break this function down step by step.
 
@@ -116,7 +116,7 @@ To send [assets](https://github.com/stellar/docs/blob/master/concepts/assets.md)
 
 To begin sending and receiving credits, we'll first implement a "setTrustline" function to create TrustLines to accounts, and then we'll augment our sendSimplePayment function to take any asset type.
 
-{% highlight javascript %}
+```js
 function setTrustLine(address, secret, issuer, currency, amount) {
     return Server.loadAccount(address)
     .then(function (account) {
@@ -128,7 +128,7 @@ function setTrustLine(address, secret, issuer, currency, amount) {
             .build();
     });
 }
-{% endhighlight %}
+```
 
 Again, we first load the account object through Server.loadAccount() to get the up to date sequence number. Then, we construct a TransactionBuilder object, with a "ChangeTrust" operation this time. The ChangeTrust operation takes a Currency object, which we saw in the last example. This time, the currency code is not "XLM" but the currency which the source account wants to accept, and the second parameter, the "issuer", is the account it's accepting it from.
 
@@ -136,7 +136,7 @@ Again, we first load the account object through Server.loadAccount() to get the 
 
 Once your account has a Trustline with and holds credits from another account, it can create offers on the distributed exchange, to buy and sell those credits for 'XLM' or other credits. An offer buys one currency and sells another. Let's create a function using js-stellar-lib to create an offer for a given account and currency pair. Then, we'll walk through and explain each piece of the function step by step.
 
-{% highlight javascript %}
+```js
 function createOffer(address, secret, sellCode, sellIssuer, buyCode, buyIssuer, amount, price, offerId) {
     return Server.loadAccount(address)
         .then(function (account) {
@@ -153,7 +153,7 @@ function createOffer(address, secret, sellCode, sellIssuer, buyCode, buyIssuer, 
             return Server.submitTransaction(transaction);
         });
 }
-{% endhighlight %}
+```
 
 First, as in other functions where we send transactions, we first load the account's latest sequence number for the network. As described earlier, this isn't necessary every time you send a transaction, as the account object should be stored in memory, as TransactionBuilder will automatically increment the Account object's local sequence number variable when build() is called.
 
@@ -170,17 +170,17 @@ And then we sign, build, and submit the transaction!
 
 To receive a list of offers on an account, simply use the accounts/offers endpoint of Server, passing the account address.
 
-{% highlight javascript %}
+```js
 function getOffers(address) {
     return Server.accounts(address, "offers");
 }
-{% endhighlight %}
+```
 
 # Sending a Path Payment
 
 Path payments are payments that send a destination a different currency than the sender uses to send the payment. Path payments use offers as "paths" to connect the source currency and the destination currency. Multiple offers may be chained together to make complex paths (up to 5).
 
-{% highlight javascript %}
+```js
 function sendPathPayment(address, secret, sourcecurrency, sourceissuer, sendmax
         destination, destcurrency, destissuer, amount) {
     return Server.loadAccount(address)
@@ -198,10 +198,10 @@ function sendPathPayment(address, secret, sourcecurrency, sourceissuer, sendmax
         return Server.submitTransaction(transaction);
     });
 }
-{% endhighlight %}
+```
 
 Here we create a transaction as we've done before, and add a "PathPayment" operation. The sendCurrency is the currency the sender will use, and the destinationCurrency is the currency the destination wil receive. Destination amount is specified to indicate how much of the destination currency the destination will receive. Send max is the max amount of currency the sender will send (this is dependent on the exact offer used).
 
 # Conclusion
 
-Congratulations! If you've followed along to this point, you've built the necessary functions for a basic Stellar client. That said, a useful client would require much more than just these basics, such as a way to manage a user's secret keys behind a log in screen, integration with federation, etc. 
+Congratulations! If you've followed along to this point, you've built the necessary functions for a basic Stellar client. That said, a useful client would require much more than just these basics, such as a way to manage a user's secret keys behind a log in screen, integration with federation, etc.
