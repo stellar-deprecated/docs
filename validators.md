@@ -5,8 +5,8 @@ Important snippits from our .cfg
 NETWORK_PASSPHRASE="Public Global Stellar Network ; September 2015"
 
 KNOWN_PEERS=[
-"core-public1.stellar.org",
-"core-public2.stellar.org",
+"core-live1.stellar.org",
+"core-live2.stellar.org",
 "chiyou.strllar.org",
 "confucius.strllar.org"]
 
