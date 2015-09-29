@@ -23,3 +23,10 @@ If you would like to list your validating node here please make a pull request.
  Peer2: confucius.strllar.org <br>
  NodeID: GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I<br>
  History: get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}"
+
+------
+ Name: Donovan<br>
+ Contact: donovanhide@gmail.com<br>
+ Description: Another possibility for your list<br>
+ List of nodes:<br>
+ GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
