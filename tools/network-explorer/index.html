@@ -12,7 +12,7 @@
         <div class="widget-row">
           This tool explores some of the functionality of the <a href="https://github.com/stellar/js-stellar-sdk">js-stellar-sdk</a>.
           It allows you to generate a new account and fund it on the test net, submit various transactions to the network, and look up information on accounts.
-          You can see how the magic happens by looking in the <a href="https://github.com/stellar/stellar-tutorials/tree/master/client-tool">source code</a>.
+          You can see how the magic happens by looking in the <a href="https://github.com/stellar/stellar-tutorials/tree/master/network-explorer">source code</a>.
             <div class="widget" ng-controller="CreateStellarAddressCtrl">
                 <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
                 <h2>Create a new Stellar Account</h2>
@@ -165,7 +165,7 @@
     <!-- Stream Account Transactions -->
     <div class="widget-row">
         <div class="widget " ng-controller="StreamAccountTransactionsCtrl">
-    
+
             <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
             <h2>Stream Account Transactions</h2>
             <div ng-show="!collapsed">
@@ -203,18 +203,18 @@
                     <h3>Set Flags:</h3>
                     <label class="checkbox-label">AUTH_REQUIRED_FLAG:</label>
                     <input type="checkbox" ng-model="data.setFlags.AUTH_REQUIRED_FLAG"  ng-true-value="1" ng-false-value="0"/>
-                    
+
                     <label class="checkbox-label">AUTH_REVOCABLE_FLAG:</label>
                     <input type="checkbox" ng-model="data.setFlags.AUTH_REVOCABLE_FLAG" ng-true-value="2" ng-false-value="0"/>
-                    
+
                     <h3>Clear Flags:</h3>
                     <label class="checkbox-label">AUTH_REQUIRED_FLAG:</label>
                     <input type="checkbox" ng-model="data.clearFlags.AUTH_REQUIRED_FLAG" ng-true-value="1" ng-false-value="0"/>
-  
+
                     <label class="checkbox-label">AUTH_REVOCABLE_FLAG:</label>
                     <input type="checkbox" ng-model="data.clearFlags.AUTH_REVOCABLE_FLAG" ng-true-value="2" ng-false-value="0"/>
 
-  
+
                     <h3>Thresholds:</h3>
                     <label>Weight (master key weight, 0-255):</label>
                     <input type="number" ng-model="data.thresholds.weight"/>
@@ -254,29 +254,29 @@
             <form role="form">
                 <label>Address:</label>
                 <input type="text" ng-model="data.address" placeholder="Enter address"/>
-    
+
                 <label>Secret:</label>
-      
+
                 <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
                 <label>Destination:</label>
-  
+
                 <input type="text" ng-model="data.destination" placeholder="Enter Destination address"/>
 
                 <label>Asset:</label>
-  
+
                 <input type="text" ng-model="data.asset" placeholder="Enter asset code"/>
 
                 <label>Issuer:</label>
-  
+
                 <input type="text" ng-model="data.issuer" placeholder="Enter issuer (blank for XLM)"/>
 
                 <label>Amount:</label>
-  
+
                 <input type="text" ng-model="data.amount" placeholder="Enter amount"/>
 
 
                 <label>Memo:</label>
-  
+
                 <input type="text" ng-model="data.memo" placeholder="Enter a text memo"/>
 
                 <button type="submit" ng-click="sendPayment()">Submit Transaction</button>
@@ -295,45 +295,45 @@
             <div ng-show="!collapsed">
                 <p>Sends a payment to another account using a different source asset than the asset the destination receives. If there's an offer on the network for the source asset / destination asset, the payment can be sent, otherwise it needs to go through paths of more than 1 offer. This is why you need to specify a send max, the amount of source asset to send may fluctuate based on what offer is selected.</p>
             <form role="form">
-        
+
                 <label>Address:</label>
-          
+
                 <input type="text" ng-model="data.address" placeholder="Enter address"/>
-    
+
                 <label>Secret:</label>
-      
+
                 <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
 
                 <label>Source Asset:</label>
-  
+
                 <input type="text" ng-model="data.sourceasset" placeholder="The asset code to pay with"/>
 
                 <label>Issuer:</label>
-  
+
                 <input type="text" ng-model="data.sourceissuer" placeholder="The source asset issuer"/>
 
                 <label>Send Max:</label>
-  
+
                 <input type="number" ng-model="data.sendmax" placeholder="The max amount of this asset to send"/>
 
                 <label>Destination:</label>
-  
+
                 <input type="text" ng-model="data.destination" placeholder="Enter Destination address"/>
 
                 <label>Asset:</label>
-  
+
                 <input type="text" ng-model="data.destasset" placeholder="Enter asset destination gets"/>
 
                 <label>Issuer:</label>
-  
+
                 <input type="text" ng-model="data.destissuer" placeholder="The destination asset issuer"/>
 
                 <label>Amount:</label>
-  
+
                 <input type="text" ng-model="data.amount" placeholder="Amount of destination asset to send"/>
 
                 <label>Memo:</label>
-  
+
                 <input type="text" ng-model="data.memo" placeholder="Enter a text memo"/>
 
                 <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="sendPathPayment()">Submit Transaction</button>
@@ -352,27 +352,27 @@
             <div ng-show="!collapsed">
                 <p>Create a trust line for a asset/issuer</p>
                 <form role="form" class="form-horizontal">
-        
+
                     <label>Address:</label>
-          
+
                     <input type="text" ng-model="data.address" placeholder="Enter address"/>
-        
-    
+
+
                     <label>Secret:</label>
-      
+
                     <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
-   
+
 
                     <label>Issuer:</label>
-  
+
                     <input type="text" ng-model="data.issuer" placeholder="Enter issuer"/>
 
                     <label>Asset:</label>
-  
+
                     <input type="text" ng-model="data.asset" placeholder="Enter asset"/>
 
                     <label>Amount:</label>
-  
+
                     <input type="text" ng-model="data.amount" placeholder="Enter amount"/>
 
                     <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="createTrustLine()">Submit Transaction</button>
@@ -392,11 +392,11 @@
             <div ng-show="!collapsed">
                 <p>Allow an account to hold trustline to your account. This requires that your account have AUTH_REQUIRED_FLAG set, and the account you're authorizing has already set a trustline to your account for the asset you're authorizing.</p>
                 <form role="form" class="form-horizontal">
-          
+
                     <label>Address:</label>
                     <input type="text" ng-model="data.address" placeholder="Enter address"/>
 
-      
+
                     <label>Secret:</label>
                     <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
 
@@ -407,11 +407,11 @@
                     <input type="text" ng-model="data.asset" placeholder="Enter asset"/>
 
                     <h3>Authorize:</h3>
-        
-                    <label class="radio-label">Authorize</label>               
+
+                    <label class="radio-label">Authorize</label>
                     <input type="radio" ng-model="data.authorize" value="true">
-            
-                    <label class="radio-label">Deauthorize </label>  
+
+                    <label class="radio-label">Deauthorize </label>
                     <input type="radio" ng-model="data.authorize" value="false">
 
                     <br />
@@ -431,44 +431,44 @@
             <h2>Create Offer</h2>
             <div ng-show="!collapsed">
                 <form role="form">
-        
+
                     <label>Address:</label>
-          
+
                     <input type="text" ng-model="data.address" placeholder="Enter address"/>
-        
-    
+
+
                     <label>Secret:</label>
-      
+
                     <input type="text" ng-model="data.secret" placeholder="Enter secret"/>
-   
+
 
                     <label>Buy:</label>
-  
+
                     <input type="text" ng-model="data.buy.code" placeholder="The asset code you're buying"/>
 
                     <label>Issuer:</label>
-  
+
                     <input ng-disabled="data.buy.code.toLowerCase() == 'xlm'" type="text" ng-model="data.buy.issuer" placeholder="The asset's issuer address"/>
 
                     <label>Sell:</label>
-  
+
                     <input type="text" ng-model="data.sell.code" placeholder="The asset you have that you're selling"/>
 
                     <label>Issuer:</label>
-  
+
                     <input ng-disabled="data.sell.code.toLowerCase() == 'xlm'" type="text" ng-model="data.sell.issuer" placeholder="The asset's issuer"/>
 
 
                     <label>Amount:</label>
-  
+
                     <input type="text" ng-model="data.amount" placeholder="The amount of asset you're selling"/>
 
                     <label>Price:</label>
-  
+
                     <input type="text" ng-model="data.price" placeholder="The price you're selling for (sell/buy)"/>
 
                     <label>OfferId:</label>
-  
+
                     <input type="text" ng-model="data.offerid" placeholder="id for the offer (0 to delete the offer)"/>
 
                     <button type="submit" class="col-xs-8 col-xs-offset-2 btn btn-md btn-primary" ng-click="createOffer()">Submit Transaction</button>
