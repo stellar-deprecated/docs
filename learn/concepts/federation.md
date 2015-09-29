@@ -13,7 +13,7 @@ Example: `name*yourdomain.com` -> `GCCVPYFOHY7ZB7557JKENAX62LUAPLMGIWNZJAFV2MITK
 
 ## Supporting Federation
 
-#### Step 1: Create [stellar.txt](./stellar.txt.md) file
+#### Step 1: Create [stellar.txt](./stellar-txt.md) file
 
 Create a file called stellar.txt and put it at the root of your domain. The stellar.txt file is typically searched for in this order:
 

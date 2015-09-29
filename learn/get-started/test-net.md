@@ -1,5 +1,5 @@
 ---
-title: Test Net
+title: Testnet
 ---
 
 We have set up a small test Stellar network. When developing please feel free to use it. We run 3 stellar-core validators on this test network. You can set your stellar-core to connect to us by using this [configuration](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_testnet.cfg).
