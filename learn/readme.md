@@ -27,9 +27,9 @@ The SDKs facilitate communication between Horizon and a client application that 
 Stellar.org only maintains the JavaScript SDK. We are looking for maintainers for other languages.
 
 ## [Interstellar](https://github.com/stellar/interstellar)
-The Interstellar Module System is a collection of modules that aims to make it easy to build a web application on the Stellar network. Interstellar is built using the JS-Stellar-SDK.
+The Interstellar Module System is a collection of modules that aims to make it easy to build a web application on the Stellar network. Interstellar is built using the [JavaScript Stellar SDK] (https://github.com/stellar/js-stellar-sdk).
 
-It can be thought of as a bootstrap for building Stellar clients. Read more on the Stellar blog about the [design philosophy of Interstellar](https://www.stellar.org/blog/developer-preview-interstellar-module-system/).
+It can be thought of as a bootstrap for building Stellar clients. Read more on about the [design philosophy of Interstellar](https://www.stellar.org/blog/developer-preview-interstellar-module-system/).
 
 
 `stellar-core` <-> `Horizon`  <-> `JS-Stellar-SDK` <-> `Interstellar`
