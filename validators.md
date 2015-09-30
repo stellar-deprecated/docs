@@ -16,6 +16,14 @@ get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-
 
 [HISTORY.sdf2]
 get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-public-002/{0} {1}"
+
+# strllar.org history store
+[HISTORY.chiyou]
+get="curl -sf https://stellar.oss-cn-beijing.aliyuncs.com/xlm/{0} -o {1}"
+
+[HISTORY.confucius]
+get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}"
+
 ```
 
 ##None of the following validators are recommended by Stellar Development Foundation.
