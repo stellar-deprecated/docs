@@ -10,12 +10,22 @@ KNOWN_PEERS=[
 "chiyou.strllar.org",
 "confucius.strllar.org"]
 
+[QUORUM_SET]
+VALIDATORS=[
+"GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3",
+"GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I",
+"GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57",
+"GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM"]
+
 # Stellar.org history store
 [HISTORY.sdf1]
 get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-public-001/{0} {1}"
 
 [HISTORY.sdf2]
 get="aws s3 cp --region eu-west-1 s3://history.stellar.org/prd/core-public/core-public-002/{0} {1}"
+
+[HISTORY.lab]
+get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}"
 ```
 
 ##None of the following validators are recommended by Stellar Development Foundation.
