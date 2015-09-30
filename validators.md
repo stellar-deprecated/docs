@@ -64,3 +64,11 @@ If you would like to **list your validating node here** please make a pull reque
  Description: Another possibility for your list<br>
  List of nodes:<br>
  GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
+ 
+------
+ Name: buhrmi<br>
+ Contact: stellar-core@buhrmi.de<br>
+ Description: Here to validate your stuff<br>
+ List of nodes: <br>
+ URL: validator.stellar-core.org
+ Address: GDVFVU7KURZ22MO56MP7IWX7Q4PEMHFQCOBTJVD2IR4OITEAUN64CCT2
