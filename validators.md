@@ -1,6 +1,6 @@
 Stellar.org doesn't currently run a validator. We do run a couple nodes recording and saving network history.
 
-Important snippits from our .cfg
+Important snippets from our .cfg
 ```
 NETWORK_PASSPHRASE="Public Global Stellar Network ; September 2015"
 
@@ -71,3 +71,10 @@ If you would like to **list your validating node here** please make a pull reque
  Description: <br>
  List of nodes:<br>
  GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
+ 
+ ------
+ Name: Jianing<br>
+ Contact: huyahuai@qq.com<br>
+ Description: A node in Chenzhou<br>
+ List of nodes:<br>
+ GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
