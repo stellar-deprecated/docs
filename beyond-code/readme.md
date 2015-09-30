@@ -47,7 +47,7 @@ Even better, you can contribute improvements or additions to our existing docume
 
 * Relevant diagrams, screenshots, or images
 * Examples and code snippets
-We use GitHub to track documentation contributions. If you're new to GitHub, we recommend the GitHub Guide on [Contributing to Open Source](https://guides.github.com/activities/contributing-to-open-source/). To submit a docs improvement, see the section on pull requests in our [code contribution guide](LINK TO dev portal contributing guide).
+We use GitHub to track documentation contributions. If you're new to GitHub, we recommend the GitHub Guide on [Contributing to Open Source](https://guides.github.com/activities/contributing-to-open-source/). To submit a docs improvement, see the section on pull requests in our [code contribution guide](https://github.com/stellar/docs/blob/master/CONTRIBUTING.md).
 
 
 
