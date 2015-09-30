@@ -64,3 +64,10 @@ If you would like to **list your validating node here** please make a pull reque
  Description: Another possibility for your list<br>
  List of nodes:<br>
  GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
+ 
+ ------
+ Name: nelisky<br>
+ Contact: nelisky.btc@gmail.com<br>
+ Description: <br>
+ List of nodes:<br>
+ GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
