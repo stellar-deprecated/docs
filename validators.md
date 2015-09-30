@@ -8,7 +8,8 @@ KNOWN_PEERS=[
 "core-live1.stellar.org",
 "core-live2.stellar.org",
 "chiyou.strllar.org",
-"confucius.strllar.org"]
+"confucius.strllar.org",
+"stellar1.bitventure.co"]
 
 [QUORUM_SET]
 VALIDATORS=[
@@ -70,7 +71,8 @@ If you would like to **list your validating node here** please make a pull reque
  Contact: nelisky.btc@gmail.com<br>
  Description: <br>
  List of nodes:<br>
- GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
+ Peer1: stellar1.bitventure.co<br>
+ NodeID: GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
  
  ------
  Name: Jianing<br>
