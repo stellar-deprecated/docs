@@ -68,10 +68,10 @@ This entry represents an [account](./accounts.md). In Stellar, everything is bui
 
 Other entries are add-ons, owned by a main account entry. With every new entry
 attached to the account, the minimum balance in XLM goes up for the
-account. For details, see [fees and minimum balance] (./fees.md).
+account. For details, see [fees and minimum balance](./fees.md).
 
 ## Trustline entry
-[Trustlines] (./assets.md) are lines of credit the account has given a particular issuer in a specific currency.
+[Trustlines](./assets.md) are lines of credit the account has given a particular issuer in a specific currency.
 
 Trustline entries define the rules around the use of this currency. Rules can be defined by the user--e.g., setting a balance limit to limit risk--or by the issuer--e.g., an authorized flag.
 
