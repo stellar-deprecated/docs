@@ -44,6 +44,9 @@ If you would like to **list your validating node here** please make a pull reque
  Peer2: confucius.strllar.org <br>
  NodeID: GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I<br>
  History: get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}"
+ 
+ Peer3: 
+ NodeID: GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
 
 ------
  Name: Donovan<br>
