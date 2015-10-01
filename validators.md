@@ -80,3 +80,11 @@ If you would like to **list your validating node here** please make a pull reque
  Description: A node in Chenzhou<br>
  List of nodes:<br>
  GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
+
+ ------
+ Name: Eno<br>
+ Contact: appweb.cn@gmail.com<br>
+ Description: Lumens to watts <br>
+ Peer:  stellar.256kw.com<br>
+ GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U
+ 
