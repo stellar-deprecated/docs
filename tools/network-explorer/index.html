@@ -1,7 +1,7 @@
 <html>
 <head>
   <script type="text/javascript" src="https://s3.amazonaws.com/stellar.org/public/150929-network-explorer/angular.min.js"></script>
-  <script type="text/javascript" src="https://s3.amazonaws.com/stellar.org/public/150929-network-explorer/stellar-sdk.js"></script>
+  <script type="text/javascript" src="https://s3.amazonaws.com/stellar.org/public/151001-network-explorer/stellar-sdk.js"></script>
   <script type="text/javascript" src="./main.js"></script>
   <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
@@ -120,6 +120,7 @@
                                 </ul>
                             </section>
                      </div>
+                     <div style="clear: both;"></div>
                 </div>
             </div>
         </div>
@@ -234,6 +235,10 @@
 
                     <label>Federation Domain:</label>
                     <input type="text" ng-model="data.homeDomain" placeholder="Where to look up stellar.txt"/>
+
+                    <label>Inflation destination:</label>
+                    <input type="text" ng-model="data.inflationDest"/>
+
                     <button type="submit" ng-click="setOptions()">Submit Transaction</button>
                 </form>
                 <div ng-show="data.result || data.error">
@@ -476,6 +481,24 @@
                 <div ng-show="data.result || data.error">
                     <pre>{{data.result || data.error}}</pre>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Select Widget -->
+    <div class="widget-row" id="networkselect">
+        <div class="widget " ng-controller="NetworkSelectCtrl">
+            <a class="shrink" ng-click="collapsed = !collapsed">{{!collapsed ? '[ - ]' : '[ + ]'}}</a>
+            <h2>Network Select</h2>
+            <div ng-show="!collapsed">
+                <p>Select which network you want to use:</p>
+                <form role="form">
+                    <input type="radio" ng-model="network" value="test" />
+                    <label class="checkbox-label">Test Network</label>
+                    <br />
+                    <input type="radio" ng-model="network" value="live" />
+                    <label class="checkbox-label">Live Network</label>
+                </form>
             </div>
         </div>
     </div>
