@@ -28,22 +28,20 @@ Note that if several transactions with the same source account make it into the 
 
 ##Transaction sets
 
-Between ledger closings, all the nodes in the network are collecting transactions. When it is time to close the next ledger, the nodes collect these transactions into a transaction set. SCP is run by the network to reach agreement on which transaction set to apply to the last ledger. 
+Between ledger closings, all the nodes in the network are collecting transactions. When it is time to close the next ledger, the nodes collect these transactions into a transaction set. SCP is run by the network to reach agreement on which transaction set to apply to the last ledger.
 
 ##Life cycle
 
-1. **Creation**: The user creates a transaction, fills out all the fields, gives it the correct sequence number, adds whatever operations it wants, etc. Try it with [js-stellar-sdk](http://stellar.org/developers/learn/guides/js-stellar-sdk).
+1. **Creation**: The user creates a transaction, fills out all the fields, gives it the correct sequence number, adds whatever operations it wants, etc. Try it with [js-stellar-sdk](https://www.stellar.org/developers/js-stellar-sdk/learn/).
 
 2. **Signing**: Once the transaction is filled out, all the needed signatures must be collected and added to the transaction envelope. Commonly it's just the signature of the account doing the transaction, but more complicated setups can require collecting signatures from multiple parties. See [multi-sig](./multi-sig.md).
 
-3. **Submitting**: After signing, the transaction should be valid and can now be submitted to the Stellar network. Transactions are typically submitted using [horizon](http://stellar.org/developers/horizon/reference/transactions-create/), but you can also submit the transaction directly to an instance of [stellar-core](https://github.com/stellar/stellar-core).
+3. **Submitting**: After signing, the transaction should be valid and can now be submitted to the Stellar network. Transactions are typically submitted using [horizon](https://www.stellar.org/developers/horizon/reference/transactions-create.html), but you can also submit the transaction directly to an instance of [stellar-core](https://github.com/stellar/stellar-core).
 
-4. **Propagating**: Once stellar-core receives a transaction, either given to it by a user or another stellar-core, it does preliminary checks to see if the transaction is valid. Among other checks, it makes sure that the transaction is correctly formed and the source account has enough to cover the transaction fee. Stellar-core doesn't check things that require inspecting the state of the ledger beyond looking up the source account—e.g., that the destination account to which the transaction is trying to send exists, that the account has enough of this asset to sell, that it's a valid path. 
+4. **Propagating**: Once stellar-core receives a transaction, either given to it by a user or another stellar-core, it does preliminary checks to see if the transaction is valid. Among other checks, it makes sure that the transaction is correctly formed and the source account has enough to cover the transaction fee. Stellar-core doesn't check things that require inspecting the state of the ledger beyond looking up the source account—e.g., that the destination account to which the transaction is trying to send exists, that the account has enough of this asset to sell, that it's a valid path.
 If the preliminary checks pass, then stellar-core propagates the transaction to all the other servers to which it's connected. In this way, a valid transaction is flooded to the whole Stellar network.
 
-5. **Including in a transaction set**: When it's time to close the ledger, stellar-core takes all the transactions it has heard about since last ledger close and collects them into a transaction set. If it hears about any incoming transactions now, it puts them aside for next ledger close. 
-Stellar-core nominates the transaction set it has collected. SCP resolves the differences between the various transaction sets proposed and decides on the one transaction set that the network will apply. 
+5. **Including in a transaction set**: When it's time to close the ledger, stellar-core takes all the transactions it has heard about since last ledger close and collects them into a transaction set. If it hears about any incoming transactions now, it puts them aside for next ledger close.
+Stellar-core nominates the transaction set it has collected. SCP resolves the differences between the various transaction sets proposed and decides on the one transaction set that the network will apply.
 
 6. **Application**: Once SCP agrees on a particular transaction set, that set is applied to the ledger. At this point, a fee is taken from the source account for every transaction in that set. Operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails, and the effects of previous operations in that transaction are rolled back. After all the transactions in the set are applied, a new ledger is created and the process starts over.
-
-
