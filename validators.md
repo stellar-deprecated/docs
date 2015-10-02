@@ -14,9 +14,8 @@ We don't know who really controls these nodes. They could all be owned by the sa
 
 ------
 
- Q  |  A
- ------|-------
  Name | strllar.org
+  ------|-------
  Contact | lab@strllar.org
  Description | Nice to be in your quorum slice.
  Peer 1 | chiyou.strllar.org
@@ -27,40 +26,38 @@ We don't know who really controls these nodes. They could all be owned by the sa
  NodeID 2 | GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I
  History 2 | get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}"
       |
- NodeID 3 GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
+ NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
 
 ------
 
- Q  |  A
- ------|-------
  Name | Donovan
+ ------|-------
  Contact | donovanhide@gmail.com
  Description | Another possibility for your list
  List of nodes | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
  
  ------
 
-  Q  |  A
-  ------|-------
  Name | nelisky
+ ------|-------
  Contact | nelisky.btc@gmail.com
  Peer | stellar1.bitventure.co
  NodeID | GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
  
  ------
 
- Q  |  A
- ------|-------
+
  Name | Jianing
+ ------|-------
  Contact | huyahuai@qq.com
  Description | A node in Chenzhou
  NodeID | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
 
  ------
 
-  Q  |  A
-  ------|-------
+
  Name | Eno
+ ------|-------
  Contact | appweb.cn@gmail.com
  Description | Lumens to watts
  Peer |  stellar.256kw.com
