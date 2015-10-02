@@ -28,7 +28,7 @@ We don't know who really controls these nodes. They could all be owned by the sa
       |
  NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
 
-------
+
 
  Name | Donovan
  ------|-------
@@ -36,7 +36,7 @@ We don't know who really controls these nodes. They could all be owned by the sa
  Description | Another possibility for your list
  List of nodes | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
  
- ------
+
 
  Name | nelisky
  ------|-------
@@ -44,16 +44,12 @@ We don't know who really controls these nodes. They could all be owned by the sa
  Peer | stellar1.bitventure.co
  NodeID | GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
  
- ------
-
 
  Name | Jianing
  ------|-------
  Contact | huyahuai@qq.com
  Description | A node in Chenzhou
  NodeID | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
-
- ------
 
 
  Name | Eno
