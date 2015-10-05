@@ -139,7 +139,7 @@ function handlePaymentResponse(resp) {
 ## Submitting withdrawals
 When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them the lumens.
 
-```
+```js
 function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
   // read the user's balance from the exchange's database
   var userBalance = getBalance('userID');
