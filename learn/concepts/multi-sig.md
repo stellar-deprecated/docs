@@ -56,7 +56,7 @@ This scheme is very flexible. You can require many signers to authorize payments
 ### Examples
 1. You run a gateway that would like to keep its issuing key offline. That way, it's less likely a bad actor can get a hold of the gateway's key and start issuing credit improperly. However, your gateway needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
 
-Multi-sig allows you to do all of this without exposing the master key of your gateway. You can add another signing key
+Multisig allows you to do all of this without exposing the master key of your gateway. You can add another signing key
 to your account with the operation `Set Options`.  This additional key should have a weight below your gateway account's
 medium threshold. Since `Allow Trust` is a low-threshold operation, this extra key authorizes users to hold your gateway's
 credit. But, since `Payment` is a medium-threshold operation, this key does not allow anyone who compromises your gateway to issue credit.
