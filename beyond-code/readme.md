@@ -1,8 +1,8 @@
 ---
-title: Beyond Code
+title: Beyond Code Overview
 ---
 
-# Contribute more than code
+# Contribute
 We value contributions of all types to Stellar. If you're new to open source or financial technology, or simply have strengths that don't involve code, here are some ways to get involved:
 * Q&A
 * Host or attend a meetup
@@ -15,7 +15,7 @@ We value contributions of all types to Stellar. If you're new to open source or 
 
 Lots of people have Q's about Stellar—maybe you have A's.
 
-* Join the conversation in [Slack](http://slack.stellar.org/).
+* Join the conversation on [Slack](http://slack.stellar.org/).
 * Post code snippets and answer questions on [Stack Overflow](http://stackoverflow.com). Or ask your own.
 
 
@@ -37,7 +37,7 @@ We warmly welcome you to speak about Stellar at a conference or meetup. Some res
 
 * [Examples of talks](https://www.stellar.org/blog/tag/stellar-talks/) given by the
 Stellar.org team
-* Stellar's [blank slide template](https://docs.google.com/presentation/d/1C9493Vj1J0JzbiMiEOn64NWdfBl3Kal2KverZWSVziw/edit#slide=id.g6db1791cd_022) for you to use.
+* Stellar's [blank slide template](https://docs.google.com/presentation/d/1C9493Vj1J0JzbiMiEOn64NWdfBl3Kal2KverZWSVziw/edit#slide=id.g6db1791cd_022) for you to use
 
 
 ## Write documentation
@@ -47,6 +47,7 @@ Even better, you can contribute improvements or additions to our existing docume
 
 * Relevant diagrams, screenshots, or images
 * Examples and code snippets
+
 We use GitHub to track documentation contributions. If you're new to GitHub, we recommend the GitHub Guide on [Contributing to Open Source](https://guides.github.com/activities/contributing-to-open-source/). To submit a docs improvement, see the section on pull requests in our [code contribution guide](https://github.com/stellar/docs/blob/master/CONTRIBUTING.md).
 
 
