@@ -1,5 +1,5 @@
 ---
-title: Multi-sig
+title: Multisig
 ---
 
 ## Transaction signatures
