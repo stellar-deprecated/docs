@@ -10,15 +10,15 @@ There are many ways to architect an exchange. This guide uses the following desi
  - `hot wallet`: One Stellar account that holds a small amount of customer deposits online and is used to payout to withdrawal requests.
  - `customerID`: Each user has a customerID, used to correlate incoming deposits with a particular user's account on the exchange.
 
-The two main integration points to Stellar for an exchange are:
-1) Listening for deposit transactions from the Stellar network
+The two main integration points to Stellar for an exchange are:<br>
+1) Listening for deposit transactions from the Stellar network<br>
 2) Submitting withdrawal transactions to the Stellar network
 
 ## Setup
 
 ### Operational
-*(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)
-*(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)
+*(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)<br>
+*(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)<br>
 If your exchange doesn't see a lot of volume, you don't need to set up your own instance of stellar-core and horizon. Use the Stellar.org public-facing horizon server instead.
 ``` {hostname:'horizon.stellar.org', secure:true, port:443}; ```
 
@@ -33,17 +33,17 @@ A hot wallet contains a more limited amount of funds than a cold wallet. A hot w
 To learn how to create a hot wallet account, see [account management](./account-management.md).
 
 ### Database
-- Need to create a table for pending withdrawals, `StellarWithdrawals`.
+- Need to create a table for pending withdrawals, `StellarTransactions`.
 - Need to create a table to hold the latest cursor position of the deposit stream, `StellarCursor`.
 - Need to add a row to your users table that creates a unique `customerID` for each user.
 - Need to populate the customerID row.
 
 ```
-CREATE TABLE StellarWithdrawals (UserID INT, Destination varchar(56), XLMAmount INT, state varchar(8));
+CREATE TABLE StellarTransactions (UserID INT, Destination varchar(56), XLMAmount INT, state varchar(8));
 CREATE TABLE StellarCursor (cursor INT);
 INSERT INTO StellarCursor (cursor) values (0);
 ```
-Possible values for StellarWithdrawals.state are "pending", "done", "error".
+Possible values for StellarTransactions.state are "pending", "done", "error".
 
 ### Code
 Server setup:
@@ -63,6 +63,14 @@ var StellarSdk = require('stellar-sdk');
 // initialize the Stellar SDK with the horizon instance
 // you want to connect to
 var server = new StellarSdk.Server(config.horizon);
+
+// to process any transaction that was pending on last shut down of the server
+submitTransactions();
+
+// every 30 seconds process any pending transactions
+setInterval(function(){
+  submitTransactions();
+}, 30 * 1000);
 
 
 ```
@@ -133,8 +141,6 @@ When a user requests a lumen withdrawal from your exchange, you must generate a 
 
 ```
 function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
-  //TODO: check if address exists
-
   // read the user's balance from the exchange's database
   var userBalance = getBalance('userID');
 
@@ -144,8 +150,8 @@ function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
     // debit  the user's internal lumen balance by the amount of lumens they are withdrawing
     store([userID, userBalance - amountLumens], "UserBalances");
 
-    // save the transaction information in the StellarWithrawals table
-    store([userID, destinationAddress, amountLumens, "pending"], "StellarWithdrawals");
+    // save the transaction information in the StellarTransactions table
+    store([userID, destinationAddress, amountLumens, "pending"], "StellarTransactions");
   } else {
     // If the user doesn't have enough XLM, you can alert them
   }
@@ -154,10 +160,10 @@ function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
 
 }
 
-//on a timer
+// called on a timer
 function submitTransactions() {
   // see what transactions in the db are still pending
-  pendingTransactions = querySQL("SELECT * FROM StellarWithdrawals WHERE state =`pending`");
+  pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
 
   while (pendingTransactions.length > 0) {
     var txn = pendingTransactions.shift()
@@ -184,10 +190,10 @@ function submitTransactions() {
       })
       .then(function(transactionResult) {
         if (transactionResult.ledger) {
-          updateRecord(txn.pop().push('done'), "StellarWithdrawals");
+          updateRecord(txn.pop().push('done'), "StellarTransactions");
           sequence_number = sequence_number + 1;
         } else {
-          updateRecord(txn.pop().push('error'), "StellarWithdrawals");
+          updateRecord(txn.pop().push('error'), "StellarTransactions");
         }
       })
       .catch(StellarSdk.NotFoundError, function(err) {
