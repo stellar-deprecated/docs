@@ -194,9 +194,9 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
     // Submit the transaction created in either case
     .then(function(transactionResult) {
       if (transactionResult.ledger) {
-        updateRecord(txn.pop().push('done'), "StellarWithdrawals");
+        updateRecord(txn.pop().push('done'), "StellarTransactions");
       } else {
-        updateRecord(txn.pop().push('error'), "StellarWithdrawals");
+        updateRecord(txn.pop().push('error'), "StellarTransactions");
       }
     })
     .catch(function(err) {
@@ -208,7 +208,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 function submitPendingTransactions(exchangeAccount) {
   
   // see what transactions in the db are still pending
-  pendingTransactions = querySQL("SELECT * FROM StellarWithdrawals WHERE state =`pending`");
+  pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
 
   while (pendingTransactions.length > 0) {
     var txn = pendingTransactions.shift();
