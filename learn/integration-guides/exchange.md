@@ -69,7 +69,7 @@ server.loadAccount(config.hotWallet)
   .then(function (account) {
     setInterval(function() {
      // every 30 seconds process any pending transactions
-     submitTransactions(account)
+     submitPendingTransactions(account)
     }, 30 * 1000);
   })
 
