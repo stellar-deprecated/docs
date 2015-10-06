@@ -43,7 +43,7 @@ CREATE TABLE StellarTransactions (UserID INT, Destination varchar(56), XLMAmount
 CREATE TABLE StellarCursor (cursor INT);
 INSERT INTO StellarCursor (cursor) values (0);
 ```
-Possible values for StellarTransactions.state are "pending", "done", "error".
+The possible values for StellarTransactions.state are "pending", "done", "error".
 
 ### Code
 Server setup:
@@ -92,9 +92,9 @@ server.payments()
 
 ```
 
-For every payment received by the hot wallet, you must:
--check the memo field to determine which user sent the deposit.
--record the cursor in the StellarCursor table so you can resume payment processing where you left off.
+For every payment received by the hot wallet, you must:<br>
+-check the memo field to determine which user sent the deposit.<br>
+-record the cursor in the StellarCursor table so you can resume payment processing where you left off.<br>
 -credit the user's account in the DB with the number of XLM they sent to deposit.
 
 ```js
