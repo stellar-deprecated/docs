@@ -64,14 +64,14 @@ var StellarSdk = require('stellar-sdk');
 // you want to connect to
 var server = new StellarSdk.Server(config.horizon);
 
-// to process any transaction that was pending on last shut down of the server
-submitTransactions();
-
-// every 30 seconds process any pending transactions
-setInterval(function(){
-  submitTransactions();
-}, 30 * 1000);
-
+// load the account sequence number from Horizon and return the account
+server.loadAccount(config.hotWallet)
+  .then(function (account) {
+    setInterval(function() {
+     // every 30 seconds process any pending transactions
+     submitTransactions(account)
+    }, 30 * 1000);
+  })
 
 ```
 
@@ -99,9 +99,8 @@ For every payment received by the hot wallet, you must:
 
 ```js
 
-function handlePaymentResponse(resp) {
+function handlePaymentResponse(record) {
 
-  var record = resp.records[0];
   record.transaction()
     .then(function(resp) {
       var customer = txn.memo;
@@ -160,52 +159,65 @@ function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
 
 }
 
-// called on a timer
-function submitTransactions() {
+function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
+  // Check to see if the destination address exists
+  server.loadAccount(destinationAddress)
+
+    // If so, continue by submitting a transaction to the destination
+    .then(function(account) {
+      var transaction = new StellarSdk.Transaction(exchangeAccount)
+        .addOperation(StellarSdk.Operation.payment({
+          destination: destinationAddress,
+          asset: StellarLib.Asset.native(),
+          amount: amountLumens
+        }))
+        // sign the transaction
+        .addSigner(StellarSdk.Keypair.fromSeed(exchangeSeed))
+        .build();
+      return server.submitTransaction(transaction);
+    })
+
+    //But if the destination doesn't exist...
+    .catch(StellarSdk.NotFoundError, function(err) {
+      // create the account and fund it
+      var transaction = StellarSdk.TransactionBuilder(exchangeAccount)
+        .addOperation(StellarSdk.Operation.createAccount({
+          destination: destinationAddress,
+          // Creating an account requires funding it with XLM
+          startingBalance: amountLumens
+        }))
+        .addSigner(StellarSdk.Keypair.fromSeed(exchangeSeed))
+        .build();
+      return server.submitTransaction(transaction);
+    })
+  
+    // Submit the transaction created in either case
+    .then(function(transactionResult) {
+      if (transactionResult.ledger) {
+        updateRecord(txn.pop().push('done'), "StellarWithdrawals");
+      } else {
+        updateRecord(txn.pop().push('error'), "StellarWithdrawals");
+      }
+    })
+    .catch(function(err) {
+      // Catch errors, most likely with the network or your transaction
+    });
+}
+
+//on a timer
+function submitPendingTransactions(exchangeAccount) {
+  
   // see what transactions in the db are still pending
-  pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
+  pendingTransactions = querySQL("SELECT * FROM StellarWithdrawals WHERE state =`pending`");
 
   while (pendingTransactions.length > 0) {
-    var txn = pendingTransactions.shift()
+    var txn = pendingTransactions.shift();
     var destinationAddress = txn[1];
     var amountLumens = txn[2];
 
-    // Check to see if the destination address exists
-    server.loadAccount(destinationAddress)
-
-      // If so, continue by submitting a transaction to the destination
-      .then(function(account) {
-        // assumes you keep track of your sequence number locally
-        var exchangeAccount = new StellarSdk.Account(config.hotWallet, sequence_number)
-        var transaction = new StellarSdk.Transaction(exchangeAccount)
-          .addOperation(StellarSdk.Operation.payment({
-            destination: destinationAddress,
-            asset: StellarLib.Asset.native(),
-            amount: amountLumens
-          }))
-          // sign the transaction
-          .addSigner(StellarSdk.Keypair.fromSeed(exchangeSeed))
-          .build()
-        return server.submitTransaction(transaction);
-      })
-      .then(function(transactionResult) {
-        if (transactionResult.ledger) {
-          updateRecord(txn.pop().push('done'), "StellarTransactions");
-          sequence_number = sequence_number + 1;
-        } else {
-          updateRecord(txn.pop().push('error'), "StellarTransactions");
-        }
-      })
-      .catch(StellarSdk.NotFoundError, function(err) {
-        pendingTransactions.unshift(txn);
-        return server.friendbot(destinationAddress)
-      })
-      .catch(function(err) {
-        // Catch errors, most likely with the network or your transaction
-      })
+    submitTransaction(exchangeAccount, destinationAddress, amountLumens);
   }
 }
-
 
 ```
 
