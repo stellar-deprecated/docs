@@ -19,8 +19,11 @@ The two main integration points to Stellar for an exchange are:<br>
 ### Operational
 *(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)<br>
 *(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)<br>
-If your exchange doesn't see a lot of volume, you don't need to set up your own instance of stellar-core and horizon. Use the Stellar.org public-facing horizon server instead.
-``` {hostname:'horizon.stellar.org', secure:true, port:443}; ```
+If your exchange doesn't see a lot of volume, you don't need to set up your own instance of stellar-core and horizon. Use one of the Stellar.org public-facing Horizon servers instead.
+``` 
+ test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443}; 
+ live: {hostname:'horizon.stellar.org', secure:true, port:443};
+```
 
 ### Cold wallet
 A cold wallet is typically used to keep the bulk of customer funds secure. A cold wallet is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the cold wallet secret key much harder to compromise.
