@@ -54,6 +54,7 @@ Server setup:
 // Config your server
 var config;
 config.hotWallet="your hot wallet address";
+config.hotWalletSeed="your hot wallet seed";
 
 // You can use Stellar.org's instance of horizon or your own
 config.horizon={hostname:'horizon-testnet.stellar.org', secure:true, port:443};
@@ -175,7 +176,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           amount: amountLumens
         }))
         // sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(exchangeSeed))
+        .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
         .build();
       return server.submitTransaction(transaction);
     })
@@ -189,7 +190,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           // Creating an account requires funding it with XLM
           startingBalance: amountLumens
         }))
-        .addSigner(StellarSdk.Keypair.fromSeed(exchangeSeed))
+        .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
         .build();
       return server.submitTransaction(transaction);
     })
