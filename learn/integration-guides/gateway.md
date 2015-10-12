@@ -1,3 +1,7 @@
+---
+title: Gateway Guide
+---
+
 # Becoming a Stellar gateway
 This guide will walk you through the integration steps necessary to become a Stellar [gateway](../concepts/gateway.md). We assume you are already familiar with the concept of a gateway. This example is using Node.js and the [js-stellar-sdk](https://github.com/stellar/js-stellar-sdk) but should be easy to adapt to other languages.
 
