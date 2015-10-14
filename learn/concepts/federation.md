@@ -29,8 +29,7 @@ Add the following to the stellar.txt file:
 
 #### Step 3: Implement federation url HTTP endpoint
 
-The federation URL specified in your stellar.txt file should accept an HTTP GET request, with a query parameter --destination--
-to specify the username and "domain" set to the domain of the address. It should return a JSON response body of this form:
+The federation URL specified in your stellar.txt file should accept an HTTP GET request, with a query parameter—destination—to specify the username and "domain" set to the domain of the address. It should return a JSON response body of this form:
 
 ```
 federation_json: {
