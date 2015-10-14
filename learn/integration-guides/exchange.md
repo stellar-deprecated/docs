@@ -3,7 +3,7 @@ title: Exchange Guide
 ---
 
 # Adding Stellar to your Exchange
-This guide will walk you through the integration steps to add Stellar to your exchange. This example uses nodejs and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
+This guide will walk you through the integration steps to add Stellar to your exchange. This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an exchange. This guide uses the following design:
  - `cold wallet`: One Stellar account that holds the majority of customer deposits offline.
@@ -26,7 +26,7 @@ If your exchange doesn't see a lot of volume, you don't need to set up your own 
 ```
 
 ### Cold wallet
-A cold wallet is typically used to keep the bulk of customer funds secure. A cold wallet is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the cold wallet secret key much harder to compromise.
+A cold wallet is typically used to keep the bulk of customer funds secure. A cold wallet is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of `js-stellar-sdk` creates a `tx_blob` containing the signed transaction. This `tx_blob` can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the cold wallet secret key much harder to compromise.
 
 To learn how to create a cold wallet account, see [account management](./account-management.md).
 
@@ -46,10 +46,16 @@ CREATE TABLE StellarTransactions (UserID INT, Destination varchar(56), XLMAmount
 CREATE TABLE StellarCursor (cursor INT);
 INSERT INTO StellarCursor (cursor) values (0);
 ```
-The possible values for StellarTransactions.state are "pending", "done", "error".
+
+Possible values for `StellarTransactions.state` are "pending", "done", "error".
+
 
 ### Code
-Server setup:
+
+This is the code to run in order to run an exchange.  Each step will be described in following sections.
+
+For this guide, we will use placeholder functions for steps that involve querying or writing to the exchange database.  Each database library connects differently, so we will abstract away those details.
+
 ```js
 // Config your server
 var config;
@@ -59,7 +65,6 @@ config.hotWalletSeed="your hot wallet seed";
 // You can use Stellar.org's instance of horizon or your own
 config.horizon={hostname:'horizon-testnet.stellar.org', secure:true, port:443};
 
-
 // include the js-stellar-sdk
 // it provides a client-side interface to horizon
 var StellarSdk = require('stellar-sdk');
@@ -67,6 +72,15 @@ var StellarSdk = require('stellar-sdk');
 // initialize the Stellar SDK with the horizon instance
 // you want to connect to
 var server = new StellarSdk.Server(config.horizon);
+
+// Get the latest cursor position
+var last_token = latestFromDB("StellarCursor");
+
+// Listen for payments from where you last stopped
+server.payments()
+  .forAccount(config.hotWallet)
+  .cursor(last_token)
+  .stream({onmessage: handlePaymentResponse});
 
 // load the account sequence number from Horizon and return the account
 server.loadAccount(config.hotWallet)
@@ -82,11 +96,10 @@ server.loadAccount(config.hotWallet)
 ## Listening for deposits
 When a user wants to deposit lumens in your exchange, instruct them to send XLM to your hot wallet address with the customerID in the memo field of the transaction.
 
-You must listen for payments to the hot wallet account and credit any user that sends XLM there. How to listen for these payments:
+You must listen for payments to the hot wallet account and credit any user that sends XLM there. Here's code that listens for these payments:
 ```js
 
 // start listening for payments from where you last stopped
-
 var last_token = latestFromDB("StellarCursor");
 
 server.payments()
@@ -96,42 +109,49 @@ server.payments()
 
 ```
 
+
 For every payment received by the hot wallet, you must:<br>
 -check the memo field to determine which user sent the deposit.<br>
--record the cursor in the StellarCursor table so you can resume payment processing where you left off.<br>
+-record the cursor in the `StellarCursor` table so you can resume payment processing where you left off.<br>
 -credit the user's account in the DB with the number of XLM they sent to deposit.
+
+So, you pass this function as the `onmessage` option when you stream payments:
 
 ```js
 
 function handlePaymentResponse(record) {
 
   record.transaction()
-    .then(function(resp) {
+    .then(function(txn) {
       var customer = txn.memo;
-      if (record.to === config.hotWallet && record.asset_type === 'native') {
+
+      // If this isn't a payment to the hotWallet, skip
+      if (record.to != config.hotWallet) {
+        return;
+      }
+      if (record.asset_type != 'native') {
+         // if you are a XLM exchange and the customer sends 
+         // you a non-native asset, some options for handling it are 
+         // 1. Trade the asset to native and credit that amount
+         // 2. Send it back to the customer  
+      } else {
         // credit the customer in the memo field
         if (checkExists(customer, "ExchangeUsers")) {
           // Store the amount the customer has paid you in your database
           store([record.amount, customer], "StellarDeposits");
+          // Store the cursor in your database
+          store(record.paging_token, "StellarCursor");
         } else {
-          // if customer cannot be found, you can raise an error,
+          // if customer cannot be found, you can raise an error, 
           // add them to your customers list and credit them,
           // or anything else appropriate to your needs
           console.log(customer);
         }
-      } else if (record.asset_type != 'native') {
-       // if you are a XLM exchange and the customer sends
-       // you a non-native asset, some options for handling it are
-       // 1. Trade the asset to native and credit that amount
-       // 2. Send it back to the customer
       }
-
-      // keep the cursor
-      store(record.paging_token, "StellarCursor");
     })
     .catch(function(err) {
-      // Process error
-    })
+      // Process error 
+    });
 }
 
 
@@ -140,7 +160,9 @@ function handlePaymentResponse(record) {
 
 
 ## Submitting withdrawals
-When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them the lumens.
+When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them the lumens.  
+
+The function `handleRequestWithdrawal` will queue up a transaction in the exchange's `StellarTransactions` table whenever a withdrawal is requested.
 
 ```js
 function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
@@ -160,8 +182,13 @@ function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
   }
 }
 
+```
 
-}
+Then, you should run `submitPendingTransactions`, which will check `StellarTransactions` for pending transactions and submit them.
+
+```js
+
+// This is the function that handles submitting a single transaction
 
 function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
   // Check to see if the destination address exists
@@ -208,7 +235,9 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
     });
 }
 
-//on a timer
+// This function handles submitting all pending transactions, and calls the previous one.
+// This should be run in the background continuously
+
 function submitPendingTransactions(exchangeAccount) {
   
   // see what transactions in the db are still pending
