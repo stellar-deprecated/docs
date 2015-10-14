@@ -31,7 +31,7 @@ A cold wallet is typically used to keep the bulk of customer funds secure. A col
 To learn how to create a cold wallet account, see [account management](./account-management.md).
 
 ### Hot wallet
-A hot wallet contains a more limited amount of funds than a cold wallet. A hot wallet is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a hot wallet restrict the amount lost in the event of a security breach.
+A hot wallet contains a more limited amount of funds than a cold wallet. A hot wallet is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a hot wallet restricts loss in the event of a security breach.
 
 To learn how to create a hot wallet account, see [account management](./account-management.md).
 
