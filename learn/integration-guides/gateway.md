@@ -21,17 +21,17 @@ The two main integration points to Stellar for a gateway are:<br>
 *(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)
 If your gateway doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```
- test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
- live: {hostname:'horizon.stellar.org', secure:true, port:443};
+  test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
+  live: {hostname:'horizon.stellar.org', secure:true, port:443};
 ```
 
 ### Issuing account
-The issuing account can issue credit from the gateway. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account key much harder to compromise. 
+The issuing account can issue credit from the gateway. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account key much harder to compromise.
 
 To learn how to create the issuing account, see [account management](./account-management.md).
 
 ### Hot wallet
-People will frequently be redeeming and purchasing credit from your gateway, and you don't want these processes to involve the issuing account directly. Instead, create a `hot wallet` account that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A hot wallet contains a limited amount of funds to restrict loss in the event of a security breach. 
+People will frequently be redeeming and purchasing credit from your gateway, and you don't want these processes to involve the issuing account directly. Instead, create a `hot wallet` account that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A hot wallet contains a limited amount of funds to restrict loss in the event of a security breach.
 
 To learn how to create a hot wallet account, see [account management](./account-management.md).
 
@@ -45,7 +45,6 @@ To learn how to create a hot wallet account, see [account management](./account-
 CREATE TABLE StellarPayments (UserID INT, Destination varchar(56), AssetAmount INT, AssetCode varchar(4), AssetIssuer varchar(56), state varchar(8));
 CREATE TABLE StellarCursor (cursor INT);
 INSERT INTO StellarCursor (cursor) values (0);
-
 ```
 
 
@@ -55,7 +54,6 @@ This is the code to run in order to run a gateway. The following sections descri
 For this guide, we use placeholder functions for steps that involve querying or writing to the gateway database. Each database library connects differently, so we abstract away those details.
 
 ```js
-
 // Config your server
 var config;
 config.hotWallet="your hot wallet address";
@@ -92,8 +90,6 @@ server.loadAccount(config.hotWallet)
      submitPendingTransactions(account)
     }, 30 * 1000);
   })
-
-
 ```
 
 ## Listening for redemptions
@@ -102,7 +98,6 @@ When a user wants to redeem your gateway's credit, instruct them to send the cre
 You must listen for payments to the hot wallet account and record any user that sends credit there. Here's code that listens for these payments:
 
 ```js
-
 // start listening for payments from where you last stopped
 
 var last_token = latestFromDB("StellarCursor");
@@ -111,7 +106,6 @@ server.payments()
   .forAccount(config.hotWallet)
   .cursor(last_token)
   .stream({onmessage: handlePaymentResponse});
-
 ```
 For every payment received by the hot wallet, you must:
 
@@ -120,7 +114,6 @@ For every payment received by the hot wallet, you must:
 -credit the user's account in the DB with the amount of the asset they sent to deposit.
 
 So, you pass this function as the `onmessage` option when you stream payments:
-
 ```js
 
 function handlePaymentResponse(record) {
@@ -160,7 +153,6 @@ function handlePaymentResponse(record) {
       // Process error
     });
 }
-
 ```
 
 
@@ -173,7 +165,7 @@ When a user requests credit from your gateway, you must generate a Stellar trans
 Whenever a withdrawal is requested, the function `handleRequestWithdrawal` will queue up a transaction in your `StellarPayments` table.
 
 
-```
+```js
 function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, destinationAddress) {
 
   // Read the user's balance from the gateway's database
@@ -191,14 +183,11 @@ function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, de
     // If the user doesn't have enough XLM, you can alert them
   }
 }
-
 ```
 
 Then, you should run `submitPendingTransactions`, which will check `StellarTransactions` for pending transactions and submit them.
 
 ```js
-
-
 // This is the function that handles submitting a single transaction
 
 function submitTransaction(sourceAccount, destinationAddress, amountLumens) {
@@ -263,8 +252,6 @@ function submitPendingTransactions(sourceAccount) {
     submitTransaction(sourceAccount, destinationAddress, amountLumens);
   }
 }
-
-
 ```
 
 
@@ -276,10 +263,6 @@ The federation protocol allows you to give your users easy addresses—e.g., bob
 For more information, check out the [federation guide](../concepts/federation.md).
 
 ### Restricting who can hold your credit
-By default, anyone can hold your credit. You can, however, restrict holders to accounts that have been authorized by you. 
+By default, anyone can hold your credit. You can, however, restrict holders to accounts that have been authorized by you.
 
 To learn more about restricting who can hold your credit, see the `flags` section of the [accounts guide](../concepts/accounts.md).
-
-
-
-
