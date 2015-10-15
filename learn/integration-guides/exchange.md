@@ -52,7 +52,7 @@ Possible values for `StellarTransactions.state` are "pending", "done", "error".
 
 ### Code
 
-This is the code to run in order to run an exchange.  Each step will be described in following sections.
+This is the code to run in order to run an exchange. The following sections describe each step.
 
 For this guide, we will use placeholder functions for steps that involve querying or writing to the exchange database.  Each database library connects differently, so we will abstract away those details.
 
