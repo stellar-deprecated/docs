@@ -8,9 +8,9 @@ If you would like to run a validator please:
  - Open a pull request to list it here.
 
 
-##None of the following validators are recommended by Stellar Development Foundation.
+## None of the following validators are recommended by Stellar Development Foundation.
 
-We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes. 
+We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 
 ------
 

@@ -26,11 +26,11 @@ Note that if several transactions with the same source account make it into the 
 
 - **Time bounds**: *optional* The UNIX timestamp, determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set.
 
-##Transaction sets
+## Transaction sets
 
 Between ledger closings, all the nodes in the network are collecting transactions. When it is time to close the next ledger, the nodes collect these transactions into a transaction set. SCP is run by the network to reach agreement on which transaction set to apply to the last ledger.
 
-##Life cycle
+## Life cycle
 
 1. **Creation**: The user creates a transaction, fills out all the fields, gives it the correct sequence number, adds whatever operations it wants, etc. Try it with [js-stellar-sdk](https://www.stellar.org/developers/js-stellar-sdk/learn/).
 
