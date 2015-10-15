@@ -235,7 +235,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
     });
 }
 
-// This function handles submitting all pending transactions, and calls the previous one.
+// This function handles submitting all pending transactions, and calls the previous one
 // This function should be run in the background continuously
 
 function submitPendingTransactions(exchangeAccount) {
