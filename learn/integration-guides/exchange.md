@@ -62,15 +62,15 @@ var config;
 config.hotWallet="your hot wallet address";
 config.hotWalletSeed="your hot wallet seed";
 
-// You can use Stellar.org's instance of horizon or your own
+// You can use Stellar.org's instance of Horizon or your own
 config.horizon={hostname:'horizon-testnet.stellar.org', secure:true, port:443};
 
-// include the js-stellar-sdk
-// it provides a client-side interface to horizon
+// Include the js-stellar-sdk
+// It provides a client-side interface to Horizon
 var StellarSdk = require('stellar-sdk');
 
-// initialize the Stellar SDK with the horizon instance
-// you want to connect to
+// Initialize the Stellar SDK with the Horizon instance
+// You want to connect to
 var server = new StellarSdk.Server(config.horizon);
 
 // Get the latest cursor position
@@ -82,11 +82,11 @@ server.payments()
   .cursor(last_token)
   .stream({onmessage: handlePaymentResponse});
 
-// load the account sequence number from Horizon and return the account
+// Load the account sequence number from Horizon and return the account
 server.loadAccount(config.hotWallet)
   .then(function (account) {
     setInterval(function() {
-     // every 30 seconds process any pending transactions
+     // Every 30 seconds process any pending transactions
      submitPendingTransactions(account)
     }, 30 * 1000);
   })
