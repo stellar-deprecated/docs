@@ -17,7 +17,7 @@ Here are the possible operations:
 - [Account Merge](./list-of-operations.md#account-merge)
 - [Inflation](./list-of-operations.md#inflation)
 
-Operations are executed on behalf of the source account specified in the 
+Operations are executed on behalf of the source account specified in the
 transaction, unless there is an override defined for the operation.
 
 ## Thresholds
@@ -27,7 +27,7 @@ Thresholds define the level of privilege an operation needs in order to succeed.
 
 * Low Security:
  * AllowTrustTx
- * Used to allow other signers to allow people to hold credit from this 
+ * Used to allow other signers to allow people to hold credit from this
    account but not issue credit.
 * Medium Security:
  * All else
@@ -37,13 +37,13 @@ Thresholds define the level of privilege an operation needs in order to succeed.
 
 ## Validity of an operation
 
-There are two places in a [transaction life cycle](./transactions.md#life-cycle) when operations can fail. The first time is when a transaction is submitted to the network. The node to which the transaction is submitted checks the validity of the operation: in the **validity check**, the node performs some cursory checks to make sure the transaction is properly formed before including it in its transaction set and forwarding the transaction to the rest of the network. 
+There are two places in a [transaction life cycle](./transactions.md#life-cycle) when operations can fail. The first time is when a transaction is submitted to the network. The node to which the transaction is submitted checks the validity of the operation: in the **validity check**, the node performs some cursory checks to make sure the transaction is properly formed before including it in its transaction set and forwarding the transaction to the rest of the network.
 
-The validity check only looks at the state of the source account. It ensures that: 
-1) the outer transaction has enough signatures for the source account of the operation to meet the threshold for that operation. 
-2) Operations-specific validity checks pass. These checks are ones that would stay true regardless of the ledger state—for example, are the parameters within the expected bounds? Checks that depend on ledger state don't happen until apply time—for example, a send operation won't check if you have enough balance to send until apply time. 
+The validity check only looks at the state of the source account. It ensures that:
+1) the outer transaction has enough signatures for the source account of the operation to meet the threshold for that operation.
+2) Operations-specific validity checks pass. These checks are ones that would stay true regardless of the ledger state—for example, are the parameters within the expected bounds? Checks that depend on ledger state don't happen until apply time—for example, a send operation won't check if you have enough balance to send until apply time.
 
-Once a transaction passes this first validity check, it is propagated to the network and eventually included in a transaction set. As part of a transaction set, the transaction is applied to the ledger. At that point a fee is taken from the source account. Operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails and the effects of previous operations are rolled back. 
+Once a transaction passes this first validity check, it is propagated to the network and eventually included in a transaction set. As part of a transaction set, the transaction is applied to the ledger. At that point a fee is taken from the source account. Operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails and the effects of previous operations are rolled back.
 
 
 ## Result
@@ -60,7 +60,7 @@ It's possible, however, to compose a transaction that includes operations on mul
 
 
 ## Examples
-1. Exchange without third party
+### 1. Exchange without third party
 
   Anush wants to send Bridget some XLM (Operation 1) in exchange for BTC (Operation 2).
 
@@ -72,23 +72,23 @@ It's possible, however, to compose a transaction that includes operations on mul
   * Operation 2
     * source = _`Bridget_account`
     * Payment send BTC --> `Anush_account`
- 
+
    Signatures required:
-  * Operation 1: requires signatures from `Anush_account` (the operation inherits 
+  * Operation 1: requires signatures from `Anush_account` (the operation inherits
     the source account from the transaction) to meet medium threshold
   * Operation 2: requires signatures for `Bridget_account` to meet medium threshold
-  * The transaction requires signatures for `Anush_account` to meet low threshold since `Anush_account` is the 
+  * The transaction requires signatures for `Anush_account` to meet low threshold since `Anush_account` is the
     source for the entire transaction.
 
 Therefore, if both `Anush_account` and `Bridget_account` sign the transaction, it will be validated.  
 Other, more complex ways of submitting this transaction are possible, but signing with those two accounts is sufficient.
 
-2. Workers
+### 2. Workers
 
    A gateway wants to divide the processing of their online ("hot") wallet between machines. That way, each machine will submit transactions from its local account and keep track of its own sequence number. For more on transaction sequence numbers, please refer to [the transactions doc](./transactions.md).
 
    * Each machine gets a private/key pair associated with it. Let's say there are only 3 machines: Machine_1, Machine_2, and Machine_3. (In practice, there can be as many machines as the gateway wants.)
-   * All three machines are added as Signers to the gateway's hot wallet account "hotWallet", with 
+   * All three machines are added as Signers to the gateway's hot wallet account "hotWallet", with
      a weight that gives them medium rights. The worker machines can then sign on behalf of the hot wallet account. (For more on signing, please refer to the [multisig documentation](multi-sig.md).)
    * When a machine (say Machine_2) wants to submit a transaction to the network, it constructs the transaction:
       * source=_public key for Machine_2_
@@ -98,9 +98,9 @@ Other, more complex ways of submitting this transaction are possible, but signin
         * Payment send an asset --> destination account
    * sign it with the private key of Machine_2.
 
-   The benefit of this scheme is that each machine can increment its sequence number and submit a transaction without invalidating any transactions submitted by the other machines.  Recall from the [transactions doc](transactions.md) that all transactions from a source account have their own specific sequence number.  Using worker machines, each with an account, allows this gateway to submit as many transactions as possible without sequence number collisions. 
+   The benefit of this scheme is that each machine can increment its sequence number and submit a transaction without invalidating any transactions submitted by the other machines.  Recall from the [transactions doc](transactions.md) that all transactions from a source account have their own specific sequence number.  Using worker machines, each with an account, allows this gateway to submit as many transactions as possible without sequence number collisions.
 
-3. Long-lived transactions
+### 3. Long-lived transactions
 
 Transactions that require multiple parties to sign, such as the exchange transaction between Anush and Bridget from example #1, can take an arbitrarily long time. Because all transactions are constructed with specific sequence numbers, waiting on the signatures can block Anush's account. To avoid this situation, a scheme similar to Example #2 can be used.
 
@@ -116,12 +116,10 @@ Transactions that require multiple parties to sign, such as the exchange transac
     * source=_Bridget_account_
     * Payment send BTC -> Anush_account
 
-  The transaction would have to be signed by both Anush_account and Bridget_account, but the sequence 
+  The transaction would have to be signed by both Anush_account and Bridget_account, but the sequence
   number consumed will be from account Anush_temp.
 
   If `Anush_account` wants to recover the XLM balance from `Anush_temp`, an additional operation "Operation 3" can be included in the transaction. If you want to do this, `Anush_temp` must add `Anush_account` as a signer with a weight that crosses the high threshold:
   * Operation 3
     * source=_null_
     * Account Merge -> "Anush_account"
-
-
