@@ -65,7 +65,7 @@ config.hotWalletSeed="your hot wallet seed";
 // You can use Stellar.org's instance of Horizon or your own
 config.horizon={hostname:'horizon-testnet.stellar.org', secure:true, port:443};
 
-// Include the js-stellar-sdk
+// Include the JS Stellar SDK
 // It provides a client-side interface to Horizon
 var StellarSdk = require('stellar-sdk');
 
@@ -99,7 +99,7 @@ When a user wants to deposit lumens in your exchange, instruct them to send XLM 
 You must listen for payments to the hot wallet account and credit any user that sends XLM there. Here's code that listens for these payments:
 ```js
 
-// start listening for payments from where you last stopped
+// Start listening for payments from where you last stopped
 var last_token = latestFromDB("StellarCursor");
 
 server.payments()
@@ -130,21 +130,21 @@ function handlePaymentResponse(record) {
         return;
       }
       if (record.asset_type != 'native') {
-         // if you are a XLM exchange and the customer sends 
+         // If you are a XLM exchange and the customer sends 
          // you a non-native asset, some options for handling it are 
          // 1. Trade the asset to native and credit that amount
          // 2. Send it back to the customer  
       } else {
-        // credit the customer in the memo field
+        // Credit the customer in the memo field
         if (checkExists(customer, "ExchangeUsers")) {
           // Store the amount the customer has paid you in your database
           store([record.amount, customer], "StellarDeposits");
           // Store the cursor in your database
           store(record.paging_token, "StellarCursor");
         } else {
-          // if customer cannot be found, you can raise an error, 
+          // If customer cannot be found, you can raise an error, 
           // add them to your customers list and credit them,
-          // or anything else appropriate to your needs
+          // or do anything else appropriate to your needs
           console.log(customer);
         }
       }
@@ -166,16 +166,16 @@ The function `handleRequestWithdrawal` will queue up a transaction in the exchan
 
 ```js
 function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
-  // read the user's balance from the exchange's database
+  // Read the user's balance from the exchange's database
   var userBalance = getBalance('userID');
 
-  // check that user has the required lumens
+  // Check that user has the required lumens
   if (amountLumens <= userBalance) {
 
-    // debit  the user's internal lumen balance by the amount of lumens they are withdrawing
+    // Debit the user's internal lumen balance by the amount of lumens they are withdrawing
     store([userID, userBalance - amountLumens], "UserBalances");
 
-    // save the transaction information in the StellarTransactions table
+    // Save the transaction information in the StellarTransactions table
     store([userID, destinationAddress, amountLumens, "pending"], "StellarTransactions");
   } else {
     // If the user doesn't have enough XLM, you can alert them
@@ -202,7 +202,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           asset: StellarLib.Asset.native(),
           amount: amountLumens
         }))
-        // sign the transaction
+        // Sign the transaction
         .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
         .build();
       return server.submitTransaction(transaction);
@@ -236,11 +236,11 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 }
 
 // This function handles submitting all pending transactions, and calls the previous one.
-// This should be run in the background continuously
+// This function should be run in the background continuously
 
 function submitPendingTransactions(exchangeAccount) {
   
-  // see what transactions in the db are still pending
+  // See what transactions in the db are still pending
   pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
 
   while (pendingTransactions.length > 0) {
