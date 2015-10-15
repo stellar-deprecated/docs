@@ -20,9 +20,9 @@ The two main integration points to Stellar for an exchange are:<br>
 *(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)<br>
 *(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)<br>
 If your exchange doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
-``` 
- test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443}; 
- live: {hostname:'horizon.stellar.org', secure:true, port:443};
+```
+  test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
+  live: {hostname:'horizon.stellar.org', secure:true, port:443};
 ```
 
 ### Cold wallet
@@ -59,11 +59,11 @@ For this guide, we use placeholder functions for steps that involve querying or 
 ```js
 // Config your server
 var config;
-config.hotWallet="your hot wallet address";
-config.hotWalletSeed="your hot wallet seed";
+config.hotWallet = "your hot wallet address";
+config.hotWalletSeed = "your hot wallet seed";
 
 // You can use Stellar.org's instance of Horizon or your own
-config.horizon={hostname:'horizon-testnet.stellar.org', secure:true, port:443};
+config.horizon = {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
 
 // Include the JS Stellar SDK
 // It provides a client-side interface to Horizon
@@ -90,15 +90,14 @@ server.loadAccount(config.hotWallet)
      submitPendingTransactions(account)
     }, 30 * 1000);
   })
-
 ```
 
 ## Listening for deposits
 When a user wants to deposit lumens in your exchange, instruct them to send XLM to your hot wallet address with the customerID in the memo field of the transaction.
 
 You must listen for payments to the hot wallet account and credit any user that sends XLM there. Here's code that listens for these payments:
-```js
 
+```js
 // Start listening for payments from where you last stopped
 var last_token = latestFromDB("StellarCursor");
 
@@ -106,7 +105,6 @@ server.payments()
   .forAccount(config.hotWallet)
   .cursor(last_token)
   .stream({onmessage: handlePaymentResponse});
-
 ```
 
 
@@ -118,7 +116,6 @@ For every payment received by the hot wallet, you must:<br>
 So, you pass this function as the `onmessage` option when you stream payments:
 
 ```js
-
 function handlePaymentResponse(record) {
 
   record.transaction()
@@ -130,8 +127,8 @@ function handlePaymentResponse(record) {
         return;
       }
       if (record.asset_type != 'native') {
-         // If you are a XLM exchange and the customer sends 
-         // you a non-native asset, some options for handling it are 
+         // If you are a XLM exchange and the customer sends
+         // you a non-native asset, some options for handling it are
          // 1. Trade the asset to native and credit that amount
          // 2. Send it back to the customer  
       } else {
@@ -142,7 +139,7 @@ function handlePaymentResponse(record) {
           // Store the cursor in your database
           store(record.paging_token, "StellarCursor");
         } else {
-          // If customer cannot be found, you can raise an error, 
+          // If customer cannot be found, you can raise an error,
           // add them to your customers list and credit them,
           // or do anything else appropriate to your needs
           console.log(customer);
@@ -150,12 +147,9 @@ function handlePaymentResponse(record) {
       }
     })
     .catch(function(err) {
-      // Process error 
+      // Process error
     });
 }
-
-
-
 ```
 
 
@@ -181,13 +175,11 @@ function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
     // If the user doesn't have enough XLM, you can alert them
   }
 }
-
 ```
 
 Then, you should run `submitPendingTransactions`, which will check `StellarTransactions` for pending transactions and submit them.
 
 ```js
-
 // This is the function that handles submitting a single transaction
 
 function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
@@ -221,7 +213,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
         .build();
       return server.submitTransaction(transaction);
     })
-  
+
     // Submit the transaction created in either case
     .then(function(transactionResult) {
       if (transactionResult.ledger) {
@@ -239,7 +231,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 // This function should be run in the background continuously
 
 function submitPendingTransactions(exchangeAccount) {
-  
+
   // See what transactions in the db are still pending
   pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
 
@@ -251,10 +243,7 @@ function submitPendingTransactions(exchangeAccount) {
     submitTransaction(exchangeAccount, destinationAddress, amountLumens);
   }
 }
-
 ```
-
-
 
 ## Going further...
 ### Federation
@@ -266,6 +255,3 @@ For more information, check out the [federation guide](../concepts/federation.md
 If you're an exchange, it's easy to become a Stellar gateway as well. The integration points are very similar, with the same level of difficulty. Becoming a gateway could potentially expand your business.
 
 To learn more about what it means to be a gateway, see the [gateway guide](../concepts/gateways.md).
-
-
-
