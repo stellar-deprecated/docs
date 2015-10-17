@@ -52,6 +52,8 @@ Every ledger header has the following fields:
 
 - **ID pool**: The last used global ID. These IDs are used for generating objects.
 
+- **Maximum Number of Transcactions**: The maximum number of [transactions](./transactions.md) the validators have agreed to process in a given ledger. If more transactions are submitted than this number, the validators will include those with the highest fees.
+
 - **Base fee**: The [fee](./fees.md) the network charges per [operation](./operations.md) in a [transaction](./transactions.md).
 - **Base reserve**: The [reserve](./fees.md) the network uses when calculating an account's minimum balance.
 - **Skip list**: Hashes of ledgers in the past. Allows you to jump back in time in the ledger chain without walking back ledger by ledger. There are 4 ledger hashes stored in the skip list. Each slot contains the oldest ledger that is mod of either 50  5000  50000 or 500000 depending on index skipList[0] mod(50), skipList[1] mod(5000), etc.
