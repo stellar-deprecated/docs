@@ -52,7 +52,7 @@ Every ledger header has the following fields:
 
 - **ID pool**: The last used global ID. These IDs are used for generating objects.
 
-- **Maximum Number of Transcactions**: The maximum number of [transactions](./transactions.md) the validators have agreed to process in a given ledger. If more transactions are submitted than this number, the validators will include those with the highest fees.
+- **Maximum Number of Transactions**: The maximum number of [transactions](./transactions.md) the validators have agreed to process in a given ledger. If more transactions are submitted than this number, the validators will include those with the highest fees.
 
 - **Base fee**: The [fee](./fees.md) the network charges per [operation](./operations.md) in a [transaction](./transactions.md).
 - **Base reserve**: The [reserve](./fees.md) the network uses when calculating an account's minimum balance.
