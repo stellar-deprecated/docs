@@ -22,8 +22,8 @@ In the example above, you must explicitly trust Scott before you can hold orange
 To trust an issuing account, you create a **trustline.** Trustlines are entries that persist in the Stellar ledger. They
 track the limit for which your account trusts the issuing account and the amount of credit from the issuing account that your account currently holds.
 
-# Lumens (XLM)
-**Lumens (XLM)** are the native currency of the network. A lumen is the only asset type that can be used on the Stellar
+# Lumens
+**Lumens** are the native currency of the network. A lumen is the only asset type that can be used on the Stellar
 network that doesn't require an issuer or a trustline.
 Any account can hold lumens. You can trade lumens for other assets in the network.
 
