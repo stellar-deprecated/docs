@@ -1,5 +1,5 @@
 ---
-title: Multisig
+title: Multisignature
 ---
 
 ## Transaction signatures
@@ -53,8 +53,8 @@ This scheme is very flexible. You can require many signers to authorize payments
 
 
 ## Operations
-### Example 1
-> You run a gateway that would like to keep its issuing key offline. That way, it's less likely a bad actor can get a hold of the gateway's key and start issuing credit improperly. However, your gateway needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
+### Example 1: Gateways 
+> You run a gateway that would like to keep its issuing key offline. That way, it's less likely a bad actor can get ahold of the gateway's key and start issuing credit improperly. However, your gateway needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
 
 Multisig allows you to do all of this without exposing the master key of your gateway. You can add another signing key
 to your account with the operation `Set Options`.  This additional key should have a weight below your gateway account's
@@ -70,7 +70,7 @@ Your account setup:
   high threshold:2
 ```
 
-### Example 2
+### Example 2: Joint Accounts
 > You want to set up a joint account with Bilal and Carina such that any of you can authorize a payment. You also want to set up the account so that, if you choose to change signers (e.g., remove or add someone), a high-threshold operation, all 3 of you must agree. You add Bilal and Carina as signers to the joint account. You also ensure that it takes all of your key weights to clear the high threshold but only one to clear the medium threshold.
 
 Joint account setup:
@@ -83,7 +83,7 @@ Joint account setup:
   Carina's signing key weight: 1
 ```
 
-### Example 3
+### Example 3: Company Accounts
 > Your company wants to set up an account that requires 3 of 6 employees to agree to *any* transaction from that account.
 
 Company account setup:
@@ -100,7 +100,7 @@ Company account setup:
   Employee 6 key weight: 1
 ```
 
-### Example 4
+### Example 4: Expense Accounts
 > You fully control an expense account, but you want your two coworkers Diyuan and Emil to be able to authorize transactions
 from this account. You add Diyuan and Emil's signing keys to the expense account. If either Diyuan or Emil leave the company,
 you can remove their signing key, a high-threshold operation.
@@ -115,7 +115,7 @@ Expense account setup:
   Emil's key weight: 1
 ```
 
-### Example 5
+### Example 5: Custom Currencies
 > You want to issue a custom currency and ensure that no more will ever be created. You make a source account and issue
 the maximum amount of currency to a holding account. Then you set the master weight of the source account to below the
 medium threshold--the source account can no longer issue currency.
