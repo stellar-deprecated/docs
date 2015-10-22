@@ -22,7 +22,11 @@ Note that if several transactions with the same source account make it into the 
 
 - **List of signatures**: Up to 20 signatures can be attached to a transaction. See [Multi-sig](./multi-sig.md) for more information. A transaction is considered invalid if it includes signatures that aren't needed to authorize the transaction—superfluous signatures aren't allowed.
 
-- **Memo**: *optional* A 32-byte value field that can be used to hold a hash. It is the responsibility of the client to interpret this value.
+- **Memo**: *optional* The memo contains optional extra information. It is the responsibility of the client to interpret this value. Memos can be one of the following types:
+  - `MEMO_TEXT` : A string up to 28 characters long.
+  - `MEMO_ID` :  A 64 bit number.
+  - `MEMO_HASH` : A 32 byte hash.
+  - `MEMO_RETURN` : A 32 byte hash intended to be interpreted as the hash of the transaction the sender is refunding.
 
 - **Time bounds**: *optional* The UNIX timestamp, determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set.
 
