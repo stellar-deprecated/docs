@@ -9,7 +9,7 @@ It’s the responsibility of the originator of the transaction to craft a transa
 The entire Stellar network decides during consensus what the minimum **base fee** should be. 
 This base fee is per operation. Therefore, the total minimum fee for a given transaction is simply the base fee multiplied by the number of operations that transaction has.
 
-Currently the base fee is set to 100 stroops (0.00001 XLM).
+Currently the base fee is set to 100 stroops (0.0001 XLM).
 
 ## Surge pricing
 Each Stellar node by default limits the number of transactions that it will include in its nominated transaction set at ledger close. (If the network decides on a larger transaction set, a node will still apply it.) 
@@ -33,12 +33,12 @@ Additional entries are:
 * offers
 * signers
 
-Currently the base reserve amount is set to 100,000,000 stroops (10 XLM) and can evolve via consensus. For more details, see [versioning](./versioning.md).
+Currently the base reserve amount is set to 10,000,000 stroops (10 XLM) and can evolve via consensus. For more details, see [versioning](./versioning.md).
 
 You can calculate an account's minimum balance using the following formula:
 (2 + number_of_additional_entries)*base_reserve
 
-A basic account therefore needs to maintain a minimum balance of 200,000,000 stroops = 20 XLM.
+A basic account therefore needs to maintain a minimum balance of 20,000,000 stroops = 20 XLM.
 
-An account with 1 trustline and 2 offers would require a minimum balance of (2+3)*100,000,000 = 500,000,000 stroops or 50 lumens.
+An account with 1 trustline and 2 offers would require a minimum balance of (2+3)*10,000,000 = 50,000,000 stroops or 50 lumens.
 
