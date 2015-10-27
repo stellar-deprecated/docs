@@ -35,7 +35,7 @@ We don't know who really controls these nodes. They could all be owned by the sa
  Contact | donovanhide@gmail.com
  Description | Another possibility for your list
  List of nodes | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
- 
+
 
 
  Name | nelisky
@@ -45,7 +45,7 @@ We don't know who really controls these nodes. They could all be owned by the sa
  NodeID 1 | GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
  Peer 2 | behind NAT on dynamic ip
  NodeID 2 | GA2DE5AQF32LU5OZ5OKAFGPA2DLW4H6JHPGYJUVTNS3W7N2YZCTQFFV6
- 
+
 
  Name | Jianing
  ------|-------
@@ -60,4 +60,9 @@ We don't know who really controls these nodes. They could all be owned by the sa
  Description | Lumens to watts
  Peer |  stellar.256kw.com
  NodeID | GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U
- 
+
+
+ Name | ptarasov
+ ------|-------
+ Contact | tarasov1412@gmail.com
+ NodeID | GAM7A32QZF5PJASRSGVFPAB36WWTHCBHO5CHG3WUFTUQPT7NZX3ONJU4
