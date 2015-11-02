@@ -28,12 +28,12 @@ If your gateway doesn't see a lot of volume, you don't need to set up your own i
 ### Issuing account
 The issuing account can issue credit from the gateway. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account key much harder to compromise.
 
-To learn how to create the issuing account, see [account management](./account-management.md).
+To learn how to create the issuing account, see [account management](./building-blocks/account-management.md).
 
 ### Hot wallet
 People will frequently be redeeming and purchasing credit from your gateway, and you don't want these processes to involve the issuing account directly. Instead, create a `hot wallet` account that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A hot wallet contains a limited amount of funds to restrict loss in the event of a security breach.
 
-To learn how to create a hot wallet account, see [account management](./account-management.md).
+To learn how to create a hot wallet account, see [account management](./building-blocks/account-management.md).
 
 ### Database
 - Need to create a table for pending payments, `StellarPayments`.
