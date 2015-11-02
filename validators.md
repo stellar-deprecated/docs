@@ -51,7 +51,8 @@ We don't know who really controls these nodes. They could all be owned by the sa
  ------|-------
  Contact | huyahuai@qq.com
  Description | A node in Chenzhou
- NodeID | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
+ NodeID 1 | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
+ NodeID 2 | GCLD6YPBMNVFGWYTAIGYN2FRN55HPJ43ROVFHP4SJ6U72N4BESWTJMSN
 
 
  Name | Eno
