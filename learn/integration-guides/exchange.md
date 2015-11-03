@@ -68,6 +68,7 @@ config.horizon = {hostname:'horizon-testnet.stellar.org', secure:true, port:443}
 // Include the JS Stellar SDK
 // It provides a client-side interface to Horizon
 var StellarSdk = require('stellar-sdk');
+// uncomment for live network:  StellarSdk.Network.usePublicNetwork();
 
 // Initialize the Stellar SDK with the Horizon instance
 // You want to connect to
