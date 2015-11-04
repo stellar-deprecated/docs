@@ -82,5 +82,36 @@ Once you no longer need the account you can delete it and recover any lumens tha
 
 Example using the js-stellar-sdk:
 ```
+var StellarSdk = require('stellar-sdk')
 
+// create the server connection object
+var server = new StellarSdk.Server({hostname:'horizon-testnet.stellar.org', secure: true, port: 443});
+// uncomment below if you want to submit the transaction to the live network
+// StellarSdk.Network.usePublicNetwork();
+
+var oldAccountAddress="GCE... enter your real address here";
+var oldAccountSecret="SDJ... enter your real secret here";
+
+var newAccountAddress="GCE... enter your real address here";
+
+server.loadAccount(oldAccountAddress)
+    .then(function (account) {
+        // build the transaction
+        var transaction = new StellarSdk.TransactionBuilder(account)
+            .addOperation(StellarSdk.Operation.accountMerge({
+                destination: newAccountAddress
+            }))
+            .build();
+            
+        // sign the transaction
+        transaction.sign(StellarSdk.Keypair.fromSeed(oldAccountSecret)); 
+        
+        return server.submitTransaction(transaction);
+    })
+    .then(function (transactionResult) {
+        console.log(transactionResult);
+    })
+    .catch(function (err) {
+        console.error(err);
+    });
 ```
