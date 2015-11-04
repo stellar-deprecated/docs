@@ -32,10 +32,43 @@ console.log("Seed: "+keypair.seed());
 Remember to keep your seed safe. Anyone with access to the seed can take any funds held in the account.
 
 ## Funding the account
-Once you have an address for the account you want to create you must fund it with lumens. You can do this using the [create account](../../concepts/list-of-operations.md#create-account) operation.
+Once you have an address for the account you want to create you must fund it with lumens. You can do this using the [create account](../../concepts/list-of-operations.md#create-account) operation sent by an existing account.
 Here is an example of using the js-stellar-sdk:
 ```
+var StellarSdk = require('stellar-sdk')
 
+// create the server connection object
+var server = new StellarSdk.Server({hostname:'horizon-testnet.stellar.org', secure: true, port: 443});
+// uncomment below if you want to submit the transaction to the live network
+// StellarSdk.Network.usePublicNetwork();
+
+var fundingAccountAddress="GCE... enter your real address here";
+var fundingAccountSecret="SDJ... enter your real secret here";
+
+var newAccountAddress="GCE... enter your real address here";
+
+server.loadAccount(fundingAccountAddress)
+    .then(function (account) {
+        // build the transaction
+        var transaction = new StellarSdk.TransactionBuilder(account)
+            // this operation funds the new account with XLM
+            .addOperation(StellarSdk.Operation.createAccount({
+                destination: newAccountAddress,
+                startingBalance: "200"
+            }))
+            .build();
+            
+        // sign the transaction
+        transaction.sign(StellarSdk.Keypair.fromSeed(fundingAccountSecret)); 
+        
+        return server.submitTransaction(transaction);
+    })
+    .then(function (transactionResult) {
+        console.log(transactionResult);
+    })
+    .catch(function (err) {
+        console.error(err);
+    });
 ```
 
 
