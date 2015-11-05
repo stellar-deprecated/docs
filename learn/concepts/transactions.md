@@ -24,7 +24,7 @@ Note that if several transactions with the same source account make it into the 
 
 - **Memo**: *optional* The memo contains optional extra information. It is the responsibility of the client to interpret this value. Memos can be one of the following types:
   - `MEMO_TEXT` : A string up to 28 characters long.
-  - `MEMO_ID` :  A 64 bit number.
+  - `MEMO_ID` :  A 64 bit integer.
   - `MEMO_HASH` : A 32 byte hash.
   - `MEMO_RETURN` : A 32 byte hash intended to be interpreted as the hash of the transaction the sender is refunding.
 
