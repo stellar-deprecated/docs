@@ -52,9 +52,9 @@ Possible values for `StellarTransactions.state` are "pending", "done", "error".
 
 ### Code
 
-This is the code to run in order to run an exchange. The following sections describe each step.
+Here is a code framework you can use to integrate Stellar into your exchange. The following sections describe each step.
 
-For this guide, we use placeholder functions for steps that involve querying or writing to the exchange database. Each database library connects differently, so we abstract away those details.
+For this guide, we use placeholder functions for reading/writing to the exchange database. Each database library connects differently, so we abstract away those details.
 
 ```js
 // Config your server
@@ -155,7 +155,7 @@ function handlePaymentResponse(record) {
 
 
 ## Submitting withdrawals
-When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them the lumens.  
+When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them the lumens. Here is additional documentation about [Building Transactions](https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html).
 
 The function `handleRequestWithdrawal` will queue up a transaction in the exchange's `StellarTransactions` table whenever a withdrawal is requested.
 
