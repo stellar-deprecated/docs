@@ -28,12 +28,12 @@ If your exchange doesn't see a lot of volume, you don't need to set up your own 
 ### Cold wallet
 A cold wallet is typically used to keep the bulk of customer funds secure. A cold wallet is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of `js-stellar-sdk` creates a `tx_blob` containing the signed transaction. This `tx_blob` can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the cold wallet secret key much harder to compromise.
 
-To learn how to create a cold wallet account, see [account management](./account-management.md).
+To learn how to create a cold wallet account, see [account management](./building-blocks/account-management.md).
 
 ### Hot wallet
 A hot wallet contains a more limited amount of funds than a cold wallet. A hot wallet is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a hot wallet restricts loss in the event of a security breach.
 
-To learn how to create a hot wallet account, see [account management](./account-management.md).
+To learn how to create a hot wallet account, see [account management](./building-blocks/account-management.md).
 
 ### Database
 - Need to create a table for pending withdrawals, `StellarTransactions`.
