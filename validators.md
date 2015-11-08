@@ -75,3 +75,12 @@ We don't know who really controls these nodes. They could all be owned by the sa
 Contact | stellar-core@buhrmi.de
 Description | Here to validate your stuff
 NodeID | GDVFVU7KURZ22MO56MP7IWX7Q4PEMHFQCOBTJVD2IR4OITEAUN64CCT2
+
+
+ Name | w00kie
+ ----|-----
+Contact | francois@rejete.com
+Description | Running on a small droplet, for science!
+Slack | frejete
+Peer | stellar.w00kie.com
+NodeID | GDJ73EX25GGUVMUBCK6DPSTJLYP3IC7I3H2URLXJQ5YP56BW756OUHIG
