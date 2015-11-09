@@ -1,4 +1,4 @@
-# How to contribute
+# How to contribute to a Stellar project
 
 Your contributions to the Stellar network will help improve the world’s financial
 infrastructure, faster.
@@ -13,6 +13,12 @@ ask contributors to follow so that we can merge your changes quickly.
 * Create a GitHub issue for your contribution, assuming one does not already exist.
   * Clearly describe the issue including steps to reproduce if it is a bug.
 * Fork the repository on GitHub
+
+## Finding things to work on
+The first place to start is always looking over the current github issues for the project you are interested in contributing to. Issues marked with `help wanted` are usually pretty self contained and a good place to get started.
+stellar.org also uses these same github issues to keep track of what we are working on. If you see any issues that are assigned to a particular person or have the `in progress` label that means someone is currently working on that issue. The `orbit` label means we will likely be working on this issue in the next week or two. The `ready` label means that the issue is one we have prioritized and will be working on in our next orbit (stellar term for sprint) or two.
+
+Of course feel free to make your own issues if you think something needs to added or fixed.
 
 ## Making Changes
 
@@ -43,11 +49,9 @@ appropriate to start the first line of a commit with 'doc' instead of
 an issue number.
 
 # Additional Resources
-
-* [Bug tracker (Github)](https://github.com/stellar/docs/issues)
 * [Contributor License Agreement](https://docs.google.com/forms/d/1g7EF6PERciwn7zfmfke5Sir2n10yddGGSXyZsq98tVY/viewform?usp=send_form)
-* [Explore the API](https://www.stellar.org/api/)
-* [Readme for docs](https://github.com/stellar/docs/blob/master/README.md)
+* [Explore the API](https://www.stellar.org/developers/learn/)
+* #dev channel on [Slack](http://slack.stellar.org)
 * #stellar-dev IRC channel on freenode.org
 
 
