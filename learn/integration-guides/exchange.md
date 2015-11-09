@@ -58,7 +58,7 @@ For this guide, we use placeholder functions for reading/writing to the exchange
 
 ```js
 // Config your server
-var config;
+var config = {};
 config.hotWallet = "your hot wallet address";
 config.hotWalletSeed = "your hot wallet seed";
 
@@ -68,7 +68,8 @@ config.horizon = {hostname:'horizon-testnet.stellar.org', secure:true, port:443}
 // Include the JS Stellar SDK
 // It provides a client-side interface to Horizon
 var StellarSdk = require('stellar-sdk');
-// uncomment for live network:  StellarSdk.Network.usePublicNetwork();
+// uncomment for live network:
+// StellarSdk.Network.usePublicNetwork();
 
 // Initialize the Stellar SDK with the Horizon instance
 // You want to connect to
@@ -135,10 +136,13 @@ function handlePaymentResponse(record) {
       } else {
         // Credit the customer in the memo field
         if (checkExists(customer, "ExchangeUsers")) {
-          // Store the amount the customer has paid you in your database
-          store([record.amount, customer], "StellarDeposits");
-          // Store the cursor in your database
-          store(record.paging_token, "StellarCursor");
+          // Update in an atomic transaction
+          db.transaction(function() {
+            // Store the amount the customer has paid you in your database
+            store([record.amount, customer], "StellarDeposits");
+            // Store the cursor in your database
+            store(record.paging_token, "StellarCursor");
+          });
         } else {
           // If customer cannot be found, you can raise an error,
           // add them to your customers list and credit them,
@@ -161,20 +165,21 @@ The function `handleRequestWithdrawal` will queue up a transaction in the exchan
 
 ```js
 function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
-  // Read the user's balance from the exchange's database
-  var userBalance = getBalance('userID');
-
-  // Check that user has the required lumens
-  if (amountLumens <= userBalance) {
-
-    // Debit the user's internal lumen balance by the amount of lumens they are withdrawing
-    store([userID, userBalance - amountLumens], "UserBalances");
-
-    // Save the transaction information in the StellarTransactions table
-    store([userID, destinationAddress, amountLumens, "pending"], "StellarTransactions");
-  } else {
-    // If the user doesn't have enough XLM, you can alert them
-  }
+  // Update in an atomic transaction
+  db.transaction(function() {
+    // Read the user's balance from the exchange's database
+    var userBalance = getBalance('userID');
+  
+    // Check that user has the required lumens
+    if (amountLumens <= userBalance) {
+      // Debit the user's internal lumen balance by the amount of lumens they are withdrawing
+      store([userID, userBalance - amountLumens], "UserBalances");
+      // Save the transaction information in the StellarTransactions table
+      store([userID, destinationAddress, amountLumens, "pending"], "StellarTransactions");
+    } else {
+      // If the user doesn't have enough XLM, you can alert them
+    }
+  });
 }
 ```
 
@@ -186,13 +191,12 @@ Then, you should run `submitPendingTransactions`, which will check `StellarTrans
 function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
   // Check to see if the destination address exists
   server.loadAccount(destinationAddress)
-
     // If so, continue by submitting a transaction to the destination
     .then(function(account) {
-      var transaction = new StellarSdk.Transaction(exchangeAccount)
+      var transaction = new StellarSdk.TransactionBuilder(exchangeAccount)
         .addOperation(StellarSdk.Operation.payment({
           destination: destinationAddress,
-          asset: StellarLib.Asset.native(),
+          asset: StellarSdk.Asset.native(),
           amount: amountLumens
         }))
         // Sign the transaction
@@ -200,11 +204,10 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
         .build();
       return server.submitTransaction(transaction);
     })
-
     //But if the destination doesn't exist...
     .catch(StellarSdk.NotFoundError, function(err) {
       // create the account and fund it
-      var transaction = StellarSdk.TransactionBuilder(exchangeAccount)
+      var transaction = new StellarSdk.TransactionBuilder(exchangeAccount)
         .addOperation(StellarSdk.Operation.createAccount({
           destination: destinationAddress,
           // Creating an account requires funding it with XLM
@@ -214,7 +217,6 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
         .build();
       return server.submitTransaction(transaction);
     })
-
     // Submit the transaction created in either case
     .then(function(transactionResult) {
       if (transactionResult.ledger) {
@@ -234,15 +236,18 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 function submitPendingTransactions(exchangeAccount) {
 
   // See what transactions in the db are still pending
-  pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
-
-  while (pendingTransactions.length > 0) {
-    var txn = pendingTransactions.shift();
-    var destinationAddress = txn[1];
-    var amountLumens = txn[2];
-
-    submitTransaction(exchangeAccount, destinationAddress, amountLumens);
-  }
+  // Update in an atomic transaction
+  db.transaction(function() {
+    var pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
+  
+    while (pendingTransactions.length > 0) {
+      var txn = pendingTransactions.shift();
+      var destinationAddress = txn.destinationAddress;
+      var amountLumens = txn.amountLumens;
+  
+      submitTransaction(exchangeAccount, destinationAddress, amountLumens);
+    }
+  });
 }
 ```
 
