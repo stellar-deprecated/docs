@@ -5,7 +5,7 @@ title: Operations
 [Transactions](./transactions.md) are made up of a [list of operations](./list-of-operations.md). Each
 operation is an individual command that mutates the ledger.
 
-Here are the possible operations:
+Here are the possible operation types:
 - [Create Account](./list-of-operations.md#create-account)
 - [Payment](./list-of-operations.md#payment)
 - [Path Payment](./list-of-operations.md#path-payment)
