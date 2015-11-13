@@ -2,7 +2,7 @@
 title: List of Operations
 ---
 
-For a description of how operations work in Stellar, see [Operations.md](./operations.md). 
+For a description of how operations work in Stellar, see [Operations](./operations.md). 
 
 For the protocol specification, see [stellar-transactions.x](https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-transaction.x).
 
@@ -202,7 +202,7 @@ Parameters:
 |Low threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a low threshold](./multi-sig.html).|
 |Medium threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.html).|
 |High threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a high threshold](./multi-sig.html). |
-|Home domain| string| Sets the home domain of an account.|
+|Home domain| string| Sets the home domain of an account. See [Federation](./federation.md).|
 |Signer| {Public Key, weight}| Add, update, or remove a signer from an account.  The signer is deleted if the weight is 0.|
 
 Possible errors:
