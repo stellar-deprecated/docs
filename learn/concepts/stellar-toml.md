@@ -66,7 +66,7 @@ Undefined sections are reserved.
 All sections are optional.
 Many of these sections reflect what would be listed in your [stellar-core.cfg](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg)
 
-```ini
+```toml
 # Sample stellar.toml
 
 # convenience mapping of common names to node IDs.
