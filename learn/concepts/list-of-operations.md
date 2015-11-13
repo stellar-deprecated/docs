@@ -199,9 +199,9 @@ Parameters:
 |Clear flags| integer| Indicates which flags to clear. For details about the flags, please refer to the [accounts doc](./accounts.md).|
 |Set flags| integer| Indicates which flags to set. For details about the flags, please refer to the [accounts doc](./accounts.md).|
 |Master weight| integer| Weight of the master key. This account may also add other keys with which to sign transactions using `signer` below.|
-|Low threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have a low threshold.|
-|Medium threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have a medium threshold.|
-|High threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have a high threshold. |
+|Low threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a low threshold](./multi-sig.html).|
+|Medium threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.html).|
+|High threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a high threshold](./multi-sig.html). |
 |Home domain| string| Sets the home domain of an account.|
 |Signer| {Public Key, weight}| Add, update, or remove a signer from an account.  The signer is deleted if the weight is 0.|
 
