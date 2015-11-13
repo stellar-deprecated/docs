@@ -1,3 +1,7 @@
+---
+title: Federation
+---
+
 Stellar **federation** is a protocol that maps Stellar addresses (email-style addresses) to more information about a given user. It's a way for Stellar client software
 to resolve things like `name*yourdomain.com` into account IDs like: `GCCVPYFOHY7ZB7557JKENAX62LUAPLMGIWNZJAFV2MITK6T32V37KEJU`. Stellar addresses provide
 an easy way for users to share their payment details, using a syntax that interoperates across different domains and providers.
