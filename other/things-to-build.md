@@ -7,6 +7,12 @@ If you are not looking for a full blow project but still want to help out, check
 - Report a stream of all stellar transactions to a channel.
 - *Advanced* Allow people to send money/points/+1's to other slack members `/send @bob $5`.
 
+# API Mashups
+- Twilio meets Stellar: SMS alerts for transactions
+- Twitter meets Stellar: Tweet to send or Twitter alerts
+- Reddit meets Stellar: Tipbot!
+- And tons more
+
 # Graph of Horizon data
 This is a relatively simple project. It would just graphically display information pulled from Horizon. 
 Besides the obvious things like looking up accounts and transactions, it would also be cool to see:
@@ -65,6 +71,16 @@ Some web page that shows the state of the network quorum graph. Ideally would sh
 You would probably need to run stellar-core to build this. You can get the data from the stellar-core logs and the /quorum command.
 
 *Advanced Level*: Build a server that connects to stellar-core and monitors the externalized messages and the various validator broadcasts. 
+
+# Libraries
+Build a library in your favorite language.
+- Python
+- C#
+- PHP
+- Java
+- Haskell
+- Etc.
+
 
 
 
