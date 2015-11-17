@@ -1,9 +1,9 @@
-This list outlines some random ideas involving Stellar that would be cool to build. Feel free to add your own or take one here and run with it! 
+Build cool things on Stellar! This list outlines some random ideas. Feel free to add your own or take one here and run with it. 
 As always, if you need help building anything with Stellar, just ask us.
 
 If you're not looking for a full-blown project but still want to help out, look for `help wanted` issue labels in any of our [repos](https://github.com/stellar).
 
-# Slack bot 
+# Slack Bot 
 - Report a stream of all stellar transactions to a channel.
 - *Advanced*: Allow people to send money/points/+1's to other Slack team members `/send @bob $5`.
 
@@ -82,7 +82,7 @@ Build a library in your favorite language:
 - Haskell
 - Other languages
 
-# Product and Service Ideas We Have Heard
+# Product and Service Ideas We've Heard
 - microsavings account for school, health, insurance
 - microinsurance
 - p2p lending
