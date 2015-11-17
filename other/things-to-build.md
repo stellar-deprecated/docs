@@ -43,6 +43,9 @@ The toll collector service has one RPC or endpoint that you can call:
 
 Your app can publish its Stellar toll address for payments. When someone tries to use your service, the server has them authenticate their public key and calls `charge` on the Toll Collector to decrements the consumer's balance in the DB. You can send the consumer a message when their balance is zero.
 
+#Tutorials
+- Build a tutorial to show others how to build something cool using Stellar
+
 # Multisig Coordinator
 A web application that facilitates creating multisig transactions. Typically you must coordinate between several parties to generate a transaction for an account protected by multisig. This site would make this process much easier and allow you to coordinate in cases where you don't know the other party.
 
