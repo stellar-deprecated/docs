@@ -79,7 +79,18 @@ Build a library in your favorite language:
 - Haskell
 - Other languages
 
-
+# Product and Service Ideas We Have Heard
+- microsavings account for school, health, insurance
+- microinsurance
+- p2p lending
+- conditional cash transfers
+- donation systems for nonprofits
+- loyalty points programs
+- community currencies
+- time banks
+- volunteer hour tracking
+- anywhere ATM or human ATM mobile apps
+- 
 
 
 
