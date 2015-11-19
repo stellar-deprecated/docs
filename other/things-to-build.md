@@ -22,6 +22,9 @@ A relatively simple project that graphically displays information pulled from Ho
    - Ledger close times
    - Fee pool
 
+# Federation Service
+Implement a simple [Federation server](https://www.stellar.org/developers/learn/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/learn/concepts/inflation.html) to one provided by your domain.
+
 # Archivist
 A tool to keep your history archive in good shape. You give it:
 - Your history archive
