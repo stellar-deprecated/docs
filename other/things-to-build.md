@@ -1,4 +1,4 @@
-Build cool things on Stellar! This list outlines some random ideas. Feel free to add your own or take one here and run with it. 
+Build cool things on Stellar! This list outlines a few ideas for applications. Feel free to add your own or take one here and run with it. 
 As always, if you need help building anything with Stellar, just ask us.
 
 If you're not looking for a full-blown project but still want to help out, look for `help wanted` issue labels in any of our [repos](https://github.com/stellar).
