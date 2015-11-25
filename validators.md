@@ -69,13 +69,6 @@ We don't know who really controls these nodes. They could all be owned by the sa
  Slack | garbage
  NodeID | GAM7A32QZF5PJASRSGVFPAB36WWTHCBHO5CHG3WUFTUQPT7NZX3ONJU4
  
- 
- Name | buhrmi
- ----|-----
-Contact | stellar-core@buhrmi.de
-Description | Here to validate your stuff
-NodeID | GDVFVU7KURZ22MO56MP7IWX7Q4PEMHFQCOBTJVD2IR4OITEAUN64CCT2
-
 
  Name | w00kie
  ----|-----
