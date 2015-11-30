@@ -1,14 +1,14 @@
 ---
-title: Beyond Code Overview
+title: Beyond Code Contribution Guide
 ---
 
 # Contribute
-We value contributions of all types to Stellar. If you're new to open source or financial technology, or simply have strengths that don't involve code, here are some ways to get involved:
-* Q&A
-* Host or attend a meetup
-* Create a tutorial
-* Give a talk
-* Write documentation
+We value contributions of all types to Stellar. If you're new to open source or financial technology, or simply have strengths that don't involve code, this contribution guide covers some ways to get involved:
+<h5>Q&A</h5>
+<h5>Host or attend a meetup</h5>
+<h5>Create a tutorial</h5>
+<h5>Give a talk</h5>
+<h5>Write documentation</h5>
 
 
 ## Q&A
