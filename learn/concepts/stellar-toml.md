@@ -92,12 +92,7 @@ NODE_NAMES=[
 FEDERATION_SERVER="https://api.stellar.org/federation"
 
 
-#   This section allows a gateway to declare currencies it currently issues.
-CURRENCIES=[
-"USD GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM",
-"BTC $gateway",
-"LTC GAENZLGHJGJRCMX5VCHOLHQXU3EMCU5XWDNU4BGGJFNLI2EL354IVBK7"
-]
+
 
 #   A list of accounts that are controlled by this domain.
 ACCOUNTS=[
@@ -138,6 +133,16 @@ HISTORY=[
 "http://history.stellar.org/prd/core-live/core_live_002/",
 "http://history.stellar.org/prd/core-live/core_live_003/"
 ]
+
+
+#   This section allows a gateway to declare currencies it currently issues.
+[CURRENCIES]
+[CURRENCY.1]
+code="USD"
+issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
+[CURRENCY.2]
+code="BTC"
+issuer="$gateway"
 
 
 #   Potential quorum set of this domain's validatos.
