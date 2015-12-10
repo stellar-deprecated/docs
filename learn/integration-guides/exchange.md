@@ -79,12 +79,14 @@ var server = new StellarSdk.Server(config.horizon);
 var last_token = latestFromDB("StellarCursor");
 
 // Listen for payments from where you last stopped
+// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
 server.payments()
   .forAccount(config.hotWallet)
   .cursor(last_token)
   .stream({onmessage: handlePaymentResponse});
 
 // Load the account sequence number from Horizon and return the account
+// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}
 server.loadAccount(config.hotWallet)
   .then(function (account) {
     setInterval(function() {
@@ -103,6 +105,7 @@ You must listen for payments to the hot wallet account and credit any user that 
 // Start listening for payments from where you last stopped
 var last_token = latestFromDB("StellarCursor");
 
+// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
 server.payments()
   .forAccount(config.hotWallet)
   .cursor(last_token)
@@ -120,6 +123,7 @@ So, you pass this function as the `onmessage` option when you stream payments:
 ```js
 function handlePaymentResponse(record) {
 
+  // GET https://horizon-testnet.stellar.org/transaction/{id of transaction this payment is part of}
   record.transaction()
     .then(function(txn) {
       var customer = txn.memo;
@@ -190,6 +194,7 @@ Then, you should run `submitPendingTransactions`, which will check `StellarTrans
 
 function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
   // Check to see if the destination address exists
+  // GET https://horizon-testnet.stellar.org/accounts/{destinationAddress}
   server.loadAccount(destinationAddress)
     // If so, continue by submitting a transaction to the destination
     .then(function(account) {
@@ -202,6 +207,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
         // Sign the transaction
         .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
         .build();
+      // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
     //But if the destination doesn't exist...
@@ -215,6 +221,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
         }))
         .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
         .build();
+      // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
     // Submit the transaction created in either case

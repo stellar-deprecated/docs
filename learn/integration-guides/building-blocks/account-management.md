@@ -47,6 +47,7 @@ var fundingAccountSecret="SDJ... enter your real secret here";
 
 var newAccountAddress="GCE... enter your real address here";
 
+// GET https://horizon-testnet.stellar.org/accounts/{fundingAccountAddress}
 server.loadAccount(fundingAccountAddress)
     .then(function (account) {
         // build the transaction
@@ -94,6 +95,7 @@ var oldAccountSecret="SDJ... enter your real secret here";
 
 var newAccountAddress="GCE... enter your real address here";
 
+// GET https://horizon-testnet.stellar.org/accounts/{oldAccountAddress}
 server.loadAccount(oldAccountAddress)
     .then(function (account) {
         // build the transaction
@@ -106,6 +108,7 @@ server.loadAccount(oldAccountAddress)
         // sign the transaction
         transaction.sign(StellarSdk.Keypair.fromSeed(oldAccountSecret)); 
         
+        // POST https://horizon-testnet.stellar.org/transactions
         return server.submitTransaction(transaction);
     })
     .then(function (transactionResult) {
