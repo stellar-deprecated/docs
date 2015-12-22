@@ -112,9 +112,9 @@ server.payments()
 ```
 For every payment received by the hot wallet, you must:
 
--check the memo field to determine which user sent the deposit.
--record the cursor in the StellarCursor table so you can resume payment processing where you left off.
--credit the user's account in the DB with the amount of the asset they sent to deposit.
+- check the memo field to determine which user sent the deposit.
+- record the cursor in the StellarCursor table so you can resume payment processing where you left off.
+- credit the user's account in the DB with the amount of the asset they sent to deposit.
 
 So, you pass this function as the `onmessage` option when you stream payments:
 ```js
