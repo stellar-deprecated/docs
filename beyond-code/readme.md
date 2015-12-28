@@ -16,11 +16,11 @@ We value contributions of all types to Stellar. If you're new to open source or 
 Lots of people have Q's about Stellar—maybe you have A's.
 
 * Join the conversation on [Slack](http://slack.stellar.org/).
-* Post code snippets and answer questions on [Stack Overflow](http://stackoverflow.com). Or ask your own.
+* Post code snippets and answer questions on [Stack Exchange](http://stackoverflow.com). Or ask your own.
 
 
 ## Host or attend a meetup
-Stellar hosts [meetups in SF](http://www.meetup.com/Stellar-SF/). If you’d like to host your own, we’re happy to help promote the event and connect you to other interested people. Reach out to us on [Slack](http://slack.stellar.org/) for more info.
+Stellar hosts [meetups in SF](http://www.meetup.com/Stellar-SF/). If you’d like to host your own, we’re happy to help promote the event and connect you to other interested people. Reach out to us on [Slack](http://bitcoin.stackexchange.com/questions/tagged/stellar) for more info.
 
 
 ## Create a tutorial
