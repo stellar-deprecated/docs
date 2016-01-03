@@ -22,7 +22,7 @@ Horizon is the client-facing API server for the Stellar ecosystem. As the interf
 Horizon provides a RESTful API to allow client applications to interact with the Stellar network. You can communicate with Horizon using cURL or just your web browser. However, if you're building a client application, you'll likely want to use a Stellar SDK in the language of your client.
 
 ## [SDKs](https://github.com/stellar/js-stellar-sdk)
-The SDKs facilitate communication between Horizon and a client application that is interacting with the Stellar network. They are responsible for crafting and signing transactions, submitting requests to Horzion, processing the responses, etc.
+The SDKs facilitate communication between Horizon and a client application that is interacting with the Stellar network. They are responsible for crafting and signing transactions, submitting requests to Horizon, processing the responses, etc.
 
 Stellar.org only maintains the JavaScript SDK. We are looking for maintainers for other languages. For example, a few Stellar community members are building a [Python library](https://github.com/StellarCN/py-stellar-base). Contributions are welcome.
 
