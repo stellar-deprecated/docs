@@ -44,11 +44,7 @@ and send it 10000 XLM. There's a convenience function in js-stellar-sdk for Frie
 
 ```js
 // we first need to create a connection to the Server
-var Server = new StellarLib.Server({
-    hostname: "horizon-testnet.stellar.org",
-    port: 443,
-    secure: true // https
-});
+var Server = new StellarLib.Server("https://horizon-testnet.stellar.org");
 
 // sends the given address to the Horizon friendbot to be created
 function friendbot(address) {

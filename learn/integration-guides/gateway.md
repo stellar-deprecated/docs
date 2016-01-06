@@ -60,7 +60,7 @@ config.hotWallet="your hot wallet address";
 config.hotWalletSeed="your seed";
 
 // You can use Stellar.org's instance of Horizon or your own
-config.horizon={hostname:'horizon-testnet.stellar.org', secure:true, port:443};
+config.horizon='https://horizon-testnet.stellar.org';
 
 // Include the JS Stellar SDK
 // It provides a client-side interface to Horizon

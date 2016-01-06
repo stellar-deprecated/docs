@@ -38,7 +38,7 @@ Here is an example of using the js-stellar-sdk:
 var StellarSdk = require('stellar-sdk')
 
 // create the server connection object
-var server = new StellarSdk.Server({hostname:'horizon-testnet.stellar.org', secure: true, port: 443});
+var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 // uncomment below if you want to submit the transaction to the live network
 // StellarSdk.Network.usePublicNetwork();
 
@@ -86,7 +86,7 @@ Example using the js-stellar-sdk:
 var StellarSdk = require('stellar-sdk')
 
 // create the server connection object
-var server = new StellarSdk.Server({hostname:'horizon-testnet.stellar.org', secure: true, port: 443});
+var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 // uncomment below if you want to submit the transaction to the live network
 // StellarSdk.Network.usePublicNetwork();
 
