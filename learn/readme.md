@@ -8,7 +8,7 @@ title: Learn Overview
 The Stellar ecosystem is made up of several pieces of software. Depending on what you're doing with Stellar, you'll interact with or run different pieces of the ecosystem.
 
 ## [Stellar Core](https://github.com/stellar/stellar-core)
-Stellar Core, or stellar-core, is the backbone of the Stellar network. It maintains a local copy of the ledger, communicating and staying in sync with other instances of stellar-core on the network. The Stellar network is made up of a collection of stellar-cores run by various individuals and entities all connected to each other. stellar-core carries out the Stellar Consensus Protocol (SCP) and comes to consensus about the state of the network.
+Stellar Core, or stellar-core, is the backbone of the Stellar network. It maintains a local copy of the ledger, communicating and staying in sync with other instances of stellar-core on the network. The Stellar network is made up of a collection of stellar-cores run by various individuals and entities all connected to each other. Stellar-core carries out the Stellar Consensus Protocol (SCP) and comes to consensus about the state of the network.
 
 stellar-core accepts a limited number of [commands](https://github.com/stellar/stellar-core/blob/master/docs/learn/commands.md).
 
