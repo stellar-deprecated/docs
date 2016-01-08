@@ -202,6 +202,10 @@ Then, you should run `submitPendingTransactions`, which will check `StellarTrans
 ```js
 // This is the function that handles submitting a single transaction
 function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
+  // Update transaction state to sending so it won't be
+  // resubmitted in case of the failure.
+  updateRecord('sending', "StellarTransactions");
+
   // Check to see if the destination address exists
   // GET https://horizon-testnet.stellar.org/accounts/{destinationAccount}
   server.loadAccount(destinationAddress)
