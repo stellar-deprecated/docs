@@ -251,7 +251,12 @@ function submitPendingTransactions(sourceAccount) {
 
   while (pendingTransactions.length > 0) {
     var txn = pendingTransactions.pop();
-    submitTransaction(sourceAccount, txn.destinationAddress, txn.amount, txn.asset);
+
+    // This function is async so it won't block. For simplicity we're using
+    // ES7 `await` keyword but you should create a "promise waterfall" so
+    // `setTimeout` line below is executed after all transactions are submitted.
+    // If you won't do it will be possible to send a transaction twice or more.
+    await submitTransaction(sourceAccount, txn.destinationAddress, txn.amount, txn.asset);
   }
 
   // Wait 30 seconds and process next batch of transactions.

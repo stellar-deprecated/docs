@@ -17,8 +17,9 @@ The two main integration points to Stellar for an exchange are:<br>
 ## Setup
 
 ### Operational
-*(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)<br>
-*(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)<br>
+* *(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)
+* *(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)
+
 If your exchange doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```
   test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
@@ -89,10 +90,7 @@ server.payments()
 // GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}
 server.loadAccount(config.hotWallet)
   .then(function (account) {
-    setInterval(function() {
-     // Every 30 seconds process any pending transactions
-     submitPendingTransactions(account)
-    }, 30 * 1000);
+    submitPendingTransactions(account);
   })
 ```
 
@@ -193,6 +191,10 @@ Then, you should run `submitPendingTransactions`, which will check `StellarTrans
 // This is the function that handles submitting a single transaction
 
 function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
+  // Update transaction state to sending so it won't be
+  // resubmitted in case of the failure.
+  updateRecord('sending', "StellarTransactions");
+
   // Check to see if the destination address exists
   // GET https://horizon-testnet.stellar.org/accounts/{destinationAddress}
   server.loadAccount(destinationAddress)
@@ -227,9 +229,9 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
     // Submit the transaction created in either case
     .then(function(transactionResult) {
       if (transactionResult.ledger) {
-        updateRecord(txn.pop().push('done'), "StellarTransactions");
+        updateRecord('done', "StellarTransactions");
       } else {
-        updateRecord(txn.pop().push('error'), "StellarTransactions");
+        updateRecord('error', "StellarTransactions");
       }
     })
     .catch(function(err) {
@@ -241,19 +243,25 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 // This function should be run in the background continuously
 
 function submitPendingTransactions(exchangeAccount) {
-
   // See what transactions in the db are still pending
   // Update in an atomic transaction
   db.transaction(function() {
     var pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
   
     while (pendingTransactions.length > 0) {
-      var txn = pendingTransactions.shift();
-      var destinationAddress = txn.destinationAddress;
-      var amountLumens = txn.amountLumens;
+      var txn = pendingTransactions.pop();
   
-      submitTransaction(exchangeAccount, destinationAddress, amountLumens);
+      // This function is async so it won't block. For simplicity we're using
+      // ES7 `await` keyword but you should create a "promise waterfall" so
+      // `setTimeout` line below is executed after all transactions are submitted.
+      // If you won't do it will be possible to send a transaction twice or more.
+      await submitTransaction(exchangeAccount, tx.destinationAddress, tx.amountLumens);
     }
+
+    // Wait 30 seconds and process next batch of transactions.
+    setTimeout(function() {
+      submitPendingTransactions(sourceAccount);
+    }, 30*1000);
   });
 }
 ```
