@@ -136,11 +136,11 @@ HISTORY=[
 
 
 #   This section allows a gateway to declare currencies it currently issues.
-[CURRENCIES]
-[CURRENCY.1]
+[[CURRENCIES]]
 code="USD"
 issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
-[CURRENCY.2]
+
+[[CURRENCIES]]
 code="BTC"
 issuer="$gateway"
 
