@@ -17,16 +17,19 @@ The two main integration points to Stellar for a gateway are:<br>
 ## Setup
 
 ### Operational
-*(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)
-*(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)
+* *(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)
+* *(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)
+
 If your gateway doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
-```
-  test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
-  live: {hostname:'horizon.stellar.org', secure:true, port:443};
+```json
+{
+  "testnet": "https://horizon-testnet.stellar.org",
+  "live": "https://horizon.stellar.org"
+}
 ```
 
 ### Issuing account
-The issuing account can issue credit from the gateway. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account key much harder to compromise.
+The issuing account can issue credit from the gateway. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g. QRcode, USB or by hand). This design makes the issuing account key much harder to compromise.
 
 To learn how to create the issuing account, see [account management](./building-blocks/account-management.md).
 
@@ -55,7 +58,7 @@ For this guide, we use placeholder functions for steps that involve querying or 
 
 ```js
 // Config your server
-var config;
+var config = {};
 config.hotWallet="your hot wallet address";
 config.hotWalletSeed="your seed";
 
@@ -87,10 +90,7 @@ server.payments()
 // GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}
 server.loadAccount(config.hotWallet)
   .then(function (account) {
-    setInterval(function() {
-     // Every 30 seconds process any pending transactions
-     submitPendingTransactions(account)
-    }, 30 * 1000);
+     submitPendingTransactions(account);
   })
 ```
 
@@ -113,44 +113,52 @@ server.payments()
 For every payment received by the hot wallet, you must:
 
 - check the memo field to determine which user sent the deposit.
-- record the cursor in the StellarCursor table so you can resume payment processing where you left off.
+- record the cursor in the StellarCursor table so you can resume payment processing where you left off,
 - credit the user's account in the DB with the amount of the asset they sent to deposit.
 
-So, you pass this function as the `onmessage` option when you stream payments:
+So, you pass this function as the `onmessage` callback when you stream payments:
 ```js
 
 function handlePaymentResponse(record) {
+  // This callback will be called for sent payments too.
+  // We want to process incoming payments only.
+  if (record.to != config.hotWallet) {
+    return;
+  }
 
   // As a gateway, you shouldn't be getting native lumens
-  var paymentAsset = record.asset_type != 'native'?
-    new StellarSdk.Asset(record.asset_code, record.issuer) :
+  if (record.asset_type != 'native') {
     return;
+  }
+
+  var paymentAsset = new StellarSdk.Asset(record.asset_code, record.issuer);
+
+  if (!assets.contains(paymentAsset)) {
+     // If you are a gateway for certain assets and the customer sends
+     // you assets you don't accept, some options for handling it are
+     // 1. Trade the asset to your asset and credit that amount
+     // 2. Send it back to the customer
+  }
 
   // GET https://horizon-testnet.stellar.org/transaction/{id of transaction this payment is part of}
   record.transaction()
     .then(function(txn) {
       var customer = txn.memo;
-      if (record.to != config.hotWallet) {
-        return;
-      }
-      if (!assets.include(paymentAsset)) {
-         // If you are a gateway for certain assets and the customer sends
-         // you assets you don't accept, some options for handling it are
-         // 1. Trade the asset to your asset and credit that amount
-         // 2. Send it back to the customer
-      } else {
-        // Credit the customer in the memo field
-        if (checkExists(customer, "ExchangeUsers")) {
+
+      // Credit the customer in the memo field
+      if (checkExists(customer, "ExchangeUsers")) {
+        // Update in an atomic transaction
+        db.transaction(function() {
           // Store the amount the customer has paid you in your database
           store([record.amount, customer, paymentAsset.getCode(), paymentAsset.getIssuer()], "StellarDeposits");
           // Keep the cursor
           store(record.paging_token, "StellarCursor");
-        } else {
-          // If customer cannot be found, you can raise an error,
-          // add them to your customers list and credit them,
-          // or do anything else appropriate to your needs
-          console.log(customer);
-        }
+         });
+      } else {
+        // If customer cannot be found, you can raise an error,
+        // add them to your customers list and credit them,
+        // or do anything else appropriate to your needs
+        console.log(customer);
       }
     })
     .catch(function(err) {
@@ -171,21 +179,21 @@ Whenever a withdrawal is requested, the function `handleRequestWithdrawal` will 
 
 ```js
 function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, destinationAddress) {
+  // This should be done in an atomic transaction
+  db.transaction(function() {
+    // Read the user's balance from the gateway's database
+    var userBalance = getBalance('userID', assetCode, assetIssuer);
 
-  // Read the user's balance from the gateway's database
-  var userBalance = getBalance('userID', assetCode, assetIssuer);
-
-  // Check that user has the required lumens
-  if (assetAmount <= userBalance) {
-
-    // Debit  the user's internal lumen balance by the amount of lumens they are withdrawing
-    store([userID, userBalance - assetAmount, assetCode, assetIssuer], "UserBalances");
-
-    // Save the transaction information in the StellarWithrawals table
-    store([userID, destinationAddress, assetAmount, assetCode, assetIssuer, "pending"], "StellarPayments");
-  } else {
-    // If the user doesn't have enough XLM, you can alert them
-  }
+    // Check that user has the required amount
+    if (assetAmount <= userBalance) {
+      // Debit  the user's internal lumen balance by the amount of lumens they are withdrawing
+      store([userID, userBalance - assetAmount, assetCode, assetIssuer], "UserBalances");
+      // Save the transaction information in the StellarWithrawals table
+      store([userID, destinationAddress, assetAmount, assetCode, assetIssuer, "pending"], "StellarPayments");
+    } else {
+      // If the user doesn't have required amount, you can alert them
+    }
+  });
 }
 ```
 
@@ -193,79 +201,65 @@ Then, you should run `submitPendingTransactions`, which will check `StellarTrans
 
 ```js
 // This is the function that handles submitting a single transaction
-
-function submitTransaction(sourceAccount, destinationAddress, amountLumens) {
+function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
   // Check to see if the destination address exists
   // GET https://horizon-testnet.stellar.org/accounts/{destinationAccount}
   server.loadAccount(destinationAddress)
-
     // If so, continue by submitting a transaction to the destination
     .then(function(account) {
       var transaction = new StellarSdk.Transaction(sourceAccount)
         .addOperation(StellarSdk.Operation.payment({
           destination: destinationAddress,
-          asset: StellarLib.Asset.native(),
-          amount: amountLumens
+          asset: asset
+          amount: amount
         }))
         // Sign the transaction
         .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
         .build();
-      // POST https://horizon-testnet.stellar.org/transactions
-      return server.submitTransaction(transaction);
-    })
 
-    //But if the destination doesn't exist...
+      // POST https://horizon-testnet.stellar.org/transactions
+      return server.submitTransaction(transaction)
+        .then(function(transactionResult) {
+          if (transactionResult.ledger) {
+            updateRecord('done', "StellarTransactions");
+          } else {
+            updateRecord('error', "StellarTransactions");
+          }
+        })
+        .catch(function(err) {
+          // Catch errors, most likely with the network or your transaction.
+          // You may need to fetch the current sequence number of hotWallet account.
+        });
+    })
     .catch(StellarSdk.NotFoundError, function(err) {
-      // create the account and fund it
-      var transaction = StellarSdk.TransactionBuilder(sourceAccount)
-        .addOperation(StellarSdk.Operation.createAccount({
-          destination: destinationAddress,
-          // Creating an account requires funding it with XLM
-          startingBalance: amountLumens
-        }))
-        .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
-        .build();
-      // POST https://horizon-testnet.stellar.org/transactions
-      return server.submitTransaction(transaction);
-    })
-
-    // Submit the transaction created in either case
-    .then(function(transactionResult) {
-      if (transactionResult.ledger) {
-        updateRecord(txn.pop().push('done'), "StellarTransactions");
-      } else {
-        updateRecord(txn.pop().push('error'), "StellarTransactions");
-      }
-    })
-    .catch(function(err) {
-      // Catch errors, most likely with the network or your transaction
+      // If destination cannot be found, you can raise an error,
+      // because the account must exist and have a trustline.
+      console.log(err);
     });
 }
 
 
 // This function handles submitting all pending transactions, and calls the previous one
 // This function should be run in the background continuously
-
 function submitPendingTransactions(sourceAccount) {
-
   // See what transactions in the DB are still pending
   pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
 
   while (pendingTransactions.length > 0) {
-    var txn = pendingTransactions.shift();
-    var destinationAddress = txn[1];
-    var amountLumens = txn[2];
-
-    submitTransaction(sourceAccount, destinationAddress, amountLumens);
+    var txn = pendingTransactions.pop();
+    submitTransaction(sourceAccount, txn.destinationAddress, txn.amount, txn.asset);
   }
+
+  // Wait 30 seconds and process next batch of transactions.
+  setTimeout(function() {
+    submitPendingTransactions(sourceAccount);
+  }, 30*1000);
 }
 ```
 
-
-
 ## Going further...
 ### Federation
-The federation protocol allows you to give your users easy addresses—e.g., bob*yourgateway.com—rather than cumbersome raw addresses such as: GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ?19327
+The federation protocol allows you to give your users easy addresses—e.g., `bob*yourgateway.com` — rather than cumbersome raw addresses such as: `GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ`.
 
 For more information, check out the [federation guide](../concepts/federation.md).
 
