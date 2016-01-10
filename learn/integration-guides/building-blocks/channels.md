@@ -16,16 +16,16 @@ You of course will have to sign the transaction with both the hot wallet key and
 For example:
 ```
 // create payment from hotwallet to customerAddress
-var transaction = new StellarSdk.TransactionBuilder(channelAccounts[channelIndex])
-            .addOperation(StellarSdk.Operation.payment({
-                source: hotWallet.address(),
-                destination: customerAddress,
-	    asset: StellarSdk.Asset.native(),
-                amount: amountToSend
-            }))
-            .build();
+var transaction =
+  new StellarSdk.TransactionBuilder(channelAccounts[channelIndex])
+    .addOperation(StellarSdk.Operation.payment({
+      source: hotWallet.address(),
+      destination: customerAddress,
+      asset: StellarSdk.Asset.native(),
+      amount: amountToSend
+    }))
+    .build();
 
-        transaction.sign(hotWalletKey);
-        transaction.sign(channelKeys[channelIndex]);
-
+  transaction.sign(hotWalletKey);
+  transaction.sign(channelKeys[channelIndex]);
 ``` 
