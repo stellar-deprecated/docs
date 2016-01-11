@@ -46,10 +46,8 @@ To learn how to create a hot wallet account, see [account management](./building
 
 ```
 CREATE TABLE StellarPayments (UserID INT, Destination varchar(56), AssetAmount INT, AssetCode varchar(4), AssetIssuer varchar(56), state varchar(8));
-CREATE TABLE StellarCursor (cursor INT);
-INSERT INTO StellarCursor (cursor) values (0);
+CREATE TABLE StellarCursor (id INT, cursor varchar(50)); // id - AUTO_INCREMENT field
 ```
-
 
 ### Code
 This is the code to run in order to run a gateway. The following sections describe each step.
@@ -77,14 +75,18 @@ var server = new StellarSdk.Server(config.horizon);
 var assets = [new StellarSDK.Asset(code, issuer), ...]
 
 // Get the latest cursor position
-var last_token = latestFromDB("StellarCursor");
+var lastToken = latestFromDB("StellarCursor");
 
 // Listen for payments from where you last stopped
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
-server.payments()
-  .forAccount(config.hotWallet)
-  .cursor(last_token)
-  .stream({onmessage: handlePaymentResponse});
+// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={lastToken}
+let callBuilder = server.payments().forAccount(config.hotWallet);
+
+// If no cursor has been saved yet, don't add cursor parameter
+if (lastToken) {
+  callBuilder.cursor(lastToken);
+}
+
+callBuilder.stream({onmessage: handlePaymentResponse});
 
 // Load the account sequence number from Horizon and return the account
 // GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}
@@ -101,14 +103,17 @@ You must listen for payments to the hot wallet account and record any user that 
 
 ```js
 // start listening for payments from where you last stopped
-
-var last_token = latestFromDB("StellarCursor");
+var lastToken = latestFromDB("StellarCursor");
 
 // GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
-server.payments()
-  .forAccount(config.hotWallet)
-  .cursor(last_token)
-  .stream({onmessage: handlePaymentResponse});
+let callBuilder = server.payments().forAccount(config.hotWallet);
+
+// If no cursor has been saved yet, don't add cursor parameter
+if (lastToken) {
+  callBuilder.cursor(lastToken);
+}
+
+callBuilder.stream({onmessage: handlePaymentResponse});
 ```
 For every payment received by the hot wallet, you must:
 
