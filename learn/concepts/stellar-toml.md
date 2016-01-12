@@ -15,11 +15,13 @@ Given the domain "DOMAIN", the stellar.toml will be searched for at the followin
 `https://www.DOMAIN/.well-known/stellar.toml`
 
 ## Enabling cross-origin resource sharing (CORS)
-You must enable CORS on the stellar.toml so people can access this file from other sites. The following HTTP header *must* be set for all requests to stellar.toml and its dependent files.
+You must enable CORS on the stellar.toml so people can access this file from other sites. The following HTTP header *must* be set for a HTTP response for `stellar.toml` file request.
 
- Access-Control-Allow-Origin: *
+```
+Access-Control-Allow-Origin: *
+```
 
-**Important**: Only enable CORS for stellar.txt (or any files it references). For example, in Apache you would set something like:
+**Important**: Only enable CORS for stellar.toml (or any files it references). For example, in Apache you would set something like:
 
 ```xml
 <Location "/stellar.toml">
@@ -29,7 +31,7 @@ You must enable CORS on the stellar.toml so people can access this file from oth
 
 Or in nginx:
 
-```json
+```
 location /stellar.toml {
  add_header 'Access-Control-Allow-Origin' '*';
 }

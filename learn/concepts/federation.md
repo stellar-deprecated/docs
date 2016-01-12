@@ -10,9 +10,9 @@ an easy way for users to share their payment details, using a syntax that intero
 
 Stellar addresses are divided into two parts separated by `*`, the username and the domain.
 
-For example:  `jed*stellar.org`
-`jed` is the username.
-`stellar.org` is the domain.
+For example:  `jed*stellar.org`:
+* `jed` is the username,
+* `stellar.org` is the domain.
 
 The domain can be any valid RFC 1035  domain name.
 The username is limited to printable UTF-8 with whitespace and the following characters excluded: <*,@> Although of course the domain administrator can place additional restrictions on usernames of its domain.
@@ -30,9 +30,13 @@ Add a `FEDERATION_SERVER` section to your stellar.toml file that tells other peo
 
 For example: `FEDERATION_SERVER="https://api.yourdomain.com/federation"`
 
+Please note that your federation server **must** use `https` protocol.
+
 ### Step 3: Implement federation url HTTP endpoint
 
 The federation URL specified in your stellar.toml file should accept an HTTP GET request and issue responses of the form detailed below.
+
+Instead of building your own server you can use [`federation`](https://github.com/stellar/federation) server built by Stellar.
 
 ## Federation Requests
 You can use the federation endpoint to look up an account id if you have a stellar address. You can also do reverse federation and look up a stellar addresses from account ids or transaction ids. This is useful to see who has sent you a payment.
@@ -47,10 +51,16 @@ Supported types:
  - **txid**: *not supported by all federation servers* Will return the federation record of the sender of the transaction if known by the server. Example: `https://api.stellar.org/federation?q=c1b368c00e9852351361e07cc58c54277e7a6366580044ab152b8db9cd8ec52a
 &type=txid`
 
-
-
 ### Federation Response
-The federation server should respond with an appropriate HTTP status code and a JSON response:
+The federation server should respond with an appropriate HTTP status code, headers and a JSON response.
+
+You must enable CORS on the federation server so people can send requests from other sites. The following HTTP header must be set for all federation server responses.
+
+```
+Access-Control-Allow-Origin: *
+```
+
+JSON response should look like:
 
 ```
 status: 200
