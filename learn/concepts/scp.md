@@ -9,3 +9,9 @@ A few ways to explore SCP:
 * View or contribute to the code in [stellar-core](https://github.com/stellar/stellar-core).
 * If white papers aren't your thing, here's a [technical summary](https://medium.com/a-stellar-journey/on-worldwide-consensus-359e9eb3e949). 
 * If you're new to consensus, get the basics from our graphic novel, [Adventures in Galactic Consensus](https://www.stellar.org/stories/adventures-in-galactic-consensus-chapter-1/). 
+
+You can also watch Professor David Mazières's [talk on SCP](https://www.youtube.com/watch?v=hjRQLYF599w):
+
+<a href="https://www.youtube.com/watch?v=hjRQLYF599w
+" target="_blank"><img src="http://img.youtube.com/vi/hjRQLYF599w/0.jpg" 
+alt="SCP talk" /></a>
