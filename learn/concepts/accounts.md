@@ -34,7 +34,7 @@ Accounts have the following fields:
 
   - **Authorization immutable**: If this is set then none of the authorization flags can be set and the account can never be deleted.
 
-- **Home domain**: A domain name that can optionally be added to the account. Clients can look up a [stellar.txt](./stellar-txt.md) from this domain. This domain can be used for looking up the meaning of the memo field and for reverse federation to look up the common name of the account. For more on federation, check out the [federation guide](./federation.md).
+- **Home domain**: A domain name that can optionally be added to the account. Clients can look up a [stellar.toml](./stellar-toml.md) from this domain. This domain can be used for looking up the meaning of the memo field and for reverse federation to look up the common name of the account. For more on federation, check out the [federation guide](./federation.md).
 
 - **Thresholds**: Operations have varying levels of access. This field specifies thresholds for low-, medium-, and high-access levels, as well as the weight of the master key. For more info, see [multi-sig](./multi-sig.md).
 
