@@ -2,7 +2,7 @@
 title: List of Operations
 ---
 
-For a description of how operations work in Stellar, see [Operations](./operations.md). 
+For a description of how operations work in Stellar, see [Operations](./operations.md).
 
 For the protocol specification, see [stellar-transactions.x](https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-transaction.x).
 
@@ -25,7 +25,7 @@ Threshold: Medium
 
 Result: `CreateAccountResult`
 
-Parameters: 
+Parameters:
 
 | Parameter        | Type       | Description                                                                                |
 | ---------------- | ---------- | ------------------------------------------------------------------------------------------ |
@@ -43,7 +43,7 @@ Possible errors:
 |CREATE_ACCOUNT_ALREADY_EXIST| -4| The `destination` account already exists.|
 
 
- 
+
 ## Payment
 Sends an amount in a specific asset to a destination account.
 
@@ -137,7 +137,7 @@ Possible errors:
 |MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
 |MANAGE_OFFER_NOT_FOUND| -9| An offer with that `offerID` cannot be found.|
 |MANAGE_OFFER_MISMATCH| -10| Updating an offer does not allow changing the currencies.  If tried, this currency mismatch error is returned.|
-|MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|  
+|MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 ## Create Passive Offer
 A passive offer is an offer that does not act on and take a reverse offer of equal price. Instead, they only take offers
@@ -149,7 +149,7 @@ offer is of the same price as your passive offer.
 
 Passive offers allow market makers to have zero spread. If you want to trade EUR for USD at 1:1 price and USD for EUR also
  at 1:1, you can create two passive offers so the two offers don't immediately act on each other.
- 
+
 
 Threshold: Medium
 
@@ -177,11 +177,11 @@ Possible errors:
 |MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of lesser price active, so the account creating this offer would immediately cross itself.|
 |MANAGE_OFFER_NOT_FOUND| -9| An offer with that `offerID` cannot be found.|
 |MANAGE_OFFER_MISMATCH| -10| Updating an offer does not allow changing the currencies.  If tried, this currency mismatch error is returned.|
-|MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.| 
+|MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 
 ## Set Options
-This operation sets the options for an account.  
+This operation sets the options for an account.
 
 For more information on the signing options, please refer to the [multi-sig doc](./multi-sig.md).
 
@@ -196,8 +196,8 @@ Parameters:
 |Parameters| Type| Description|
 | --- | --- | --- |
 |inflation Destination| account ID| Account of the inflation destination.|
-|Clear flags| integer| Indicates which flags to clear. For details about the flags, please refer to the [accounts doc](./accounts.md).|
-|Set flags| integer| Indicates which flags to set. For details about the flags, please refer to the [accounts doc](./accounts.md).|
+|Clear flags| integer| Indicates which flags to clear. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer subtracts from the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
+|Set flags| integer| Indicates which flags to set. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer adds onto the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
 |Master weight| integer| Weight of the master key. This account may also add other keys with which to sign transactions using `signer` below.|
 |Low threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a low threshold](./multi-sig.html).|
 |Medium threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.html).|
@@ -267,7 +267,7 @@ Possible errors:
 |ALLOW_TRUST_CANT_REVOKE| -4| The source account is trying to revoke the trustline of the `trustor`, but it cannot do so.|
 
 ## Account Merge
-Transfers the native balance (the amount of XLM an account holds) to another account and removes the source account from the ledger. 
+Transfers the native balance (the amount of XLM an account holds) to another account and removes the source account from the ledger.
 
 Threshold: High
 
