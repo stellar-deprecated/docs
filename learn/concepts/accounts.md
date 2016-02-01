@@ -28,16 +28,14 @@ Accounts have the following fields:
 
 - **Flags**: Currently there are three flags, used by issuers of [assets](./assets.md).
 
-  - **Authorization required**: Requires the issuing account to give other accounts permission before they can hold the issuing account's credit.
+  - **Authorization required (0x1)**: Requires the issuing account to give other accounts permission before they can hold the issuing account's credit.
 
-  - **Authorization revocable**: Allows the issuing account to revoke its credit held by other accounts.
+  - **Authorization revocable (0x2)**: Allows the issuing account to revoke its credit held by other accounts.
 
-  - **Authorization immutable**: If this is set then none of the authorization flags can be set and the account can never be deleted.
+  - **Authorization immutable (0x4)**: If this is set then none of the authorization flags can be set and the account can never be deleted.
 
 - **Home domain**: A domain name that can optionally be added to the account. Clients can look up a [stellar.txt](./stellar-txt.md) from this domain. This domain can be used for looking up the meaning of the memo field and for reverse federation to look up the common name of the account. For more on federation, check out the [federation guide](./federation.md).
 
 - **Thresholds**: Operations have varying levels of access. This field specifies thresholds for low-, medium-, and high-access levels, as well as the weight of the master key. For more info, see [multi-sig](./multi-sig.md).
 
 - **Signers**: Used for [multi-sig](./multi-sig.md). This field lists other public keys and their weights, which can be used to authorize transactions for this account.
-
-
