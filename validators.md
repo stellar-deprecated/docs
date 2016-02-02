@@ -77,3 +77,9 @@ Description | Running on a small droplet, for science!
 Slack | frejete
 Peer | stellar.w00kie.com
 NodeID | GDJ73EX25GGUVMUBCK6DPSTJLYP3IC7I3H2URLXJQ5YP56BW756OUHIG
+
+Name | dzham
+-----|------
+Contact | johan@futuretense.io
+Slack | dzham
+NodeID | GCIMGUWEYJBYUWDTKHSIBBMT5DQNGAO75QP5DYAX3DKOVD5VN6AHDL4M
