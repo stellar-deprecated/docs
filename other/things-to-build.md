@@ -1,5 +1,5 @@
 Build cool things on Stellar! This list outlines a few ideas for applications. Feel free to add your own or take one here and run with it. 
-As always, if you need help building anything with Stellar, just ask us.
+As always, if you need help building anything with Stellar, just ask us ([Slack chat](http://slack.stellar.org/)),[IRC](https://kiwiirc.com/client/irc.freenode.net/#stellar-dev), or developers@stellar.org) .
 
 If you're not looking for a full-blown project but still want to help out, look for `help wanted` issue labels in any of our [repos](https://github.com/stellar).
 
