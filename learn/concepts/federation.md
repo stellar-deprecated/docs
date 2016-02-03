@@ -80,3 +80,6 @@ etc.
    detail: "extra details provided by the federation server"
 }
 ```
+
+## Looking up federation provider via a home domain entry
+Accounts may optionally have a [home domain](./accounts.md#home-domain) specified. This allows an account to programmatically specify where is the main federation provider for that account.
