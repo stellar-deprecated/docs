@@ -8,7 +8,7 @@ If you're not looking for a full-blown project but still want to help out, look 
 - *Advanced*: Allow people to send money/points/+1's to other Slack team members `/send @bob $5`.
 
 # API Mashups
-- Twilio meets Stellar: SMS alerts for transactions
+- Twilio meets Stellar: SMS alerts for transactions (you can check the example [here](https://github.com/stellar/stellar-sms-client))
 - Twitter meets Stellar: Tweet to send money or Twitter alerts
 - Reddit meets Stellar: Tipbot!
 - Many more possibilities
@@ -24,6 +24,8 @@ A relatively simple project that graphically displays information pulled from Ho
 
 # Federation Service
 Implement a simple [Federation server](https://www.stellar.org/developers/learn/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/learn/concepts/inflation.html) to one provided by your domain.
+
+You can also contribute to the [federation server](https://github.com/stellar/federation/) maintained by Stellar Development Foundation.
 
 # Archivist
 A tool to keep your history archive in good shape. You give it:
@@ -78,12 +80,17 @@ You should be able to view the quorum graph from the point of view of any given 
 
 # Libraries
 Build a library in your favorite language:
-- Python
 - C#
 - PHP
-- Java
 - Haskell
 - Other languages
+
+Or contribute to our existing SDKs:
+- [JavaScript](https://github.com/stellar/js-stellar-sdk)
+- [Go](https://github.com/stellar/go-stellar-base)
+- [Java](https://github.com/stellar/java-stellar-sdk)
+- [Python](https://github.com/StellarCN/py-stellar-base/)
+
 
 # Product and Service Ideas We've Heard
 - microsavings account for school, health, insurance
@@ -96,24 +103,3 @@ Build a library in your favorite language:
 - time banks
 - volunteer hour tracking
 - anywhere ATM or human ATM mobile apps
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
