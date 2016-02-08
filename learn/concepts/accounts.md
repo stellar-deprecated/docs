@@ -15,7 +15,7 @@ set up more complicated [multi-signature](./multi-sig.md) schemes for authorizin
 ## Account fields
 
 Accounts have the following fields:
->
+
 > #### Account ID
 > The public key that was first used to create the account. You can replace the key used for signing the account's transactions with a different public key, but the original account ID will always be used to identify the account.
 >
