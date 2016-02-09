@@ -104,14 +104,14 @@ server.loadAccount(keypair.accountId())
 
 * First we need to define which Horizon server we want to interact with. Since Stellar is a distributed network everyone can start a server and connect to other Stellar nodes. We create a new [`Server`](https://stellar.github.io/js-stellar-sdk/Server.html) instance and configure it to connect to `https://horizon-testnet.stellar.org`.
 * Then we create a [`Keypair`](https://stellar.github.io/js-stellar-sdk/Keypair.html#.fromSeed) object using our previously created account's secret seed.
-* Now, we need to load the current [sequence number](https://www.stellar.org/developers/learn/concepts/accounts.html#sequence-number) of our account. Sequence numbers protect from replay attacks. Do do this we use [`Server.loadAccount`](https://stellar.github.io/js-stellar-sdk/Server.html#loadAccount) method.
+* Now, we need to load the current [sequence number](https://www.stellar.org/developers/learn/concepts/accounts.html#sequence-number) of our account. Sequence numbers protect from replay attacks. To do this we use [`Server.loadAccount`](https://stellar.github.io/js-stellar-sdk/Server.html#loadAccount) method.
 * JavaScript SDK exposes [`TransactionBuilder`](https://stellar.github.io/js-stellar-sdk/TransactionBuilder.html) class that allows you to build transactions easily. Each [transaction](https://www.stellar.org/developers/learn/concepts/transactions.html) consists of at least one [operation](https://www.stellar.org/developers/learn/concepts/operations.html). There are many types of operations but in this example we will use `payment` operation which sends assets from one account to another.
 * [Payment operation](https://www.stellar.org/developers/learn/concepts/list-of-operations.html#payment) requires 3 arguments:
   * `destination` - ID of the account we want to send our payment,
   * `asset` - the [asset](https://www.stellar.org/developers/learn/concepts/assets.html) we want to send (in this example we will be using Stellar native asset: lumens),
   * `amount` - amount of asset to send.
 * To build a transaction we call [`TransactionBuilder.build`](https://stellar.github.io/js-stellar-sdk/TransactionBuilder.html#build) method.
-* As state before, every transaction submited to Stellar network must be cryptographically signed using our secret seed. To sign a transaction we use [`Transaction.sign`](https://stellar.github.io/js-stellar-sdk/Transaction.html#sign) method.
+* As stated before, every transaction submited to Stellar network must be cryptographically signed using our secret seed. To sign a transaction we use [`Transaction.sign`](https://stellar.github.io/js-stellar-sdk/Transaction.html#sign) method.
 * The last step is to submit a built transaction to Horizon using [`Server.submitTransaction`](https://stellar.github.io/js-stellar-sdk/Server.html#submitTransaction) method.
 
 Let's execute `transaction.js` file:
