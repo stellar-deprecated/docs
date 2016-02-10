@@ -4,7 +4,7 @@ title: Get Started
 
 The best way to start your journey with Stellar is to create a [test network](./test-net.html) account and send your first transaction.
 
-In this tutorial we will be using our [JavaScript SDK](https://www.stellar.org/developers/js-stellar-sdk/learn/index.html) but you can use other [SDKs](https://www.stellar.org/developers/horizon/learn/#libraries) as well.
+In this tutorial we will be using our [JavaScript SDK](../learn/index.html) but you can use other [SDKs](../horizon/learn/#libraries) as well.
 
 ## Installing `stellar-sdk`
 
@@ -22,14 +22,14 @@ npm install --save stellar-sdk
 
 First you have to generate your key pair.
 
-`generate_keypair.js` file:
 ```js
+// generate_keypair.js
 var StellarSdk = require('stellar-sdk');
 var keypair = StellarSdk.Keypair.random();
 
 console.log('Account ID:');
 console.log(keypair.accountId());
-console.log('Secret Seed:');
+console.log('Secret Key:');
 console.log(keypair.seed());
 ```
 
@@ -39,13 +39,13 @@ $ node generate_keypair.js
 
 Account ID:
 GDGOKHIRX63EIAXKVI77BQV7LMDUH7DR4BMDDU77DJUXLPUU5HAXGN64
-Secret Seed:
+Secret Key:
 SD5ALH5UA7LRMN6ZB2QILW35YZTEOE37M3JVNAKZ3KWT7QSC77ABJ3ID
 ```
 
-You will use your key pair to receive funds (account ID) and to sign your transaction (secret seed). You can share your account ID publicly but you must keep your seed secret. Otherwise, someone may steel your funds!
+You will use your key pair to receive funds (account ID) and to sign your transaction (secret key). You can share your account ID publicly but you must keep your seed secret. Otherwise, someone may steal your funds!
 
-To be able to submit transactions to Stellar network you must have an [account](https://www.stellar.org/developers/learn/concepts/accounts.html). Each account on Stellar network must have a [minimum balance](https://www.stellar.org/developers/learn/concepts/fees.html#minimum-balance) of 20 XLM ([lumens](https://www.stellar.org/developers/learn/concepts/assets.html#lumens-xlm-)).
+To be able to submit transactions to Stellar network you must have an [account](../concepts/accounts.html). Each account on Stellar network must have a [minimum balance](../concepts/fees.html#minimum-balance) of 20 XLM ([lumens](../concepts/assets.html#lumens-xlm-)).
 
 In test network you can use Friendbot to send you a small amount of lumens for testing purposes (remember to change `addr` param to your account ID`:
 ```
@@ -64,7 +64,7 @@ $ curl "https://horizon-testnet.stellar.org/friendbot?addr=GDGOKHIRX63EIAXKVI77B
 }
 ```
 
-The JSON object you see is a response from [Horizon server](https://www.stellar.org/developers/horizon/learn/index.html) which acts as the interface between [stellar-core](https://github.com/stellar/stellar-core) and applications that want to access the Stellar network. You can learn more about the meaning of each of these fields in [Post Transaction](https://www.stellar.org/developers/horizon/reference/transactions-create.html) page. We will be using Horizon in the next section.
+The JSON object you see is a response from [Horizon server](../horizon/learn/index.html) which acts as the interface between [stellar-core](https://github.com/stellar/stellar-core) and applications that want to access the Stellar network. You can learn more about the meaning of each of these fields in [Post Transaction](../../horizon/reference/transactions-create.html) page. We will be using Horizon in the next section.
 
 Your account is now created and you can build and submit your first transaction.
 
@@ -72,8 +72,8 @@ Your account is now created and you can build and submit your first transaction.
 
 Let's check the code first and then we will explain it step by step.
 
-`transaction.js` file:
 ```js
+// transaction.js
 var StellarSdk = require('stellar-sdk');
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var keypair = StellarSdk.Keypair.fromSeed('SD5ALH5UA7LRMN6ZB2QILW35YZTEOE37M3JVNAKZ3KWT7QSC77ABJ3ID');
@@ -103,15 +103,15 @@ server.loadAccount(keypair.accountId())
 ```
 
 * First we need to define which Horizon server we want to interact with. Since Stellar is a distributed network everyone can start a server and connect to other Stellar nodes. We create a new [`Server`](https://stellar.github.io/js-stellar-sdk/Server.html) instance and configure it to connect to `https://horizon-testnet.stellar.org`.
-* Then we create a [`Keypair`](https://stellar.github.io/js-stellar-sdk/Keypair.html#.fromSeed) object using our previously created account's secret seed.
-* Now, we need to load the current [sequence number](https://www.stellar.org/developers/learn/concepts/accounts.html#sequence-number) of our account. Sequence numbers protect from replay attacks. To do this we use [`Server.loadAccount`](https://stellar.github.io/js-stellar-sdk/Server.html#loadAccount) method.
-* JavaScript SDK exposes [`TransactionBuilder`](https://stellar.github.io/js-stellar-sdk/TransactionBuilder.html) class that allows you to build transactions easily. Each [transaction](https://www.stellar.org/developers/learn/concepts/transactions.html) consists of at least one [operation](https://www.stellar.org/developers/learn/concepts/operations.html). There are many types of operations but in this example we will use `payment` operation which sends assets from one account to another.
-* [Payment operation](https://www.stellar.org/developers/learn/concepts/list-of-operations.html#payment) requires 3 arguments:
+* Then we create a [`Keypair`](https://stellar.github.io/js-stellar-sdk/Keypair.html#.fromSeed) object using our previously created account's secret key.
+* Now, we need to load the current [sequence number](../concepts/accounts.html#sequence-number) of our account. Sequence numbers protect from replay attacks. To do this we use [`Server.loadAccount`](https://stellar.github.io/js-stellar-sdk/Server.html#loadAccount) method.
+* JavaScript SDK exposes [`TransactionBuilder`](https://stellar.github.io/js-stellar-sdk/TransactionBuilder.html) class that allows you to build transactions easily. Each [transaction](../concepts/transactions.html) consists of at least one [operation](../concepts/operations.html). There are many types of operations but in this example we will use `payment` operation which sends assets from one account to another.
+* [Payment operation](../concepts/list-of-operations.html#payment) requires 3 arguments:
   * `destination` - ID of the account we want to send our payment,
-  * `asset` - the [asset](https://www.stellar.org/developers/learn/concepts/assets.html) we want to send (in this example we will be using Stellar native asset: lumens),
+  * `asset` - the [asset](../concepts/assets.html) we want to send (in this example we will be using Stellar native asset: lumens),
   * `amount` - amount of asset to send.
 * To build a transaction we call [`TransactionBuilder.build`](https://stellar.github.io/js-stellar-sdk/TransactionBuilder.html#build) method.
-* As stated before, every transaction submited to Stellar network must be cryptographically signed using our secret seed. To sign a transaction we use [`Transaction.sign`](https://stellar.github.io/js-stellar-sdk/Transaction.html#sign) method.
+* As stated before, every transaction submited to Stellar network must be cryptographically signed using our secret key. To sign a transaction we use [`Transaction.sign`](https://stellar.github.io/js-stellar-sdk/Transaction.html#sign) method.
 * The last step is to submit a built transaction to Horizon using [`Server.submitTransaction`](https://stellar.github.io/js-stellar-sdk/Server.html#submitTransaction) method.
 
 Let's execute `transaction.js` file:
@@ -132,7 +132,7 @@ You have just sent your first transaction!
 ## Where to go from here?
 
 * Learn more about Stellar concepts (check the sidebar).
-* Check the [list of operations](https://www.stellar.org/developers/learn/concepts/list-of-operations.html) you can use in Stellar network.
-* Check [JavaScript SDK documentation](https://www.stellar.org/developers/js-stellar-sdk/learn/index.html) and [API reference](https://stellar.github.io/js-stellar-sdk/).
-* Check [Horizon API Reference](https://www.stellar.org/developers/reference/).
+* Check the [list of operations](../concepts/list-of-operations.html) you can use in Stellar network.
+* Check [JavaScript SDK documentation](../../js-stellar-sdk/learn/index.html) and [API reference](https://stellar.github.io/js-stellar-sdk/).
+* Check [Horizon API Reference](../../reference/).
 * Join our community on [Slack](http://slack.stellar.org/).
