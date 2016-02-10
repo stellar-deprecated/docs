@@ -4,7 +4,7 @@ title: Get Started
 
 The best way to start your journey with Stellar is to create a [test network](./test-net.html) account and send your first transaction.
 
-In this tutorial we will be using our [JavaScript SDK](../learn/index.html) but you can use other [SDKs](../horizon/learn/#libraries) as well.
+In this tutorial we will be using our [JavaScript SDK](../../js-stellar-sdk/learn/index.html) but you can use other [SDKs](../horizon/learn/#libraries) as well.
 
 ## Installing `stellar-sdk`
 
@@ -64,7 +64,7 @@ $ curl "https://horizon-testnet.stellar.org/friendbot?addr=GDGOKHIRX63EIAXKVI77B
 }
 ```
 
-The JSON object you see is a response from [Horizon server](../horizon/learn/index.html) which acts as the interface between [stellar-core](https://github.com/stellar/stellar-core) and applications that want to access the Stellar network. You can learn more about the meaning of each of these fields in [Post Transaction](../../horizon/reference/transactions-create.html) page. We will be using Horizon in the next section.
+The JSON object you see is a response from [Horizon server](../../horizon/learn/index.html) which acts as the interface between [stellar-core](https://github.com/stellar/stellar-core) and applications that want to access the Stellar network. You can learn more about the meaning of each of these fields in [Post Transaction](../../horizon/reference/transactions-create.html) page. We will be using Horizon in the next section.
 
 Your account is now created and you can build and submit your first transaction.
 
