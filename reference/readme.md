@@ -7,9 +7,16 @@ You can interact directly with Horizon via cURL or a web browser. Stellar.org al
 
 Stellar.org runs an [instance of Horizon](https://horizon-testnet.stellar.org/) that is connected to the testnet.
 
-Several community-maintained libraries, in various states of completeness, allow you to interact with Horizon in other languages:<br>
-- [Ruby](https://github.com/stellar/ruby-stellar-sdk)
-- [Go](https://github.com/stellar/go-stellar-base)
-- [Python](https://github.com/StellarCN/py-stellar-base)
-- [Java](https://github.com/stellar/java-stellar-base)
+## Libraries
 
+To interact with Horizon use one of the following libraries:
+
+SDF maintained libraries:<br />
+- [JavaScript](https://github.com/stellar/js-stellar-sdk)
+- [Java](https://github.com/stellar/java-stellar-sdk)
+- [Go](https://github.com/stellar/go-stellar-base)
+
+Community maintained libraries (in various states of completeness) for interacting with Horizon in other languages:<br>
+- [Ruby](https://github.com/stellar/ruby-stellar-sdk)
+- [Python](https://github.com/StellarCN/py-stellar-base)
+- [C#](https://github.com/QuantozTechnology/csharp-stellar-base)
