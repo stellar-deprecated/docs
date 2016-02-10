@@ -4,7 +4,7 @@ title: Get Started
 
 The best way to start your journey with Stellar is to create a [test network](./test-net.html) account and send your first transaction.
 
-In this tutorial we will be using our [JavaScript SDK](../../js-stellar-sdk/learn/index.html) but you can use other [SDKs](../horizon/learn/#libraries) as well.
+In this tutorial we will be using our [JavaScript SDK](../../js-stellar-sdk/learn/index.html) but you can use other [SDKs](../../horizon/learn/#libraries) as well.
 
 ## Installing `stellar-sdk`
 
