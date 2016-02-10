@@ -41,16 +41,16 @@ For other webservers, see: http://enable-cors.org/server.html
 
 ## Testing CORS
 
-1. Run a curl command in your terminal similar to the following (replace stellar.stellar.org with the hosting location of your stellar.toml file):
+1. Run a curl command in your terminal similar to the following (replace www.stellar.org with the hosting location of your stellar.toml file):
 
   ```bash
-  curl --head https://stellar.stellar.org/stellar.toml
+  curl --head https://www.stellar.org/.well-known/stellar.toml
   ```
 
 2. Verify the `Access-Control-Allow-Origin` header is present as shown below.
 
   ```bash
-  curl --head https://stellar.stellar.org/stellar.toml
+  curl --head https://www.stellar.org/.well-known/stellar.toml
   HTTP/1.1 200 OK
   Accept-Ranges: bytes
   Access-Control-Allow-Origin: *
