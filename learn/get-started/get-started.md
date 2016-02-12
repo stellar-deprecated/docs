@@ -47,7 +47,7 @@ You will use your key pair to receive funds (account ID) and to sign your transa
 
 To be able to submit transactions to Stellar network you must have an [account](../concepts/accounts.html). Each account on Stellar network must have a [minimum balance](../concepts/fees.html#minimum-balance) of 20 XLM ([lumens](../concepts/assets.html#lumens-xlm-)).
 
-In test network you can use Friendbot to send you a small amount of lumens for testing purposes (remember to change `addr` param to your account ID`:
+In test network you can use Friendbot to send you a small amount of lumens for testing purposes (remember to change `addr` param to your account ID):
 ```
 $ curl "https://horizon-testnet.stellar.org/friendbot?addr=GDGOKHIRX63EIAXKVI77BQV7LMDUH7DR4BMDDU77DJUXLPUU5HAXGN64"
 {
