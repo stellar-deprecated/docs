@@ -27,13 +27,6 @@ Implement a simple [Federation server](https://www.stellar.org/developers/learn/
 
 You can also contribute to the [federation server](https://github.com/stellar/federation/) maintained by Stellar Development Foundation.
 
-# Archivist
-A tool to keep your history archive in good shape. You give it:
-- Your history archive
-- List of source archives
-
-Starting from the beginning of time, this tool compares your archived files with those on your source list. If you're missing files, they get pulled in and published to yours. It will log or otherwise notify you of any file discrepancy between the various archives. 
-
 # Resource Paywall
 Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used as spam prevention or to support your business. This is a job for the **toll collector**...
 
