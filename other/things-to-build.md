@@ -27,6 +27,21 @@ Implement a simple [Federation server](https://www.stellar.org/developers/learn/
 
 You can also contribute to the [federation server](https://github.com/stellar/federation/) maintained by Stellar Development Foundation.
 
+# Lumens to any email address
+Allow anyone to send lumens from their Stellar client to any email address. They would simply enter in something like `<emailaddress>*domain.com` and then they are able to send it lumens. If the reciepient doesn't have a stellar account already one will be created for them and they will get an email alerting them that they have lumens.
+
+This would be a service hosted at `domain.com` that does the following:
+- Runs a federation server.
+- Will federate payment addresses with an email prefix like `jed@stellar.org*domain.com`. 
+- If there is a federation request for an address you don't know that starts with a valid email address:
+  - Generate a key pair
+  - return the generated public key as the accountID
+  - watch the network to see if that account is created.
+  - if the account is created then you send an email to the given email address with the private half of the keypair with links to a Stellar client.
+
+*Advanced* allow people to manage the stellar account you just created for them by sending emails to control@domain.com. This makes someone's inbox a Stellar client. For example: `send 100 XLM to bob@gmail.com`
+
+
 # Resource Paywall
 Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used as spam prevention or to support your business. This is a job for the **toll collector**...
 
