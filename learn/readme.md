@@ -24,10 +24,4 @@ Horizon provides a RESTful API to allow client applications to interact with the
 ## [SDKs](../horizon/learn/#libraries)
 The SDKs facilitate communication between Horizon and a client application that is interacting with the Stellar network. They are responsible for crafting and signing transactions, submitting requests to Horizon, processing the responses, etc.
 
-## [Interstellar](../interstellar/learn/)
-The Interstellar Module System is a collection of modules that aims to make it easy to build a web application on the Stellar network. Interstellar is built using the [JavaScript Stellar SDK](https://github.com/stellar/js-stellar-sdk).
-
-Think of Interstellar as a bootstrap for building Stellar clients. Read more about the [design philosophy of Interstellar](https://www.stellar.org/blog/developer-preview-interstellar-module-system/).
-
-
-`stellar-core` <-> `horizon`  <-> `js-stellar-sdk` <-> `interstellar`
+`stellar-core` <-> `horizon`  <-> `js-stellar-sdk`
