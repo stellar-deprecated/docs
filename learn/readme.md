@@ -24,4 +24,4 @@ Horizon provides a RESTful API to allow client applications to interact with the
 ## [SDKs](../horizon/learn/#libraries)
 The SDKs facilitate communication between Horizon and a client application that is interacting with the Stellar network. They are responsible for crafting and signing transactions, submitting requests to Horizon, processing the responses, etc.
 
-`stellar-core` <-> `horizon`  <-> `js-stellar-sdk`
+`stellar-core` <-> `horizon`  <-> `stellar-sdk` <-> `your client application`
