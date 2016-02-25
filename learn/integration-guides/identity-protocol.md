@@ -70,6 +70,8 @@ In this example, Aldi `aldi*bankA.com` wants to send to Bogart `bogart*bankB.com
 
 **1) BankA gets the info needed to interact with BankB**
 
+This is done by looking up BankB's `stellar.toml` file.
+
 BankA  -> fetches `bankB.com/.well-known/stellar.toml`
 
 from this .toml file it pulls out the following info for BankB:
@@ -79,12 +81,14 @@ from this .toml file it pulls out the following info for BankB:
  - Needed KYC fields? 
 
 
-**2) BankA gets the routing info for Joe so it can build the transaction**
+**2) BankA gets the routing info for Bogart so it can build the transaction**
+
+This is done by asking BankB's federation server to resolve `bogart*bankB.com`.
 
 BankA -> `https://FEDERATION_SERVER?type=name&q=bogart*bankB.com[&simple_kyc=true]`
 
 See [Federation](https://www.stellar.org/developers/learn/concepts/federation.html) for a complete description. The returned fields of interest here are:
- - Stellar AccountID
+ - Stellar AccountID of Bogart's FI
  - Bogart's routing info
  - Need Auth flag that says whether BankB needs to authorize the transaction or not.
  - kyc_yes *only returned if simple_kyc is true*
