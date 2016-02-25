@@ -8,27 +8,32 @@ your currency. If you think of the ledger as a database, then transactions are S
 
 
 Each transaction has the following attributes:
-- **Source account**: This is the account that originates the transaction. The transaction must be signed by this account,
-and the transaction fee must be paid by this account. The sequence number of this transaction is based off this account.
-
-- **Fee**: Each transaction sets a [fee](./fees.md) that is paid by the source account. If this fee is below the network
-minimum the transaction will fail. The more operations in the transaction, the greater the required fee.
-
-- **Sequence number**: Each transaction has a sequence number. Transactions follow a strict ordering rule when it comes to processing of transactions per account. For the transaction to be valid, the sequence number must match the one stored in the source [account entry](./accounts.md) when the transaction is applied. After the transaction is applied, the source account's stored sequence number is incremented by 1.
+> #### Source account
+> This is the account that originates the transaction. The transaction must be signed by this account, and the transaction fee must be paid by this account. The sequence number of this transaction is based off this account.
+>
+> #### Fee
+> Each transaction sets a [fee](./fees.md) that is paid by the source account. If this fee is below the network minimum the transaction will fail. The more operations in the transaction, the greater the required fee.
+>
+> #### Sequence number
+> Each transaction has a sequence number. Transactions follow a strict ordering rule when it comes to processing of transactions per account. For the transaction to be valid, the sequence number must match the one stored in the source [account entry](./accounts.md) when the transaction is applied. After the transaction is applied, the source account's stored sequence number is incremented by 1.
 
 Note that if several transactions with the same source account make it into the same transaction set, they are ordered and applied according to sequence number. For example, if 3 transactions are submitted and the account is at sequence number 5, the transactions must have sequence numbers 6, 7, and 8.
 
-- **List of operations**: Transactions contain an arbitrary list of [operations](./operations.md) inside them. Typically there is just one operation, but it's possible to have multiple.  Operations are executed in order as one ACID transaction, meaning that either all operations are applied or none are.  If any operation fails, the whole transaction fails. If operations are on accounts other than the source account, then they require signatures of the accounts in question.
-
-- **List of signatures**: Up to 20 signatures can be attached to a transaction. See [Multi-sig](./multi-sig.md) for more information. A transaction is considered invalid if it includes signatures that aren't needed to authorize the transaction—superfluous signatures aren't allowed.
-
-- **Memo**: *optional* The memo contains optional extra information. It is the responsibility of the client to interpret this value. Memos can be one of the following types:
-  - `MEMO_TEXT` : A string up to 28-bytes long.
-  - `MEMO_ID` :  A 64 bit unsigned integer.
-  - `MEMO_HASH` : A 32 byte hash.
-  - `MEMO_RETURN` : A 32 byte hash intended to be interpreted as the hash of the transaction the sender is refunding.
-
-- **Time bounds**: *optional* The UNIX timestamp, determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set.
+> #### List of operations
+> Transactions contain an arbitrary list of [operations](./operations.md) inside them. Typically there is just one operation, but it's possible to have multiple.  Operations are executed in order as one ACID transaction, meaning that either all operations are applied or none are.  If any operation fails, the whole transaction fails. If operations are on accounts other than the source account, then they require signatures of the accounts in question.
+>
+> #### List of signatures
+> Up to 20 signatures can be attached to a transaction. See [Multi-sig](./multi-sig.md) for more information. A transaction is considered invalid if it includes signatures that aren't needed to authorize the transaction—superfluous signatures aren't allowed.
+>
+> #### Memo
+> *optional* The memo contains optional extra information. It is the responsibility of the client to interpret this value. Memos can be one of the following types:
+>   - `MEMO_TEXT` : A string up to 28-bytes long.
+>   - `MEMO_ID` :  A 64 bit unsigned integer.
+>   - `MEMO_HASH` : A 32 byte hash.
+>   - `MEMO_RETURN` : A 32 byte hash intended to be interpreted as the hash of the transaction the sender is refunding.
+>
+> #### Time bounds
+> *optional* The UNIX timestamp, determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set.
 
 ## Transaction sets
 
