@@ -36,11 +36,11 @@ The reason for this is that nodes must be able to replay transactions from histo
 
 Data structures that are likely to evolve over time contain the following extension point:
 ```C++
-    union switch(int v)
-    {
-    case 0:
-        void;
-    } ext;
+union switch(int v)
+{
+case 0:
+    void;
+} ext;
 ```
 
 In this case, the version 'v' refers to the version of the object and permits the addition of new arms.
