@@ -17,8 +17,8 @@ The two main integration points to Stellar for an exchange are:<br>
 ## Setup
 
 ### Operational
-* *(optional)* Set up [Stellar Core](https://github.com/stellar/stellar-core/blob/master/docs/admin.md)
-* *(optional)* Set up [Horizon](https://github.com/stellar/horizon/blob/master/docs/admin.md)
+* *(optional)* Set up [Stellar Core](../../stellar-core/learn/admin.html)
+* *(optional)* Set up [Horizon](../../horizon/learn/)
 
 If your exchange doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```
