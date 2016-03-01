@@ -1,13 +1,13 @@
 ---
-title: Identity Protocol
+title: Compliance Protocol
 ---
 
-# Identity Protocol
+# Compliance Protocol
 
 Complying with AML laws requires financial institutions (FIs) to know not only who their customers are sending money to but who their customers are receiving money from. In some jurisdictions banks are able to trust the KYC procedures of other licensed banks. In other jurisdictions each bank must do its own sanction checking of both the sender and the receiver. 
-The Identity Protocol handles all these scenarios.
+The Compliance Protocol handles all these scenarios.
 
-The Identity Protocol is an additional step after [federation](https://www.stellar.org/developers/learn/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](https://www.stellar.org/developers/learn/concepts/stellar-toml.html) of the FI.
+The Compliance Protocol is an additional step after [federation](https://www.stellar.org/developers/learn/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](https://www.stellar.org/developers/learn/concepts/stellar-toml.html) of the FI.
 
 ## AUTH_SERVER
 
