@@ -1,8 +1,8 @@
 ---
-title: Gateway Guide
+title: Gateway/Anchor Guide
 ---
 
-# Becoming a Stellar Gateway
+# Becoming a Stellar Gateway or Anchor
 This guide will walk you through the integration steps to become a Stellar gateway. If you're not yet familiar with the concept of a [gateway](https://www.stellar.org/learn/explainers/#Gateways_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect a gateway. This guide uses the following design:
