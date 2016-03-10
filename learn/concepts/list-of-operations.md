@@ -16,6 +16,7 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 - [Allow Trust](#allow-trust)
 - [Account Merge](#account-merge)
 - [Inflation](#inflation)
+- [Manage Data](#manage-data)
 
 
 ## Create Account
@@ -300,5 +301,26 @@ Possible errors:
 |INFLATION_NOT_TIME| -1| Inflation only runs once a week. This failure means it is not time for a new inflation round yet.|
 
 
+## Manage Data
+Allows you to set,modify or delete a Data Entry (name/value pair) that is attached to a particular account. An account can have an arbitrary amount of DataEntries attached to it. Each DataEntry increases the minimum balance needed to be held by the account.  
 
+DataEntries can be used for application specific things. They are not used by the core Stellar protocol. 
+
+Threshold: medium
+
+Result: `ManageDataResult`
+
+|Parameters| Type| Description|
+| --- | --- | --- |
+|Name| string | String up to 64 bytes long. If this is a new Name it will add the given name/value pair to the account. If this Name is already present then the associated value will be modified.  |
+|Value| binary data | (optional) If not present then the exiting Name will be deleted. If present then this value will be set in the DataEntry  |
+
+Possible errors:
+
+| Error | Code | Description |
+| ----- | ---- | ------|
+|MANAGE_DATA_NOT_SUPPORTED_YET| -1| The network hasn't moved to this protocol change yet. This failure means the network doesn't support this feature yet.|
+|MANAGE_DATA_NAME_NOT_FOUND| -2| Trying to remove a Data Entry that isn't there. This will happen if Name is set but Value isn't but the Account doesn't have a DataEntry with that Name.|
+|MANAGE_DATA_LOW_RESERVE| -3| Not enough lumens in the account to create a new Data Entry. Each additional Data Entry increases the minimum balance of the Account.|
+|MANAGE_DATA_INVALID_NAME| -4| Name not a valid string.|
 
