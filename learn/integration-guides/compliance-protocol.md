@@ -16,10 +16,10 @@ The Compliance Protocol is an additional step after [federation](https://www.ste
 
 ## AUTH_SERVER
 
-The auth endpoint handles two different request types, `Auth request` and `Check request`.
+The AUTH_SERVER provides one endpoint that is called by a sending FI to get approval to send a payment to one of the receiving FI's customers. It is also used by the sender to follow up if the initial request wasn't able to complete in real time, i.e. either `info_status` or `tx_status` returned pending. The sender will simply call the AUTH_SERVER endpoint after the suggested time has past.
 
-### Auth request
 HTTP POST to `https://AUTH_SERVER?data=<json>&sig=<sender sig of data>`
+
 
 **data** is a block of JSON that contains the following fields:
 
@@ -34,14 +34,14 @@ memo | The full text of the memo the hash of this memo is included in the transa
 
 
 #### Reply
-The auth request will return a JSON object with the following fields:
+Will return a JSON object with the following fields:
 
 Name | Description
 ----|-----
 info_status | If this FI is willing to share AML information or not. {ok, denied, pending}
 tx_status | If this FI is willing to accept this transaction. {ok, denied, pending}
 dest_info | *(only present if info_status is ok)* JSON of the recipient's AML information. in the Stellar memo convention
-pending | *(only present if info_status or tx_status is pending)* Estimated number of seconds till the sender can check back for a change in status. See [check request](#Check request) below.
+pending | *(only present if info_status or tx_status is pending)* Estimated number of seconds till the sender can check back for a change in status. The sender should just resubmit this request after the given number of seconds.
 
 *Reply Example*
 ```
@@ -56,15 +56,6 @@ pending | *(only present if info_status or tx_status is pending)* Estimated numb
 }
 ```
 
-### Check request
-Check request is used by the sender to follow up if the initial [Auth request](#Auth request) wasn't able to complete in real time, i.e. either `info_status` or `tx_status` returned pending.
-
-HTTP GET to `https://AUTH_SERVER?checkreq=<tx_id>`
-
-**checkreq** tells the AUTH_SERVER that the caller wants an update on the status of the given `tx_id`. The tx_id is simply the hash of transaction that was auth requested initially. 
-
-#### Reply
-Check request has the same reply format as [auth request](#Auth request). It should update the status or tell the caller to continue to wait.
 
 ----
 
@@ -146,9 +137,9 @@ See [Auth Request](#Auth Request) for potential return values.
 
 **5) BankA handles the reply from the Auth request**
 
-If the call to the auth request returned `pending`, BankA must check again after the estimated number of seconds.
+If the call to the AUTH_SERVER returned `pending`, BankA must resubmit the request again after the estimated number of seconds.
 
-BankA -> `https://AUTH_SERVER?checkreq=tx_id`
+BankA -> `https://AUTH_SERVER?data=<json>&sig=<bankA sig of data>`
 
 
 **6) BankA does the sanction checks**
