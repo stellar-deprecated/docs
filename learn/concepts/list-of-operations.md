@@ -112,6 +112,12 @@ Possible errors:
 ## Manage Offer
 Creates, updates, or deletes an offer.
 
+If you want to create a new offer set Offer ID to `0`.
+
+If you want to update an existing offer set Offer ID to existing offer ID.
+
+If you want to delete an existing offer set Offer ID to existing offer ID and set Amount to `0`.
+
 Threshold: Medium
 
 Result: `ManageOfferResult`
@@ -120,9 +126,9 @@ Result: `ManageOfferResult`
 | --- | --- | --- |
 | Selling| asset| Asset the offer creator is selling. |
 | Buying| asset| Asset the offer creator is buying. |
-| Amount| integer| Amount of `selling` being sold. |
+| Amount| integer| Amount of `selling` being sold. Set to `0` if you want to delete an existing offer. |
 | Price| {numerator, denominator} | Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}.|
-| Offer ID| unsigned integer| The ID of the offer.|
+| Offer ID| unsigned integer| The ID of the offer. `0` for new offer. Set to existing offer ID to update or delete. |
 
 Possible errors:
 
