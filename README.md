@@ -1,6 +1,8 @@
 Stellar Docs
 ============
 
+[![Join the chat at https://gitter.im/stellar/docs](https://badges.gitter.im/stellar/docs.svg)](https://gitter.im/stellar/docs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This repository is home to the Stellar documentation. These docs feed into the [Stellar developers site builder](https://github.com/stellar/developers) and is on display at [stellar.org/developers](https://www.stellar.org/developers/).
 
 ## How to write docs
