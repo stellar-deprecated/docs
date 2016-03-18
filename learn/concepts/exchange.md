@@ -29,7 +29,7 @@ Some assets will have a very thin or nonexistent orderbook between them. That's 
 
 
 ## Passive offers
-**Passive offers** allow markets to have zero spread. If you want to offer USD from gateway A for USD from gateway B at a 1:1 price, you can create two passive offers so the two offers don't fill each other.
+**Passive offers** allow markets to have zero spread. If you want to offer USD from anchor A for USD from anchor B at a 1:1 price, you can create two passive offers so the two offers don't fill each other.
 
 A passive offer is an offer that does not take a counteroffer of equal price. It will only fill if the prices are not equal.
 For example, if the best offer to buy BTC for XLM has a price of 100XLM/BTC, and you make a passive offer to sell BTC at 100XLM/BTC, your passive offer *does not* take that existing offer.
