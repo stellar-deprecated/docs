@@ -279,7 +279,7 @@ The federation protocol allows you to give your users easy addresses—e.g., bob
 
 For more information, check out the [federation guide](../concepts/federation.md).
 
-### Gateway
-If you're an exchange, it's easy to become a Stellar gateway as well. The integration points are very similar, with the same level of difficulty. Becoming a gateway could potentially expand your business.
+### Anchor
+If you're an exchange, it's easy to become a Stellar anchor as well. The integration points are very similar, with the same level of difficulty. Becoming a anchor could potentially expand your business.
 
-To learn more about what it means to be a gateway, see the [gateway guide](./gateway.md).
+To learn more about what it means to be an anchor, see the [anchor guide](./gateway.md).
