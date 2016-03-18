@@ -53,13 +53,13 @@ This scheme is very flexible. You can require many signers to authorize payments
 
 
 ## Operations
-### Example 1: Gateways 
-> You run a gateway that would like to keep its issuing key offline. That way, it's less likely a bad actor can get ahold of the gateway's key and start issuing credit improperly. However, your gateway needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
+### Example 1: Anchors 
+> You run an anchor that would like to keep its issuing key offline. That way, it's less likely a bad actor can get ahold of the anchor's key and start issuing credit improperly. However, your anchor needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
 
-Multisig allows you to do all of this without exposing the master key of your gateway. You can add another signing key
-to your account with the operation `Set Options`.  This additional key should have a weight below your gateway account's
-medium threshold. Since `Allow Trust` is a low-threshold operation, this extra key authorizes users to hold your gateway's
-credit. But, since `Payment` is a medium-threshold operation, this key does not allow anyone who compromises your gateway to issue credit.
+Multisig allows you to do all of this without exposing the master key of your anchor. You can add another signing key
+to your account with the operation `Set Options`.  This additional key should have a weight below your anchor account's
+medium threshold. Since `Allow Trust` is a low-threshold operation, this extra key authorizes users to hold your anchor's
+credit. But, since `Payment` is a medium-threshold operation, this key does not allow anyone who compromises your anchor to issue credit.
 
 Your account setup:
 ```
