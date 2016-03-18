@@ -28,16 +28,16 @@ network that doesn't require an issuer or a trustline.
 Any account can hold lumens. You can trade lumens for other assets in the network.
 
 
-## Gateways: issuing assets
-Any account can issue assets on the Stellar network. Entities that issue assets are called **gateways.** Gateways can be
-run by individuals, small businesses, local communities, nonprofits, organizations, etc. Any type of financial institution--a bank, a payment processor--can be a gateway.
+## Anchors: issuing assets
+Any account can issue assets on the Stellar network. Entities that issue assets are called **anchors.** Anchors can be
+run by individuals, small businesses, local communities, nonprofits, organizations, etc. Any type of financial institution--a bank, a payment processor--can be an anchor.
 
-Each gateway has an **issuing account** from which it issues the asset.
+Each anchor has an **issuing account** from which it issues the asset.
 
-As a gateway, when you issue an asset, you give it an **asset code**. Assets are uniquely identified by the asset code and the issuer.
+As an anchor, when you issue an asset, you give it an **asset code**. Assets are uniquely identified by the asset code and the issuer.
 Ultimately, it's up to the issuer to set the asset code. By convention, however, currencies should be represented by the
 appropriate [ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217). For stocks and bonds, use the appropriate [ISIN number](https://en.wikipedia.org/wiki/International_Securities_Identification_Number).
-For your orange, goat, favor, or beer gateways, you're on your own--invent an appropriate code!
+For your orange, goat, favor, or beer anchors, you're on your own--invent an appropriate code!
 
 Currently there are two supported formats for asset codes.
 
@@ -49,12 +49,12 @@ Any characters from the set [a-z][A-Z][0-9] are allowed. The code can be any num
 
 
 ### Controlling asset holders
-As a gateway, you can mark the issuing account `AUTHORIZATION REQUIRED`. With this setting, the gateway must approve anyone
+As an anchor, you can mark the issuing account `AUTHORIZATION REQUIRED`. With this setting, the anchor must approve anyone
 who wants to hold its credit, allowing it to control who its customers are.
 
 ### Revoking access
-As a gateway, you can mark the issuing account `AUTHORIZATION REVOCABLE`. With this setting, the gateway can freeze credit
-held by another account. When credit is frozen for a particular account, that account can only send the credit back to the gateway--it can't transfer the credit to any other account.
+As an anchor, you can mark the issuing account `AUTHORIZATION REVOCABLE`. With this setting, the anchor can freeze credit
+held by another account. When credit is frozen for a particular account, that account can only send the credit back to the anchor--it can't transfer the credit to any other account.
 This setting allows the issuing account to revoke credit that it accidentally issued or that was obtained improperly.
 
 ## Amount precision and representation
