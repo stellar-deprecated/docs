@@ -235,7 +235,7 @@ Result: `ChangeTrustResult`
 
 |Parameters| Type| Description|
 | --- | --- | --- |
-|Line| asset| The asset of the trustline.  For example, if a gateway extends a trustline of up to 200 USD to a user, the `line` is USD.|
+|Line| asset| The asset of the trustline.  For example, if an anchor extends a trustline of up to 200 USD to a user, the `line` is USD.|
 |Limit| integer| The limit of the trustline.  In the previous example, the `limit` would be 200.|
 
 Possible errors:
@@ -261,7 +261,7 @@ Result: `AllowTrustResult`
 |Parameters| Type| Description|
 | --- | --- | --- |
 |Trustor| account ID| The account of the recipient of the trustline.|
-|Type| asset | The asset of the trustline the source account is authorizing. For example, if a gateway wants to allow another account to hold its USD credit, the `type` is USD.|
+|Type| asset | The asset of the trustline the source account is authorizing. For example, if an anchor wants to allow another account to hold its USD credit, the `type` is USD.|
 |Authorize| boolean| Flag indicating whether the trustline is authorized.|
 
 Possible errors:
