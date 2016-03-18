@@ -3,14 +3,14 @@ title: Gateway/Anchor Guide
 ---
 
 # Becoming a Stellar Gateway or Anchor
-This guide will walk you through the integration steps to become a Stellar gateway. If you're not yet familiar with the concept of a [gateway](https://www.stellar.org/learn/explainers/#Gateways_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
+This guide will walk you through the integration steps to become a Stellar anchor. If you're not yet familiar with the concept of an [anchor](https://www.stellar.org/learn/explainers/#Anchors_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
-There are many ways to architect a gateway. This guide uses the following design:
+There are many ways to architect an anchor. This guide uses the following design:
  - `issuing account`: One Stellar account that is kept offline for increased safety.
- - `hot wallet`: One Stellar account that holds a balance of gateway credit. The gateway uses it to handle redemptions from and to send credit to users.
- - `customerID`: Each user has a customerID, used to correlate incoming payments with a particular user's account on the gateway.
+ - `hot wallet`: One Stellar account that holds a balance of anchor credit. The anchor uses it to handle redemptions from and to send credit to users.
+ - `customerID`: Each user has a customerID, used to correlate incoming payments with a particular user's account on the anchor.
 
-The two main integration points to Stellar for a gateway are:<br>
+The two main integration points to Stellar for an anchor are:<br>
 1) Listening for redemption payments from the Stellar network<br>
 2) Submitting payments into the Stellar network when you need to issue credit to users
 
@@ -20,7 +20,7 @@ The two main integration points to Stellar for a gateway are:<br>
 * *(optional)* Set up [Stellar Core](../../stellar-core/learn/admin.html)
 * *(optional)* Set up [Horizon](../../horizon/learn/)
 
-If your gateway doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
+If your anchor doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```json
 {
   "testnet": "https://horizon-testnet.stellar.org",
@@ -29,12 +29,12 @@ If your gateway doesn't see a lot of volume, you don't need to set up your own i
 ```
 
 ### Issuing account
-The issuing account can issue credit from the gateway. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g. QRcode, USB or by hand). This design makes the issuing account key much harder to compromise.
+The issuing account can issue credit from the anchor. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g. QRcode, USB or by hand). This design makes the issuing account key much harder to compromise.
 
 To learn how to create the issuing account, see [account management](./building-blocks/account-management.md).
 
 ### Hot wallet
-People will frequently be redeeming and purchasing credit from your gateway, and you don't want these processes to involve the issuing account directly. Instead, create a `hot wallet` account that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A hot wallet contains a limited amount of funds to restrict loss in the event of a security breach.
+People will frequently be redeeming and purchasing credit from your anchor, and you don't want these processes to involve the issuing account directly. Instead, create a `hot wallet` account that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A hot wallet contains a limited amount of funds to restrict loss in the event of a security breach.
 
 To learn how to create a hot wallet account, see [account management](./building-blocks/account-management.md).
 
@@ -50,9 +50,9 @@ CREATE TABLE StellarCursor (id INT, cursor varchar(50)); // id - AUTO_INCREMENT 
 ```
 
 ### Code
-This is the code to run in order to run a gateway. The following sections describe each step.
+This is the code to run in order to run an anchor. The following sections describe each step.
 
-For this guide, we use placeholder functions for steps that involve querying or writing to the gateway database. Each database library connects differently, so we abstract away those details.
+For this guide, we use placeholder functions for steps that involve querying or writing to the anchor database. Each database library connects differently, so we abstract away those details.
 
 ```js
 // Config your server
@@ -97,7 +97,7 @@ server.loadAccount(config.hotWallet)
 ```
 
 ## Listening for redemptions
-When a user wants to redeem your gateway's credit, instruct them to send the credit to your hot wallet address with the customerID included in the memo field of the transaction.
+When a user wants to redeem your anchor's credit, instruct them to send the credit to your hot wallet address with the customerID included in the memo field of the transaction.
 
 You must listen for payments to the hot wallet account and record any user that sends credit there. Here's code that listens for these payments:
 
@@ -131,7 +131,7 @@ function handlePaymentResponse(record) {
     return;
   }
 
-  // As a gateway, you shouldn't be getting native lumens
+  // As an anchor, you shouldn't be getting native lumens
   if (record.asset_type != 'native') {
     return;
   }
@@ -139,7 +139,7 @@ function handlePaymentResponse(record) {
   var paymentAsset = new StellarSdk.Asset(record.asset_code, record.issuer);
 
   if (!assets.contains(paymentAsset)) {
-     // If you are a gateway for certain assets and the customer sends
+     // If you are an anchor for certain assets and the customer sends
      // you assets you don't accept, some options for handling it are
      // 1. Trade the asset to your asset and credit that amount
      // 2. Send it back to the customer
@@ -176,7 +176,7 @@ function handlePaymentResponse(record) {
 
 
 ## Issuing credit
-When a user requests credit from your gateway, you must generate a Stellar transaction in order to send it to them.
+When a user requests credit from your anchor, you must generate a Stellar transaction in order to send it to them.
 
 
 Whenever a withdrawal is requested, the function `handleRequestWithdrawal` will queue up a transaction in your `StellarPayments` table.
@@ -186,7 +186,7 @@ Whenever a withdrawal is requested, the function `handleRequestWithdrawal` will 
 function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, destinationAddress) {
   // This should be done in an atomic transaction
   db.transaction(function() {
-    // Read the user's balance from the gateway's database
+    // Read the user's balance from the anchor's database
     var userBalance = getBalance('userID', assetCode, assetIssuer);
 
     // Check that user has the required amount
@@ -273,7 +273,7 @@ function submitPendingTransactions(sourceAccount) {
 
 ## Going further...
 ### Federation
-The federation protocol allows you to give your users easy addresses—e.g., `bob*yourgateway.com` — rather than cumbersome raw addresses such as: `GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ`.
+The federation protocol allows you to give your users easy addresses—e.g., `bob*youranchor.com` — rather than cumbersome raw addresses such as: `GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ`.
 
 For more information, check out the [federation guide](../concepts/federation.md).
 
