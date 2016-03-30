@@ -6,6 +6,3 @@ Interactive way to learn the Stellar API. The source is available [here](https:/
 
 # [Account Viewer](https://www.stellar.org/account-viewer/)
 Check your balance and send simple payments. This basic client is built on top of [Interstellar](https://github.com/stellar/interstellar) and connects to the live Stellar network. The source is available [here](https://github.com/stellar/account-viewer).
-
-# [XDR Viewer](https://stellar.github.io/xdr-viewer/)
-Examine XDR messages. You can use this tool to decode the XDR that gets returned from Horizon or stellar-core.
