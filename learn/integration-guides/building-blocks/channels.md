@@ -7,25 +7,25 @@ If you are submitting [transactions](../../concepts/transactions.md) to the netw
 
 The way to avoid this is with the concept of **channels**.
 
-A channel is simply another account that is used not to send the funds but as the "source" account of the transaction. You can then use one common account (your hot wallet) as the source of the payment [operation](../../concepts/operations.md) inside the transaction. Then the channel account will consume the sequence number even though the funds are being sent from your hot wallet. 
+A channel is simply another account that is used not to send the funds but as the "source" account of the transaction. You can then use one common account (your base account) as the source of the payment [operation](../../concepts/operations.md) inside the transaction. Then the channel account will consume the sequence number even though the funds are being sent from your base account. 
 
 Channels take advantage of the fact that the "source" account of a transaction can be different than the source account of the operations inside the transaction. With this set up you can make as many channels as you need to maintain your desired transaction rate.
 
-You of course will have to sign the transaction with both the hot wallet key and the channel key. 
+You of course will have to sign the transaction with both the base account key and the channel key. 
 
 For example:
 ```
-// create payment from hotwallet to customerAddress
+// create payment from baseAccount to customerAddress
 var transaction =
   new StellarSdk.TransactionBuilder(channelAccounts[channelIndex])
     .addOperation(StellarSdk.Operation.payment({
-      source: hotWallet.address(),
+      source: baseAccount.address(),
       destination: customerAddress,
       asset: StellarSdk.Asset.native(),
       amount: amountToSend
     }))
     .build();
 
-  transaction.sign(hotWalletKey);
+  transaction.sign(baseAccountKey);
   transaction.sign(channelKeys[channelIndex]);
 ``` 
