@@ -57,8 +57,8 @@ For this guide, we use placeholder functions for steps that involve querying or 
 ```js
 // Config your server
 var config = {};
-config.hotWallet="your base account address";
-config.hotWalletSeed="your seed";
+config.baseAccount="your base account address";
+config.baseAccountSeed="your seed";
 
 // You can use Stellar.org's instance of Horizon or your own
 config.horizon='https://horizon-testnet.stellar.org';
@@ -78,8 +78,8 @@ var assets = [new StellarSDK.Asset(code, issuer), ...]
 var lastToken = latestFromDB("StellarCursor");
 
 // Listen for payments from where you last stopped
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={lastToken}
-let callBuilder = server.payments().forAccount(config.hotWallet);
+// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}/payments?cursor={lastToken}
+let callBuilder = server.payments().forAccount(config.baseAccount);
 
 // If no cursor has been saved yet, don't add cursor parameter
 if (lastToken) {
@@ -89,8 +89,8 @@ if (lastToken) {
 callBuilder.stream({onmessage: handlePaymentResponse});
 
 // Load the account sequence number from Horizon and return the account
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}
-server.loadAccount(config.hotWallet)
+// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}
+server.loadAccount(config.baseAccount)
   .then(function (account) {
      submitPendingTransactions(account);
   })
@@ -105,8 +105,8 @@ You must listen for payments to the base account and record any user that sends 
 // start listening for payments from where you last stopped
 var lastToken = latestFromDB("StellarCursor");
 
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
-let callBuilder = server.payments().forAccount(config.hotWallet);
+// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
+let callBuilder = server.payments().forAccount(config.baseAccount);
 
 // If no cursor has been saved yet, don't add cursor parameter
 if (lastToken) {
@@ -127,7 +127,7 @@ So, you pass this function as the `onmessage` callback when you stream payments:
 function handlePaymentResponse(record) {
   // This callback will be called for sent payments too.
   // We want to process incoming payments only.
-  if (record.to != config.hotWallet) {
+  if (record.to != config.baseAccount) {
     return;
   }
 
@@ -223,7 +223,7 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
           amount: amount
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
+        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
         .build();
 
       // POST https://horizon-testnet.stellar.org/transactions
@@ -237,7 +237,7 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
         })
         .catch(function(err) {
           // Catch errors, most likely with the network or your transaction.
-          // You may need to fetch the current sequence number of hotWallet account.
+          // You may need to fetch the current sequence number of baseAccount account.
         });
     })
     .catch(StellarSdk.NotFoundError, function(err) {
