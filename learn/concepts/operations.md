@@ -85,16 +85,16 @@ Other, more complex ways of submitting this transaction are possible, but signin
 
 ### 2. Workers
 
-   An anchor wants to divide the processing of their online ("hot") wallet between machines. That way, each machine will submit transactions from its local account and keep track of its own sequence number. For more on transaction sequence numbers, please refer to [the transactions doc](./transactions.md).
+   An anchor wants to divide the processing of their online ("base") account between machines. That way, each machine will submit transactions from its local account and keep track of its own sequence number. For more on transaction sequence numbers, please refer to [the transactions doc](./transactions.md).
 
    * Each machine gets a private/key pair associated with it. Let's say there are only 3 machines: Machine_1, Machine_2, and Machine_3. (In practice, there can be as many machines as the anchor wants.)
-   * All three machines are added as Signers to the anchor's hot wallet account "hotWallet", with
-     a weight that gives them medium rights. The worker machines can then sign on behalf of the hot wallet account. (For more on signing, please refer to the [multisig documentation](multi-sig.md).)
+   * All three machines are added as Signers to the anchor's base account "baseAccount", with
+     a weight that gives them medium rights. The worker machines can then sign on behalf of the base account. (For more on signing, please refer to the [multisig documentation](multi-sig.md).)
    * When a machine (say Machine_2) wants to submit a transaction to the network, it constructs the transaction:
       * source=_public key for Machine_2_
       * sequence number=_sequence number of Machine_2's account_
       * Operation
-        * source=_hotWallet_
+        * source=_baseAccount_
         * Payment send an asset --> destination account
    * sign it with the private key of Machine_2.
 
