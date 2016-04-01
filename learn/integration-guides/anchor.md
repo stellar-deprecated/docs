@@ -1,13 +1,13 @@
 ---
-title: Gateway/Anchor Guide
+title: Anchor Guide
 ---
 
-# Becoming a Stellar Gateway or Anchor
+# Becoming a Stellar Anchor
 This guide will walk you through the integration steps to become a Stellar anchor. If you're not yet familiar with the concept of an [anchor](https://www.stellar.org/learn/explainers/#Anchors_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an anchor. This guide uses the following design:
  - `issuing account`: One Stellar account that is kept offline for increased safety.
- - `hot wallet`: One Stellar account that holds a balance of anchor credit. The anchor uses it to handle redemptions from and to send credit to users.
+ - `base account`: One Stellar account that holds a balance of anchor credit. The anchor uses it to handle redemptions from and to send credit to users.
  - `customerID`: Each user has a customerID, used to correlate incoming payments with a particular user's account on the anchor.
 
 The two main integration points to Stellar for an anchor are:<br>
@@ -33,10 +33,10 @@ The issuing account can issue credit from the anchor. It is very important to ma
 
 To learn how to create the issuing account, see [account management](./building-blocks/account-management.md).
 
-### Hot wallet
-People will frequently be redeeming and purchasing credit from your anchor, and you don't want these processes to involve the issuing account directly. Instead, create a `hot wallet` account that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A hot wallet contains a limited amount of funds to restrict loss in the event of a security breach.
+### Base account
+People will frequently be redeeming and purchasing credit from your anchor, and you don't want these processes to involve the issuing account directly. Instead, create a `base account` that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A base account contains a limited amount of funds to restrict loss in the event of a security breach.
 
-To learn how to create a hot wallet account, see [account management](./building-blocks/account-management.md).
+To learn how to create a base account, see [account management](./building-blocks/account-management.md).
 
 ### Database
 - Need to create a table for pending payments, `StellarPayments`.
@@ -57,7 +57,7 @@ For this guide, we use placeholder functions for steps that involve querying or 
 ```js
 // Config your server
 var config = {};
-config.hotWallet="your hot wallet address";
+config.hotWallet="your base account address";
 config.hotWalletSeed="your seed";
 
 // You can use Stellar.org's instance of Horizon or your own
@@ -97,9 +97,9 @@ server.loadAccount(config.hotWallet)
 ```
 
 ## Listening for redemptions
-When a user wants to redeem your anchor's credit, instruct them to send the credit to your hot wallet address with the customerID included in the memo field of the transaction.
+When a user wants to redeem your anchor's credit, instruct them to send the credit to your base account address with the customerID included in the memo field of the transaction.
 
-You must listen for payments to the hot wallet account and record any user that sends credit there. Here's code that listens for these payments:
+You must listen for payments to the base account and record any user that sends credit there. Here's code that listens for these payments:
 
 ```js
 // start listening for payments from where you last stopped
@@ -115,7 +115,7 @@ if (lastToken) {
 
 callBuilder.stream({onmessage: handlePaymentResponse});
 ```
-For every payment received by the hot wallet, you must:
+For every payment received by the base account, you must:
 
 - check the memo field to determine which user sent the deposit.
 - record the cursor in the StellarCursor table so you can resume payment processing where you left off,
