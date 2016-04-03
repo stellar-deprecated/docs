@@ -6,8 +6,8 @@ title: Exchange Guide
 This guide will walk you through the integration steps to add Stellar to your exchange. This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an exchange. This guide uses the following design:
- - `cold wallet`: One Stellar account that holds the majority of customer deposits offline.
- - `hot wallet`: One Stellar account that holds a small amount of customer deposits online and is used to payout to withdrawal requests.
+ - `issuing account`: One Stellar account that holds the majority of customer deposits offline.
+ - `base account`: One Stellar account that holds a small amount of customer deposits online and is used to payout to withdrawal requests.
  - `customerID`: Each user has a customerID, used to correlate incoming deposits with a particular user's account on the exchange.
 
 The two main integration points to Stellar for an exchange are:<br>
@@ -26,15 +26,15 @@ If your exchange doesn't see a lot of volume, you don't need to set up your own 
   live: {hostname:'horizon.stellar.org', secure:true, port:443};
 ```
 
-### Cold wallet
-A cold wallet is typically used to keep the bulk of customer funds secure. A cold wallet is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of `js-stellar-sdk` creates a `tx_blob` containing the signed transaction. This `tx_blob` can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the cold wallet secret key much harder to compromise.
+### Issuing account
+An issuing account is typically used to keep the bulk of customer funds secure. An issuing account is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of `js-stellar-sdk` creates a `tx_blob` containing the signed transaction. This `tx_blob` can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account secret key much harder to compromise.
 
-To learn how to create a cold wallet account, see [account management](./building-blocks/account-management.md).
+To learn how to create an issuing account, see [account management](./building-blocks/account-management.md).
 
-### Hot wallet
-A hot wallet contains a more limited amount of funds than a cold wallet. A hot wallet is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a hot wallet restricts loss in the event of a security breach.
+### Base account
+A base account contains a more limited amount of funds than an issuing account. A base account is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a base account restricts loss in the event of a security breach.
 
-To learn how to create a hot wallet account, see [account management](./building-blocks/account-management.md).
+To learn how to create a base account, see [account management](./building-blocks/account-management.md).
 
 ### Database
 - Need to create a table for pending withdrawals, `StellarTransactions`.
@@ -59,8 +59,8 @@ For this guide, we use placeholder functions for reading/writing to the exchange
 ```js
 // Config your server
 var config = {};
-config.hotWallet = "your hot wallet address";
-config.hotWalletSeed = "your hot wallet seed";
+config.baseAccount = "your base account address";
+config.baseAccountSeed = "your base account seed";
 
 // You can use Stellar.org's instance of Horizon or your own
 config.horizon = 'https://horizon-testnet.stellar.org';
@@ -79,8 +79,8 @@ var server = new StellarSdk.Server(config.horizon);
 var lastToken = latestFromDB("StellarCursor");
 
 // Listen for payments from where you last stopped
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
-let callBuilder = server.payments().forAccount(config.hotWallet);
+// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
+let callBuilder = server.payments().forAccount(config.baseAccount);
 
 // If no cursor has been saved yet, don't add cursor parameter
 if (lastToken) {
@@ -90,24 +90,24 @@ if (lastToken) {
 callBuilder.stream({onmessage: handlePaymentResponse});
 
 // Load the account sequence number from Horizon and return the account
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}
-server.loadAccount(config.hotWallet)
+// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}
+server.loadAccount(config.baseAccount)
   .then(function (account) {
     submitPendingTransactions(account);
   })
 ```
 
 ## Listening for deposits
-When a user wants to deposit lumens in your exchange, instruct them to send XLM to your hot wallet address with the customerID in the memo field of the transaction.
+When a user wants to deposit lumens in your exchange, instruct them to send XLM to your base account address with the customerID in the memo field of the transaction.
 
-You must listen for payments to the hot wallet account and credit any user that sends XLM there. Here's code that listens for these payments:
+You must listen for payments to the base account and credit any user that sends XLM there. Here's code that listens for these payments:
 
 ```js
 // Start listening for payments from where you last stopped
 var lastToken = latestFromDB("StellarCursor");
 
-// GET https://horizon-testnet.stellar.org/accounts/{config.hotWallet}/payments?cursor={last_token}
-let callBuilder = server.payments().forAccount(config.hotWallet);
+// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
+let callBuilder = server.payments().forAccount(config.baseAccount);
 
 // If no cursor has been saved yet, don't add cursor parameter
 if (lastToken) {
@@ -118,7 +118,7 @@ callBuilder.stream({onmessage: handlePaymentResponse});
 ```
 
 
-For every payment received by the hot wallet, you must:<br>
+For every payment received by the base account, you must:<br>
 -check the memo field to determine which user sent the deposit.<br>
 -record the cursor in the `StellarCursor` table so you can resume payment processing where you left off.<br>
 -credit the user's account in the DB with the number of XLM they sent to deposit.
@@ -133,8 +133,8 @@ function handlePaymentResponse(record) {
     .then(function(txn) {
       var customer = txn.memo;
 
-      // If this isn't a payment to the hotWallet, skip
-      if (record.to != config.hotWallet) {
+      // If this isn't a payment to the baseAccount, skip
+      if (record.to != config.baseAccount) {
         return;
       }
       if (record.asset_type != 'native') {
@@ -214,7 +214,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           amount: amountLumens
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
+        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
         .build();
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
@@ -228,7 +228,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           // Creating an account requires funding it with XLM
           startingBalance: amountLumens
         }))
-        .addSigner(StellarSdk.Keypair.fromSeed(config.hotWalletSeed))
+        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
         .build();
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
