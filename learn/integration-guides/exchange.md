@@ -60,7 +60,7 @@ For this guide, we use placeholder functions for reading/writing to the exchange
 // Config your server
 var config = {};
 config.baseAccount = "your base account address";
-config.baseAccountSeed = "your base account seed";
+config.baseAccountSecret = "your base account secret key";
 
 // You can use Stellar.org's instance of Horizon or your own
 config.horizon = 'https://horizon-testnet.stellar.org';
@@ -214,7 +214,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           amount: amountLumens
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
+        .addSigner(StellarSdk.Keypair.fromSecret(config.baseAccountSecret))
         .build();
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
@@ -228,7 +228,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           // Creating an account requires funding it with XLM
           startingBalance: amountLumens
         }))
-        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
+        .addSigner(StellarSdk.Keypair.fromSecret(config.baseAccountSecret))
         .build();
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
