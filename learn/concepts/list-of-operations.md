@@ -72,7 +72,7 @@ Possible errors:
 |PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more information, see the [assets doc](./assets.md).|
 |PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset.|
 |PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
-
+|PAYMENT_NO_ISSUER| -9| The issuer of the asset does not exist.|
 
 ## Path Payment
 Sends an amount in a specific asset to a destination account through a path of offers. This allows the asset sent (e.g., 450 XLM) to be different from the asset received (e.g, 6 BTC).
@@ -104,10 +104,10 @@ Possible errors:
 |PATH_PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
 |PATH_PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
 |PATH_PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
-|PATH_PAYMENT_TOO_FEW_OFFERS| -9| There is not a path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
-|PATH_PAYMENT_OVER_SENDMAX| -10| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
-
-
+|PATH_PAYMENT_NO_ISSUER| -9| The issuer on one of assets is missing.|
+|PATH_PAYMENT_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
+|PATH_PAYMENT_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
+|PATH_PAYMENT_OVER_SENDMAX| -12| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
 
 ## Manage Offer
 Creates, updates, or deletes an offer.
@@ -142,9 +142,10 @@ Possible errors:
 |MANAGE_OFFER_LINE_FULL| -6| The account creating the offer only trusts the issuer of `buying` to a certain credit limit. If this offer succeeded, the account would exceed its trust limit with the issuer.|
 |MANAGE_OFFER_UNDERFUNDED| -7| The account does not have enough of `selling` to fund this offer.|
 |MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
-|MANAGE_OFFER_NOT_FOUND| -9| An offer with that `offerID` cannot be found.|
-|MANAGE_OFFER_MISMATCH| -10| Updating an offer does not allow changing the currencies.  If tried, this currency mismatch error is returned.|
-|MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
+|MANAGE_OFFER_SELL_NO_ISSUER| -9| The issuer of selling asset does not exist.|
+|MANAGE_OFFER_BUY_NO_ISSUER| -10| The issuer of buying asset does not exist.|
+|MANAGE_OFFER_NOT_FOUND| -11| An offer with that `offerID` cannot be found.|
+|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 ## Create Passive Offer
 A passive offer is an offer that does not act on and take a reverse offer of equal price. Instead, they only take offers
@@ -181,10 +182,11 @@ Possible errors:
 |MANAGE_OFFER_BUY_NOT_AUTHORIZED| -5| The account creating the offer is not authorized to buy this asset.|
 |MANAGE_OFFER_LINE_FULL| -6| The account creating the offer only trusts the issuer of `buying` to a certain credit limit. If this offer succeeded, the account would exceed its trust limit with the issuer.|
 |MANAGE_OFFER_UNDERFUNDED| -7| The account does not have enough of `selling` to fund this offer.|
-|MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of lesser price active, so the account creating this offer would immediately cross itself.|
-|MANAGE_OFFER_NOT_FOUND| -9| An offer with that `offerID` cannot be found.|
-|MANAGE_OFFER_MISMATCH| -10| Updating an offer does not allow changing the currencies.  If tried, this currency mismatch error is returned.|
-|MANAGE_OFFER_LOW_RESERVE| -11| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
+|MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
+|MANAGE_OFFER_SELL_NO_ISSUER| -9| The issuer of selling asset does not exist.|
+|MANAGE_OFFER_BUY_NO_ISSUER| -10| The issuer of buying asset does not exist.|
+|MANAGE_OFFER_NOT_FOUND| -11| An offer with that `offerID` cannot be found.|
+|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 
 ## Set Options
@@ -224,7 +226,7 @@ Possible errors:
 |SET_OPTIONS_UNKNOWN_FLAG| -6| The account is trying to set a flag that is unknown.|
 |SET_OPTIONS_THRESHOLD_OUT_OF_RANGE| -7| The value for a key weight or threshold is invalid.|
 |SET_OPTIONS_BAD_SIGNER| -8| Any additional signers added to the account cannot be the master key.|
-
+|SET_OPTIONS_INVALID_HOME_DOMAIN| -9| Home domain is malformed.|
 
 ## Change Trust
 Creates, updates, or deletes a trustline.  For more on trustlines, please refer to the [assets documentation](./assets.md).
@@ -290,8 +292,8 @@ Possible errors:
 | ----- | ---- | ------|
 |ACCOUNT_MERGE_MALFORMED| -1| The operation is malformed because the source account cannot merge with itself. The `destination` must be a different account.|
 |ACCOUNT_MERGE_NO_ACCOUNT| -2| The `destination` account does not exist.|
-|ACCOUNT_MERGE_HAS_CREDIT| -3| The source account has active, non-zero balance trustlines as a trustor and thus cannot merge.|
-|ACCOUNT_MERGE_CREDIT_HELD | -4| The source account is an issuer of active, non-zero balance trustlines and thus cannot merge.|
+|ACCOUNT_MERGE_IMMUTABLE_SET| -3| The source account has `AUTH_IMMUTABLE` flag set.|
+|ACCOUNT_MERGE_HAS_SUB_ENTRIES | -4| The source account has trust lines/offers.|
 
 ## Inflation
 This operation runs inflation.
