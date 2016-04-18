@@ -28,7 +28,7 @@ Implement a simple [Federation server](https://www.stellar.org/developers/learn/
 You can also contribute to the [federation server](https://github.com/stellar/federation/) maintained by Stellar Development Foundation.
 
 # Lumens to any email address
-Allow anyone to send lumens from their Stellar client to any email address. They would simply enter in something like `<emailaddress>*domain.com` and then they are able to send it lumens. If the reciepient doesn't have a stellar account already one will be created for them and they will get an email alerting them that they have lumens.
+Allow anyone to send lumens from their Stellar client to any email address. They would simply enter in something like `<emailaddress>*domain.com` and then they are able to send it lumens. If the recipient doesn't have a stellar account already one will be created for them and they will get an email alerting them that they have lumens.
 
 This would be a service hosted at `domain.com` that does the following:
 - Runs a federation server.
