@@ -83,3 +83,11 @@ Name | dzham
 Contact | johan@futuretense.io
 Slack | dzham
 NodeID | GCIMGUWEYJBYUWDTKHSIBBMT5DQNGAO75QP5DYAX3DKOVD5VN6AHDL4M
+
+Name | moni
+-----|------
+Contact | moni.com
+Slack | sirius
+Peer | stellar1.moni.com
+NodeID | GAXP5DW4CVCW2BJNPFGTWCEGZTJKTNWFQQBE5SCWNJIJ54BOHR3WQC3W
+
