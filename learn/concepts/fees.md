@@ -32,6 +32,7 @@ Additional entries are:
 * trustlines
 * offers
 * signers
+* data entries
 
 Currently the base reserve amount is set to 100,000,000 stroops (10 XLM) and can evolve via consensus. For more details, see [versioning](./versioning.md).
 
