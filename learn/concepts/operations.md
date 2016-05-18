@@ -16,6 +16,7 @@ Here are the possible operation types:
 - [Allow Trust](./list-of-operations.md#allow-trust)
 - [Account Merge](./list-of-operations.md#account-merge)
 - [Inflation](./list-of-operations.md#inflation)
+- [Manage Data](./list-of-operations.md#manage-data)
 
 Operations are executed on behalf of the source account specified in the
 transaction, unless there is an override defined for the operation.
