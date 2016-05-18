@@ -7,7 +7,7 @@ title: Compliance Protocol
 Complying with Anti-Money Laundering (AML) laws requires financial institutions (FIs) to know not only who their customers are sending money to but who their customers are receiving money from. In some jurisdictions banks are able to trust the AML procedures of other licensed banks. In other jurisdictions each bank must do its own sanction checking of both the sender and the receiver. 
 The Compliance Protocol handles all these scenarios.
 
-The customer information that is exchnaged between FIs is flexible but the typical fields are:
+The customer information that is exchanged between FIs is flexible but the typical fields are:
  - Full Name
  - Date of birth
  - Physical address
