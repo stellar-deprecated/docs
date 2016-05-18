@@ -62,7 +62,7 @@ Every ledger header has the following fields:
 
 # Ledger Entries
 
-The ledger is a collection of **entries**. Currently there are 3 types of ledger entries. They're specified in
+The ledger is a collection of **entries**. Currently there are 4 types of ledger entries. They're specified in
 [`src/xdr/Stellar-ledger-entries.x`](https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-ledger-entries.x).
 
 ## Account entry
@@ -79,3 +79,6 @@ Trustline entries define the rules around the use of this currency. Rules can be
 
 ## Offer entry
 Offers are entries that an account creates in the orderbook. They are a way to automate simple trading inside the Stellar network. For more on offers, refer to the [distributed exchange documentation](exchange.md).
+
+## Data entry
+Data entries are key value pairs attached to an account. They allow account controllers to attach arbitrary data to their account. It provides a flexible extension point to add application specific data into the ledger.
