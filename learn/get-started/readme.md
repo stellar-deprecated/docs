@@ -17,8 +17,6 @@ Behind the scenes, every Horizon server connects to **[Stellar Core](../../stell
 
 You might want to host your own instance of Stellar Core in order to submit transactions without depending on a third party, have more control over who to trust, or simply to help make the Stellar network more reliable and robust for others.
 
-If there is not a Stellar Core instance in your country, you’ll need to set one up.
-
 ## Big Picture: The Stellar Network
 
 The Stellar network is a worldwide collection of Stellar Cores, each maintained by different people and organizations. The distributed nature of the network makes it reliable and safe.
