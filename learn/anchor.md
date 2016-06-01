@@ -1,5 +1,5 @@
 ---
-title: Anchor Guide
+title: Become an Anchor
 ---
 
 # Becoming a Stellar Anchor

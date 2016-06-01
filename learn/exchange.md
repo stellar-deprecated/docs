@@ -1,5 +1,5 @@
 ---
-title: Exchange Guide
+title: Set Up an Exchange
 ---
 
 # Adding Stellar to your Exchange
