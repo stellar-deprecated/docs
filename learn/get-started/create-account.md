@@ -135,4 +135,4 @@ Now that you’ve got an account you can [start making and receiving payments](t
 
 [2]: Other features of Stellar, like [trust lines](https://www.stellar.org/developers/learn/concepts/assets.html#trustlines), require higher minimum balances.
 
-[3]: There are lots of exchanges out there that sell lumens, but here are a few: (Need links to exchanges here)
+[3]: CoinMarketCap maintains [a list of exchanges that sell lumens at: http://coinmarketcap.com/currencies/stellar/#markets](http://coinmarketcap.com/currencies/stellar/#markets)
