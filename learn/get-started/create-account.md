@@ -32,7 +32,7 @@ pair.accountId();
 ```java
 // create a completely new and unique pair of keys see more:
 // https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/KeyPair.html
-import org.stellar.sdk.*;
+import org.stellar.sdk.KeyPair;
 KeyPair pair = KeyPair.random();
 
 pair.getSecretSeed();
@@ -108,6 +108,9 @@ server.accounts().accountId(pair.accountId()).call().then(function(account) {
 ```
 
 ```java
+import org.stellar.sdk.Server;
+import org.stellar.sdk.responses.AccountResponse;
+
 Server server = new Server("https://horizon-testnet.stellar.org");
 AccountResponse account = server.accounts().account(pair.getAccountId());
 System.out.println("Balances for account " + pair.getAccountId());
