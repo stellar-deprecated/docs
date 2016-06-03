@@ -30,8 +30,8 @@ pair.accountId();
 ```
 
 ```java
-// create a completely new and unique pair of keys see more:
-// https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/KeyPair.html
+// create a completely new and unique pair of keys.
+// see more about KeyPair objects: https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/KeyPair.html
 import org.stellar.sdk.KeyPair;
 KeyPair pair = KeyPair.random();
 
@@ -42,10 +42,10 @@ pair.getAccountId();
 ```
 </example>
 
-[TODO: should this only show if viewing the JS/Java examples?]
-You might notice that, in Stellar’s SDKs, you ask for the *account ID* instead of the public key. That’s because an account’s ID is its public key[1].
+[TODO: should this only show if viewing the SDK examples?]
+You might notice that, in the SDK, you ask for the *account ID* instead of the public key. That’s because an account’s ID *is* its public key.
 
-Now that you have a pair of keys, you can make an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[2] Since you don’t yet have any lumens, though, you can’t pay for an account! In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[3] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
+Now that you have a pair of keys, you can make an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[1] Since you don’t yet have any lumens, though, you can’t pay for an account! In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[2] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
 
 To create a test account, send Friendbot the public key you created. It’ll create and pay for a new account using that public key as its ID.
 
@@ -130,9 +130,6 @@ Now that you’ve got an account you can [start making and receiving payments](t
 <a class="button button--next" href="transactions.html">Next</a>
 
 
+[1]: Other features of Stellar, like [trust lines](https://www.stellar.org/developers/learn/concepts/assets.html#trustlines), require higher minimum balances.
 
-[1]: You can change an account’s public key later, but the account ID will always stay the same. When you retrieve an account’s data, you’ll be able to get both its ID and its public key.
-
-[2]: Other features of Stellar, like [trust lines](https://www.stellar.org/developers/learn/concepts/assets.html#trustlines), require higher minimum balances.
-
-[3]: CoinMarketCap maintains [a list of exchanges that sell lumens at: http://coinmarketcap.com/currencies/stellar/#markets](http://coinmarketcap.com/currencies/stellar/#markets)
+[2]: CoinMarketCap maintains [a list of exchanges that sell lumens at: http://coinmarketcap.com/currencies/stellar/#markets](http://coinmarketcap.com/currencies/stellar/#markets)
