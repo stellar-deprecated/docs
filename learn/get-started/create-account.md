@@ -40,6 +40,28 @@ pair.getSecretSeed();
 pair.getAccountId();
 // GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
 ```
+
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/stellar/go-stellar-base/keypair"
+)
+
+func main() {
+	pair, err := keypair.Random()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(pair.Seed())
+	// SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
+	log.Println(pair.Address())
+	// GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
+}
+```
 </example>
 
 [TODO: should this only show if viewing the SDK examples?]
@@ -86,6 +108,31 @@ InputStream response = new URL(friendbotUrl).openStream();
 String body = new Scanner(response, "UTF-8").useDelimiter("\\A").next();
 System.out.println("SUCCESS! You have a new account :)\n" + body);
 ```
+
+```go
+package main
+
+import (
+	"http"
+	"io/ioutil"
+	"log"
+)
+
+func main() {
+	address := pair.Address()
+	resp, err := http.Get("https://horizon-testnet.stellar.org/friendbot?addr=" + address)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(body)
+}
+```
 </example>
 
 Now for last step: getting the account’s details and checking its balance! Accounts can carry multiple balances—one for each type of currency they hold.
@@ -120,6 +167,29 @@ for (AccountResponse.Balance balance : account.getBalances()) {
     balance.getAssetType(),
     balance.getAssetCode(),
     balance.getBalance()));
+}
+```
+
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/stellar/go-stellar-base/horizon"
+)
+
+func main() {
+	account, err := horizon.DefaultTestNetClient.LoadAccount(pair.Address())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Balances for account:", pair.Address())
+
+	for _, balance := range account.Balances {
+		log.Println(balance)
+	}
 }
 ```
 </example>
