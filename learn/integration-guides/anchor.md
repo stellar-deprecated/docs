@@ -223,8 +223,9 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
           amount: amount
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
         .build();
+
+      transaction.sign(StellarSdk.Keypair.fromSeed(config.baseAccountSeed));
 
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction)
