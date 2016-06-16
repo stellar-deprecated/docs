@@ -13,6 +13,7 @@ The customer information that is exchanged between FIs is flexible but the typic
  - Physical address
  
 The Compliance Protocol is an additional step after [federation](https://www.stellar.org/developers/learn/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](https://www.stellar.org/developers/learn/concepts/stellar-toml.html) of the FI.
+
 You can create your own endpoint that implements the compliance protocol or we have also created this [simple compliance service](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that you can use.
 
 ## AUTH_SERVER
