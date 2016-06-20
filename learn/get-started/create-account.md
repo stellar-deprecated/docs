@@ -6,7 +6,7 @@ title: Create an Account
 
 The first thing you’ll need to do anything on Stellar is an account. Accounts hold all your money inside Stellar and allow you to send and receive payments—in fact, pretty much everything in Stellar is in some way tied to an account.
 
-Every Stellar account has a pair of public and private keys. Stellar uses public key cryptography to ensure that every transaction is secure. The private key is a secret piece of information that proves you own the account. You should never share your private key with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s secret key can control your account. The public key how other people identify your account and verify that you authorized a transaction.
+Every Stellar account has a pair of public and private keys. Stellar uses public key cryptography to ensure that every transaction is secure. The private key is a secret piece of information that proves you own the account. You should never share your private key with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s secret key can control your account. The public key is how other people identify your account and verify that you authorized a transaction.
 [TODO: decide on whether we're using public/private or public/secret for keypairs. This doc currently uses both private and secret.]
 
 Because the private key must be kept secret, the first step in creating an account is creating your own keys (when you create the account, you’ll send only the public key to a Stellar server). You can do so with the following command:
@@ -66,7 +66,7 @@ func main() {
 </example>
 
 [TODO: should this only show if viewing the SDK examples?]
-You might notice that, in the SDK, you ask for the *account ID* instead of the public key. That’s because an account’s ID *is* its public key.
+You might notice that, in the SDK, you are asked for the *account ID* instead of the public key. That’s because an account’s ID *is* its public key.
 [TODO: Explain why this is the case—the distinction here just sounds like a mistake.]
 
 Now that you have a pair of keys, you can make an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[1] Since you don’t yet have any lumens, though, you can’t pay for an account! In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[2] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
