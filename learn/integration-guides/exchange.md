@@ -239,14 +239,11 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
     })
     // Submit the transaction created in either case
     .then(function(transactionResult) {
-      if (transactionResult.ledger) {
-        updateRecord('done', "StellarTransactions");
-      } else {
-        updateRecord('error', "StellarTransactions");
-      }
+      updateRecord('done', "StellarTransactions");
     })
     .catch(function(err) {
       // Catch errors, most likely with the network or your transaction
+      updateRecord('error', "StellarTransactions");
     });
 }
 
