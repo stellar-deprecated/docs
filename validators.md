@@ -82,7 +82,7 @@ Name | dzham
 -----|------
 Contact | johan@futuretense.io
 Slack | dzham
-NodeID | GCIMGUWEYJBYUWDTKHSIBBMT5DQNGAO75QP5DYAX3DKOVD5VN6AHDL4M
+NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
 
 Name | moni
 -----|------
@@ -91,3 +91,9 @@ Slack | sirius
 Peer | stellar1.moni.com
 NodeID | GAXP5DW4CVCW2BJNPFGTWCEGZTJKTNWFQQBE5SCWNJIJ54BOHR3WQC3W
 
+Name | tempo france
+-----|------
+Contact | tempo.eu.com
+Slack | ant
+Peer | stellar1.tempo.eu.com
+NodeID | GCJCSMSPIWKKPR7WEPIQG63PDF7JGGEENRC33OKVBSPUDIRL6ZZ5M7OO

@@ -14,6 +14,8 @@ The customer information that is exchanged between FIs is flexible but the typic
  
 The Compliance Protocol is an additional step after [federation](https://www.stellar.org/developers/learn/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](https://www.stellar.org/developers/learn/concepts/stellar-toml.html) of the FI.
 
+You can create your own endpoint that implements the compliance protocol or we have also created this [simple compliance service](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that you can use.
+
 ## AUTH_SERVER
 
 The AUTH_SERVER provides one endpoint that is called by a sending FI to get approval to send a payment to one of the receiving FI's customers. It is also used by the sender to follow up if the initial request wasn't able to complete in real time, i.e. either `info_status` or `tx_status` returned pending. The sender will simply call the AUTH_SERVER endpoint after the suggested time has past.

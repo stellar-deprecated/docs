@@ -223,21 +223,19 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
           amount: amount
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
         .build();
+
+      transaction.sign(StellarSdk.Keypair.fromSeed(config.baseAccountSeed));
 
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction)
         .then(function(transactionResult) {
-          if (transactionResult.ledger) {
-            updateRecord('done', "StellarTransactions");
-          } else {
-            updateRecord('error', "StellarTransactions");
-          }
+          updateRecord('done', "StellarTransactions");
         })
         .catch(function(err) {
           // Catch errors, most likely with the network or your transaction.
           // You may need to fetch the current sequence number of baseAccount account.
+          updateRecord('error', "StellarTransactions");
         });
     })
     .catch(StellarSdk.NotFoundError, function(err) {

@@ -214,8 +214,10 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           amount: amountLumens
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSecret(config.baseAccountSecret))
         .build();
+
+      transaction.sign(StellarSdk.Keypair.fromSecret(config.baseAccountSecret));
+
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
@@ -228,21 +230,20 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           // Creating an account requires funding it with XLM
           startingBalance: amountLumens
         }))
-        .addSigner(StellarSdk.Keypair.fromSecret(config.baseAccountSecret))
         .build();
+
+      transaction.sign(StellarSdk.Keypair.fromSecret(config.baseAccountSecret));
+      
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
     // Submit the transaction created in either case
     .then(function(transactionResult) {
-      if (transactionResult.ledger) {
-        updateRecord('done', "StellarTransactions");
-      } else {
-        updateRecord('error', "StellarTransactions");
-      }
+      updateRecord('done', "StellarTransactions");
     })
     .catch(function(err) {
       // Catch errors, most likely with the network or your transaction
+      updateRecord('error', "StellarTransactions");
     });
 }
 

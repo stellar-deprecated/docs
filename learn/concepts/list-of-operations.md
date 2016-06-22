@@ -158,6 +158,7 @@ offer is of the same price as your passive offer.
 Passive offers allow market makers to have zero spread. If you want to trade EUR for USD at 1:1 price and USD for EUR also
  at 1:1, you can create two passive offers so the two offers don't immediately act on each other.
 
+Once the passive offer is created, you can manage it like any other offer using the [manage offer](#manage-offer) operation.
 
 Threshold: Medium
 

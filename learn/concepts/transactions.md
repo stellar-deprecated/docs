@@ -33,7 +33,7 @@ Each transaction has the following attributes:
 >   - `MEMO_RETURN` : A 32 byte hash intended to be interpreted as the hash of the transaction the sender is refunding.
 >
 > #### Time bounds
-> *optional* The UNIX timestamp, determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set.
+> *optional* The UNIX timestamp, determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set. `maxTime` equal `0` means that it's not set.
 
 ## Transaction sets
 
