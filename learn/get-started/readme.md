@@ -23,5 +23,5 @@ The Stellar network is a worldwide collection of Stellar Cores, each maintained 
 
 All these Stellar Cores—the network of nodes—eventually agree on a set of transactions. Each transaction on the network costs a small fee: 100 stroops (0.00001 <abbr title="Lumens">XLM</abbr>) This fee helps prevent bad actors from spamming the network. 
 
-To help you test your tools and applications, Stellar.org operates a small test network and Horizon instance. [Get started with the testnet.](../concepts/test-net.html)
+To help you test your tools and applications, Stellar.org operates a small test network and Horizon instance. [Get started with the testnet.](../concepts/test-net.md)
  
