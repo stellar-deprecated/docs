@@ -19,7 +19,7 @@ Finally, every transaction costs a small fee. Like the minimum balance on accoun
 
 Stellar stores and communicates transaction data in a binary format called XDR.[^4] Luckily, the Stellar SDKs provide tools that take care of all that. Here’s how you might send 10 lumens to another account:
 
-<example name="Submitting a Transaction">
+<code-example name="Submitting a Transaction">
 
 ```js
 var StellarSdk = require('stellar-sdk');
@@ -67,90 +67,90 @@ server.loadAccount(destinationId)
   });
 ```
 
-</example>
+</code-example>
 
 What exactly happened there? Let’s break it down.
 
 1. Confirm that the account ID you are sending to actually exists by loading the associated account data from the Stellar network. Everything will actually be OK if you skip this step, but doing it gives you an opportunity to avoid making a transaction you know will fail. You can also use call to perform any other other verification you might want to do on a destination account. If you are writing banking software, for example, this is a good place to insert regulatory compliance checks and <abbr title="Know Your Customer">KYC</abbr> verification.
 
-  <example name=”Load an Account”>
-  
-  ```js
-  server.loadAccount(destinationId)
-    .then(function(account) { /* validate the account */ })
-  ```
-  
-  </example>
+    <code-example name="Load an Account">
+    
+    ```js
+    server.loadAccount(destinationId)
+      .then(function(account) { /* validate the account */ })
+    ```
+    
+    </code-example>
 
 2. Load data for the account you are sending from. An account can only perform one transaction at a time[^5] and has something called a [*“sequence number,”*](../concepts/accounts.md#sequence-number) which helps Stellar verify the order of transactions. A transaction’s sequence number needs to match the account’s sequence number, so you need to get the account’s current sequence number from the network.
 
-  <example name=”Load Source Account”>
-  
-  ```js
-  .then(function() {
-  return server.loadAccount(sourceKeys.accountId());
-  })
-  ```
-  
-  </example>
+    <code-example name="Load Source Account">
+    
+    ```js
+    .then(function() {
+    return server.loadAccount(sourceKeys.accountId());
+    })
+    ```
+    
+    </code-example>
 
-  The SDK will automatically increment the account’s sequence number when you build a transaction, so you won’t need to retrieve this information again if you want to perform a second transaction.
+    The SDK will automatically increment the account’s sequence number when you build a transaction, so you won’t need to retrieve this information again if you want to perform a second transaction.
   
 3. Start building a transaction. This requires an account object, not just an ID, because it will increment the account’s sequence number.
 
-  <example name=”Build a Transaction”>
-  
-  ```js
-  var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
-  ```
-  
-  </example>
+    <code-example name="Build a Transaction">
+    
+    ```js
+    var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
+    ```
+    
+    </code-example>
 
 4. Add the payment operation to the account. Note that you need to specify the type of asset you are sending—Stellar’s “native” currency is the Lumen, but you can send any type of asset or currency you like, from dollars to BitCoin to any sort of asset you trust the issuer to redeem [(more details below)](#transacting-in-other-currencies). For now, though, we’ll stick to Lumens, which are called “native” assets in the SDK:
 
-  <example name=”Add an Operation”>
-  
-  ```js
-  .addOperation(StellarSdk.Operation.payment({
-    destination: destinationId,
-    asset: StellarSdk.Asset.native(),
-    amount: "10"
-  }))
-  ```
-  
-  </example>
+    <code-example name="Add an Operation">
+    
+    ```js
+    .addOperation(StellarSdk.Operation.payment({
+      destination: destinationId,
+      asset: StellarSdk.Asset.native(),
+      amount: "10"
+    }))
+    ```
+    
+    </code-example>
 
-  You should also note that the amount is a string rather than a number. When working with extremely small fractions or large values, [floating point math can introduce small inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all systems have a native way to accurately represent extremely small or large decimals, Stellar uses strings as a reliable way to represent the exact amount across any system.
+    You should also note that the amount is a string rather than a number. When working with extremely small fractions or large values, [floating point math can introduce small inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all systems have a native way to accurately represent extremely small or large decimals, Stellar uses strings as a reliable way to represent the exact amount across any system.
 
 5. Optionally, you can add your own metadata, called a [*“memo,”*](../concepts/transactions.md#memo) to a transaction. Stellar doesn’t do anything with this data, but you can use it for any purpose you’d like. If you are a bank that is receiving or sending payments on behalf of other people, for example, you might include the actual person the payment is meant for here.
 
-  <example name=”Add a Memo”>
-  
-  ```js
-  .addMemo(StellarSdk.Memo.text('Test Transaction'))
-  ```
-  
-  </example>
+    <code-example name="Add a Memo">
+    
+    ```js
+    .addMemo(StellarSdk.Memo.text('Test Transaction'))
+    ```
+    
+    </code-example>
 
 6. Now that the transaction has all the data it needs, you have to cryptographically sign it using your secret seed. This proves that the data actually came from you and not someone impersonating you.
 
-  <example name=”Sign the Transaction”>
-  
-  ```js
-  transaction.sign(sourceKeys);
-  ```
-  
-  </example>
+    <code-example name="Sign the Transaction">
+    
+    ```js
+    transaction.sign(sourceKeys);
+    ```
+    
+    </code-example>
 
 7. And finally, send it to the Stellar network!
 
-  <example name=”Submit the Transaction”>
-  
-  ```js
-  server.submitTransaction(transaction);
-  ```
-  
-  </example>
+    <code-example name="Submit the Transaction">
+    
+    ```js
+    server.submitTransaction(transaction);
+    ```
+    
+    </code-example>
 
 ## Receive Payments
 
@@ -160,7 +160,7 @@ However, you’ll want to know that someone has actually paid you! If you are a 
 
 A simple program that watches the network for payments and prints each one might look like:
 
-<example name=”Receive Payments”>
+<code-example name="Receive Payments">
 
 ```js
 var StellarSdk = require('stellar-sdk');
@@ -219,11 +219,11 @@ function loadLastPagingToken() {
 }
 ```
 
-</example>
+</code-example>
 
 There are two main parts to this program. First, you create a query for payments involving a given account. Like most queries in Stellar, this could return a huge number of items, so the API returns paging tokens, which you can use later to start your query from the same point where you previously left off. In the example above, the functions to save and load paging tokens are left blank, but in a real application, you’d want to save the paging tokens to a file or database so you can pick up where you left off last time in case the program crashes or the user closes it.
 
-<example name=”Create a Payments Query”>
+<code-example name="Create a Payments Query">
 
 ```js
 var payments = server.payments().forAccount(accountId);
@@ -233,11 +233,11 @@ if (lastToken) {
 }
 ```
 
-</example>
+</code-example>
 
 Second, the results of the query are streamed. This is the easiest way to watch for payments or other transactions. Each existing payment is sent through the stream, one by one. Once all existing payments have been sent, the stream stays open and new payments are sent as they are made. Try it out: run this program, then, in another window, create and submit a payment. You should see this program log the payment.
 
-<example name=”Stream Payments”>
+<code-example name="Stream Payments">
 
 ```js
 payments.stream({
@@ -247,11 +247,11 @@ payments.stream({
 });
 ```
 
-</example>
+</code-example>
 
 You can also request payments in groups, or pages. Once you’ve processed each page of payments, you’ll need to request the next one until there are no more left.
 
-<example name=”Paged Payments”>
+<code-example name="Paged Payments">
 
 ```js
 payments.call().then(function handlePage(paymentsPage) {
@@ -262,7 +262,7 @@ payments.call().then(function handlePage(paymentsPage) {
 });
 ```
 
-</example>
+</code-example>
 
 
 ## Transacting in Other Currencies

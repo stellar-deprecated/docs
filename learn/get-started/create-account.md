@@ -11,7 +11,7 @@ Every Stellar account has a pair of public and private keys. Stellar uses public
 
 Because the private key must be kept secret, the first step in creating an account is creating your own keys (when you create the account, you’ll send only the public key to a Stellar server). You can do so with the following command:
 
-<example name="Generating Keys">
+<code-example name="Generating Keys">
 
 ```sh
 # You'll need to install stellar-core for this step.
@@ -65,7 +65,7 @@ func main() {
 }
 ```
 
-</example>
+</code-example>
 
 [TODO: should this only show if viewing the SDK examples?]
 You might notice that, in the SDK, you are asked for the *account ID* instead of the public key. That’s because an account’s ID *is* its public key.
@@ -75,7 +75,7 @@ Now that you have a pair of keys, you can make an account. In order to prevent p
 
 To create a test account, send Friendbot the public key you created. It’ll create and fund a new account using that public key as its ID.
 
-<example name="Creating a test account">
+<code-example name="Creating a test account">
 
 ```sh
 $ curl "https://horizon-testnet.stellar.org/friendbot?addr=GDGOKHIRX63EIAXKVI77BQV7LMDUH7DR4BMDDU77DJUXLPUU5HAXGN64"
@@ -139,11 +139,11 @@ func main() {
 }
 ```
 
-</example>
+</code-example>
 
 Now for the last step: Getting the account’s details and checking its balance! Accounts can carry multiple balances—one for each type of currency they hold.
 
-<example name="Getting account details">
+<code-example name="Getting account details">
 
 ```sh
 curl "https://horizon-testnet.stellar.org/accounts/GCRDH24DCTMKRL3SESRQ4QRKHJ56XGAJBQHHXXED3RTBQTBC36RCX4JI"
@@ -200,7 +200,7 @@ func main() {
 }
 ```
 
-</example>
+</code-example>
 
 Now that you’ve got an account, you can [start making and receiving payments](transactions.md).
 
