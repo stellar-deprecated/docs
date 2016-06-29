@@ -1,5 +1,5 @@
 ---
-title: Sending and Receiving Money
+title: Send and Receive Money
 ---
 
 Now that you have an account, you can send and receive funds through Stellar. If you haven’t created an account yet, read through [step 2 of this guide](./create-account.md).
@@ -282,6 +282,10 @@ Now that you can send and receive payments using Stellar’s API, you’re on yo
 - [Security](../security.md)
 - [Federation](../concepts/federation.md)
 - [Compliance](../compliance-protocol.md)
+
+<div class="sequence-navigation">
+  <a class="button button--previous" href="create-account.html">Back: The Stellar Network</a>
+</div>
 
 
 [^1]: A list of all the possible operations can be found on the [operations page](../concepts/operations.md).

@@ -201,8 +201,10 @@ func main() {
 
 Now that you’ve got an account, you can [start making and receiving payments](transactions.md).
 
-<a class="button button--previous" href="index.html">Back</a>
-<a class="button button--next" href="transactions.html">Next</a>
+<div class="sequence-navigation">
+  <a class="button button--previous" href="index.html">Back: The Stellar Network</a>
+  <a class="button button--next" href="transactions.html">Next: Send and Receiving Money</a>
+</div>
 
 
 [^1]: A private key is still used to encrpyt data and sign transactions. When you create a `KeyPair` object using a seed, the private key immediately generated and stored internally. 

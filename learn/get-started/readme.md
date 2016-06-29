@@ -25,3 +25,6 @@ All these Stellar Cores—the network of nodes—eventually agree on a set of tr
 
 To help you test your tools and applications, Stellar.org operates a small test network and Horizon instance. [Get started with the testnet.](../concepts/test-net.md)
  
+<div class="sequence-navigation">
+  <a class="button button--next" href="create-account.html">Next: Create an Account</a>
+</div>
