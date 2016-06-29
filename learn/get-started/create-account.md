@@ -12,13 +12,6 @@ Because the seed must be kept secret, the first step in creating an account is c
 
 <code-example name="Generating Keys">
 
-```sh
-# You'll need to install stellar-core for this step.
-$ stellar-core --genseed
-Secret seed: SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
-Public: GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
-```
-
 ```js
 // create a completely new and unique pair of keys
 // see more about KeyPair objects: https://stellar.github.io/js-stellar-sdk/Keypair.html
@@ -73,10 +66,6 @@ Now that you have a seed and public key, you can make an account. In order to pr
 To create a test account, send Friendbot the public key you created. It’ll create and fund a new account using that public key as the account’s ID.
 
 <code-example name="Creating a test account">
-
-```sh
-$ curl "https://horizon-testnet.stellar.org/friendbot?addr=GDGOKHIRX63EIAXKVI77BQV7LMDUH7DR4BMDDU77DJUXLPUU5HAXGN64"
-```
 
 ```js
 // The SDK does not have tools for creating test accounts, so you'll have to
@@ -141,10 +130,6 @@ func main() {
 Now for the last step: Getting the account’s details and checking its balance! Accounts can carry multiple balances—one for each type of currency they hold.
 
 <code-example name="Getting account details">
-
-```sh
-curl "https://horizon-testnet.stellar.org/accounts/GCRDH24DCTMKRL3SESRQ4QRKHJ56XGAJBQHHXXED3RTBQTBC36RCX4JI"
-```
 
 ```js
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
