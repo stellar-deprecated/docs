@@ -1,7 +1,6 @@
 ---
 title: Sending and Receiving Money
 ---
-# Sending and Receiving Money
 
 Now that you have an account, you can send and receive funds through Stellar. If you haven’t created an account yet, read through [step 2 of this guide](./create-account.md).
 
