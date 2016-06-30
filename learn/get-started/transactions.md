@@ -8,11 +8,11 @@ Most of the time, you’ll be sending money to someone else who has their own ac
 
 ## Send Payments
 
-Actions that change things in Stellar, like sending payments, changing your account, or making offers to trade various kinds of currencies, are called <strong>operations.</strong>[^1] In order to actually perform an operation, you create a <strong>transaction</strong>, which is just a group of operations accompanied by some extra information, like what account is making the transaction and a cryptographic signature to verify that the transaction is authentic.[^2]
+Actions that change things in Stellar, like sending payments, changing your account, or making offers to trade various kinds of currencies, are called **operations.**[^1] In order to actually perform an operation, you create a **transaction**, which is just a group of operations accompanied by some extra information, like what account is making the transaction and a cryptographic signature to verify that the transaction is authentic.[^2]
 
 If any operation in the transaction fails, they all fail. For example, let’s say you have 100 lumens and you make two payment operations of 60 lumens each. If you make two transactions (each with one operation), the first will succeed and the second will fail because you don’t have enough lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single operation, they will both fail and you’ll be left with the full 100 lumens still in your account. 
 
-Finally, every transaction costs a small fee. Like the minimum balance on accounts, this fee helps stop people from overloading the system with lots of transactions. Known as the <strong>base fee</strong>, it is very small—100 stroops per operation (that’s 0.00001 XLM; stroops are easier to talk about than such tiny fractions of a lumen). A transaction with two operations would cost 200 stroops.[^3]
+Finally, every transaction costs a small fee. Like the minimum balance on accounts, this fee helps stop people from overloading the system with lots of transactions. Known as the **base fee**, it is very small—100 stroops per operation (that’s 0.00001 XLM; stroops are easier to talk about than such tiny fractions of a lumen). A transaction with two operations would cost 200 stroops.[^3]
 
 ### Building a Transaction
 
@@ -121,7 +121,7 @@ What exactly happened there? Let’s break it down.
     
     </code-example>
 
-2. Load data for the account you are sending from. An account can only perform one transaction at a time[^5] and has something called a [<strong>sequence number</strong>,](../concepts/accounts.md#sequence-number) which helps Stellar verify the order of transactions. A transaction’s sequence number needs to match the account’s sequence number, so you need to get the account’s current sequence number from the network.
+2. Load data for the account you are sending from. An account can only perform one transaction at a time[^5] and has something called a [**sequence number**,](../concepts/accounts.md#sequence-number) which helps Stellar verify the order of transactions. A transaction’s sequence number needs to match the account’s sequence number, so you need to get the account’s current sequence number from the network.
 
     <code-example name="Load Source Account">
     
@@ -173,7 +173,7 @@ What exactly happened there? Let’s break it down.
 
     You should also note that the amount is a string rather than a number. When working with extremely small fractions or large values, [floating point math can introduce small inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all systems have a native way to accurately represent extremely small or large decimals, Stellar uses strings as a reliable way to represent the exact amount across any system.
 
-5. Optionally, you can add your own metadata, called a [<strong>memo,</strong>](../concepts/transactions.md#memo) to a transaction. Stellar doesn’t do anything with this data, but you can use it for any purpose you’d like. If you are a bank that is receiving or sending payments on behalf of other people, for example, you might include the actual person the payment is meant for here.
+5. Optionally, you can add your own metadata, called a [**memo,**](../concepts/transactions.md#memo) to a transaction. Stellar doesn’t do anything with this data, but you can use it for any purpose you’d like. If you are a bank that is receiving or sending payments on behalf of other people, for example, you might include the actual person the payment is meant for here.
 
     <code-example name="Add a Memo">
     
@@ -441,7 +441,7 @@ Now that you can send and receive payments using Stellar’s API, you’re on yo
 
 [^2]: The full details on transactions can be found on the [transactions page](../concepts/transactions.md).
 
-[^3]: The 100 stroops is called Stellar’s <strong>base fee</strong>. The base fee can be changed, but a change in Stellar’s fees isn’t likely to happen more than once every several years. You can look up the current fees by [checking the details of the latest ledger](../../horizon/reference/ledgers-single.md).
+[^3]: The 100 stroops is called Stellar’s **base fee**. The base fee can be changed, but a change in Stellar’s fees isn’t likely to happen more than once every several years. You can look up the current fees by [checking the details of the latest ledger](../../horizon/reference/ledgers-single.md).
 
 [^4]: Even though most responses from the Horizon REST API use JSON, most of the data in Stellar is actually stored in a format called XDR, or External Data Representation. XDR is both more compact than JSON and stores data in a predictable way, which makes signing and verifying an XDR-encoded message easier. You can get more details on [our XDR page](../concepts/xdr.md).
 
