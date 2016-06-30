@@ -1,5 +1,5 @@
 ---
-title: Contributing
+title: Contribution Guide
 ---
 
 # How to contribute to a Stellar project
