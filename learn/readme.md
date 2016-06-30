@@ -10,11 +10,11 @@ Some guides are grouped together:
 
 ## Get Started
 
-The [“Get Started” guide](./get-started) will introduce you to the basic technical aspects of Stellar, starting with an introduction to the various parts of the Stellar network, then moving on to programmatically creating accounts, and finally performing transactions.
+The [Get Started guide](./get-started) will introduce you to the basic technical aspects of Stellar, starting with an introduction to the various parts of the Stellar network, then moving on to address programmatically creating accounts and performing transactions.
 
 ## Concepts
 
-The “Concepts” section contains overviews and explanations of various objects, terms, and technologies used throughout the Stellar ecosystem, from [accounts](./concepts/transactions.md) to the details of the [Stellar Consensus Protocol](./concepts/scp.md) that underlies everything.
+The Concepts section contains overviews and explanations of various objects, terms, and technologies used throughout the Stellar ecosystem, from [accounts](./concepts/transactions.md) to the details of the [Stellar Consensus Protocol](./concepts/scp.md) that underlies everything.
 
 ## SDKs
 
