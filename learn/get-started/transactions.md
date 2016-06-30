@@ -6,7 +6,7 @@ Now that you have an account, you can send and receive funds through the Stellar
 
 Most of the time, you’ll be sending money to someone else who has their own account. For this interactive guide, however, you should make a second account to transact with using the same method you used to make your first account.
 
-## Sending a Payment
+## Send Payments
 
 Actions that change things in Stellar, like sending payments, changing your account, or making offers to trade various kinds of currencies, are called <strong>operations.</strong>[^1] In order to actually perform an operation, you create a <strong>transaction</strong>, which is just a group of operations accompanied by some extra information, like what account is making the transaction and a cryptographic signature to verify that the transaction is authentic.[^2]
 
