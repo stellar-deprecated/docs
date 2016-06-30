@@ -2,7 +2,7 @@
 title: Inflation
 ---
 
-The Stellar distributed network has a built-in, fixed, nominal inflation mechanism. New lumens are added to the network at the rate of 1% each year. Each week, the protocol distributes these lumens to any account that gets over .05% of the "votes" from other accounts in the network. 
+The Stellar distributed network has a built-in, fixed, nominal inflation mechanism. New lumens are added to the network at the rate of 1% each year (compounding—the 1% includes lumens from previous inflation rounds). Each week, the protocol distributes these lumens to any account that gets over .05% of the "votes" from other accounts in the network. 
 
 ## How inflation voting works 
 Using the [set options](./list-of-operations.md#set-options) operation, every account selects another account as its **inflation destination**, or nominee to receive new currency. The inflation destination will persist until changed with another set options operation. 
