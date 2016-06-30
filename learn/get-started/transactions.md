@@ -66,6 +66,42 @@ server.loadAccount(destinationId)
   });
 ```
 
+```java
+Server server = new Server("https://horizon-testnet.stellar.org");
+
+KeyPair source = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
+KeyPair destination = KeyPair.fromAccountId("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
+
+// First, check to make sure that the destination account exists.
+// You could skip this, but if the account does not exist, you will be charged
+// the transaction fee when the transaction fails.
+// It will throw HttpResponseException if account does not exist or there was another error.
+server.accounts().account(destination);
+
+// If there was no error, load up-to-date information on your account.
+AccountResponse sourceAccount = server.accounts().account(source);
+
+// Start building the transaction.
+Transaction transaction = new Transaction.Builder(sourceAccount)
+        .addOperation(new PaymentOperation.Builder(destination, new AssetTypeNative(), "10").build())
+        // A memo allows you to add your own metadata to a transaction. It's
+        // optional and does not affect how Stellar treats the transaction.
+        .addMemo(Memo.text("Test Transaction"))
+        .build();
+// Sign the transaction to prove you are actually the person sending it.
+transaction.sign(source);
+
+// And finally, send it off to Stellar!
+try {
+  SubmitTransactionResponse response = server.submitTransaction(transaction);
+  System.out.println("Success!");
+  System.out.println(response);
+} catch (Exception e) {
+  System.out.println("Something went wrong!");
+  System.out.println(e.getMessage());
+}
+```
+
 </code-example>
 
 What exactly happened there? Let’s break it down.
@@ -77,6 +113,10 @@ What exactly happened there? Let’s break it down.
     ```js
     server.loadAccount(destinationId)
       .then(function(account) { /* validate the account */ })
+    ```
+
+    ```java
+    server.accounts().account(destination);
     ```
     
     </code-example>
@@ -90,6 +130,10 @@ What exactly happened there? Let’s break it down.
     return server.loadAccount(sourceKeys.accountId());
     })
     ```
+
+    ```java
+    AccountResponse sourceAccount = server.accounts().account(source);
+    ```
     
     </code-example>
 
@@ -101,6 +145,10 @@ What exactly happened there? Let’s break it down.
     
     ```js
     var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
+    ```
+
+    ```java
+    Transaction transaction = new Transaction.Builder(sourceAccount)
     ```
     
     </code-example>
@@ -116,6 +164,10 @@ What exactly happened there? Let’s break it down.
       amount: "10"
     }))
     ```
+
+    ```java
+    .addOperation(new PaymentOperation.Builder(destination, new AssetTypeNative(), "10").build())
+    ```
     
     </code-example>
 
@@ -128,6 +180,10 @@ What exactly happened there? Let’s break it down.
     ```js
     .addMemo(StellarSdk.Memo.text('Test Transaction'))
     ```
+
+    ```java
+    .addMemo(Memo.text("Test Transaction"));
+    ```
     
     </code-example>
 
@@ -138,6 +194,10 @@ What exactly happened there? Let’s break it down.
     ```js
     transaction.sign(sourceKeys);
     ```
+
+    ```java
+    transaction.sign(source);
+    ```
     
     </code-example>
 
@@ -146,6 +206,10 @@ What exactly happened there? Let’s break it down.
     <code-example name="Submit the Transaction">
     
     ```js
+    server.submitTransaction(transaction);
+    ```
+
+    ```java
     server.submitTransaction(transaction);
     ```
     
@@ -218,6 +282,62 @@ function loadLastPagingToken() {
 }
 ```
 
+```java
+Server server = new Server("https://horizon-testnet.stellar.org");
+KeyPair account = KeyPair.fromAccountId("'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF'");
+
+// Create an API call to query payments involving the account.
+PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account)
+
+// If some payments have already been handled, start the results from the
+// last seen payment. (See below in `handlePayment` where it gets saved.)
+String lastToken = loadLastPagingToken();
+if (lastToken != null) {
+  paymentsRequest.cursor(lastToken);
+}
+
+// `stream` will send each recorded payment, one by one, then keep the
+// connection open and continue to send you new payments as they occur.
+paymentsRequest.stream(new EventListener<OperationResponse>() {
+  @Override
+  public void onEvent(OperationResponse payment) {
+    // Record the paging token so we can start from here next time.
+    savePagingToken(payment.getPagingToken());
+
+    // The payments stream includes both sent and received payments. We only
+    // want to process received payments here.
+    if (payment instanceof PaymentOperationResponse) {
+      if (((PaymentOperationResponse) payment).getTo().equals(account)) {
+        return;
+      }
+
+      String amount = ((PaymentOperationResponse) payment).getAmount();
+
+      Asset asset = ((PaymentOperationResponse) payment).getAsset();
+      String assetName;
+      if (asset.equals(new AssetTypeNative())) {
+        assetName = "lumens";
+      } else {
+        StringBuilder assetNameBuilder = new StringBuilder();
+        assetNameBuilder.append(((AssetTypeCreditAlphaNum) asset).getCode());
+        assetNameBuilder.append(":");
+        assetNameBuilder.append(((AssetTypeCreditAlphaNum) asset).getIssuer().getAccountId());
+        assetName = assetNameBuilder.toString();
+      }
+
+      StringBuilder output = new StringBuilder();
+      output.append(amount);
+      output.append(" ");
+      output.append(assetName);
+      output.append(" from ");
+      output.append(((PaymentOperationResponse) payment).getFrom().getAccountId());
+      System.out.println(output.toString());
+    }
+
+  }
+});
+````
+
 </code-example>
 
 There are two main parts to this program. First, you create a query for payments involving a given account. Like most queries in Stellar, this could return a huge number of items, so the API returns paging tokens, which you can use later to start your query from the same point where you previously left off. In the example above, the functions to save and load paging tokens are left blank, but in a real application, you’d want to save the paging tokens to a file or database so you can pick up where you left off in case the program crashes or the user closes it.
@@ -229,6 +349,14 @@ var payments = server.payments().forAccount(accountId);
 var lastToken = loadLastPagingToken();
 if (lastToken) {
   payments.cursor(lastToken);
+}
+```
+
+```java
+PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account)
+String lastToken = loadLastPagingToken();
+if (lastToken != null) {
+  paymentsRequest.cursor(lastToken);
 }
 ```
 
@@ -248,6 +376,15 @@ payments.stream({
 });
 ```
 
+```java
+paymentsRequest.stream(new EventListener<OperationResponse>() {
+  @Override
+  public void onEvent(OperationResponse payment) {
+    // Handle a payment
+  }
+});
+```
+
 </code-example>
 
 You can also request payments in groups, or pages. Once you’ve processed each page of payments, you’ll need to request the next one until there are none left.
@@ -261,6 +398,16 @@ payments.call().then(function handlePage(paymentsPage) {
   });
   Return paymentsPage.next().then(handlePage);
 });
+```
+
+```java
+Page<OperationResponse> page = payments.execute();
+
+for (OperationResponse operation : page.getRecords()) {
+	// handle a payment
+}
+
+page = page.getNextPage();
 ```
 
 </code-example>
