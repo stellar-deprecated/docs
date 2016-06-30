@@ -433,7 +433,7 @@ Now that you can send and receive payments using Stellar’s API, you’re on yo
 - [Compliance](../compliance-protocol.md)
 
 <div class="sequence-navigation">
-  <a class="button button--previous" href="create-account.html">Back to Step 1: Stellar Network Overview</a>
+  <a class="button button--previous" href="create-account.html">Back to Step 2: Create an Account</a>
 </div>
 
 
