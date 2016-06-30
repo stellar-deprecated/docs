@@ -13,7 +13,7 @@ Stellar.org maintains [JavaScript](), [Java](), and [Go]()-based SDKs for commun
 
 ## Network Backbone: Stellar Core
 
-Behind the scenes, every Horizon server connects to **[Stellar Core](../../stellar-core/learn/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing with other instances of Core on the status of every transaction through the Stellar Consensus Protocol (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
+Behind the scenes, every Horizon server connects to **[Stellar Core](../../stellar-core/learn/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing with other instances of Core on the status of every transaction through the [Stellar Consensus Protocol](../learn/concepts/scp.html) (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
 
 You might want to host your own instance of Stellar Core in order to submit transactions without depending on a third party, have more control over who to trust, or simply to help make the Stellar network more reliable and robust for others.
 
