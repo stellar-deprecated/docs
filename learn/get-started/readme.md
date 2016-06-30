@@ -1,5 +1,5 @@
 ---
-title: The Stellar Network
+title: Stellar Network Overview
 ---
 ![Stellar Ecosystem](https://www.stellar.org/wp-content/uploads/2015/08/ecosystem-overview-2.png)
 
@@ -13,7 +13,7 @@ Stellar.org maintains [JavaScript](), [Java](), and [Go]()-based SDKs for commun
 
 ## Network Backbone: Stellar Core
 
-Behind the scenes, every Horizon server connects to **[Stellar Core](../../stellar-core/learn/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing on the status of every transaction with other instances of Core through the Stellar Consensus Protocol (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
+Behind the scenes, every Horizon server connects to **[Stellar Core](../../stellar-core/learn/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing with other instances of Core on the status of every transaction through the Stellar Consensus Protocol (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
 
 You might want to host your own instance of Stellar Core in order to submit transactions without depending on a third party, have more control over who to trust, or simply to help make the Stellar network more reliable and robust for others.
 
@@ -21,7 +21,7 @@ You might want to host your own instance of Stellar Core in order to submit tran
 
 The Stellar network is a worldwide collection of Stellar Cores, each maintained by different people and organizations. The distributed nature of the network makes it reliable and safe.
 
-All these Stellar Cores—the network of nodes—eventually agree on a set of transactions. Each transaction on the network costs a small fee: 100 stroops (0.00001 <abbr title="Lumens">XLM</abbr>) This fee helps prevent bad actors from spamming the network. 
+All these Stellar Cores—the network of nodes—eventually agree on sets of transactions. Each transaction on the network costs a small fee: 100 stroops (0.00001 <abbr title="Lumens">XLM</abbr>). This fee helps prevent bad actors from spamming the network. 
 
 To help you test your tools and applications, Stellar.org operates a small test network and Horizon instance. [Get started with the testnet.](../concepts/test-net.md)
  
