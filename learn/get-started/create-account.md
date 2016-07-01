@@ -4,7 +4,7 @@ title: Create an Account
 
 The first thing you’ll need to do anything on the Stellar network is an account. Accounts hold all your money inside Stellar and allow you to send and receive payments—in fact, pretty much everything in Stellar is in some way tied to an account.
 
-Every Stellar account has a <strong>public key</strong> and a <strong>secret seed</strong>. Stellar uses public key cryptography to ensure that every transaction is secure. The public key is always safe to share—other people need it to identify your account and verify that you authorized a transaction. The seed, however, is private information that proves you own your account. You should never share the seed with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s seed can control your account.
+Every Stellar account has a **public key** and a **secret seed**. Stellar uses public key cryptography to ensure that every transaction is secure. The public key is always safe to share—other people need it to identify your account and verify that you authorized a transaction. The seed, however, is private information that proves you own your account. You should never share the seed with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s seed can control your account.
 
 If you’re familar with public key cryptography, you might be wondering how the seed differs from a private key. The seed is actually the single secret piece of data that is used to generate both the public and private key for your account. Stellar’s tools use the seed instead of the private key for convenience: To have full access to an account, you only need to provide a seed instead of both a public key and a private key.[^1]
 
@@ -192,7 +192,7 @@ Now that you’ve got an account, you can [start sending and receiving payments]
 </div>
 
 
-[^1]: A private key is still used to encrpyt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally. 
+[^1]: A private key is still used to encrpyt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
 
 [^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances.
 
