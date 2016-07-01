@@ -29,12 +29,12 @@ If your exchange doesn't see a lot of volume, you don't need to set up your own 
 ### Issuing account
 An issuing account is typically used to keep the bulk of customer funds secure. An issuing account is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of `js-stellar-sdk` creates a `tx_blob` containing the signed transaction. This `tx_blob` can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account secret key much harder to compromise.
 
-To learn how to create an issuing account, see [account management](./building-blocks/account-management.md).
+To learn how to create an issuing account, see [account management](./account-management.md).
 
 ### Base account
 A base account contains a more limited amount of funds than an issuing account. A base account is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a base account restricts loss in the event of a security breach.
 
-To learn how to create a base account, see [account management](./building-blocks/account-management.md).
+To learn how to create a base account, see [account management](./account-management.md).
 
 ### Database
 - Need to create a table for pending withdrawals, `StellarTransactions`.
@@ -178,7 +178,7 @@ function handleRequestWithdrawal(userID,amountLumens,destinationAddress) {
   db.transaction(function() {
     // Read the user's balance from the exchange's database
     var userBalance = getBalance('userID');
-  
+
     // Check that user has the required lumens
     if (amountLumens <= userBalance) {
       // Debit the user's internal lumen balance by the amount of lumens they are withdrawing
@@ -233,7 +233,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
         .build();
 
       transaction.sign(StellarSdk.Keypair.fromSecret(config.baseAccountSecret));
-      
+
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
@@ -255,10 +255,10 @@ function submitPendingTransactions(exchangeAccount) {
   // Update in an atomic transaction
   db.transaction(function() {
     var pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
-  
+
     while (pendingTransactions.length > 0) {
       var txn = pendingTransactions.pop();
-  
+
       // This function is async so it won't block. For simplicity we're using
       // ES7 `await` keyword but you should create a "promise waterfall" so
       // `setTimeout` line below is executed after all transactions are submitted.
