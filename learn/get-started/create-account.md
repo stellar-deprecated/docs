@@ -59,7 +59,7 @@ func main() {
 
 </code-example>
 
-You might notice that, in the SDK, you call `pair.accountId()` instead of something like `pair.publicKey()`. That’s because an account ID *is* that account's public key.
+You might notice that, in the SDK, you call `pair.accountId()` instead of something like `pair.publicKey()`. That’s because the public key that an account was created with is used as the ID for that account.
 
 Now that you have a seed and public key, you can create an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[^2] Since you don’t yet have any lumens, though, you can’t pay for an account. In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[^3] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
 
