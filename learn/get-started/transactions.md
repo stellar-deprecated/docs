@@ -428,7 +428,6 @@ You can read more about the details of assets in the [assets overview](../concep
 Now that you can send and receive payments using Stellar’s API, you’re on your way to writing all kinds of amazing financial software. Experiment with other parts of the API, then read up on more detailed topics:
 
 - [Become an anchor](../anchor.md)
-- [Security](../security.md)
 - [Federation](../concepts/federation.md)
 - [Compliance](../compliance-protocol.md)
 
