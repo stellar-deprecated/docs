@@ -26,7 +26,7 @@ A relatively simple project that graphically displays information pulled from Ho
    - Fee pool
 
 # Federation Service
-Implement a simple [Federation server](/developers/guides/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](/developers/guides/concepts/inflation.html) to one provided by your domain.
+Implement a simple [Federation server](https://www.stellar.org/developers/guides/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/guides/concepts/inflation.html) to one provided by your domain.
 
 You can also contribute to the [federation server](https://github.com/stellar/federation/) maintained by Stellar Development Foundation.
 

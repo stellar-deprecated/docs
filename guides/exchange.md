@@ -17,8 +17,8 @@ The two main integration points to Stellar for an exchange are:<br>
 ## Setup
 
 ### Operational
-* *(optional)* Set up [Stellar Core](/developers/stellar-core/software/admin.html)
-* *(optional)* Set up [Horizon](/developers/horizon/reference/index.html)
+* *(optional)* Set up [Stellar Core](https://www.stellar.org/developers/stellar-core/software/admin.html)
+* *(optional)* Set up [Horizon](https://www.stellar.org/developers/horizon/reference/index.html)
 
 If your exchange doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```
@@ -29,12 +29,8 @@ If your exchange doesn't see a lot of volume, you don't need to set up your own 
 ### Issuing account
 An issuing account is typically used to keep the bulk of customer funds secure. An issuing account is a Stellar account whose secret keys are not on any device that touches the Internet. Transactions are manually initiated by a human and signed locally on the offline machine—a local install of `js-stellar-sdk` creates a `tx_blob` containing the signed transaction. This `tx_blob` can be transported to a machine connected to the Internet via offline methods (e.g., USB or by hand). This design makes the issuing account secret key much harder to compromise.
 
-To learn how to create an issuing account, see [account management](./account-management.md).
-
 ### Base account
 A base account contains a more limited amount of funds than an issuing account. A base account is a Stellar account used on a machine that is connected to the Internet. It handles the day-to-day sending and receiving of lumens. The limited amount of funds in a base account restricts loss in the event of a security breach.
-
-To learn how to create a base account, see [account management](./account-management.md).
 
 ### Database
 - Need to create a table for pending withdrawals, `StellarTransactions`.

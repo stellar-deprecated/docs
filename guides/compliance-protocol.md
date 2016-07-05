@@ -12,7 +12,7 @@ The customer information that is exchanged between FIs is flexible but the typic
  - Date of birth
  - Physical address
  
-The Compliance Protocol is an additional step after [federation](/developers/guides/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](/developers/guides/concepts/stellar-toml.html) of the FI.
+The Compliance Protocol is an additional step after [federation](https://www.stellar.org/developers/guides/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html) of the FI.
 
 You can create your own endpoint that implements the compliance protocol or we have also created this [simple compliance service](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that you can use.
 
@@ -32,7 +32,7 @@ need_info | If the caller needs the recipient's AML info in order to send the pa
 tx |  The transaction that the sender would like to send in XDR format. This transaction is unsigned.
 memo | The full text of the memo the hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention]() and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
 
-**sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](/developers/guides/concepts/stellar-toml.html).
+**sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html).
 
 
 #### Reply
@@ -85,7 +85,7 @@ This is done by asking BankB's federation server to resolve `bogart*bankB.com`.
 
 BankA -> `https://FEDERATION_SERVER?type=name&q=bogart*bankB.com[&simple_aml=true]`
 
-See [Federation](/developers/guides/concepts/federation.html) for a complete description. The returned fields of interest here are:
+See [Federation](https://www.stellar.org/developers/guides/concepts/federation.html) for a complete description. The returned fields of interest here are:
  - Stellar AccountID of Bogart's FI
  - Bogart's routing info
  - Need Auth flag that says whether BankB needs to authorize the transaction or not.
