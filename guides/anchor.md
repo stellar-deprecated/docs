@@ -17,8 +17,8 @@ The two main integration points to Stellar for an anchor are:<br>
 ## Setup
 
 ### Operational
-* *(optional)* Set up [Stellar Core](../../stellar-core/learn/admin.html)
-* *(optional)* Set up [Horizon](../../horizon/learn/)
+* *(optional)* Set up [Stellar Core](/developers/stellar-core/software/admin.html)
+* *(optional)* Set up [Horizon](/developers/horizon/reference/index.html)
 
 If your anchor doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```json
@@ -273,9 +273,9 @@ function submitPendingTransactions(sourceAccount) {
 ### Federation
 The federation protocol allows you to give your users easy addresses—e.g., `bob*youranchor.com` — rather than cumbersome raw addresses such as: `GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ`.
 
-For more information, check out the [federation guide](../concepts/federation.md).
+For more information, check out the [federation guide](./concepts/federation.md).
 
 ### Restricting who can hold your credit
 By default, anyone can hold your credit. You can, however, restrict holders to accounts that have been authorized by you.
 
-To learn more about restricting who can hold your credit, see the `flags` section of the [accounts guide](../concepts/accounts.md).
+To learn more about restricting who can hold your credit, see the `flags` section of the [accounts guide](./concepts/accounts.md).
