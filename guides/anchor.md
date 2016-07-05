@@ -3,7 +3,7 @@ title: Become an Anchor
 ---
 
 # Becoming a Stellar Anchor
-This guide will walk you through the integration steps to become a Stellar anchor. If you're not yet familiar with the concept of an [anchor](https://www.stellar.org/learn/explainers/#Anchors_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
+This guide will walk you through the integration steps to become a Stellar anchor. If you're not yet familiar with the concept of an [anchor](https://www.stellar.org/how-it-works/stellar-basics/explainers/#Anchors_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an anchor. This guide uses the following design:
  - `issuing account`: One Stellar account that is kept offline for increased safety.
