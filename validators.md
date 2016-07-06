@@ -97,3 +97,9 @@ Contact | tempo.eu.com
 Slack | ant
 Peer | stellar1.tempo.eu.com
 NodeID | GCJCSMSPIWKKPR7WEPIQG63PDF7JGGEENRC33OKVBSPUDIRL6ZZ5M7OO
+
+Name | sparrow_tw
+-----|------------
+Contact | scott@sparrowai.com
+Slack | scottc
+NodeID | GCCW4H2DKAC7YYW62H3ZBDRRE5KXRLYLI4T5QOSO6EAMUOE37ICSKKRJ
