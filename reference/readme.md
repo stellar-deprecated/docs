@@ -1,7 +1,7 @@
 ---
 title: Horizon Reference Overview
 ---
-Horizon is the client-facing API server for the Stellar ecosystem.  It acts as the interface between [Stellar Core](https://github.com/stellar/stellar-core) and applications that want to access the Stellar network. Horizon allows you to submit transactions to the network, check the status of accounts, and subscribe to event streams. For more details, see an [overview of the Stellar network](https://www.stellar.org/developers/learn/).
+Horizon is the client-facing API server for the Stellar ecosystem.  It acts as the interface between [Stellar Core](https://github.com/stellar/stellar-core) and applications that want to access the Stellar network. Horizon allows you to submit transactions to the network, check the status of accounts, and subscribe to event streams. For more details, see an [overview of the Stellar network](https://www.stellar.org/developers/reference/).
 
 You can interact directly with Horizon via cURL or a web browser. Stellar.org also provides a [JavaScript SDK](https://www.stellar.org/developers/js-stellar-sdk/learn/) for clients to use to interact with Horizon.
 
