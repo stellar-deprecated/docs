@@ -30,7 +30,7 @@ Name | Description
 sender | The stellar address of the customer that is initiating the send.
 need_info | If the caller needs the recipient's AML info in order to send the payment.
 tx |  The transaction that the sender would like to send in XDR format. This transaction is unsigned.
-memo | The full text of the memo the hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention]() and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
+memo | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention]() and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
 
 **sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html).
 
