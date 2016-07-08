@@ -31,6 +31,10 @@ Because Stellar’s security is based around public key encryption, it’s criti
 
 (Further note/question: is it bad practice to weight things such that all signers in a multi-signer scenario must sign a transaction? That way it’s easier to remove a compromised account, since the compromised account doesn’t need to agree to be removed.)
 
+## Ensure assets are revocable
+
+If you issue your own assets, you should usually ensure that they can be revoked using the [“authorization revocable” flag on the account](concepts/accounts.md#flags). This allows you to effectively freeze your assets in someone else’s account in case of theft or in other extenuating circumstances.
+
 ## For Individuals
 
 TODO: Use a wallet? Encrypt your secret seed with a password? What else?
