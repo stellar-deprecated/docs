@@ -21,21 +21,21 @@ Sensitive accounts can be secured by requiring authorization from multiple indiv
 If you require multiple signers, you should also ensure that you do not require all the possible signers to sign a transaction. If one of the signers loses the keys to their account, you will no longer be able to perform transactions if they have to sign them.
 
 
+## Ensure assets are revocable
+
+If you issue your own assets, you should usually ensure that they can be revoked using the [“authorization revocable” flag on the account](concepts/accounts.md#flags). This allows you to effectively freeze your assets in someone else’s account in case of theft or in other extenuating circumstances.
+
+
 ## What if an account’s keys are compromised?
 
 Because Stellar’s security is based around public key encryption, it’s critical that an account’s secret seed is not shared. Anyone who has access to the seed effectively has control of the account. However, if someone learns your account’s seed or you accidentally share it with someone who shouldn’t know it, you can remove its ability to control the account with the following steps:
 
 1. Make a new account.
-2. Add the new account as a signer on the compromised account. (Use the [`set options` operation](../concepts/list-of-operations.md#set-options).
+2. Add the new account as a signer on the compromised account. (Use the [`set options` operation](concepts/list-of-operations.md#set-options).
 3. Remove the compromised key’s signing authority on the compromised account.
 4. Now the new account controls the compromised account and the compromised account’s keys are no longer able to sign transactions.
 
 (NOTE: You must notify the owners of other accounts that the compromised account has signing authority or that the keys are compromised. They need to remove the compromised account as a signer as well [and add the new account].)
-
-
-## Ensure assets are revocable
-
-If you issue your own assets, you should usually ensure that they can be revoked using the [“authorization revocable” flag on the account](concepts/accounts.md#flags). This allows you to effectively freeze your assets in someone else’s account in case of theft or in other extenuating circumstances.
 
 
 ## What if there’s a bug in Stellar’s code?
