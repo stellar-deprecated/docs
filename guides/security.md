@@ -2,10 +2,10 @@
 title: Security
 ---
 
-TODO: intro
+You’ll trade assets that are very valuable with Stellar, so security is important. The following guidelines can help keep your Stellar integration secure.
 
 
-## Secure offline accounts (e.g., base and issuing accounts)
+## Secure offline accounts
 
 One of the simplest methods for securing an account is keeping its secret seed stored on somewhere offline—it could be a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
 
