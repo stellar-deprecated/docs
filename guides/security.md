@@ -29,7 +29,6 @@ Because Stellar’s security is based around public key encryption, it’s criti
 
 (NOTE: You must notify the owners of other accounts that the compromised account has signing authority or that the keys are compromised. They need to remove the compromised account as a signer as well [and add the new account].)
 
-(Further note/question: is it bad practice to weight things such that all signers in a multi-signer scenario must sign a transaction? That way it’s easier to remove a compromised account, since the compromised account doesn’t need to agree to be removed.)
 
 ## Ensure assets are revocable
 
