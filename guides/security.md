@@ -4,6 +4,7 @@ title: Security
 
 TODO: intro
 
+
 ## Secure offline accounts (e.g., base and issuing accounts)
 
 One of the simplest methods for securing an account is keeping its secret seed stored on somewhere offline—it could be a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
@@ -12,11 +13,13 @@ Since an offline computer has no connection, it is extremely hard for someone wi
 
 You can think of this method like having both a bank vault and a cash register drawer. Most of the time the vault is closed and locked. It is only opened occasionally (and under specific procedures) to replenish a register drawer that is running low or to store excess funds from a register drawer that is overflowing. If someone attempts to rob the bank, it is extremely hard for them to get away with anything more than what was in the register drawer.
 
+
 ## Require multiple authorizations or signers
 
 Sensitive accounts can be secured by requiring authorization from multiple individuals to make a transaction. Read the [multisignature guide](concepts/multi-sig.md) to learn more about how.
 
 If you require multiple signers, you should also ensure that you do not require all the possible signers to sign a transaction. If one of the signers loses the keys to their account, you will no longer be able to perform transactions if they have to sign them.
+
 
 ## What if an account’s keys are compromised?
 
@@ -34,13 +37,11 @@ Because Stellar’s security is based around public key encryption, it’s criti
 
 If you issue your own assets, you should usually ensure that they can be revoked using the [“authorization revocable” flag on the account](concepts/accounts.md#flags). This allows you to effectively freeze your assets in someone else’s account in case of theft or in other extenuating circumstances.
 
-## For Individuals
-
-TODO: Use a wallet? Encrypt your secret seed with a password? What else?
 
 ## What if there’s a bug in Stellar’s code?
 
 Every node keeps a history archive, so you always have a strong and reliable record of what happened. Parties affected by a bug can examine all the historical details and agree on a method of remediation while the bug is being fixed.
+
 
 ## Securing a Stellar Core Instance
 
@@ -50,7 +51,8 @@ TODO: best practices here? Are there particular ports that generally should be c
 
 Other general best practices for server security: don’t use standard ports for things like SSH, only open the ports you really need.
 
-## Keeping Up to Date with Security Patches
+
+## Keep Up to Date with Security Patches
 
 Signing of releases from Stellar.org?
 Any kind of feed for releases?
@@ -58,3 +60,6 @@ Watch the forums?
 ????
 
 
+## For Individuals
+
+TODO: Use a wallet? Encrypt your secret seed with a password? What else?
