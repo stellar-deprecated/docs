@@ -1,9 +1,9 @@
 ---
-title: Anchor Guide
+title: Become an Anchor
 ---
 
 # Becoming a Stellar Anchor
-This guide will walk you through the integration steps to become a Stellar anchor. If you're not yet familiar with the concept of an [anchor](https://www.stellar.org/learn/explainers/#Anchors_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
+This guide will walk you through the integration steps to become a Stellar anchor. If you're not yet familiar with the concept of an [anchor](https://www.stellar.org/how-it-works/stellar-basics/explainers/#Anchors_trust_and_credit), please start [here](https://www.stellar.org/learn/#how-it-works). This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an anchor. This guide uses the following design:
  - `issuing account`: One Stellar account that is kept offline for increased safety.
@@ -17,8 +17,8 @@ The two main integration points to Stellar for an anchor are:<br>
 ## Setup
 
 ### Operational
-* *(optional)* Set up [Stellar Core](../../stellar-core/learn/admin.html)
-* *(optional)* Set up [Horizon](../../horizon/learn/)
+* *(optional)* Set up [Stellar Core](https://www.stellar.org/developers/stellar-core/software/admin.html)
+* *(optional)* Set up [Horizon](https://www.stellar.org/developers/horizon/reference/index.html)
 
 If your anchor doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```json
@@ -31,12 +31,8 @@ If your anchor doesn't see a lot of volume, you don't need to set up your own in
 ### Issuing account
 The issuing account can issue credit from the anchor. It is very important to maintain the security of this account. Keeping its secret key on a machine that doesn't have Internet access can help. Transactions are manually initiated by a human and are signed locally on the offline machine—a local install of js-stellar-sdk creates a tx_blob containing the signed transaction. This tx_blob can be transported to a machine connected to the Internet via offline methods (e.g. QRcode, USB or by hand). This design makes the issuing account key much harder to compromise.
 
-To learn how to create the issuing account, see [account management](./building-blocks/account-management.md).
-
 ### Base account
 People will frequently be redeeming and purchasing credit from your anchor, and you don't want these processes to involve the issuing account directly. Instead, create a `base account` that trusts the issuing account and holds a limited amount of credit issued by it. These funds are sent out to users as needed. A base account contains a limited amount of funds to restrict loss in the event of a security breach.
-
-To learn how to create a base account, see [account management](./building-blocks/account-management.md).
 
 ### Database
 - Need to create a table for pending payments, `StellarPayments`.
@@ -223,21 +219,19 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
           amount: amount
         }))
         // Sign the transaction
-        .addSigner(StellarSdk.Keypair.fromSeed(config.baseAccountSeed))
         .build();
+
+      transaction.sign(StellarSdk.Keypair.fromSeed(config.baseAccountSeed));
 
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction)
         .then(function(transactionResult) {
-          if (transactionResult.ledger) {
-            updateRecord('done', "StellarTransactions");
-          } else {
-            updateRecord('error', "StellarTransactions");
-          }
+          updateRecord('done', "StellarTransactions");
         })
         .catch(function(err) {
           // Catch errors, most likely with the network or your transaction.
           // You may need to fetch the current sequence number of baseAccount account.
+          updateRecord('error', "StellarTransactions");
         });
     })
     .catch(StellarSdk.NotFoundError, function(err) {
@@ -275,9 +269,9 @@ function submitPendingTransactions(sourceAccount) {
 ### Federation
 The federation protocol allows you to give your users easy addresses—e.g., `bob*youranchor.com` — rather than cumbersome raw addresses such as: `GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ`.
 
-For more information, check out the [federation guide](../concepts/federation.md).
+For more information, check out the [federation guide](./concepts/federation.md).
 
 ### Restricting who can hold your credit
 By default, anyone can hold your credit. You can, however, restrict holders to accounts that have been authorized by you.
 
-To learn more about restricting who can hold your credit, see the `flags` section of the [accounts guide](../concepts/accounts.md).
+To learn more about restricting who can hold your credit, see the `flags` section of the [accounts guide](./concepts/accounts.md).

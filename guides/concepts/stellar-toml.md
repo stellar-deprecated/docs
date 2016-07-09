@@ -93,6 +93,9 @@ NODE_NAMES=[
 #   for users on your domain.
 FEDERATION_SERVER="https://api.stellar.org/federation"
 
+# The endpoint used for the compliance protocol
+AUTH_SERVER="https://api.stellar.org/auth"
+
 
 
 

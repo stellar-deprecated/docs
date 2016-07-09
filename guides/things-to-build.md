@@ -1,9 +1,12 @@
-Build cool things on Stellar! This list outlines a few ideas for applications. Feel free to add your own or take one here and run with it. 
+---
+title: Build Stellar Apps
+---
+Build cool things on Stellar! This list outlines a few ideas for applications. Feel free to add your own or take one here and run with it.
 As always, if you need help building anything with Stellar, just ask us ([Slack chat](http://slack.stellar.org/)),[IRC](https://kiwiirc.com/client/irc.freenode.net/#stellar-dev), or developers@stellar.org) .
 
 If you're not looking for a full-blown project but still want to help out, look for `help wanted` issue labels in any of our [repos](https://github.com/stellar).
 
-# Slack Bot 
+# Slack Bot
 - Report a stream of all stellar transactions to a channel.
 - *Advanced*: Allow people to send money/points/+1's to other Slack team members `/send @bob $5`.
 
@@ -23,7 +26,7 @@ A relatively simple project that graphically displays information pulled from Ho
    - Fee pool
 
 # Federation Service
-Implement a simple [Federation server](https://www.stellar.org/developers/learn/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/learn/concepts/inflation.html) to one provided by your domain.
+Implement a simple [Federation server](https://www.stellar.org/developers/guides/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/guides/concepts/inflation.html) to one provided by your domain.
 
 You can also contribute to the [federation server](https://github.com/stellar/federation/) maintained by Stellar Development Foundation.
 
@@ -32,7 +35,7 @@ Allow anyone to send lumens from their Stellar client to any email address. They
 
 This would be a service hosted at `domain.com` that does the following:
 - Runs a federation server.
-- Will federate payment addresses with an email prefix like `jed@stellar.org*domain.com`. 
+- Will federate payment addresses with an email prefix like `jed@stellar.org*domain.com`.
 - If there is a federation request for an address you don't know that starts with a valid email address:
   - Generate a key pair
   - return the generated public key as the accountID
@@ -46,7 +49,7 @@ This would be a service hosted at `domain.com` that does the following:
 Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used as spam prevention or to support your business. This is a job for the **toll collector**...
 
 ## Toll Collector
-A simple service that keeps track of any XLM sent to a `toll address`. The toll collector has a database of public keys and amounts of XLM it has sent to the toll address. It watches for payments to the toll address on the Stellar network and adds them to this DB. 
+A simple service that keeps track of any XLM sent to a `toll address`. The toll collector has a database of public keys and amounts of XLM it has sent to the toll address. It watches for payments to the toll address on the Stellar network and adds them to this DB.
 
 The toll collector service has one RPC or endpoint that you can call:
 
@@ -67,7 +70,7 @@ Ideally the multisig coordinator includes the following features:
 - Create a tx that you would like to be signed by multiple parties
 - Enter the public keys that you would like to sign the tx
 - If any of these keys have previously associated their email address, then they will be sent a message
-- When you come to the site you see a list of all pending transactions: 
+- When you come to the site you see a list of all pending transactions:
   - You can see the details of each transaction
   - You can see who initiated the transaction
   - You can see who else has signed the transaction
@@ -84,7 +87,7 @@ A web page that shows the state of the network quorum graph. Ideally the quorum 
 
 You should be able to view the quorum graph from the point of view of any given validator. You would probably need to run stellar-core to build the quorum monitor. You can get the data from the stellar-core logs and the /quorum command.
 
-*Advanced*: Build a server that connects to stellar-core and monitors the externalized messages and the various validator broadcasts. 
+*Advanced*: Build a server that connects to stellar-core and monitors the externalized messages and the various validator broadcasts.
 
 # Libraries
 Build a library in your favorite language:
