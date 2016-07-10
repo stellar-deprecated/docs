@@ -14,21 +14,18 @@ We don't know who really controls these nodes. They could all be owned by the sa
 
 ------
 
- Name | strllar.org
-  ------|-------
- Contact | lab@strllar.org
- Description | Nice to be in your quorum slice.
- Peer 1 | chiyou.strllar.org
- NodeID 1 | GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3<br>
- History 1 | get="curl -sf https://stellar.oss-cn-beijing.aliyuncs.com/xlm/{0} -o {1}"
+ Name | strllar.org 
+  ------|------- 
+ Contact | lab@strllar.org 
+ Slack | lab 
+ Description | Nice to be in your quorum slice. 
+ Peer | confucius.strllar.org
+ NodeID 1 | GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3 fuxi
+ NodeID 2 | GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I huang
+ NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57 nezha
      |
- Peer 2 |confucius.strllar.org
- NodeID 2 | GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I
- History 2 | get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}"
-      |
- NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
-
-
+History 1 | get="curl -sf https://stellar.oss-cn-beijing.aliyuncs.com/xlm/{0} -o {1}" |
+History 2 | get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}" |
 
  Name | Donovan
  ------|-------
