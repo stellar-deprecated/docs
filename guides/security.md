@@ -31,11 +31,12 @@ If you issue your own assets, you should usually ensure that they can be revoked
 Because Stellar’s security is based around public key encryption, it’s critical that an account’s secret seed is not shared. Anyone who has access to the seed effectively has control of the account. However, if someone learns your account’s seed or you accidentally share it with someone who shouldn’t know it, you can remove its ability to control the account with the following steps:
 
 1. Make a new key pair.
-2. Add the new public key as a signer on the compromised account. (Use the [`set options` operation](concepts/list-of-operations.md#set-options).
+2. Add the new public key as a signer on the compromised account. (Use the [`set options` operation](concepts/list-of-operations.md#set-options)).
 3. Remove the compromised key’s signing authority on the compromised account.
 4. Now the new public key controls the account and the compromised keys are no longer able to sign transactions.
+5. Notify the owners of other accounts that the key has signing authority on that the key was compromised. They need to follow steps 2 and 3 for their accounts as well.
 
-(NOTE: You must notify the owners of other accounts that the compromised key has signing authority or that the keys are compromised. They need to remove the compromised key as a signer as well.)
+It’s important to understand that accounts that allow multiple signatures need to be able to remove a compromised key. You should always be careful that signature weights are set up so that this is possible—never require *all* signers to be involved in a transaction.
 
 
 ## What if there’s a bug in Stellar’s code?
