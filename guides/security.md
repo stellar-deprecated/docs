@@ -7,7 +7,7 @@ You’ll trade assets that are very valuable with Stellar, so security is import
 
 ## Secure offline accounts
 
-One of the simplest methods for securing an account is keeping its secret seed stored offline—it could be a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
+One of the simplest methods for securing an account is keeping its secret seed stored offline—it could be on a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
 
 Since an offline computer has no connection, it is extremely hard for someone without physical access to it to access the account’s keys. However, this also makes every transaction an extremely manual process. A common practice instead is to maintain two accounts: one offline account that securely holds the majority of your assets and another online account that holds only a few assets. Most transactions can be performed with the online account and, when its funds are low, a person can manually replenish it from the offline account.
 
@@ -58,8 +58,3 @@ Signing of releases from Stellar.org?
 Any kind of feed for releases?
 Watch the forums?
 ????
-
-
-## For Individuals
-
-TODO: Use a wallet? Encrypt your secret seed with a password? What else?
