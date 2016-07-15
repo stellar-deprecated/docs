@@ -7,7 +7,7 @@ You’ll trade assets that are very valuable with Stellar, so security is import
 
 ## Secure offline accounts
 
-One of the simplest methods for securing an account is keeping its secret seed stored on somewhere offline—it could be a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
+One of the simplest methods for securing an account is keeping its secret seed stored offline—it could be a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
 
 Since an offline computer has no connection, it is extremely hard for someone without physical access to it to access the account’s keys. However, this also makes every transaction an extremely manual process. A common practice instead is to maintain two accounts: one offline account that securely holds the majority of your assets and another online account that holds only a few assets. Most transactions can be performed with the online account and, when its funds are low, a person can manually replenish it from the offline account.
 
@@ -30,12 +30,12 @@ If you issue your own assets, you should usually ensure that they can be revoked
 
 Because Stellar’s security is based around public key encryption, it’s critical that an account’s secret seed is not shared. Anyone who has access to the seed effectively has control of the account. However, if someone learns your account’s seed or you accidentally share it with someone who shouldn’t know it, you can remove its ability to control the account with the following steps:
 
-1. Make a new account.
-2. Add the new account as a signer on the compromised account. (Use the [`set options` operation](concepts/list-of-operations.md#set-options).
+1. Make a new key pair.
+2. Add the new public key as a signer on the compromised account. (Use the [`set options` operation](concepts/list-of-operations.md#set-options).
 3. Remove the compromised key’s signing authority on the compromised account.
-4. Now the new account controls the compromised account and the compromised account’s keys are no longer able to sign transactions.
+4. Now the new public key controls the account and the compromised keys are no longer able to sign transactions.
 
-(NOTE: You must notify the owners of other accounts that the compromised account has signing authority or that the keys are compromised. They need to remove the compromised account as a signer as well [and add the new account].)
+(NOTE: You must notify the owners of other accounts that the compromised key has signing authority or that the keys are compromised. They need to remove the compromised key as a signer as well.)
 
 
 ## What if there’s a bug in Stellar’s code?
