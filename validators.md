@@ -27,12 +27,6 @@ We don't know who really controls these nodes. They could all be owned by the sa
 History 1 | get="curl -sf https://stellar.oss-cn-beijing.aliyuncs.com/xlm/{0} -o {1}" |
 History 2 | get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome.strllar.org/xlm/{0} -o {1}" |
 
- Name | Donovan
- ------|-------
- Contact | donovanhide@gmail.com
- Description | Another possibility for your list
- List of nodes | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
-
 
 
  Name | nelisky
@@ -60,20 +54,6 @@ History 2 | get="curl -sf https://s3-ap-northeast-1.amazonaws.com/confucius.tome
  NodeID | GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U
 
 
- Name | ptarasov
- ------|-------
- email | tarasov1412@gmail.com
- Slack | garbage
- NodeID | GAM7A32QZF5PJASRSGVFPAB36WWTHCBHO5CHG3WUFTUQPT7NZX3ONJU4
- 
-
- Name | w00kie
- ----|-----
-Contact | francois@rejete.com
-Description | Running on a small droplet, for science!
-Slack | frejete
-Peer | stellar.w00kie.com
-NodeID | GDJ73EX25GGUVMUBCK6DPSTJLYP3IC7I3H2URLXJQ5YP56BW756OUHIG
 
 Name | dzham
 -----|------
@@ -100,3 +80,29 @@ Name | sparrow_tw
 Contact | scott@sparrowai.com
 Slack | scottc
 NodeID | GCCW4H2DKAC7YYW62H3ZBDRRE5KXRLYLI4T5QOSO6EAMUOE37ICSKKRJ
+
+
+----
+Seem Down
+
+ Name | ptarasov
+ ------|-------
+ email | tarasov1412@gmail.com
+ Slack | garbage
+ NodeID | GAM7A32QZF5PJASRSGVFPAB36WWTHCBHO5CHG3WUFTUQPT7NZX3ONJU4
+ 
+
+ Name | w00kie
+ ----|-----
+Contact | francois@rejete.com
+Description | Running on a small droplet, for science!
+Slack | frejete
+Peer | stellar.w00kie.com
+NodeID | GDJ73EX25GGUVMUBCK6DPSTJLYP3IC7I3H2URLXJQ5YP56BW756OUHIG
+
+ Name | Donovan
+ ------|-------
+ Contact | donovanhide@gmail.com
+ Description | Another possibility for your list
+ List of nodes | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
+
