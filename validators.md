@@ -81,6 +81,11 @@ Contact | scott@sparrowai.com
 Slack | scottc
 NodeID | GCCW4H2DKAC7YYW62H3ZBDRRE5KXRLYLI4T5QOSO6EAMUOE37ICSKKRJ
 
+Name | SnT.Lux
+-----|------------
+Description | University of Luxembourg Stellar node
+Contact | http://wwwen.uni.lu/snt/research/sedan
+NodeID | GCDLFPQ76D6YUSCUECLKI3AFEVXFWVRY2RZH2YQNYII35FDECWUGV24T
 
 ----
 Seem Down
