@@ -26,6 +26,11 @@ If you require multiple signers, you should also ensure that you do not require 
 If you issue your own assets, you should usually ensure that they can be revoked using the [“authorization revocable” flag on the account](concepts/accounts.md#flags). This allows you to effectively freeze your assets in someone else’s account in case of theft or in other extenuating circumstances.
 
 
+## Perform compliance checks
+
+Stellar’s core protocol limits itself to being a simple and verifiable means for exchanging assets. If you are a financial institution or are making large transactions, you should also perform <abbr title="Know Your Customer">KYC</abbr> and any related regulatory compliance checks. You can find more information in our [compliance protocol guide](compliance-protocol.md) or use the [Stellar Bridge Server](https://github.com/stellar/bridge-server) to simplify the process.
+
+
 ## What if an account’s keys are compromised?
 
 Because Stellar’s security is based around public key encryption, it’s critical that an account’s secret seed is not shared. Anyone who has access to the seed effectively has control of the account. However, if someone learns your account’s seed or you accidentally share it with someone who shouldn’t know it, you can remove its ability to control the account with the following steps:
