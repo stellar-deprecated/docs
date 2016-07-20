@@ -55,7 +55,4 @@ Other general best practices for server security: don’t use standard ports for
 
 ## Keep Up to Date with Security Patches
 
-Signing of releases from Stellar.org?
-Any kind of feed for releases?
-Watch the forums?
-????
+Make sure that you’re using the most secure software available by keeping up-to-date with the latest releases. Stellar.org publishes release announcements on a mailing list you can subscribe to at https://www.freelists.org/list/sdf-releases.
