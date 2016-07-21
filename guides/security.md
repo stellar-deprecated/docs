@@ -5,6 +5,13 @@ title: Security
 You’ll trade assets that are very valuable with Stellar, so security is important. The following guidelines can help keep your Stellar integration secure.
 
 
+## Built-in security
+
+Stellar uses industry-standard public-key cryptography tools and techniques, which means the code is well tested and well understood. All transactions on the network are public, which means the movement of funds can always be audited. Each transaction is signed by whomever sent it using the [Ed25519 algorithm](https://ed25519.cr.yp.to), which cryptographically proves that the sender was authorized to make the transaction.
+
+While all transactions are public, banks using Stellar to exchange funds on behalf of individual account holders can keep information about the individuals sending and receiving it private by storing encrypted or unique identifiers in the transaction’s memo field. This allows banks to meet regulatory compliance requirements and keep transaction history verifiable while still keeping privileged information secure. 
+
+
 ## Secure offline accounts
 
 One of the simplest methods for securing an account is keeping its secret seed stored offline—it could be on a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
