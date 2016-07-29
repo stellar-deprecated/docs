@@ -2,19 +2,57 @@
 title: Issuing Assets
 ---
 
-While you can always trade Lumens, the built-in, native currency of the Stellar network, you can also use Stellar to trade any sort of asset, such as US dollars, bitcoins, stocks, special coupons, or any token of value that you can think of.
+One of Stellar’s most powerful features is the ability to trade any kind of asset, like US dollars, Nigerian naira, bitcoins, special coupons, or just about anything you like.
 
-At the end of the day, every asset (except Lumens, which are treated specially) is really just a credit from an particular account on the Stellar network. You can also think of an asset like an IOU. When you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *from a particular account.* That account could be a large financial instition, like Chase Bank, or it could be your best friend. More people will probably trust assets from Chase Bank, though!
+This works in Stellar because an asset is really just a credit from a particular account. When you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *from a particular account.* Often, that account will be a large bank, but if your neighbor had an orange tree, they might issue orange assets that you could trade with other people.
 
-Assets in Stellar are represented by a combined *asset code* and *asset issuer*. The *code* identifies the type of currency, like `USD`. It can be any sequence of up to 12 letters and numbers, but codes of 4 or fewer characters are encouraged. Codes are case-sensitive, so `usd` is different from `USD`. Most of the time, you should stick to all uppercase to keep it simple.
+Every asset type (except Lumens) is defined by two properties:
 
-The asset’s `issuer` is the ID of the account that the asset was issued by, such as the account for Chase Bank.
+- `asset_code`: a short identifier of 1–12 letters or numbers, such as `USD`, or `EUR`. It can be anything you like, even `AstroDollars`.
+- `asset_issuer`: the ID of the account that issues the asset.
 
-Because an asset simply represents a credit or IOU from an account, you don’t actually need to do anything to *issue* the asset. You simply pay it to someone else using the `payment` operation. If your asset represents some other store of value (like USD, EUR or even shares of a goat), it’s up to you to keep track of how much you can safely pay out.[^issuing-accounts]
+## Creating a New Asset Type
 
-## Trustlines
+To issue or create a new type of asset, all you need to do is choose a code. It can be any combination of up to 12 letters or numbers, but you should use the appropriate [ISO 4217 code][ISO 4217]  or [ISIN] for national currencies or securities. Once you’ve chosen a code, you can begin paying people using your asset code and account ID instead of Lumens. You don’t need to do anything to declare your asset on the network.
 
-You can’t pay your own custom asset to just anyone, though. Because anyone can issue an asset, others have to *trust* your asset. After all, you might trust your neighbor to pay you back a few dollars, but maybe not a few thousand dollars. Or, if they aren’t too reliable, you might not trust them to pay you back at all. In the same way, you can trust the issuer of asset up to any amount that you like. You might trust Chase Bank’s account for a million USD, but only trust your friend’s account for a hundred.
+However, other people can’t receive your asset until they’ve chosen to trust it. Because a Stellar asset is really a credit, you should trust that the issuer can redeem that credit if necessary later on. You might not want to trust your neighbor to issue orange assets if they don’t even have an orange tree, for example.
+
+An account can create a *trustline,* or a declaration that it trusts a particular asset, using the [change trust operation](concepts/list-of-operations.md#change-trust). A trustline can also be limited to a particular amount. If your orange-growing neighbor only has one tree, you might not want to trust them for more than about 2000 oranges. *Note: each trustline an account sets up slightly increases its minimum balance. For more details, see the [fees guide](concepts/fees.html#minimum-balance).*
+
+Once you’ve chosen an asset code and someone else has created a trustline for your asset, you’re free to start making payment operations to them using your asset. If someone you want to pay doesn’t trust your asset, you might also be able to use [distributed exchange](concepts/exchange.md).
 
 
-[^issuing-accounts]: One technique you can use to simplify accounting for how much of an asset you can create is to keep an account that issues an asset separate from the account you use to transact with others. The “issuing” account issues the asset by paying a fixed amount to the transacting account, which is free to send and receive that asset at will. The issuing account can issue the asset when more of the underlying value (like actual dollar bills) is on hand and the accounts involved in public transactions never have to worry about how much can be created. 
+## Other Considerations
+
+Once you begin issuing your own assets, there are few other practices you might want to follow.
+
+### Specialized Issuing Accounts
+
+In the simplest situations, you can issue assets from your everyday Stellar account. However, if you operate a financial institution or a business, you should keep a separate account account specifically for issuing assets. Why?
+
+- Easier tracking: because an asset represents a credit, it disappears when it is paid back to the account that issued it. To better track and control of the amount of your asset in circulation, pay a fixed amount of the asset from the issuing account to the working account that you use for normal transactions.
+
+  The issuing account can issue the asset when more of the underlying value (like actual oranges or dollar bills) is on hand and the accounts involved in public transactions never have to worry about how much is available outside Stellar.
+
+- Keeping trust simple: as your usage of Stellar grows, you might consider having multiple accounts for a variety of reasons, such as making transactions at high rates. Keeping a canonical issuing account makes it easier for others to know which account to trust.
+
+
+### Requiring or Revoking Authorization
+
+Accounts have [several flags](concepts/accounts.md#flags) related to issuing assets. You’ll almost always want to make sure your issuing account has the [`AUTHORIZATION REVOCABLE` flag set](concepts/assets.md#revoking-access). This allows you to freeze your assets in another account.
+
+If your asset is special purpose or you’d like to control who can be paid with it, use the [`AUTHORIZATION REQUIRED` flag](concepts/assets.md#controlling-asset-holders), which requires that the issuing account also approves a trustline before the receiving account is allowed to be paid with the asset.
+
+
+### Check Trust Before Paying
+
+Because every transaction comes with a small fee, you might want to check to ensure an account has a trustline and can receive your asset before sending a payment. If an account has a trustline, it will be listed in the accounts `balances` (even if the balance is `0`).
+
+
+### More About Assets
+
+Read more about the details of assets in our [assets concept document](concepts/assets.md)
+
+
+[ISO 4217]: https://en.wikipedia.org/wiki/ISO_4217
+[ISIN]: https://en.wikipedia.org/wiki/International_Securities_Identification_Number
