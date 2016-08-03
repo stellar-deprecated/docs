@@ -39,7 +39,7 @@ In the simplest situations, you can issue assets from your everyday Stellar acco
 
 ### Requiring or Revoking Authorization
 
-Accounts have [several flags](concepts/accounts.md#flags) related to issuing assets. You might want to make sure your issuing account has the [`AUTHORIZATION REVOCABLE` flag set](concepts/assets.md#revoking-access). This allows you to freeze your assets in another account.
+Accounts have [several flags](concepts/accounts.md#flags) related to issuing assets. Setting the [`AUTHORIZATION REVOCABLE` flag](concepts/assets.md#revoking-access) allows you to freeze assets you issued in case of theft or other special circumstances. This can be useful for national currencies, but is not always applicable to other kinds of assets.
 
 If your asset is special purpose or you’d like to control who can be paid with it, use the [`AUTHORIZATION REQUIRED` flag](concepts/assets.md#controlling-asset-holders), which requires that the issuing account also approves a trustline before the receiving account is allowed to be paid with the asset.
 
