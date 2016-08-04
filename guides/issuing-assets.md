@@ -21,6 +21,66 @@ An account can create a *trustline,* or a declaration that it trusts a particula
 
 Once you’ve chosen an asset code and someone else has created a trustline for your asset, you’re free to start making payment operations to them using your asset. If someone you want to pay doesn’t trust your asset, you might also be able to use the [distributed exchange](concepts/exchange.md).
 
+### Try it Out
+
+Sending and receiving custom assets is very similar to [sending and receiving lumens](get-started/transactions.md#building-a-transaction). Here’s a simple example:
+
+<code-example name="Send Custom Assets">
+
+```js
+var StellarSdk = require('stellar-sdk');
+var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+
+// Keys for accounts to issue and receive the new asset
+var issuingKeys = StellarSdk.Keypair
+  .fromSeed('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
+var receivingKeys = StellarSdk.Keypair
+  .fromSeed('SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D');
+
+// Create an object to represent the new asset
+var astroDollar = new StellarSdk.Asset('AstroDollar', issuingKeys.accountId());
+
+// First, the receiving account must trust the asset
+server.loadAccount(receivingKeys.accountId())
+  .then(function(receiver) {
+    var transaction = new StellarSdk.TransactionBuilder(receiver)
+      // The `changeTrust` operation creates (or alters) a trustline
+      // The `limit` parameter below is optional
+      .addOperation(StellarSdk.Operation.changeTrust({
+        asset: astroDollar,
+        limit: "1000"
+      }))
+      .build();
+    transaction.sign(receivingKeys);
+    return server.submitTransaction(transaction);
+  })
+
+  // Second, the issuing account actually sends a payment using the asset
+  .then(function() {
+    return server.loadAccount(issuingKeys.accountId())
+  })
+  .then(function(issuer) {
+    var transaction = new StellarSdk.TransactionBuilder(issuer)
+      .addOperation(StellarSdk.Operation.payment({
+        destination: receivingKeys.accountId(),
+        asset: astroDollar,
+        amount: "10"
+      }))
+      .build();
+    transaction.sign(issuingKeys);
+    return server.submitTransaction(transaction);
+  })
+  .catch(function(error) {
+    console.error('Error!', error);
+  });
+```
+
+```java
+TODO: JAVA EXAMPLE
+```
+
+</code-example>
+
 
 ## Other Considerations
 
