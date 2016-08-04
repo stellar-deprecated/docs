@@ -49,9 +49,9 @@ If your asset is special purpose or you’d like to control who can be paid with
 Because every transaction comes with a small fee, you might want to check to ensure an account has a trustline and can receive your asset before sending a payment. If an account has a trustline, it will be listed in the accounts `balances` (even if the balance is `0`).
 
 
-### More About Assets
+## More About Assets
 
-Read more about the details of assets in our [assets concept document](concepts/assets.md)
+Now that you have a basic understanding of custom assets, get familiar with the technical details in our [assets concept document](concepts/assets.md).
 
 
 [ISO 4217]: https://en.wikipedia.org/wiki/ISO_4217
