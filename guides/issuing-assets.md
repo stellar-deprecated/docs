@@ -76,7 +76,34 @@ server.loadAccount(receivingKeys.accountId())
 ```
 
 ```java
-TODO: JAVA EXAMPLE
+Server server = new Server("https://horizon-testnet.stellar.org");
+
+// Keys for accounts to issue and receive the new asset
+KeyPair issuingKeys = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
+KeyPair receivingKeys = KeyPair.fromSecretSeed("SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D");
+
+// Create an object to represent the new asset
+Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuingKeys);
+
+// First, the receiving account must trust the asset
+AccountResponse receiving = server.accounts().account(receivingKeys);
+Transaction allowAstroDollars = new Transaction.Builder(receiving)
+  .addOperation(
+    // The `ChangeTrust` operation creates (or alters) a trustline
+    // The second parameter limits the amount the account can hold
+    new ChangeTrustOperation.Builder(astroDollar, "1000").build())
+  .build();
+allowAstroDollars.sign(receivingKeys);
+server.submitTransaction(allowAstroDollars);
+
+// Second, the issuing account actually sends a payment using the asset
+AccountResponse issuing = server.accounts().account(issuingKeys);
+Transaction sendAstroDollars = new Transaction.Builder(issuing)
+  .addOperation(
+    new PaymentOperation.Builder(receivingKeys, astroDollar, "10").build())
+  .build();
+sendAstroDollars.sign(issuingKeys);
+server.submitTransaction(sendAstroDollars);
 ```
 
 </code-example>
