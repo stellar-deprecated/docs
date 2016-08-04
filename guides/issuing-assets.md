@@ -142,7 +142,7 @@ server.submitTransaction(sendAstroDollars);
 
 ## Other Considerations
 
-Once you begin issuing your own assets, there are few other practices you might want to follow.
+Once you begin issuing your own assets, there are a few other practices you might want to follow.
 
 ### Specialized Issuing Accounts
 
