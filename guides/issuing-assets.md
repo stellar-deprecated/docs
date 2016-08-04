@@ -11,6 +11,35 @@ Every asset type (except lumens) is defined by two properties:
 - `asset_code`: a short identifier of 1–12 letters or numbers, such as `USD`, or `EUR`. It can be anything you like, even `AstroDollars`.
 - `asset_issuer`: the ID of the account that issues the asset.
 
+In the Stellar SDK, assets are represented with the `Asset` class:
+
+<code-example name="Representing Assets">
+
+```js
+var astroDollar = new StellarSdk.Asset(
+  'AstroDollar', 'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF');
+```
+
+```java
+KeyPair issuer = StellarSdk.Keypair.fromAccountId(
+  "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
+Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
+```
+
+```json
+// Wherever assets are used in Horizon, they use the following JSON structure:
+{
+  "asset_code": "AstroDollar",
+  "asset_issuer": "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF",
+  // `asset_type` is used to determine how asset data is stored.
+  // It can be `native` (lumens), `credit_alphanum4`, or `credit_alphanum12`.
+  "asset_type": "credit_alphanum12"
+}
+```
+
+</code-example>
+
+
 ## Creating a New Asset Type
 
 To issue or create a new type of asset, all you need to do is choose a code. It can be any combination of up to 12 letters or numbers, but you should use the appropriate [ISO 4217 code][ISO 4217]  or [ISIN] for national currencies or securities. Once you’ve chosen a code, you can begin paying people using that asset code. You don’t need to do anything to declare your asset on the network.
@@ -48,7 +77,7 @@ server.loadAccount(receivingKeys.accountId())
       // The `limit` parameter below is optional
       .addOperation(StellarSdk.Operation.changeTrust({
         asset: astroDollar,
-        limit: "1000"
+        limit: '1000'
       }))
       .build();
     transaction.sign(receivingKeys);
@@ -64,7 +93,7 @@ server.loadAccount(receivingKeys.accountId())
       .addOperation(StellarSdk.Operation.payment({
         destination: receivingKeys.accountId(),
         asset: astroDollar,
-        amount: "10"
+        amount: '10'
       }))
       .build();
     transaction.sign(issuingKeys);
@@ -132,10 +161,82 @@ Accounts have [several flags](concepts/accounts.md#flags) related to issuing ass
 
 If your asset is special purpose or you’d like to control who can be paid with it, use the [`AUTHORIZATION REQUIRED` flag](concepts/assets.md#controlling-asset-holders), which requires that the issuing account also approves a trustline before the receiving account is allowed to be paid with the asset.
 
+The following example sets authorization to be both required and revocable:
+
+<code-example name="Asset Authorization">
+
+```js
+var flags = StellarSdk.xdr.AccountFlags;
+var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
+  .addOperation(StellarSdk.Operation.setOptions({
+    setFlags: flags.authRevocableFlag().value | flags.authRequiredFlag().value
+  }))
+  .build();
+transaction.sign(issuingKeys);
+server.submitTransaction(transaction);
+```
+
+```java
+Transaction setAuthorization = new Transaction.Builder(issuingAccount)
+  .addOperation(new SetOptionsOperation.Builder()
+    // `1` indicates auth required, `2` indicates auth revocable
+    .setSetFlags(1 | 2)
+    .build())
+  .build();
+setAuthorization.sign(issuingKeys);
+server.submitTransaction(setAuthorization);
+```
+
+</code-example>
+
 
 ### Check Trust Before Paying
 
 Because every transaction comes with a small fee, you might want to check to ensure an account has a trustline and can receive your asset before sending a payment. If an account has a trustline, it will be listed in the accounts `balances` (even if the balance is `0`).
+
+<code-example name="Checking Trust">
+
+```js
+var astroDollarCode = 'AstroDollar';
+var astroDollarIssuer =
+  'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF';
+
+var accountId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
+server.accounts().accountId(accountId).call().then(function(account) {
+  var trusted = account.balances.some(function(balance) {
+    return balance.asset_code === astroDollarCode &&
+           balance.asset_issuer === astroDollarIssuer;
+  });
+
+  console.log(trusted ? 'Trusted :)' : 'Not trusted :(');
+});
+```
+
+```java
+String astroDollarCode = "AstroDollar";
+String astroDollarIssuer =
+  "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF";
+
+// Load the account you want to check
+KeyPair keysToCheck = KeyPair.fromAccountId(
+  "GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
+AccountResponse accountToCheck = server.accounts().account(keysToCheck);
+
+// See if any balances are for the asset code and issuer we're looking for
+boolean trusted = false;
+for (AccountResponse.Balance balance : accountToCheck.getBalances()) {
+  if (!balance.getAssetType().equals("native") &&
+      balance.getAssetCode().equals(astroDollarCode) &&
+      balance.getAssetIssuer().equals(astroDollarIssuer)) {
+    trusted = true;
+    break;
+  }
+}
+
+System.out.println(trusted ? "Trusted :)" : "Not trusted :(");
+```
+
+</code-example>
 
 
 ## More About Assets
