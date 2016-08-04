@@ -79,8 +79,10 @@ server.loadAccount(receivingKeys.accountId())
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 // Keys for accounts to issue and receive the new asset
-KeyPair issuingKeys = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
-KeyPair receivingKeys = KeyPair.fromSecretSeed("SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D");
+KeyPair issuingKeys = KeyPair
+  .fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
+KeyPair receivingKeys = KeyPair
+  .fromSecretSeed("SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D");
 
 // Create an object to represent the new asset
 Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuingKeys);
