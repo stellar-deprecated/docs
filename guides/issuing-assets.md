@@ -4,7 +4,7 @@ title: Issuing Assets
 
 One of Stellar’s most powerful features is the ability to trade any kind of asset, like US dollars, Nigerian naira, bitcoins, special coupons, or just about anything you like.
 
-This works in Stellar because an asset is really just a credit from a particular account. When you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *backed by a particular account.* Often, that account will be a bank, but if your neighbor had an banana plant, they might issue banana assets that you could trade with other people.
+This works in Stellar because an asset is really just a credit from a particular account. When you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *credited from a particular account.* Often, that account will be a bank, but if your neighbor had an banana plant, they might issue banana assets that you could trade with other people.
 
 Every asset type (except lumens) is defined by two properties:
 
@@ -40,9 +40,9 @@ Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
 </code-example>
 
 
-## Creating a New Asset Type
+## Issuing a New Asset Type
 
-To issue or create a new type of asset, all you need to do is choose a code. It can be any combination of up to 12 letters or numbers, but you should use the appropriate [ISO 4217 code][ISO 4217] (e.g. `USD` for US dollars)  or [ISIN] for national currencies or securities. Once you’ve chosen a code, you can begin paying people using that asset code. You don’t need to do anything to declare your asset on the network.
+To issue a new type of asset, all you need to do is choose a code. It can be any combination of up to 12 letters or numbers, but you should use the appropriate [ISO 4217 code][ISO 4217] (e.g. `USD` for US dollars)  or [ISIN] for national currencies or securities. Once you’ve chosen a code, you can begin paying people using that asset code. You don’t need to do anything to declare your asset on the network.
 
 However, other people can’t receive your asset until they’ve chosen to trust it. Because a Stellar asset is really a credit, you should trust that the issuer can redeem that credit if necessary later on. You might not want to trust your neighbor to issue banana assets if they don’t even have an banana plant, for example.
 
