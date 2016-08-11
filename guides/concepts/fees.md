@@ -18,7 +18,7 @@ The fee for a transaction is the number of operations the transaction contains m
 ([# of operations] * [base fee])
 ```
 
-For example, a transaction that allows trust on an account’s trustline and sends a payment to it (2 operations) would have a fee of 200 stroops, or `2 × base fee`.
+For example, a transaction that allows trust on an account’s trustline and sends a payment to it (2 operations) would have a fee of 200 stroops, or $$2 * base fee$$.
 
 The fee is deducted from the transaction’s [source account](./transactions.md#source-account), regardless of what accounts are involved in each operation.
 
@@ -42,14 +42,14 @@ The minimum balance is calculated using the **base reserve,** which is **10 XLM*
 (2 + [# of entries]) * [base reserve]
 ```
 
-The minimum balance for an basic account is **2 × base reserve**. Each additional entry costs the base reserve. Entries include:
+The minimum balance for an basic account is $$2 * base reserve$$. Each additional entry costs the base reserve. Entries include:
 
 - Trustlines
 - Offers
 - Signers
 - Data entries
 
-For example, an account with 1 trustline and 2 offers would have a minimum balance of 50 XLM, or `(2 + 3) × base reserve`.
+For example, an account with 1 trustline and 2 offers would have a minimum balance of $$(2 + 3) * base reserve = 50 XLM$$.
 
 
 ## Fee Changes
