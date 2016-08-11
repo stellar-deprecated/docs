@@ -44,9 +44,9 @@ Every ledger header has the following fields:
 
 - **Ledger sequence**: The sequence number of this ledger.
 
-- **Total coins**: Total number of lumens in existence. This is denominated in stroops, 1/10,000,000th of a lumen. (Stroops are the smallest divisible unit of a lumen.)
+- **Total coins**: Total number of lumens in existence.
 
-- **Fee pool**: Number of lumens that have been paid in fees. This number will be added to the inflation pool and reset to 0 the next time inflation runs. The fee pool is denominated in stroops, 1/10,000,000th of a lumen. (Stroops are the smallest divisible unit of a lumen.)
+- **Fee pool**: Number of lumens that have been paid in fees. This number will be added to the inflation pool and reset to 0 the next time inflation runs. Note this is denominated in lumens, even though a transaction’s [`fee`](./transactions.md#fee) field is in stroops.
 
 - **Inflation sequence**: Number of times inflation has been run.
 
@@ -54,7 +54,7 @@ Every ledger header has the following fields:
 
 - **Maximum Number of Transactions**: The maximum number of [transactions](./transactions.md) the validators have agreed to process in a given ledger. If more transactions are submitted than this number, the validators will include those with the highest fees.
 
-- **Base fee**: The [fee](./fees.md) the network charges per [operation](./operations.md) in a [transaction](./transactions.md).
+- **Base fee**: The [fee](./fees.md) the network charges per [operation](./operations.md) in a [transaction](./transactions.md). This field is in stroops, which are 1/10,000,000th of a lumen.
 - **Base reserve**: The [reserve](./fees.md) the network uses when calculating an account's minimum balance.
 - **Skip list**: Hashes of ledgers in the past. Allows you to jump back in time in the ledger chain without walking back ledger by ledger. There are 4 ledger hashes stored in the skip list. Each slot contains the oldest ledger that is mod of either 50  5000  50000 or 500000 depending on index skipList[0] mod(50), skipList[1] mod(5000), etc.
 
