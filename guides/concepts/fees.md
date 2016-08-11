@@ -2,44 +2,50 @@
 title: Fees
 ---
 
-Transaction fees are charged per transaction, to the account attached to the transaction.
+The Stellar network imposes small fees on transactions and minimum balances on accounts in order to prevent people from overtaxing the network and to aid in prioritization.
 
-It’s the responsibility of the originator of the transaction to craft a transaction with an appropriate fee. 
+There are two fundamental values used to calculate fees:
 
-The entire Stellar network decides during consensus what the minimum **base fee** should be. 
-This base fee is per operation. Therefore, the total minimum fee for a given transaction is simply the base fee multiplied by the number of operations that transaction has.
+1. The **base fee** (100 stroops) is used in transaction fees.
+2. The **base reserve** (10 XLM) is used in minimum account balances.
 
-Currently the base fee is set to 100 stroops (0.00001 XLM).
 
-## Surge pricing
-Each Stellar node by default limits the number of transactions that it will include in its nominated transaction set at ledger close. (If the network decides on a larger transaction set, a node will still apply it.) 
+## Transaction Fee
 
-**Surge pricing** allows nodes to prioritize transactions. Each node can process a limited number of transactions in a given ledger—let's say their limit is a little above the number N. In order not to be overwhelmed, each node chooses the N transactions with the highest fees for a particular ledger. The node nominates these transactions to be in the transaction set for that ledger close. 
+The fee for a transaction is the number of operations the transaction contains multiplied by the **base fee**, which is **100 stroops** (0.00001 XLM). The fee is deducted from the transaction’s [source account](../transaction#source-account), regardless of what accounts are involved in each operation.
 
-Transactions that don't make the cut are held for a future ledger, when there are fewer transactions trying to be processed and the low-fee transactions can make it in. 
+For example, a transaction that allows trust on an account’s trustline and sends a payment to it (2 operations) would have a fee of 200 stroops, or `2 × base fee`.
+
+
+### Surge Pricing
+
+Each Stellar node usually limits the number of transactions in its nominated transaction set at ledger close. (If the network decides on a larger transaction set, a node will still apply it.) 
+
+*Surge pricing* allows nodes to prioritize transactions. When too many transactions are submitted for a particlar ledger, each node chooses the transactions with the highest fees to nominate for the transaction set. Transactions that don't make the cut are held for a future ledger, when fewer transactions are being processed.
 
 See [transaction life cycle](./transactions.md#life-cycle) for more information.
 
-## Minimum balance
 
-In order to prevent unbounded account creation, accounts must maintain a minimum lumen balance. The network will reject transactions if applying the transaction would reduce an account's balance to less than its minimum balance—e.g., via fees or balance transfer.
+## Minimum Account Balance
 
-The minimum balance is determined by the number of entries attached to an account.
+All Stellar accounts must maintain a minimum balance of lumens. Any transaction that would reduce an account's balance to less than the minimum will be rejected with an `INSUFFICIENT_BALANCE` error.
 
-Initially, an account is a basic account and has no additional entries attached to it.
+The minimum balance is calculated using the **base reserve,** which is **10 XLM,** and the number of *entries* an account holds. Entries include:
 
-Additional entries are:
-* trustlines
-* offers
-* signers
-* data entries
+- Trustlines
+- Offers
+- Signers
+- Data entries
 
-Currently the base reserve amount is set to 100,000,000 stroops (10 XLM) and can evolve via consensus. For more details, see [versioning](./versioning.md).
+The minimum balance for an empty account is **2 × base reserve**. Each additional entry costs the base reserve, so you can calculate the minimum required balance for an account with the following formula:
 
-You can calculate an account's minimum balance using the following formula:
-(2 + number_of_additional_entries)*base_reserve
+```math-formula
+(2 + [# of entries]) * [base reserve]
+```
 
-A basic account therefore needs to maintain a minimum balance of 200,000,000 stroops = 20 XLM.
+For example, an account with 1 trustline and 2 offers would have a minimum balance of 50 XLM, or `(2 + 3) × base reserve`.
 
-An account with 1 trustline and 2 offers would require a minimum balance of (2+3)*100,000,000 = 500,000,000 stroops or 50 lumens.
 
+## Fee Changes
+
+The **base reserve** and **base fee** can change, but should not do so more than once every several years. For the most part, you can think of them as fixed values. When they are changed, the change works by the same consensus process as any transaction. You can look up the current fees by [checking the details of the latest ledger](../../horizon/reference/endpoints/ledgers-single.md).
