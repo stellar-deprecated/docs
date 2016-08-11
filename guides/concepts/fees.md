@@ -6,8 +6,8 @@ The Stellar network imposes small fees on transactions and minimum balances on a
 
 There are two special values used to calculate fees:
 
-1. The **base fee** (100 stroops) is used in transaction fees.
-2. The **base reserve** (10 XLM) is used in minimum account balances.
+1. The **base fee** (currently 100 stroops) is used in transaction fees.
+2. The **base reserve** (currently 10 XLM) is used in minimum account balances.
 
 
 ## Transaction Fee
@@ -23,11 +23,11 @@ For example, a transaction that allows trust on an account’s trustline and sen
 The fee is deducted from the transaction’s [source account](./transactions.md#source-account), regardless of what accounts are involved in each operation.
 
 
-### Surge Pricing
+### Transaction Limits
 
 Each Stellar node usually limits the number of transactions in its nominated transaction set at ledger close. (If the network decides on a larger transaction set, a node will still apply it.) 
 
-*Surge pricing* allows nodes to prioritize transactions. When too many transactions are submitted for a particlar ledger, each node chooses the transactions with the highest fees to nominate for the transaction set. Transactions that don't make the cut are held for a future ledger, when fewer transactions are being processed.
+When too many transactions are submitted for a particlar ledger, each node chooses the transactions with the highest fees to nominate for the transaction set. Transactions that don’t make the cut are held for a future ledger, when there are fewer transactions trying to be processed and the low-fee transactions can make it in.
 
 See [transaction life cycle](./transactions.md#life-cycle) for more information.
 
@@ -54,4 +54,4 @@ For example, an account with 1 trustline and 2 offers would have a minimum balan
 
 ## Fee Changes
 
-The **base reserve** and **base fee** can change, but should not do so more than once every several years. For the most part, you can think of them as fixed values. When they are changed, the change works by the same consensus process as any transaction. You can look up the current fees by [checking the details of the latest ledger](../../horizon/reference/endpoints/ledgers-single.md).
+The **base reserve** and **base fee** can change, but should not do so more than once every several years. For the most part, you can think of them as fixed values. When they are changed, the change works by the same consensus process as any transaction. For more details, see [versioning](https://www.stellar.org/developers/guides/concepts/versioning.html). You can look up the current fees by [checking the details of the latest ledger](../../horizon/reference/endpoints/ledgers-single.md).
