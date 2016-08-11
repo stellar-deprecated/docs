@@ -4,7 +4,7 @@ title: Fees
 
 The Stellar network imposes small fees on transactions and minimum balances on accounts in order to prevent people from overtaxing the network and to aid in prioritization.
 
-There are two fundamental values used to calculate fees:
+There are two special values used to calculate fees:
 
 1. The **base fee** (100 stroops) is used in transaction fees.
 2. The **base reserve** (10 XLM) is used in minimum account balances.
@@ -12,9 +12,15 @@ There are two fundamental values used to calculate fees:
 
 ## Transaction Fee
 
-The fee for a transaction is the number of operations the transaction contains multiplied by the **base fee**, which is **100 stroops** (0.00001 XLM). The fee is deducted from the transaction’s [source account](../transaction#source-account), regardless of what accounts are involved in each operation.
+The fee for a transaction is the number of operations the transaction contains multiplied by the **base fee**, which is **100 stroops** (0.00001 XLM).
+
+```math-formula
+([# of operations] * [base fee])
+```
 
 For example, a transaction that allows trust on an account’s trustline and sends a payment to it (2 operations) would have a fee of 200 stroops, or `2 × base fee`.
+
+The fee is deducted from the transaction’s [source account](./transactions.md#source-account), regardless of what accounts are involved in each operation.
 
 
 ### Surge Pricing
@@ -30,18 +36,18 @@ See [transaction life cycle](./transactions.md#life-cycle) for more information.
 
 All Stellar accounts must maintain a minimum balance of lumens. Any transaction that would reduce an account's balance to less than the minimum will be rejected with an `INSUFFICIENT_BALANCE` error.
 
-The minimum balance is calculated using the **base reserve,** which is **10 XLM,** and the number of *entries* an account holds. Entries include:
+The minimum balance is calculated using the **base reserve,** which is **10 XLM**:
+
+```math-formula
+(2 + [# of entries]) * [base reserve]
+```
+
+The minimum balance for an basic account is **2 × base reserve**. Each additional entry costs the base reserve. Entries include:
 
 - Trustlines
 - Offers
 - Signers
 - Data entries
-
-The minimum balance for an empty account is **2 × base reserve**. Each additional entry costs the base reserve, so you can calculate the minimum required balance for an account with the following formula:
-
-```math-formula
-(2 + [# of entries]) * [base reserve]
-```
 
 For example, an account with 1 trustline and 2 offers would have a minimum balance of 50 XLM, or `(2 + 3) × base reserve`.
 
