@@ -2,7 +2,7 @@
 title: Fees
 ---
 
-The Stellar network imposes small fees on transactions and minimum balances on accounts in order to prevent people from overtaxing the network and to aid in prioritization.
+The Stellar network requires small [fees on transactions](#transaction-fee) and [minimum balances on accounts](#minimum-account-balance) in order to prevent people from overwhelming the network and to aid in prioritization.
 
 There are two special values used to calculate fees:
 
