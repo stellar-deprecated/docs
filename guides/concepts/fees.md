@@ -20,14 +20,12 @@ The fee for a transaction is the number of operations the transaction contains m
 
 For example, a transaction that allows trust on an account’s trustline and sends a payment to it (2 operations) would have a fee of $$2 * [base fee] = 200 stroops$$.
 
-The fee is deducted from the transaction’s [source account](./transactions.md#source-account), regardless of what accounts are involved in each operation.
+Stellar deducts the fee from the transaction’s [source account](./transactions.md#source-account), regardless of what accounts are involved in each operation or who signed the transaction.
 
 
 ### Transaction Limits
 
-Each Stellar node usually limits the number of transactions in its nominated transaction set at ledger close. (If the network decides on a larger transaction set, a node will still apply it.) 
-
-When too many transactions are submitted for a particlar ledger, each node chooses the transactions with the highest fees to nominate for the transaction set. Transactions that don’t make the cut are held for a future ledger, when there are fewer transactions trying to be processed and the low-fee transactions can make it in.
+Each Stellar node usually limits the number of transactions that it will propose to the network when a ledger closes. If too many transactions are submitted, nodes propose the transactions with the highest fees for the ledger’s transaction set. Transactions that aren’t included are held for a future ledger, when fewer transactions are waiting.
 
 See [transaction life cycle](./transactions.md#life-cycle) for more information.
 
