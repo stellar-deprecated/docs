@@ -62,7 +62,7 @@ Each asset amount is encoded as a signed 64-bit integer in the [XDR structures](
 
 The smallest non-zero amount unit is `0.0000001` (one ten-millionth) represented as an integer value of one. The largest amount unit possible is `((2^63)-1)/(10^7)` (derived from max int64 scaled down) which is `922,337,203,685.4775807`.
 
-The numbers are represented as `int64`s because negative amount values exist (e.g. trustlines). Amount values are stored as only signed integers to avoid bugs that arise from mixing signed and unsigned integers.
+The numbers are represented as `int64`s. Amount values are stored as only signed integers to avoid bugs that arise from mixing signed and unsigned integers.
 
 ### Relevance in Horizon and Stellar client libraries
 In Horizon and client side libraries such as `js-stellar-sdk`, the integer encoded value is abstracted away. Many APIs expect amount unit value (the scaled up amount displayed to end users).
