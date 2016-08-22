@@ -31,6 +31,6 @@ This is a small tool, written in Go, for working with stellar-core history archi
 | Platform       | Latest Release                                                                        |
 |----------------|------------------------------------------------------------------------------------------|
 | Mac OSX 64-bit (amd64) | [stellar-archivist-darwin-amd64](https://github.com/stellar/go/releases/download/stellar-archivist-v0.1.0/stellar-archivist-v0.1.0-darwin-amd64.tar.gz)      |
-| Linux 64-bit (amd64)   | [stellar-archivistfederation-linux-amd64](https://github.com/stellar/go/releases/download/stellar-archivist-v0.1.0/stellar-archivist-v0.1.0-linux-amd64.tar.gz)       |
+| Linux 64-bit (amd64)   | [stellar-archivist-linux-amd64](https://github.com/stellar/go/releases/download/stellar-archivist-v0.1.0/stellar-archivist-v0.1.0-linux-amd64.tar.gz)       |
 | Linux 32-bit (arm)   | [stellar-archivist-linux-arm](https://github.com/stellar/go/releases/download/stellar-archivist-v0.1.0/stellar-archivist-v0.1.0-linux-arm.tar.gz)       |
 | Windows 64-bit (amd64) | [stellar-archivist-windows-amd64.exe](https://github.com/stellar/go/releases/download/stellar-archivist-v0.1.0/stellar-archivist-v0.1.0-windows-amd64.tar.gz) |
