@@ -18,9 +18,9 @@ The fee for a transaction is the number of operations the transaction contains m
 ([# of operations] * [base fee])
 ```
 
-For example, a transaction that allows trust on an account’s trustline and sends a payment to it (2 operations) would have a fee of $$2 * [base fee] = 200 stroops$$.
+For example, a transaction that allows trust on an account’s trustline *(operation 1)* and sends a payment to that account *(operation 2)* would have a fee of $$2 * [base fee] = 200 stroops$$.
 
-Stellar deducts the entire fee from the transaction’s [source account](./transactions.md#source-account), regardless of what accounts are involved in each operation or who signed the transaction.
+Stellar deducts the entire fee from the transaction’s [source account](./transactions.md#source-account), regardless of which accounts are involved in each operation or who signed the transaction.
 
 
 ### Transaction Limits
