@@ -248,7 +248,7 @@ Possible errors:
 |CHANGE_TRUST_MALFORMED| -1| The input to this operation is invalid.|
 |CHANGE_TRUST_NO_ISSUER| -2| The issuer of the asset cannot be found.|
 |CHANGE_TRUST_INVALID_LIMIT| -3| This operation would drop the `limit` of this trustline below the amount of the asset the account currently holds.|
-|CHANGE_TRUST_LOW_RESERVE| -4| The account does not have enough lumnes.  For every new trustline added by the account, the minimum reserve of XLM it must hold increases.|
+|CHANGE_TRUST_LOW_RESERVE| -4| The account does not have enough lumens.  For every new trustline added by the account, the minimum reserve of XLM it must hold increases.|
 
 
 
@@ -311,9 +311,9 @@ Possible errors:
 
 
 ## Manage Data
-Allows you to set,modify or delete a Data Entry (name/value pair) that is attached to a particular account. An account can have an arbitrary amount of DataEntries attached to it. Each DataEntry increases the minimum balance needed to be held by the account.  
+Allows you to set,modify or delete a Data Entry (name/value pair) that is attached to a particular account. An account can have an arbitrary amount of DataEntries attached to it. Each DataEntry increases the minimum balance needed to be held by the account.
 
-DataEntries can be used for application specific things. They are not used by the core Stellar protocol. 
+DataEntries can be used for application specific things. They are not used by the core Stellar protocol.
 
 Threshold: medium
 
