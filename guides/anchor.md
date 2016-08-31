@@ -10,7 +10,6 @@ Before continuing, you should be familiar with:
 - [Federation](concepts/federation.md), which allows a single Stellar account to represent multiple people.
 - [Compliance](compliance-protocol.md), if you are subject to any financial regulation.
 
-You may also want to consider [operating your own node on the Stellar network](https://stellar.org/developers/stellar-core/software/admin.html). Doing so makes you less reliant on other providers and makes the whole Stellar network stronger.
 
 ## Account Structure
 
@@ -259,8 +258,8 @@ xyz
 TODO: could/does Stellar operate a compliance server to test against?
 
 
-## What Next
+## Next Steps
 
-- Run Core/horizon
-- Security
+- [Operate your own node on the Stellar network](https://stellar.org/developers/stellar-core/software/admin.html). Doing so makes you less reliant on other providers and makes the whole Stellar network stronger.
+- [Security](security.md)
 - ?
