@@ -41,9 +41,9 @@ There are two simple ways to account for your customers’ funds:
 
 2. Use [federation](concepts/federation.md) and the [`memo`](concepts/transactions.md#memo) field in transactions to send and receive payments on behalf of your customers. In this approach, transactions intended for your customers are all made using your *base account*. The `memo` field of the transaction is used to identify the actual customer a payment is intended for.
 
-    Using a single account requires you to do additional bookkeeping, but means you have fewer keys to manage and more control over accounts. It is a good way to add Stellar features to an existing account system.
+    Using a single account requires you to do additional bookkeeping, but means you have fewer keys to manage and more control over accounts. If you already have existing banking systems, this is the simplest way to integrate Stellar with them.
 
-You can also make your own variations on the above approaches. For this guide, we’ll follow appraoch #2 above.
+You can also create your own variations on the above approaches. **For this guide, we’ll follow appraoch #2—using a single Stellar account to transact on behalf of your customers.**
 
 
 ## Set Up Bridge Server
@@ -66,26 +66,39 @@ Next, [download the latest bridge server](https://github.com/stellar/bridge-serv
 port = 8001
 horizon = "https://horizon-testnet.stellar.org"
 network_passphrase = "Test SDF Network ; September 2015"
+# The API key must be included in all requests to the bridge server.
+# Don't share it with anyone who shouldn't have access to the server.
 api_key = "CHANGE_THIS"
 
+# This describes the assets that can be sent and received.
+# Repeat this section to add support for more asset types.
 [[assets]]
 code="USD"
 issuer="GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"
 
 [database]
 type = "mysql"  # or "postgres" if you created a postgres database
-url = "dbuser:dbpassword@/stellar_bridge?parseTime=true"
+url = "dbuser:dbpassword@/stellar_bridge"
 
 [accounts]
+# The secret seed for your base account, from which payments are made
 base_seed = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
-authorizing_seed = "SBILUHQVXKTLPYXHHBL4IQ7ISJ3AKDTI2ZC56VQ6C2BDMNF463EON65U"
-issuing_account_id = "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"
+# The account ID that receives payments on behalf of your customers. In this,
+# case, it is the same account as `base_seed` above.
 receiving_account_id = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
+# A secret seed that can authorize trustlines for assets you issue. For more,
+# see https://stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders
+authorizing_seed = "SBILUHQVXKTLPYXHHBL4IQ7ISJ3AKDTI2ZC56VQ6C2BDMNF463EON65U"
+# The ID of the account that issues your assets
+issuing_account_id = "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"
 
 [callbacks]
+# The bridge server will send POST requests to these URLs
 receive = "http://localhost:8002/receive"
 error = "http://localhost:8002/error"
 ```
+
+Remember to customize `api_key` and fill in the connection string for the database you just created.
 
 
 ### Send a Payment
