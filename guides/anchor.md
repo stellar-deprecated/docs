@@ -101,6 +101,23 @@ error = "http://localhost:8002/error"
 Remember to customize `api_key` and fill in the connection string for the database you just created.
 
 
+### Start the Server
+
+Before starting the server the first time, the tables in your database need to be created. Running bridge server with the `--migrate-db` argument will make sure everything is set to go:
+
+```bash
+./bridge --migrate-db
+```
+
+Each time you update the bridge server to a new version, you should run this command again. It will upgrade your database in case anything to be changed.
+
+Now that your database is fully set up, you can start the bridge server by running:
+
+```bash
+./bridge
+```
+
+
 ### Send a Payment
 
 The bridge server takes commands in the form of HTTP requests, so we can test that it can submit a payment by sending a `POST` request to `/payments`. Try sending 1 USD to the account `GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB`. (Remember that the receiving account will need to trust the asset. See [issuing assets](issuing-assets.md) for more details.)
