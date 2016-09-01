@@ -126,11 +126,13 @@ The bridge server takes commands in the form of HTTP requests, so we can test th
 
 ```bash
 curl -X POST -d \
-  "amount=1&\
-  asset_code=USD&\
-  asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
-  destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB" \
-  http://localhost:8001/payment
+"amount=1&\
+asset_code=USD&\
+asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
+destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB&\
+source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ&\
+apiKey=[YOUR API KEY]" \
+http://localhost:8001/payment
 ```
 
 ```js
