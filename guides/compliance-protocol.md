@@ -30,7 +30,7 @@ Name | Description
 sender | The stellar address of the customer that is initiating the send.
 need_info | If the caller needs the recipient's AML info in order to send the payment.
 tx |  The transaction that the sender would like to send in XDR format. This transaction is unsigned.
-memo | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention]() and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
+memo | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention](https://github.com/stellar/stellar-protocol/issues/28) and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
 
 **sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html).
 
@@ -42,7 +42,7 @@ Name | Description
 ----|-----
 info_status | If this FI is willing to share AML information or not. {ok, denied, pending}
 tx_status | If this FI is willing to accept this transaction. {ok, denied, pending}
-dest_info | *(only present if info_status is ok)* JSON of the recipient's AML information. in the Stellar memo convention
+dest_info | *(only present if info_status is ok)* JSON of the recipient's AML information. in the [Stellar memo convention](https://github.com/stellar/stellar-protocol/issues/28).
 pending | *(only present if info_status or tx_status is pending)* Estimated number of seconds till the sender can check back for a change in status. The sender should just resubmit this request after the given number of seconds.
 
 *Reply Example*
@@ -135,7 +135,7 @@ Example data JSON
  - If none of the above criteria are met, BankB should ask Bogart if he wants to reveal this info to BankA and accept this payment. In this case BankB will return `info_status: "pending"` in the Auth request reply to give Bogart time to accept the payment or not.
  - If BankB determines it can share the AML info with BankA, it uses BankA's ENCRYPTION_KEY to encrypt Bogart's info and sends this encrypted dest_info back with the reply.
 
-See [Auth Request](#Auth Request) for potential return values. 
+See [Auth Server Reply](#reply) for potential return values. 
 
 **5) BankA handles the reply from the Auth request**
 
