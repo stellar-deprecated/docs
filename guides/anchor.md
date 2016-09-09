@@ -269,7 +269,7 @@ At a minimum, your database should have a table with a column identifying the na
 | 4  | Steintór   | Jákupsson | steintor_jakupsson  |
 | 5  | Sneha      | Kapoor    | sneha_kapoor        |
 
-Where Tunde’s Stellar address would be `tunde_adebayo*your-domain.com`.
+Where Tunde’s Stellar address would be `tunde_adebayo*your_org.com`.
 
 
 ### Download and Configure Federation Server
@@ -284,13 +284,13 @@ type = "mysql"
 url = "dbuser:dbpassword:@/internal_accounts"
 
 [queries]
-federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'your-domain.com'"
+federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'your_org.com'"
 reverse-federation = "SELECT friendly_id, '' as domain FROM accounts WHERE ? = ''"
 ```
 
-Make sure to update the database connection information with the proper credentials and name for your database. Also update the value of `domain` in the `federation` query to match your actual domain instead of `your-domain.com`.
+Make sure to update the database connection information with the proper credentials and name for your database. Also update the value of `domain` in the `federation` query to match your actual domain instead of `your_org.com`.
 
-The `federation` query is a SQL query that should return the columns `id`, `memo`, and `memo_type` when supplied with the two parts of a Stellar address, e.g. `tunde_adeboyo` and `your-domain.com` for the address `tunde_adebayo*your-domain.com`.
+The `federation` query is a SQL query that should return the columns `id`, `memo`, and `memo_type` when supplied with the two parts of a Stellar address, e.g. `tunde_adeboyo` and `your_org.com` for the address `tunde_adebayo*your_org.com`.
 
 Since we are mapping all addresses to our base account, we simply return the base account ID for `id`. The `memo` and `memo_type` columns indicate how a sender should structure their transaction’s `memo`. As in the first section, we want the account’s `friendly_id` as a text memo.
 
@@ -304,7 +304,7 @@ Explain Stellar.toml.
 At this point, your `Stellar.toml` file only needs to list one thing: the URL to your federation server.
 
 ```toml
-FEDERATION_SERVER = "https://federation.your-domain.com/federation"
+FEDERATION_SERVER = "https://federation.your_org.com/federation"
 ```
 
 ### Send a Federation request
@@ -314,7 +314,7 @@ xyz
 <code-example name="Request a Federation Info">
 
 ```bash
-curl "https://federation.your-domain.com/federation?q=tunde_adebayo*your-domain.com&type=name"
+curl "https://federation.your_org.com/federation?q=tunde_adebayo*your_org.com&type=name"
 ```
 
 ```js
