@@ -292,29 +292,40 @@ Make sure to update the database connection information with the proper credenti
 
 The `federation` query is a SQL query that should return the columns `id`, `memo`, and `memo_type` when supplied with the two parts of a Stellar address, e.g. `tunde_adeboyo` and `your_org.com` for the address `tunde_adebayo*your_org.com`.
 
-Since we are mapping all addresses to our base account, we simply return the base account ID for `id`. The `memo` and `memo_type` columns indicate how a sender should structure their transaction’s `memo`. As in the first section, we want the account’s `friendly_id` as a text memo.
+Since we are mapping all addresses to our base account, we simply return the base account ID for `id`. As in the first section, we want the account’s `friendly_id` as a text memo.
 
 The `reverse-federation` query is required, but because all customer accounts map to a single Stellar account in our design, we need to make sure this query always returns no rows.
+
+Now you can just run the server with no additional arguments. (Unlike the bridge server, there’s there no custo database to migrate.)
+
+```bash
+./federation
+```
 
 
 ### Update Stellar.toml
 
-Explain Stellar.toml.
+The [`stellar.toml` file](concepts/stellar-toml.md) is publicly available file where others can find information about your Stellar integration. It should always be stored at:
 
-At this point, your `Stellar.toml` file only needs to list one thing: the URL to your federation server.
+`https://www.[YOUR DOMAIN]/.well-known/stellar.toml`
+
+It can list all sorts of properties, but the one we care about know is the URL for your federation server. Your `stellar.toml` file should look something like:
 
 ```toml
-FEDERATION_SERVER = "https://federation.your_org.com/federation"
+FEDERATION_SERVER = "https://www.your_org.com:8002/federation"
 ```
+
+The actual URL for your federation server can be anything you like—it can be at your `www` subdomain but on a different path, it can be at a different port, or it can be on a different domain entirely.
+
 
 ### Send a Federation request
 
-xyz
+Test out your federation server by sending an HTTP request:
 
 <code-example name="Request a Federation Info">
 
 ```bash
-curl "https://federation.your_org.com/federation?q=tunde_adebayo*your_org.com&type=name"
+curl "https://www.your_org.com:8002/federation?q=tunde_adebayo*your_org.com&type=name"
 ```
 
 ```js
@@ -326,6 +337,17 @@ curl "https://federation.your_org.com/federation?q=tunde_adebayo*your_org.com&ty
 ```
 
 </code-example>
+
+You should get a response like:
+
+```json
+{
+  "stellar_address": "tunde_adebayo*your_org.com",
+  "account_id": "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU",
+  "memo_type": "text",
+  "memo": "tunde_adebayo"
+}
+```
 
 
 ## Compliance
