@@ -9,7 +9,7 @@ Using the Stellar network, you can build mobile wallets, banking tools, smart de
 
 **Most applications interact with the Stellar network through [Horizon](https://www.stellar.org/developers/horizon/reference/),** a RESTful HTTP API server. Horizon gives you a straightforward way to submit transactions, check accounts, and subscribe to events. Because it’s just HTTP, you can communicate with Horizon using your web browser, simple command line tools like cURL, or the Stellar SDK for your favorite programming language.
 
-Stellar.org maintains [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk), and [Go](https://github.com/stellar/go-stellar-base)-based SDKs for communicating with Horizon. There are also community-maintained SDKs for [Ruby](https://github.com/stellar/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base), and [C#](https://github.com/QuantozTechnology/csharp-stellar-base).
+Stellar.org maintains [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk), and [Go](https://github.com/stellar/go/trees/master/client/horizon)-based SDKs for communicating with Horizon. There are also community-maintained SDKs for [Ruby](https://github.com/stellar/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base), and [C#](https://github.com/QuantozTechnology/csharp-stellar-base).
 
 ## Network Backbone: Stellar Core
 

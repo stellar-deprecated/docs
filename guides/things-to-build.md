@@ -98,7 +98,7 @@ Build a library in your favorite language:
 
 Or contribute to our existing SDKs:
 - [JavaScript](https://github.com/stellar/js-stellar-sdk)
-- [Go](https://github.com/stellar/go-stellar-base)
+- [Go](https://github.com/stellar/go)
 - [Java](https://github.com/stellar/java-stellar-sdk)
 - [Python](https://github.com/StellarCN/py-stellar-base/)
 
