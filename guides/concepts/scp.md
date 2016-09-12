@@ -13,5 +13,5 @@ A few ways to explore SCP:
 You can also watch Professor David Mazières's [talk on SCP](https://www.youtube.com/watch?v=hjRQLYF599w&feature=youtu.be&t=6m30s):
 
 <a href="https://www.youtube.com/watch?v=hjRQLYF599w&feature=youtu.be&t=6m30s
-" target="_blank"><img src="http://img.youtube.com/vi/hjRQLYF599w/0.jpg" 
+" target="_blank" rel="noopener noreferrer"><img src="http://img.youtube.com/vi/hjRQLYF599w/0.jpg" 
 alt="SCP talk" /></a>
