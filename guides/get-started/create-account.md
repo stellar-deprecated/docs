@@ -41,7 +41,7 @@ package main
 import (
 	"log"
 
-	"github.com/stellar/go-stellar-base/keypair"
+	"github.com/stellar/go/keypair"
 )
 
 func main() {
@@ -165,7 +165,7 @@ package main
 import (
 	"log"
 
-	"github.com/stellar/go-stellar-base/horizon"
+	"github.com/stellar/go/clients/horizon"
 )
 
 func main() {
