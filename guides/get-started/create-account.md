@@ -135,7 +135,7 @@ Now for the last step: Getting the account’s details and checking its balance.
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // the JS SDK uses promises for most actions, such as retrieving an account
-server.accounts().accountId(pair.accountId()).call().then(function(account) {
+server.loadAccount(pair.accountId()).then(function(account) {
   console.log('Balaces for account: ' + pair.accountId());
   account.balances.forEach(function(balance) {
     console.log('Type:', balance.asset_type, ', Balance:', balance.balance);
