@@ -169,7 +169,7 @@ The following example sets authorization to be both required and revocable:
 var flags = StellarSdk.xdr.AccountFlags;
 var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
   .addOperation(StellarSdk.Operation.setOptions({
-    setFlags: flags.authRevocableFlag().value | flags.authRequiredFlag().value
+    setFlags: StellarSdk..AuthRevocableFlag | StellarSdk.AuthRequiredFlag
   }))
   .build();
 transaction.sign(issuingKeys);
@@ -177,10 +177,13 @@ server.submitTransaction(transaction);
 ```
 
 ```java
+import org.stellar.sdk.AccountFlag;
+
 Transaction setAuthorization = new Transaction.Builder(issuingAccount)
   .addOperation(new SetOptionsOperation.Builder()
-    // `1` indicates auth required, `2` indicates auth revocable
-    .setSetFlags(1 | 2)
+    .setSetFlags(
+      AccountFlag.AUTH_REQUIRED_FLAG.getValue() |
+      AccountFlag.AUTH_REVOCABLE_FLAG.getValue())
     .build())
   .build();
 setAuthorization.sign(issuingKeys);
@@ -202,7 +205,7 @@ var astroDollarIssuer =
   'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF';
 
 var accountId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
-server.accounts().accountId(accountId).call().then(function(account) {
+server.loadAccount(accountId).then(function(account) {
   var trusted = account.balances.some(function(balance) {
     return balance.asset_code === astroDollarCode &&
            balance.asset_issuer === astroDollarIssuer;
