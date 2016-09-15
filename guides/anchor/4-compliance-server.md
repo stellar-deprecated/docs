@@ -54,7 +54,7 @@ The configuration file lists both an `external_port` and an `internal_port`. The
 
 The internal port should *not* be publicly accessible. It is the port through which you initiate compliance operations and transmits private information. It’s up to you to keep this port secure through a firewall, a proxy, or some other means.
 
-You’ll also need to tell your bridge server that you now have a compliance server it can use. Update `config_bridge.toml` with the address of your compliance server’s *internal* port:
+You’ll also need to tell your bridge server that you now have a compliance server it can use. Update [`config_bridge.toml`](2-bridge-server.md#download-and-configure-bridge-server) with the address of your compliance server’s *internal* port:
 
 ```toml
 port = 8001
@@ -209,11 +209,15 @@ Now that your database is fully set up, you can start the compliance server by r
 ```
 
 
-### Repeat so you can test
+### Try It Out
 
-Now that you’ve got your compliance server set up and ready to verify transactions, you’ll want to test it. You can test each part of the compliance protocol, but to get a better picture of real-world use, you should duplicate your federation and compliance server setup at another domain and try sending a transaction to it.
+Now that you’ve got your compliance server set up and ready to verify transactions, you’ll want to test it by sending a payment to someone who is running their own compliance and federation servers.
 
-Once you’ve set up another federation and compliance server, try sending another payment with the bridge server. This time, use federated addresses for the sender and receiver and an `extra_memo` to trigger compliance checks:
+The easiest way to do this is to simply test a payment from one of your own customers to another. Your compliance, federation, and bridge servers will perform both the sending and receiving sides of the transaction.
+
+Send a payment through your bridge server, but this time, use federated addresses for the sender and receiver and an `extra_memo`[^compliance_memos] to trigger compliance checks:
+
+<code-example name="Send a Payment">
 
 ```bash
 # NOTE: `extra_memo` is required for compliance transactions
@@ -221,9 +225,25 @@ curl -X POST -d \
 "amount=1&\
 asset_code=USD&\
 asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
-destination=alice*another_org.com&\
+destination=amy*your_org.com&\
 source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ&\
 sender=tunde_adebayo*your_org.com&\
 extra_memo=Test%20transaction" \
 http://localhost:8001/payment
 ```
+
+```js
+// TODO: write the example!
+```
+
+```java
+// TODO: write the example!
+```
+
+</code-example>
+
+For a more realistic test, set up a duplicate copy of your bridge, federation, and compliance servers at a different domain and send a payment to them!
+
+
+
+[^compliance_memos]: Compliance transactions with the bridge server don’t support the `memo` field. The actual transaction’s `memo` will store a hash used to verify that the transaction submitted to the Stellar network matches the one agreed upon during initial compliance checks. Your `extra_memo` data will be transmitted instead during the compliance checks. For details, see [the compliance protocol](../compliance-protocol.md).
