@@ -43,7 +43,7 @@ There are two simple ways to account for your customers’ funds:
 
     Using a single account requires you to do additional bookkeeping, but means you have fewer keys to manage and more control over accounts. If you already have existing banking systems, this is the simplest way to integrate Stellar with them.
 
-You can also create your own variations on the above approaches. **For this guide, we’ll follow appraoch #2—using a single Stellar account to transact on behalf of your customers.**
+You can also create your own variations on the above approaches. **For this guide, we’ll follow approach #2—using a single Stellar account to transact on behalf of your customers.**
 
 
 ## Set Up Bridge Server
@@ -354,7 +354,7 @@ You should get a response like:
 
 ## Compliance
 
-The final piece of the puzzle is handling regulatory compliance, like <abbr title="Know Your Customer">KYC</abbr>. The [Stellar compliance protocol](compliance-protocol.md) is a standard way to exchange compliance information and pre-approve a transaction with another financial institution.
+The final piece of the puzzle is handling regulatory compliance, like <abbr title="Anti-Money Laundering">AML</abbr>. The [Stellar compliance protocol](compliance-protocol.md) is a standard way to exchange compliance information and pre-approve a transaction with another financial institution.
 
 You can write your own server that matches the compliance protocol, but Stellar.org also provides a [compliance server](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that takes care of most of the work for you.
 
@@ -421,7 +421,7 @@ In the server configuration file, there are three callback URLs, much like those
 
 - `fetch_info` is sent a federation address (like `tunde_adebayo*your_org.com`) and should return all the information necessary for another organization to perform compliance checks. It can be any data you deem reasonable and must be formatted as JSON.
 
-    When you are sending a payment, it will be called to get information on the customer who is sending the payment in order to send it to the receiving organization. When receiving a payment, it will be called if the sending organization has requested information on the receiver to do its own additional compliance checks.
+    When you are sending a payment, it will be called to get information on the customer who is sending the payment in order to send it to the receiving organization. When receiving a payment, it will be called if the sending organization has requested information on the receiver to do its own compliance checks.
 
     <code-example name="Implementing the fetch_info callback">
 
