@@ -26,7 +26,7 @@ Accounts have the following fields:
 > The current transaction sequence number of the account. This number starts equal to the ledger number at which the account was created.
 >
 > #### Number of subentries
-> Number of other [entries](./ledger.md#ledger-entries) the account owns. This number is used to calculate the account's [minimum balance](./fees.md#minimum-balance).
+> Number of other [entries](./ledger.md#ledger-entries) the account owns. This number is used to calculate the account's [minimum balance](./fees.md#minimum-account-balance).
 >
 > #### Inflation destination
 > (optional) Account designated to receive inflation. Every account can vote to send [inflation](./inflation.md) to a destination account.

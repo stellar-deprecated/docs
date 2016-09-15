@@ -194,6 +194,6 @@ Now that you’ve got an account, you can [start sending and receiving payments]
 
 [^1]: A private key is still used to encrpyt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
 
-[^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances.
+[^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances. For more on minimum balances, see [fees](../concepts/fees.md#minimum-account-balance)
 
 [^3]: CoinMarketCap maintains a list of exchanges that sell lumens at http://coinmarketcap.com/currencies/stellar/#markets

@@ -11,7 +11,7 @@ Voting is weighted according to the number of lumens the voting account holds. F
 
 The distribution of new lumens is limited to once a week. Inflation is run in response to an [inflation operation](./list-of-operations.md#inflation) that anyone can submit to the network. This operation will fail if the inflation sequence number isn't one after the last sequence number. It will also fail if (sequence number * 1 week) of time hasn't elapsed since the network start date.  
 
-Each time inflation is run, the lumens used to pay transaction [fees](./fees.md) since the last voting round are also included in the total lumens distributed.
+Each time inflation is run, the lumens used to pay transaction [fees](./fees.md#transaction-fee) since the last voting round are also included in the total lumens distributed.
 
 When inflation is run, nodes carry out the following algorithm:
 
