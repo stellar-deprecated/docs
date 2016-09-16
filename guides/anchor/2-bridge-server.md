@@ -117,32 +117,37 @@ request.post({
 ```
 
 ```java
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
-URL url = new URL("http://localhost:8001/payment");
-byte[] postData = new StringJoiner("&")
-  .add("amount=1")
-  .add("asset_code=USD")
-  .add("asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ")
-  .add("destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB")
-  .add("source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ")
-  .toString()
-  .getBytes("UTF-8");
+import java.util.ArrayList;
+import java.util.List;
 
-HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-connection.setDoOutput(true);
-connection.setRequestMethod("POST");
-connection.setRequestProperty(
-  "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-OutputStream requestStream = connection.getOutputStream();
-requestStream.write(postData);
-requestStream.flush();
-requestStream.close();
-InputStream response = connection.getInputStream();
-String body = new Scanner(response, "UTF-8").useDelimiter("\\A").next();
-System.out.println(body);
+public class PaymentRequest() {
+  public static void main(String [] args) {
+    HttpPost paymentRequest = new HttpPost("http://localhost:8001/payment");
+
+    List<NameValuePair> params = new ArrayList<NameValuePair>();
+    params.add(new BasicNameValuePair("amount", "1"));
+    params.add(new BasicNameValuePair("asset_code", "USD"));
+    params.add(new BasicNameValuePair("asset_issuer", "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"));
+    params.add(new BasicNameValuePair("destination", "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB"));
+    params.add(new BasicNameValuePair("source", "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"));
+
+    HttpResponse response = httpClient.execute(paymentRequest);
+    HttpEntity entity = response.getEntity();
+    if (entity != null) {
+      String body =  EntityUtils.toString(entity);
+      System.out.println(body);
+    }
+  }
+}
 ```
 
 </code-example>
