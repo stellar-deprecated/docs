@@ -95,11 +95,54 @@ http://localhost:8001/payment
 ```
 
 ```js
-// TODO: write the example!
+var request = require('request');
+
+request.post({
+  url: 'http://localhost:8001/payment',
+  form: {
+    amount: '1',
+    asset_code: 'USD',
+    asset_issuer: 'GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ',
+    destination: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
+    source: 'SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ'
+  }
+}, function(error, response, body) {
+  if (error || response.statusCode !== 200) {
+    console.error('ERROR!', error || body);
+  }
+  else {
+    console.log('SUCCESS!', body);
+  }
+});
 ```
 
 ```java
-// TODO: write the example!
+import java.net.*;
+import java.io.*;
+import java.util.*;
+
+URL url = new URL("http://localhost:8001/payment");
+byte[] postData = new StringJoiner("&")
+  .add("amount=1")
+  .add("asset_code=USD")
+  .add("asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ")
+  .add("destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB")
+  .add("source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ")
+  .toString()
+  .getBytes("UTF-8");
+
+HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+connection.setDoOutput(true);
+connection.setRequestMethod("POST");
+connection.setRequestProperty(
+  "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+OutputStream requestStream = connection.getOutputStream();
+requestStream.write(postData);
+requestStream.flush();
+requestStream.close();
+InputStream response = connection.getInputStream();
+String body = new Scanner(response, "UTF-8").useDelimiter("\\A").next();
+System.out.println(body);
 ```
 
 </code-example>
