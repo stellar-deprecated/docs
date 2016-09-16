@@ -207,7 +207,55 @@ app.listen(8005, function () {
 ```
 
 ```java
-// TODO: write the example!
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+/**
+ * A small Jersey web server for handling callbacks from Stellar services
+ */
+@Path("/")
+public class StellarCallbacks {
+
+  @POST
+  @Path("receive")
+  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+  public Response receive(
+    @FormParam("id") String id,
+    @FormParam("amount") String amount,
+    @FormParam("asset_code") String assetCode,
+    @FormParam("asset_issuer") String assetIssuer,
+    @FormParam("memo") String memo) {
+
+    // `receive` may be called multiple times for the same payment, so check
+    // that you haven't already seen this payment ID. (getPaymentByIdFromDb is
+    // a method you’ll need to implement.)
+    if (getPaymentByIdFromDb(id)) {
+      return Response.ok().build();
+    }
+
+    // Because we have one Stellar account representing many customers, the
+    // customer the payment is intended for should be in the transaction memo.
+    // (getAccountFromDb is a method you’ll need to implement.)
+    Customer customer = getAccountFromDb(memo);
+
+    // You need to check the asset code and issuer to make sure it's an asset
+    // that you can accept payment to this account for. In this example, we just
+    // convert the amount to USD and adding the equivalent amount to the
+    // customer balance. You need to implement `convertToUsd()` yourself.
+    Double dollarAmount = convertToUsd(amount, assetCode, assetIssuer);
+    addToBankAccountBalance(customer, dollarAmount);
+    return Response.ok().build();
+    System.out.println(String.format(
+      "Add %s, USD to account: %s",
+      dollarAmount,
+      customer));
+  }
+
+}
 ```
 
 </code-example>
@@ -232,7 +280,7 @@ server.loadAccount(sourceKeys.accountId())
           'USD', 'GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ'),
         amount: '1'
       }))
-      // Use the memo to indicate the customer this payment is intended for
+      // Use the memo to indicate the customer this payment is intended for.
       .addMemo(StellarSdk.Memo.text('Amy'))
       .build();
     transaction.sign(sourceKeys);
@@ -247,7 +295,31 @@ server.loadAccount(sourceKeys.accountId())
 ```
 
 ```java
-// TODO: write the example!
+Server server = new Server("https://horizon-testnet.stellar.org");
+
+KeyPair source = KeyPair.fromSecretSeed(
+  "SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
+KeyPair destination = KeyPair.fromAccountId(
+  "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU");
+Asset dollar = Asset.createNonNativeAsset("USD", KeyPair.fromAccountId(
+    "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"));
+
+AccountResponse sourceAccount = server.accounts().account(source);
+Transaction transaction = new Transaction.Builder(sourceAccount)
+  .addOperation(new PaymentOperation.Builder(destination, dollar, "1").build())
+  // Use the memo to indicate the customer this payment is intended for.
+  .addMemo(Memo.text("Amy"))
+  .build();
+transaction.sign(source);
+
+try {
+  SubmitTransactionResponse response = server.submitTransaction(transaction);
+  System.out.println("Success!");
+  System.out.println(response);
+} catch (Exception e) {
+  System.out.println("Something went wrong!");
+  System.out.println(e.getMessage());
+}
 ```
 
 </code-example>
