@@ -86,11 +86,46 @@ curl "https://www.your_org.com:8002/federation?q=tunde_adebayo*your_org.com&type
 ```
 
 ```js
-// TODO: write the example!
+var request = require('request');
+
+request.post({
+  url: 'https://www.your_org.com:8002/federation',
+  qs: {
+    q: 'tunde_adebayo*your_org.com',
+    type: 'name'
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```java
-// TODO: write the example!
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.apache.http.client.utils.URIBuilder;
+import java.net.URI;
+
+class FederationRequest {
+  public static void main(String [] args) throws Exception {
+    URI federationUri = new URIBuilder("https://www.your_org.com:8002/federation")
+      .addParameter("q", "tunde_adebayo*your_org.com")
+      .addParameter("type", "name")
+      .build();
+
+    HttpGet federationRequest = new HttpGet(federationUri);
+    HttpClient httpClient = HttpClients.createDefault();
+    HttpResponse response = httpClient.execute(federationRequest);
+    HttpEntity entity = response.getEntity();
+    if (entity != null) {
+      String body =  EntityUtils.toString(entity);
+      System.out.println(body);
+    }
+  }
+}
 ```
 
 </code-example>
