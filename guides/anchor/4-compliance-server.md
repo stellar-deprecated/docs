@@ -100,7 +100,33 @@ In the server configuration file, there are three callback URLs, much like those
     ```
 
     ```java
-    // TODO: write the example!
+    @POST
+    @Path("compliance/fetch_info")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response fetchInfo(
+      @FormParam("address") String address) {
+
+      String friendlyId = address.split("\\*", 2)[0];
+
+      // You need to create `accountDatabase.findByFriendlyId()`. It should
+      // find customers by their Stellar account and return account information.
+      try {
+        Account account = accountDatabase.findByFriendlyId(friendlyId);
+        return Response.ok(
+          Json.createObjectBuilder()
+            .add("name", account.fullName)
+            .add("address", account.address)
+            .add("date_of_birth", account.dateOfBirth)
+            .build())
+          .build();
+        )
+      } catch (Exception error) {
+        System.out.println(
+          String.format("Could not find account: %s", address));
+        return Response.status(500).entity(error.getMessage()).build();
+      }
+    }
     ```
 
     </code-example>
@@ -129,7 +155,7 @@ In the server configuration file, there are three callback URLs, much like those
           else if (error.type === 'UNKNOWN') {
             // If you need to wait and perform manual checks, you'll have to
             // create a way to do that as well
-            notifyHumanForManualSactionsCheck(sender);
+            notifyHumanForManualSanctionsCheck(sender);
             // The value for `pending` is a time to check back again in seconds
             response.status(202).json({pending: 3600}).end();
           }
@@ -141,7 +167,48 @@ In the server configuration file, there are three callback URLs, much like those
     ```
 
     ```java
-    // TODO: write the example!
+    import java.io.*;
+    import javax.json.Json;
+    import javax.json.JsonObject;
+    import javax.json.JsonReader;
+
+    @POST
+    @Path("compliance/sanctions")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response sanctions(@FormParam("sender") String sender) {
+      JsonReader jsonReader = Json.createReader(new StringReader(sender));
+      JsonObject senderData = jsonReader.readObject();
+      jsonReader.close();
+
+      // You need to create a function to check whether there are any sanctions
+      // against someone.
+      Permission permission = sanctionsDatabase.isAllowed(
+        senderData.getString("name"),
+        senderData.getString("address"),
+        senderData.getString("date_of_birth"));
+
+      // In this example, we're assuming `isAllowed` returns a Permissions enum
+      // that indicates whether someone is Allowed, Denied, or Unknown. Your
+      // systems may work differently; just return the same HTTP status codes.
+      if (permission.equals(Permission.Allowed)) {
+        return Response.ok().build();
+      }
+      else if (permission.equals(Permission.Denied)) {
+        return Response.status(403).build();
+      }
+      else {
+        // If you need to wait and perform manual checks, you'll have to implent
+        // a way to do that as well.
+        notifyHumanForManualSanctionsCheck(senderData);
+        // The value for `pending` is a time to check back again in seconds.
+        return Response.accepted(
+          Json.createObjectBuilder()
+            .add("pending", 3600)
+            .build())
+          .build();
+      }
+    }
     ```
 
     </code-example>
@@ -167,7 +234,29 @@ In the server configuration file, there are three callback URLs, much like those
     ```
 
     ```java
-    // TODO: write the example!
+    @POST
+    @Path("compliance/ask_user")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response askUser(@FormParam("sender") String sender) {
+      JsonReader jsonReader = Json.createReader(new StringReader(sender));
+      JsonObject senderData = jsonReader.readObject();
+      jsonReader.close();
+
+      // You can do any checks that make sense here. For example, you may not
+      // want to share information with someone who has sanctions as above:
+      Permission permission = sanctionsDatabase.isAllowed(
+        senderData.getString("name"),
+        senderData.getString("address"),
+        senderData.getString("date_of_birth"));
+
+      if (permission.equals(Permission.Allowed)) {
+        return Response.ok().build();
+      }
+      else {
+        return Response.status(403).build();
+      }
+    }
     ```
 
     </code-example>
