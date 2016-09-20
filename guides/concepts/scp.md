@@ -10,8 +10,6 @@ A few ways to explore SCP:
 * If white papers aren't your thing, here's a [technical summary](https://medium.com/a-stellar-journey/on-worldwide-consensus-359e9eb3e949). 
 * If you're new to consensus, get the basics from our graphic novel, [Adventures in Galactic Consensus](https://www.stellar.org/stories/adventures-in-galactic-consensus-chapter-1/). 
 
-You can also watch Professor David Mazières's [talk on SCP](https://www.youtube.com/watch?v=hjRQLYF599w&feature=youtu.be&t=6m30s):
+You can also watch Professor David Mazières's [talk on SCP](https://www.youtube.com/watch?v=vmwnhZmEZjc):
 
-<a href="https://www.youtube.com/watch?v=hjRQLYF599w&feature=youtu.be&t=6m30s
-" target="_blank" rel="noopener noreferrer"><img src="http://img.youtube.com/vi/hjRQLYF599w/0.jpg" 
-alt="SCP talk" /></a>
+<a href="https://www.youtube.com/watch?v=vmwnhZmEZjc" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/vmwnhZmEZjc/hqdefault.jpg" alt="SCP talk" style="width: 480px; height: 360px" /></a>
