@@ -5,27 +5,26 @@ sequence:
   next: 3-federation-server.md
 ---
 
-Stellar.org maintains a [bridge server](https://github.com/stellar/bridge-server/blob/master/readme_bridge.md), which simplifies the process of working with federation and compliance servers to send and receive payments. When using the bridge server, you only need to write a small web server to receive payment notifications and respond to regulatory checks from the bridge and compliance servers.
+Stellar.org maintains a [bridge server](https://github.com/stellar/bridge-server/blob/master/readme_bridge.md), which makes it easier to use the federation and compliance servers to send and receive payments. When using the bridge server, the only code you need to write is a private service to receive payment notifications and respond to regulatory checks from the bridge and compliance servers.
 
 ![Payment flow diagram](assets/anchor-sending-payment-basic-bridge.png)
 
 
 ### Create a Database
 
-The bridge server requires a MySQL or PostgreSQL database in order to track and coordinate transaction and compliance information. Create an empty database named `stellar_bridge` and a user to manage it. You don’t need to add any tables; the bridge server will do that itself when it first runs.
+The bridge server requires a MySQL or PostgreSQL database in order to track and coordinate transaction and compliance information. Create an empty database named `stellar_bridge` and a user to manage it. You don’t need to add any tables; the bridge server has [a special command to do that for you](#start-the-server).
 
 
 ### Download and Configure Bridge Server
 
 Next, [download the latest bridge server](https://github.com/stellar/bridge-server/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `config_bridge.toml`. This will store the configuration for the bridge server. It should look something like:
 
+<code-example name="config_bridge.toml">
+
 ```toml
 port = 8001
 horizon = "https://horizon-testnet.stellar.org"
 network_passphrase = "Test SDF Network ; September 2015"
-# The API key must be included in all requests to the bridge server.
-# Don't share it with anyone who shouldn't have access to the server.
-api_key = "CHANGE_THIS"
 # We'll fill this in once we set up a compliance server
 compliance = ""
 
@@ -42,8 +41,8 @@ url = "dbuser:dbpassword@/stellar_bridge"
 [accounts]
 # The secret seed for your base account, from which payments are made
 base_seed = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
-# The account ID that receives payments on behalf of your customers. In this,
-# case, it is the same account as `base_seed` above.
+# The account ID that receives payments on behalf of your customers. In this
+# case, it is the account ID that matches `base_seed` above.
 receiving_account_id = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 # A secret seed that can authorize trustlines for assets you issue. For more,
 # see https://stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders
@@ -52,12 +51,11 @@ authorizing_seed = "SBILUHQVXKTLPYXHHBL4IQ7ISJ3AKDTI2ZC56VQ6C2BDMNF463EON65U"
 issuing_account_id = "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"
 
 [callbacks]
-# The bridge server will send POST requests to these URLs
+# The server will send POST requests to this URL to notify you of payments
 receive = "http://localhost:8005/receive"
-error = "http://localhost:8005/error"
 ```
 
-Remember to customize `api_key` and fill in the connection string for the database you just created.
+</code-example>
 
 
 ### Start the Server
@@ -79,7 +77,7 @@ Now that your database is fully set up, you can start the bridge server by runni
 
 ### Send a Payment
 
-The bridge server takes commands in the form of HTTP requests, so we can test that it can submit a payment by sending a `POST` request to `/payments`. Try sending 1 USD to the account `GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB`. (Remember that the receiving account will need to trust the asset. See [issuing assets](../issuing-assets.md) for more details.)
+The bridge server takes commands in the form of HTTP requests, so we can test submitting a payment by sending a `POST` request to `/payments`. Try sending 1 USD to the account `GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB`. (Remember that the receiving account will need to trust the asset first. See [issuing assets](../issuing-assets.md) for more details.)
 
 <code-example name="Send a Payment">
 
@@ -89,8 +87,7 @@ curl -X POST -d \
 asset_code=USD&\
 asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
 destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB&\
-source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ&\
-apiKey=[YOUR API KEY]" \
+source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ" \
 http://localhost:8001/payment
 ```
 
@@ -157,7 +154,7 @@ public class PaymentRequest() {
 
 ![Payment flow diagram](assets/anchor-receive-payment-basic-bridge.png)
 
-In the bridge server configuration file, you might have noticed two callback URLs: `receive` and `error`. Whenever a payment is received or an error occurs, the bridge server will send an HTTP `POST` request to one of those URLs. The main responsibility of the `receive` endpoint is to update your customer’s balance in response to receiving a payment (since the payment went to your account on Stellar).
+In the bridge server configuration file, you might have noticed a callback URL named `receive`. Whenever a payment is received, the bridge server will send an HTTP `POST` request to the URL you specified. The main responsibility of the `receive` endpoint is to update your customer’s balance in response to receiving a payment (since the payment went to your account on Stellar).
 
 <code-example name="Implementing the Receive Callback">
 
@@ -196,13 +193,8 @@ app.get('/receive', function (request, response) {
   console.log('Added ' + dollarAmount + ' USD to account: ' + customer);
 });
 
-app.get('/error', function (request, response) {
-  console.log('Payment error!', request.body);
-  response.status(200).end();
-});
-
 app.listen(8005, function () {
-  console.log('Bridge server hook handler running on port 8002!');
+  console.log('Bridge server callbacks running on port 8002!');
 });
 ```
 
@@ -260,15 +252,15 @@ public class StellarCallbacks {
 
 </code-example>
 
-To test that your receive hook works, let’s try sending 1 USD to a customer with the account name `Amy` at your bank. (For a review of sending payments using the API, check [step 3 of “get started”](../get-started/transactions.md).)
+To test that your receive callback works, let’s try sending 1 USD to a customer with the account name `Amy` at your bank. (For a review of sending payments using the API, check [step 3 of “get started”](../get-started/transactions.md).)
 
-<code-example name="Test Receive Hook">
+<code-example name="Test Receive Callback">
 
 ```js
 var StellarSdk = require('stellar-sdk');
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-var sourceKeys = StellarSdk.Keypair
-  .fromSeed('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
+var sourceKeys = StellarSdk.Keypair.fromSeed(
+  'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU';
 
 server.loadAccount(sourceKeys.accountId())
@@ -323,3 +315,5 @@ try {
 ```
 
 </code-example>
+
+After running the above code, your callback server should have logged information about the payment.
