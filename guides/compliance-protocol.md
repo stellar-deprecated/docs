@@ -4,14 +4,14 @@ title: Compliance Protocol
 
 # Compliance Protocol
 
-Complying with Anti-Money Laundering (AML) laws requires financial institutions (FIs) to know not only who their customers are sending money to but who their customers are receiving money from. In some jurisdictions banks are able to trust the AML procedures of other licensed banks. In other jurisdictions each bank must do its own sanction checking of both the sender and the receiver. 
+Complying with Anti-Money Laundering (AML) laws requires financial institutions (FIs) to know not only who their customers are sending money to but who their customers are receiving money from. In some jurisdictions banks are able to trust the AML procedures of other licensed banks. In other jurisdictions each bank must do its own sanction checking of both the sender and the receiver.
 The Compliance Protocol handles all these scenarios.
 
 The customer information that is exchanged between FIs is flexible but the typical fields are:
  - Full Name
  - Date of birth
  - Physical address
- 
+
 The Compliance Protocol is an additional step after [federation](https://www.stellar.org/developers/guides/concepts/federation.html). In this step the sending FI contacts the receiving FI to get permission to send the transaction. To do this the receiving FI creates an `AUTH_SERVER` and adds it's location to the [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html) of the FI.
 
 You can create your own endpoint that implements the compliance protocol or we have also created this [simple compliance service](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that you can use.
@@ -25,12 +25,12 @@ HTTP POST to `https://AUTH_SERVER?data=<json>&sig=<sender sig of data>`
 
 **data** is a block of JSON that contains the following fields:
 
-Name | Description 
+Name | Description
 -----|------
 sender | The stellar address of the customer that is initiating the send.
 need_info | If the caller needs the recipient's AML info in order to send the payment.
 tx |  The transaction that the sender would like to send in XDR format. This transaction is unsigned.
-memo | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention]() and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
+memo | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention](https://github.com/stellar/stellar-protocol/issues/28) and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
 
 **sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html).
 
@@ -42,7 +42,7 @@ Name | Description
 ----|-----
 info_status | If this FI is willing to share AML information or not. {ok, denied, pending}
 tx_status | If this FI is willing to accept this transaction. {ok, denied, pending}
-dest_info | *(only present if info_status is ok)* JSON of the recipient's AML information. in the Stellar memo convention
+dest_info | *(only present if info_status is ok)* JSON of the recipient's AML information. in the [Stellar memo convention](https://github.com/stellar/stellar-protocol/issues/28).
 pending | *(only present if info_status or tx_status is pending)* Estimated number of seconds till the sender can check back for a change in status. The sender should just resubmit this request after the given number of seconds.
 
 *Reply Example*
@@ -76,7 +76,7 @@ from this .toml file it pulls out the following info for BankB:
  - FEDERATION_SERVER
  - AUTH_SERVER
  - ENCRYPTION_KEY
- - Needed AML fields? 
+ - Needed AML fields?
 
 
 **2) BankA gets the routing info for Bogart so it can build the transaction**
@@ -104,7 +104,7 @@ Example data JSON
     sender: "aldi*bankA.com",
     need_info: "true",
     tx: <base64 encoded xdr of the tx>,
-    memo: 
+    memo:
     {
         type: "encrypt"
         value: encrypted(
@@ -123,19 +123,19 @@ Example data JSON
 
 **4) BankB handles the Auth request**
 
- - BankB -> fetches `bankA.com/.well-known/stellar.toml` 
+ - BankB -> fetches `bankA.com/.well-known/stellar.toml`
    From this it gets BankA's ENCRYPTION_KEY and SIGNING_KEY
  - BankB verifies the signature on the Auth Request was signed with BankA's SIGNING_KEY
- - BankB does its sanction check on Aldi. This determines the value of `tx_status`. 
+ - BankB does its sanction check on Aldi. This determines the value of `tx_status`.
  - BankB makes the decision to reveal the AML info of Bogart or not based on the following:
    - Bogart has made their info public
    - Bogart has allowed BankA
    - Bogart has allowed Aldi
-   - BankB has allowed BankA 
+   - BankB has allowed BankA
  - If none of the above criteria are met, BankB should ask Bogart if he wants to reveal this info to BankA and accept this payment. In this case BankB will return `info_status: "pending"` in the Auth request reply to give Bogart time to accept the payment or not.
  - If BankB determines it can share the AML info with BankA, it uses BankA's ENCRYPTION_KEY to encrypt Bogart's info and sends this encrypted dest_info back with the reply.
 
-See [Auth Request](#Auth Request) for potential return values. 
+See [Auth Server Reply](#reply) for potential return values.
 
 **5) BankA handles the reply from the Auth request**
 
