@@ -25,6 +25,8 @@ Start by [downloading the latest compliance server](https://github.com/stellar/b
 
 [FIXME: the bits around encryption_key and tls here obviously need cleanup]
 
+<code-example name="config_compliance.toml">
+
 ```toml
 external_port = 8003
 internal_port = 8004
@@ -50,11 +52,15 @@ fetch_info = "http://localhost:8005/compliance/fetch_info"
 # private_key_file = "server.key"
 ```
 
+</code-example>
+
 The configuration file lists both an `external_port` and an `internal_port`. The external port must be publicly accessible. This is the port that other organizations will contact in order to determine whether you will accept a payment.
 
 The internal port should *not* be publicly accessible. It is the port through which you initiate compliance operations and transmits private information. It’s up to you to keep this port secure through a firewall, a proxy, or some other means.
 
 You’ll also need to tell your bridge server that you now have a compliance server it can use. Update [`config_bridge.toml`](2-bridge-server.md#download-and-configure-bridge-server) with the address of your compliance server’s *internal* port:
+
+<code-example name="config_bridge.toml">
 
 ```toml
 port = 8001
@@ -64,6 +70,8 @@ compliance = "https://your_org.com:8004"
 
 # ...the rest of your configuration...
 ```
+
+</code-example>
 
 
 ### Implement Compliance Callbacks
@@ -270,11 +278,15 @@ When other organizations need to contact your compliance server to authorize a p
 
 For compliance operations, you’ll need to list two new properties in your `stellar.toml`:
 
+<code-example name="stellar.toml">
+
 ```toml
 FEDERATION_SERVER = "https://www.your_org.com:8002/federation"
 AUTH_SERVER = "https://www.your_org.com:8003"
 SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 ```
+
+</code-example>
 
 `AUTH_SERVER` is the address for the *external* port of your compliance server.
 

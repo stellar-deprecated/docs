@@ -33,6 +33,8 @@ Where Tunde’s Stellar address would be `tunde_adebayo*your_org.com`.
 
 Next, [download the latest federation server](https://github.com/stellar/go/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `federation.cfg`. This will store the configuration for the server. It should look something like:
 
+<code-example name="federation.cfg">
+
 ```toml
 port = 8002
 
@@ -44,6 +46,8 @@ url = "dbuser:dbpassword:@/internal_accounts"
 federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'your_org.com'"
 reverse-federation = "SELECT friendly_id, '' as domain FROM accounts WHERE ? = ''"
 ```
+
+</code-example>
 
 Make sure to update the database connection information with the proper credentials and name for your database. Also update the value of `domain` in the `federation` query to match your actual domain instead of `your_org.com`.
 
@@ -68,9 +72,13 @@ The [`stellar.toml` file](../concepts/stellar-toml.md) is publicly available fil
 
 It can list all sorts of properties, but the one we care about know is the URL for your federation server. Your `stellar.toml` file should look something like:
 
+<code-example name="stellar.toml">
+
 ```toml
 FEDERATION_SERVER = "https://www.your_org.com:8002/federation"
 ```
+
+</code-example>
 
 The actual URL for your federation server can be anything you like—it can be at your `www` subdomain but on a different path, it can be at a different port, or it can be on a different domain entirely.
 
