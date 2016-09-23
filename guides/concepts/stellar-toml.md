@@ -144,10 +144,12 @@ HISTORY=[
 [[CURRENCIES]]
 code="USD"
 issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
+display_decimals=2 # How many decimal places should be displayed by clients to end users.
 
 [[CURRENCIES]]
 code="BTC"
 issuer="$anchor"
+display_decimals=8
 
 
 #   Potential quorum set of this domain's validatos.
