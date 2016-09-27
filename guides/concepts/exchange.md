@@ -14,7 +14,7 @@ When an account makes an offer, the offer is checked against the existing orderb
 an existing offer, it is filled at the price of the existing offer. Let's say that you make an offer to buy 10 XLM for 2 BTC. If an offer already
 exists to sell 10 XLM for 2 BTC, your offer will take that offer--you'll be 2 BTC poorer but 10 XLM richer.
 
-If the offer doesn't crosses an existing offer, the offer is saved in the orderbook until it is either taken by another offer,
+If the offer doesn't cross an existing offer, the offer is saved in the orderbook until it is either taken by another offer,
 taken by a payment, canceled by the account that created the offer, or invalidated because the account making the offer no longer has the asset for sale.
 
 Offers in stellar behave like limit orders in traditional markets. 
