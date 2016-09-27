@@ -189,7 +189,7 @@ function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, de
     if (assetAmount <= userBalance) {
       // Debit  the user's internal lumen balance by the amount of lumens they are withdrawing
       store([userID, userBalance - assetAmount, assetCode, assetIssuer], "UserBalances");
-      // Save the transaction information in the StellarWithrawals table
+      // Save the transaction information in the StellarPayments table
       store([userID, destinationAddress, assetAmount, assetCode, assetIssuer, "pending"], "StellarPayments");
     } else {
       // If the user doesn't have required amount, you can alert them
@@ -198,25 +198,25 @@ function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, de
 }
 ```
 
-Then, you should run `submitPendingTransactions`, which will check `StellarTransactions` for pending transactions and submit them.
+Then, you should run `submitPendingTransactions`, which will check `StellarPayments` for pending transactions and submit them.
 
 ```js
 // This is the function that handles submitting a single transaction
-function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
+function submitTransaction(sourceAccount, txn) {
   // Update transaction state to sending so it won't be
   // resubmitted in case of the failure.
-  updateRecord('sending', "StellarTransactions");
+  updateRecord(txn, {status: 'sending'});
 
   // Check to see if the destination address exists
   // GET https://horizon-testnet.stellar.org/accounts/{destinationAccount}
-  server.loadAccount(destinationAddress)
+  server.loadAccount(txn.destinationAddress)
     // If so, continue by submitting a transaction to the destination
     .then(function(account) {
       var transaction = new StellarSdk.Transaction(sourceAccount)
         .addOperation(StellarSdk.Operation.payment({
-          destination: destinationAddress,
-          asset: asset
-          amount: amount
+          destination: txn.destinationAddress,
+          asset: txn.asset,
+          amount: txn.amount
         }))
         // Sign the transaction
         .build();
@@ -226,12 +226,12 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
       // POST https://horizon-testnet.stellar.org/transactions
       return server.submitTransaction(transaction)
         .then(function(transactionResult) {
-          updateRecord('done', "StellarTransactions");
+          updateRecord(txn, {status: 'done'});
         })
         .catch(function(err) {
           // Catch errors, most likely with the network or your transaction.
           // You may need to fetch the current sequence number of baseAccount account.
-          updateRecord('error', "StellarTransactions");
+          updateRecord(txn, {status: 'error'});
         });
     })
     .catch(StellarSdk.NotFoundError, function(err) {
@@ -246,7 +246,7 @@ function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
 // This function should be run in the background continuously
 function submitPendingTransactions(sourceAccount) {
   // See what transactions in the DB are still pending
-  pendingTransactions = querySQL("SELECT * FROM StellarTransactions WHERE state =`pending`");
+  pendingTransactions = querySQL("SELECT * FROM StellarPayments WHERE state =`pending`");
 
   while (pendingTransactions.length > 0) {
     var txn = pendingTransactions.pop();
@@ -255,7 +255,7 @@ function submitPendingTransactions(sourceAccount) {
     // ES7 `await` keyword but you should create a "promise waterfall" so
     // `setTimeout` line below is executed after all transactions are submitted.
     // If you won't do it will be possible to send a transaction twice or more.
-    await submitTransaction(sourceAccount, txn.destinationAddress, txn.amount, txn.asset);
+    await submitTransaction(sourceAccount, txn);
   }
 
   // Wait 30 seconds and process next batch of transactions.
