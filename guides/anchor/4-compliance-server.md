@@ -28,6 +28,9 @@ Start by [downloading the latest compliance server](https://github.com/stellar/b
 ```toml
 external_port = 8003
 internal_port = 8004
+# Set this to `true` if you need to check the information of a person receiving
+# a payment you are sending (if false, only the sender will be checked). For
+# more information, see the callbacks section below.
 needs_auth = false
 network_passphrase = "Test SDF Network ; September 2015"
 
@@ -80,7 +83,7 @@ In the server configuration file, there are three callback URLs, much like those
 
 - `fetch_info` is sent a federation address (like `tunde_adebayo*your_org.com`) and should return all the information necessary for another organization to perform compliance checks. It can be any data you deem reasonable and must be formatted as JSON.
 
-    When you are sending a payment, it will be called to get information on the customer who is sending the payment in order to send it to the receiving organization. When receiving a payment, it will be called if the sending organization has requested information on the receiver to do its own compliance checks.
+    When you are sending a payment, it will be called to get information on the customer who is sending the payment in order to send it to the receiving organization. When receiving a payment, it will be called if the sending organization has requested information on the receiver to do its own compliance checks (based on the [`needs_auth` configuration](#download-and-configure-compliance-server)).
 
     <code-example name="Implementing the fetch_info callback">
 
@@ -93,6 +96,8 @@ In the server configuration file, there are three callback URLs, much like those
       // up a customer by their Stellar account and return account information.
       accountDatabase.findByFriendlyId(friendlyId)
         .then(function(account) {
+          // This can be any data you determine is useful and is not limited to
+          // these three fields.
           response.json({
             name: account.fullName,
             address: account.address,
@@ -122,6 +127,8 @@ In the server configuration file, there are three callback URLs, much like those
       try {
         Account account = accountDatabase.findByFriendlyId(friendlyId);
         return Response.ok(
+          // This can be any data you determine is useful and is not limited to
+          // these three fields.
           Json.createObjectBuilder()
             .add("name", account.fullName)
             .add("address", account.address)
