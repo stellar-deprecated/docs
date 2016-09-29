@@ -317,7 +317,7 @@ SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 
 </code-example>
 
-`AUTH_SERVER` is the address for the *external* port of your compliance server. Like your federation server, this can be any URL you like, but **it must support HTTPS and use a valid SSL certificate.**
+`AUTH_SERVER` is the address for the *external* port of your compliance server. Like your federation server, this can be any URL you like, but **it must support HTTPS and use a valid SSL certificate.**[^ssl]
 
 `SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to safely encrypt sensitive compliance data (like customer names, birthdates, and addresses) so that only you can read it and to verify that messages were actually sent by you.
 
@@ -431,3 +431,5 @@ For a more realistic test, set up a duplicate copy of your bridge, federation, a
 
 
 [^compliance_memos]: Compliance transactions with the bridge server don’t support the `memo` field. The actual transaction’s `memo` will store a hash used to verify that the transaction submitted to the Stellar network matches the one agreed upon during initial compliance checks. Your `extra_memo` data will be transmitted instead during the compliance checks. For details, see [the compliance protocol](../compliance-protocol.md).
+
+[^ssl]: Requiring that public services are available via SSL helps keep things secure. While testing, you can get free certificates from http://letsencrypt.org. You can also generate your own self-signed certificates, but you must add them to all the computers in your tests.

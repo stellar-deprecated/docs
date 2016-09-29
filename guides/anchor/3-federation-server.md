@@ -87,7 +87,7 @@ FEDERATION_SERVER = "https://www.your_org.com:8002/federation"
 
 </code-example>
 
-The actual URL for your federation server can be anything you like—it can be at your `www` subdomain but on a different path, it can be at a different port, or it can be on a different domain entirely. **However, it must be available via HTTPS with a valid SSL certificate.**
+The actual URL for your federation server can be anything you like—it can be at your `www` subdomain but on a different path, it can be at a different port, or it can be on a different domain entirely. **However, it must be available via HTTPS with a valid SSL certificate.**[^ssl]
 
 
 ### Send a Federation request
@@ -160,3 +160,5 @@ You should get a response like:
 [^friendly_names]: Federated addresses use an `*` to separate the username and domain so that your usernames can be e-mail addresses, like `amy@gmail.com*your_org.com`.
 
 [^federation_tables]: If you want your federation server to cover multiple domains, you’ll need a column to store the domains as well.
+
+[^ssl]: Requiring that public services are available via SSL helps keep things secure. While testing, you can get free certificates from http://letsencrypt.org. You can also generate your own self-signed certificates, but you must add them to all the computers in your tests.
