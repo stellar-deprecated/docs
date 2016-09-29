@@ -39,6 +39,8 @@ type = "mysql" # Or "postgres" if you created a PostgreSQL database
 url = "dbuser:dbpassword@/stellar_compliance"
 
 [keys]
+# This should be the secret seed for your base account (or another account that
+# can authorize transactions from your base account).
 signing_seed = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
 encryption_key = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
 
@@ -296,7 +298,7 @@ In the server configuration file, there are three callback URLs, much like those
 
     </code-example>
 
-To keep things simple, we’ll add all three callbacks to the same server we are using for the bridge server callbacks. However, you can implement them on any service that makes sense in your infrastructure. Just make sure they’re reachable at the address in your config file.
+To keep things simple, we’ll add all three callbacks to the same server we are using for the bridge server callbacks. However, you can implement them on any service that makes sense in your infrastructure. Just make sure they’re reachable at the URLs in your config file.
 
 
 ### Update Stellar.toml
@@ -317,7 +319,7 @@ SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 
 `AUTH_SERVER` is the address for the *external* port of your compliance server. Like your federation server, this can be any URL you like, but **it must support HTTPS and use a valid SSL certificate.**
 
-`SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to safely encrypt sensitive compliance data (like customer names, birthdates, and addresses) so that only you can read it.
+`SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to safely encrypt sensitive compliance data (like customer names, birthdates, and addresses) so that only you can read it and to verify that messages were actually sent by you.
 
 
 ### Start the Server
@@ -348,7 +350,7 @@ Send a payment through your bridge server, but this time, use federated addresse
 <code-example name="Send a Payment">
 
 ```bash
-# NOTE: `extra_memo` is required for compliance transactions
+# NOTE: `extra_memo` is required for compliance (use it instead of `memo`)
 curl -X POST -d \
 "amount=1&\
 asset_code=USD&\
@@ -372,6 +374,7 @@ request.post({
     destination: 'amy*your_org.com',
     source: 'SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ',
     sender: 'tunde_adebayo*your_org.com',
+    // `extra_memo` is required for compliance (use it instead of `memo`)
     extra_memo: 'Test transation',
   }
 }, function(error, response, body) {
@@ -408,6 +411,7 @@ public class PaymentRequest() {
     params.add(new BasicNameValuePair("destination", "amy*your_org.com"));
     params.add(new BasicNameValuePair("source", "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"));
     params.add(new BasicNameValuePair("sender", "tunde_adebayo*your_org.com"));
+    // `extra_memo` is required for compliance (use it instead of `memo`)
     params.add(new BasicNameValuePair("extra_memo", "Test transaction"));
 
     HttpResponse response = httpClient.execute(paymentRequest);
