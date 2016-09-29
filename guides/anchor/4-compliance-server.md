@@ -5,7 +5,7 @@ sequence:
   next: 5-conclusion.md
 ---
 
-The final piece of the puzzle is handling regulatory compliance, like <abbr title="Anti-Money Laundering">AML</abbr>. The [Stellar compliance protocol](../compliance-protocol.md) is a standard way to exchange compliance information and pre-approve a transaction with another financial institution.
+The final piece of the puzzle is handling regulatory compliance, like <abbr title="Anti-Money Laundering">AML</abbr>. To accomplish that, you should use the [Stellar compliance protocol](../compliance-protocol.md), a standard way to exchange compliance information and pre-approve a transaction with another financial institution.
 
 You can write your own server that matches the compliance protocol, but Stellar.org also provides a [compliance server](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that takes care of most of the work for you.
 
@@ -16,14 +16,12 @@ You can write your own server that matches the compliance protocol, but Stellar.
 
 ### Create a Database
 
-The compliance server requires a MySQL or PostgreSQL database in order to track and coordinate transaction and compliance information. Create an empty database named `stellar_compliance` and a user to manage it. You don’t need to add any tables; the server includes a command to configure and update a database.
+The compliance server requires a MySQL or PostgreSQL database in order to save transaction and compliance information. Create a new database named `stellar_compliance` and a user to manage it. You don’t need to add any tables; the server includes [a command to configure and update your database](#start-the-server).
 
 
 ### Download and Configure Compliance Server
 
 Start by [downloading the latest compliance server](https://github.com/stellar/bridge-server/releases) for your platform and install the executable anywhere you like. In the same directory, create a file named `config_compliance.toml`. This will store the configuration for the compliance server. It should look something like:
-
-[FIXME: the bits around encryption_key and tls here obviously need cleanup]
 
 <code-example name="config_compliance.toml">
 
@@ -34,29 +32,31 @@ needs_auth = false
 network_passphrase = "Test SDF Network ; September 2015"
 
 [database]
-type = "mysql"
+type = "mysql" # Or "postgres" if you created a PostgreSQL database
 url = "dbuser:dbpassword@/stellar_compliance"
 
 [keys]
 signing_seed = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
-# Not supported...?
-encryption_key = "SBRWDGSQT2PZIT2MLMPVOCA5AQ3BDBPUUQKNTYPQ357IKB5N64YGZ4LX"
+encryption_key = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
 
 [callbacks]
 sanctions = "http://localhost:8005/compliance/sanctions"
 ask_user = "http://localhost:8005/compliance/ask_user"
 fetch_info = "http://localhost:8005/compliance/fetch_info"
 
-# [tls]
-# certificate_file = "server.crt"
-# private_key_file = "server.key"
+# The compliance server must be available via HTTPS. Specify your SSL
+# certificate and key here. If the server is behind a proxy or load  balancer
+# that implements HTTPS, you can omit this section.
+[tls]
+certificate_file = "server.crt"
+private_key_file = "server.key"
 ```
 
 </code-example>
 
 The configuration file lists both an `external_port` and an `internal_port`. The external port must be publicly accessible. This is the port that other organizations will contact in order to determine whether you will accept a payment.
 
-The internal port should *not* be publicly accessible. It is the port through which you initiate compliance operations and transmits private information. It’s up to you to keep this port secure through a firewall, a proxy, or some other means.
+The internal port should *not* be publicly accessible. It is the port through which you initiate compliance operations and transmit private information. It’s up to you to keep this port secure through a firewall, a proxy, or some other means.
 
 You’ll also need to tell your bridge server that you now have a compliance server it can use. Update [`config_bridge.toml`](2-bridge-server.md#download-and-configure-bridge-server) with the address of your compliance server’s *internal* port:
 
@@ -288,7 +288,7 @@ SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 
 </code-example>
 
-`AUTH_SERVER` is the address for the *external* port of your compliance server.
+`AUTH_SERVER` is the address for the *external* port of your compliance server. Like your federation server, this can be any URL you like, but **it must support HTTPS and use a valid SSL certificate.**
 
 `SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to safely encrypt sensitive compliance data (like customer names, birthdates, and addresses) so that only you can read it.
 
