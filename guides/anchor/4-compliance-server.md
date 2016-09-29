@@ -243,7 +243,16 @@ In the server configuration file, there are three callback URLs, much like those
           response.status(200).end();
         })
         .catch(function(error) {
-          response.status(403).end();
+          if (error.type === 'UNKNOWN') {
+            // If you need to wait and perform manual checks, you'll have to
+            // create a way to do that as well.
+            notifyHumanForManualInformationSharing(sender);
+            // The value for `pending` is a time to check back again in seconds
+            response.status(202).json({pending: 3600}).end();
+          }
+          else {
+            response.status(403).end();
+          }
         });
     });
     ```
@@ -268,8 +277,19 @@ In the server configuration file, there are three callback URLs, much like those
       if (permission.equals(Permission.Allowed)) {
         return Response.ok().build();
       }
-      else {
+      else if (permission.equals(Permission.Denied)) {
         return Response.status(403).build();
+      }
+      else {
+        // If you need to wait and perform manual checks, you'll have to create
+        // a way to do that as well.
+        notifyHumanForManualInformationSharing(senderData);
+        // The value for `pending` is a time to check back again in seconds.
+        return Response.accepted(
+          Json.createObjectBuilder()
+            .add("pending", 3600)
+            .build())
+          .build();
       }
     }
     ```
