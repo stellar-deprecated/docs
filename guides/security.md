@@ -9,7 +9,7 @@ You’ll trade assets that are very valuable with Stellar, so security is import
 
 Stellar uses industry-standard public-key cryptography tools and techniques, which means the code is well tested and well understood. All transactions on the network are public, which means the movement of funds can always be audited. Each transaction is signed by whomever sent it using the [Ed25519 algorithm](https://ed25519.cr.yp.to), which cryptographically proves that the sender was authorized to make the transaction.
 
-While all transactions are public, banks using Stellar to exchange funds on behalf of individual account holders can keep information about the individuals sending and receiving it private by storing encrypted or unique identifiers in the transaction’s memo field. This allows banks to meet regulatory compliance requirements and keep transaction history verifiable while still keeping privileged information secure. 
+While all transactions are public, banks using Stellar to exchange funds on behalf of individual account holders can keep information about the individuals sending and receiving it private by storing encrypted or unique identifiers in the transaction’s memo field. This allows banks to meet regulatory compliance requirements and keep transaction history verifiable while still keeping privileged information secure.
 
 
 ## Secure offline accounts
@@ -58,11 +58,7 @@ Every node keeps a history archive, so you always have a strong and reliable rec
 
 ## Securing a Stellar Core Instance
 
-It’s generally a good idea to make sure access to Stellar Core is extremely limited. Some ports and paths must be kept open to communicate with other Stellar Core instances, but otherwise, only a Horizon server should have access to most of Stellar Core. Access to Stellar Core’s databases should also be highly restricted (Note: are certain parts of storage write-only and therefore safe to have more permissive access? Need more details and granularity about databases here?).
-
-TODO: best practices here? Are there particular ports that generally should be closed/opened? Is it a good practice to run a configurable HTTP server (e.g. nginx) in front of Core to help control and configure access? What else?
-
-Other general best practices for server security: don’t use standard ports for things like SSH, only open the ports you really need.
+It’s generally a good idea to make sure access to Stellar Core is extremely limited. Make sure only the ports needed to communicate with Horizon and other Stellar Core instances on the public network are open. Access to Stellar Core’s databases should also be highly restricted.
 
 
 ## Keep Up to Date with Security Patches
