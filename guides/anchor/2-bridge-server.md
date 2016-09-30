@@ -12,12 +12,12 @@ Stellar.org maintains a [bridge server](https://github.com/stellar/bridge-server
 When using the bridge server, you send payments by making an HTTP POST request to it instead of a Horizon server. It doesn’t change a whole lot for simple transactions, but it will make the next steps of federation and compliance much simpler.
 
 
-### Create a Database
+## Create a Database
 
 The bridge server requires a MySQL or PostgreSQL database in order to track and coordinate transaction and compliance information. Create an empty database named `stellar_bridge` and a user to manage it. You don’t need to add any tables; the bridge server has [a special command to do that for you](#start-the-server).
 
 
-### Download and Configure Bridge Server
+## Download and Configure Bridge Server
 
 Next, [download the latest bridge server](https://github.com/stellar/bridge-server/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `config_bridge.toml`. This will store the configuration for the bridge server. It should look something like:
 
@@ -60,7 +60,7 @@ receive = "http://localhost:8005/receive"
 </code-example>
 
 
-### Start the Server
+## Start the Server
 
 Before starting the server the first time, the tables in your database need to be created. Running bridge server with the `--migrate-db` argument will make sure everything is set to go:
 
@@ -77,7 +77,7 @@ Now that your database is fully set up, you can start the bridge server by runni
 ```
 
 
-### Send a Payment
+## Send a Payment
 
 The bridge server takes commands in the form of HTTP requests, so we can test submitting a payment by sending a `POST` request to `/payments`. Try sending 1 USD to the account `GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB`. (Remember that the receiving account will need to trust the asset first. See [issuing assets](../issuing-assets.md) for more details.)
 

@@ -14,7 +14,7 @@ The [Stellar federation protocol](../concepts/federation.md) allows you to conve
 Stellar.org provides a [prebuilt federation server](https://github.com/stellar/go/tree/master/services/federation) that can hook into an existing user database, but you can also write your own.
 
 
-### Create a Database
+## Create a Database
 
 The Stellar federation server is designed to connect to any existing SQL database you might have with a list of account names. It essentially translates a federation request into a SQL query. The server supports MySQL, PostgreSQL, and SQLite3.
 
@@ -31,7 +31,7 @@ At a minimum, your database should have a table with a column identifying the na
 Where Tunde’s Stellar address would be `tunde_adebayo*your_org.com`.
 
 
-### Download and Configure Federation Server
+## Download and Configure Federation Server
 
 Next, [download the latest federation server](https://github.com/stellar/go/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `federation.cfg`. This will store the configuration for the server. It should look something like:
 
@@ -73,7 +73,7 @@ Now run the server! (Unlike the bridge server, there’s there no custom databas
 ```
 
 
-### Update Stellar.toml
+## Update Stellar.toml
 
 Finally, others have to know the URL of your federation server. The [`stellar.toml` file](../concepts/stellar-toml.md) is publicly available file where others can find information about your Stellar integration. It should always be stored at:
 
@@ -92,7 +92,7 @@ FEDERATION_SERVER = "https://www.your_org.com:8002/federation"
 The actual URL for your federation server can be anything you like—it can be at your `www` subdomain but on a different path, it can be at a different port, or it can be on a different domain entirely. **However, it must be available via HTTPS with a valid SSL certificate.**[^ssl]
 
 
-### Send a Federation request
+## Send a Federation request
 
 Test out your federation server by sending an HTTP request:
 

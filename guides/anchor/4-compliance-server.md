@@ -18,12 +18,12 @@ When another compliance server contacts yours to clear a transaction, a series o
 ![](assets/anchor-receive-payment-compliance.png)
 
 
-### Create a Database
+## Create a Database
 
 The compliance server requires a MySQL or PostgreSQL database in order to save transaction and compliance information. Create a new database named `stellar_compliance` and a user to manage it. You don’t need to add any tables; the server includes [a command to configure and update your database](#start-the-server).
 
 
-### Download and Configure Compliance Server
+## Download and Configure Compliance Server
 
 Start by [downloading the latest compliance server](https://github.com/stellar/bridge-server/releases) for your platform and install the executable anywhere you like. In the same directory, create a file named `config_compliance.toml`. This will store the configuration for the compliance server. It should look something like:
 
@@ -83,7 +83,7 @@ compliance = "https://your_org.com:8004"
 </code-example>
 
 
-### Implement Compliance Callbacks
+## Implement Compliance Callbacks
 
 In the server configuration file, there are three callback URLs, much like those for the bridge server. They are HTTP POST URLs that will be sent form-encoded data:
 
@@ -305,7 +305,7 @@ In the server configuration file, there are three callback URLs, much like those
 To keep things simple, we’ll add all three callbacks to the same server we are using for the bridge server callbacks. However, you can implement them on any service that makes sense in your infrastructure. Just make sure they’re reachable at the URLs in your config file.
 
 
-### Update Stellar.toml
+## Update Stellar.toml
 
 When other organizations need to contact your compliance server to authorize a payment to one of your customers, they consult your domain’s `stellar.toml` file for the address, just as when finding your federation server.
 
@@ -326,7 +326,7 @@ SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 `SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to safely encrypt sensitive compliance data (like customer names, birthdates, and addresses) so that only you can read it and to verify that messages were actually sent by you.
 
 
-### Start the Server
+## Start the Server
 
 Before starting the server the first time, the tables in your database need to be created. Running compliance server with the `--migrate-db` argument will make sure everything is set to go:
 
@@ -343,7 +343,7 @@ Now that your database is fully set up, you can start the compliance server by r
 ```
 
 
-### Try It Out
+## Try It Out
 
 Now that you’ve got your compliance server set up and ready to verify transactions, you’ll want to test it by sending a payment to someone who is running their own compliance and federation servers.
 
