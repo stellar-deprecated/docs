@@ -7,7 +7,9 @@ sequence:
 
 Stellar.org maintains a [bridge server](https://github.com/stellar/bridge-server/blob/master/readme_bridge.md), which makes it easier to use the federation and compliance servers to send and receive payments. When using the bridge server, the only code you need to write is a private service to receive payment notifications and respond to regulatory checks from the bridge and compliance servers.
 
-![Payment flow diagram](assets/anchor-sending-payment-basic-bridge.png)
+![Payment flow diagram](assets/anchor-send-payment-basic-bridge.png)
+
+When using the bridge server, you send payments by making an HTTP POST request to it instead of a Horizon server. It doesn’t change a whole lot for simple transactions, but it will make the next steps of federation and compliance much simpler.
 
 
 ### Create a Database

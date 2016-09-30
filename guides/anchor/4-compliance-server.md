@@ -5,11 +5,15 @@ sequence:
   next: 5-conclusion.md
 ---
 
-The final piece of the puzzle is handling regulatory compliance, like <abbr title="Anti-Money Laundering">AML</abbr>. To accomplish that, you should use the [Stellar compliance protocol](../compliance-protocol.md), a standard way to exchange compliance information and pre-approve a transaction with another financial institution.
+The task of an anchor is handling regulatory compliance, like Anti-Money Laundering (<abbr title="Anti-Money Laundering">AML</abbr>). To accomplish that, you should use the [Stellar compliance protocol](../compliance-protocol.md), a standard way to exchange compliance information and pre-approve a transaction with another financial institution.
 
 You can write your own server that matches the compliance protocol, but Stellar.org also provides a [compliance server](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) that takes care of most of the work for you.
 
+Your bridge server contacts your compliance server in order to authorize a transaction before sending it. Your compliance server uses the compliance protocol to clear the transaction with the recipient’s compliance server, then lets the bridge server know the transaction is ok to send.
+
 ![](assets/anchor-send-payment-compliance.png)
+
+When another compliance server contacts yours to clear a transaction, a series of callbacks are used to check the information with you. Later, when your bridge server receives a transaction, it contacts your compliance server to verify that it was cleared.
 
 ![](assets/anchor-receive-payment-compliance.png)
 
