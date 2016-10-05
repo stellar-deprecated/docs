@@ -323,7 +323,7 @@ SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 
 `AUTH_SERVER` is the address for the *external* port of your compliance server. Like your federation server, this can be any URL you like, but **it must support HTTPS and use a valid SSL certificate.**[^ssl]
 
-`SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to safely encrypt sensitive compliance data (like customer names, birthdates, and addresses) so that only you can read it and to verify that messages were actually sent by you.
+`SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to verify that messages were actually sent by you.
 
 
 ## Start the Server
