@@ -201,6 +201,8 @@ function handleRequestWithdrawal(userID, assetAmount, assetCode, assetIssuer, de
 Then, you should run `submitPendingTransactions`, which will check `StellarTransactions` for pending transactions and submit them.
 
 ```js
+StellarSdk.Network.useTestNetwork();
+
 // This is the function that handles submitting a single transaction
 function submitTransaction(sourceAccount, destinationAddress, amount, asset) {
   // Update transaction state to sending so it won't be

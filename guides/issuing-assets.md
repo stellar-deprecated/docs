@@ -58,6 +58,7 @@ Sending and receiving custom assets is very similar to [sending and receiving lu
 
 ```js
 var StellarSdk = require('stellar-sdk');
+StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // Keys for accounts to issue and receive the new asset
@@ -105,6 +106,7 @@ server.loadAccount(receivingKeys.accountId())
 ```
 
 ```java
+Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 // Keys for accounts to issue and receive the new asset
@@ -166,6 +168,7 @@ The following example sets authorization to be both required and revocable:
 <code-example name="Asset Authorization">
 
 ```js
+StellarSdk.Network.useTestNetwork();
 var flags = StellarSdk.xdr.AccountFlags;
 var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
   .addOperation(StellarSdk.Operation.setOptions({
@@ -178,6 +181,8 @@ server.submitTransaction(transaction);
 
 ```java
 import org.stellar.sdk.AccountFlag;
+
+Network.useTestNetwork();
 
 Transaction setAuthorization = new Transaction.Builder(issuingAccount)
   .addOperation(new SetOptionsOperation.Builder()

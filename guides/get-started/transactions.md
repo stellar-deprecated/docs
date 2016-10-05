@@ -22,6 +22,7 @@ Stellar stores and communicates transaction data in a binary format called XDR.[
 
 ```js
 var StellarSdk = require('stellar-sdk');
+StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair
   .fromSeed('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
@@ -67,6 +68,7 @@ server.loadAccount(destinationId)
 ```
 
 ```java
+Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");

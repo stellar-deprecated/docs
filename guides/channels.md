@@ -15,6 +15,8 @@ You of course will have to sign the transaction with both the base account key a
 
 For example:
 ```
+StellarSdk.Network.useTestNetwork();
+
 // create payment from baseAccount to customerAddress
 var transaction =
   new StellarSdk.TransactionBuilder(channelAccounts[channelIndex])
