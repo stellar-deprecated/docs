@@ -22,6 +22,7 @@ Stellar stores and communicates transaction data in a binary format called XDR.[
 
 ```js
 var StellarSdk = require('stellar-sdk');
+StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair
   .fromSeed('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
@@ -67,6 +68,7 @@ server.loadAccount(destinationId)
 ```
 
 ```java
+Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
@@ -428,6 +430,7 @@ You can read more about the details of assets in the [assets overview](../concep
 Now that you can send and receive payments using Stellar’s API, you’re on your way to writing all kinds of amazing financial software. Experiment with other parts of the API, then read up on more detailed topics:
 
 - [Become an anchor](../anchor.md)
+- [Security](../security.md)
 - [Federation](../concepts/federation.md)
 - [Compliance](../compliance-protocol.md)
 

@@ -40,7 +40,7 @@ Accounts are identified by a public key. The private key that corresponds to thi
 
 "Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight.  
 
-Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-balance).
+Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
 
 ## Envelopes

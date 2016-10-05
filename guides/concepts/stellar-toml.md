@@ -71,24 +71,6 @@ Many of these sections reflect what would be listed in your [stellar-core.cfg](h
 ```toml
 # Sample stellar.toml
 
-# convenience mapping of common names to node IDs.
-# You can use these common names in sections below instead of the less friendly nodeID.
-# This is provided mainly to be compatible with the stellar-core.cfg
-NODE_NAMES=[
-"GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3  lab1",
-"GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I  lab2",
-"GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57  lab3",
-"GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM  donovan",
-"GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5  nelisky1",
-"GA2DE5AQF32LU5OZ5OKAFGPA2DLW4H6JHPGYJUVTNS3W7N2YZCTQFFV6  nelisky2",
-"GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2  jianing",
-# non validating
-"GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U  anchor",
-"GCGB2S2KGYARPVIA37HYZXVRM2YZUEXA6S33ZU5BUDC6THSB62LZSTYH  sdf_watcher1",
-"GCM6QMP3DLRPTAZW2UZPCPX2LF3SXWXKPMP3GKFZBDSF3QZGV2G5QSTK  sdf_watcher2"
-]
-
-
 #   The endpoint which clients should query to resolve stellar addresses
 #   for users on your domain.
 FEDERATION_SERVER="https://api.stellar.org/federation"
@@ -96,8 +78,32 @@ FEDERATION_SERVER="https://api.stellar.org/federation"
 # The endpoint used for the compliance protocol
 AUTH_SERVER="https://api.stellar.org/auth"
 
+#   This section allows an anchor to declare currencies it currently issues.
+#   Can be used by wallets and clients to trust anchors by domian name 
+[[CURRENCIES]]
+code="USD"
+issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
+display_decimals=2 # Hint fo how many decimal places should be displayed by clients to end users.
+
+[[CURRENCIES]]
+code="BTC"
+issuer="$anchor"
+display_decimals=7 # Maximum decimal places that can be repesented is 7
 
 
+#### Lesser used options below
+
+
+# convenience mapping of common names to node IDs.
+# You can use these common names in sections below instead of the less friendly nodeID.
+# This is provided mainly to be compatible with the stellar-core.cfg
+NODE_NAMES=[
+"GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3  lab1",
+"GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM  donovan",
+"GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5  nelisky1",
+"GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2  jianing",
+"GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U  anchor"
+]
 
 #   A list of accounts that are controlled by this domain.
 ACCOUNTS=[
@@ -139,44 +145,12 @@ HISTORY=[
 "http://history.stellar.org/prd/core-live/core_live_003/"
 ]
 
-
-#   This section allows an anchor to declare currencies it currently issues.
-[[CURRENCIES]]
-code="USD"
-issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
-
-[[CURRENCIES]]
-code="BTC"
-issuer="$anchor"
-
-
 #   Potential quorum set of this domain's validatos.
 [QUORUM_SET]
 VALIDATORS=[
-"$self"  # remove this is you are non-validating
+"$self", "$lab1", "$nelisky1","$jianing",
+"$eno","$donovan"
 ]
 
-[QUORUM_SET.lab]
-THRESHOLD_PERCENT=50
-VALIDATORS=[
-"$lab1",
-"$lab2",
-"$lab3"
-]
-
-[QUORUM_SET.nelisky]
-THRESHOLD_PERCENT=50
-VALIDATORS=[
-"$nelisky1",
-"$nelisky2"
-]
-# this means you only have to hear from one or the other of these guys
-[QUORUM_SET.others]
-VALIDATORS=[
-"$jianing",
-"$eno",
-"$donovan"
-]
 
 ```
-

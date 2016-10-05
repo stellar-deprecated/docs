@@ -37,7 +37,7 @@ Please note that your federation server **must** use `https` protocol.
 
 The federation URL specified in your stellar.toml file should accept an HTTP GET request and issue responses of the form detailed below.
 
-Instead of building your own server you can use the [`federation server`](https://github.com/stellar/federation) built by Stellar Development Foundation.
+Instead of building your own server you can use the [`federation server`](https://github.com/stellar/go/tree/master/services/federation) built by Stellar Development Foundation.
 
 ## Federation Requests
 You can use the federation endpoint to look up an account id if you have a stellar address. You can also do reverse federation and look up a stellar addresses from account ids or transaction ids. This is useful to see who has sent you a payment.

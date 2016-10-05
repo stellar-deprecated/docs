@@ -41,7 +41,7 @@ package main
 import (
 	"log"
 
-	"github.com/stellar/go-stellar-base/keypair"
+	"github.com/stellar/go/keypair"
 )
 
 func main() {
@@ -135,7 +135,7 @@ Now for the last step: Getting the account’s details and checking its balance.
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // the JS SDK uses promises for most actions, such as retrieving an account
-server.accounts().accountId(pair.accountId()).call().then(function(account) {
+server.loadAccount(pair.accountId()).then(function(account) {
   console.log('Balaces for account: ' + pair.accountId());
   account.balances.forEach(function(balance) {
     console.log('Type:', balance.asset_type, ', Balance:', balance.balance);
@@ -165,7 +165,7 @@ package main
 import (
 	"log"
 
-	"github.com/stellar/go-stellar-base/horizon"
+	"github.com/stellar/go/clients/horizon"
 )
 
 func main() {
@@ -194,6 +194,6 @@ Now that you’ve got an account, you can [start sending and receiving payments]
 
 [^1]: A private key is still used to encrpyt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
 
-[^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances.
+[^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances. For more on minimum balances, see [fees](../concepts/fees.md#minimum-account-balance)
 
 [^3]: CoinMarketCap maintains a list of exchanges that sell lumens at http://coinmarketcap.com/currencies/stellar/#markets

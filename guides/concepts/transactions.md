@@ -12,7 +12,7 @@ Each transaction has the following attributes:
 > This is the account that originates the transaction. The transaction must be signed by this account, and the transaction fee must be paid by this account. The sequence number of this transaction is based off this account.
 >
 > #### Fee
-> Each transaction sets a [fee](./fees.md) that is paid by the source account. If this fee is below the network minimum the transaction will fail. The more operations in the transaction, the greater the required fee.
+> Each transaction sets a [fee](./fees.md#transaction-fee) that is paid by the source account. If this fee is below the network minimum the transaction will fail. The more operations in the transaction, the greater the required fee.
 >
 > #### Sequence number
 > Each transaction has a sequence number. Transactions follow a strict ordering rule when it comes to processing of transactions per account. For the transaction to be valid, the sequence number must match the one stored in the source [account entry](./accounts.md) when the transaction is applied. After the transaction is applied, the source account's stored sequence number is incremented by 1.
