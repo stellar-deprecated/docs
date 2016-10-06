@@ -432,6 +432,10 @@ public class PaymentRequest() {
 
 For a more realistic test, set up a duplicate copy of your bridge, federation, and compliance servers at a different domain and send a payment to them!
 
+<nav class="sequence-navigation">
+  <a rel="prev" href="3-federation-server.md">Back: Federation Server</a>
+  <a rel="next" href="5-conclusion.md">Next: Next Steps</a>
+</nav>
 
 
 [^compliance_memos]: Compliance transactions with the bridge server don’t support the `memo` field. The actual transaction’s `memo` will store a hash used to verify that the transaction submitted to the Stellar network matches the one agreed upon during initial compliance checks. Your `extra_memo` data will be transmitted instead during the compliance checks. For details, see [the compliance protocol](../compliance-protocol.md).

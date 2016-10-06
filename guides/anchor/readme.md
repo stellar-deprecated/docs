@@ -97,3 +97,7 @@ When someone is sending a transaction to you, the flow is slightly different:
 **While these steps can seem complicated, Stellar’s bridge, federation, and compliance services do most of the work.** You only need to implement four callbacks and create a `stellar.toml` file where others can find the URL of your services.
 
 In the rest of this guide, we’ll walk through setting up each part of this infrastructure step by step.
+
+<nav class="sequence-navigation">
+  <a rel="next" href="2-bridge-server.md">Next: Bridge Server</a>
+</nav>

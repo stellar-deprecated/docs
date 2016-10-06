@@ -158,6 +158,11 @@ You should get a response like:
 }
 ```
 
+<nav class="sequence-navigation">
+  <a rel="prev" href="2-bridge-server.md">Back: Bridge Server</a>
+  <a rel="next" href="4-compliance-server.md">Next: Compliance Server</a>
+</nav>
+
 
 [^friendly_names]: Federated addresses use an `*` to separate the username and domain so that your usernames can be e-mail addresses, like `amy@gmail.com*your_org.com`.
 

@@ -30,3 +30,7 @@ While you’ve now learned to handle the core operations of an anchor, there are
 - Use [channels](../channels.md) to submit more transactions at a time.
 - Talk with other Stellar developers in [Stellar’s Slack community](http://slack.stellar.org/)
 - [Contribute](../contributing.md) your own fixes and improvements to Stellar software.
+
+<nav class="sequence-navigation">
+  <a rel="prev" href="4-compliance-server.md">Back: Compliance Server</a>
+</nav>
