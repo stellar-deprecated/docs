@@ -10,7 +10,7 @@ Most of the time, you’ll be sending money to someone else who has their own ac
 
 Actions that change things in Stellar, like sending payments, changing your account, or making offers to trade various kinds of currencies, are called **operations.**[^1] In order to actually perform an operation, you create a **transaction**, which is just a group of operations accompanied by some extra information, like what account is making the transaction and a cryptographic signature to verify that the transaction is authentic.[^2]
 
-If any operation in the transaction fails, they all fail. For example, let’s say you have 100 lumens and you make two payment operations of 60 lumens each. If you make two transactions (each with one operation), the first will succeed and the second will fail because you don’t have enough lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single operation, they will both fail and you’ll be left with the full 100 lumens still in your account. 
+If any operation in the transaction fails, they all fail. For example, let’s say you have 100 lumens and you make two payment operations of 60 lumens each. If you make two transactions (each with one operation), the first will succeed and the second will fail because you don’t have enough lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single operation, they will both fail and you’ll be left with the full 100 lumens still in your account.
 
 Finally, every transaction costs a small fee. Like the minimum balance on accounts, this fee helps stop people from overloading the system with lots of transactions. Known as the **base fee**, it is very small—100 stroops per operation (that’s 0.00001 XLM; stroops are easier to talk about than such tiny fractions of a lumen). A transaction with two operations would cost 200 stroops.[^3]
 
@@ -61,7 +61,7 @@ server.loadAccount(destinationId)
   })
   .then(function(result) {
     console.log('Success! Results:', result);
-  }) 
+  })
   .catch(function(error) {
     console.error('Something went wrong!', error);
   });
@@ -111,7 +111,7 @@ What exactly happened there? Let’s break it down.
 1. Confirm that the account ID you are sending to actually exists by loading the associated account data from the Stellar network. Everything will actually be OK if you skip this step, but doing it gives you an opportunity to avoid making a transaction you know will fail. You can also use this call to perform any other other verification you might want to do on a destination account. If you are writing banking software, for example, this is a good place to insert regulatory compliance checks and <abbr title="Know Your Customer">KYC</abbr> verification.
 
     <code-example name="Load an Account">
-    
+
     ```js
     server.loadAccount(destinationId)
       .then(function(account) { /* validate the account */ })
@@ -120,13 +120,13 @@ What exactly happened there? Let’s break it down.
     ```java
     server.accounts().account(destination);
     ```
-    
+
     </code-example>
 
 2. Load data for the account you are sending from. An account can only perform one transaction at a time[^5] and has something called a [**sequence number**,](../concepts/accounts.md#sequence-number) which helps Stellar verify the order of transactions. A transaction’s sequence number needs to match the account’s sequence number, so you need to get the account’s current sequence number from the network.
 
     <code-example name="Load Source Account">
-    
+
     ```js
     .then(function() {
     return server.loadAccount(sourceKeys.accountId());
@@ -136,15 +136,15 @@ What exactly happened there? Let’s break it down.
     ```java
     AccountResponse sourceAccount = server.accounts().account(source);
     ```
-    
+
     </code-example>
 
     The SDK will automatically increment the account’s sequence number when you build a transaction, so you won’t need to retrieve this information again if you want to perform a second transaction.
-  
+
 3. Start building a transaction. This requires an account object, not just an account ID, because it will increment the account’s sequence number.
 
     <code-example name="Build a Transaction">
-    
+
     ```js
     var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
     ```
@@ -152,13 +152,13 @@ What exactly happened there? Let’s break it down.
     ```java
     Transaction transaction = new Transaction.Builder(sourceAccount)
     ```
-    
+
     </code-example>
 
 4. Add the payment operation to the account. Note that you need to specify the type of asset you are sending—Stellar’s “native” currency is the lumen, but you can send any type of asset or currency you like, from dollars to bitcoin to any sort of asset you trust the issuer to redeem [(more details below)](#transacting-in-other-currencies). For now, though, we’ll stick to lumens, which are called “native” assets in the SDK:
 
     <code-example name="Add an Operation">
-    
+
     ```js
     .addOperation(StellarSdk.Operation.payment({
       destination: destinationId,
@@ -170,7 +170,7 @@ What exactly happened there? Let’s break it down.
     ```java
     .addOperation(new PaymentOperation.Builder(destination, new AssetTypeNative(), "10").build())
     ```
-    
+
     </code-example>
 
     You should also note that the amount is a string rather than a number. When working with extremely small fractions or large values, [floating point math can introduce small inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all systems have a native way to accurately represent extremely small or large decimals, Stellar uses strings as a reliable way to represent the exact amount across any system.
@@ -178,7 +178,7 @@ What exactly happened there? Let’s break it down.
 5. Optionally, you can add your own metadata, called a [**memo,**](../concepts/transactions.md#memo) to a transaction. Stellar doesn’t do anything with this data, but you can use it for any purpose you’d like. If you are a bank that is receiving or sending payments on behalf of other people, for example, you might include the actual person the payment is meant for here.
 
     <code-example name="Add a Memo">
-    
+
     ```js
     .addMemo(StellarSdk.Memo.text('Test Transaction'))
     ```
@@ -186,13 +186,13 @@ What exactly happened there? Let’s break it down.
     ```java
     .addMemo(Memo.text("Test Transaction"));
     ```
-    
+
     </code-example>
 
 6. Now that the transaction has all the data it needs, you have to cryptographically sign it using your secret seed. This proves that the data actually came from you and not someone impersonating you.
 
     <code-example name="Sign the Transaction">
-    
+
     ```js
     transaction.sign(sourceKeys);
     ```
@@ -200,13 +200,13 @@ What exactly happened there? Let’s break it down.
     ```java
     transaction.sign(source);
     ```
-    
+
     </code-example>
 
 7. And finally, send it to the Stellar network!
 
     <code-example name="Submit the Transaction">
-    
+
     ```js
     server.submitTransaction(transaction);
     ```
@@ -214,7 +214,7 @@ What exactly happened there? Let’s break it down.
     ```java
     server.submitTransaction(transaction);
     ```
-    
+
     </code-example>
 
 ## Receive Payments
@@ -249,13 +249,13 @@ payments.stream({
   onmessage: function(payment) {
     // Record the paging token so we can start from here next time.
     savePagingToken(payment.paging_token);
-    
+
     // The payments stream includes both sent and received payments. We only
     // want to process received payments here.
     if (payment.to !== accountId) {
       return;
     }
-    
+
     // In Stellar’s API, Lumens are referred to as the “native” type. Other
     // asset types have more detailed information.
     var asset;
@@ -265,10 +265,10 @@ payments.stream({
     else {
       asset = payment.asset_code + ':' + payment.asset_issuer;
     }
-    
+
     console.log(payment.amount + ' ' + asset + ' from ' + payment.from);
   },
-  
+
   onerror: function(error) {
     console.error('Error in payment stream');
   }
@@ -364,7 +364,7 @@ if (lastToken != null) {
 
 </code-example>
 
-Second, the results of the query are streamed. This is the easiest way to watch for payments or other transactions. Each existing payment is sent through the stream, one by one. Once all existing payments have been sent, the stream stays open and new payments are sent as they are made. 
+Second, the results of the query are streamed. This is the easiest way to watch for payments or other transactions. Each existing payment is sent through the stream, one by one. Once all existing payments have been sent, the stream stays open and new payments are sent as they are made.
 
 Try it out: Run this program, and then, in another window, create and submit a payment. You should see this program log the payment.
 
@@ -429,7 +429,7 @@ You can read more about the details of assets in the [assets overview](../concep
 
 Now that you can send and receive payments using Stellar’s API, you’re on your way to writing all kinds of amazing financial software. Experiment with other parts of the API, then read up on more detailed topics:
 
-- [Become an anchor](../anchor.md)
+- [Become an anchor](../anchor/)
 - [Security](../security.md)
 - [Federation](../concepts/federation.md)
 - [Compliance](../compliance-protocol.md)
