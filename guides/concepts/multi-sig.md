@@ -42,6 +42,12 @@ Accounts are identified by a public key. The private key that corresponds to thi
 
 Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
+## Hash(tx) signer
+Public keys of accounts are not the only one type of supported signers. You can authorize transaction with its hash by adding signer of type hash(tx) to an account. To do that you need to prepare the transaction beforehand with proper sequence number (adding signature will increase account sequence number by one, so this number must by larger at least by 2). Then you can obtain hash of this transaction and add it as signer to account with type hash(tx).
+
+Signers of this type are automatically removed when transaction matching their hash(tx) is properly applied. In case of error, or when matching transaction is never submitted, the signers remains and must be manually removed using the [Set Options](./list-of-operations.md#set-options) operation.
+
+This type of signers is especially usefull in escrow accounts. You can create hash(tx) signer for two transactions with the same sequence number and merge operations with two different accounts.
 
 ## Envelopes
 A transaction **envelope** wraps a transaction with a set of signatures. The transaction object is the thing that the signers are actually signing. Technically, a transaction envelope is the thing that is passed around the network and included in transaction sets.
