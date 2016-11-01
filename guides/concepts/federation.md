@@ -23,7 +23,7 @@ Note that the `@` symbol is allowed in the username. This allows for using email
 
 ### Step 1: Create a [stellar.toml](./stellar-toml.md) file
 
-Create a file called stellar.toml and put it at `https://www.YOUR_DOMAIN/.well-known/stellar.toml`.
+Create a file called stellar.toml and put it at `https://YOUR_DOMAIN/.well-known/stellar.toml`.
 
 ### Step 2: Add federation_url
 
