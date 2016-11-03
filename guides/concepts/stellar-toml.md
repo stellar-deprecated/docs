@@ -12,7 +12,7 @@ The stellar.toml file is a text file in the [TOML format](https://github.com/tom
 
 Given the domain "DOMAIN", the stellar.toml will be searched for at the following location:
 
-`https://www.DOMAIN/.well-known/stellar.toml`
+`https://DOMAIN/.well-known/stellar.toml`
 
 ## Enabling cross-origin resource sharing (CORS)
 You must enable CORS on the stellar.toml so people can access this file from other sites. The following HTTP header *must* be set for a HTTP response for `stellar.toml` file request.
@@ -41,16 +41,16 @@ For other webservers, see: http://enable-cors.org/server.html
 
 ## Testing CORS
 
-1. Run a curl command in your terminal similar to the following (replace www.stellar.org with the hosting location of your stellar.toml file):
+1. Run a curl command in your terminal similar to the following (replace stellar.org with the hosting location of your stellar.toml file):
 
   ```bash
-  curl --head https://www.stellar.org/.well-known/stellar.toml
+  curl --head https://stellar.org/.well-known/stellar.toml
   ```
 
 2. Verify the `Access-Control-Allow-Origin` header is present as shown below.
 
   ```bash
-  curl --head https://www.stellar.org/.well-known/stellar.toml
+  curl --head https://stellar.org/.well-known/stellar.toml
   HTTP/1.1 200 OK
   Accept-Ranges: bytes
   Access-Control-Allow-Origin: *
