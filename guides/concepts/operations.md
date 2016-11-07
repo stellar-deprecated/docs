@@ -27,14 +27,14 @@ Each operation falls under a specific threshold category: low, medium, or high.
 Thresholds define the level of privilege an operation needs in order to succeed.
 
 * Low Security:
- * AllowTrustTx
- * Used to allow other signers to allow people to hold credit from this
+  * AllowTrustTx
+  * Used to allow other signers to allow people to hold credit from this
    account but not issue credit.
 * Medium Security:
- * All else
+  * All else
 * High Security:
- * SetOptions for Signer and threshold
- * Used to change the Set of signers and the thresholds.
+  * SetOptions for Signer and threshold
+  * Used to change the Set of signers and the thresholds.
 
 ## Validity of an operation
 
