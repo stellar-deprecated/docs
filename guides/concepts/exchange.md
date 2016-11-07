@@ -17,7 +17,7 @@ exists to sell 10 XLM for 2 BTC, your offer will take that offer--you'll be 2 BT
 If the offer doesn't cross an existing offer, the offer is saved in the orderbook until it is either taken by another offer,
 taken by a payment, canceled by the account that created the offer, or invalidated because the account making the offer no longer has the asset for sale.
 
-Offers in stellar behave like limit orders in traditional markets. 
+Offers in Stellar behave like limit orders in traditional markets. 
 
 For offers placed at the same price, the older offer is filled before the newer one.  
 
