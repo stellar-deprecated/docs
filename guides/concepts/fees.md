@@ -29,6 +29,13 @@ Each Stellar node usually limits the number of transactions that it will propose
 
 See [transaction life cycle](./transactions.md#life-cycle) for more information.
 
+## Fee Pool
+
+The fee pool is the the lot of lumens collected from [transaction fees](./fees.md#transaction-fee).
+
+Stellar does not retain these lumens. They are distributed in the weekly process of [inflation voting](./inflation.md). 
+
+If there are any unallocated lumens after the vote, those lumens return to the fee pool for dispersal in the next round. 
 
 ## Minimum Account Balance
 
