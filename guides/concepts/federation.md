@@ -6,6 +6,8 @@ The Stellar federation protocol maps Stellar addresses to more information about
 to resolve email-like addresses such as `name*yourdomain.com` into account IDs like: `GCCVPYFOHY7ZB7557JKENAX62LUAPLMGIWNZJAFV2MITK6T32V37KEJU`. Stellar addresses provide
 an easy way for users to share payment details by using a syntax that interoperates across different domains and providers.
 
+![Mockup of using a payment address](assets/mockup.png)
+
 ## Stellar addresses
 
 Stellar addresses are divided into two parts separated by `*`, the username and the domain.
