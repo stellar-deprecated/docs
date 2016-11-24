@@ -104,6 +104,14 @@ Contact | https://www.ecliptic.co
 Slack | sb
 NodeID | GBVRSIZS6TQY7T57JCHRPFVRBOLQUKV3WUT4DPP6ME3BFRH3S4PBB6J5
 
+Name | quantoz.com
+-----|------------
+Description | Quantoz Technology Stellar AWS Node 1
+Contact | http://www.quantoz.com
+Slack | mvaneijk, raymens
+Peer | stellar-node-1.quantoz.com
+NodeID | GAL4GIVM6E2PQUUXIMNUXJQB6PC2PPZPR5JKELOBK2MXBBIFMU25YOSD
+
 ----
 Seem Down
 
