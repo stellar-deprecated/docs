@@ -9,11 +9,15 @@ Using the Stellar network, you can build mobile wallets, banking tools, smart de
 
 **Most applications interact with the Stellar network through [Horizon](https://www.stellar.org/developers/horizon/reference/),** a RESTful HTTP API server. Horizon gives you a straightforward way to submit transactions, check accounts, and subscribe to events. Because it’s just HTTP, you can communicate with Horizon using your web browser, simple command line tools like cURL, or the Stellar SDK for your favorite programming language.
 
+The easiest way to install Horizon is by using [**stellar/quickstart** docker image](https://hub.docker.com/r/stellar/quickstart/).
+
 Stellar.org maintains [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk), and [Go](https://github.com/stellar/go/tree/master/clients/horizon)-based SDKs for communicating with Horizon. There are also community-maintained SDKs for [Ruby](https://github.com/stellar/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base), and [C#](https://github.com/QuantozTechnology/csharp-stellar-base).
 
 ## Network Backbone: Stellar Core
 
 Behind the scenes, every Horizon server connects to **[Stellar Core](../../stellar-core/learn/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing with other instances of Core on the status of every transaction through the [Stellar Consensus Protocol](../concepts/scp.html) (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
+
+The easiest way to install Stellar Core is by using [**stellar/quickstart** docker image](https://hub.docker.com/r/stellar/quickstart/).
 
 You might want to host your own instance of Stellar Core in order to submit transactions without depending on a third party, have more control over who to trust, or simply to help make the Stellar network more reliable and robust for others.
 
