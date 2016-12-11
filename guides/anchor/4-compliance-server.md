@@ -379,7 +379,7 @@ request.post({
     source: 'SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ',
     sender: 'tunde_adebayo*your_org.com',
     // `extra_memo` is required for compliance (use it instead of `memo`)
-    extra_memo: 'Test transation',
+    extra_memo: 'Test transaction',
   }
 }, function(error, response, body) {
   if (error || response.statusCode !== 200) {
