@@ -6,7 +6,7 @@ The first thing you’ll need to do anything on the Stellar network is an accoun
 
 Every Stellar account has a **public key** and a **secret seed**. Stellar uses public key cryptography to ensure that every transaction is secure. The public key is always safe to share—other people need it to identify your account and verify that you authorized a transaction. The seed, however, is private information that proves you own your account. You should never share the seed with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s seed can control your account.
 
-If you’re familar with public key cryptography, you might be wondering how the seed differs from a private key. The seed is actually the single secret piece of data that is used to generate both the public and private key for your account. Stellar’s tools use the seed instead of the private key for convenience: To have full access to an account, you only need to provide a seed instead of both a public key and a private key.[^1]
+If you’re familiar with public key cryptography, you might be wondering how the seed differs from a private key. The seed is actually the single secret piece of data that is used to generate both the public and private key for your account. Stellar’s tools use the seed instead of the private key for convenience: To have full access to an account, you only need to provide a seed instead of both a public key and a private key.[^1]
 
 Because the seed must be kept secret, the first step in creating an account is creating your own seed and key—when you finally create the account, you’ll send only the public key to a Stellar server. You can generate the seed and key with the following command:
 
@@ -136,7 +136,7 @@ var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // the JS SDK uses promises for most actions, such as retrieving an account
 server.loadAccount(pair.accountId()).then(function(account) {
-  console.log('Balaces for account: ' + pair.accountId());
+  console.log('Balances for account: ' + pair.accountId());
   account.balances.forEach(function(balance) {
     console.log('Type:', balance.asset_type, ', Balance:', balance.balance);
   });
@@ -192,7 +192,7 @@ Now that you’ve got an account, you can [start sending and receiving payments]
 </div>
 
 
-[^1]: A private key is still used to encrpyt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
+[^1]: A private key is still used to encrypt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
 
 [^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances. For more on minimum balances, see [fees](../concepts/fees.md#minimum-account-balance)
 
