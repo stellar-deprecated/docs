@@ -42,7 +42,7 @@ port = 8002
 
 [database]
 type = "mysql" # Or "postgres" or "sqlite3"
-url = "dbuser:dbpassword:@/internal_accounts"
+url = "dbuser:dbpassword@/internal_accounts"
 
 [queries]
 federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'your_org.com'"
