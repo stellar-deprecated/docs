@@ -44,7 +44,7 @@ Instead of building your own server you can use the [`federation server`](https:
 ## Federation Requests
 You can use the federation endpoint to look up an account id if you have a stellar address. You can also do reverse federation and look up a stellar addresses from account ids or transaction ids. This is useful to see who has sent you a payment.
 
-Federation requests have the following form:
+Federation requests are http `GET` request with the following query:
 
 `?q=<string to look up>&type=<name,id,txid>`
 
@@ -63,25 +63,32 @@ You must enable CORS on the federation server so clients can send requests from 
 Access-Control-Allow-Origin: *
 ```
 
-JSON response should look like:
+When record has been found response should return `200 OK` http status code and the following JSON body:
 
 ```
-status: 200
 {
-  stellar_address: <username*domain.tld>,
-  account_id: <account_id>,
-  memo_type: <"text", "id" , or "hash"> *optional*
-  memo: <memo to attach to any payment. if "hash" type then will be base32 encoded> *optional*
+  "stellar_address": <username*domain.tld>,
+  "account_id": <account_id>,
+  "memo_type": <"text", "id" , or "hash"> *optional*
+  "memo": <memo to attach to any payment. if "hash" type then will be base64 encoded> *optional*
 }
+```
 
-or on error,
-status: 501
-status: 404
-etc.
+If redirect is needed the federation server should return `3xx` http status code and immediately redirect user to the correct URL using `Location` header.
+
+When record has not been found `404 Not Found` http status code should be returned.
+
+Every other http status code will be considered an error. The body should contain error details:
+
+```
 {
-   detail: "extra details provided by the federation server"
+   "detail": "extra details provided by the federation server"
 }
 ```
 
 ## Looking up federation provider via a home domain entry
 Accounts may optionally have a [home domain](./accounts.md#home-domain) specified. This allows an account to programmatically specify where is the main federation provider for that account.
+
+## Caching
+
+You should never try to cache responses from other federation servers. Some organizations may generate random IDs to protect their users privacy. Those IDs may be changing over time.
