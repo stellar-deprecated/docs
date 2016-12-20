@@ -34,7 +34,7 @@ Name | Data Type | Description
 `sender` | string | The stellar address of the customer that is initiating the send. Ex. `jed*stellar.org`
 `need_info` | boolean | If the caller needs the recipient's AML info in order to send the payment.
 `tx` | string: base64 encoded [xdr.Transaction](https://github.com/stellar/stellar-core/blob/4961b8bb4a64c68838632c5865389867e9f02840/src/xdr/Stellar-transaction.x#L297-L322) | The transaction that the sender would like to send in XDR format. This transaction is unsigned.
-`memo` | string | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [Stellar memo convention](https://github.com/stellar/stellar-protocol/issues/28) and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
+`memo` | string | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [memo preimage](./memo-preimage.md) structure and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
 
 **sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html) (`SIGNING_KEY` field).
 
@@ -64,7 +64,7 @@ Name | Data Type | Description
 -----|-----------|------------
 `info_status` | `ok`, `denied`, `pending` | If this FI is willing to share AML information or not.
 `tx_status` | `ok`, `denied`, `pending` | If this FI is willing to accept this transaction.
-`dest_info` | string | *(only present if `info_status` is `ok`)* Marshalled JSON of the recipient's AML information in the [Stellar memo convention](https://github.com/stellar/stellar-protocol/issues/28).
+`dest_info` | string | *(only present if `info_status` is `ok`)* Marshalled JSON of the recipient's AML information in the [memo preimage](./memo-preimage.md).
 `pending` | integer | *(only present if `info_status` or `tx_status` is `pending`)* Estimated number of seconds till the sender can check back for a change in status. The sender should just resubmit this request after the given number of seconds.
 
 *Response Example*
