@@ -15,16 +15,22 @@ Memo preimage is a JSON document with the following structure:
   "transaction": {
     "nonce": "<nonce>",
     "sender_info": {
-      "name": "<name>",
+      "first_name": "<first_name>",
+      "middle_name": "<middle_name>",
+      "last_name": "<last_name>",
       "address": "<address>",
-      "date_of_birth": "<date of birth in YYYY-MM-DD format>"
+      "city": "<city>",
+      "province": "<province>",
+      "country": "<country in ISO 3166-1 alpha-2 format>",
+      "date_of_birth": "<date of birth in YYYY-MM-DD format>",
+      "company_name": "<company_name>"
     },
     "route": "<route>",
     "note": "<note>"
   },
   "operations": [
     {
-      "sender_info": "<sender_info>",
+      "sender_info": <sender_info>,
       "route": "<route>",
       "note": "<note>"
     },
@@ -36,7 +42,7 @@ Memo preimage is a JSON document with the following structure:
 Name | Data Type | Description
 -----|-----------|------------
 `transaction.nonce` | Random string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a random value. Every transaction you send should have a different value. Nonce is needed to distinguish memos of two transactions sent between the same pair of customers.
-`transaction.sender_info` | JSON | JSON containing KYC info of the sender. This JSON object can be extended with more fields.
+`transaction.sender_info` | JSON | JSON containing KYC info of the sender. This JSON object can be extended with more fields if needed.
 `transaction.route` | string | TODO
 `transaction.note` | string | A note attached to transaction.
 `operations[i]` | | `i`th operation data. Can be omitted if transaction has only one operation.
@@ -73,7 +79,9 @@ var memoPreimage = {
     "nonce": nonce.toString('hex'),
     "sender_info": {
       "name": "Sherlock Holmes",
-      "address": "221B Baker Street, London NW1 6XE, UK",
+      "address": "221B Baker Street",
+      "city": "London NW1 6XE",
+      "country": "UK",
       "date_of_birth": "1854-01-06"
     }
   },
