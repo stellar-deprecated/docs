@@ -29,7 +29,7 @@ pair.accountId();
 import org.stellar.sdk.KeyPair;
 KeyPair pair = KeyPair.random();
 
-pair.getSecretSeed();
+new String(pair.getSecretSeed());
 // SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
 pair.getAccountId();
 // GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
