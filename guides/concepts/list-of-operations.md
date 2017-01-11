@@ -20,6 +20,8 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 
 
 ## Create Account
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.createAccount) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreateAccountOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#CreateAccountBuilder)
+
 This operation creates and funds a new account with the specified starting balance.
 
 Threshold: Medium
@@ -46,6 +48,8 @@ Possible errors:
 
 
 ## Payment
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.payment) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PaymentOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#PaymentBuilder)
+
 Sends an amount in a specific asset to a destination account.
 
 Threshold: Medium
@@ -75,6 +79,8 @@ Possible errors:
 |PAYMENT_NO_ISSUER| -9| The issuer of the asset does not exist.|
 
 ## Path Payment
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.pathPayment) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PathPaymentOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#PayWithPath)
+
 Sends an amount in a specific asset to a destination account through a path of offers. This allows the asset sent (e.g., 450 XLM) to be different from the asset received (e.g, 6 BTC).
 
 Threshold: Medium
@@ -110,6 +116,8 @@ Possible errors:
 |PATH_PAYMENT_OVER_SENDMAX| -12| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
 
 ## Manage Offer
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageOffer) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder)
+
 Creates, updates, or deletes an offer.
 
 If you want to create a new offer set Offer ID to `0`.
@@ -148,6 +156,8 @@ Possible errors:
 |MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 ## Create Passive Offer
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveOffer) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder)
+
 A passive offer is an offer that does not act on and take a reverse offer of equal price. Instead, they only take offers
 of lesser price. For example, if an offer exists to buy 5 BTC for 30 XLM, and you make a passive offer to buy 30 XLM for 5 BTC,
 your passive offer *does not* take the first offer.
@@ -191,6 +201,8 @@ Possible errors:
 
 
 ## Set Options
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.setOptions) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/SetOptionsOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#SetOptionsBuilder)
+
 This operation sets the options for an account.
 
 For more information on the signing options, please refer to the [multi-sig doc](./multi-sig.md).
@@ -230,6 +242,8 @@ Possible errors:
 |SET_OPTIONS_INVALID_HOME_DOMAIN| -9| Home domain is malformed.|
 
 ## Change Trust
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.changeTrust) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ChangeTrustOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ChangeTrustBuilder)
+
 Creates, updates, or deletes a trustline.  For more on trustlines, please refer to the [assets documentation](./assets.md).
 
 Threshold: Medium
@@ -253,6 +267,8 @@ Possible errors:
 
 
 ## Allow Trust
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.allowTrust) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AllowTrustOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#AllowTrustBuilder)
+
 Updates the `authorized` flag of an existing trustline. This can only be called by the issuer of a trustline's [asset](./assets.md).
 
 The issuer can only clear the `authorized` flag if the issuer has the `AUTH_REVOCABLE_FLAG` set. Otherwise, the issuer can only set the `authorized` flag.
@@ -277,6 +293,8 @@ Possible errors:
 |ALLOW_TRUST_CANT_REVOKE| -4| The source account is trying to revoke the trustline of the `trustor`, but it cannot do so.|
 
 ## Account Merge
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.accountMerge) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AccountMergeOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#AccountMergeBuilder)
+
 Transfers the native balance (the amount of XLM an account holds) to another account and removes the source account from the ledger.
 
 Threshold: High
@@ -297,6 +315,8 @@ Possible errors:
 |ACCOUNT_MERGE_HAS_SUB_ENTRIES | -4| The source account has trust lines/offers.|
 
 ## Inflation
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/build#InflationBuilder)
+
 This operation runs inflation.
 
 Threshold: low
@@ -311,6 +331,8 @@ Possible errors:
 
 
 ## Manage Data
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageData) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageDataOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageDataBuilder)
+
 Allows you to set,modify or delete a Data Entry (name/value pair) that is attached to a particular account. An account can have an arbitrary amount of DataEntries attached to it. Each DataEntry increases the minimum balance needed to be held by the account.
 
 DataEntries can be used for application specific things. They are not used by the core Stellar protocol.
