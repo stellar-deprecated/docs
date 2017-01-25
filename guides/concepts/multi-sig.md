@@ -42,17 +42,23 @@ Accounts are identified by a public key. The private key that corresponds to thi
 
 Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
-## Hash(tx) signer
-Public keys of accounts are not the only one type of supported signers. You can authorize transaction with its hash by adding signer of type hash(tx) to an account. To do that you need to prepare the transaction beforehand with proper sequence number (adding signature will increase account sequence number by one, so this number must by larger at least by 2). Then you can obtain hash of this transaction and add it as signer to account with type hash(tx).
+## Alternate Signature Types
+To enable some advanced smart contract features there are a couple of additional signature types. These signature types also have weights and can be added and removed similarly to normal signature types. But rather than check a cryptographic signature for authorization they have a different method of proving validity to the network.
 
-Signers of this type are automatically removed when transaction matching their hash(tx) is properly applied. In case of error, or when matching transaction is never submitted, the signers remains and must be manually removed using the [Set Options](./list-of-operations.md#set-options) operation.
+### Pre-authorized Transaction
+It is possible for an account to pre-authorize a particular transaction by adding the hash of the future transaction as a "signer" on the account. To do that you need to prepare the transaction beforehand with proper sequence number. Then you can obtain the hash of this transaction and add it as signer to account.
 
-This type of signers is especially usefull in escrow accounts. You can create hash(tx) signer for two transactions with the same sequence number and merge operations with two different accounts.
+Signers of this type are automatically removed from the account when a matching transaction is properly applied. In case of error, or when matching transaction is never submitted, the signer remains and must be manually removed using the [Set Options](./list-of-operations.md#set-options) operation.
 
-## Hash(x) signer
-Another possibility for signing transactions is to use Hash(x) signer. First, create a random 256 bit value, called preimage X. SHA26 hash of that value can be added as a signer of type Hash(x). Then in order to authorize transaction value of X can be provided in signatures of transaction.
+This type of signer is especially usefull in escrow accounts. You can create a pre-authorized transaction for two different transactions each with the same sequence number but that send to two different accounts. This means that only one of the pre-authorized transactions or the other will be able to execute.
 
-This type of signers is especially usefull in atomic cross-chain trading.
+### Hash(x)
+Adding a signature of type hash(x) allows anyone who knows `x` to sign the transaction. This type of signer is especially usefull in [atomic cross-chain swaps](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading) which are needed for inter-blockchain protocols like [lightning networks](https://lightning.network).
+
+First, create a random 256 bit value, which we call `x`. The SHA26 hash of that value can be added as a signer of type hash(x). Then in order to authorize a transaction, `x` is added as one of the signatures of the transaction.
+Keep in mind that `x` will be known to the world as soon as a transaction is submitted to the network with `x` as a signature. This means anyone will be able to sign for that account with the hash(x) signer at that point. Often you want there to be additional signers so someone must have a particular secret key and know `x` inorder reach the weight threshold required to authorize transactions on the account.
+
+
 
 ## Envelopes
 A transaction **envelope** wraps a transaction with a set of signatures. The transaction object is the thing that the signers are actually signing. Technically, a transaction envelope is the thing that is passed around the network and included in transaction sets.
