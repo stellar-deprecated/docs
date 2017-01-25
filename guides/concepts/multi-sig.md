@@ -38,7 +38,7 @@ The [Set Options](./list-of-operations.md#set-options) operation allows you to c
 ## Additional signing keys
 Accounts are identified by a public key. The private key that corresponds to this public key is called the **master key**. Additional signing keys can be added to the account using the [Set Options](./list-of-operations.md#set-options) operation.
 
-"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight.  
+"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight.
 
 Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
@@ -48,6 +48,11 @@ Public keys of accounts are not the only one type of supported signers. You can 
 Signers of this type are automatically removed when transaction matching their hash(tx) is properly applied. In case of error, or when matching transaction is never submitted, the signers remains and must be manually removed using the [Set Options](./list-of-operations.md#set-options) operation.
 
 This type of signers is especially usefull in escrow accounts. You can create hash(tx) signer for two transactions with the same sequence number and merge operations with two different accounts.
+
+## Hash(x) signer
+Another possibility for signing transactions is to use Hash(x) signer. First, create a random 256 bit value, called preimage X. SHA26 hash of that value can be added as a signer of type Hash(x). Then in order to authorize transaction value of X can be provided in signatures of transaction.
+
+This type of signers is especially usefull in atomic cross-chain trading.
 
 ## Envelopes
 A transaction **envelope** wraps a transaction with a set of signatures. The transaction object is the thing that the signers are actually signing. Technically, a transaction envelope is the thing that is passed around the network and included in transaction sets.
@@ -59,7 +64,7 @@ This scheme is very flexible. You can require many signers to authorize payments
 
 
 ## Operations
-### Example 1: Anchors 
+### Example 1: Anchors
 > You run an anchor that would like to keep its issuing key offline. That way, it's less likely a bad actor can get ahold of the anchor's key and start issuing credit improperly. However, your anchor needs to authorize people holding credit by running the `Allow Trust` operation. Before you issue credit to an account, you need to verify that account is OK.
 
 Multisig allows you to do all of this without exposing the master key of your anchor. You can add another signing key
