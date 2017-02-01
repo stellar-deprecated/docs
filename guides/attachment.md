@@ -1,14 +1,14 @@
 ---
-title: Memo preimage
+title: Stellar Attachment Convention
 ---
 
-# Memo preimage
+# Attachments
 
-Sometimes there is a need to send more information about the transaction, for example: KYC info and/or a short note. Such data shouldn't be placed in a [ledger](./concepts/ledger.md) because of it's public nature. Instead, you should create a JSON document: memo preimage, send it to receiver's [Auth server](./compliance-protocol.md) and then attach the sha-256 hash as a memo hash in your transaction.
+Sometimes there is a need to send more information about a transaction than fits in the provided memo field, for example: KYC info, an invoice, a short note. Such data shouldn't be placed in the [ledger](./concepts/ledger.md) because of it's size or private nature. Instead, you should create what we call an `Attachment`. A Stellar attachment is simply a JSON document. The sha256 hash of this attahment is included as a memo hash in your transaction. The actual document can be sent to the receiver through some other channel, most likely through the receiver's [Auth server](./compliance-protocol.md).
 
-## Memo preimage structure
+## Attachment structure
 
-Memo preimage is a JSON document with the following structure:
+Attachments have a flexible structure. They can include the following fields but these are optional and there might be extra information attached.
 
 ```json
 {
@@ -41,7 +41,7 @@ Memo preimage is a JSON document with the following structure:
 
 Name | Data Type | Description
 -----|-----------|------------
-`transaction.nonce` | Random string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a random value. Every transaction you send should have a different value. Nonce is needed to distinguish memos of two transactions sent between the same pair of customers.
+`transaction.nonce` | Random string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a random value. Every transaction you send should have a different value. Nonce is needed to distinguish attachments of two transactions sent between the same pair of customers.
 `transaction.sender_info` | JSON | JSON containing KYC info of the sender. This JSON object can be extended with more fields if needed.
 `transaction.route` | string | TODO
 `transaction.note` | string | A note attached to transaction.
@@ -50,23 +50,23 @@ Name | Data Type | Description
 `operations[i].route` | string | `route` for `i`th operation in the transaction. If empty, will inherit value from `transaction`.
 `operations[i].note` | string | `note` for `i`th operation in the transaction. If empty, will inherit value from `transaction`.
 
-## Calculating memo preimage hash
+## Calculating Attachment hash
 
-To calculate memo preimage hash you need to stringify JSON object and calculate `sha-256` hash. In Node.js:
+To calculate the Attachment hash you need to stringify the JSON object and calculate `sha-256` hash. In Node.js:
 
 ```js
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
 
-hash.update(JSON.stringify(memoPreimage));
+hash.update(JSON.stringify(attachment));
 var memoHashHex = hash.digest('hex');
 ```
 
-To add the hash to your transaction use [`TransactionBuilder.addMemo`](http://stellar.github.io/js-stellar-base/TransactionBuilder.html#addMemo) method.
+To add the hash to your transaction use the [`TransactionBuilder.addMemo`](http://stellar.github.io/js-stellar-base/TransactionBuilder.html#addMemo) method.
 
-## Sending memo preimage
+## Sending Attachments
 
-Send memo preimage and it's hash (in a transaction) to Auth server of a receiving organization. Read [Compliance protocol](./compliance-protocol.md) doc for more information.
+To send an Attachment and its hash (in a transaction) to Auth server of a receiving organization read the [Compliance protocol](./compliance-protocol.md) doc for more information.
 
 ## Example
 
@@ -74,7 +74,7 @@ Send memo preimage and it's hash (in a transaction) to Auth server of a receivin
 var crypto = require('crypto');
 
 var nonce = crypto.randomBytes(16);
-var memoPreimage = {
+var attachment = {
   "transaction": {
     "nonce": nonce.toString('hex'),
     "sender_info": {
@@ -100,7 +100,7 @@ var memoPreimage = {
 };
 
 var hash = crypto.createHash('sha256');
-hash.update(JSON.stringify(memoPreimage));
+hash.update(JSON.stringify(attachment));
 var memoHashHex = hash.digest('hex');
 console.log(memoHashHex); // TODO
 ```
