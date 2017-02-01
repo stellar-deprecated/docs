@@ -22,7 +22,7 @@ The `AUTH_SERVER` provides one endpoint that is called by a sending FI to get ap
 
 #### Request
 
-To send transaction data to receiving organization, send HTTP POST to `AUTH_SERVER` with `Content-Type` equal `application/x-www-form-urlencoded` and the following body:
+To send transaction data to the receiving organization, send HTTP POST to `AUTH_SERVER` with `Content-Type` equal `application/x-www-form-urlencoded` and the following body:
 ```
 data=<data value>&sig=<sig value>
 ```
@@ -31,10 +31,10 @@ data=<data value>&sig=<sig value>
 
 Name | Data Type | Description
 -----|-----------|------------
-`sender` | string | The stellar address of the customer that is initiating the send. Ex. `jed*stellar.org`
+`sender` | string | The payment address of the customer that is initiating the send. Ex. `bob*bank.com`
 `need_info` | boolean | If the caller needs the recipient's AML info in order to send the payment.
 `tx` | string: base64 encoded [xdr.Transaction](https://github.com/stellar/stellar-core/blob/4961b8bb4a64c68838632c5865389867e9f02840/src/xdr/Stellar-transaction.x#L297-L322) | The transaction that the sender would like to send in XDR format. This transaction is unsigned.
-`memo` | string | The full text of the memo. The hash of this memo is included in the transaction. The **memo** field follows the [memo preimage](./memo-preimage.md) structure and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
+`attach` | string | The full text of the attachment. The hash of this attachment is included as a memo in the transaction. The **attach** field follows the [Stellar Attachment Convention](./attachment.md) and should contain at least enough information of the sender to allow the receiving FI to do their sanction check.
 
 **sig** is the signature of the data block made by the sending FI. The receiving institution should check that this signature is valid against the public signature key that is posted in the sending FI's [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html) (`SIGNING_KEY` field).
 
@@ -43,18 +43,18 @@ Example request body (please note it contains both parameters `data` and `sig`):
 data=%7B%22sender%22%3A%22aldi*bankA.com%22%2C%22need_info%22%3Atrue%2C%22tx%22%3A%22AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D%22%2C%22memo%22%3A%22%7B%22transaction%22%3A%20%7B%22route%22%3A%20%22bogart*bankB.com%22%2C%20%22sender_info%22%3A%20%22%7B%5C%22name%5C%22%3A%20%5C%22Aldi%20Dobbs%5C%22%2C%20%5C%22address%5C%22%3A%20%5C%22678%20Mission%20St%2C%20San%20Francisco%2C%20CA%5C%22%7D%22%7D%7D%22%7D&sig=rphsdQJQPvKU7gF%2FwpmeeId9tJUM3eNqB%2FgaQykGO6IHcfpePquRBdwkxZuYVTRNtQlK3GrU%2FxvY5KoX3mQMBA%3D%3D
 ```
 
-After decoding `data` parameter it has a following form:
+After decoding the `data` parameter it has a following form:
 
 ```json
 {
   "sender": "aldi*bankA.com",
   "need_info": true,
   "tx": "AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8/mUo8/2RP7UQh0qX/2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA=",
-  "memo": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\\\"name\\\": \\\"Aldi Dobbs\\\", \\\"address\\\": \\\"678 Mission St, San Francisco, CA\\\"}\"}}"
+  "attach": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\\\"name\\\": \\\"Aldi Dobbs\\\", \\\"address\\\": \\\"678 Mission St, San Francisco, CA\\\"}\"}}"
 }
 ```
 
-Please note that memo value of `tx` is sha256 hash of memo string. You can check the transaction above using [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D&type=Transaction&network=test).
+Please note that the memo value of `tx` is a sha256 hash of the attachment. You can check the transaction above using [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D&type=Transaction&network=test).
 
 #### Response
 
@@ -136,7 +136,7 @@ After decoding `data` parameter it has a following form:
 }
 ```
 
-Please note that memo value of `tx` is sha256 hash of memo string and payment destination is a destination returned by federation server. You can check the transaction above using [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D&type=Transaction&network=test).
+Please note that memo value of `tx` is the sha256 hash of the attachment and payment destination is returned by the federation server. You can check the transaction above using the [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D&type=Transaction&network=test).
 
 **4) BankB handles the Auth request**
 
