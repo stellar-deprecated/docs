@@ -16,4 +16,4 @@ Check your balance and send simple payments. This basic client is built on top o
 This is a demo of Stellar SMS Client. It was originally developed during Stellar Hack Day.
 
 # Tools and Applications created by the community
-A list is maintained on [Galactic Talk](https://galactictalk.org/d/14-projects-built-on-stellar) scroll down for tools that are useful for developers.
+A list is maintained on [Galactic Talk](https://galactictalk.org/d/14-projects-built-on-stellar). Scroll down for tools that are useful for developers.
