@@ -50,6 +50,7 @@ Federation requests are http `GET` requests with the following form:
 
 Supported types:
  - **name**: Example: `https://YOUR_FEDERATION_SERVER/federation?q=jed*stellar.org&type=name`
+ - **forward**: Used for forwarding the payment on to a different network or differnet financial institution. In this case `q` is a JSON structure that contains the information needed for the other network. Example: `https://YOUR_FEDERATION_SERVER/federation?q=%7B%22bank%22%3A%22BNORPHMM%22%2C%22acct%22%3A%22187663627%22%7D&type=forward`
  - **id**: *not supported by all federation servers* Reverse federation will return the federation record of the Stellar address associated with the given account ID. In some cases this is ambiguous. For instance if an anchor sends transactions on behalf of its users the account id will be of the anchor and the federation server won't be able to resolve the particular user that sent the transaction. In cases like that you may need to use **txid** instead. Example: `https://YOUR_FEDERATION_SERVER/federation?q=GD6WU64OEP5C4LRBH6NK3MHYIA2ADN6K6II6EXPNVUR3ERBXT4AN4ACD&type=id`
  - **txid**: *not supported by all federation servers* Will return the federation record of the sender of the transaction if known by the server. Example: `https://YOUR_FEDERATION_SERVER/federation?q=c1b368c00e9852351361e07cc58c54277e7a6366580044ab152b8db9cd8ec52a
 &type=txid`
