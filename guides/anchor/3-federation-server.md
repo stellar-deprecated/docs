@@ -105,7 +105,7 @@ curl "https://www.your_org.com:8002/federation?q=tunde_adebayo*your_org.com&type
 ```js
 var request = require('request');
 
-request.post({
+request.get({
   url: 'https://www.your_org.com:8002/federation',
   qs: {
     q: 'tunde_adebayo*your_org.com',
