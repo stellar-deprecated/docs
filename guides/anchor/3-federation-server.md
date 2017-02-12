@@ -52,8 +52,8 @@ reverse-federation = "SELECT friendly_id, '' as domain FROM accounts WHERE ? = '
 # certificate and key here. If the server is behind a proxy or load  balancer
 # that implements HTTPS, you can omit this section.
 [tls]
-certificate_file = "server.crt"
-private_key_file = "server.key"
+certificate-file = "server.crt"
+private-key-file = "server.key"
 ```
 
 </code-example>
