@@ -6,6 +6,8 @@ title: Stellar Tools
 ## [Laboratory](https://www.stellar.org/laboratory)
 Interactive way to learn the Stellar API. The source is available [here](https://github.com/stellar/laboratory).
 
+## [Compliance protocol testing app](https://gostellar.org)
+Interactive tool to test [compliance protocol](https://www.stellar.org/developers/guides/compliance-protocol.html) deployment.
 
 # Reference applications and sample code
 
