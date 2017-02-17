@@ -261,11 +261,11 @@ To test that your receive callback works, let’s try sending 1 USD to a custome
 ```js
 var StellarSdk = require('stellar-sdk');
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-var sourceKeys = StellarSdk.Keypair.fromSeed(
+var sourceKeys = StellarSdk.Keypair.fromSecret(
   'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU';
 
-server.loadAccount(sourceKeys.accountId())
+server.loadAccount(sourceKeys.publicKey())
   .then(function(sourceAccount) {
     var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
       .addOperation(StellarSdk.Operation.payment({
@@ -293,9 +293,9 @@ Server server = new Server("https://horizon-testnet.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed(
   "SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
-KeyPair destination = KeyPair.fromAccountId(
+KeyPair destination = KeyPair.fromPublicKey(
   "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU");
-Asset dollar = Asset.createNonNativeAsset("USD", KeyPair.fromAccountId(
+Asset dollar = Asset.createNonNativeAsset("USD", KeyPair.fromPublicKey(
     "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"));
 
 AccountResponse sourceAccount = server.accounts().account(source);

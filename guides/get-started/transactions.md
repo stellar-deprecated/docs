@@ -25,7 +25,7 @@ var StellarSdk = require('stellar-sdk');
 StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair
-  .fromSeed('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
+  .fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
 
 // First, check to make sure that the destination account exists.
@@ -38,7 +38,7 @@ server.loadAccount(destinationId)
   })
   // If there was no error, load up-to-date information on your account.
   .then(function() {
-    return server.loadAccount(sourceKeys.accountId());
+    return server.loadAccount(sourceKeys.publicKey());
   })
   .then(function(sourceAccount) {
     // Start building the transaction.
@@ -72,7 +72,7 @@ Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
-KeyPair destination = KeyPair.fromAccountId("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
+KeyPair destination = KeyPair.fromPublicKey("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
 
 // First, check to make sure that the destination account exists.
 // You could skip this, but if the account does not exist, you will be charged
@@ -129,7 +129,7 @@ What exactly happened there? Let’s break it down.
 
     ```js
     .then(function() {
-    return server.loadAccount(sourceKeys.accountId());
+    return server.loadAccount(sourceKeys.publicKey());
     })
     ```
 
@@ -286,7 +286,7 @@ function loadLastPagingToken() {
 
 ```java
 Server server = new Server("https://horizon-testnet.stellar.org");
-KeyPair account = KeyPair.fromAccountId("'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF'");
+KeyPair account = KeyPair.fromPublicKey("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
 
 // Create an API call to query payments involving the account.
 PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account)
