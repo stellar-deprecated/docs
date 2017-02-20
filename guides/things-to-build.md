@@ -44,6 +44,11 @@ This would be a service hosted at `domain.com` that does the following:
 
 *Advanced* allow people to manage the stellar account you just created for them by sending emails to control@domain.com. This makes someone's inbox a Stellar client. For example: `send 100 XLM to bob@gmail.com`
 
+[Adding this feature to a wallet](https://galactictalk.org/d/37-project-idea-sending-lumens-to-any-address)
+
+# Distributed Exchange
+Description and discussion [here.](https://galactictalk.org/d/26-project-idea-distributed-exchange)
+
 
 # Resource Paywall
 Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used as spam prevention or to support your business. This is a job for the **toll collector**...
