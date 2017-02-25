@@ -64,9 +64,6 @@ The toll collector service has one RPC or endpoint that you can call:
 
 Your app can publish its Stellar toll address for payments. When someone tries to use your service, the server has them authenticate their public key and calls `charge` on the Toll Collector to decrements the consumer's balance in the DB. You can send the consumer a message when their balance is zero.
 
-#Tutorials
-- Build a tutorial to show others how to build something cool using Stellar
-
 # Multisig Coordinator
 A web application that facilitates creating multisig transactions. Typically you must coordinate between several parties to generate a transaction for an account protected by multisig. This site would make this process much easier and allow you to coordinate in cases where you don't know the other party.
 
@@ -82,6 +79,10 @@ Ideally the multisig coordinator includes the following features:
   - You can sign any that are waiting for you
 - Once a pending transaction is signed by enough people, it is submitted to the network
 - Once the transaction is submitted, all the signers are notified
+
+# Market Feed
+Data feed for the distributed Exchange inside Stellar. Something equivalent to what [poloniex has](https://poloniex.com/public?command=returnTicker).
+This will be useful for apps like [stellarTerm](http://stellarterm.com) as well as getting the Stellar trade volume added to charting sites like [coinmarketcap](http://coinmarketcap.com)
 
 # Quorum Monitor
 A web page that shows the state of the network quorum graph. Ideally the quorum monitor shows:
