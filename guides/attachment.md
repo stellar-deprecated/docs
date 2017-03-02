@@ -12,8 +12,8 @@ Attachments have a flexible structure. They can include the following fields but
 
 ```json
 {
+  "nonce": "<nonce>",
   "transaction": {
-    "nonce": "<nonce>",
     "sender_info": {
       "first_name": "<first_name>",
       "middle_name": "<middle_name>",
@@ -41,7 +41,7 @@ Attachments have a flexible structure. They can include the following fields but
 
 Name | Data Type | Description
 -----|-----------|------------
-`transaction.nonce` | Random string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a random value. Every transaction you send should have a different value. Nonce is needed to distinguish attachments of two transactions sent between the same pair of customers.
+`nonce` | Random string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a random value. Every transaction you send should have a different value. Nonce is needed to distinguish attachments of two transactions sent between the same pair of customers.
 `transaction.sender_info` | JSON | JSON containing KYC info of the sender. This JSON object can be extended with more fields if needed.
 `transaction.route` | string | TODO
 `transaction.note` | string | A note attached to transaction.
@@ -75,8 +75,8 @@ var crypto = require('crypto');
 
 var nonce = crypto.randomBytes(16);
 var attachment = {
+  "nonce": nonce.toString('hex'),
   "transaction": {
-    "nonce": nonce.toString('hex'),
     "sender_info": {
       "name": "Sherlock Holmes",
       "address": "221B Baker Street",
