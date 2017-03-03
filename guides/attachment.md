@@ -4,11 +4,11 @@ title: Stellar Attachment Convention
 
 # Attachments
 
-Sometimes there is a need to send more information about a transaction than fits in the provided memo field, for example: KYC info, an invoice, a short note. Such data shouldn't be placed in the [ledger](./concepts/ledger.md) because of it's size or private nature. Instead, you should create what we call an `Attachment`. A Stellar attachment is simply a JSON document. The sha256 hash of this attahment is included as a memo hash in your transaction. The actual document can be sent to the receiver through some other channel, most likely through the receiver's [Auth server](./compliance-protocol.md).
+Sometimes there is a need to send more information about a transaction than fits in the provided memo field, for example: KYC info, an invoice, a short note. Such data shouldn't be placed in the [ledger](./concepts/ledger.md) because of it's size or private nature. Instead, you should create what we call an `Attachment`. A Stellar attachment is simply a JSON document. The sha256 hash of this attachment is included as a memo hash in the transaction. The actual attachment document can be sent to the receiver through some other channel, most likely through the receiver's [Auth server](./compliance-protocol.md).
 
 ## Attachment structure
 
-Attachments have a flexible structure. They can include the following fields but these are optional and there might be extra information attached.
+Attachments have a flexible structure. They can include the following fields but these are optional and there can be extra information attached.
 
 ```json
 {
@@ -41,9 +41,9 @@ Attachments have a flexible structure. They can include the following fields but
 
 Name | Data Type | Description
 -----|-----------|------------
-`nonce` | Random string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a random value. Every transaction you send should have a different value. Nonce is needed to distinguish attachments of two transactions sent between the same pair of customers.
+`nonce` | string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a unique value. Every transaction you send should have a different value. A nonce is needed to distinguish attachments of two transactions sent with otherwise identical details. For example if you send $10 to Bob two days in a row.
 `transaction.sender_info` | JSON | JSON containing KYC info of the sender. This JSON object can be extended with more fields if needed.
-`transaction.route` | string | TODO
+`transaction.route` | string | The route information returned by the receiving federation server. Tells the reciever how to get the transaction to the ultimate recipient. 
 `transaction.note` | string | A note attached to transaction.
 `operations[i]` | | `i`th operation data. Can be omitted if transaction has only one operation.
 `operations[i].sender_info` | JSON | `sender_info` for `i`th operation in the transaction. If empty, will inherit value from `transaction`.
