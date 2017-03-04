@@ -50,7 +50,7 @@ After decoding the `data` parameter it has a following form:
   "sender": "aldi*bankA.com",
   "need_info": true,
   "tx": "AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8/mUo8/2RP7UQh0qX/2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA=",
-  "attachment": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\\\"name\\\": \\\"Aldi Dobbs\\\", \\\"address\\\": \\\"678 Mission St, San Francisco, CA\\\"}\"}}"
+  "attachment": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\"name\": \"Aldi Dobbs\", \"address\": \"678 Mission St, San Francisco, CA\"}\"}}"
 }
 ```
 
@@ -132,7 +132,7 @@ After decoding `data` parameter it has a following form:
   "sender": "aldi*bankA.com",
   "need_info": true,
   "tx": "AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8/mUo8/2RP7UQh0qX/2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA=",
-  "memo": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\\\"name\\\": \\\"Aldi Dobbs\\\", \\\"address\\\": \\\"678 Mission St, San Francisco, CA\\\"}\"}}"
+  "memo": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\"name\": \"Aldi Dobbs\", \"address\": \"678 Mission St, San Francisco, CA\"}\"}}"
 }
 ```
 
