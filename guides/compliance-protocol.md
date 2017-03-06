@@ -40,7 +40,8 @@ Name | Data Type | Description
 
 Example request body (please note it contains both parameters `data` and `sig`):
 ```
-data=%7B%22sender%22%3A%22aldi*bankA.com%22%2C%22need_info%22%3Atrue%2C%22tx%22%3A%22AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D%22%2C%22memo%22%3A%22%7B%22transaction%22%3A%20%7B%22route%22%3A%20%22bogart*bankB.com%22%2C%20%22sender_info%22%3A%20%22%7B%5C%22name%5C%22%3A%20%5C%22Aldi%20Dobbs%5C%22%2C%20%5C%22address%5C%22%3A%20%5C%22678%20Mission%20St%2C%20San%20Francisco%2C%20CA%5C%22%7D%22%7D%7D%22%7D&sig=rphsdQJQPvKU7gF%2FwpmeeId9tJUM3eNqB%2FgaQykGO6IHcfpePquRBdwkxZuYVTRNtQlK3GrU%2FxvY5KoX3mQMBA%3D%3D
+data=%7B%22sender%22%3A%22aldi%2AbankA.com%22%2C%22need_info%22%3Atrue%2C%22tx%22%3A%22AAAAAEhAArfpmUJYq%2FQ9SFAH3YDzNLJEBI9i9TXmJ7s608xbAAAAZAAMon0AAAAJAAAAAAAAAAPUg1%2FwDrMDozn8yfiCA8LLC0wF10q5n5lo0GiFQXpPsAAAAAEAAAAAAAAAAQAAAADdvkoXq6TXDV9IpguvNHyAXaUH4AcCLqhToJpaG6cCyQAAAAAAAAAAAJiWgAAAAAA%3D%22%2C%22attachment%22%3A%22%7B%5C%22nonce%5C%22%3A%5C%221488805458327055805%5C%22%2C%5C%22transaction%5C%22%3A%7B%5C%22sender_info%5C%22%3A%7B%5C%22address%5C%22%3A%5C%22678+Mission+St%5C%22%2C%5C%22city%5C%22%3A%5C%22San+Francisco%5C%22%2C%5C%22country%5C%22%3A%5C%22US%5C%22%2C%5C%22first_name%5C%22%3A%5C%22Aldi%5C%22%2C%5C%22last_name%5C%22%3A%5C%22Dobbs%5C%22%7D%2C%5C%22route%5C%22%3A%5C%221%5C%22%2C%5C%22note%5C%22%3A%5C%22%5C%22%2C%5C%22extra%5C%22%3A%5C%22%5C%22%7D%2C%5C%22operations%5C%22%3Anull%7D%22%7D&sig=KgvyQTZsZQoaMy8jdwCUfLayfgfFMUdZJ%2B0BIvEwiH5aJhBXvhV%2BipRok1asjSCUS%2FUaGeGKDoizS1%2BtFiiyAA%3D%3D
+
 ```
 
 After decoding the `data` parameter it has a following form:
@@ -49,12 +50,12 @@ After decoding the `data` parameter it has a following form:
 {
   "sender": "aldi*bankA.com",
   "need_info": true,
-  "tx": "AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8/mUo8/2RP7UQh0qX/2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA=",
-  "attachment": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\"name\": \"Aldi Dobbs\", \"address\": \"678 Mission St, San Francisco, CA\"}\"}}"
+  "tx": "AAAAAEhAArfpmUJYq/Q9SFAH3YDzNLJEBI9i9TXmJ7s608xbAAAAZAAMon0AAAAJAAAAAAAAAAPUg1/wDrMDozn8yfiCA8LLC0wF10q5n5lo0GiFQXpPsAAAAAEAAAAAAAAAAQAAAADdvkoXq6TXDV9IpguvNHyAXaUH4AcCLqhToJpaG6cCyQAAAAAAAAAAAJiWgAAAAAA=",
+  "attachment": "{\"nonce\":\"1488805458327055805\",\"transaction\":{\"sender_info\":{\"address\":\"678 Mission St\",\"city\":\"San Francisco\",\"country\":\"US\",\"first_name\":\"Aldi\",\"last_name\":\"Dobbs\"},\"route\":\"1\",\"note\":\"\",\"extra\":\"\"},\"operations\":null}"
 }
 ```
 
-Please note that the memo value of `tx` is a sha256 hash of the attachment. You can check the transaction above using [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D&type=Transaction&network=test).
+Please note that the memo value of `tx` is a sha256 hash of the attachment.
 
 #### Response
 
@@ -64,7 +65,7 @@ Name | Data Type | Description
 -----|-----------|------------
 `info_status` | `ok`, `denied`, `pending` | If this FI is willing to share AML information or not.
 `tx_status` | `ok`, `denied`, `pending` | If this FI is willing to accept this transaction.
-`dest_info` | string | *(only present if `info_status` is `ok`)* Marshalled JSON of the recipient's AML information in the [memo preimage](./memo-preimage.md).
+`dest_info` | string | *(only present if `info_status` is `ok`)* Marshalled JSON of the recipient's AML information.
 `pending` | integer | *(only present if `info_status` or `tx_status` is `pending`)* Estimated number of seconds till the sender can check back for a change in status. The sender should just resubmit this request after the given number of seconds.
 
 *Response Example*
@@ -110,7 +111,9 @@ Example federation response:
 ```json
 {
   "stellar_address": "bogart*bankB.com",
-  "account_id": "GDJ2GYMIQRIPTJZXQAVE5IM675ITLBAMQJS7AEFIWM4HZNGHVXOZ3TZK"
+  "account_id": "GDJ2GYMIQRIPTJZXQAVE5IM675ITLBAMQJS7AEFIWM4HZNGHVXOZ3TZK",
+  "memo_type": "id",
+  "memo": 1
 }
 ```
 
@@ -122,7 +125,7 @@ BankA -> `AUTH_SERVER`
 
 Example request body (please note it contains both parameters `data` and `sig`):
 ```
-data=%7B%22sender%22%3A%22aldi*bankA.com%22%2C%22need_info%22%3Atrue%2C%22tx%22%3A%22AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D%22%2C%22memo%22%3A%22%7B%22transaction%22%3A%20%7B%22route%22%3A%20%22bogart*bankB.com%22%2C%20%22sender_info%22%3A%20%22%7B%5C%22name%5C%22%3A%20%5C%22Aldi%20Dobbs%5C%22%2C%20%5C%22address%5C%22%3A%20%5C%22678%20Mission%20St%2C%20San%20Francisco%2C%20CA%5C%22%7D%22%7D%7D%22%7D&sig=rphsdQJQPvKU7gF%2FwpmeeId9tJUM3eNqB%2FgaQykGO6IHcfpePquRBdwkxZuYVTRNtQlK3GrU%2FxvY5KoX3mQMBA%3D%3D
+data=%7B%22sender%22%3A%22aldi%2AbankA.com%22%2C%22need_info%22%3Atrue%2C%22tx%22%3A%22AAAAAEhAArfpmUJYq%2FQ9SFAH3YDzNLJEBI9i9TXmJ7s608xbAAAAZAAMon0AAAAJAAAAAAAAAAPUg1%2FwDrMDozn8yfiCA8LLC0wF10q5n5lo0GiFQXpPsAAAAAEAAAAAAAAAAQAAAADdvkoXq6TXDV9IpguvNHyAXaUH4AcCLqhToJpaG6cCyQAAAAAAAAAAAJiWgAAAAAA%3D%22%2C%22attachment%22%3A%22%7B%5C%22nonce%5C%22%3A%5C%221488805458327055805%5C%22%2C%5C%22transaction%5C%22%3A%7B%5C%22sender_info%5C%22%3A%7B%5C%22address%5C%22%3A%5C%22678+Mission+St%5C%22%2C%5C%22city%5C%22%3A%5C%22San+Francisco%5C%22%2C%5C%22country%5C%22%3A%5C%22US%5C%22%2C%5C%22first_name%5C%22%3A%5C%22Aldi%5C%22%2C%5C%22last_name%5C%22%3A%5C%22Dobbs%5C%22%7D%2C%5C%22route%5C%22%3A%5C%221%5C%22%2C%5C%22note%5C%22%3A%5C%22%5C%22%2C%5C%22extra%5C%22%3A%5C%22%5C%22%7D%2C%5C%22operations%5C%22%3Anull%7D%22%7D&sig=KgvyQTZsZQoaMy8jdwCUfLayfgfFMUdZJ%2B0BIvEwiH5aJhBXvhV%2BipRok1asjSCUS%2FUaGeGKDoizS1%2BtFiiyAA%3D%3D
 ```
 
 After decoding `data` parameter it has a following form:
@@ -131,12 +134,12 @@ After decoding `data` parameter it has a following form:
 {
   "sender": "aldi*bankA.com",
   "need_info": true,
-  "tx": "AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8/mUo8/2RP7UQh0qX/2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA=",
-  "memo": "{\"transaction\": {\"route\": \"bogart*bankB.com\", \"sender_info\": \"{\"name\": \"Aldi Dobbs\", \"address\": \"678 Mission St, San Francisco, CA\"}\"}}"
+  "tx": "AAAAAEhAArfpmUJYq/Q9SFAH3YDzNLJEBI9i9TXmJ7s608xbAAAAZAAMon0AAAAJAAAAAAAAAAPUg1/wDrMDozn8yfiCA8LLC0wF10q5n5lo0GiFQXpPsAAAAAEAAAAAAAAAAQAAAADdvkoXq6TXDV9IpguvNHyAXaUH4AcCLqhToJpaG6cCyQAAAAAAAAAAAJiWgAAAAAA=",
+  "attachment": "{\"nonce\":\"1488805458327055805\",\"transaction\":{\"sender_info\":{\"address\":\"678 Mission St\",\"city\":\"San Francisco\",\"country\":\"US\",\"first_name\":\"Aldi\",\"last_name\":\"Dobbs\"},\"route\":\"1\",\"note\":\"\",\"extra\":\"\"},\"operations\":null}"
 }
 ```
 
-Please note that memo value of `tx` is the sha256 hash of the attachment and payment destination is returned by the federation server. You can check the transaction above using the [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAACWmRKivpIAYP04lBlY1vwsVqzhHysdzPRKquPDyi0LBAAAAZAAAAAAAAABkAAAAAAAAAAMyQ9plXwM8%2FmUo8%2F2RP7UQh0qX%2F2xW4r6F8KwDbKhlawAAAAEAAAAAAAAAAQAAAADTo2GIhFD5pzeAKk6hnv9RNYQMgmXwEKizOHy0x63dnQAAAAAAAAACVAvkAAAAAAA%3D&type=Transaction&network=test).
+Please note that memo value of `tx` is the sha256 hash of the attachment and payment destination is returned by the federation server. You can check the transaction above using the [XDR Viewer](https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAAEhAArfpmUJYq%2FQ9SFAH3YDzNLJEBI9i9TXmJ7s608xbAAAAZAAMon0AAAAJAAAAAAAAAAPUg1%2FwDrMDozn8yfiCA8LLC0wF10q5n5lo0GiFQXpPsAAAAAEAAAAAAAAAAQAAAADdvkoXq6TXDV9IpguvNHyAXaUH4AcCLqhToJpaG6cCyQAAAAAAAAAAAJiWgAAAAAA%3D&type=Transaction&network=test).
 
 **4) BankB handles the Auth request**
 
