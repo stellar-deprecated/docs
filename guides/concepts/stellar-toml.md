@@ -78,21 +78,8 @@ FEDERATION_SERVER="https://api.stellar.org/federation"
 # The endpoint used for the compliance protocol
 AUTH_SERVER="https://api.stellar.org/auth"
 
-#   This section allows an anchor to declare currencies it currently issues.
-#   Can be used by wallets and clients to trust anchors by domian name 
-[[CURRENCIES]]
-code="USD"
-issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
-display_decimals=2 # Hint fo how many decimal places should be displayed by clients to end users.
-
-[[CURRENCIES]]
-code="BTC"
-issuer="$anchor"
-display_decimals=7 # Maximum decimal places that can be repesented is 7
-
-
-#### Lesser used options below
-
+# The signing key is used for the compliance protocol
+SIGNING_KEY="GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"
 
 # convenience mapping of common names to node IDs.
 # You can use these common names in sections below instead of the less friendly nodeID.
@@ -144,6 +131,19 @@ HISTORY=[
 "http://history.stellar.org/prd/core-live/core_live_002/",
 "http://history.stellar.org/prd/core-live/core_live_003/"
 ]
+
+#   This section allows an anchor to declare currencies it currently issues.
+#   Can be used by wallets and clients to trust anchors by domian name 
+[[CURRENCIES]]
+code="USD"
+issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
+display_decimals=2 # Hint fo how many decimal places should be displayed by clients to end users.
+
+[[CURRENCIES]]
+code="BTC"
+issuer="$anchor"
+display_decimals=7 # Maximum decimal places that can be repesented is 7
+
 
 #   Potential quorum set of this domain's validatos.
 [QUORUM_SET]
