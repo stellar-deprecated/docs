@@ -42,14 +42,14 @@ port = 8002
 
 [database]
 type = "mysql" # Or "postgres" or "sqlite3"
-url = "dbuser:dbpassword@/internal_accounts"
+dsn = "dbuser:dbpassword@/internal_accounts"
 
 [queries]
 federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'your_org.com'"
 reverse-federation = "SELECT friendly_id, '' as domain FROM accounts WHERE ? = ''"
 
 # The federation server must be available via HTTPS. Specify your SSL
-# certificate and key here. If the server is behind a proxy or load  balancer
+# certificate and key here. If the server is behind a proxy or load balancer
 # that implements HTTPS, you can omit this section.
 [tls]
 certificate-file = "server.crt"
