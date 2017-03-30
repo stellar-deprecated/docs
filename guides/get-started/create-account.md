@@ -29,9 +29,9 @@ pair.publicKey();
 import org.stellar.sdk.KeyPair;
 KeyPair pair = KeyPair.random();
 
-new String(pair.getSecretSeed());
+System.out.println(new String(pair.getSecretSeed()));
 // SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
-pair.getAccountId();
+System.out.println(pair.getAccountId());
 // GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
 ```
 
