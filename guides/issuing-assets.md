@@ -21,7 +21,7 @@ var astroDollar = new StellarSdk.Asset(
 ```
 
 ```java
-KeyPair issuer = StellarSdk.Keypair.fromPublicKey(
+KeyPair issuer = StellarSdk.Keypair.fromAccountId(
   "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
 Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
 ```
@@ -226,7 +226,7 @@ String astroDollarIssuer =
   "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF";
 
 // Load the account you want to check
-KeyPair keysToCheck = KeyPair.fromPublicKey(
+KeyPair keysToCheck = KeyPair.fromAccountId(
   "GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
 AccountResponse accountToCheck = server.accounts().account(keysToCheck);
 
