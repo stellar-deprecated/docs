@@ -286,10 +286,10 @@ function loadLastPagingToken() {
 
 ```java
 Server server = new Server("https://horizon-testnet.stellar.org");
-KeyPair account = KeyPair.fromPublicKey("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
+KeyPair account = KeyPair.fromAccountId("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
 
 // Create an API call to query payments involving the account.
-PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account)
+PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account);
 
 // If some payments have already been handled, start the results from the
 // last seen payment. (See below in `handlePayment` where it gets saved.)
