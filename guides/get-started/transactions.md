@@ -398,7 +398,7 @@ payments.call().then(function handlePage(paymentsPage) {
   paymentsPage.records.forEach(function(payment) {
     // handle a payment
   });
-  Return paymentsPage.next().then(handlePage);
+  return paymentsPage.next().then(handlePage);
 });
 ```
 
