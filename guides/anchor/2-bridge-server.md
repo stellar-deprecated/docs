@@ -19,9 +19,9 @@ The bridge server requires a MySQL or PostgreSQL database in order to track and 
 
 ## Download and Configure Bridge Server
 
-Next, [download the latest bridge server](https://github.com/stellar/bridge-server/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `config_bridge.toml`. This will store the configuration for the bridge server. It should look something like:
+Next, [download the latest bridge server](https://github.com/stellar/bridge-server/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `bridge.cfg`. This will store the configuration for the bridge server. It should look something like:
 
-<code-example name="config_bridge.toml">
+<code-example name="bridge.cfg">
 
 ```toml
 port = 8001
