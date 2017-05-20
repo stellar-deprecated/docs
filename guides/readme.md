@@ -14,7 +14,7 @@ The [Get Started guide](./get-started) will introduce you to the basic technical
 
 ## Concepts
 
-The Concepts section contains overviews and explanations of various objects, terms, and technologies used throughout the Stellar ecosystem, from [accounts](./concepts/transactions.md) to the details of the [Stellar Consensus Protocol](./concepts/scp.md) that underlies everything.
+The Concepts section contains overviews and explanations of various objects, terms, and technologies used throughout the Stellar ecosystem, from [accounts](./concepts/accounts.md) to the details of the [Stellar Consensus Protocol](./concepts/scp.md) that underlies everything.
 
 ## SDKs
 
