@@ -5,7 +5,7 @@ title: Accounts
 Accounts are the central data structure in Stellar. Accounts are identified by a public key and saved in the ledger.
 Everything else in the ledger, such as offers or [trustlines](./assets.md#trustlines), are owned by a particular account.
 
-Account are created with the [Create Account](./list-of-operations.md#create-account) operation.
+Account is created with the [Create Account](./list-of-operations.md#create-account) operation.
 
 Account access is controlled by public/private key cryptography. For an account to perform a transaction--e.g., make a
 payment--the transaction must be signed by the private key that corresponds to that account's public key. You can also
