@@ -120,3 +120,12 @@ Or contribute to our existing SDKs:
 - time banks
 - volunteer hour tracking
 - anywhere ATM or human ATM mobile apps
+
+# Atomic cross-chain swap facilitator
+
+- End-user software that to facilitate atomic cross-chain swaps with
+  various other cryptocurrencies (between both Lumens and other
+  Stellar currencies).
+
+- A rendezvous service establishing a marketplace for cross-chain
+  swaps.
