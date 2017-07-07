@@ -152,5 +152,21 @@ VALIDATORS=[
 "$eno","$donovan"
 ]
 
+# optional extra information for humans
+# Useful place for anchors to detail various policies and required info
+
+###################################
+# Required compilance fields:
+#      name=<recipient name>
+#      addr=<recipient address>
+# Federation Format:  
+#        <phone number>*anchor.com
+#        Forwarding supported by sending to: forward*anchor.com
+#           forward_type=bank_account
+#           swift=<swift code of receiving bank>
+#           acct=<recipient account number at receiving bank>
+# Minimum Amount Forward: $2 USD 
+# Maximum Amount Forward: $10000 USD
+
 
 ```
