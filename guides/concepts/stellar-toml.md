@@ -146,13 +146,13 @@ display_decimals=7 # Maximum decimal places that can be repesented is 7
 
 # asset with meta info
 [[CURRENCIES]]
-code="HUG"
+code="GOAT"
 issuer="GD5T6IPRNCKFOHQWT264YPKOZAWUMMZOLZBJ6BNQMUGPWGRLBK3U7ZNP"
 display_decimals=2 
-name="hug token"
-desc="1 HUG token entitles you to a hug from Jed McCaleb."
-conditions="You must travel to Jed to receive your hug. You must be in a reasonably clean condition before receiving your hug."
-image="https://s-media-cache-ak0.pinimg.com/originals/48/0b/1a/480b1aced14cf7538122fdc4be6b6f0e.jpg"
+name="goat share"
+desc="1 GOAT token entitles you to a share of revenue from Elkins Goat Farm."
+conditions="There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th"
+image="https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg"
 
 #   Potential quorum set of this domain's validatos.
 [QUORUM_SET]
