@@ -143,7 +143,8 @@ server.submitTransaction(sendAstroDollars);
 
 ## Discoverablity and Meta information
 
-Another thing that is important when you issue an asset is to provide clear information about what your asset represents. This info can be discovered and displayed by clients so users know exactly what they are getting when they hold your asset. To do this simply add a section in your [stellar.toml file](concepts/stellar-toml.html) that contains the necessary meta fields:
+Another thing that is important when you issue an asset is to provide clear information about what your asset represents. This info can be discovered and displayed by clients so users know exactly what they are getting when they hold your asset. 
+To do this you must do two simple things. First, add a section in your [stellar.toml file](concepts/stellar-toml.html) that contains the necessary meta fields:
 ```
 # stellar.toml example asset
 [[CURRENCIES]]
@@ -155,6 +156,54 @@ desc="1 GOAT token entitles you to a share of revenue from Elkins Goat Farm."
 conditions="There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th"
 image="https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg"
 ```
+
+Second, use the [set options operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#set-options) to set the `home_domain` of your issuing account to the domain where the above stellar.toml file is hosted. The following code sets the home domain:
+
+<code-example name="Set Home Domain">
+
+```js
+var StellarSdk = require('stellar-sdk');
+StellarSdk.Network.useTestNetwork();
+var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+
+// Keys for issuing account
+var issuingKeys = StellarSdk.Keypair
+  .fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
+
+server.loadAccount(issuingKeys.publicKey())
+  .then(function(issuer) {
+    var transaction = new StellarSdk.TransactionBuilder(issuer)
+      .addOperation(StellarSdk.Operation.setOptions({
+        homeDomain: 'yourdomain.com',
+      }))
+      .build();
+    transaction.sign(issuingKeys);
+    return server.submitTransaction(transaction);
+  })
+  .catch(function(error) {
+    console.error('Error!', error);
+  });
+```
+
+```java
+Network.useTestNetwork();
+Server server = new Server("https://horizon-testnet.stellar.org");
+
+// Keys for issuing account
+KeyPair issuingKeys = KeyPair
+  .fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
+AccountResponse sourceAccount = server.accounts().account(issuingKeys);
+
+Transaction setHomeDomain = new Transaction.Builder(sourceAccount)
+  .addOperation(new SetOptionsOperation.Builder()
+    .setHomeDomain("yourdomain.com").build()
+  .build();
+setAuthorization.sign(issuingKeys);
+server.submitTransaction(setHomeDomain);
+
+```
+
+</code-example>
 
 ## Best Practices
 
@@ -197,8 +246,14 @@ server.submitTransaction(transaction);
 import org.stellar.sdk.AccountFlag;
 
 Network.useTestNetwork();
+Server server = new Server("https://horizon-testnet.stellar.org");
 
-Transaction setAuthorization = new Transaction.Builder(issuingAccount)
+// Keys for issuing account
+KeyPair issuingKeys = KeyPair
+  .fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
+AccountResponse sourceAccount = server.accounts().account(issuingKeys);
+
+Transaction setAuthorization = new Transaction.Builder(sourceAccount)
   .addOperation(new SetOptionsOperation.Builder()
     .setSetFlags(
       AccountFlag.AUTH_REQUIRED_FLAG.getValue() |
