@@ -2,7 +2,7 @@
 title: Issuing Assets
 ---
 
-One of Stellar’s most powerful features is the ability to trade any kind of asset, like US dollars, Nigerian naira, bitcoins, special coupons, or just about anything you like.
+One of Stellar’s most powerful features is the ability to trade any kind of asset, US dollars, Nigerian naira, bitcoins, special coupons, [ICO tokens](https://www.stellar.org/blog/tokens-on-stellar/) or just about anything you like.
 
 This works in Stellar because an asset is really just a credit from a particular account. When you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *credited from a particular account.* Often, that account will be a bank, but if your neighbor had a banana plant, they might issue banana assets that you could trade with other people.
 
@@ -141,6 +141,20 @@ server.submitTransaction(sendAstroDollars);
 
 </code-example>
 
+## Discoverablity and Meta information
+
+Another thing that is important when you issue an asset is to provide clear information about what your asset represents. This info can be discovered and displayed by clients so users know exactly what they are getting when they hold your asset. To do this simply add a section in your [stellar.toml file](concepts/stellar-toml.html) that contains the necessary meta fields:
+```
+# stellar.toml example asset
+[[CURRENCIES]]
+code="GOAT"
+issuer="GD5T6IPRNCKFOHQWT264YPKOZAWUMMZOLZBJ6BNQMUGPWGRLBK3U7ZNP"
+display_decimals=2 
+name="goat share"
+desc="1 GOAT token entitles you to a share of revenue from Elkins Goat Farm."
+conditions="There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th"
+image="https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg"
+```
 
 ## Best Practices
 
