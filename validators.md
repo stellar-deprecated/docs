@@ -112,6 +112,13 @@ Slack | mvaneijk, raymens
 Peer | stellar-node-1.quantoz.com
 NodeID | GAL4GIVM6E2PQUUXIMNUXJQB6PC2PPZPR5JKELOBK2MXBBIFMU25YOSD
 
+Name | umbrel
+------|-------
+Contact | s@umbrellab.com
+Slack | [@umbrel](https://stellar-public.slack.com/messages/@umbrel/)
+Description | Here to stay
+NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
+
 ----
 Seem Down
 
