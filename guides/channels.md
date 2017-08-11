@@ -3,7 +3,7 @@ title: Channels
 ---
 *Method for submitting transactions to the network at a high rate*
 
-If you are submitting [transactions](./concepts/transactions.md) to the network at a high rate you must be careful that the transactions are submitted in the correct order of their sequence numbers. This can be problematic since typically you are submitting through Horizon and there is no guarantee that a given transaction is received by [stellar-core](https://github.com/stellar/stellar-core) until ledger close. This means that they can reach stellar-core out of order and will bounce with a bad sequence error. If you do wait for ledger close to avoid this issue that will greatly reduce the rate you can submit transactions to the network.
+If you are submitting [transactions](./concepts/transactions.md) to the network at a high rate or from different processes you must be careful that the transactions are submitted in the correct order of their sequence numbers. This can be problematic since typically you are submitting through Horizon and there is no guarantee that a given transaction is received by [stellar-core](https://github.com/stellar/stellar-core) until ledger close. This means that they can reach stellar-core out of order and will bounce with a bad sequence error. If you do wait for ledger close to avoid this issue that will greatly reduce the rate you can submit transactions to the network.
 
 The way to avoid this is with the concept of **channels**.
 
