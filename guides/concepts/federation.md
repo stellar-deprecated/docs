@@ -70,7 +70,7 @@ When a record has been found the response should return `200 OK` http status cod
 {
   "stellar_address": <username*domain.tld>,
   "account_id": <account_id>,
-  "memo_type": <"text", "id" , or "hash"> *optional*
+  "memo_type": <"text", "id", "hash", or "return"> *optional*
   "memo": <memo to attach to any payment. if "hash" type then will be base64 encoded> *optional*
 }
 ```
