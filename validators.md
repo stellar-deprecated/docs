@@ -7,6 +7,7 @@ If you would like to run a validator please:
  - Start your node.
  - Open a pull request to list it here.
 
+For general validator support, please check out [the stellar-public #validator channel.](https://stellar-public.slack.com/messages/C0AJ5765T)
 
 ## None of the following validators are recommended by Stellar Development Foundation.
 
@@ -14,125 +15,133 @@ We don't know who really controls these nodes. They could all be owned by the sa
 
 ------
 
-Name | SnT.Lux
+Name | eno
 -----|--------
-Description | University of Luxembourg Stellar node
-Contact | http://wwwen.uni.lu/snt/research/sedan
-NodeID | GCDLFPQ76D6YUSCUECLKI3AFEVXFWVRY2RZH2YQNYII35FDECWUGV24T
-
-Name | telindus
------|------------
-Description | Telindus node
-Contact | http://www.telindus.lu/
-NodeID | GBAR4OY6T6M4P344IF5II5DNWHVUJU7OLQPSMG2FWVJAFF642BX5E3GB
+Description | lumens to watts
+Contact | appweb.cn@gmail.com (email)
+NodeID | GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U
+Peer |  stellar.256kw.com
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | satoshipay
------|------
+-----|--------
 Description | https://satoshipay.io/
-Slack | andrenarcy
-Peer | stellar.satoshipay.io
+Contact | andrenarchy (slack)
 NodeID | GC5SXLNAM3C4NMGK2PXK4R34B5GNZ47FYQ24ZIBFDFOCU6D4KBN4POAE
+Peer | stellar.satoshipay.io
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | snt.lux
+-----|--------
+Description | university of luxembourg stellar node
+Contact | http://wwwen.uni.lu/snt/research/sedan
+NodeID | GCDLFPQ76D6YUSCUECLKI3AFEVXFWVRY2RZH2YQNYII35FDECWUGV24T
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+
+Name | telindus
+-----|--------
+Description | telindus node
+Contact | http://www.telindus.lu/
+NodeID | GBAR4OY6T6M4P344IF5II5DNWHVUJU7OLQPSMG2FWVJAFF642BX5E3GB
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | moni
------|------
-Contact | moni.com
-Slack | sirius
-Peer | stellar1.moni.com
+-----|--------
+Description | moni.com
+Contact | sirius (slack)
 NodeID | GAXP5DW4CVCW2BJNPFGTWCEGZTJKTNWFQQBE5SCWNJIJ54BOHR3WQC3W
+Peer | stellar1.moni.com
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | tempo france
------|------
-Contact | tempo.eu.com
-Slack | ant
-Peer | stellar1.tempo.eu.com
+-----|--------
+Description | tempo.eu.com
+Contact | ant (slack)
 NodeID | GCJCSMSPIWKKPR7WEPIQG63PDF7JGGEENRC33OKVBSPUDIRL6ZZ5M7OO
+Peer | stellar1.tempo.eu.com
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | strllar.org 
------|------- 
-Contact | lab@strllar.org 
-Slack | lab 
-Description | Nice to be in your quorum slice. 
-Peer | confucius.strllar.org
+Name | strllar 
+-----|-------- 
+Description | strllar.org 
+Contact | lab (slack) lab@strllar.org (email)  
 NodeID 1 | GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3 fuxi
 NodeID 2 | GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I huang
 NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57 nezha
+Peer | confucius.strllar.org
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | Jianing
------|-------
-Contact | huyahuai@qq.com
-Description | A node in Chenzhou
+Name | jianing
+-----|--------
+Description | A node in chenzhou
+Contact | huyahuai@qq.com (email)
 NodeID 1 | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
 NodeID 2 | GCLD6YPBMNVFGWYTAIGYN2FRN55HPJ43ROVFHP4SJ6U72N4BESWTJMSN
-
-Name | Eno
------|-------
-Contact | appweb.cn@gmail.com
-Description | Lumens to watts
-Peer |  stellar.256kw.com
-NodeID | GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | dzham
------|------
-Contact | johan@futuretense.io
-Slack | dzham
+-----|--------
+Description | n/a
+Contact | dzham (slack) johan@futuretense.io (email)
 NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | sparrow_tw
------|------------
-Contact | scott@sparrowai.com
-Slack | scottc
+-----|--------
+Description | sparrowai.com
+Contact | scottc (slack) scott@sparrowai.com (email)
 NodeID | GCCW4H2DKAC7YYW62H3ZBDRRE5KXRLYLI4T5QOSO6EAMUOE37ICSKKRJ
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | nelisky
-------|-------
-Contact | nelisky.btc@gmail.com
-Peer 1 | stellar1.bitventure.co
+-----|--------
+Description | n/a
+Contact | nelisky.btc@gmail.com (email)
 NodeID 1 | GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
-Peer 2 | behind NAT on dynamic ip
 NodeID 2 | GA2DE5AQF32LU5OZ5OKAFGPA2DLW4H6JHPGYJUVTNS3W7N2YZCTQFFV6
+Peer 1 | stellar1.bitventure.co
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | ecliptic1
------|------------
-Contact | https://www.ecliptic.co
-Slack | sb
+-----|--------
+Description | https://www.ecliptic.co
+Contact | sb (slack)
 NodeID | GBVRSIZS6TQY7T57JCHRPFVRBOLQUKV3WUT4DPP6ME3BFRH3S4PBB6J5
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | quantoz.com
------|------------
-Description | Quantoz Technology Stellar AWS Node 1
-Contact | http://www.quantoz.com
-Slack | mvaneijk, raymens
-Peer | stellar-node-1.quantoz.com
+-----|--------
+Description | quantoz technology stellar aws node
+Contact | mvaneijk (slack) raymens (slack)
 NodeID | GAL4GIVM6E2PQUUXIMNUXJQB6PC2PPZPR5JKELOBK2MXBBIFMU25YOSD
+Peer | stellar-node-1.quantoz.com
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | umbrel
------|-------
-Contact | s@umbrellab.com
-Slack | [@umbrel](https://stellar-public.slack.com/messages/@umbrel/)
-Description | Here to stay
+-----|--------
+Description | umbrellab.com
+Contact | umbrel (slack) s@umbrellab.com (email)
 NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
-
-----
-Seem Down
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | ptarasov
------|-------
-email | tarasov1412@gmail.com
-Slack | garbage
+-----|--------
+Description | n/a
+Contact | garbage (slack) tarasov1412@gmail.com (email)
 NodeID | GAM7A32QZF5PJASRSGVFPAB36WWTHCBHO5CHG3WUFTUQPT7NZX3ONJU4
- 
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | w00kie
------|-----
-Contact | francois@rejete.com
-Description | Running on a small droplet, for science!
-Slack | frejete
-Peer | stellar.w00kie.com
+-----|--------
+Description | running on a small droplet, for science!
+Contact | frejete (slack) francois@rejete.com (email)
 NodeID | GDJ73EX25GGUVMUBCK6DPSTJLYP3IC7I3H2URLXJQ5YP56BW756OUHIG
+Peer | stellar.w00kie.com
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | Donovan
------|-------
-Contact | donovanhide@gmail.com
-Description | Another possibility for your list
-List of nodes | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
-
+Name | donovan
+-----|--------
+Description | N/A
+Contact | donovanhide@gmail.com (email)
+NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
