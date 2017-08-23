@@ -141,7 +141,7 @@ Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | donovan
 -----|--------
-Description | N/A
+Description | n/a
 Contact | donovanhide@gmail.com (email)
 NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
