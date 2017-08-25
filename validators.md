@@ -59,7 +59,7 @@ Description | tempo.eu.com
 Contact | ant (slack)
 NodeID | GCJCSMSPIWKKPR7WEPIQG63PDF7JGGEENRC33OKVBSPUDIRL6ZZ5M7OO
 Peer | stellar1.tempo.eu.com
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | strllar 
 -----|-------- 
