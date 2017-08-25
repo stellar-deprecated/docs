@@ -23,12 +23,27 @@ NodeID | GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U
 Peer |  stellar.256kw.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | tempo france
+-----|--------
+Description | tempo.eu.com
+Contact | ant (slack)
+NodeID | GCJCSMSPIWKKPR7WEPIQG63PDF7JGGEENRC33OKVBSPUDIRL6ZZ5M7OO
+Peer | stellar1.tempo.eu.com
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 Name | satoshipay
 -----|--------
 Description | https://satoshipay.io/
 Contact | andrenarchy (slack)
 NodeID | GC5SXLNAM3C4NMGK2PXK4R34B5GNZ47FYQ24ZIBFDFOCU6D4KBN4POAE
 Peer | stellar.satoshipay.io
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | ICICI Bank
+-----|--------
+Description | https://www.icicibank.com/
+Contact | n/a
+NodeID | GBJZ7PUCL4UW3NDXCYZU5Q5EUOPMBCOP2FWJA4457LYUHCQUHDM2I2K4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | snt.lux
@@ -52,14 +67,6 @@ Contact | sirius (slack)
 NodeID | GAXP5DW4CVCW2BJNPFGTWCEGZTJKTNWFQQBE5SCWNJIJ54BOHR3WQC3W
 Peer | stellar1.moni.com
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | tempo france
------|--------
-Description | tempo.eu.com
-Contact | ant (slack)
-NodeID | GCJCSMSPIWKKPR7WEPIQG63PDF7JGGEENRC33OKVBSPUDIRL6ZZ5M7OO
-Peer | stellar1.tempo.eu.com
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | strllar 
 -----|-------- 
