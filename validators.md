@@ -138,6 +138,13 @@ Contact | garbage (slack) tarasov1412@gmail.com (email)
 NodeID | GAM7A32QZF5PJASRSGVFPAB36WWTHCBHO5CHG3WUFTUQPT7NZX3ONJU4
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
+Name | poiuty
+-----|--------
+Description | n/a
+Contact | poiuty@protonmail.com (email)
+NodeID | GAG5HH3VF7WLUR3TRQSJGNX66GSEA5HKH3QPIYREDCT4JXUCD4U43JBJ
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 Name | w00kie
 -----|--------
 Description | running on a small droplet, for science!
