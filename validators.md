@@ -14,6 +14,13 @@ For general validator support, please check out [the stellar-public #validator c
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 
 ------
+Name | cryptomover
+-----|--------
+Description | https://cryptomover.com
+Contact | support@cryptomover.com (email)
+NodeID | GCGWABAQ6OUOVUGWJVPRJ5LWBIWYN3CVOVOZYBNQQGIBRULQHYNGQ7GH
+Peer |  cryptodealer.hk
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | eno
 -----|--------
