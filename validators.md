@@ -67,6 +67,13 @@ Contact | rodrigo (slack)
 NodeID | GA4UZHDP44Q6NGZ6YXA7FMTFYPZIN3XLCUMMY2KUH5FX6TGEE4SEM42K
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | umbrel
+-----|--------
+Description | umbrellab.com
+Contact | umbrel (slack) s@umbrellab.com (email)
+NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 Name | snt.lux
 -----|--------
 Description | university of luxembourg stellar node
@@ -143,13 +150,6 @@ Description | quantoz technology stellar aws node
 Contact | mvaneijk (slack) raymens (slack)
 NodeID | GAL4GIVM6E2PQUUXIMNUXJQB6PC2PPZPR5JKELOBK2MXBBIFMU25YOSD
 Peer | stellar-node-1.quantoz.com
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | umbrel
------|--------
-Description | umbrellab.com
-Contact | umbrel (slack) s@umbrellab.com (email)
-NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | ptarasov
