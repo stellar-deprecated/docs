@@ -63,8 +63,9 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 Name | Exodo Fin Tech
 -----|--------
 Description | run by the team at crservers.com
-Contact | rodrigo (slack)
+Contact | rodrigo (slack) webmaster@crservers.com (email)
 NodeID | GA4UZHDP44Q6NGZ6YXA7FMTFYPZIN3XLCUMMY2KUH5FX6TGEE4SEM42K
+Peer | stellar.crservers.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | umbrel
