@@ -60,6 +60,13 @@ Contact | poiuty@protonmail.com (email)
 NodeID | GAG5HH3VF7WLUR3TRQSJGNX66GSEA5HKH3QPIYREDCT4JXUCD4U43JBJ
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Exodo Fin Tech
+-----|--------
+Description | run by the team at crservers.com
+Contact | rodrigo (slack)
+NodeID | GA4UZHDP44Q6NGZ6YXA7FMTFYPZIN3XLCUMMY2KUH5FX6TGEE4SEM42K
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 Name | snt.lux
 -----|--------
 Description | university of luxembourg stellar node
