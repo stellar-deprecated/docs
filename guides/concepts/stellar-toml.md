@@ -37,7 +37,7 @@ location /stellar.toml {
 }
 ```
 
-For other webservers, see: http://enable-cors.org/server.html
+For other web servers, see: http://enable-cors.org/server.html
 
 ## Testing CORS
 
@@ -133,28 +133,28 @@ HISTORY=[
 ]
 
 #   This section allows an anchor to declare currencies it currently issues.
-#   Can be used by wallets and clients to trust anchors by domian name 
+#   Can be used by wallets and clients to trust anchors by domain name
 [[CURRENCIES]]
 code="USD"
 issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
-display_decimals=2 # Hint fo how many decimal places should be displayed by clients to end users.
+display_decimals=2 # Specifies how many decimal places should be displayed by clients to end users.
 
 [[CURRENCIES]]
 code="BTC"
 issuer="$anchor"
-display_decimals=7 # Maximum decimal places that can be repesented is 7
+display_decimals=7 # Maximum decimal places that can be represented is 7
 
 # asset with meta info
 [[CURRENCIES]]
 code="GOAT"
 issuer="GD5T6IPRNCKFOHQWT264YPKOZAWUMMZOLZBJ6BNQMUGPWGRLBK3U7ZNP"
-display_decimals=2 
+display_decimals=2
 name="goat share"
 desc="1 GOAT token entitles you to a share of revenue from Elkins Goat Farm."
 conditions="There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th"
 image="https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg"
 
-#   Potential quorum set of this domain's validatos.
+#   Potential quorum set of this domain's validators.
 [QUORUM_SET]
 VALIDATORS=[
 "$self", "$lab1", "$nelisky1","$jianing",
@@ -165,7 +165,7 @@ VALIDATORS=[
 # Useful place for anchors to detail various policies and required info
 
 ###################################
-# Required compilance fields:
+# Required compliance fields:
 #      name=<recipient name>
 #      addr=<recipient address>
 # Federation Format:  
@@ -174,7 +174,7 @@ VALIDATORS=[
 #           forward_type=bank_account
 #           swift=<swift code of receiving bank>
 #           acct=<recipient account number at receiving bank>
-# Minimum Amount Forward: $2 USD 
+# Minimum Amount Forward: $2 USD
 # Maximum Amount Forward: $10000 USD
 
 
