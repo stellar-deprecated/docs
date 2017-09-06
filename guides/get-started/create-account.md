@@ -50,7 +50,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Println(pair.secret())
+	log.Println(pair.Seed())
 	// SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
 	log.Println(pair.Address())
 	// GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
@@ -102,12 +102,14 @@ System.out.println("SUCCESS! You have a new account :)\n" + body);
 package main
 
 import (
-	"http"
+	"net/http"
 	"io/ioutil"
 	"log"
 )
 
 func main() {
+	// pair is the pair that was generated from previous example, or create a pair based on 
+	// existing keys.
 	address := pair.Address()
 	resp, err := http.Get("https://horizon-testnet.stellar.org/friendbot?addr=" + address)
 	if err != nil {
@@ -119,7 +121,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(body)
+	fmt.Println(string(body))
 }
 ```
 
@@ -161,6 +163,7 @@ for (AccountResponse.Balance balance : account.getBalances()) {
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/stellar/go/clients/horizon"
