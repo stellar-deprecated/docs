@@ -171,7 +171,7 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/receive', function (request, response) {
+app.post('/receive', function (request, response) {
   var payment = request.body;
 
   // `receive` may be called multiple times for the same payment, so check that
