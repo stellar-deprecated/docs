@@ -24,7 +24,7 @@ Next, [download the latest bridge server](https://github.com/stellar/bridge-serv
 <code-example name="bridge.cfg">
 
 ```toml
-port = 8001
+port = 8006
 horizon = "https://horizon-testnet.stellar.org"
 network_passphrase = "Test SDF Network ; September 2015"
 # We'll fill this in once we set up a compliance server
@@ -90,7 +90,7 @@ asset_code=USD&\
 asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
 destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB&\
 source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ" \
-http://localhost:8001/payment
+http://localhost:8006/payment
 ```
 
 ```js
@@ -130,7 +130,7 @@ import java.util.List;
 
 public class PaymentRequest() {
   public static void main(String [] args) {
-    HttpPost paymentRequest = new HttpPost("http://localhost:8001/payment");
+    HttpPost paymentRequest = new HttpPost("http://localhost:8006/payment");
 
     List<NameValuePair> params = new ArrayList<NameValuePair>();
     params.add(new BasicNameValuePair("amount", "1"));
