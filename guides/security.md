@@ -14,7 +14,7 @@ While all transactions are public, banks using Stellar to exchange funds on beha
 
 ## Secure offline accounts
 
-One of the simplest methods for securing an account is keeping its secret seed stored offline—it could be on a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the seed on paper instead of a computer, use a program that doesn’t save the seed to create and sign the transaction.
+One of the simplest methods for securing an account is keeping its secret key stored offline—it could be on a computer with no connection to the internet or just a piece of paper in someone’s wallet. Transactions can be created and signed on an offline computer, then saved to a USB drive (or some other means of storage) and transferred to a computer with internet access, which sends the transactions to a Horizon server or Stellar Core instance. If storing the secret key on paper instead of a computer, use a program that doesn’t save the secret key to create and sign the transaction.
 
 Since an offline computer has no connection, it is extremely hard for someone without physical access to it to access the account’s keys. However, this also makes every transaction an extremely manual process. A common practice instead is to maintain two accounts: one offline account that securely holds the majority of your assets and another online account that holds only a few assets. Most transactions can be performed with the online account and, when its funds are low, a person can manually replenish it from the offline account.
 
@@ -40,7 +40,7 @@ Stellar’s core protocol limits itself to being a simple and verifiable means f
 
 ## What if an account’s keys are compromised?
 
-Because Stellar’s security is based around public key encryption, it’s critical that an account’s secret seed is not shared. Anyone who has access to the seed effectively has control of the account. However, if someone learns your account’s seed or you accidentally share it with someone who shouldn’t know it, you can remove its ability to control the account with the following steps:
+Because Stellar’s security is based around public key encryption, it’s critical that an account’s secret key is not shared. Anyone who has access to the secret key effectively has control of the account. However, if someone learns your account’s secret key or you accidentally share it with someone who shouldn’t know it, you can remove its ability to control the account with the following steps:
 
 1. Make a new key pair.
 2. Add the new public key as a signer on the compromised account. (Use the [`set options` operation](concepts/list-of-operations.md#set-options)).

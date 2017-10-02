@@ -41,12 +41,12 @@ type = "mysql"  # or "postgres" if you created a postgres database
 url = "dbuser:dbpassword@/stellar_bridge"
 
 [accounts]
-# The secret seed for your base account, from which payments are made
+# The secret key for your base account, from which payments are made
 base_seed = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
 # The account ID that receives payments on behalf of your customers. In this
 # case, it is the account ID that matches `base_seed` above.
 receiving_account_id = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
-# A secret seed that can authorize trustlines for assets you issue. For more,
+# A secret key that can authorize trustlines for assets you issue. For more,
 # see https://stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders
 authorizing_seed = "SBILUHQVXKTLPYXHHBL4IQ7ISJ3AKDTI2ZC56VQ6C2BDMNF463EON65U"
 # The ID of the account that issues your assets

@@ -4,11 +4,11 @@ title: Create an Account
 
 The first thing you’ll need to do anything on the Stellar network is an account. Accounts hold all your money inside Stellar and allow you to send and receive payments—in fact, pretty much everything in Stellar is in some way tied to an account.
 
-Every Stellar account has a **public key** and a **secret seed**. Stellar uses public key cryptography to ensure that every transaction is secure. The public key is always safe to share—other people need it to identify your account and verify that you authorized a transaction. The seed, however, is private information that proves you own your account. You should never share the seed with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s seed can control your account.
+Every Stellar account has a **public key** and a **secret key**. Stellar uses public key cryptography to ensure that every transaction is secure. The public key is always safe to share—other people need it to identify your account and verify that you authorized a transaction. The secret key, however, is private information that proves you own your account. You should never share the secret key with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s secret key can control your account.
 
-If you’re familiar with public key cryptography, you might be wondering how the seed differs from a private key. The seed is actually the single secret piece of data that is used to generate both the public and private key for your account. Stellar’s tools use the seed instead of the private key for convenience: To have full access to an account, you only need to provide a seed instead of both a public key and a private key.[^1]
+If you’re familiar with public key cryptography, you might be wondering how the secret key differs from a private key. The secret key is actually the single secret piece of data that is used to generate both the public and private key for your account. Stellar’s tools use the secret key instead of the private key for convenience: To have full access to an account, you only need to provide a secret key instead of both a public key and a private key.[^1]
 
-Because the seed must be kept secret, the first step in creating an account is creating your own seed and key—when you finally create the account, you’ll send only the public key to a Stellar server. You can generate the seed and key with the following command:
+Because the secret key must be kept secret, the first step in creating an account is creating your own secret and public key—when you finally create the account, you’ll send only the public key to a Stellar server. You can generate the secret and public key with the following command:
 
 <code-example name="Generating Keys">
 
@@ -59,7 +59,7 @@ func main() {
 
 </code-example>
 
-Now that you have a seed and public key, you can create an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[^2] Since you don’t yet have any lumens, though, you can’t pay for an account. In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[^3] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
+Now that you have a secret and public key, you can create an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[^2] Since you don’t yet have any lumens, though, you can’t pay for an account. In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[^3] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
 
 To create a test account, send Friendbot the public key you created. It’ll create and fund a new account using that public key as the account ID.
 
@@ -193,7 +193,7 @@ Now that you’ve got an account, you can [start sending and receiving payments]
 </div>
 
 
-[^1]: A private key is still used to encrypt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
+[^1]: A private key is still used to encrypt data and sign transactions. When you create a `KeyPair` object using a secret key, the private key is immediately generated and stored internally.
 
 [^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances. For more on minimum balances, see [fees](../concepts/fees.md#minimum-account-balance)
 

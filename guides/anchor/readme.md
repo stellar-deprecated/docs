@@ -27,11 +27,11 @@ For this guide, we’ll use the following keys:
 <dl>
   <dt>Issuing Account ID</dt>
   <dd><code>GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ</code></dd>
-  <dt>Issuing Seed</dt>
+  <dt>Issuing Secret Key</dt>
   <dd><code>SBILUHQVXKTLPYXHHBL4IQ7ISJ3AKDTI2ZC56VQ6C2BDMNF463EON65U</code></dd>
   <dt>Base Account ID</dt>
   <dd><code>GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU</code></dd>
-  <dt>Base Seed</dt>
+  <dt>Base Secret Key</dt>
   <dd><code>SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ</code></dd>
 </dl>
 

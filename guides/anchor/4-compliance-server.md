@@ -43,7 +43,7 @@ type = "mysql" # Or "postgres" if you created a PostgreSQL database
 url = "dbuser:dbpassword@/stellar_compliance"
 
 [keys]
-# This should be the secret seed for your base account (or another account that
+# This should be the secret key for your base account (or another account that
 # can authorize transactions from your base account).
 signing_seed = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
 encryption_key = "SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"
@@ -323,7 +323,7 @@ SIGNING_KEY = "GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU"
 
 `AUTH_SERVER` is the address for the *external* port of your compliance server. Like your federation server, this can be any URL you like, but **it must support HTTPS and use a valid SSL certificate.**[^ssl]
 
-`SIGNING_KEY` is the public key that matches the secret seed specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to verify that messages were actually sent by you.
+`SIGNING_KEY` is the public key that matches the secret key specified for `signing_seed` in your compliance server’s configuration. Other organizations will use it to verify that messages were actually sent by you.
 
 
 ## Start the Server

@@ -189,7 +189,7 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-6. Now that the transaction has all the data it needs, you have to cryptographically sign it using your secret seed. This proves that the data actually came from you and not someone impersonating you.
+6. Now that the transaction has all the data it needs, you have to cryptographically sign it using your secret key. This proves that the data actually came from you and not someone impersonating you.
 
     <code-example name="Sign the Transaction">
 
