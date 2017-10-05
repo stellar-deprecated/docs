@@ -18,7 +18,7 @@ A standalone Federation protocol server designed to be dropped in to your existi
 |----------------|------------------------------------------------------------------------------------------|
 | Mac OSX 64-bit (amd64) | [federation-darwin-amd64](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-darwin-amd64.tar.gz)      |
 | Linux 64-bit (amd64)  | [federation-linux-amd64](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-linux-amd64.tar.gz)       |
-| Linux 32-bit (arm)  | [federation-arm-amd64](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-linux-arm.tar.gz)       |
+| Linux 32-bit (arm)  | [federation-linux-amd64](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-linux-arm.tar.gz)       |
 | Windows 64-bit (amd64) | [federation-windows-amd64.exe](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-windows-amd64.zip) |
 
 ## [Bridge Server](https://github.com/stellar/bridge-server)

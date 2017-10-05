@@ -55,7 +55,7 @@ This type of signer is especially usefull in escrow accounts. You can create a p
 ### Hash(x)
 Adding a signature of type hash(x) allows anyone who knows `x` to sign the transaction. This type of signer is especially usefull in [atomic cross-chain swaps](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading) which are needed for inter-blockchain protocols like [lightning networks](https://lightning.network).
 
-First, create a random 256 bit value, which we call `x`. The SHA256 hash of that value can be added as a signer of type hash(x). Then in order to authorize a transaction, `x` is added as one of the signatures of the transaction.
+First, create a random 256 bit value, which we call `x`. The SHA26 hash of that value can be added as a signer of type hash(x). Then in order to authorize a transaction, `x` is added as one of the signatures of the transaction.
 Keep in mind that `x` will be known to the world as soon as a transaction is submitted to the network with `x` as a signature. This means anyone will be able to sign for that account with the hash(x) signer at that point. Often you want there to be additional signers so someone must have a particular secret key and know `x` inorder reach the weight threshold required to authorize transactions on the account.
 
 

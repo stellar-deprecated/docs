@@ -31,7 +31,7 @@ See [transaction life cycle](./transactions.md#life-cycle) for more information.
 
 ## Fee Pool
 
-The fee pool is the lot of lumens collected from [transaction fees](./fees.md#transaction-fee).
+The fee pool is the the lot of lumens collected from [transaction fees](./fees.md#transaction-fee).
 
 Stellar does not retain these lumens. They are distributed in the weekly process of [inflation voting](./inflation.md). 
 
