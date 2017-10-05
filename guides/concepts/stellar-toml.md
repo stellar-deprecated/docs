@@ -37,7 +37,7 @@ location /stellar.toml {
 }
 ```
 
-For other webservers, see: http://enable-cors.org/server.html
+For other web servers, see: http://enable-cors.org/server.html
 
 ## Testing CORS
 
@@ -78,21 +78,8 @@ FEDERATION_SERVER="https://api.stellar.org/federation"
 # The endpoint used for the compliance protocol
 AUTH_SERVER="https://api.stellar.org/auth"
 
-#   This section allows an anchor to declare currencies it currently issues.
-#   Can be used by wallets and clients to trust anchors by domian name 
-[[CURRENCIES]]
-code="USD"
-issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
-display_decimals=2 # Hint fo how many decimal places should be displayed by clients to end users.
-
-[[CURRENCIES]]
-code="BTC"
-issuer="$anchor"
-display_decimals=7 # Maximum decimal places that can be repesented is 7
-
-
-#### Lesser used options below
-
+# The signing key is used for the compliance protocol
+SIGNING_KEY="GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"
 
 # convenience mapping of common names to node IDs.
 # You can use these common names in sections below instead of the less friendly nodeID.
@@ -145,12 +132,50 @@ HISTORY=[
 "http://history.stellar.org/prd/core-live/core_live_003/"
 ]
 
-#   Potential quorum set of this domain's validatos.
+#   This section allows an anchor to declare currencies it currently issues.
+#   Can be used by wallets and clients to trust anchors by domain name
+[[CURRENCIES]]
+code="USD"
+issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
+display_decimals=2 # Specifies how many decimal places should be displayed by clients to end users.
+
+[[CURRENCIES]]
+code="BTC"
+issuer="$anchor"
+display_decimals=7 # Maximum decimal places that can be represented is 7
+
+# asset with meta info
+[[CURRENCIES]]
+code="GOAT"
+issuer="GD5T6IPRNCKFOHQWT264YPKOZAWUMMZOLZBJ6BNQMUGPWGRLBK3U7ZNP"
+display_decimals=2
+name="goat share"
+desc="1 GOAT token entitles you to a share of revenue from Elkins Goat Farm."
+conditions="There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th"
+image="https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg"
+
+#   Potential quorum set of this domain's validators.
 [QUORUM_SET]
 VALIDATORS=[
 "$self", "$lab1", "$nelisky1","$jianing",
 "$eno","$donovan"
 ]
+
+# optional extra information for humans
+# Useful place for anchors to detail various policies and required info
+
+###################################
+# Required compliance fields:
+#      name=<recipient name>
+#      addr=<recipient address>
+# Federation Format:  
+#        <phone number>*anchor.com
+#        Forwarding supported by sending to: forward*anchor.com
+#           forward_type=bank_account
+#           swift=<swift code of receiving bank>
+#           acct=<recipient account number at receiving bank>
+# Minimum Amount Forward: $2 USD
+# Maximum Amount Forward: $10000 USD
 
 
 ```

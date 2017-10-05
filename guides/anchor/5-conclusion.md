@@ -6,6 +6,9 @@ sequence:
 
 Congratulations! If you’ve made it to this point, you should now have a working bridge server, federation server, and compliance server, with the ability to make and receive secure, sanctioned payments on the Stellar network.
 
+## Testing
+Sending and recieving require your servers to interact with someone else's. This can make it difficult to test. For this reason SDF has built a handy testing harness were you can test sending and recieving against our test anchor. It can simulate various failure scenarios so you can be sure all corner cases are handled. Check out the testing tool here [gostellar.org](http://gostellar.org).
+
 ## Moving to Production
 
 As you prepare to move your services into production and support transactions on the public Stellar network, you should make sure to carefully check a few things:

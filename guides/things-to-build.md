@@ -44,6 +44,11 @@ This would be a service hosted at `domain.com` that does the following:
 
 *Advanced* allow people to manage the stellar account you just created for them by sending emails to control@domain.com. This makes someone's inbox a Stellar client. For example: `send 100 XLM to bob@gmail.com`
 
+[Adding this feature to a wallet](https://galactictalk.org/d/37-project-idea-sending-lumens-to-any-address)
+
+# Distributed Exchange
+Description and discussion [here.](https://galactictalk.org/d/26-project-idea-distributed-exchange)
+
 
 # Resource Paywall
 Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used as spam prevention or to support your business. This is a job for the **toll collector**...
@@ -58,9 +63,6 @@ The toll collector service has one RPC or endpoint that you can call:
     - `amount of XLM this key has left`
 
 Your app can publish its Stellar toll address for payments. When someone tries to use your service, the server has them authenticate their public key and calls `charge` on the Toll Collector to decrements the consumer's balance in the DB. You can send the consumer a message when their balance is zero.
-
-#Tutorials
-- Build a tutorial to show others how to build something cool using Stellar
 
 # Multisig Coordinator
 A web application that facilitates creating multisig transactions. Typically you must coordinate between several parties to generate a transaction for an account protected by multisig. This site would make this process much easier and allow you to coordinate in cases where you don't know the other party.
@@ -77,6 +79,10 @@ Ideally the multisig coordinator includes the following features:
   - You can sign any that are waiting for you
 - Once a pending transaction is signed by enough people, it is submitted to the network
 - Once the transaction is submitted, all the signers are notified
+
+# Market Feed
+Data feed for the distributed Exchange inside Stellar. Something equivalent to what [poloniex has](https://poloniex.com/public?command=returnTicker).
+This will be useful for apps like [stellarTerm](http://stellarterm.com) as well as getting the Stellar trade volume added to charting sites like [coinmarketcap](http://coinmarketcap.com)
 
 # Quorum Monitor
 A web page that shows the state of the network quorum graph. Ideally the quorum monitor shows:
@@ -114,3 +120,12 @@ Or contribute to our existing SDKs:
 - time banks
 - volunteer hour tracking
 - anywhere ATM or human ATM mobile apps
+
+# Atomic cross-chain swap facilitator
+
+- End-user software that to facilitate atomic cross-chain swaps with
+  various other cryptocurrencies (between both Lumens and other
+  Stellar currencies).
+
+- A rendezvous service establishing a marketplace for cross-chain
+  swaps.

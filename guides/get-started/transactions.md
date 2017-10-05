@@ -10,7 +10,7 @@ Most of the time, you’ll be sending money to someone else who has their own ac
 
 Actions that change things in Stellar, like sending payments, changing your account, or making offers to trade various kinds of currencies, are called **operations.**[^1] In order to actually perform an operation, you create a **transaction**, which is just a group of operations accompanied by some extra information, like what account is making the transaction and a cryptographic signature to verify that the transaction is authentic.[^2]
 
-If any operation in the transaction fails, they all fail. For example, let’s say you have 100 lumens and you make two payment operations of 60 lumens each. If you make two transactions (each with one operation), the first will succeed and the second will fail because you don’t have enough lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single operation, they will both fail and you’ll be left with the full 100 lumens still in your account.
+If any operation in the transaction fails, they all fail. For example, let’s say you have 100 lumens and you make two payment operations of 60 lumens each. If you make two transactions (each with one operation), the first will succeed and the second will fail because you don’t have enough lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single transaction, they will both fail and you’ll be left with the full 100 lumens still in your account.
 
 Finally, every transaction costs a small fee. Like the minimum balance on accounts, this fee helps stop people from overloading the system with lots of transactions. Known as the **base fee**, it is very small—100 stroops per operation (that’s 0.00001 XLM; stroops are easier to talk about than such tiny fractions of a lumen). A transaction with two operations would cost 200 stroops.[^3]
 
@@ -25,7 +25,7 @@ var StellarSdk = require('stellar-sdk');
 StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair
-  .fromSeed('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
+  .fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
 
 // First, check to make sure that the destination account exists.
@@ -38,7 +38,7 @@ server.loadAccount(destinationId)
   })
   // If there was no error, load up-to-date information on your account.
   .then(function() {
-    return server.loadAccount(sourceKeys.accountId());
+    return server.loadAccount(sourceKeys.publicKey());
   })
   .then(function(sourceAccount) {
     // Start building the transaction.
@@ -129,7 +129,7 @@ What exactly happened there? Let’s break it down.
 
     ```js
     .then(function() {
-    return server.loadAccount(sourceKeys.accountId());
+    return server.loadAccount(sourceKeys.publicKey());
     })
     ```
 
@@ -286,10 +286,10 @@ function loadLastPagingToken() {
 
 ```java
 Server server = new Server("https://horizon-testnet.stellar.org");
-KeyPair account = KeyPair.fromAccountId("'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF'");
+KeyPair account = KeyPair.fromAccountId("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
 
 // Create an API call to query payments involving the account.
-PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account)
+PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account);
 
 // If some payments have already been handled, start the results from the
 // last seen payment. (See below in `handlePayment` where it gets saved.)
@@ -398,7 +398,7 @@ payments.call().then(function handlePage(paymentsPage) {
   paymentsPage.records.forEach(function(payment) {
     // handle a payment
   });
-  Return paymentsPage.next().then(handlePage);
+  return paymentsPage.next().then(handlePage);
 });
 ```
 

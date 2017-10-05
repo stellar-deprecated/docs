@@ -17,9 +17,9 @@ Because the seed must be kept secret, the first step in creating an account is c
 // see more about KeyPair objects: https://stellar.github.io/js-stellar-sdk/Keypair.html
 var pair = StellarSdk.Keypair.random();
 
-pair.seed();
+pair.secret();
 // SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
-pair.accountId();
+pair.publicKey();
 // GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
 ```
 
@@ -29,9 +29,9 @@ pair.accountId();
 import org.stellar.sdk.KeyPair;
 KeyPair pair = KeyPair.random();
 
-new String(pair.getSecretSeed());
+System.out.println(new String(pair.getSecretSeed()));
 // SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
-pair.getAccountId();
+System.out.println(pair.getAccountId());
 // GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB
 ```
 
@@ -59,8 +59,6 @@ func main() {
 
 </code-example>
 
-You might notice that, in the SDK, you call `pair.accountId()` instead of something like `pair.publicKey()`. That’s because the public key that an account was created with is used as the ID for that account.
-
 Now that you have a seed and public key, you can create an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 20 lumens (lumens are the built-in currency of the Stellar network).[^2] Since you don’t yet have any lumens, though, you can’t pay for an account. In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[^3] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
 
 To create a test account, send Friendbot the public key you created. It’ll create and fund a new account using that public key as the account ID.
@@ -73,7 +71,7 @@ To create a test account, send Friendbot the public key you created. It’ll cre
 var request = require('request');
 request.get({
   url: 'https://horizon-testnet.stellar.org/friendbot',
-  qs: { addr: pair.accountId() },
+  qs: { addr: pair.publicKey() },
   json: true
 }, function(error, response, body) {
   if (error || response.statusCode !== 200) {
@@ -104,12 +102,14 @@ System.out.println("SUCCESS! You have a new account :)\n" + body);
 package main
 
 import (
-	"http"
+	"net/http"
 	"io/ioutil"
 	"log"
 )
 
 func main() {
+	// pair is the pair that was generated from previous example, or create a pair based on 
+	// existing keys.
 	address := pair.Address()
 	resp, err := http.Get("https://horizon-testnet.stellar.org/friendbot?addr=" + address)
 	if err != nil {
@@ -121,7 +121,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(body)
+	fmt.Println(string(body))
 }
 ```
 
@@ -135,8 +135,8 @@ Now for the last step: Getting the account’s details and checking its balance.
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // the JS SDK uses promises for most actions, such as retrieving an account
-server.loadAccount(pair.accountId()).then(function(account) {
-  console.log('Balances for account: ' + pair.accountId());
+server.loadAccount(pair.publicKey()).then(function(account) {
+  console.log('Balances for account: ' + pair.publicKey());
   account.balances.forEach(function(balance) {
     console.log('Type:', balance.asset_type, ', Balance:', balance.balance);
   });
@@ -163,6 +163,7 @@ for (AccountResponse.Balance balance : account.getBalances()) {
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/stellar/go/clients/horizon"
