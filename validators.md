@@ -82,6 +82,13 @@ Contact | zulucrypto (slack) zulucrypto@protonmail.com
 NodeID | GCYRJSP52KIUOMXPW5XHOQ77SPQC3O55KVK6KSJO4ABPMG6X3ZOU5UU2
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | paywith.glass
+-----|--------
+Description | https://www.smdwireless.com/looking.glass/#paywith.glass
+Contact | hatter (slack) hatter@paywith.glass
+NodeID | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 
 Name | snt.lux
 -----|--------
