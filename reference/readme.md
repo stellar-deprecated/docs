@@ -20,4 +20,3 @@ Community-maintained libraries (in various states of completion) for interacting
 - [Ruby](https://github.com/stellar/ruby-stellar-sdk)
 - [Python](https://github.com/StellarCN/py-stellar-base)
 - [C#](https://github.com/QuantozTechnology/csharp-stellar-base)
-- [C++](https://bitbucket.org/bnogal/stellarqore/wiki/Home)

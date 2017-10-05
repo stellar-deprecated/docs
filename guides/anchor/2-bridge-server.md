@@ -19,12 +19,12 @@ The bridge server requires a MySQL or PostgreSQL database in order to track and 
 
 ## Download and Configure Bridge Server
 
-Next, [download the latest bridge server](https://github.com/stellar/bridge-server/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `bridge.cfg`. This will store the configuration for the bridge server. It should look something like:
+Next, [download the latest bridge server](https://github.com/stellar/bridge-server/releases) for your platform. Install the executable anywhere you like. In the same directory, create a file named `config_bridge.toml`. This will store the configuration for the bridge server. It should look something like:
 
-<code-example name="bridge.cfg">
+<code-example name="config_bridge.toml">
 
 ```toml
-port = 8006
+port = 8001
 horizon = "https://horizon-testnet.stellar.org"
 network_passphrase = "Test SDF Network ; September 2015"
 # We'll fill this in once we set up a compliance server
@@ -90,7 +90,7 @@ asset_code=USD&\
 asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
 destination=GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB&\
 source=SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ" \
-http://localhost:8006/payment
+http://localhost:8001/payment
 ```
 
 ```js
@@ -130,7 +130,7 @@ import java.util.List;
 
 public class PaymentRequest() {
   public static void main(String [] args) {
-    HttpPost paymentRequest = new HttpPost("http://localhost:8006/payment");
+    HttpPost paymentRequest = new HttpPost("http://localhost:8001/payment");
 
     List<NameValuePair> params = new ArrayList<NameValuePair>();
     params.add(new BasicNameValuePair("amount", "1"));
@@ -171,7 +171,7 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/receive', function (request, response) {
+app.get('/receive', function (request, response) {
   var payment = request.body;
 
   // `receive` may be called multiple times for the same payment, so check that
@@ -261,11 +261,11 @@ To test that your receive callback works, let’s try sending 1 USD to a custome
 ```js
 var StellarSdk = require('stellar-sdk');
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-var sourceKeys = StellarSdk.Keypair.fromSecret(
+var sourceKeys = StellarSdk.Keypair.fromSeed(
   'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU';
 
-server.loadAccount(sourceKeys.publicKey())
+server.loadAccount(sourceKeys.accountId())
   .then(function(sourceAccount) {
     var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
       .addOperation(StellarSdk.Operation.payment({

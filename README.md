@@ -4,13 +4,10 @@ Stellar Docs
 This repository is home to the Stellar documentation. These docs feed into the [Stellar developers site builder](https://github.com/stellar/developers) and is on display at [stellar.org/developers](https://www.stellar.org/developers/).
 
 ## How to write docs
-
 There are a few conventions when writing docs that go into the Stellar Developers site. Most the docs are written in markdown format. For an introduction of what Markdown is, take a look at [Github's Mastering Markdown Guide](https://guides.github.com/features/mastering-markdown/).
 
 ### Headers
-
 Lines that start with a hash tag (`#`) are considered headers. Below is an example of a few and the name of the header:
-
 ```
 # h1
 ## h2
@@ -20,11 +17,10 @@ Lines that start with a hash tag (`#`) are considered headers. Below is an examp
 
 - DO NOT use h1 since that is reserved for the page title generated from front matter.
 - DO NOT skip a header size (don't go from h2 to h4).
-- DO use smaller headers (more hash tags) to represent that a section is nested under a parent one with a larger header.
-- DO add a space after the hash tags. Some markdown parsers will not render the text as a header without the space.
+- DO use smaller headers (more hash tags) to represent that a section is nested under a parent one with a larger header
+- DO Add a space after the hash tags. Some markdown parsers
 
 ### Front matter
-
 At the top of most documents are something called "front matter". This is metadata for the file written in [YAML format](https://en.wikipedia.org/wiki/YAML).
 
 Here is an example of front matter in action:
@@ -38,20 +34,18 @@ The currently used keys in the front matter are:
 - title
 
 ### Document title
-
 Do not start a page with a markdown header (`# Title`). Instead, leave it in the front matter. The developers site will take the title from the front matter.
 
 ### Links
-
 Use inline links and not reference links.
 
-There are three different kind of links, and each different kind of link has a significant meaning. Some of these links are transformed in the generation of the developers site.
+There are three different kind of links and each different kind of link has a significant meaning. Some of these links are transformed in the generation of the developers site.
 
 <table>
   <tbody>
     <tr>
       <th>link type</th>
-      <th>where to use</th>
+      <th>Where to use</th>
       <th>markdown link example</th>
       <th>resulting link (after dev portal processing)</th>
     </tr>
@@ -83,10 +77,9 @@ There are three different kind of links, and each different kind of link has a s
 </table>
 
 ### Non-markdown files
+Sometimes we want to include other types of content such as `.pdf`'s. To add frontmatter to the pdf, create a sibling file with the pdf file name and an added extension of `.metadata`. This file can then define metadata for the title of the `.pdf`.
 
-Sometimes we want to include other types of content such as `.pdf`'s. To add front matter to the pdf, create a sibling file with the pdf file name and an added extension of `.metadata`. This file can then define metadata for the title of the `.pdf`.
-
-An example can be seen in [stellar-core's software folder](https://github.com/stellar/stellar-core/tree/master/docs/software).
+An example can be seen in [stellar-core's learn folder](https://github.com/stellar/stellar-core/tree/master/docs/learn).
 
 ## Contributing
 
