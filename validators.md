@@ -84,7 +84,7 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | paywith.glass
 -----|--------
-Description | https://www.smdwireless.com/looking.glass/#paywith.glass
+Description | http://paywith.glass
 Contact | hatter (slack) hatter@paywith.glass
 NodeID | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
