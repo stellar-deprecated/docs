@@ -8,7 +8,7 @@ Pre-built software and services you can run on your own infrastructure, provided
 ## [Stellar Core](../stellar-core/learn/admin.html)
 Stellar Core is the backbone of the Stellar network and does the hard work of validating and agreeing on the status of every transaction with other instances of Core through the Stellar Consensus Protocol (SCP).
 
-## [Horizon](https://github.com/stellar/horizon)
+## [Horizon](https://github.com/stellar/go/tree/master/services/horizon)
 Horizon is the client-facing API server for the Stellar ecosystem. It acts as the interface between Stellar Core and applications that want to access the Stellar network. If you are running Stellar Core, you will probably also want to run Horizon.
 
 ## [Federation Server](https://github.com/stellar/go/tree/master/services/federation)
