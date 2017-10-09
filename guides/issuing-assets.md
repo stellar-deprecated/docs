@@ -235,7 +235,7 @@ StellarSdk.Network.useTestNetwork();
 var flags = StellarSdk.xdr.AccountFlags;
 var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
   .addOperation(StellarSdk.Operation.setOptions({
-    setFlags: StellarSdk..AuthRevocableFlag | StellarSdk.AuthRequiredFlag
+    setFlags: StellarSdk.AuthRevocableFlag | StellarSdk.AuthRequiredFlag
   }))
   .build();
 transaction.sign(issuingKeys);
