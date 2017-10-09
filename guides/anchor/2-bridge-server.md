@@ -196,7 +196,7 @@ app.post('/receive', function (request, response) {
 });
 
 app.listen(8005, function () {
-  console.log('Bridge server callbacks running on port 8002!');
+  console.log('Bridge server callbacks running on port 8005!');
 });
 ```
 
