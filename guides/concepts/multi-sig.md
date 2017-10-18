@@ -20,14 +20,18 @@ The threshold for a given level can be set to any number from 0-255. This thresh
 
 Each account can set its own threshold values. By default all thresholds levels are set to 0, and the master key is set to weight 1.
 
-Let's say Diyang sets the medium threshold on one of her accounts to 4. If that account submits a transaction that includes a payment operation (medium security), the transaction's threshold is 4--the signature weights on it need to exceed 4 in order to run.  If Diyang's master key--the key corresponding to the public key that identifies the account she owns--has a weight below 4, she cannot authorize a transaction without other signers.
+Let's say Diyang sets the medium threshold on one of her accounts to 4. If that account submits a transaction that includes a payment operation (medium security), the transaction's threshold is 4--the signature weights on it need to exceed 4 in order to run.  If Diyang's master key--the key corresponding to the public key that identifies the account she owns--has a weight below 4, she cannot authorize a transaction without other signers. The weight needs to be greater than or equal to 4 in order for her to authorize a transaction without other signers.
 
-* Low Security:
+Note that you need at least 1 key with a weight that is greater than 0 to successfully sign a transaction (even if the threshold is 0 itself).
+
+Low Security:
  * [Allow Trust](./list-of-operations.md#allow-trust) operation
  * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
-* Medium Security:
+
+Medium Security:
  * All other operations
-* High Security:
+
+High Security:
  * [Set Options](./list-of-operations.md#set-options) to change the signers or the thresholds
  * Allows you to create a set of signers that give or revoke access to the account.
 
@@ -80,11 +84,11 @@ credit. But, since `Payment` is a medium-threshold operation, this key does not 
 
 Your account setup:
 ```
-  master key weight:3
+  master key weight: 2
   additional signing key weight: 1
-  low threshold:0
-  medium threshold:2
-  high threshold:2
+  low threshold: 0
+  medium threshold: 2
+  high threshold: 2
 ```
 
 ### Example 2: Joint Accounts
@@ -144,3 +148,4 @@ Source account setup:
   medium threshold: 0
   high threshold: 0
 ```
+Note that even though the thresholds are 0 here, the master key cannot successfully sign a transaction because it's own weight is 0 (this is the exception to the equal to or greater than rule).
