@@ -91,7 +91,7 @@ When someone is sending a transaction to you, the flow is slightly different:
     2. If the sender wants to check your customer’s information, a callback is used to determine whether you are willing to share your customer’s information.
     3. The same callback used when sending a payment (above) is used to actually get your customer’s information.
 4. The sender submits the transaction to the Stellar network.
-5. The bridge server monitors the Stellar network for the transaction and sends it to you compliance server to verify that it was the same transaction you approved in step 3.1.
+5. The bridge server monitors the Stellar network for the transaction and sends it to your compliance server to verify that it was the same transaction you approved in step 3.1.
 6. The bridge server contacts a service you implement to notify you about the transaction. You can use this step to update your customer’s account balances.
 
 **While these steps can seem complicated, Stellar’s bridge, federation, and compliance services do most of the work.** You only need to implement four callbacks and create a [stellar.toml](../concepts/stellar-toml) file where others can find the URL of your services.
