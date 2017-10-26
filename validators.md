@@ -189,3 +189,10 @@ Description | n/a
 Contact | donovanhide@gmail.com (email)
 NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+
+Name | Mcna
+-----|--------
+Description | A Lumen holder
+Contact | chris.mcna@gmail.com (email)
+NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
