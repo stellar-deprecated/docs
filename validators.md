@@ -89,6 +89,12 @@ Contact | hatter (slack) hatter@paywith.glass
 NodeID | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Flutterwave
+-----|--------
+Description | https://www.flutterwave.com
+Contact | hi@flutterwavego.com
+NodeID | GC3WHI444R4ULETZAECXA6B6PI4OHVWUW2RKZYP56H6MFL5IFAXAOYEW
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | snt.lux
 -----|--------
