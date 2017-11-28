@@ -96,6 +96,24 @@ Contact | hi@flutterwavego.com
 NodeID | GC3WHI444R4ULETZAECXA6B6PI4OHVWUW2RKZYP56H6MFL5IFAXAOYEW
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
+Name | Mcna
+-----|--------
+Description | A Lumen holder
+Contact | chris.mcna@gmail.com (email)
+NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+#Offline servers
+
+Name | dzham
+-----|--------
+Description | n/a
+Contact | dzham (slack) johan@futuretense.io (email)
+NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+
 Name | snt.lux
 -----|--------
 Description | university of luxembourg stellar node
@@ -128,42 +146,11 @@ NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
 Peer | confucius.strllar.org
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | jianing
------|--------
-Description | A node in chenzhou
-Contact | huyahuai@qq.com (email)
-NodeID 1 | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
-NodeID 2 | GCLD6YPBMNVFGWYTAIGYN2FRN55HPJ43ROVFHP4SJ6U72N4BESWTJMSN
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | dzham
------|--------
-Description | n/a
-Contact | dzham (slack) johan@futuretense.io (email)
-NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
 Name | sparrow_tw
 -----|--------
 Description | sparrowai.com
 Contact | scottc (slack) scott@sparrowai.com (email)
 NodeID | GCCW4H2DKAC7YYW62H3ZBDRRE5KXRLYLI4T5QOSO6EAMUOE37ICSKKRJ
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | nelisky
------|--------
-Description | n/a
-Contact | nelisky.btc@gmail.com (email)
-NodeID 1 | GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
-NodeID 2 | GA2DE5AQF32LU5OZ5OKAFGPA2DLW4H6JHPGYJUVTNS3W7N2YZCTQFFV6
-Peer 1 | stellar1.bitventure.co
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | ecliptic1
------|--------
-Description | https://www.ecliptic.co
-Contact | sb (slack)
-NodeID | GBVRSIZS6TQY7T57JCHRPFVRBOLQUKV3WUT4DPP6ME3BFRH3S4PBB6J5
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | quantoz.com
@@ -196,9 +183,4 @@ Contact | donovanhide@gmail.com (email)
 NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | Mcna
------|--------
-Description | A Lumen holder
-Contact | chris.mcna@gmail.com (email)
-NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
