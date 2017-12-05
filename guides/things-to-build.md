@@ -2,7 +2,7 @@
 title: Build Stellar Apps
 ---
 Build cool things on Stellar! This list outlines a few ideas for applications. Feel free to add your own or take one here and run with it.
-As always, if you need help building anything with Stellar, just ask us ([Slack chat](http://slack.stellar.org/)),[IRC](https://kiwiirc.com/client/irc.freenode.net/#stellar-dev), or developers@stellar.org) .
+As always, if you need help building anything with Stellar, just ask on [Slack chat](http://slack.stellar.org/), [IRC](https://kiwiirc.com/client/irc.freenode.net/#stellar-dev), or email developers@stellar.org.
 
 If you're not looking for a full-blown project but still want to help out, look for `help wanted` issue labels in any of our [repos](https://github.com/stellar).
 
@@ -31,16 +31,16 @@ Implement a simple [Federation server](https://www.stellar.org/developers/guides
 You can also contribute to the [federation server](https://github.com/stellar/go/tree/master/services/federation) maintained by Stellar Development Foundation.
 
 # Lumens to any email address
-Allow anyone to send lumens from their Stellar client to any email address. They would simply enter in something like `<emailaddress>*domain.com` and then they are able to send it lumens. If the recipient doesn't have a stellar account already one will be created for them and they will get an email alerting them that they have lumens.
+Allow anyone to send lumens from their Stellar client to any email address. They would simply enter something like `<emailaddress>*domain.com` and then they are able to send it lumens. If the recipient doesn't have a stellar account already one will be created for them and they will get an email alerting them that they have lumens.
 
 This would be a service hosted at `domain.com` that does the following:
 - Runs a federation server.
 - Will federate payment addresses with an email prefix like `jed@stellar.org*domain.com`.
 - If there is a federation request for an address you don't know that starts with a valid email address:
   - Generate a key pair
-  - return the generated public key as the accountID
-  - watch the network to see if that account is created.
-  - if the account is created then you send an email to the given email address with the private half of the keypair with links to a Stellar client.
+  - Return the generated public key as the accountID
+  - Watch the network to see if that account is created.
+  - If the account is created, you send an email to the given email address with the private half of the keypair with links to a Stellar client.
 
 *Advanced* allow people to manage the stellar account you just created for them by sending emails to control@domain.com. This makes someone's inbox a Stellar client. For example: `send 100 XLM to bob@gmail.com`
 
@@ -51,7 +51,7 @@ Description and discussion [here.](https://galactictalk.org/d/26-project-idea-di
 
 
 # Resource Paywall
-Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used as spam prevention or to support your business. This is a job for the **toll collector**...
+Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used for spam prevention or to support your business. This is a job for the **toll collector**...
 
 ## Toll Collector
 A simple service that keeps track of any XLM sent to a `toll address`. The toll collector has a database of public keys and amounts of XLM it has sent to the toll address. It watches for payments to the toll address on the Stellar network and adds them to this DB.
@@ -67,7 +67,7 @@ Your app can publish its Stellar toll address for payments. When someone tries t
 # Multisig Coordinator
 A web application that facilitates creating multisig transactions. Typically you must coordinate between several parties to generate a transaction for an account protected by multisig. This site would make this process much easier and allow you to coordinate in cases where you don't know the other party.
 
-Ideally the multisig coordinator includes the following features:
+Ideally, the multisig coordinator includes the following features:
 - Associate an email address with your public key
 - Create a tx that you would like to be signed by multiple parties
 - Enter the public keys that you would like to sign the tx
@@ -81,11 +81,11 @@ Ideally the multisig coordinator includes the following features:
 - Once the transaction is submitted, all the signers are notified
 
 # Market Feed
-Data feed for the distributed Exchange inside Stellar. Something equivalent to what [poloniex has](https://poloniex.com/public?command=returnTicker).
-This will be useful for apps like [stellarTerm](http://stellarterm.com) as well as getting the Stellar trade volume added to charting sites like [coinmarketcap](http://coinmarketcap.com)
+Data feed for the distributed Exchange inside Stellar. Something equivalent to the [Poloniex API](https://poloniex.com/public?command=returnTicker).
+This will be useful for apps like [stellarTerm](http://stellarterm.com) as well as getting the Stellar trade volume added to charting sites like [CoinMarketCap](http://coinmarketcap.com)
 
 # Quorum Monitor
-A web page that shows the state of the network quorum graph. Ideally the quorum monitor shows:
+A web page that shows the state of the network quorum graph. Ideally, the quorum monitor shows:
 - A live graph of how the network is connected
 - What servers are having issues
 - Any servers that disagree with the rest of the network
@@ -108,24 +108,21 @@ Or contribute to our existing SDKs:
 - [Java](https://github.com/stellar/java-stellar-sdk)
 - [Python](https://github.com/StellarCN/py-stellar-base/)
 
-
 # Product and Service Ideas We've Heard
-- microsavings account for school, health, insurance
-- microinsurance
-- p2p lending
-- conditional cash transfers
-- donation systems for nonprofits
-- loyalty points programs
-- community currencies
-- time banks
-- volunteer hour tracking
-- anywhere ATM or human ATM mobile apps
+- Microsavings account for school, health, insurance
+- Microinsurance
+- P2P lending
+- Conditional cash transfers
+- Donation systems for nonprofits
+- Loyalty points programs
+- Community currencies
+- Time banks
+- Volunteer hour tracking
+- Anywhere ATM or human ATM mobile apps
 
 # Atomic cross-chain swap facilitator
-
 - End-user software that to facilitate atomic cross-chain swaps with
   various other cryptocurrencies (between both Lumens and other
   Stellar currencies).
-
 - A rendezvous service establishing a marketplace for cross-chain
   swaps.
