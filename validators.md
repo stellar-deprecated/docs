@@ -28,8 +28,16 @@ Name | cryptomover
 -----|--------
 Description | https://cryptomover.com
 Contact | support@cryptomover.com (email)
+NodeID | GC7MH45NSXXPBLQJRSEVF2DFUVLGGYOJER5FRUNVCYVMXJYJT5LLQJW5
+Peer |  cryptomover.org:8000 (Hong Kong location 1)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | cryptomover
+-----|--------
+Description | https://cryptomover.com
+Contact | support@cryptomover.com (email)
 NodeID | GCGWABAQ6OUOVUGWJVPRJ5LWBIWYN3CVOVOZYBNQQGIBRULQHYNGQ7GH
-Peer |  cryptodealer.hk
+Peer |  cryptodealer.hk (Hong Kong location 2)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | eno
