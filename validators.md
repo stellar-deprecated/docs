@@ -122,6 +122,13 @@ Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Francesco's
+---|---
+Contact | francescomenzani99@gmail.com
+NodeID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
+Peer | 207.154.221.215	(Europe)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
