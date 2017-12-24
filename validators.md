@@ -114,6 +114,15 @@ Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
+Name | zelante
+-----|--------
+Description | zelante node
+Contact | djazot@mail.com (email)
+NodeID | GCTAEJB3YHFAMK5XA5PLBG63BO2INGU6P36XOHET6JK2UDSRBK4UHZRZ
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
 ------
 #Offline servers
 
