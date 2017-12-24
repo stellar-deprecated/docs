@@ -118,7 +118,7 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 Name | zelante
 -----|--------
 Description | zelante node
-Contact | djazot@mail.com (email)
+Contact | djazot@gmail.com (email)
 NodeID | GCTAEJB3YHFAMK5XA5PLBG63BO2INGU6P36XOHET6JK2UDSRBK4UHZRZ
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
