@@ -17,7 +17,7 @@ We don't know who really controls these nodes. They could all be owned by the sa
 Name | FairX
 -----|--------
 Description | https://fairx.io
-Contact | about@fairx.io (email)
+Contact | Michael Dowling - about@fairx.io (email)
 NodeID | GAXEJOMEVVD5OAAGOOZ4SXTTNR46C4V23XROHWRNVEGOTGOABO3ZVH7Z
 Peer |  uswest.stellar.fairx.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
