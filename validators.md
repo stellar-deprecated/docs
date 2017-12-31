@@ -15,6 +15,16 @@ If you would like to run a validator, then please:
 
 ------
 
+Name | FairX
+---|---
+Description | https://fairx.io
+Contact | Michael Dowling — about@fairx.io
+Node ID | GAXEJOMEVVD5OAAGOOZ4SXTTNR46C4V23XROHWRNVEGOTGOABO3ZVH7Z
+Peer | uswest.stellar.fairx.io
+Status | ![Online][1]
+
+------
+
 Name | IBM
 ---|---
 Description | https://www.ibm.com/blockchain/
