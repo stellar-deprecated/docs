@@ -27,6 +27,8 @@ var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair
   .fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
+// Transaction will hold a built transaction we can resubmit if the result is unknown.
+var transaction;
 
 // First, check to make sure that the destination account exists.
 // You could skip this, but if the account does not exist, you will be charged
@@ -42,7 +44,7 @@ server.loadAccount(destinationId)
   })
   .then(function(sourceAccount) {
     // Start building the transaction.
-    var transaction = new StellarSdk.TransactionBuilder(sourceAccount)
+    transaction = new StellarSdk.TransactionBuilder(sourceAccount)
       .addOperation(StellarSdk.Operation.payment({
         destination: destinationId,
         // Because Stellar allows transaction in many currencies, you must
@@ -64,6 +66,9 @@ server.loadAccount(destinationId)
   })
   .catch(function(error) {
     console.error('Something went wrong!', error);
+    // If the result is unknown (no response body, timeout etc.) we simply resubmit
+    // already built transaction:
+    // server.submitTransaction(transaction);
   });
 ```
 
@@ -101,6 +106,9 @@ try {
 } catch (Exception e) {
   System.out.println("Something went wrong!");
   System.out.println(e.getMessage());
+  // If the result is unknown (no response body, timeout etc.) we simply resubmit
+  // already built transaction:
+  // SubmitTransactionResponse response = server.submitTransaction(transaction);
 }
 ```
 
@@ -216,6 +224,8 @@ What exactly happened there? Let’s break it down.
     ```
 
     </code-example>
+
+**IMPORTANT** It's possible that you will not receive a response from Horizon server due to a bug, network conditions, etc. In such situation it's impossible to determine the status of your transaction. That's why you should always save a built transaction (or transaction encoded in XDR format) in a variable or a database and resubmit it if you don't know it's status. If the transaction has already been successfully applied to the ledger, Horizon will simply return the saved result and not attempt to submit the transaction again. Only in cases where a transaction’s status is unknown (and thus will have a chance of being included into a ledger) will a resubmission to the network occur.
 
 ## Receive Payments
 
