@@ -41,7 +41,7 @@ Accounts have the following fields:
 > #### Home domain
 > A domain name that can optionally be added to the account. Clients can look up a [stellar.toml](./stellar-toml.md) from this domain. This should be in the format of a [fully qualified domain name](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) such as `example.com`.
 >
-> The federation procol can use the home domain to look up more details about a transaction's memo or [address](https://www.stellar.org/developers/learn/concepts/federation.html#stellar-addresses) details about an account. For more on federation, see the [federation guide](./federation.md).
+> The federation protocol can use the home domain to look up more details about a transaction's memo or [address](https://www.stellar.org/developers/learn/concepts/federation.html#stellar-addresses) details about an account. For more on federation, see the [federation guide](./federation.md).
 >
 >
 > #### Thresholds
