@@ -304,7 +304,7 @@ boolean trusted = false;
 for (AccountResponse.Balance balance : accountToCheck.getBalances()) {
   if (!balance.getAssetType().equals("native") &&
       balance.getAssetCode().equals(astroDollarCode) &&
-      balance.getAssetIssuer().equals(astroDollarIssuer)) {
+      balance.getAssetIssuer().getAccountId().equals(astroDollarIssuer)) {
     trusted = true;
     break;
   }
