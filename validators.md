@@ -86,6 +86,14 @@ NodeID | GA4UZHDP44Q6NGZ6YXA7FMTFYPZIN3XLCUMMY2KUH5FX6TGEE4SEM42K
 Peer | stellar.crservers.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Alchymia
+-----|--------
+Description | alchymia.io
+Contact | support at alchymia.io (email)
+NodeID | GDNSWA3ZJRQI7EBFLUASFZCMXU3WDEOP24M373XTADCT7UYGWBNFWZSK 
+Peer | stellar.alchymia.io
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 Name | umbrel
 -----|--------
 Description | umbrellab.com
