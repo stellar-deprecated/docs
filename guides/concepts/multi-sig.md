@@ -52,7 +52,7 @@ It is possible for an account to pre-authorize a particular transaction by addin
 
 Signers of this type are automatically removed from the account when a matching transaction is properly applied. In case of error, or when matching transaction is never submitted, the signer remains and must be manually removed using the [Set Options](./list-of-operations.md#set-options) operation.
 
-This type of signer is especially usefull in escrow accounts. You can create a pre-authorized transaction for two different transactions each with the same sequence number but that send to two different accounts. This means that only one of the pre-authorized transactions or the other will be able to execute.
+This type of signer is especially usefull in escrow accounts. You can pre-authorize two different transactions. Both could have the same sequence number but different destinations. This means that only one of them can be executed.
 
 ### Hash(x)
 Adding a signature of type hash(x) allows anyone who knows `x` to sign the transaction. This type of signer is especially usefull in [atomic cross-chain swaps](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading) which are needed for inter-blockchain protocols like [lightning networks](https://lightning.network).
