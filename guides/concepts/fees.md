@@ -7,7 +7,7 @@ The Stellar network requires small [fees on transactions](#transaction-fee) and 
 There are two special values used to calculate fees:
 
 1. The **base fee** (currently 100 stroops) is used in transaction fees.
-2. The **base reserve** (currently 10 XLM) is used in minimum account balances.
+2. The **base reserve** (currently 0.5 XLM) is used in minimum account balances.
 
 
 ## Transaction Fee
