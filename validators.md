@@ -123,6 +123,14 @@ Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | badbox - chicago
+-----|--------
+Description | chicago based validator
+Contact | mar-io (slack)
+NodeID | GACEYMZ5RGGPV3N7WCZ2VWNLA3PZGBBGBKXP4G3GQ7FTIV5IR5ZZEB2R
+Peer | chicago.badbox.io
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
