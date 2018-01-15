@@ -148,7 +148,7 @@ import org.stellar.sdk.Server;
 import org.stellar.sdk.responses.AccountResponse;
 
 Server server = new Server("https://horizon-testnet.stellar.org");
-AccountResponse account = server.accounts().account(pair.getAccountId());
+AccountResponse account = server.accounts().account(pair);
 System.out.println("Balances for account " + pair.getAccountId());
 for (AccountResponse.Balance balance : account.getBalances()) {
   System.out.println(String.format(
