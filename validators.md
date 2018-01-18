@@ -123,6 +123,14 @@ Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
+Name | Coinplaycenter
+-----|--------
+Description | https://www.coinplaycenter.com
+Contact | coinplaycenter@gmail.com (email), soufrilasp@gmail.com (email), Panagiotis (slack)
+NodeID | GBFKPET5EK4YDXAD24CQV5XIRFVHQPDPHU2T34ELEMKUPNPFG2MAZBBJ
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
