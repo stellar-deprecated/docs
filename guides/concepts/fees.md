@@ -7,7 +7,7 @@ The Stellar network requires small [fees on transactions](#transaction-fee) and 
 There are two special values used to calculate fees:
 
 1. The **base fee** (currently 100 stroops) is used in transaction fees.
-2. The **base reserve** (currently 10 XLM) is used in minimum account balances.
+2. The **base reserve** (currently 0.5 XLM) is used in minimum account balances.
 
 
 ## Transaction Fee
@@ -41,7 +41,7 @@ If there are any unallocated lumens after the vote, those lumens return to the f
 
 All Stellar accounts must maintain a minimum balance of lumens. Any transaction that would reduce an account's balance to less than the minimum will be rejected with an `INSUFFICIENT_BALANCE` error.
 
-The minimum balance is calculated using the **base reserve,** which is **10 XLM**:
+The minimum balance is calculated using the **base reserve,** which is **0.5 XLM**:
 
 ```math-formula
 (2 + [# of entries]) * [base reserve]
@@ -54,7 +54,7 @@ The minimum balance for a basic account is $$2 * [base reserve]$$. Each addition
 - Signers
 - Data entries
 
-For example, an account with 1 trustline and 2 offers would have a minimum balance of $$(2 + 3) * [base reserve] = 50 XLM$$.
+For example, an account with 1 trustline and 2 offers would have a minimum balance of $$(2 + 3) * [base reserve] = 2.5 XLM$$.
 
 
 ## Fee Changes

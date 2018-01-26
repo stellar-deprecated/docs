@@ -24,7 +24,7 @@ Access-Control-Allow-Origin: *
 **Important**: Only enable CORS for stellar.toml (or any files it references). For example, in Apache you would set something like:
 
 ```xml
-<Location "/stellar.toml">
+<Location "/.well-known/stellar.toml">
     Header set Access-Control-Allow-Origin "*"
 </Location>
 ```
@@ -32,7 +32,7 @@ Access-Control-Allow-Origin: *
 Or in nginx:
 
 ```
-location /stellar.toml {
+location /.well-known/stellar.toml {
  add_header 'Access-Control-Allow-Origin' '*';
 }
 ```

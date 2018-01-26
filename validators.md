@@ -14,6 +14,24 @@ For general validator support, please check out [the stellar-public #validator c
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 
 ------
+Name | FairX
+-----|--------
+Description | https://fairx.io
+Contact | Michael Dowling - about@fairx.io (email)
+NodeID | GAXEJOMEVVD5OAAGOOZ4SXTTNR46C4V23XROHWRNVEGOTGOABO3ZVH7Z
+Peer |  uswest.stellar.fairx.io
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+Name | IBM
+-----|--------
+Description | https://ibm.com/blockchain
+Contact | jesse.lund@ibm.com
+NodeID | GCKWUQGSVO45ZV3QK7POYL7HMFWDKWJVMFVEGUJKCAEVUITUCTQWFSM6 GBUJA3Z5TLAKLI5MEH4TETLXJBQVSVW74MNEKP5UUHTP3IMLNSUPOTVA GB2HF2NHRKKFZYFDGD7MUENOYROOEK7SWYV2APYOODP6P7BUJTLILKIL GDRA72H7JWXAXWJKOONQOPH3JKNSH5MQ6BO5K74C3X6FO2G3OG464BPU GAEEH4TBR7YQQWKJ2FIT57HXZZTMK2BX5LY4POJUYFSEZ7Y2ONHPPTES GBJ7T3BTLX2BP3T5Q4256PUF7JMDAB35LLO32QRDYE67TDDMN7H33GGE GCH3O5PTCZVR4G65W3B4XDKWI5V677HQB3QO7CW4YPVYDDFBE2GE7G6V GAENPO2XRTTMAJXDWM3E3GAALNLG4HVMKJ4QF525TR25RI42YPEDULOW
+Peer |  au.stellar.ibm.com	(Sydney,	Australia) <br/> br.stellar.ibm.com	(Sao Paulo,	Brazil) <br/> ca.stellar.ibm.com	(Toronto,	Canada) <br/> no.stellar.ibm.com (Oslo,	Norway) <br/> it.stellar.ibm.com	(Milan	,	Italy) <br/> hk.stellar.ibm.com	(Hong Kong,	Hong Kong) <br/> in.stellar.ibm.com	(Chennai,	India) <br/> uk.stellar.ibm.com	(London	,	England)<br/>
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
 Name | cryptomover
 -----|--------
 Description | https://cryptomover.com
@@ -42,8 +60,9 @@ Name | satoshipay
 -----|--------
 Description | https://satoshipay.io/
 Contact | andrenarchy (slack)
-NodeID | GC5SXLNAM3C4NMGK2PXK4R34B5GNZ47FYQ24ZIBFDFOCU6D4KBN4POAE
-Peer | stellar.satoshipay.io
+Node 1 | GC5SXLNAM3C4NMGK2PXK4R34B5GNZ47FYQ24ZIBFDFOCU6D4KBN4POAE<br/>(peer stellar1.satoshipay.io)
+Node 2 | GBJQUIXUO4XSNPAUT6ODLZUJRV2NPXYASKUBY4G5MYP3M47PCVI55MNT<br/>(peer stellar2.satoshipay.io)
+Node 3 | GAK6Z5UVGUVSEK6PEOCAYJISTT5EJBB34PN3NOLEQG2SUKXRVV2F6HZY<br/>(peer stellar3.satoshipay.io)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | ICICI Bank
@@ -96,6 +115,32 @@ Contact | hi@flutterwavego.com
 NodeID | GC3WHI444R4ULETZAECXA6B6PI4OHVWUW2RKZYP56H6MFL5IFAXAOYEW
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
+Name | Mcna
+-----|--------
+Description | A Lumen holder
+Contact | chris.mcna@gmail.com (email)
+NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | Stellar Pool
+---|---
+Description | A low-fee Stellar community inflation pool.
+Contact | francescomenzani99@gmail.com
+Peer | stellarpool.net (Europe)
+Node ID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+#Offline servers
+
+Name | dzham
+-----|--------
+Description | n/a
+Contact | dzham (slack) johan@futuretense.io (email)
+NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+
 Name | snt.lux
 -----|--------
 Description | university of luxembourg stellar node
@@ -128,42 +173,11 @@ NodeID 3 | GDPJ4DPPFEIP2YTSQNOKT7NMLPKU2FFVOEIJMG36RCMBWBUR4GTXLL57
 Peer | confucius.strllar.org
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | jianing
------|--------
-Description | A node in chenzhou
-Contact | huyahuai@qq.com (email)
-NodeID 1 | GDXWQCSKVYAJSUGR2HBYVFVR7NA7YWYSYK3XYKKFO553OQGOHAUP2PX2
-NodeID 2 | GCLD6YPBMNVFGWYTAIGYN2FRN55HPJ43ROVFHP4SJ6U72N4BESWTJMSN
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | dzham
------|--------
-Description | n/a
-Contact | dzham (slack) johan@futuretense.io (email)
-NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
 Name | sparrow_tw
 -----|--------
 Description | sparrowai.com
 Contact | scottc (slack) scott@sparrowai.com (email)
 NodeID | GCCW4H2DKAC7YYW62H3ZBDRRE5KXRLYLI4T5QOSO6EAMUOE37ICSKKRJ
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | nelisky
------|--------
-Description | n/a
-Contact | nelisky.btc@gmail.com (email)
-NodeID 1 | GBGR22MRCIVW2UZHFXMY5UIBJGPYABPQXQ5GGMNCSUM2KHE3N6CNH6G5
-NodeID 2 | GA2DE5AQF32LU5OZ5OKAFGPA2DLW4H6JHPGYJUVTNS3W7N2YZCTQFFV6
-Peer 1 | stellar1.bitventure.co
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-Name | ecliptic1
------|--------
-Description | https://www.ecliptic.co
-Contact | sb (slack)
-NodeID | GBVRSIZS6TQY7T57JCHRPFVRBOLQUKV3WUT4DPP6ME3BFRH3S4PBB6J5
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
 Name | quantoz.com
@@ -196,9 +210,4 @@ Contact | donovanhide@gmail.com (email)
 NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | Mcna
------|--------
-Description | A Lumen holder
-Contact | chris.mcna@gmail.com (email)
-NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
