@@ -131,6 +131,14 @@ Peer | stellarpool.net (Europe)
 Node ID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | MyStellar.Tools
+---|---
+Description | https://mystellar.tools
+Contact | mprom (slack) contact@mystellar.tools
+Peer | mystellar.tools (Europe)
+Node ID | GCJWQ4C5VQKLAVHT2Y6CA7TIM3VBEH62E7LKTIQQJDBZFLMZPFY3ITTV
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
