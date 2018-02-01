@@ -77,7 +77,7 @@ Now run the server! (Unlike the bridge server, there’s there no custom databas
 
 Finally, others have to know the URL of your federation server. The [`stellar.toml` file](../concepts/stellar-toml.md) is publicly available file where others can find information about your Stellar integration. It should always be stored at:
 
-`https://www.[YOUR DOMAIN]/.well-known/stellar.toml`
+`https://[YOUR DOMAIN]/.well-known/stellar.toml`
 
 It can list all sorts of properties, but the one we care about now is the URL for your federation server. Your `stellar.toml` file should look something like:
 

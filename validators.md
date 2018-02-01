@@ -27,8 +27,8 @@ Name | IBM
 -----|--------
 Description | https://ibm.com/blockchain
 Contact | jesse.lund@ibm.com
-NodeID | GCKWUQGSVO45ZV3QK7POYL7HMFWDKWJVMFVEGUJKCAEVUITUCTQWFSM6 GBUJA3Z5TLAKLI5MEH4TETLXJBQVSVW74MNEKP5UUHTP3IMLNSUPOTVA GB2HF2NHRKKFZYFDGD7MUENOYROOEK7SWYV2APYOODP6P7BUJTLILKIL GDRA72H7JWXAXWJKOONQOPH3JKNSH5MQ6BO5K74C3X6FO2G3OG464BPU GAEEH4TBR7YQQWKJ2FIT57HXZZTMK2BX5LY4POJUYFSEZ7Y2ONHPPTES GBJ7T3BTLX2BP3T5Q4256PUF7JMDAB35LLO32QRDYE67TDDMN7H33GGE GCH3O5PTCZVR4G65W3B4XDKWI5V677HQB3QO7CW4YPVYDDFBE2GE7G6V GAENPO2XRTTMAJXDWM3E3GAALNLG4HVMKJ4QF525TR25RI42YPEDULOW
-Peer |  au.stellar.ibm.com	(Sydney,	Australia) <br/> br.stellar.ibm.com	(Sao Paulo,	Brazil) <br/> ca.stellar.ibm.com	(Toronto,	Canada) <br/> no.stellar.ibm.com (Oslo,	Norway) <br/> it.stellar.ibm.com	(Milan	,	Italy) <br/> hk.stellar.ibm.com	(Hong Kong,	Hong Kong) <br/> in.stellar.ibm.com	(Chennai,	India) <br/> uk.stellar.ibm.com	(London	,	England)<br/>
+NodeID | GCKWUQGSVO45ZV3QK7POYL7HMFWDKWJVMFVEGUJKCAEVUITUCTQWFSM6 GBUJA3Z5TLAKLI5MEH4TETLXJBQVSVW74MNEKP5UUHTP3IMLNSUPOTVA GB2HF2NHRKKFZYFDGD7MUENOYROOEK7SWYV2APYOODP6P7BUJTLILKIL GDRA72H7JWXAXWJKOONQOPH3JKNSH5MQ6BO5K74C3X6FO2G3OG464BPU GAEEH4TBR7YQQWKJ2FIT57HXZZTMK2BX5LY4POJUYFSEZ7Y2ONHPPTES GBJ7T3BTLX2BP3T5Q4256PUF7JMDAB35LLO32QRDYE67TDDMN7H33GGE GCH3O5PTCZVR4G65W3B4XDKWI5V677HQB3QO7CW4YPVYDDFBE2GE7G6V GAENPO2XRTTMAJXDWM3E3GAALNLG4HVMKJ4QF525TR25RI42YPEDULOW GARBCBH4YSHUJLYEPKEPMVYZIJ3ZSQR3QCJ245CWGY64X72JLN4A6RSG
+Peer |  au.stellar.ibm.com	(Sydney,	Australia) <br/> br.stellar.ibm.com	(Sao Paulo,	Brazil) <br/> ca.stellar.ibm.com	(Toronto,	Canada) <br/> no.stellar.ibm.com (Oslo,	Norway) <br/> it.stellar.ibm.com	(Milan	,	Italy) <br/> hk.stellar.ibm.com	(Hong Kong,	Hong Kong) <br/> in.stellar.ibm.com	(Chennai,	India) <br/> uk.stellar.ibm.com	(London, England) <br/> us.stellar.ibm.com	(Dallas, Texas)<br/>
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
@@ -123,13 +123,20 @@ Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Stellar Pool
+---|---
+Description | A low-fee Stellar community inflation pool.
+Contact | francescomenzani99@gmail.com
+Peer | stellarpool.net (Europe)
+Node ID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 
 Name | Coinplaycenter
 -----|--------
 Description | https://www.coinplaycenter.com
 Contact | coinplaycenter@gmail.com (email), soufrilasp@gmail.com (email), Panagiotis (slack)
 NodeID | GBFKPET5EK4YDXAD24CQV5XIRFVHQPDPHU2T34ELEMKUPNPFG2MAZBBJ
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
 #Offline servers
@@ -163,9 +170,9 @@ NodeID | GAXP5DW4CVCW2BJNPFGTWCEGZTJKTNWFQQBE5SCWNJIJ54BOHR3WQC3W
 Peer | stellar1.moni.com
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
 
-Name | strllar 
------|-------- 
-Description | strllar.org 
+Name | strllar
+-----|--------
+Description | strllar.org
 Contact | lab (slack) lab@strllar.org (email)  
 NodeID 1 | GD5DJQDDBKGAYNEAXU562HYGOOSYAEOO6AS53PZXBOZGCP5M2OPGMZV3
 NodeID 2 | GBGGNBZVYNMVLCWNQRO7ASU6XX2MRPITAGLASRWOWLB4ZIIPHMGNMC4I
@@ -209,5 +216,3 @@ Description | n/a
 Contact | donovanhide@gmail.com (email)
 NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-
-
