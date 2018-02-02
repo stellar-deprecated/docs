@@ -94,13 +94,6 @@ Contact | umbrel (slack) s@umbrellab.com (email)
 NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-Name | ZuluCrypto
------|--------
-Description | stellar-core.zulucrypto.com
-Contact | zulucrypto (slack) zulucrypto@protonmail.com
-NodeID | GCYRJSP52KIUOMXPW5XHOQ77SPQC3O55KVK6KSJO4ABPMG6X3ZOU5UU2
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
-
 Name | paywith.glass
 -----|--------
 Description | http://paywith.glass
