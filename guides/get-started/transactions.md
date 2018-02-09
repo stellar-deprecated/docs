@@ -112,6 +112,61 @@ try {
 }
 ```
 
+```go
+package main
+
+import (
+	"github.com/stellar/go/build"
+)
+
+func main () {
+	source := "SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4"
+	destination := "GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5"
+
+	// Make sure destination account exists
+	if _, err := horizon.DefaultTestNetClient.LoadAccount(destination); err != nil {
+		panic(err)
+	}
+
+	passphrase := network.TestNetworkPassphrase
+
+	tx, err := build.Transaction(
+		build.Network{passphrase},
+		build.SourceAccount{from},
+		build.AutoSequence{horizon.DefaultTestNetClient},
+		build.Payment(
+			build.Destination{to},
+			build.NativeAmount{"10"},
+		),
+	)
+
+	if err != nil {
+		panic(err)
+	}
+
+	// Sign the transaction to prove you are actually the person sending it.
+	txe, err := tx.Sign(from)
+	if err != nil {
+		panic(err)
+	}
+
+	txeB64, err := txe.Base64()
+	if err != nil {
+		panic(err)
+	}
+
+	// And finally, send it off to Stellar!
+	resp, err := horizon.DefaultTestNetClient.SubmitTransaction(txeB64)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Successful Transaction:")
+	fmt.Println("Ledger:", resp.Ledger)
+	fmt.Println("Hash:", resp.Hash)
+}
+```
+
 </code-example>
 
 What exactly happened there? Let’s break it down.
@@ -127,6 +182,12 @@ What exactly happened there? Let’s break it down.
 
     ```java
     server.accounts().account(destination);
+    ```
+
+    ```go
+	if _, err := horizon.DefaultTestNetClient.LoadAccount(destination); err != nil {
+		panic(err)
+	}
     ```
 
     </code-example>
@@ -161,6 +222,12 @@ What exactly happened there? Let’s break it down.
     Transaction transaction = new Transaction.Builder(sourceAccount)
     ```
 
+    ```go
+	tx, err := build.Transaction(
+	// ...
+	)
+    ```
+
     </code-example>
 
 4. Add the payment operation to the account. Note that you need to specify the type of asset you are sending—Stellar’s “native” currency is the lumen, but you can send any type of asset or currency you like, from dollars to bitcoin to any sort of asset you trust the issuer to redeem [(more details below)](#transacting-in-other-currencies). For now, though, we’ll stick to lumens, which are called “native” assets in the SDK:
@@ -179,6 +246,19 @@ What exactly happened there? Let’s break it down.
     .addOperation(new PaymentOperation.Builder(destination, new AssetTypeNative(), "10").build())
     ```
 
+    ```go
+    tx, err := build.Transaction(
+		build.Network{passphrase},
+		build.SourceAccount{from},
+		build.AutoSequence{horizon.DefaultTestNetClient},
+		build.MemoText{"Test Transaction"},
+		build.Payment(
+			build.Destination{to},
+			build.NativeAmount{"10"},
+		),
+	)
+    ```
+
     </code-example>
 
     You should also note that the amount is a string rather than a number. When working with extremely small fractions or large values, [floating point math can introduce small inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all systems have a native way to accurately represent extremely small or large decimals, Stellar uses strings as a reliable way to represent the exact amount across any system.
@@ -195,6 +275,10 @@ What exactly happened there? Let’s break it down.
     .addMemo(Memo.text("Test Transaction"));
     ```
 
+    ```go
+    build.MemoText{"Test Transaction"},
+    ```
+
     </code-example>
 
 6. Now that the transaction has all the data it needs, you have to cryptographically sign it using your secret seed. This proves that the data actually came from you and not someone impersonating you.
@@ -209,6 +293,10 @@ What exactly happened there? Let’s break it down.
     transaction.sign(source);
     ```
 
+    ```go
+    txe, err := tx.Sign(from)
+    ```
+
     </code-example>
 
 7. And finally, send it to the Stellar network!
@@ -221,6 +309,10 @@ What exactly happened there? Let’s break it down.
 
     ```java
     server.submitTransaction(transaction);
+    ```
+
+    ```go
+    resp, err := horizon.DefaultTestNetClient.SubmitTransaction(txeB64)
     ```
 
     </code-example>
