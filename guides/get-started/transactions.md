@@ -117,6 +117,8 @@ package main
 
 import (
 	"github.com/stellar/go/build"
+    "github.com/stellar/go/clients/horizon"
+    "fmt"
 )
 
 func main () {
@@ -131,13 +133,13 @@ func main () {
 	passphrase := network.TestNetworkPassphrase
 
 	tx, err := build.Transaction(
-		build.Network{passphrase},
-		build.SourceAccount{from},
+		build.TestNetwork{passphrase},
+		build.SourceAccount{source},
 		build.AutoSequence{horizon.DefaultTestNetClient},
 		build.Payment(
-			build.Destination{to},
+			build.Destination{destination},
 			build.NativeAmount{"10"},
-		),
+		),2
 	)
 
 	if err != nil {
@@ -441,6 +443,43 @@ paymentsRequest.stream(new EventListener<OperationResponse>() {
   }
 });
 ````
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/stellar/go/clients/horizon"
+)
+
+func main() {
+	const address = "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF"
+	ctx := context.Background()
+
+	cursor := horizon.Cursor("now")
+
+	fmt.Println("Waiting for a payment...")
+
+	err := horizon.DefaultTestNetClient.StreamPayments(ctx, address, &cursor, func(payment horizon.Payment) {
+		fmt.Println("Payment type", payment.Type)
+		fmt.Println("Payment Paging Token", payment.PagingToken)
+		fmt.Println("Payment From", payment.From)
+		fmt.Println("Payment To", payment.To)
+		fmt.Println("Payment Asset Type", payment.AssetType)
+		fmt.Println("Payment Asset Code", payment.AssetCode)
+		fmt.Println("Payment Asset Issuer", payment.AssetIssuer)
+		fmt.Println("Payment Amount", payment.Amount)
+		fmt.Println("Payment Memo Type", payment.Memo.Type)
+		fmt.Println("Payment Memo", payment.Memo.Value)
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+}
+```
 
 </code-example>
 
