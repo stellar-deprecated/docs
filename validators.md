@@ -14,6 +14,15 @@ For general validator support, please check out [the stellar-public #validator c
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 
 ------
+Name | Stronghold
+-----|--------
+Description | https://stronghold.co
+Contact | Sean Bennett or Tammy Camp - happiness@stronghold.co (email)
+NodeID | GDIQKLQVOCD5UD6MUI5D5PTPVX7WTP5TAPP5OBMOLENBBD5KG434KYQ2
+Peer |  validator1.stellar.stronghold.co
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
 Name | FairX
 -----|--------
 Description | https://fairx.io
