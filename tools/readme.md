@@ -17,7 +17,7 @@ Check your balance and send simple payments. This basic client is built on top o
 ## [Dashboard](http://dashboard.stellar.org)
 Current status of the live and test networks. The source is available [here](https://github.com/stellar/dashboard).
 
-## [SMS Client](https://github.com/stellar/stellar-sms-client)
+## [SMS Client](https://github.com/stellar/stellar-sms-client) (Demo)
 This is a demo of Stellar SMS Client. It was originally developed during Stellar Hack Day.
 
 # Tools and Applications created by the community
