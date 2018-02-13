@@ -54,3 +54,21 @@ If the preliminary checks pass, then stellar-core propagates the transaction to 
 Stellar-core nominates the transaction set it has collected. SCP resolves the differences between the various transaction sets proposed and decides on the one transaction set that the network will apply.
 
 6. **Application**: Once SCP agrees on a particular transaction set, that set is applied to the ledger. At this point, a fee is taken from the source account for every transaction in that set. Operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails, and the effects of previous operations in that transaction are rolled back. After all the transactions in the set are applied, a new ledger is created and the process starts over.
+
+## Possible Errors
+
+Transaction can fail with one of the errors in a table below. Error reference for operations can be found in [List of operations](./list-of-operations.md) doc.
+
+|Error| Code| Description|
+| --- | --- | --- |
+|FAILED| -1| One of the operations failed (check [List of operations](./list-of-operations.md) for errors).|
+|TOO_EARLY| -2| Ledger `closeTime` before `minTime` value in the transaction.|
+|TOO_LATE| -3| Ledger `closeTime` after `maxTime` value in the transaction.|
+|MISSING_OPERATION| -4| No operation was specified.|
+|BAD_SEQ| -5| Sequence number does not match source account.|
+|BAD_AUTH| -6| Too few valid signatures / wrong network.|
+|INSUFFICIENT_BALANCE| -7| Fee would bring account below [minimum reserve](./fees.md).|
+|NO_ACCOUNT| -8| Source account not found.|
+|INSUFFICIENT_FEE| -9| [Fee](./fees.md) is too small.|
+|BAD_AUTH_EXTRA| -10| Unused signatures attached to transaction.|
+|INTERNAL_ERROR| -11| An unknown error occured.|

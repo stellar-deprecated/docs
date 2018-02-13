@@ -14,6 +14,15 @@ For general validator support, please check out [the stellar-public #validator c
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 
 ------
+Name | Stronghold
+-----|--------
+Description | https://stronghold.co
+Contact | Sean Bennett or Tammy Camp - happiness@stronghold.co (email)
+NodeID | GDIQKLQVOCD5UD6MUI5D5PTPVX7WTP5TAPP5OBMOLENBBD5KG434KYQ2
+Peer |  validator1.stellar.stronghold.co
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
 Name | FairX
 -----|--------
 Description | https://fairx.io
@@ -94,13 +103,6 @@ Contact | umbrel (slack) s@umbrellab.com (email)
 NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-Name | ZuluCrypto
------|--------
-Description | stellar-core.zulucrypto.com
-Contact | zulucrypto (slack) zulucrypto@protonmail.com
-NodeID | GCYRJSP52KIUOMXPW5XHOQ77SPQC3O55KVK6KSJO4ABPMG6X3ZOU5UU2
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
-
 Name | paywith.glass
 -----|--------
 Description | http://paywith.glass
@@ -123,6 +125,7 @@ Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
 Name | Stellar Pool
 ---|---
 Description | A low-fee Stellar community inflation pool.
@@ -137,6 +140,7 @@ Name | Coinplaycenter
 Description | https://www.coinplaycenter.com
 Contact | coinplaycenter@gmail.com (email), soufrilasp@gmail.com (email), Panagiotis (slack)
 NodeID | GBFKPET5EK4YDXAD24CQV5XIRFVHQPDPHU2T34ELEMKUPNPFG2MAZBBJ
+
 
 ------
 #Offline servers
