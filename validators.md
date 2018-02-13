@@ -129,12 +129,19 @@ Contact | hi@flutterwavego.com
 NodeID | GC3WHI444R4ULETZAECXA6B6PI4OHVWUW2RKZYP56H6MFL5IFAXAOYEW
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-
 Name | Mcna
 -----|--------
 Description | A Lumen holder
 Contact | chris.mcna@gmail.com (email)
 NodeID | GD63J64WLRF3IOLJZODAVLB4PQNMFFLDBIZCRC4GLTLCUE4ZQMIKPJK6
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | stellar.chris.network
+-----|--------
+Description | A Lumen holder, Individual validator
+Contact | chris (slack) stellar@chris.network
+Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU
+Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
