@@ -145,6 +145,14 @@ NodeID | GACEYMZ5RGGPV3N7WCZ2VWNLA3PZGBBGBKXP4G3GQ7FTIV5IR5ZZEB2R
 Peer | chicago.badbox.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Fosha.org
+---|---
+Description | https://www.fosha.org
+Contact | support@fosha.org
+Peer | www.fosha.org (Europe)
+Node ID | GAZMF5YXLMTUTMAXRZ3Z3TOJ5F54OZJGRQAUXDY2VZN3JRYD2MIGVH7B
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
