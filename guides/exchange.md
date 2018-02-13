@@ -280,4 +280,4 @@ For more information, check out the [federation guide](./concepts/federation.md)
 ### Anchor
 If you're an exchange, it's easy to become a Stellar anchor as well. The integration points are very similar, with the same level of difficulty. Becoming a anchor could potentially expand your business.
 
-To learn more about what it means to be an anchor, see the [anchor guide](./anchor.md).
+To learn more about what it means to be an anchor, see the [anchor guide](./anchor/readme.md).
