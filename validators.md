@@ -44,7 +44,51 @@ NodeID | GCKWUQGSVO45ZV3QK7POYL7HMFWDKWJVMFVEGUJKCAEVUITUCTQWFSM6 GBUJA3Z5TLAKLI
 Peer |  au.stellar.ibm.com	(Sydney,	Australia) <br/> br.stellar.ibm.com	(Sao Paulo,	Brazil) <br/> ca.stellar.ibm.com	(Toronto,	Canada) <br/> no.stellar.ibm.com (Oslo,	Norway) <br/> it.stellar.ibm.com	(Milan	,	Italy) <br/> hk.stellar.ibm.com	(Hong Kong,	Hong Kong) <br/> in.stellar.ibm.com	(Chennai,	India) <br/> uk.stellar.ibm.com	(London, England) <br/> us.stellar.ibm.com	(Dallas, Texas)<br/>
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-------
+
+Name | stellar.chris.network
+-----|--------
+Description | A Lumen holder, Individual validator
+Contact | chris (slack) stellar@chris.network
+Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU
+Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
+Name | stellarport
+-----|--------
+Description | https://stellarport.io
+Contact | istrau2 (slack) support@stellarport.io (email)
+Node 1 | GBB32UXWEXGZUE7H7LUVNNZRT3ZMZ3YH7SP3V5EFBILUVL3NCTSSK3IZ<br/>(peer ohio-1.stellar.stellarport.io)
+Node 2 | GC5A5WKAPZU5ASNMLNCAMLW7CVHMLJJAKHSZZHE2KWGAJHZ4EW6TQ7PB<br/>(peer ohio-2.stellar.stellarport.io)
+Node 3 | GBRILQP7RHIEBJPLGZ5XP6YWTYFSOQARAKECACMEMGXR53X6IX75E2L5<br/>(peer ohio-3.stellar.stellarport.io)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
+Name | Stellar Pool
+---|---
+Description | A low-fee Stellar community inflation pool.
+Contact | francescomenzani99@gmail.com
+Peer | stellarpool.net (Europe)
+Node ID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
+Name | Coinplaycenter
+-----|--------
+Description | https://www.coinplaycenter.com
+Contact | coinplaycenter@gmail.com (email), soufrilasp@gmail.com (email), Panagiotis (slack)
+NodeID | GBFKPET5EK4YDXAD24CQV5XIRFVHQPDPHU2T34ELEMKUPNPFG2MAZBBJ
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | MyStellar.Tools
+---|---
+Description | https://mystellar.tools
+Contact | mprom (slack) contact@mystellar.tools
+Peer | mystellar.tools (Europe)
+Node ID | GCJWQ4C5VQKLAVHT2Y6CA7TIM3VBEH62E7LKTIQQJDBZFLMZPFY3ITTV
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+ 
+
 Name | cryptomover
 -----|--------
 Description | https://cryptomover.com
