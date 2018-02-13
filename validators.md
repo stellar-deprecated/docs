@@ -18,8 +18,12 @@ Name | Stronghold
 -----|--------
 Description | https://stronghold.co
 Contact | Sean Bennett or Tammy Camp - happiness@stronghold.co (email)
-NodeID | GDIQKLQVOCD5UD6MUI5D5PTPVX7WTP5TAPP5OBMOLENBBD5KG434KYQ2
-Peer |  validator1.stellar.stronghold.co
+Node 1 | GDIQKLQVOCD5UD6MUI5D5PTPVX7WTP5TAPP5OBMOLENBBD5KG434KYQ2 
+Node 2 | GA7MREQ7673YDVANF4WBPN7LBQM4BSH4BQUFUTC4YLSSQCQUQTXRVBZN 
+Node 3 | GDHV7FL7JP6LUEWWYUOA4C3QAFQ4LZ6OHFBWFIL6IFIS3AOBI2DHV62F 
+Node 4 | GBGDBLFKR3LORWOI65LVC7ES5OGZ4GHILEHCBVKPW2PMP2OL43F6B2JJ
+Node 5 | GCBXBCIKCCVUIHAZ5QFWK6CKSX4AESOJ33IQNUE42BP7J66X23TM6WPF
+Peer |  validator1.stellar.stronghold.co (Australia) <br> validator2.stellar.stronghold.co (Asia) <br> validator3.stellar.stronghold.co (Europe) <br> validator4.stellar.stronghold.co (South America) <br> validator5.stellar.stronghold.co (United States)<br>
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
