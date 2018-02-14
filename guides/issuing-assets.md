@@ -27,7 +27,7 @@ Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
 ```
 
 ```go
-issuer, err := keypair.Random()
+issuer, err := keypair.Parse("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF")
 if err != nil { log.Fatal(err) }
 asset := CreditAsset("AstroDollar", issuer.Address())
 ```
