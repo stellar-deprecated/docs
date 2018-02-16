@@ -53,6 +53,12 @@ Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU
 Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | xaviablaza
+-----|--------
+Description | xaviablaza's validator
+Contact | xaviablaza (slack), xlablaza@gmail.com (email)
+Node 1 | GCEFOV5PD54MX2BS4Q5EQNE6L7JRTDYKEFT7XYBRBWXI3HL47N5U7TSU
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | stellarport
 -----|--------
