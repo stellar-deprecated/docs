@@ -26,6 +26,15 @@ Node 5 | GCBXBCIKCCVUIHAZ5QFWK6CKSX4AESOJ33IQNUE42BP7J66X23TM6WPF
 Peer |  validator1.stellar.stronghold.co (Australia) <br> validator2.stellar.stronghold.co (Asia) <br> validator3.stellar.stronghold.co (Europe) <br> validator4.stellar.stronghold.co (South America) <br> validator5.stellar.stronghold.co (United States)<br>
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+-------------
+Name        | Republic
+------------|------------
+Description | https://republic.co
+Contact     | Kenneth Ballenegger - crypto@republic.co
+NodeID      | GDEP5ASQQT4LKZLK6POEQKPTL7SXWQ66QW3WIRXFN4WXFL5JBG3K5GKQ
+Peer        | validator.stellar.republic.co
+Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 Name | FairX
 -----|--------
