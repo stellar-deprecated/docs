@@ -197,6 +197,14 @@ Peer | www.fosha.org (Europe)
 Node ID | GAZMF5YXLMTUTMAXRZ3Z3TOJ5F54OZJGRQAUXDY2VZN3JRYD2MIGVH7B
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | numerotron
+---|---
+Description | NJ (us east coast)
+Contact | contact@numerotron.com
+Peer | stellar0.numerotron.com
+Node ID | GC7WI424OUF6UVYOLVLZD7IOW7M6HTJTIGDX4USFMTAG3763PYOXGN7Q
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
