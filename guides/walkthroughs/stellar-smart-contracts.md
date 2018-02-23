@@ -65,7 +65,7 @@ The order of submission of transaction to the Stellar network different from the
 **Operations**:
 - [Create Account](../concepts/list-of-operations.md#create-account): create escrow account in system
 	 - starting balance: [minimum balance](../concepts/fees.md#minimum-account-balance) + [transaction fee](../concepts/fees.md#transaction-fee)
-  
+
 **Signers**: source account
 
 Transaction 1 is submitted to the network by the origin via the source account. This creates the escrow account, funds the account with the current minimum reserve, and gives the origin access to the public and private key of the escrow account. The escrow account is funded with the minimum balance so it is a valid account on the network. It is given additional money to handle the transfer fee of transferring the assets at the end of the escrow agreement. 
@@ -112,6 +112,7 @@ By default, weights of signers are uneven. The second operation sets the weight 
 **Operations**:
 - [Set Option - Signer](../concepts/list-of-operations.md#set-options): remove the destination account as a signer
 	 - weight: 0
+
 -[Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): set weight of master key and change thresholds weights to require only 1 signature
 	 - master weight: 1
 	 - low threshold: 1
