@@ -65,7 +65,7 @@ If Transaction 3 is not submitted by the target, then Transaction 4 is submitted
 **Account**: source account  
 **Sequence Number**: M  
 **Operations**:
-- [Create Account](../../concepts/list-of-operations.html#create-account): create escrow account in system
+- [Create Account](./concepts/list-of-operations.html#create-account): create escrow account in system
 	 - starting balance: minimum balance + transaction fee
 **Signers**: source account
 
