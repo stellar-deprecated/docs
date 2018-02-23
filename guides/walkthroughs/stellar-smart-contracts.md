@@ -106,14 +106,14 @@ By default, weights of signers are uneven. The second operation sets the weight 
 **Immediate Signer**: escrow account  
 **Eventual Signer**: destination account
 
+
 #### Transaction 4: Recovery 
 **Account**: escrow account  
 **Sequence Number**: N+1  
 **Operations**:
 - [Set Option - Signer](../concepts/list-of-operations.md#set-options): remove the destination account as a signer
-	 - weight: 0
-
--[Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): set weight of master key and change thresholds weights to require only 1 signature
+	 - weight: 0  
+ - [Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): set weight of master key and change thresholds weights to require only 1 signature
 	 - master weight: 1
 	 - low threshold: 1
 	 - medium threshold: 1
