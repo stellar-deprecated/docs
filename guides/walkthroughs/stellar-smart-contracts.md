@@ -64,7 +64,8 @@ The order of submission of transaction to the Stellar network different from the
 **Sequence Number**: M  
 **Operations**:
 - [Create Account](../concepts/list-of-operations.md#create-account): create escrow account in system
-	 - starting balance: [minimum balance](../concepts/fees.md#minimum-account-balance) + [transaction fee](../concepts/fees.md#transaction-fee).  
+	 - starting balance: [minimum balance](../concepts/fees.md#minimum-account-balance) + [transaction fee](../concepts/fees.md#transaction-fee)
+  
 **Signers**: source account
 
 Transaction 1 is submitted to the network by the origin via the source account. This creates the escrow account, funds the account with the current minimum reserve, and gives the origin access to the public and private key of the escrow account. The escrow account is funded with the minimum balance so it is a valid account on the network. It is given additional money to handle the transfer fee of transferring the assets at the end of the escrow agreement. 
@@ -80,7 +81,8 @@ Transaction 1 is submitted to the network by the origin via the source account. 
 	 - master weight: 1
 	 - low threshold: 2
 	 - medium threshold: 2
-	 - high threshold: 2  
+	 - high threshold: 2 
+
 **Signers**: escrow account
 
 Transaction 2 is created and submitted to the network. It is done by the origin using the escrow account, as origin has control of the escrow account at this time. The first operation adds the destination account as a second signer with a signing weight of 1 to the escrow account. 
@@ -95,10 +97,12 @@ By default, weights of signers are uneven. The second operation sets the weight 
 	 - master weight: 0
 	 - low threshold: 1
 	 - medium threshold: 1
-	 - high threshold: 1  
+	 - high threshold: 1 
+
 **Time Bounds**:
 - minimum time: unlock date
 - maximum time: 0  
+
 **Immediate Signer**: escrow account  
 **Eventual Signer**: destination account
 
@@ -113,9 +117,11 @@ By default, weights of signers are uneven. The second operation sets the weight 
 	 - low threshold: 1
 	 - medium threshold: 1
 	 - high threshold: 1  
+
 **Time Bounds**:
 - minimum time: recovery date
 - maximum time: 0
+
 **Immediate Signer**: escrow account  
 **Eventual Signer**: destination account  
 
@@ -136,6 +142,7 @@ To summarize: if Transaction 3 is not submitted by the target, then Transaction 
 **Sequence Number**: M+1  
 **Operations**:
 - [Payment](../concepts/list-of-operations.md#payment): Pay the escrow account the appropriate asset amount  
+
 **Signer**: source account
 
 Transaction 5 is the transaction that deposits the appropriate amount of assets into the escrow account from the source account. It should be submitted once Transaction 3 and Transaction 4 have been signed by the destination account and published back to the source account.
