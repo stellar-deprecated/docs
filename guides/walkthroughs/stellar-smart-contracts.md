@@ -46,15 +46,25 @@ Three accounts are required to execute a time-locked escrow contract between the
 
 Two periods of time must be established and agreed upon for this escrow agreement: a lock-up period, during which neither party may not manipulate (transfer, utilize) the assets, and a recovery period, after which the origin has the ability to recover the escrowed funds from the escrow account. 
 
-Five transactions are used to create the escrow contract. They are explained below in the order of creation, and the order of submission to the Stellar network is displayed in Figure 1. The following variables will be used in the explanation:
+Five transactions are used to create an escrow contract - they are explained below in the order of creation. The following variables will be used in the explanation:
 - **M** - the sequence number of the source account
 - **N** - the sequence number of the escrow account
 - **T** - the lock-up period
 - **D** - the date upon which the lock-up period starts
 - **R** - the recovery period
 
+The order of submission of transaction to the Stellar network different from the order of creation. The following shows this alternative order, in respect to time: 
 
 Figure 1:
 ![Diagram Transaction Submission Order for Escrow Agreements](assets/ssc-escrow.png)
-<center>Figure 1 shows the order in which the transactions (TXN) are submitted to the Stellar network, in respect to time. If TXN 3 is not submitted by the target, then TXN 4 is submitted by the origin after the recovery period.</center>
+If Transaction 3 is not submitted by the target, then Transaction 4 is submitted by the origin after the recovery period.
+
+
+#### Transaction 1: Creating the Escrow Account
+**Account**: source account  
+**Sequence Number**: M  
+**Operations**:
+- [Create Account](../concepts/list-of-operations.html#create-account): create escrow account in system
+	 - starting balance: minimum balance + transaction fee
+**Signers**: source account
 
