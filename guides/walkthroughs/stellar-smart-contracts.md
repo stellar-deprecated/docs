@@ -57,14 +57,15 @@ The order of submission of transaction to the Stellar network different from the
 
 Figure 1:
 ![Diagram Transaction Submission Order for Escrow Agreements](assets/ssc-escrow.png)
+
 If Transaction 3 is not submitted by the target, then Transaction 4 is submitted by the origin after the recovery period.
 
 
-#### Transaction 1: Creating the Escrow Account
+#### __Transaction 1: Creating the Escrow Account__
 **Account**: source account  
 **Sequence Number**: M  
 **Operations**:
-- [Create Account](../concepts/list-of-operations.html#create-account): create escrow account in system
+- [Create Account](../../concepts/list-of-operations.html#create-account): create escrow account in system
 	 - starting balance: minimum balance + transaction fee
 **Signers**: source account
 
