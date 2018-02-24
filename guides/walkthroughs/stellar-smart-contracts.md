@@ -196,8 +196,8 @@ Transaction 1 and 2 are created and submitted by one of the two parties sponsori
 After Transaction 2, the holding account should be funded with the tokens to be used for the crowdfunding campaign.
 
 #### Transaction 3: Begin Crowdfunding
-**Account**: holding account
-**Sequence Number**: N+1
+**Account**: holding account  
+**Sequence Number**: N+1  
 **Operations**:
 - [Manage Offer - Sell](../list-of-operations.md#manage-offer): sell participation tokens at a rate of X per token
 
@@ -206,8 +206,8 @@ After Transaction 2, the holding account should be funded with the tokens to be 
 Transaction 3 is created and submitted to the network to begin the crowdfunding campaign. It creates an offer on the network that sells the participation tokens at a rate of X per token. Given a limited amount of tokens are created for the crowdfunding campaign, the tokens are priced in a manner that enables a total of V to be raised through sales. 
 
 #### Transaction 4: Crowdfunding Succeeds  
-**Account**: holding account
-**Sequence Number**: N+2  
+**Account**: holding account  
+**Sequence Number**: N+2    
 **Operations**:
 - [Payment](../concepts/list-of-operations.md#payments): send crowdfunded value from the holding account to the goal account
 
@@ -219,8 +219,8 @@ Transaction 3 is created and submitted to the network to begin the crowdfunding 
 **Signers**: party A’s account, party B’s account
 
 #### Transaction 5: Crowdfunding Fails
-**Account**: holding account
-**Sequence Number**: N+3  
+**Account**: holding account    
+**Sequence Number**: N+3      
 **Operations**: 
 - [Manage Offer - Cancel](../list-of-operations.md#manage-offer): cancel pre-existing offer to sell tokens 
  - [Manage Offer - Buy](../list-of-operations.md#manage-offer): holding account buys participation tokens at a rate of X per token
