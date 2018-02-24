@@ -199,7 +199,7 @@ After Transaction 2, the holding account should be funded with the tokens to be 
 **Account**: holding account  
 **Sequence Number**: N+1  
 **Operations**:
-- [Manage Offer - Sell](../list-of-operations.md#manage-offer): sell participation tokens at a rate of X per token
+- [Manage Offer - Sell](../concepts/list-of-operations.md#manage-offer): sell participation tokens at a rate of X per token
 
 **Signer**: party A’s account, party B’s account
 
@@ -209,7 +209,7 @@ Transaction 3 is created and submitted to the network to begin the crowdfunding 
 **Account**: holding account  
 **Sequence Number**: N+2    
 **Operations**:
-- [Payment](../concepts/list-of-operations.md#payments): send crowdfunded value from the holding account to the goal account
+- [Payment](../concepts/list-of-operations.md#payment): send crowdfunded value from the holding account to the goal account
 
 
 **Time Bounds**: 
@@ -222,8 +222,8 @@ Transaction 3 is created and submitted to the network to begin the crowdfunding 
 **Account**: holding account    
 **Sequence Number**: N+3      
 **Operations**: 
-- [Manage Offer - Cancel](../list-of-operations.md#manage-offer): cancel pre-existing offer to sell tokens 
- - [Manage Offer - Buy](../list-of-operations.md#manage-offer): holding account buys participation tokens at a rate of X per token
+- [Manage Offer - Cancel](../concepts/list-of-operations.md#manage-offer): cancel pre-existing offer to sell tokens 
+ - [Manage Offer - Buy](../concepts/list-of-operations.md#manage-offer): holding account buys participation tokens at a rate of X per token
 
 **Time Bounds**:
 - minimum time: end of crowdfunding period
@@ -242,7 +242,7 @@ If the crowdfunding was a failure (because the minimum amount of value was not r
 The following steps are carried out in order to become a contributor to the crowdfunding:
 1. [Create a trustline](../concepts/fees.md#manage-offertrustlines) to the holding account for participation tokens
 	- The trustline creates trust between the contributor and the holding accounts, enabling transactions involving participation tokens to be valid
-2. [Create an offer](../list-of-operations.md#manage-offer) to buy participation tokens to buy participation tokens
+2. [Create an offer](../concepts/list-of-operations.md#manage-offer) to buy participation tokens to buy participation tokens
 	- The contributor account will receive participation tokens and the holding account will receive the value
 3. If the crowdfunding:
 	- succeeds - do nothing
