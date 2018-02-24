@@ -35,7 +35,7 @@ This overview presents two common design patterns that can be used to create SSC
 ### Use Case Scenario
 Ben Bitdiddle sells 50 CODE tokens to Alyssa P. Hacker, under the condition that that Alyssa won’t resell the tokens until one year has passed. Ben doesn’t completely trust Alyssa so he suggests that he holds the tokens for Alyssa for the year.
 
-Alyssa protests. How will she know that Ben will still have the tokens after one year? How can she trust him to eventually deliver them?
+Alyssa protests. How will she know that Ben will still have the v after one year? How can she trust him to eventually deliver them?
 
 Additionally, Alyssa is sometimes forgetful. There’s a chance she won’t remember to claim her tokens at the end of the year long waiting period. Ben would like to build in a recovery mechanism so that if Alyssa doesn’t claim the tokens, they can be recovered. This way, the tokens won’t be lost forever.
 
@@ -47,17 +47,14 @@ Three accounts are required to execute a time-locked escrow contract between the
 Two periods of time must be established and agreed upon for this escrow agreement: a lock-up period, during which neither party may not manipulate (transfer, utilize) the assets, and a recovery period, after which the origin has the ability to recover the escrowed funds from the escrow account. 
 
 Five transactions are used to create an escrow contract - they are explained below in the order of creation. The following variables will be used in the explanation:
-- **M** - the sequence number of the source account
-- **N** - the sequence number of the escrow account
+-  **N**, **M** - sequence number of escrow account and source account, respectively; N+1 means the next sequential transaction number, and so on
 - **T** - the lock-up period
 - **D** - the date upon which the lock-up period starts
 - **R** - the recovery period
 
-The order of submission of transaction to the Stellar network different from the order of creation. The following shows this alternative order, in respect to time: 
+For the design pattern described below, the asset being exchanged are the native asset. The order of submission of transaction to the Stellar network different from the order of creation. The following shows this alternative order, in respect to time: 
 
 ![Diagram Transaction Submission Order for Escrow Agreements](assets/ssc-escrow.png)
-
-
 
 #### Transaction 1: Creating the Escrow Account
 **Account**: source account  
@@ -68,7 +65,7 @@ The order of submission of transaction to the Stellar network different from the
 
 **Signers**: source account
 
-Transaction 1 is submitted to the network by the origin via the source account. This creates the escrow account, funds the account with the current minimum reserve, and gives the origin access to the public and private key of the escrow account. The escrow account is funded with the minimum balance so it is a valid account on the network. It is given additional money to handle the transfer fee of transferring the assets at the end of the escrow agreement. 
+Transaction 1 is submitted to the network by the origin via the source account. This creates the escrow account, funds the account with the current minimum reserve, and gives the origin access to the public and private key of the escrow account. The escrow account is funded with the minimum balance so it is a valid account on the network. It is given additional money to handle the transfer fee of transferring the assets at the end of the escrow agreement. It is recommended that when creating new accounts to fund the account with a balance larger than the calculated starting balance.
 
 
 #### Transaction 2: Enabling Multi-sig
@@ -87,7 +84,7 @@ Transaction 1 is submitted to the network by the origin via the source account. 
 
 Transaction 2 is created and submitted to the network. It is done by the origin using the escrow account, as origin has control of the escrow account at this time. The first operation adds the destination account as a second signer with a signing weight of 1 to the escrow account. 
 
-By default, weights of signers are uneven. The second operation sets the weight of the master key to 1, leveling out its weight with that of the destination account. In the same operation, the thresholds are set to 2. This makes is so that all and any type of transactions originating from the escrow account now require all signatures to have a total weight of 2. At this point weights of signing with both the escrow account and the destination account is a total of 2. This ensures that from this point on, both the escrow account and the destination account (the origin and the target) must sign all transactions that regard the escrow account. This gives partial control of the escrow account to the target. 
+By default, the thresholds are uneven. The second operation sets the weight of the master key to 1, leveling out its weight with that of the destination account. In the same operation, the thresholds are set to 2. This makes is so that all and any type of transactions originating from the escrow account now require all signatures to have a total weight of 2. At this point weights of signing with both the escrow account and the destination account is a total of 2. This ensures that from this point on, both the escrow account and the destination account (the origin and the target) must sign all transactions that regard the escrow account. This gives partial control of the escrow account to the target. 
 
 #### Transaction 3: Unlock  
 **Account**: escrow account  
@@ -114,7 +111,6 @@ By default, weights of signers are uneven. The second operation sets the weight 
 - [Set Option - Signer](../concepts/list-of-operations.md#set-options): remove the destination account as a signer
 	 - weight: 0  
  - [Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): set weight of master key and change thresholds weights to require only 1 signature
-	 - master weight: 1
 	 - low threshold: 1
 	 - medium threshold: 1
 	 - high threshold: 1  
@@ -147,3 +143,122 @@ To summarize: if Transaction 3 is not submitted by the target, then Transaction 
 **Signer**: source account
 
 Transaction 5 is the transaction that deposits the appropriate amount of assets into the escrow account from the source account. It should be submitted once Transaction 3 and Transaction 4 have been signed by the destination account and published back to the source account.
+
+
+## Joint-Entity Crowdfunding 
+### Use Case Scenario
+Alyssa P. Hacker needs to raise money to pay for a service from a company, Coding Tutorials For Dogs, but she wants to source the funding from the public via a crowdfund. If enough people donate, she will be able to pay for the service directly to the company. If not, she will have a mechanism to return the donations. To guarantee her trustworthiness and reliability to the donors, she decides to asks Ben Bitdiddle if he’s willing to help her with getting people to commit to the crowdfunding. He will also vouch for Alyssa’s trustworthiness to his friends as a way to get them to donate to the crowdfunding efforts. 
+
+### Pattern Implementation
+In the simplest example, a crowdfunding smart contract requires at least three parties: two of which (from here out called party A and party B) agree to sponsor the crowd funding, and a third to which the final funds will be given (called the target). A token must be created as the mechanism to execute the crowdfunding. The participation token utilized, as well as a holding account must be created by one of two parties. A holding account issues participation tokens that can be priced at any value per token. The holding account collects the funding, and after the end of the crowdfunding period, will return contributors funds if the value goal isn't met. 
+
+Five transactions are used to create a crowdfunding contract. The following variables are used in explaining the formulation of the contract:
+- **N**, **M** - sequence number of party A's account and the holding account, respectively; N+1 means the next sequential transaction number, and so on
+- **V** - total value the crowdfunding campaign is looking to raise
+- **T** - total value raised during the crowdfunding campaign
+- **X** - value at which the tokens will be sold
+
+There are four accounts used for creating a basic crowdfunding schema. First is the holding account, which is the account that deals with collecting and interacting with the donors. It requires the signature of both party A and party B in order to carry out any transactions. The second is the goal account, the account owned by the target to which the crowdfunded value is delivered to on success. The  two are the accounts owned by party A and party B, who are running the crowdfunding. 
+
+The transactions that create this design pattern can be created and submitted by any party sponsoring the crowdfunding campaign. The transactions are presented in order of creation. The order of submission to the Stellar Network is conditional, and depends on the success of the crowdfunding campaign.
+
+![Diagram Transaction Submission Order for Crowdfunding Campaigns](assets/ssc-crowdfunding.png)
+
+
+#### Transaction 1: Create the Holding Account
+**Account**: party A  
+**Sequence Number**: M  
+**Operations**:
+- [Create Account](../concepts/list-of-operations.md#create-account): create holding account in system
+	- [starting balance](../concepts/fees.md#minimum-account-balance): minimum balance
+
+**Signers**: party A
+
+#### Transaction 2: Add signers
+**Account**: holding account  
+**Sequence Number**: N  
+**Operations**:
+- [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add account as a signer with weight on transactions for the escrow account
+	- weight: 1
+ - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add the destination account as a signer with weight on transactions for the escrow account
+	- weight: 1
+ - [Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): remove master keys and change thresholds weights to require all other signatures (2 of 2 signers)
+	- master weight: 0
+	- low threshold: 2
+	- medium threshold: 2
+	- high threshold: 2
+
+**Signers**: holding account
+
+
+Transaction 1 and 2 are created and submitted by one of the two parties sponsoring the crowdfunding campaign. Transaction 1 creates the holding account. The holding account is funded with a starting balance in order to make it valid on the network. it is recommended that when creating new accounts to fund the account with a balance larger than the calculated starting balance. Transaction 2 removes the holding account as a signer for its own transactions, and adds party A and party B as signers. From this point on, all parties involved must agree and sign all transactions coming from the holding account. This trust mechanism is in place to protect donors from one party carrying malicious actions.  
+
+After Transaction 2, the holding account should be funded with the tokens to be used for the crowdfunding campaign.
+
+#### Transaction 3: Begin Crowdfunding
+**Account**: holding account
+**Sequence Number**: N+1
+**Operations**:
+- [Manage Offer - Sell](../list-of-operations.md#manage-offer): sell participation tokens at a rate of X per token
+
+**Signer**: party A’s account, party B’s account
+
+Transaction 3 is created and submitted to the network to begin the crowdfunding campaign. It creates an offer on the network that sells the participation tokens at a rate of X per token. Given a limited amount of tokens are created for the crowdfunding campaign, the tokens are priced in a manner that enables a total of V to be raised through sales. 
+
+#### Transaction 4: Crowdfunding Succeeds  
+**Account**: holding account
+**Sequence Number**: N+2  
+**Operations**:
+- [Payment](../concepts/list-of-operations.md#payments): send crowdfunded value from the holding account to the goal account
+
+
+**Time Bounds**: 
+- minimum time: end of crowdfunding period
+- maximum time: 0
+
+**Signers**: party A’s account, party B’s account
+
+#### Transaction 5: Crowdfunding Fails
+**Account**: holding account
+**Sequence Number**: N+3  
+**Operations**: 
+- [Manage Offer - Cancel](../list-of-operations.md#manage-offer): cancel pre-existing offer to sell tokens 
+ - [Manage Offer - Buy](../list-of-operations.md#manage-offer): holding account buys participation tokens at a rate of X per token
+
+**Time Bounds**:
+- minimum time: end of crowdfunding period
+- maximum time: 0
+
+**Signers**: party A’s account, party B’s account
+
+Transaction 4 and Transaction 5 are presigned, unsubmitted transactions that are published. Upon the end of the crowdfunding, one of the two transactions is submitted to the network. Both transactions have a minimum time of the end of the crowdfunding period to prevent them from being submitted earlier than agreed upon by the sponsoring parties. 
+
+If the crowdfunding was a success and the expected value was raised, Transaction 4 is submitted to the network. In order to define a success, that means are no more tokens to be sold. At this point, the funds accumulated can be transferred to the goal account. 
+
+If the crowdfunding was a failure (because the minimum amount of value was not raised), Transaction 5 is submitted to the network. Transaction 5 prevents all remaining tokens from being sold by canceling the offer, and enables donors create offers to sell back tokens to the holding account.
+
+
+#### Bonus: Crowdfunding Contributors
+The following steps are carried out in order to become a contributor to the crowdfunding:
+1. [Create a trustline](../concepts/fees.md#manage-offertrustlines) to the holding account for participation tokens
+	- The trustline creates trust between the contributor and the holding accounts, enabling transactions involving participation tokens to be valid
+2. [Create an offer](../list-of-operations.md#manage-offer) to buy participation tokens to buy participation tokens
+	- The contributor account will receive participation tokens and the holding account will receive the value
+3. If the crowdfunding:
+	- succeeds - do nothing
+	- fails - create an offer to sell participation tokens, enabling the contributor to get back their value invested
+
+## SSC Best Practices
+When it comes to designing a smart contract, the parties must come together and clearly outline purpose, the cooperation between parties, and the desired outcomes. In this outline of the contract, clear conditions and outcomes of the conditions should be agreed upon. After establishing the conditions and their outcomes, the contract can then be translated to a series of transactions. As a reminder, smart contracts are created using code. Code can contain bugs or may not perform as intended. Be sure to analyse all possible edge cases when coming up with the conditions and outcomes of the smart contract. 
+
+
+## Resources
+
+- [Jurimetrics - The Next Steps Forward](http://heinonline.org/HOL/LandingPage?handle=hein.journals/mnlr33&div=28&id=&page) - Lee Loevinger 
+- [Formalizing and Securing Relationships on Public Networks](http://firstmonday.org/article/view/548/469) - Nick Szabo 
+- [Smart Contracts: 12 Use Cases for Business and Beyond](https://bloq.com/assets/smart-contracts-white-paper.pdf) - Chamber of Digital Commerce
+- [Concept: Transactions](https://www.stellar.org/developers/guides/concepts/transactions.html) - Stellar.org
+- [Concept: Multisignature](https://www.stellar.org/developers/guides/concepts/multi-sig.html) - Stellar.org
+- [Concept: Time Bounds](https://www.stellar.org/developers/guides/concepts/transactions.html#time-bounds) - Stellar.org
+- [Concept: Trustlines](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) - Stellar.org
+
