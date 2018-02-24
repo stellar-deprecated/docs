@@ -19,3 +19,7 @@ The Concepts section contains overviews and explanations of various objects, ter
 ## SDKs
 
 Looking for more details on Stellar’s client SDKs? You can find detailed documentation for each client SDK in the [API Reference](../reference) section.
+
+## Walkthroughs 
+
+Need more help? Need to understand how to implement something? Use these design patterns and tutorials as a starting place!  
