@@ -144,7 +144,6 @@ To summarize: if Transaction 3 is not submitted by the target, then Transaction 
 
 Transaction 5 is the transaction that deposits the appropriate amount of assets into the escrow account from the source account. It should be submitted once Transaction 3 and Transaction 4 have been signed by the destination account and published back to the source account.
 
-
 ## Joint-Entity Crowdfunding 
 ### Use Case Scenario
 Alyssa P. Hacker needs to raise money to pay for a service from a company, Coding Tutorials For Dogs, but she wants to source the funding from the public via a crowdfund. If enough people donate, she will be able to pay for the service directly to the company. If not, she will have a mechanism to return the donations. To guarantee her trustworthiness and reliability to the donors, she decides to asks Ben Bitdiddle if he’s willing to help her with getting people to commit to the crowdfunding. He will also vouch for Alyssa’s trustworthiness to his friends as a way to get them to donate to the crowdfunding efforts. 
@@ -249,7 +248,7 @@ The following steps are carried out in order to become a contributor to the crow
 	- fails - create an offer to sell participation tokens, enabling the contributor to get back their value invested
 
 ## SSC Best Practices
-When it comes to designing a smart contract, the parties must come together and clearly outline purpose, the cooperation between parties, and the desired outcomes. In this outline of the contract, clear conditions and outcomes of the conditions should be agreed upon. After establishing the conditions and their outcomes, the contract can then be translated to a series of transactions. As a reminder, smart contracts are created using code. Code can contain bugs or may not perform as intended. Be sure to analyse all possible edge cases when coming up with the conditions and outcomes of the smart contract. 
+When it comes to designing a smart contract, parties must come together and clearly outline the purpose of the contract, the cooperation between parties, and the desired outcomes. In this outline, clear conditions and their outcomes should be agreed upon. After establishing the conditions and their outcomes, the contract can then be translated to a series of operations and transactions. As a reminder, smart contracts are created using code. Code can contain bugs or may not perform as intended. Be sure to analyze and agree upon all possible edge cases when coming up with the conditions and outcomes of the smart contract. 
 
 
 ## Resources
