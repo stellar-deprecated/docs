@@ -28,14 +28,14 @@ The concept of sequence is represented on the Stellar Network through sequence n
 
 Time bounds are limitations on the time period over which a transaction is valid. Using time bounds enables time periods to be represented in an SSC. 
 
-This overview presents two common design patterns that can be used to create SSCs on the Stellar Network. The transactions can be translated to API requests or can be executed used [Stellar Laboratory](https://www.stellar.org/laboratory/).
+This overview presents two common design patterns that can be used to create SSCs on the Stellar Network. The transactions can be translated to API requests or can be executed using [Stellar Laboratory](https://www.stellar.org/laboratory/).
 
 
 ## 2-Party Multisignature Escrow Account with Time Lock & Recovery
 ### Use Case Scenario
-Ben Bitdiddle sells 50 CODE tokens to Alyssa P. Hacker, under the condition that that Alyssa won’t resell the tokens until one year has passed. Ben doesn’t completely trust Alyssa so he suggests that he holds the tokens for Alyssa for the year.
+Ben Bitdiddle sells 50 CODE tokens to Alyssa P. Hacker, under the condition that Alyssa won’t resell the tokens until one year has passed. Ben doesn’t completely trust Alyssa so he suggests that he holds the tokens for Alyssa for the year.
 
-Alyssa protests. How will she know that Ben will still have the v after one year? How can she trust him to eventually deliver them?
+Alyssa protests. How will she know that Ben will still have the tokens after one year? How can she trust him to eventually deliver them?
 
 Additionally, Alyssa is sometimes forgetful. There’s a chance she won’t remember to claim her tokens at the end of the year long waiting period. Ben would like to build in a recovery mechanism so that if Alyssa doesn’t claim the tokens, they can be recovered. This way, the tokens won’t be lost forever.
 
@@ -239,7 +239,7 @@ If the crowdfunding was a failure (because the minimum amount of value was not r
 
 #### Bonus: Crowdfunding Contributors
 The following steps are carried out in order to become a contributor to the crowdfunding:
-1. [Create a trustline](../concepts/fees.md#manage-offertrustlines) to the holding account for participation tokens
+1. [Create a trustline](../concepts/list-of-operations.md#change-trust) to the holding account for participation tokens
 	- The trustline creates trust between the contributor and the holding accounts, enabling transactions involving participation tokens to be valid
 2. [Create an offer](../concepts/list-of-operations.md#manage-offer) to buy participation tokens to buy participation tokens
 	- The contributor account will receive participation tokens and the holding account will receive the value
