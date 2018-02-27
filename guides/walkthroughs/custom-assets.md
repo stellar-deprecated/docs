@@ -107,8 +107,10 @@ image="{url of an image to associate with the asset}"
 
 Transaction A is created and submitted to the network by the issuing account. By setting the weights and thresholds all to zero, this creates a lock out scenario. All keys, including the master key of the account, will become invalid keys. Locking an account prevents any further transaction to be created using this account, consequently meaning that no more tokens can be created. 
 
-## WARNING: AFTER CARRYING OUT THIS STEP YOU CAN NO LONGER CREATE NEW OPERATIONS WITH THE ISSUING ACCOUNT. THIS STEP IS FINAL. 
+---
+WARNING: AFTER CARRYING OUT THIS STEP YOU CAN NO LONGER CREATE NEW OPERATIONS WITH THE ISSUING ACCOUNT. THIS STEP IS FINAL. 
 
+---
 
 #### Transaction 6: Token Distribution
 **Account**: distribution account  
@@ -137,5 +139,5 @@ Examples for some of the transactions and more about issuing assets can be found
 ## Resources:
 - [Becoming an Anchor](../anchor/readme.md) - Stellar<span>.org
 - [Minimum Account Balance Calculation](../concepts/fees.md#minimum-account-balance) - Stellar<span>.org
-- [Setting up a stellar.toml](../concepts/stellar-toml.md) - Stellar<span>.org
-- [Trustlines](../concepts/assets.md#trustlines) - Stellar<span>.org
+- [Concept: stellar.toml](../concepts/stellar-toml.md) - Stellar<span>.org
+- [Concept: Trustlines](../concepts/assets.md#trustlines) - Stellar<span>.org
