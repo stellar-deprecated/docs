@@ -60,7 +60,7 @@ Transaction 3 is submitted to the network by the token creator. It creates a tru
 
 Transaction 4 is created and submitted to the network by the issuing account. In this transaction, it pays the distribution account the tokens, creating them on the network. The total number of tokens paid to the distribution account is the total number of tokens created. 
 
-#### Transaction 4: Asset Creation
+#### Transaction 5: Asset Creation
 **Account**: issuing account  
 **Operations**:
 - [Set Option - Home Domain](../concepts/list-of-operations.md#set-options): set home domain of stellar.toml
@@ -106,7 +106,7 @@ image="{url of an image to associate with the asset}"
 Transaction A is created and submitted to the network by the issuing account. By setting the weights and thresholds all to zero, this creates a lock out scenario. All keys, including the master key of the account, will become invalid keys. Locking an account prevents any further transaction to be created using this account, consequently meaning that no more tokens can be created. 
 
 
-***WARNING: AFTER CARRYING OUT THIS STEP YOU CAN NO LONGER CREATE NEW OPERATIONS WITH THE ISSUING ACCOUNT. THIS STEP IS FINAL.***
+***WARNING: AFTER CARRYING OUT THIS STEP YOU CAN NO LONGER CREATE NEW OPERATIONS OR SUBMIT NEW TRANSACTIONS WITH THE ISSUING ACCOUNT. THIS STEP IS FINAL.***
 
 
 #### Transaction 6: Token Distribution
