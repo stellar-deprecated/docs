@@ -72,7 +72,7 @@ Transaction 4 is created and submitted to the network by the issuing account. In
 Transaction 5 is created and submitted to the network. The domain location should be set to the domain that is hosting your stellar.toml file (which contains metadata regarding your token).
 
 At this step, a stellar.toml must be created and hosted on a domain of choice. The stellar.toml file should contain metadata relevant to the token being created. Maintaining a stellar.toml file is important, as it provides transparency for the asset and its usage. 
-A standard stellar.toml declaration of an asset should contain the following for each asset issued by the anchor (all values in curly brackets are variable, and should be filled in):
+A standard stellar.toml declaration of an asset should contain the following for each asset issued (all values in curly brackets are variable, and should be filled in):
 ```
 [[CURRENCIES]]
 code="{asset code}"
