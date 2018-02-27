@@ -28,7 +28,11 @@ The following presents a breakdown of the transactions required to create a cust
 **Signers**: source account
 
 
+<<<<<<< HEAD
 Transaction 1 and Transaction 2 are submitted to the network by the token creator. This creates the issuing and distribution accounts and gives the source entity access to the public and private key of each account. The issuing account is funded with minimum balance with no entries,It is given additional money to handle the transfer fee of transferring the assets at the end of the escrow agreement, but additional money to handle the fee of transferring the assets to the distribution account. The distribution account must be funded with the minimum balance with one entry, as it will need to create a trustline (an entry) in the future. The starting balances are minimums need in order to make the accounts valid on the Stellar Network - the actual amount used to create the two accounts can be any amount, as long as its larger than the minimums. The distribution account can start off being funded with the minimum balance without entries, but the next transaction will create a trustline for the account, thus raising its minimum balance. 
+=======
+Transaction 1 and Transaction 2 are submitted to the network by the token creator. This creates the issuing and distribution accounts  and gives the source entity access to the public and private key of each account. The issuing account is funded with minimum balance with no entries,It is given additional money to handle the transfer fee of transferring the assets at the end of the escrow agreement, but additional money to handle the fee of transferring the assets to the distribution account. The distribution account must be funded with the minimum balance with one entry, as it will need to create a trustline (an entry) in the future. The starting balances are minimums need in order to make the accounts valid on the Stellar Network - the actual amount used to create the two accounts can be any amount, as long as its larger than the minimums. The distribution account can start off being funded with the minimum balance without entries, but the next transaction will create a trustline for the account, thus raising its minimum balance. 
+>>>>>>> b53513c56951f38bb95ea24caea86bd991889afb
 
 
 #### Transaction 3: Creating Trust
@@ -106,6 +110,7 @@ image="{url of an image to associate with the asset}"
 Transaction A is created and submitted to the network by the issuing account. By setting the weights and thresholds all to zero, this creates a lockout scenario. All keys, including the master key of the account, will become invalid keys. Locking an account prevents any further transaction to be created using this account, consequently meaning that no more tokens can be created. The[XDR form](https://www.stellar.org/developers/horizon/reference/xdr.html) of this transaction can be published once submitted to show proof of the account being locked. 
 
 
+
 ***WARNING: AFTER CARRYING OUT THIS STEP YOU CAN NO LONGER CREATE NEW OPERATIONS OR SUBMIT NEW TRANSACTIONS WITH THE ISSUING ACCOUNT. THIS STEP IS FINAL.***
 
 
@@ -128,6 +133,7 @@ Transaction A is created and submitted to the network by the issuing account. By
 Transaction 6 is created and submitted to the network by the distribution account. In this step, the created asset is being sold for a different asset. The different asset could be another created asset, a fiat currency, a cryptocurrency, or lumens.  The offer id is set to zero, as a new offer is being created.The amount is the price of 1 unit of asset to be sold (selling) in terms of the asset that is being bought (buying). 
 
 By submitting Transaction 6, the created token is listed on the decentralized exchange maintained by the Stellar Network. By creating the offer, the token will be listed on the Stellar Network decentralized exchange. In order to be listed on exchange clients like Stellar Term and Stellar Port, please refer to their websites for listing instructions. It’s encouraged to be listed on exchange clients to increase visibility.
+
 
 
 ## Additional Examples:
