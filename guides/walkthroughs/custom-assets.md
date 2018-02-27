@@ -13,7 +13,6 @@ The following presents a breakdown of the transactions required to create a cust
 
 #### Transaction 1: Create the issuing account
 **Account**: source account  
-**Sequence Number**: M  
 **Operations**:
 - [Create Account](../concepts/list-of-operations.md#create-account): create issuing account in system
 	 - starting balance: [minimum balance](../concepts/fees.md#minimum-account-balance) + [transaction fee](../concepts/fees.md#transaction-fee)
@@ -22,7 +21,6 @@ The following presents a breakdown of the transactions required to create a cust
 
 #### Transaction 2: Create the distribution account
 **Account**: source account  
-**Sequence Number**: M  
 **Operations**:
 - [Create Account](../concepts/list-of-operations.md#create-account): create distribution account in system
 	 - starting balance: [minimum balance](../concepts/fees.md#minimum-account-balance) including trustlines  
@@ -34,7 +32,7 @@ Transaction 1 and Transaction 2 are submitted to the network by the token creato
 
 
 #### Transaction 3: Creating Trust
-**Account**: distribution account 
+**Account**: distribution account  
 **Operations**:
 - [Change Trust](../concepts/list-of-operations.md#change-trust): create a trustline to the issuing account
 	 - asset: asset code format
@@ -49,7 +47,7 @@ Transaction 3 is submitted to the network by the token creator. It creates a tru
 
 
 #### Transaction 4: Asset Creation
-**Account**: issuing account
+**Account**: issuing account  
 **Operations**:
 - [Payment](../concepts/list-of-operations.md#payment): give the distribution account the tokens
 	 - destination: distribution account
