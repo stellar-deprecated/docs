@@ -35,6 +35,15 @@ NodeID      | GDEP5ASQQT4LKZLK6POEQKPTL7SXWQ66QW3WIRXFN4WXFL5JBG3K5GKQ
 Peer        | validator.stellar.republic.co
 Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+-------------
+Name 	     	| GoodX Network
+------------|------------------
+Description | GoodX Network
+Contact   	 | Alex - stellar@goodx.network (email)
+NodeID 		   | GASN57EFNZWME73BJXYZUTCD34EPX4KIIZQTQDTMBWWVH6JIZJUCBGQX 
+Peer 		     |  de.stellar.goodx.network (Europe)
+Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 Name | FairX
 -----|--------
