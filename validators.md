@@ -65,10 +65,9 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | stellar.chris.network
 -----|--------
-Description | A Lumen holder, Individual validator
-Contact | chris (slack) stellar@chris.network
-Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU
-Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG
+Contact | Chris Erice - cerice@pm.me
+Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU<br/>(basic validator, US peer v1.stellar.chris.network)
+Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG<br/>(full validator, SG peer v2.stellar.chris.network)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 
