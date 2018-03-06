@@ -157,7 +157,7 @@ Five transactions are used to create a crowdfunding contract. The following vari
 - **T** - total value raised during the crowdfunding campaign
 - **X** - value at which the tokens will be sold
 
-There are four accounts used for creating a basic crowdfunding schema. First is the holding account, which is the account that deals with collecting and interacting with the donors. It requires the signature of both party A and party B in order to carry out any transactions. The second is the goal account, the account owned by the target to which the crowdfunded value is delivered to on success. The  two are the accounts owned by party A and party B, who are running the crowdfunding. 
+There are four accounts used for creating a basic crowdfunding schema. First is the holding account, which is the account that deals with collecting and interacting with the donors. It requires the signature of both party A and party B in order to carry out any transactions. The second is the goal account, the account owned by the target to which the crowdfunded value is delivered to on success. The two remaining accounts are respectively owned by party A and party B, who are running the crowdfunding. 
 
 The transactions that create this design pattern can be created and submitted by any party sponsoring the crowdfunding campaign. The transactions are presented in order of creation. The order of submission to the Stellar Network is conditional, and depends on the success of the crowdfunding campaign.
 
@@ -190,7 +190,7 @@ The transactions that create this design pattern can be created and submitted by
 **Signers**: holding account
 
 
-Transaction 1 and 2 are created and submitted by one of the two parties sponsoring the crowdfunding campaign. Transaction 1 creates the holding account. The holding account is funded with a starting balance in order to make it valid on the network. it is recommended that when creating new accounts to fund the account with a balance larger than the calculated starting balance. Transaction 2 removes the holding account as a signer for its own transactions, and adds party A and party B as signers. From this point on, all parties involved must agree and sign all transactions coming from the holding account. This trust mechanism is in place to protect donors from one party carrying malicious actions.  
+Transaction 1 and 2 are created and submitted by one of the two parties sponsoring the crowdfunding campaign. Transaction 1 creates the holding account. The holding account is funded with a starting balance in order to make it valid on the network. It is recommended that when creating new accounts to fund the account with a balance larger than the calculated starting balance. Transaction 2 removes the holding account as a signer for its own transactions, and adds party A and party B as signers. From this point on, all parties involved must agree and sign all transactions coming from the holding account. This trust mechanism is in place to protect donors from one party carrying malicious actions.  
 
 After Transaction 2, the holding account should be funded with the tokens to be used for the crowdfunding campaign.
 
@@ -232,16 +232,16 @@ Transaction 3 is created and submitted to the network to begin the crowdfunding 
 
 Transaction 4 and Transaction 5 are presigned, unsubmitted transactions that are published. Upon the end of the crowdfunding, one of the two transactions is submitted to the network. Both transactions have a minimum time of the end of the crowdfunding period to prevent them from being submitted earlier than agreed upon by the sponsoring parties. 
 
-If the crowdfunding was a success and the expected value was raised, Transaction 4 is submitted to the network. In order to define a success, that means are no more tokens to be sold. At this point, the funds accumulated can be transferred to the goal account. 
+If the crowdfunding was a success and the expected value was raised, Transaction 4 is submitted to the network. In order to define a success, that means there are no more tokens to be sold. At this point, the funds accumulated can be transferred to the goal account. 
 
-If the crowdfunding was a failure (because the minimum amount of value was not raised), Transaction 5 is submitted to the network. Transaction 5 prevents all remaining tokens from being sold by canceling the offer, and enables donors create offers to sell back tokens to the holding account.
+If the crowdfunding was a failure (because the minimum amount of value was not raised), Transaction 5 is submitted to the network. Transaction 5 prevents all remaining tokens from being sold by canceling the offer, and enables donors to sell back tokens to the holding account.
 
 
 #### Bonus: Crowdfunding Contributors
 The following steps are carried out in order to become a contributor to the crowdfunding:
 1. [Create a trustline](../concepts/list-of-operations.md#change-trust) to the holding account for participation tokens
 	- The trustline creates trust between the contributor and the holding accounts, enabling transactions involving participation tokens to be valid
-2. [Create an offer](../concepts/list-of-operations.md#manage-offer) to buy participation tokens to buy participation tokens
+2. [Create an offer](../concepts/list-of-operations.md#manage-offer) to buy participation tokens
 	- The contributor account will receive participation tokens and the holding account will receive the value
 3. If the crowdfunding:
 	- succeeds - do nothing
