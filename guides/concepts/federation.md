@@ -46,7 +46,7 @@ You can use the federation endpoint to look up an account id if you have a stell
 
 Federation requests are http `GET` requests with the following form:
 
-`?q=<string to look up>&type=<name,id,txid>`
+`?q=<string to look up>&type=<name,forward,id,txid>`
 
 Supported types:
  - **name**: Example: `https://YOUR_FEDERATION_SERVER/federation?q=jed*stellar.org&type=name`
