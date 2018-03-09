@@ -177,9 +177,9 @@ The transactions that create this design pattern can be created and submitted by
 **Account**: holding account  
 **Sequence Number**: N  
 **Operations**:
-- [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add account as a signer with weight on transactions for the escrow account
+ - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add party A as a signer with weight on transactions for the escrow account
 	- weight: 1
- - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add the destination account as a signer with weight on transactions for the escrow account
+ - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add party B as a signer with weight on transactions for the escrow account
 	- weight: 1
  - [Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): remove master keys and change thresholds weights to require all other signatures (2 of 2 signers)
 	- master weight: 0
