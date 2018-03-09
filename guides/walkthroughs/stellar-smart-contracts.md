@@ -191,7 +191,7 @@ The transactions that create this design pattern can be created and submitted by
 
 Transaction 1 and 2 are created and submitted by one of the two parties sponsoring the crowdfunding campaign. Transaction 1 creates the holding account. The holding account is funded with a starting balance in order to make it valid on the network. it is recommended that when creating new accounts to fund the account with a balance larger than the calculated starting balance. Transaction 2 removes the holding account as a signer for its own transactions, and adds party A and party B as signers. From this point on, all parties involved must agree and sign all transactions coming from the holding account. This trust mechanism is in place to protect donors from one party carrying malicious actions.  
 
-After Transaction 2, the holding account should be funded with the tokens to be used for the crowdfunding campaign, as well with enough lumens to cover the transaction fees for all of the following transactions. 
+After Transaction 2, the holding account should be funded with the tokens to be used for the crowdfunding campaign, as well as with enough lumens to cover the transaction fees for all of the following transactions. 
 
 #### Transaction 3: Begin Crowdfunding
 **Account**: holding account  
