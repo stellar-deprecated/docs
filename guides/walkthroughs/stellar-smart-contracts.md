@@ -44,7 +44,7 @@ An escrow agreement is created between two entities: the origin - the entity fun
 
 Three accounts are required to execute a time-locked escrow contract between the two parties: a source account, a destination account, and an escrow account. The source account is the account of the origin that is initializing and funding the escrow agreement. The destination account is the account of the target that will eventually gain control of the escrowed funds. The escrow account is created by the origin and holds the escrowed funds during the lock up period. 
 
-Two periods of time must be established and agreed upon for this escrow agreement: a lock-up period, during which neither party may not manipulate (transfer, utilize) the assets, and a recovery period, after which the origin has the ability to recover the escrowed funds from the escrow account. 
+Two periods of time must be established and agreed upon for this escrow agreement: a lock-up period, during which neither party may manipulate (transfer, utilize) the assets, and a recovery period, after which the origin has the ability to recover the escrowed funds from the escrow account. 
 
 Five transactions are used to create an escrow contract - they are explained below in the order of creation. The following variables will be used in the explanation:
 -  **N**, **M** - sequence number of escrow account and source account, respectively; N+1 means the next sequential transaction number, and so on
@@ -52,7 +52,7 @@ Five transactions are used to create an escrow contract - they are explained bel
 - **D** - the date upon which the lock-up period starts
 - **R** - the recovery period
 
-For the design pattern described below, the asset being exchanged are the native asset. The order of submission of transaction to the Stellar network different from the order of creation. The following shows this alternative order, in respect to time: 
+For the design pattern described below, the asset being exchanged is the native asset. The order of submission of transactions to the Stellar network is different from the order of creation. The following shows the submission order, in respect to time: 
 
 ![Diagram Transaction Submission Order for Escrow Agreements](assets/ssc-escrow.png)
 
@@ -84,7 +84,7 @@ Transaction 1 is submitted to the network by the origin via the source account. 
 
 Transaction 2 is created and submitted to the network. It is done by the origin using the escrow account, as origin has control of the escrow account at this time. The first operation adds the destination account as a second signer with a signing weight of 1 to the escrow account. 
 
-By default, the thresholds are uneven. The second operation sets the weight of the master key to 1, leveling out its weight with that of the destination account. In the same operation, the thresholds are set to 2. This makes is so that all and any type of transactions originating from the escrow account now require all signatures to have a total weight of 2. At this point weights of signing with both the escrow account and the destination account is a total of 2. This ensures that from this point on, both the escrow account and the destination account (the origin and the target) must sign all transactions that regard the escrow account. This gives partial control of the escrow account to the target. 
+By default, the thresholds are uneven. The second operation sets the weight of the master key to 1, leveling out its weight with that of the destination account. In the same operation, the thresholds are set to 2. This makes is so that all and any type of transactions originating from the escrow account now require all signatures to have a total weight of 2. At this point, the weight of signing with both the escrow account and the destination account adds up to 2. This ensures that from this point on, both the escrow account and the destination account (the origin and the target) must sign all transactions that regard the escrow account. This gives partial control of the escrow account to the target. 
 
 #### Transaction 3: Unlock  
 **Account**: escrow account  
@@ -122,15 +122,15 @@ By default, the thresholds are uneven. The second operation sets the weight of t
 **Immediate Signer**: escrow account  
 **Eventual Signer**: destination account  
 
-Transaction 3 and Transaction 4 are created and signed by the escrow account by the origin. The origin then gives the transaction, in [XDR form](https://www.stellar.org/developers/horizon/reference/xdr.html), to the target to sign using the destination account. The target then publishes them for the origin to [review](https://www.stellar.org/laboratory/#xdr-viewer?type=TransactionEnvelope&network=test) and save in a safe location. Once signed by both parties, these transactions cannot be modified. Both the origin and target must retain a copy of these signed transactions in their XDR form, and the transactions can be stored in a publicly accessible location without concerns of tampering.
+Transaction 3 and Transaction 4 are created and signed by the escrow account by the origin. The origin then gives Transaction 3 and Transaction 4, in [XDR form](https://www.stellar.org/developers/horizon/reference/xdr.html), to the target to sign using the destination account. The target then publishes them for the origin to [review](https://www.stellar.org/laboratory/#xdr-viewer?type=TransactionEnvelope&network=test) and save in a safe location. Once signed by both parties, these transactions cannot be modified. Both the origin and target must retain a copy of these signed transactions in their XDR form, and the transactions can be stored in a publicly accessible location without concerns of tampering.
 
-Transaction 3 and Transaction 4 are created signed before the escrow account is funded, and have the same transaction number. This is done to ensure that the two parties are in agreement. If circumstances were to change before one of these two transaction are submitted, both the origin and the target need to authorize transactions utilizing the escrow account. This is represented by the requirement of the signatures of both the destination account and the escrow account. 
+Transaction 3 and Transaction 4 are created and signed before the escrow account is funded, and have the same transaction number. This is done to ensure that the two parties are in agreement. If circumstances were to change before one of these two transactions are submitted, both the origin and the target need to authorize transactions utilizing the escrow account. This is represented by the requirement of the signatures of both the destination account and the escrow account. 
 
 Transaction 3 removes the escrow account as a signer for transactions generated from itself. This transaction transfers complete control of the escrow account to target. After the end of the lock-up time period, the only account that is needed to sign for transactions from the escrow account is the destination account. The unlock date (D+T) is the first date that the unlock transaction can be submitted. If Transaction 3 is submitted before the unlock date, the transaction will not be valid. The maximum time is set to 0, to denote that the transaction does not have an expiration date. 
 
 Transaction 4 is for account recovery in the event that target does not submit the unlock transaction. It removes the destination account as a signer, and resets the weights for signing transactions to only require its own signature. This returns complete control of the escrow account to the origin. Transaction 4 can only be submitted after the recovery date (D+T+R), and has no expiration date. 
 
-Transaction 3 can be submitted at any time during the recovery period, R. If the target does not submit Transaction 3 to enable access to the funds in the escrow account, the origin can submit Transaction 4 after the recovery date. The origin can reclaim the locked up assets if desired as Transaction 4 makes it so the target is no longer is required to sign to execute transactions using the escrow account. After the recovery date, both Transaction 3 and Transaction 4 are valid and able to be submitted to the network but only one transaction will be accepted by the network. This is ensured by the feature that both transactions have the same sequence number. 
+Transaction 3 can be submitted at any time during the recovery period, R. If the target does not submit Transaction 3 to enable access to the funds in the escrow account, the origin can submit Transaction 4 after the recovery date. The origin can reclaim the locked up assets if desired as Transaction 4 makes it so the target is no longer required to sign transactions for escrow account. After the recovery date, both Transaction 3 and Transaction 4 are valid and able to be submitted to the network but only one transaction will be accepted by the network. This is ensured by the feature that both transactions have the same sequence number. 
 
 To summarize: if Transaction 3 is not submitted by the target, then Transaction 4 is submitted by the origin after the recovery period.
 
@@ -146,10 +146,10 @@ Transaction 5 is the transaction that deposits the appropriate amount of assets 
 
 ## Joint-Entity Crowdfunding 
 ### Use Case Scenario
-Alyssa P. Hacker needs to raise money to pay for a service from a company, Coding Tutorials For Dogs, but she wants to source the funding from the public via a crowdfund. If enough people donate, she will be able to pay for the service directly to the company. If not, she will have a mechanism to return the donations. To guarantee her trustworthiness and reliability to the donors, she decides to asks Ben Bitdiddle if he’s willing to help her with getting people to commit to the crowdfunding. He will also vouch for Alyssa’s trustworthiness to his friends as a way to get them to donate to the crowdfunding efforts. 
+Alyssa P. Hacker needs to raise money to pay for a service from a company, Coding Tutorials For Dogs, but she wants to source the funding from the public via crowdfunding. If enough people donate, she will be able to pay for the service directly to the company. If not, she will have a mechanism to return the donations. To guarantee her trustworthiness and reliability to the donors, she decides to asks Ben Bitdiddle if he’s willing to help her with getting people to commit to the crowdfunding. He will also vouch for Alyssa’s trustworthiness to his friends as a way to get them to donate to the crowdfunding efforts. 
 
 ### Pattern Implementation
-In the simplest example, a crowdfunding smart contract requires at least three parties: two of which (from here out called party A and party B) agree to sponsor the crowd funding, and a third to which the final funds will be given (called the target). A token must be created as the mechanism to execute the crowdfunding. The participation token utilized, as well as a holding account must be created by one of two parties. A holding account issues participation tokens that can be priced at any value per token. The holding account collects the funding, and after the end of the crowdfunding period, will return contributors funds if the value goal isn't met. 
+In the simplest example, a crowdfunding smart contract requires at least three parties: two of which (from here out called party A and party B) agree to sponsor the crowdfunding, and a third to which the final funds will be given (called the target). A token must be created as the mechanism to execute the crowdfunding. The participation token utilized, as well as a holding account, must be created by one of two parties. A holding account issues participation tokens that can be priced at any value per token. The holding account collects the funding, and, after the end of the crowdfunding period, will return contributors funds if the value goal isn't met. 
 
 Five transactions are used to create a crowdfunding contract. The following variables are used in explaining the formulation of the contract:
 - **N**, **M** - sequence number of party A's account and the holding account, respectively; N+1 means the next sequential transaction number, and so on
@@ -177,9 +177,9 @@ The transactions that create this design pattern can be created and submitted by
 **Account**: holding account  
 **Sequence Number**: N  
 **Operations**:
-- [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add account as a signer with weight on transactions for the escrow account
+ - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add party A as a signer with weight on transactions for the escrow account
 	- weight: 1
- - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add the destination account as a signer with weight on transactions for the escrow account
+ - [Set Option - Signer](../concepts/list-of-operations.md#set-options): Add party B as a signer with weight on transactions for the escrow account
 	- weight: 1
  - [Set Option - Thresholds & Weights](../concepts/list-of-operations.md#set-options): remove master keys and change thresholds weights to require all other signatures (2 of 2 signers)
 	- master weight: 0

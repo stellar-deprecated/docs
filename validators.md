@@ -35,6 +35,15 @@ NodeID      | GDEP5ASQQT4LKZLK6POEQKPTL7SXWQ66QW3WIRXFN4WXFL5JBG3K5GKQ
 Peer        | validator.stellar.republic.co
 Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+-------------
+Name 	     	| GoodX Network
+------------|------------------
+Description | GoodX Network
+Contact   	 | Alex - stellar@goodx.network (email)
+NodeID 		   | GASN57EFNZWME73BJXYZUTCD34EPX4KIIZQTQDTMBWWVH6JIZJUCBGQX 
+Peer 		     |  de.stellar.goodx.network (Europe)
+Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 Name | FairX
 -----|--------
@@ -56,12 +65,17 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | stellar.chris.network
 -----|--------
-Description | A Lumen holder, Individual validator
-Contact | chris (slack) stellar@chris.network
-Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU
-Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG
+Contact | Chris Erice - cerice@pm.me
+Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU<br/>(basic validator, US peer v1.stellar.chris.network)
+Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG<br/>(full validator, SG peer v2.stellar.chris.network)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | xaviablaza
+-----|--------
+Description | xaviablaza's validator
+Contact | xaviablaza (slack), xlablaza@gmail.com (email)
+Node 1 | GCEFOV5PD54MX2BS4Q5EQNE6L7JRTDYKEFT7XYBRBWXI3HL47N5U7TSU
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | stellarport
 -----|--------
@@ -168,11 +182,20 @@ Contact | umbrel (slack) s@umbrellab.com (email)
 NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-Name | paywith.glass
+Name | paywith.glass (Ireland)
 -----|--------
-Description | http://paywith.glass
+Description | https://paywith.glass
 Contact | hatter (slack) hatter@paywith.glass
-NodeID | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
+Node 1 | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
+Peer |  ie.paywith.glass
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | localstellarassets.com
+-----|--------
+Description | https://www.localstellarassets.com
+Contact | hatter (slack) hatter@paywith.glass
+NodeID | GA4UHKRQNTYNOI7TMP6ZK2I52UEIBBHAW3LVLBUTSKVRTGDEDTJVKLI3
+Peer |  localstellarassets.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | Flutterwave
