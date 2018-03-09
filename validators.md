@@ -182,11 +182,20 @@ Contact | umbrel (slack) s@umbrellab.com (email)
 NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-Name | paywith.glass
+Name | paywith.glass (Ireland)
 -----|--------
-Description | http://paywith.glass
+Description | https://paywith.glass
 Contact | hatter (slack) hatter@paywith.glass
-NodeID | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
+Node 1 | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
+Peer |  ie.paywith.glass
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | localstellarassets.com
+-----|--------
+Description | https://www.localstellarassets.com
+Contact | hatter (slack) hatter@paywith.glass
+NodeID | GA4UHKRQNTYNOI7TMP6ZK2I52UEIBBHAW3LVLBUTSKVRTGDEDTJVKLI3
+Peer |  localstellarassets.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | Flutterwave
