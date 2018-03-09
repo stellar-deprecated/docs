@@ -96,7 +96,7 @@ Joint account setup:
 ```
   master key weight: 1
   low threshold: 0
-  medium threshold: 0
+  medium threshold: 1
   high threshold: 3
   Bilal's signing key weight: 1
   Carina's signing key weight: 1
