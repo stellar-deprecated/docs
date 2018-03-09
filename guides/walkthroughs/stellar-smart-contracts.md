@@ -219,7 +219,7 @@ Transaction 3 is created and submitted to the network to begin the crowdfunding 
 
 #### Transaction 5: Crowdfunding Fails
 **Account**: holding account    
-**Sequence Number**: N+3      
+**Sequence Number**: N+2     
 **Operations**: 
 - [Manage Offer - Cancel](../concepts/list-of-operations.md#manage-offer): cancel pre-existing offer to sell tokens 
  - [Manage Offer - Buy](../concepts/list-of-operations.md#manage-offer): holding account buys participation tokens at a rate of X per token
