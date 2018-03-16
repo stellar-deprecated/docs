@@ -73,7 +73,7 @@ You’ll also need to tell your bridge server that you now have a compliance ser
 
 ```toml
 port = 8001
-horizon = "https://horizon-testnet.stellar.org"
+horizon = "https://friendbot.stellar.org"
 network_passphrase = "Test SDF Network ; September 2015"
 compliance = "https://your_org.com:8004"
 

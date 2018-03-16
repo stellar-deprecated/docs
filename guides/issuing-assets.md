@@ -59,7 +59,7 @@ Sending and receiving custom assets is very similar to [sending and receiving lu
 ```js
 var StellarSdk = require('stellar-sdk');
 StellarSdk.Network.useTestNetwork();
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var server = new StellarSdk.Server('https://friendbot.stellar.org');
 
 // Keys for accounts to issue and receive the new asset
 var issuingKeys = StellarSdk.Keypair
@@ -107,7 +107,7 @@ server.loadAccount(receivingKeys.publicKey())
 
 ```java
 Network.useTestNetwork();
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 
 // Keys for accounts to issue and receive the new asset
 KeyPair issuingKeys = KeyPair
@@ -211,7 +211,7 @@ Second, use the [set options operation](https://www.stellar.org/developers/guide
 ```js
 var StellarSdk = require('stellar-sdk');
 StellarSdk.Network.useTestNetwork();
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var server = new StellarSdk.Server('https://friendbot.stellar.org');
 
 // Keys for issuing account
 var issuingKeys = StellarSdk.Keypair
@@ -234,7 +234,7 @@ server.loadAccount(issuingKeys.publicKey())
 
 ```java
 Network.useTestNetwork();
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 
 // Keys for issuing account
 KeyPair issuingKeys = KeyPair
@@ -293,7 +293,7 @@ server.submitTransaction(transaction);
 import org.stellar.sdk.AccountFlag;
 
 Network.useTestNetwork();
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 
 // Keys for issuing account
 KeyPair issuingKeys = KeyPair

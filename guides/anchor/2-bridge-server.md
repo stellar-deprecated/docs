@@ -25,7 +25,7 @@ Next, [download the latest bridge server](https://github.com/stellar/bridge-serv
 
 ```toml
 port = 8006
-horizon = "https://horizon-testnet.stellar.org"
+horizon = "https://friendbot.stellar.org"
 network_passphrase = "Test SDF Network ; September 2015"
 # We'll fill this in once we set up a compliance server
 compliance = ""
@@ -260,7 +260,7 @@ To test that your receive callback works, let’s try sending 1 USD to a custome
 
 ```js
 var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var server = new StellarSdk.Server('https://friendbot.stellar.org');
 var sourceKeys = StellarSdk.Keypair.fromSecret(
   'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU';
@@ -289,7 +289,7 @@ server.loadAccount(sourceKeys.publicKey())
 ```
 
 ```java
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed(
   "SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");

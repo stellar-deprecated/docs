@@ -70,7 +70,7 @@ To create a test account, send Friendbot the public key you created. It’ll cre
 // make your own HTTP request.
 var request = require('request');
 request.get({
-  url: 'https://horizon-testnet.stellar.org/friendbot',
+  url: 'https://friendbot.stellar.org/friendbot',
   qs: { addr: pair.publicKey() },
   json: true
 }, function(error, response, body) {
@@ -91,7 +91,7 @@ import java.io.*;
 import java.util.*;
 
 String friendbotUrl = String.format(
-  "https://horizon-testnet.stellar.org/friendbot?addr=%s",
+  "https://friendbot.stellar.org/friendbot?addr=%s",
   pair.getAccountId());
 InputStream response = new URL(friendbotUrl).openStream();
 String body = new Scanner(response, "UTF-8").useDelimiter("\\A").next();
@@ -112,7 +112,7 @@ func main() {
 	// pair is the pair that was generated from previous example, or create a pair based on 
 	// existing keys.
 	address := pair.Address()
-	resp, err := http.Get("https://horizon-testnet.stellar.org/friendbot?addr=" + address)
+	resp, err := http.Get("https://friendbot.stellar.org/friendbot?addr=" + address)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -133,7 +133,7 @@ Now for the last step: Getting the account’s details and checking its balance.
 <code-example name="Getting account details">
 
 ```js
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var server = new StellarSdk.Server('https://friendbot.stellar.org');
 
 // the JS SDK uses promises for most actions, such as retrieving an account
 server.loadAccount(pair.publicKey()).then(function(account) {
@@ -148,7 +148,7 @@ server.loadAccount(pair.publicKey()).then(function(account) {
 import org.stellar.sdk.Server;
 import org.stellar.sdk.responses.AccountResponse;
 
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 AccountResponse account = server.accounts().account(pair);
 System.out.println("Balances for account " + pair.getAccountId());
 for (AccountResponse.Balance balance : account.getBalances()) {
