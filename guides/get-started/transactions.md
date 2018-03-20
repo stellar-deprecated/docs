@@ -23,7 +23,7 @@ Stellar stores and communicates transaction data in a binary format called XDR.[
 ```js
 var StellarSdk = require('stellar-sdk');
 StellarSdk.Network.useTestNetwork();
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var server = new StellarSdk.Server('https://friendbot.stellar.org');
 var sourceKeys = StellarSdk.Keypair
   .fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
 var destinationId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
@@ -74,7 +74,7 @@ server.loadAccount(destinationId)
 
 ```java
 Network.useTestNetwork();
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
 KeyPair destination = KeyPair.fromAccountId("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
@@ -240,7 +240,7 @@ A simple program that watches the network for payments and prints each one might
 ```js
 var StellarSdk = require('stellar-sdk');
 
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var server = new StellarSdk.Server('https://friendbot.stellar.org');
 var accountId = 'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF';
 
 // Create an API call to query payments involving the account.
@@ -295,7 +295,7 @@ function loadLastPagingToken() {
 ```
 
 ```java
-Server server = new Server("https://horizon-testnet.stellar.org");
+Server server = new Server("https://friendbot.stellar.org");
 KeyPair account = KeyPair.fromAccountId("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
 
 // Create an API call to query payments involving the account.

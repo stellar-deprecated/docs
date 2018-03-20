@@ -5,7 +5,7 @@ Horizon is the client-facing API server for the Stellar ecosystem.  It acts as t
 
 You can interact directly with Horizon via cURL or a web browser. Stellar.org also provides a [JavaScript SDK](https://www.stellar.org/developers/js-stellar-sdk/learn/) for clients to use to interact with Horizon.
 
-Stellar.org runs an [instance of Horizon](https://horizon-testnet.stellar.org/) that is connected to the testnet.
+Stellar.org runs an [instance of Horizon](https://friendbot.stellar.org/) that is connected to the testnet.
 
 ## Libraries
 

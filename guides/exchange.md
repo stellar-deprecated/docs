@@ -22,7 +22,7 @@ The two main integration points to Stellar for an exchange are:<br>
 
 If your exchange doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
 ```
-  test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
+  test net: {hostname:'friendbot.stellar.org', secure:true, port:443};
   live: {hostname:'horizon.stellar.org', secure:true, port:443};
 ```
 
@@ -59,7 +59,7 @@ config.baseAccount = "your base account address";
 config.baseAccountSecret = "your base account secret key";
 
 // You can use Stellar.org's instance of Horizon or your own
-config.horizon = 'https://horizon-testnet.stellar.org';
+config.horizon = 'https://friendbot.stellar.org';
 
 // Include the JS Stellar SDK
 // It provides a client-side interface to Horizon
@@ -75,7 +75,7 @@ var server = new StellarSdk.Server(config.horizon);
 var lastToken = latestFromDB("StellarCursor");
 
 // Listen for payments from where you last stopped
-// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
+// GET https://friendbot.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
 let callBuilder = server.payments().forAccount(config.baseAccount);
 
 // If no cursor has been saved yet, don't add cursor parameter
@@ -86,7 +86,7 @@ if (lastToken) {
 callBuilder.stream({onmessage: handlePaymentResponse});
 
 // Load the account sequence number from Horizon and return the account
-// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}
+// GET https://friendbot.stellar.org/accounts/{config.baseAccount}
 server.loadAccount(config.baseAccount)
   .then(function (account) {
     submitPendingTransactions(account);
@@ -102,7 +102,7 @@ You must listen for payments to the base account and credit any user that sends 
 // Start listening for payments from where you last stopped
 var lastToken = latestFromDB("StellarCursor");
 
-// GET https://horizon-testnet.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
+// GET https://friendbot.stellar.org/accounts/{config.baseAccount}/payments?cursor={last_token}
 let callBuilder = server.payments().forAccount(config.baseAccount);
 
 // If no cursor has been saved yet, don't add cursor parameter
@@ -124,7 +124,7 @@ So, you pass this function as the `onmessage` option when you stream payments:
 ```js
 function handlePaymentResponse(record) {
 
-  // GET https://horizon-testnet.stellar.org/transaction/{id of transaction this payment is part of}
+  // GET https://friendbot.stellar.org/transaction/{id of transaction this payment is part of}
   record.transaction()
     .then(function(txn) {
       var customer = txn.memo;
@@ -200,7 +200,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
   updateRecord('sending', "StellarTransactions");
 
   // Check to see if the destination address exists
-  // GET https://horizon-testnet.stellar.org/accounts/{destinationAddress}
+  // GET https://friendbot.stellar.org/accounts/{destinationAddress}
   server.loadAccount(destinationAddress)
     // If so, continue by submitting a transaction to the destination
     .then(function(account) {
@@ -215,7 +215,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 
       transaction.sign(StellarSdk.Keypair.fromSecret(config.baseAccountSecret));
 
-      // POST https://horizon-testnet.stellar.org/transactions
+      // POST https://friendbot.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
     //But if the destination doesn't exist...
@@ -231,7 +231,7 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
 
       transaction.sign(StellarSdk.Keypair.fromSecret(config.baseAccountSecret));
 
-      // POST https://horizon-testnet.stellar.org/transactions
+      // POST https://friendbot.stellar.org/transactions
       return server.submitTransaction(transaction);
     })
     // Submit the transaction created in either case
