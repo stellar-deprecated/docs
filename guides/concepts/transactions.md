@@ -20,7 +20,7 @@ Each transaction has the following attributes:
 > Note that if several transactions with the same source account make it into the same transaction set, they are ordered and applied according to sequence number. For example, if 3 transactions are submitted and the account is at sequence number 5, the transactions must have sequence numbers 6, 7, and 8.
 >
 > #### List of operations
-> Transactions contain an arbitrary list of [operations](./operations.md) inside them. Typically there is just one operation, but it's possible to have multiple.  Operations are executed in order as one ACID transaction, meaning that either all operations are applied or none are.  If any operation fails, the whole transaction fails. If operations are on accounts other than the source account, then they require signatures of the accounts in question.
+> Transactions contain an arbitrary list of [operations](./operations.md) inside them. Typically there is just one operation, but it's possible to have multiple (up to 100).  Operations are executed in order as one ACID transaction, meaning that either all operations are applied or none are.  If any operation fails, the whole transaction fails. If operations are on accounts other than the source account, then they require signatures of the accounts in question.
 >
 > #### List of signatures
 > Up to 20 signatures can be attached to a transaction. See [Multi-sig](./multi-sig.md) for more information. A transaction is considered invalid if it includes signatures that aren't needed to authorize the transaction—superfluous signatures aren't allowed.
