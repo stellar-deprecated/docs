@@ -136,7 +136,7 @@ By submitting Transaction 6, the created token is listed on the decentralized ex
 Examples for some of the transactions and more about issuing assets can be found [here](../issuing-assets.md). In addition, [this article](../concepts/assets.md#anchors-issuing-assets) provides more in-depth explanations of key terms regarding asset creation. A preliminary guide that walks through explaining token creation using Stellar Laboratory is available [here](https://www.stellar.org/blog/tokens-on-stellar/).
 
 ## Resources:
-- [Becoming an Anchor](../anchor/readme.md) - Stellar<span>.org
+- [Becoming an Anchor](../anchor/) - Stellar<span>.org
 - [Minimum Account Balance Calculation](../concepts/fees.md#minimum-account-balance) - Stellar<span>.org
 - [Concept: stellar.toml](../concepts/stellar-toml.md) - Stellar<span>.org
 - [Concept: Trustlines](../concepts/assets.md#trustlines) - Stellar<span>.org
