@@ -156,7 +156,7 @@ Five transactions are used to create a crowdfunding contract. The following vari
 - **V** - total value the crowdfunding campaign is looking to raise
 - **X** - value at which the tokens will be sold
 
-There are four accounts used for creating a basic crowdfunding schema. First is the holding account, which is the account that deals with collecting and interacting with the donors. It requires the signature of both party A and party B in order to carry out any transactions. The second is the goal account, the account owned by the target to which the crowdfunded value is delivered to on success. The  two are the accounts owned by party A and party B, who are running the crowdfunding. 
+There are four accounts used for creating a basic crowdfunding schema. First is the holding account, which is the account that deals with collecting and interacting with the donors. It requires the signature of both party A and party B in order to carry out any transactions. The second is the goal account, the account owned by the target to which the crowdfunded value is delivered to on success. The other two are the accounts owned by party A and party B, who are running the crowdfunding. 
 
 The transactions that create this design pattern can be created and submitted by any party sponsoring the crowdfunding campaign. The transactions are presented in order of creation. The order of submission to the Stellar Network is conditional, and depends on the success of the crowdfunding campaign.
 

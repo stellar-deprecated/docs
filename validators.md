@@ -315,3 +315,11 @@ Description | n/a
 Contact | donovanhide@gmail.com (email)
 NodeID | GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+
+Name | jfl
+-----|--------
+Description | SF (US West Coast)
+Contact | jonathon (slack) jonathon.fletcher@gmail.com (email)
+NodeID | GDBK7LDRYUE6OT4BX4DH7RQVOARBFCVNCP22BV3YF7LQRLANEY5AVAGY
+Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+

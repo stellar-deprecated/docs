@@ -70,7 +70,7 @@ To create a test account, send Friendbot the public key you created. It’ll cre
 // make your own HTTP request.
 var request = require('request');
 request.get({
-  url: 'https://horizon-testnet.stellar.org/friendbot',
+  url: 'https://friendbot.stellar.org',
   qs: { addr: pair.publicKey() },
   json: true
 }, function(error, response, body) {
@@ -91,7 +91,7 @@ import java.io.*;
 import java.util.*;
 
 String friendbotUrl = String.format(
-  "https://horizon-testnet.stellar.org/friendbot?addr=%s",
+  "https://friendbot.stellar.org/?addr=%s",
   pair.getAccountId());
 InputStream response = new URL(friendbotUrl).openStream();
 String body = new Scanner(response, "UTF-8").useDelimiter("\\A").next();
@@ -112,7 +112,7 @@ func main() {
 	// pair is the pair that was generated from previous example, or create a pair based on 
 	// existing keys.
 	address := pair.Address()
-	resp, err := http.Get("https://horizon-testnet.stellar.org/friendbot?addr=" + address)
+	resp, err := http.Get("https://friendbot.stellar.org/?addr=" + address)
 	if err != nil {
 		log.Fatal(err)
 	}
