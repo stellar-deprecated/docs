@@ -26,6 +26,12 @@ KeyPair issuer = StellarSdk.Keypair.fromAccountId(
 Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
 ```
 
+```go
+issuer, err := keypair.Parse("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF")
+if err != nil { log.Fatal(err) }
+asset := CreditAsset("AstroDollar", issuer.Address())
+```
+
 ```json
 // Wherever assets are used in Horizon, they use the following JSON structure:
 {
