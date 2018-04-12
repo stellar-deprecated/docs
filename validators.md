@@ -237,6 +237,14 @@ Peer | stellar0.numerotron.com
 Node ID | GC7WI424OUF6UVYOLVLZD7IOW7M6HTJTIGDX4USFMTAG3763PYOXGN7Q
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Keybase
+---|---
+Description | https://keybase.io
+Contact | https://keybase.io/team/stellar.public
+Peer | stellar0.keybase.io
+Node ID | GCWJKM4EGTGJUVSWUJDPCQEOEP5LHSOFKSA4HALBTOO4T4H3HCHOM6UX
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
