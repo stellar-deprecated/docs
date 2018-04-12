@@ -149,6 +149,29 @@ public class PaymentRequest() {
 }
 ```
 
+```go
+import (
+	"net/http"
+	"bytes"
+	"net/url"
+)
+
+request_url := "http://localhost:8006/payment"
+form := url.Values{
+  "amount":       {"1"},
+  "asset_code":   {"USD"},
+  "asset_issuer": {"GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"},
+  "destination":  {"GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB"},
+  "source":       {"SAV75E2NK7Q5JZZLBBBNUPCIAKABN64HNHMDLD62SZWM6EBJ4R7CUNTZ"},
+}
+body := bytes.NewBufferString(form.Encode())
+resp, err := http.Post(request_url, "application/x-www-form-urlencoded", body)
+if err != nil {
+  panic(err)
+}
+defer resp.Body.Close()
+```
+
 </code-example>
 
 
