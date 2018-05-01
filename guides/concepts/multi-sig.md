@@ -20,6 +20,8 @@ The threshold for a given level can be set to any number from 0-255. This thresh
 
 Let's say Diyang sets the medium threshold on one of her accounts to 4. If that account submits a transaction that includes a payment operation (medium security), the transaction's threshold is 4--the signature weights on it need to be greater than or equal to 4 in order to run. If Diyang's master key--the key corresponding to the public key that identifies the account she owns--has a weight less than 4, she cannot authorize a transaction without other signers.
 
+Once the signature threshold is met if there are any leftover signatures then the transaction is regarded as having too many signatures which results in a failed transaction even if the remaining signatures are valid, i.e. for a transaction signed with N signatures, if the threshold is reached using K signatures then the transaction will fail if N > K.
+
 Each account can set its own threshold values. By default all thresholds levels are set to 0, and the master key is set to weight 1. The [Set Options](./list-of-operations.md#set-options) operation allows you to change the weight of the master key and to add other signing keys with different weights.
 
 Low Security:
@@ -40,7 +42,7 @@ Accounts are identified by a public key. The private key that corresponds to thi
 
 If the weight of the master key is ever updated to 0, the master key is considered to be an invalid key and you cannot sign any transactions with it (even for operations with a threshold value of 0). If there are other signers listed on the account, they can still continue to sign transactions.
 
-"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight.
+"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight. 
 
 Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
