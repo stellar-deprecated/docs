@@ -283,10 +283,13 @@ If you're an exchange, it's easy to become a Stellar anchor as well. The integra
 To learn more about what it means to be an anchor, see the [anchor guide](./anchor/readme.md).
 
 ### Accepting non-native assets
-First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the non-native asset -- without this you cannot begin to accept this asset (**same goes for your customers**). Then, make a few small changes to the example code above:
-* In the `handlePaymentResponse` function, we dealt with the case of incoming non-native assets. Since we are now accepting non-native assets, you will need to change this condition; if the user sends us either lumens or a non-native asset different from the one we want to receive, we will either:
-	1. Trade the incorrect asset for the correct asset
-	2. Send the incorrect asset back to the sender
+First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the non-native asset -- without this you cannot begin to accept this asset. Then, make a few small changes to the example code above:
+* In the `handlePaymentResponse` function, we dealt with the case of incoming non-native assets. Since we are now accepting non-native assets, you will need to change this condition; if the user sends us lumens  we will either:
+	1. Trade lumens for the desired non-native asset
+	2. Send the lumens back to the sender
+
+*Note*: the user cannot send us non-native assets whose issuing account we have not explicitly opened a trustline with.
+
 * In the `withdraw` function, when we add an operation to the transaction, we must specify the details of the asset we are sending. For example: 
 ```js
 var someAsset = new StellarSdk.Asset('ASSET_CODE', issuingKeys.publicKey());
@@ -297,13 +300,9 @@ transaction.addOperation(StellarSdk.Operation.payment({
         amount: '10'
       }))
 ```
-* Also in the `withdraw` function, note that your customer must have an established trustline with the issuing account of the asset they are withdrawing. One caveat to the code above, when creating a new account for a customer, you must make sure that the new account meets the [minimum account balance](https://www.stellar.org/developers/guides/concepts/fees.html#minimum-account-balance) before opening this trustline -- you must grant the new account a higher minimum starting balance than an account that will only accept lumens. Here is how you would open a trustline:
-```js
-var someAsset = new StellarSdk.Asset('ASSET_CODE', issuingKeys.publicKey());
+* Also in the `withdraw` function, note that your customer must have opened a trustline with the issuing account of the asset they are withdrawing. So you must take the following into consideration:
+	* Confirm the user you are sending the asset to has a trustline
+	* Parse the [Horizon error](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#payment) that will occur after sending an asset to an account without a trustline
 
-transaction.addOperation(StellarSdk.Operation.changeTrust({
-        asset: someAsset,
-        limit: '1000'
-      }))
-```
-For more information about assets check out the [general asset guide](https://www.stellar.org/developers/guides/concepts/assets.html) and the [issuing assets guide](https://www.stellar.org/developers/guides/issuing-assets.html).
+
+For more information about assets check out the [general asset guide](https://www.stellar.org/developers/guides/concepts/assets.html) and the [issuing asset guide](https://www.stellar.org/developers/guides/issuing-assets.html).
