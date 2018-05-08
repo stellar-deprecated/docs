@@ -133,13 +133,13 @@ func main () {
 	passphrase := network.TestNetworkPassphrase
 
 	tx, err := build.Transaction(
-		build.TestNetwork{passphrase},
+		build.TestNetwork,
 		build.SourceAccount{source},
 		build.AutoSequence{horizon.DefaultTestNetClient},
 		build.Payment(
 			build.Destination{destination},
 			build.NativeAmount{"10"},
-		),2
+		),
 	)
 
 	if err != nil {
@@ -147,7 +147,7 @@ func main () {
 	}
 
 	// Sign the transaction to prove you are actually the person sending it.
-	txe, err := tx.Sign(from)
+	txe, err := tx.Sign(source)
 	if err != nil {
 		panic(err)
 	}
