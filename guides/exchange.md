@@ -1,8 +1,7 @@
 ---
-title: Set Up an Exchange
+title: Add Stellar to your Exchange
 ---
 
-# Adding Stellar to your Exchange
 This guide will walk you through the integration steps to add Stellar to your exchange. This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an exchange. This guide uses the following design:
