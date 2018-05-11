@@ -73,7 +73,7 @@ dsn="postgres://stellar:pass1234@localhost/bifrost?sslmode=disable"
 
 
 - Complete the config file with the values as described [here](https://github.com/stellar/go/tree/master/services/bifrost#config)
-- Check that you have the correct mater public keys, run 
+- Check that you have the correct master public keys, run 
 
 ```bash 
 ./bifrost-server check-keys
