@@ -15,7 +15,7 @@ This guide will focus on how to setup the bifrost server to move ETH to the Stel
 This wont be covered here as there are handy documentation on how to set this up online, depending on your OS.
 
 ## Setting up Ethereum listener
-- Download the [geth version 1.7.0 and above](https://geth.ethereum.org/downloads/)
+- Download the [geth version 1.7.1 and above](https://geth.ethereum.org/downloads/)
 - Extract the contents of the downloaded file
 - Start the listener on the test network 
 ```bash  
