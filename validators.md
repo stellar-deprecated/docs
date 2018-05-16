@@ -245,6 +245,14 @@ Peer | stellar0.keybase.io
 Node ID | GCWJKM4EGTGJUVSWUJDPCQEOEP5LHSOFKSA4HALBTOO4T4H3HCHOM6UX
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | MEDIC
+-----|--------
+Description | http://mohawkmedic.ca
+Contact | medic@mohawkcollege.ca (email)
+Node 1 | GDM4NQ7U4KNO6XR2ORKYDFO355P3QDCRUCLWI2HSWZNF7EHY5CWQLGG6
+Peer | stellar.marc-hi.ca
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
