@@ -63,11 +63,11 @@ Peer |  au.stellar.ibm.com	(Sydney,	Australia) <br/> br.stellar.ibm.com	(Sao Pau
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 
-Name | stellar.chris.network
+Name | stellar.smoove.net
 -----|--------
 Contact | Chris Erice - cerice@pm.me
-Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU<br/>(basic validator, US peer v1.stellar.chris.network)
-Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG<br/>(full validator, SG peer v2.stellar.chris.network)
+Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU<br/>(Toronto peer v1.stellar.smoove.net)
+Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG<br/>(Singapore peer v2.stellar.smoove.net)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | xaviablaza
