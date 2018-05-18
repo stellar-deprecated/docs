@@ -23,6 +23,33 @@ This wont be covered here as there are handy documentation on how to set this up
 ```
 - Read more about [managing geth](https://github.com/ethereum/go-ethereum)
 
+## Have a Sell Order for your Asset
+Bifrost will automatically exchange the received BTC or ETH for your custom token. For this to havppen, there has to be a sell order for the CUSTOM-TOKEN/BTC OR CUSTOM-TOKEN/ETH asset pairs on the Stellar's distributed exchange.
+
+For example, let's say you have 1TOKE for 0.2ETH. Using stellar Laboratory, you can place a manage offer operation thus:
+
+    • Go to the transaction builder tab
+    • Take note of the toggle button on the top right of the page with “test/public” ensure it is set to public for live transactions and test for transactions on the testnet
+    • Fill the form on the page
+        ◦ Enter Source account (Asset Issuer or Distributing Account)
+        ◦ Click on fetch next sequence number
+        ◦ Scroll down, add select operation type: Manage Offer
+        ◦ For selling: Select Alphanumeric 4
+        ◦ Enter Asset Code: TOKE
+        ◦ Enter Issuer Account ID: Issuer Account
+        ◦ For buying: Select Alphanumeric 4
+        ◦ Enter Asset Code: ETH
+        ◦ Enter Issuer Account ID: Issuer Account
+        - Amount: Enter the amount of TOKE you are selling 
+        - Price: This is represented in terms of the buying asset. That is `1 selling_asset = X buying_asset`. In our case, since we want to sell 1TOKE for 0.2ETH, the value here should be 0.2
+        - Offer ID: Enter "0" to create a new offer
+        ◦ Scroll down click "sign transaction in Signer"
+        ◦ Enter the secret key of the Asset Issuer or Distributing Account
+        ◦ Click on Submit to Post transaction
+        ◦ Click on submit.
+
+The steps above will create a sell order for your asset on the distributed exchange.
+
 ## Setting up bifrost
 - Download latest [bifrost version](https://github.com/stellar/go/releases/tag/bifrost-v0.0.2) and extract its component into a folder.
 - Rename downloaded file to bifrost-server (optional)
