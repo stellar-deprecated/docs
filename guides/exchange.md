@@ -279,7 +279,7 @@ For more information, check out the [federation guide](./concepts/federation.md)
 ### Anchor
 If you're an exchange, it's easy to become a Stellar anchor as well. The integration points are very similar, with the same level of difficulty. Becoming a anchor could potentially expand your business.
 
-To learn more about what it means to be an anchor, see the [anchor guide](./anchor/readme.md).
+To learn more about what it means to be an anchor, see the [anchor guide](./anchor/index.html).
 
 ### Accepting non-native assets
 First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the non-native asset -- without this you cannot begin to accept this asset. Then, make a few small changes to the example code above:
