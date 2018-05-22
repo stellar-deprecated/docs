@@ -126,7 +126,7 @@ Transaction A is created and submitted to the network by the issuing account. By
 
 **Signer**: distribution account
 
-Transaction 6 is created and submitted to the network by the distribution account. In this step, the created asset is being sold for a different asset. The different asset could be another created asset, a fiat currency, a cryptocurrency, or lumens.  The offer id is set to zero, as a new offer is being created.The amount is the price of 1 unit of asset to be sold (selling) in terms of the asset that is being bought (buying). 
+Transaction 6 is created and submitted to the network by the distribution account. In this step, the created asset is being sold for a different asset. The different asset could be another created asset, a fiat currency, a cryptocurrency, or lumens.  If the offer id is set to zero, a new offer is being created. The amount is the price of 1 unit of asset to be sold (selling) in terms of the asset that is being bought (buying). 
 
 By submitting Transaction 6, the created token is listed on the decentralized exchange maintained by the Stellar Network. By creating the offer, the token will be listed on the Stellar Network decentralized exchange. In order to be listed on exchange clients like Stellar Term and Stellar Port, please refer to their websites for listing instructions. It’s encouraged to be listed on exchange clients to increase visibility.
 
