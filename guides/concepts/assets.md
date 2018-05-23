@@ -49,10 +49,21 @@ Any characters from the set [a-z][A-Z][0-9] are allowed. The code can be any num
 
 
 ### Controlling asset holders
-As an anchor, you can mark the issuing account `AUTHORIZATION REQUIRED`. With this setting, the anchor must approve anyone who wants to hold its credit, allowing it to control who its customers are. Approving is done by the anchor by setting the `Authorize` flag of an existing trustline to `true` with the [Allow Trust](./list-of-operations.md#allow-trust) operation.
+By default, anyone can create a trustline to accept an asset. However, as an anchor, you can **explicitly authorize** and **revoke** user access to your asset by enabling the following flags on your issuing account (read more [here](https://www.stellar.org/developers/guides/concepts/accounts.html#flags)).
 
-### Revoking access
-As an anchor, you can mark the issuing account `AUTHORIZATION REVOCABLE`. With this setting, the anchor can set `Authorize` flag of existing trustline to `false` with the [Allow Trust](./list-of-operations.md#allow-trust) operation, to freeze the credit held by another account. When credit is frozen for a particular account, that account can’t transfer the credit to any other account, not even back to the anchor. This setting allows the issuing account to revoke credit that it accidentally issued or that was obtained improperly.
+* `AUTHORIZATION REQUIRED`: with this setting, the anchor must approve anyone who wants to hold its asset, allowing it to control who its customers are. Approving is done by the anchor by setting the `Authorize` flag of an existing trustline to **true** with the [Allow Trust](./list-of-operations.md#allow-trust) operation.
+* `AUTHORIZATION REVOCABLE`: with this setting, the anchor can set `Authorize` flag of existing trustline to `false` with the [Allow Trust](./list-of-operations.md#allow-trust) operation, to freeze the asset held by another account. When an asset is frozen for a particular account, that account can’t transfer the asset to any other account, not even back to the anchor. This setting allows the issuing account to revoke assets that it accidentally issued or that was obtained improperly. To use this setting, `AUTHORIZATION REQUIRED` must also be enabled.
+
+**Example flow for an account with `AUTHORIZATION REQUIRED` and `AUTHORIZATION REVOCABLE` enabled:**
+1. User decides he/she wants to accept an asset
+2. User opens a trust line with this asset's issuing account
+3. Issuer authorizes the user's trustline
+5. User can accept and send the asset to whomever else has a trustline open with the issuer
+6. Issuer wants to freeze user's access to asset
+7. Issuer deauthorizes user's trustline
+8. User cannot send or accept this asset
+
+**An alternative flow:** Note it is possible to set these flags later. Maybe you originally allow anyone to open a trustline but later realize this was not a great idea. After issuing this asset, you can then set **both** of the above flags. At this point, everyone with an open trustline retains their authorized status, however you can now revoke trustlines and newly created trustlines must be explicitly authorized.
 
 ## Amount precision and representation
 Each asset amount is encoded as a signed 64-bit integer in the [XDR structures](https://www.stellar.org/developers/horizon/learn/xdr.html). An asset amount unit (that which is seen by end users) is scaled down by a factor of ten million (10,000,000) to arrive at the native 64-bit integer representation. For example, the integer amount value `25,123,456` equals `2.5123456` units of the asset. This scaling allows for **seven decimal places** of precision in human-friendly amount units.
