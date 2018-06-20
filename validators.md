@@ -236,6 +236,14 @@ Peer | stellar0.keybase.io
 Node ID | GCWJKM4EGTGJUVSWUJDPCQEOEP5LHSOFKSA4HALBTOO4T4H3HCHOM6UX
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Sendgrow
+---|---
+Description | https://sendgrow.co/
+Contact | support@sendgrow.co
+Peer | validator.sendgrow.co
+Node ID | GCXH6N6SE2U743U3FKJ7DH6BYLHN5LR26CSCZJECP3VEP4THXMMACBLU
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
