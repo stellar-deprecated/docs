@@ -236,15 +236,15 @@ Peer | stellar0.keybase.io
 Node ID | GCWJKM4EGTGJUVSWUJDPCQEOEP5LHSOFKSA4HALBTOO4T4H3HCHOM6UX
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-------
-#Offline servers
-
-Name | dzham
+Name | futuretense.io (was "dzham")
 -----|--------
 Description | n/a
 Contact | dzham (slack) johan@futuretense.io (email)
 NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+#Offline servers
 
 Name | snt.lux
 -----|--------
