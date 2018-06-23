@@ -236,6 +236,14 @@ Peer | stellar0.keybase.io
 Node ID | GCWJKM4EGTGJUVSWUJDPCQEOEP5LHSOFKSA4HALBTOO4T4H3HCHOM6UX
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Collegecoin
+---|---
+Description | https://collegecoin.org
+Contact | support@collegecoin.org
+Peer | v1.stellar.collegecoin.org
+Node ID | GBATJAZRLNDUIJZEHM3EDRDOT5BUNQ5V3AGEYDOQLHSQXRLYLMK4LXCL
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
