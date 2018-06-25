@@ -243,6 +243,14 @@ Contact | dzham (slack) johan@futuretense.io (email)
 NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | Collegecoin
+---|---
+Description | https://collegecoin.org
+Contact | support@collegecoin.org
+Peer | v1.stellar.collegecoin.org
+Node ID | GBATJAZRLNDUIJZEHM3EDRDOT5BUNQ5V3AGEYDOQLHSQXRLYLMK4LXCL
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 #Offline servers
 
