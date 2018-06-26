@@ -20,8 +20,8 @@ Lines that start with a hash symbol (`#`) are considered headers. Below is an ex
 
 - DO NOT use h1 since that is reserved for the page title generated from front matter.
 - DO NOT skip a header size (don't go from h2 to h4).
-- DO use smaller headers (more hashes) to represent that a section is nested under a parent one with a larger header.
-- DO add a space after the hashes. Some Markdown parsers will not render the text as a header without the space.
+- DO use smaller headers (more hash symbols) to represent that a section is nested under a parent one with a larger header.
+- DO add a space after the hash symbols. Some Markdown parsers will not render the text as a header without the space.
 
 ### Front matter
 
