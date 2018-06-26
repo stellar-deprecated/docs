@@ -18,9 +18,9 @@ Name | Stronghold
 -----|--------
 Description | https://stronghold.co
 Contact | Sean Bennett or Tammy Camp - happiness@stronghold.co (email)
-Node 1 | GDIQKLQVOCD5UD6MUI5D5PTPVX7WTP5TAPP5OBMOLENBBD5KG434KYQ2 
-Node 2 | GA7MREQ7673YDVANF4WBPN7LBQM4BSH4BQUFUTC4YLSSQCQUQTXRVBZN 
-Node 3 | GDHV7FL7JP6LUEWWYUOA4C3QAFQ4LZ6OHFBWFIL6IFIS3AOBI2DHV62F 
+Node 1 | GDIQKLQVOCD5UD6MUI5D5PTPVX7WTP5TAPP5OBMOLENBBD5KG434KYQ2
+Node 2 | GA7MREQ7673YDVANF4WBPN7LBQM4BSH4BQUFUTC4YLSSQCQUQTXRVBZN
+Node 3 | GDHV7FL7JP6LUEWWYUOA4C3QAFQ4LZ6OHFBWFIL6IFIS3AOBI2DHV62F
 Node 4 | GBGDBLFKR3LORWOI65LVC7ES5OGZ4GHILEHCBVKPW2PMP2OL43F6B2JJ
 Node 5 | GCBXBCIKCCVUIHAZ5QFWK6CKSX4AESOJ33IQNUE42BP7J66X23TM6WPF
 Peer |  validator1.stellar.stronghold.co (Australia) <br> validator2.stellar.stronghold.co (Asia) <br> validator3.stellar.stronghold.co (Europe) <br> validator4.stellar.stronghold.co (South America) <br> validator5.stellar.stronghold.co (United States)<br>
@@ -40,18 +40,9 @@ Name 	     	| GoodX Network
 ------------|------------------
 Description | GoodX Network
 Contact   	 | Alex - stellar@goodx.network (email)
-NodeID 		   | GASN57EFNZWME73BJXYZUTCD34EPX4KIIZQTQDTMBWWVH6JIZJUCBGQX 
+NodeID 		   | GASN57EFNZWME73BJXYZUTCD34EPX4KIIZQTQDTMBWWVH6JIZJUCBGQX
 Peer 		     |  de.stellar.goodx.network (Europe)
 Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
-
-------
-Name | FairX
------|--------
-Description | https://fairx.io
-Contact | Michael Dowling - about@fairx.io (email)
-NodeID | GAXEJOMEVVD5OAAGOOZ4SXTTNR46C4V23XROHWRNVEGOTGOABO3ZVH7Z
-Peer |  uswest.stellar.fairx.io
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
 Name | IBM
@@ -110,7 +101,7 @@ Contact | mprom (slack) contact@mystellar.tools
 Peer | mystellar.tools (Europe)
 Node ID | GCJWQ4C5VQKLAVHT2Y6CA7TIM3VBEH62E7LKTIQQJDBZFLMZPFY3ITTV
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
- 
+
 
 Name | cryptomover
 -----|--------
@@ -171,7 +162,7 @@ Name | Alchymia
 -----|--------
 Description | alchymia.io
 Contact | support at alchymia.io (email)
-NodeID | GDNSWA3ZJRQI7EBFLUASFZCMXU3WDEOP24M373XTADCT7UYGWBNFWZSK 
+NodeID | GDNSWA3ZJRQI7EBFLUASFZCMXU3WDEOP24M373XTADCT7UYGWBNFWZSK
 Peer | stellar.alchymia.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
@@ -245,15 +236,15 @@ Peer | stellar0.keybase.io
 Node ID | GCWJKM4EGTGJUVSWUJDPCQEOEP5LHSOFKSA4HALBTOO4T4H3HCHOM6UX
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-------
-#Offline servers
-
-Name | dzham
+Name | futuretense.io (was "dzham")
 -----|--------
 Description | n/a
 Contact | dzham (slack) johan@futuretense.io (email)
 NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+#Offline servers
 
 Name | snt.lux
 -----|--------
@@ -330,4 +321,3 @@ Description | SF (US West Coast)
 Contact | jonathon (slack) jonathon.fletcher@gmail.com (email)
 NodeID | GDBK7LDRYUE6OT4BX4DH7RQVOARBFCVNCP22BV3YF7LQRLANEY5AVAGY
 Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
-

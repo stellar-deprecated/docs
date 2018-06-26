@@ -282,7 +282,18 @@ If you're an exchange, it's easy to become a Stellar anchor as well. The integra
 To learn more about what it means to be an anchor, see the [anchor guide](./anchor/index.html).
 
 ### Accepting non-native assets
-First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the non-native asset -- without this you cannot begin to accept this asset. Then, make a few small changes to the example code above:
+First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the non-native asset -- without this you cannot begin to accept this asset. 
+
+```js
+var someAsset = new StellarSdk.Asset('ASSET_CODE', issuingKeys.publicKey());
+
+transaction.addOperation(StellarSdk.Operation.changeTrust({
+        asset: someAsset
+}))
+```
+If the asset issuer has `authorization_required` set to true, you will need to wait for the trustline to be authorized before you can begin accepting this asset. Read more about [trustline authorization here](https://www.stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders).
+
+Then, make a few small changes to the example code above:
 * In the `handlePaymentResponse` function, we dealt with the case of incoming non-native assets. Since we are now accepting non-native assets, you will need to change this condition; if the user sends us lumens  we will either:
 	1. Trade lumens for the desired non-native asset
 	2. Send the lumens back to the sender
