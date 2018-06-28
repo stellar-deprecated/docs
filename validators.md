@@ -196,7 +196,6 @@ Contact | hi@flutterwavego.com
 NodeID | GC3WHI444R4ULETZAECXA6B6PI4OHVWUW2RKZYP56H6MFL5IFAXAOYEW
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-
 Name | Mcna
 -----|--------
 Description | A Lumen holder
@@ -244,15 +243,23 @@ Peer | validator.sendgrow.co
 Node ID | GCXH6N6SE2U743U3FKJ7DH6BYLHN5LR26CSCZJECP3VEP4THXMMACBLU
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
-------
-#Offline servers
-
-Name | dzham
+Name | futuretense.io (was "dzham")
 -----|--------
 Description | n/a
 Contact | dzham (slack) johan@futuretense.io (email)
 NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
-Status | ![Offline](https://img.shields.io/badge/status-offline-red.svg)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+Name | Collegecoin
+---|---
+Description | https://collegecoin.org
+Contact | support@collegecoin.org
+Peer | v1.stellar.collegecoin.org
+Node ID | GBATJAZRLNDUIJZEHM3EDRDOT5BUNQ5V3AGEYDOQLHSQXRLYLMK4LXCL
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+#Offline servers
 
 Name | snt.lux
 -----|--------
