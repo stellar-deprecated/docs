@@ -74,7 +74,8 @@ Name | xaviablaza
 -----|--------
 Description | xaviablaza's validator
 Contact | xaviablaza (slack), xlablaza@gmail.com (email)
-Node 1 | GCEFOV5PD54MX2BS4Q5EQNE6L7JRTDYKEFT7XYBRBWXI3HL47N5U7TSU<br/>(peer xaviablaza.com)
+Node 1 | GCEFOV5PD54MX2BS4Q5EQNE6L7JRTDYKEFT7XYBRBWXI3HL47N5U7TSU
+Peer | xaviablaza.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | stellarport
