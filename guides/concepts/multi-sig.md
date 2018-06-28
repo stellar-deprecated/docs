@@ -26,16 +26,18 @@ Each account can set its own threshold values. By default all thresholds levels 
 
 Low Security:
  * [Allow Trust](./list-of-operations.md#allow-trust) operation
- * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
+   * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
+ * [Transaction processing](./transactions.md)
+    * Charging a fee or updating the sequence number for the source account
 
 Medium Security:
  * All other operations
 
 High Security:
  * [Set Options](./list-of-operations.md#set-options) to change the signers or the thresholds
- * Allows you to create a set of signers that give or revoke access to the account.
+    * Allows you to create a set of signers that give or revoke access to the account.
 
-
+For most cases, it is recommended to set thresholds such that `low <= medium <= high`.
 
 ## Additional signing keys
 Accounts are identified by a public key. The private key that corresponds to this public key is called the **master key**. Additional signing keys can be added to the account using the [Set Options](./list-of-operations.md#set-options) operation.
