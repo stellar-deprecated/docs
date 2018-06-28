@@ -9,7 +9,7 @@ If you would like to run a validator please:
 
 For general validator support, please check out [the stellar-public #validator channel.](https://stellar-public.slack.com/messages/C0AJ5765T)
 
-Two good tools for seeing the live status of the validators:
+Two good community created tools for seeing the live status of the validators:
 - https://stellarbeat.io
 - https://mystellar.tools/explorer/network
 
