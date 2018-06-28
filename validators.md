@@ -9,6 +9,10 @@ If you would like to run a validator please:
 
 For general validator support, please check out [the stellar-public #validator channel.](https://stellar-public.slack.com/messages/C0AJ5765T)
 
+Two good tools for seeing the live status of the validators:
+- https://stellarbeat.io
+- https://mystellar.tools/explorer/network
+
 ## None of the following validators are recommended by Stellar Development Foundation.
 
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
@@ -271,7 +275,7 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 
 ------
-#Offline servers
+# Offline servers
 
 Name | snt.lux
 -----|--------
