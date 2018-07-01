@@ -20,27 +20,31 @@ The threshold for a given level can be set to any number from 0-255. This thresh
 
 Let's say Diyang sets the medium threshold on one of her accounts to 4. If that account submits a transaction that includes a payment operation (medium security), the transaction's threshold is 4--the signature weights on it need to be greater than or equal to 4 in order to run. If Diyang's master key--the key corresponding to the public key that identifies the account she owns--has a weight less than 4, she cannot authorize a transaction without other signers.
 
+Once the signature threshold is met if there are any leftover signatures then the transaction is regarded as having too many signatures which results in a failed transaction even if the remaining signatures are valid, i.e. for a transaction signed with N signatures, if the threshold is reached using K signatures then the transaction will fail if N > K.
+
 Each account can set its own threshold values. By default all thresholds levels are set to 0, and the master key is set to weight 1. The [Set Options](./list-of-operations.md#set-options) operation allows you to change the weight of the master key and to add other signing keys with different weights.
 
 Low Security:
  * [Allow Trust](./list-of-operations.md#allow-trust) operation
- * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
+   * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
+ * [Transaction processing](./transactions.md)
+    * Charging a fee or updating the sequence number for the source account
 
 Medium Security:
  * All other operations
 
 High Security:
  * [Set Options](./list-of-operations.md#set-options) to change the signers or the thresholds
- * Allows you to create a set of signers that give or revoke access to the account.
+    * Allows you to create a set of signers that give or revoke access to the account.
 
-
+For most cases, it is recommended to set thresholds such that `low <= medium <= high`.
 
 ## Additional signing keys
 Accounts are identified by a public key. The private key that corresponds to this public key is called the **master key**. Additional signing keys can be added to the account using the [Set Options](./list-of-operations.md#set-options) operation.
 
 If the weight of the master key is ever updated to 0, the master key is considered to be an invalid key and you cannot sign any transactions with it (even for operations with a threshold value of 0). If there are other signers listed on the account, they can still continue to sign transactions.
 
-"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight.
+"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight. 
 
 Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
@@ -58,7 +62,7 @@ This type of signer is especially useful in escrow accounts. You can pre-authori
 Adding a signature of type hash(x) allows anyone who knows `x` to sign the transaction. This type of signer is especially useful in [atomic cross-chain swaps](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading) which are needed for inter-blockchain protocols like [lightning networks](https://lightning.network).
 
 First, create a random 256 bit value, which we call `x`. The SHA256 hash of that value can be added as a signer of type hash(x). Then in order to authorize a transaction, `x` is added as one of the signatures of the transaction.
-Keep in mind that `x` will be known to the world as soon as a transaction is submitted to the network with `x` as a signature. This means anyone will be able to sign for that account with the hash(x) signer at that point. Often you want there to be additional signers so someone must have a particular secret key and know `x` inorder reach the weight threshold required to authorize transactions on the account.
+Keep in mind that `x` will be known to the world as soon as a transaction is submitted to the network with `x` as a signature. This means anyone will be able to sign for that account with the hash(x) signer at that point. Often you want there to be additional signers so someone must have a particular secret key and know `x` in order to reach the weight threshold required to authorize transactions on the account.
 
 
 
