@@ -97,7 +97,7 @@ http://localhost:8006/payment
 var request = require('request');
 
 request.post({
-  url: 'http://localhost:8001/payment',
+  url: 'http://localhost:8006/payment',
   form: {
     amount: '1',
     asset_code: 'USD',
