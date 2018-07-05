@@ -25,17 +25,18 @@ Once the signature threshold is met if there are any leftover signatures then th
 Each account can set its own threshold values. By default all thresholds levels are set to 0, and the master key is set to weight 1. The [Set Options](./list-of-operations.md#set-options) operation allows you to change the weight of the master key and to add other signing keys with different weights.
 
 Low Security:
- * [Allow Trust](./list-of-operations.md#allow-trust) operation
-   * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
  * [Transaction processing](./transactions.md)
     * Charging a fee or updating the sequence number for the source account
+ * [Allow Trust](./list-of-operations.md#allow-trust) operation
+   * Used to allow people to hold credit from this account without exposing the key that enables sending payments from this account.
 
 Medium Security:
- * All other operations
+ * All [other operations](./list-of-operations.md)
 
 High Security:
- * [Set Options](./list-of-operations.md#set-options) to change the signers or the thresholds
+  * [Set Options](./list-of-operations.md#set-options) to change the signers or the thresholds
     * Allows you to create a set of signers that give or revoke access to the account.
+  * [Account Merge](./list-of-operations.md#account-merge) to merge accounts
 
 For most cases, it is recommended to set thresholds such that `low <= medium <= high`.
 
