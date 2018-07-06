@@ -1,3 +1,7 @@
+---
+title: How and Why to Complete Your Stellar.toml
+---
+
 How and Why to Complete Your Stellar.toml
 =========================================
 
