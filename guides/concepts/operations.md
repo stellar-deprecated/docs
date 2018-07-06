@@ -17,6 +17,7 @@ Here are the possible operation types:
 - [Account Merge](./list-of-operations.md#account-merge)
 - [Inflation](./list-of-operations.md#inflation)
 - [Manage Data](./list-of-operations.md#manage-data)
+- [Bump Sequence](./list-of-operations.md#bump-sequence)
 
 Operations are executed on behalf of the source account specified in the
 transaction, unless there is an override defined for the operation.
@@ -28,13 +29,16 @@ Thresholds define the level of privilege an operation needs in order to succeed.
 
 * Low Security:
   * AllowTrustTx
-  * Used to allow other signers to allow people to hold credit from this
-   account but not issue credit.
+    * Used to allow other signers to allow people to hold credit from this account but not issue credit.
+  * BumpSequence
 * Medium Security:
   * All else
 * High Security:
+  * AccountMerge
+    * merge an account into another one
   * SetOptions for Signer and threshold
-  * Used to change the Set of signers and the thresholds.
+    * Used to change the Set of signers and the thresholds.
+
 
 ## Validity of an operation
 
@@ -44,7 +48,7 @@ The validity check only looks at the state of the source account. It ensures tha
 1) the outer transaction has enough signatures for the source account of the operation to meet the threshold for that operation.
 2) Operations-specific validity checks pass. These checks are ones that would stay true regardless of the ledger state—for example, are the parameters within the expected bounds? Checks that depend on ledger state don't happen until apply time—for example, a send operation won't check if you have enough balance to send until apply time.
 
-Once a transaction passes this first validity check, it is propagated to the network and eventually included in a transaction set. As part of a transaction set, the transaction is applied to the ledger. At that point a fee is taken from the source account. Operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails and the effects of previous operations are rolled back.
+Once a transaction passes this first validity check, it is propagated to the network and eventually included in a transaction set. As part of a transaction set, the transaction is applied to the ledger. At that point a fee is taken from the source account regardless of success/failure. Later, the transaction is processed: sequence number and signatures are verified before operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails and the effects of previous operations are rolled back.
 
 
 ## Result

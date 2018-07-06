@@ -17,7 +17,7 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 - [Account Merge](#account-merge)
 - [Inflation](#inflation)
 - [Manage Data](#manage-data)
-
+- [Bump Sequence](#bump-sequence)
 
 ## Create Account
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.createAccount) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreateAccountOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#CreateAccountBuilder)
@@ -313,6 +313,7 @@ Possible errors:
 |ACCOUNT_MERGE_NO_ACCOUNT| -2| The `destination` account does not exist.|
 |ACCOUNT_MERGE_IMMUTABLE_SET| -3| The source account has `AUTH_IMMUTABLE` flag set.|
 |ACCOUNT_MERGE_HAS_SUB_ENTRIES | -4| The source account has trust lines/offers.|
+|ACCOUNT_MERGE_SEQNUM_TOO_FAR | -5| Source's account sequence number is too high. It must be less than `(ledgerSeq << 32) = (ledgerSeq * 0x100000000)`. *(protocol version 10 and above)*|
 
 ## Inflation
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/build#InflationBuilder)
@@ -355,3 +356,26 @@ Possible errors:
 |MANAGE_DATA_LOW_RESERVE| -3| Not enough lumens in the account to create a new Data Entry. Each additional Data Entry increases the minimum balance of the Account.|
 |MANAGE_DATA_INVALID_NAME| -4| Name not a valid string.|
 
+## Bump Sequence
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.bumpSequence) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/BumpSequenceOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#BumpSequenceBuilder)
+
+*Only available in protocol version 10 and above*
+
+Bump sequence allows to bump forward the sequence number of the source account of the operation, allowing to invalidate any transactions with a smaller sequence number.
+
+If the specified `bumpTo` sequence number is greater than the source account's sequence number,
+the account's sequence number is updated with that value, otherwise it's not modified.
+
+Threshold: Low
+
+Result: `BumpSequenceResult`
+
+|Parameters| Type| Description|
+| --- | --- | --- |
+|bumpTo| SequenceNumber| desired value for the operation's source account sequence number.|
+
+Possible errors:
+
+| Error | Code | Description |
+| ----- | ---- | ------|
+|BUMP_SEQUENCE_BAD_SEQ| -1| The specified `bumpTo` sequence number is not a valid sequence number. It must be between 0 and `INT64_MAX` (9223372036854775807 or 0x7fffffffffffffff).|
