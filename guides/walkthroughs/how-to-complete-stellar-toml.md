@@ -1,7 +1,7 @@
 How and Why to Complete Your Stellar.toml
 =========================================
 
->*If you are interested in issuing a token on the Stellar network, but haven't yet, start by consulting the step-by-step instructions for custom asset creation *[*here*](https://www.stellar.org/developers/guides/walkthroughs/custom-assets.html)*.*
+>*If you are interested in issuing a token on the Stellar network, but haven't yet, start by consulting the step-by-step instructions for custom asset creation *[*here*](./custom-assets.md)*.*
 
 Hello! We made this short guide to help you, a token issuer, put your token in the best possible place to succeed on Stellar.
 
