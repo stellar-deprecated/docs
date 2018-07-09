@@ -279,7 +279,6 @@ The following example sets authorization to be both required and revocable:
 
 ```js
 StellarSdk.Network.useTestNetwork();
-var flags = StellarSdk.xdr.AccountFlags;
 var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
   .addOperation(StellarSdk.Operation.setOptions({
     setFlags: StellarSdk.AuthRevocableFlag | StellarSdk.AuthRequiredFlag
