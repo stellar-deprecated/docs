@@ -273,6 +273,14 @@ Peer | v1.stellar.collegecoin.org
 Node ID | GBATJAZRLNDUIJZEHM3EDRDOT5BUNQ5V3AGEYDOQLHSQXRLYLMK4LXCL
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name        | Mobius
+------------|---------------------------------------------------------------------
+Description | https://mobius.network
+Contact     | ops@mobius.network
+Peer        | us.stellar.mobius.network
+Node ID     | GB7H5CNUNVCM6KGG6P2LAQE4YZP4D6CHFJRSSS34VNEPDDVIFAWRJ7ZA
+Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 
 ------
 # Offline servers
