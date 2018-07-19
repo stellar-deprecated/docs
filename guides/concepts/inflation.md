@@ -19,5 +19,5 @@ When inflation is run, nodes carry out the following algorithm:
  2. Calculate the `MIN_VOTE` by (number of lumens in existence)*.0005. This is .05% of the existing lumens, the minimum amount of votes needed to get any part of the inflation pool.
  2. Tally the votes for each account based on the **inflation destination** set for every account.
  3. Determine which accounts exceeded the `MIN_VOTE`. These accounts are the winners.
- 4. The winners each get their prorata share of the inflation pool. For example, if a winner gets 2% of the votes, it will get 2% of the inflation pool.
+ 4. The winners each get their prorata share of the inflation pool, if their account can receive that amount of lumens and still satisfy its lumen buying liabilities. Otherwise, the winner receives the maximum amount of lumens that it can receive while still satisfying its lumen buying liabilities, with the rest of their prorata share returned to the fee pool. For example, if a winner gets 2% of the votes, it will get 2% of the inflation pool assuming the account can receive that amount.
  5. Return any unallocated lumens to the fee pool. 

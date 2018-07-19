@@ -43,9 +43,11 @@ Accounts have the following fields:
 >
 > The federation protocol can use the home domain to look up more details about a transaction's memo or [address](https://www.stellar.org/developers/learn/concepts/federation.html#stellar-addresses) details about an account. For more on federation, see the [federation guide](./federation.md).
 >
->
 > #### Thresholds
 > Operations have varying levels of access. This field specifies thresholds for low-, medium-, and high-access levels, as well as the weight of the master key. For more info, see [multi-sig](./multi-sig.md).
 >
 > #### Signers
 > Used for [multi-sig](./multi-sig.md). This field lists other public keys and their weights, which can be used to authorize transactions for this account.
+>
+> #### Liabilities
+> Starting in protocol version 10, each account also tracks its lumen liabilities. Buying liabilities equal the total amount of lumens offered to buy aggregated over all offers owned by this account, and selling liabilities equal the total amount of lumens offered to sell aggregated over all offers owned by this account. If the extension version is 0, then both buying liabilities and selling liabilities equal 0. An account must always have balance sufficiently above the minimum reserve to satisfy its lumen selling liabilities, and a balance sufficiently below the maximum to accomodate its lumen buying liabilities.

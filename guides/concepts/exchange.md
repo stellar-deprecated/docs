@@ -17,6 +17,11 @@ exists to sell 10 XLM for 2 BTC, your offer will take that offer--you'll be 2 BT
 If the offer doesn't cross an existing offer, the offer is saved in the orderbook until it is either taken by another offer,
 taken by a payment, canceled by the account that created the offer, or invalidated because the account making the offer no longer has the asset for sale.
 
+Starting in protocol version 10, it is no longer possible for an offer to be invalidated because the account owning the offer no longer has the asset for sale. Each offer contributes
+selling liabilities for the selling asset and buying liabilities for the buying asset, which are aggregated in the account (for lumens) or trustline (for other assets) owned by
+the account creating the offer. Any operation that would cause an account to be unable to satisfy its liabilities, such as sending away too much balance, will fail. This guarantees that
+any offer in the orderbook can be executed entirely.
+
 Offers in Stellar behave like limit orders in traditional markets. 
 
 For offers placed at the same price, the older offer is filled before the newer one.  

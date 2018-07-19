@@ -56,6 +56,7 @@ The minimum balance for a basic account is $$2 * [base reserve]$$. Each addition
 
 For example, an account with 1 trustline and 2 offers would have a minimum balance of $$(2 + 3) * [base reserve] = 2.5 XLM$$.
 
+Starting in protocol version 10, an account may also have lumen selling liabilities that must be satisfied in addition to the minimum balance discussed above. In this case, any transaction that would reduce an account's balance to less than the minimum plus lumen selling liabilities will be rejected with an `INSUFFICIENT_BALANCE` error.
 
 ## Fee Changes
 
