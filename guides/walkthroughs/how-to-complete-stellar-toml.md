@@ -1,4 +1,4 @@
----
+--
 title: How and Why to Complete Your Stellar.toml
 ---
 
@@ -25,7 +25,7 @@ For example, the Stellar app, [StellarX](http://stellarx.com/), uses the stellar
 
 *Many won't list your token at all without a robust stellar.toml.*
 
-The stellar.toml file is *so* important that the first Stellar Ecosystem Proposal is devoted to outlining what it should contain. You can find the complete SEP 0001 [here](../../../../../stellar-protocol/blob/master/ecosystem/sep-0001.md), but we'll summarize the important parts below.
+The stellar.toml file is *so* important that the first Stellar Ecosystem Proposal is devoted to outlining what it should contain. You can find the complete SEP 0001 [here](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md), but we'll summarize the important parts below.
 
 What is your stellar.toml?
 --------------------------
@@ -35,7 +35,7 @@ Your stellar.toml is a file you write in [TOML](https://github.com/toml-lang/tom
 How to complete your stellar.toml
 ---------------------------------
 
-[SEP](../../../../../stellar-protocol/blob/master/ecosystem/sep-0001.md)[ 0001](../../../../../stellar-protocol/blob/master/ecosystem/sep-0001.md) specifies five sections you can add to your stellar.toml: Account Information, Issuer Documentation, Point of Contact Documentation, Currency Documentation, and Validator Information.  Within those sections, some fields only apply to specialized tokens, but many apply to *all* tokens, and these guidelines will outline which fields are:
+[SEP](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md)[ 0001](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md) specifies five sections you can add to your stellar.toml: Account Information, Issuer Documentation, Point of Contact Documentation, Currency Documentation, and Validator Information.  Within those sections, some fields only apply to specialized tokens, but many apply to *all* tokens, and these guidelines will outline which fields are:
 
 * **Required**: all token issuers *must* include this information in their stellar.toml if they want to be listed on exchanges.
 
@@ -211,7 +211,7 @@ Because of the nature of assets anchored to crypto, exchanges are unlikely to li
 
 * The public addresses that hold the crypto assets (`collateral_addresses`).
 
-* Proof that you control those public addresses (`collateral_address_signatures`).  [SEP 0001](../../../../../stellar-protocol/blob/master/ecosystem/sep-0001.md) contains a template for these signatures, and instructions for tailoring them to your token.
+* Proof that you control those public addresses (`collateral_address_signatures`).  [SEP 0001](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md) contains a template for these signatures, and instructions for tailoring them to your token.
 
 Exchanges use the collateral address signatures to verify that the accounts you list belong to you, and will look  at the reserve in those accounts.  If you cannot prove 100% reserve, it is unlikely they will list your token.
 
