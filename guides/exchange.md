@@ -1,8 +1,8 @@
 ---
-title: Add Stellar to your Exchange
+title: Add Stellar To Your Exchange
 ---
 
-This guide will walk you through the integration steps to add Stellar to your exchange. This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
+This guide describes how to add tokens from the Stellar network to your exchange. First, we walk through adding Stellar's native asset, lumens. Following that, we describe how to add other tokens. This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
 
 There are many ways to architect an exchange. This guide uses the following design:
  - `issuing account`: One Stellar account that holds the majority of customer deposits offline.
@@ -19,7 +19,8 @@ The two main integration points to Stellar for an exchange are:<br>
 * *(optional)* Set up [Stellar Core](https://www.stellar.org/developers/stellar-core/software/admin.html)
 * *(optional)* Set up [Horizon](https://www.stellar.org/developers/horizon/reference/index.html)
 
-If your exchange doesn't see a lot of volume, you don't need to set up your own instances of Stellar Core and Horizon. Instead, use one of the Stellar.org public-facing Horizon servers.
+It's recommended, though not strictly necessary, to run your own instances of Stellar Core and Horizon - [this doc](https://www.stellar.org/developers/stellar-core/software/admin.html#why-run-a-node) lists more benefits. If you choose not to, it's possible to use the Stellar.org public-facing Horizon servers. Our test and live networks are listed below: 
+
 ```
   test net: {hostname:'horizon-testnet.stellar.org', secure:true, port:443};
   live: {hostname:'horizon.stellar.org', secure:true, port:443};
@@ -47,9 +48,8 @@ Possible values for `StellarTransactions.state` are "pending", "done", "error".
 
 ### Code
 
-Here is a code framework you can use to integrate Stellar into your exchange. The following sections describe each step.
+Use this code framework to integrate Stellar into your exchange. For this guide, we use placeholder functions for reading/writing to the exchange database. Each database library connects differently, so we abstract away those details. The following sections describe each step:
 
-For this guide, we use placeholder functions for reading/writing to the exchange database. Each database library connects differently, so we abstract away those details.
 
 ```js
 // Config your server
@@ -114,9 +114,9 @@ callBuilder.stream({onmessage: handlePaymentResponse});
 
 
 For every payment received by the base account, you must:<br>
--check the memo field to determine which user sent the deposit.<br>
--record the cursor in the `StellarCursor` table so you can resume payment processing where you left off.<br>
--credit the user's account in the DB with the number of XLM they sent to deposit.
+ - check the memo field to determine which user sent the deposit.<br>
+ - record the cursor in the `StellarCursor` table so you can resume payment processing where you left off.<br>
+ - credit the user's account in the DB with the number of XLM they sent to deposit.
 
 So, you pass this function as the `onmessage` option when you stream payments:
 
@@ -163,7 +163,7 @@ function handlePaymentResponse(record) {
 
 
 ## Submitting withdrawals
-When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them the lumens. Here is additional documentation about [Building Transactions](https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html).
+When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them XLM. See [building transactions](https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html) for more information.
 
 The function `handleRequestWithdrawal` will queue up a transaction in the exchange's `StellarTransactions` table whenever a withdrawal is requested.
 
@@ -277,12 +277,14 @@ The federation protocol allows you to give your users easy addresses—e.g., bob
 For more information, check out the [federation guide](./concepts/federation.md).
 
 ### Anchor
-If you're an exchange, it's easy to become a Stellar anchor as well. The integration points are very similar, with the same level of difficulty. Becoming a anchor could potentially expand your business.
+If you're an exchange, it's easy to become a Stellar anchor as well. Anchors are entities people trust to hold their deposits and issue credits into the Stellar network. As such, they act a bridge between existing currencies and the Stellar network.  Becoming a anchor could potentially expand your business.
 
 To learn more about what it means to be an anchor, see the [anchor guide](./anchor/index.html).
 
-### Accepting non-native assets
-First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the non-native asset -- without this you cannot begin to accept this asset. 
+### Accepting Other Tokens 
+If you'd like to accept other non-lumen tokens follow these instructions. 
+
+First, open a [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) with the issuing account of the token you'd like to list -- without this you cannot begin to accept the token. 
 
 ```js
 var someAsset = new StellarSdk.Asset('ASSET_CODE', issuingKeys.publicKey());
@@ -291,16 +293,16 @@ transaction.addOperation(StellarSdk.Operation.changeTrust({
         asset: someAsset
 }))
 ```
-If the asset issuer has `authorization_required` set to true, you will need to wait for the trustline to be authorized before you can begin accepting this asset. Read more about [trustline authorization here](https://www.stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders).
+If the token issuer has `authorization_required` set to true, you will need to wait for the trustline to be authorized before you can begin accepting this token. Read more about [trustline authorization here](https://www.stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders).
 
-Then, make a few small changes to the example code above:
-* In the `handlePaymentResponse` function, we dealt with the case of incoming non-native assets. Since we are now accepting non-native assets, you will need to change this condition; if the user sends us lumens  we will either:
-	1. Trade lumens for the desired non-native asset
+Then, make a few changes to the example code above:
+* In the `handlePaymentResponse` function, we dealt with the case of incoming non-lumen assets. Since we are now accepting other tokens, you will need to change this condition; if the user sends us XLM we will either:
+	1. Trade lumens for the desired token
 	2. Send the lumens back to the sender
 
-*Note*: the user cannot send us non-native assets whose issuing account we have not explicitly opened a trustline with.
+*Note*: the user cannot send us tokens whose issuing account we have not explicitly opened a trustline with.
 
-* In the `withdraw` function, when we add an operation to the transaction, we must specify the details of the asset we are sending. For example: 
+* In the `withdraw` function, when we add an operation to the transaction, we must specify the details of the token we are sending. For example: 
 ```js
 var someAsset = new StellarSdk.Asset('ASSET_CODE', issuingKeys.publicKey());
 
@@ -310,9 +312,9 @@ transaction.addOperation(StellarSdk.Operation.payment({
         amount: '10'
       }))
 ```
-* Also in the `withdraw` function, note that your customer must have opened a trustline with the issuing account of the asset they are withdrawing. So you must take the following into consideration:
-	* Confirm the user you are sending the asset to has a trustline
-	* Parse the [Horizon error](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#payment) that will occur after sending an asset to an account without a trustline
+* In the `withdraw` function your customer must have opened a trustline with the issuing account of the token they are withdrawing. So you must take the following into consideration:
+	* Confirm the user receiving the token has a trustline
+	* Parse the [Horizon error](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#payment) that will occur after sending a token to an account without a trustline
 
 
-For more information about assets check out the [general asset guide](https://www.stellar.org/developers/guides/concepts/assets.html) and the [issuing asset guide](https://www.stellar.org/developers/guides/issuing-assets.html).
+For more information about tokens check out the [general asset guide](https://www.stellar.org/developers/guides/concepts/assets.html) and the [issuing asset guide](https://www.stellar.org/developers/guides/issuing-assets.html).
