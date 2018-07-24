@@ -11,7 +11,7 @@ Using the Stellar network, you can build mobile wallets, banking tools, smart de
 
 The easiest way to install Horizon is by using [**stellar/quickstart** docker image](https://hub.docker.com/r/stellar/quickstart/).
 
-Stellar.org maintains [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk), and [Go](https://github.com/stellar/go/tree/master/clients/horizon)-based SDKs for communicating with Horizon. There are also community-maintained SDKs for [Ruby](https://github.com/stellar/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base), and [C#](https://github.com/QuantozTechnology/csharp-stellar-base).
+Stellar.org maintains [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk), and [Go](https://github.com/stellar/go/tree/master/clients/horizon)-based SDKs for communicating with Horizon. There are also community-maintained SDKs for [Ruby](https://github.com/stellar/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base), [C# .NET Core 2.0](https://github.com/elucidsoft/dotnetcore-stellar-sdk), [C#](https://github.com/QuantozTechnology/csharp-stellar-base), [C++](https://bitbucket.org/bnogal/stellarqore/wiki/Home), [Scala](https://github.com/Synesso/scala-stellar-sdk) and [Unity](https://github.com/Kirbyrawr/stellar-unity)
 
 ## Network Backbone: Stellar Core
 
@@ -25,10 +25,10 @@ You might want to host your own instance of Stellar Core in order to submit tran
 
 The Stellar network is a worldwide collection of Stellar Cores, each maintained by different people and organizations. The distributed nature of the network makes it reliable and safe.
 
-All these Stellar Cores—the network of nodes—eventually agree on sets of transactions. Each transaction on the network costs a small fee: 100 stroops (0.00001 <abbr title="Lumens">XLM</abbr>). This fee helps prevent bad actors from spamming the network. 
+All these Stellar Cores—the network of nodes—eventually agree on sets of transactions. Each transaction on the network costs a small fee: 100 stroops (0.00001 <abbr title="Lumens">XLM</abbr>). This fee helps prevent bad actors from spamming the network.
 
 To help you test your tools and applications, Stellar.org operates a small test network and Horizon instance. [Get started with the testnet.](../concepts/test-net.md)
- 
+
 <div class="sequence-navigation">
   <a class="button button--next" href="create-account.html">Next: Create an Account</a>
 </div>
