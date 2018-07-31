@@ -160,7 +160,9 @@ Information about your token goes into a TOML **list** called `[[CURRENCIES]]`. 
 
 * The Stellar public key of the issuing account (`issuer`).  This is the second key piece of information that identifies your token. Without it, your token cannot be listed anywhere.
 
-* The status of your token (`status`): *live*, *dead*, or *test*.  Marking your token *live* means you are ready for exchanges to list it.  If your token is ready to trade, and you fail to list its status, it may not appear on exchanges.  
+* The status of your token (`status`): *live*, *dead*, or *test*.  Marking your token *live* means you are ready for exchanges to list it.  If your token is ready to trade, and you fail to list its status, it may not appear on exchanges. 
+
+* An indication of whether your token is anchored or native (`is_asset_anchored`): `true` if your token can be redeemed for an asset outside the Stellar network, `false` if it can’t.  Exchanges use this information to sort tokens by type in listings.  If you fail to provide it, your token is unlikely to show up in filtered market views.  
 
 * A preference for number of decimals when client displays currency balance (`display_decimals`).
 
