@@ -41,11 +41,9 @@ Possible errors:
 | Error | Code | Description |
 | ----- | ---- | ------|
 |CREATE_ACCOUNT_MALFORMED| -1| The `destination` is invalid.|
-|CREATE_ACCOUNT_UNDERFUNDED| -2| The source account performing the command does not have enough funds to give `destination` the `starting balance` amount of XLM and still maintain its minimum XLM reserve.  |
+|CREATE_ACCOUNT_UNDERFUNDED| -2| The source account performing the command does not have enough funds to give `destination` the `starting balance` amount of XLM and still maintain its minimum XLM reserve plus satisfy its XLM selling liabilities.|
 |CREATE_ACCOUNT_LOW_RESERVE| -3| This operation would create an account with fewer than the minimum number of XLM an account must hold.|
 |CREATE_ACCOUNT_ALREADY_EXIST| -4| The `destination` account already exists.|
-
-
 
 ## Payment
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.payment) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PaymentOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#PaymentBuilder)
@@ -69,13 +67,13 @@ Possible errors:
 |Error| Code| Description|
 | --- | --- | --- |
 |PAYMENT_MALFORMED| -1| The input to the payment is invalid.|
-|PAYMENT_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send this transaction.  Note that the sender has a minimum reserve of XLM it must hold at all times.|
+|PAYMENT_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send `amount` and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
 |PAYMENT_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
 |PAYMENT_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment.|
 |PAYMENT_NO_DESTINATION| -5| The receiving account does not exist.|
 |PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more information, see the [assets doc](./assets.md).|
 |PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset.|
-|PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
+|PAYMENT_LINE_FULL| -8| The destination account (receiver) does not have sufficient limits to receive `amount` and still satisfy its buying liabilities.|
 |PAYMENT_NO_ISSUER| -9| The issuer of the asset does not exist.|
 
 ## Path Payment
@@ -103,13 +101,13 @@ Possible errors:
 | Error | Code | Description |
 | ----- | ---- | ------|
 |PATH_PAYMENT_MALFORMED| -1| The input to this path payment is invalid.|
-|PATH_PAYMENT_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send this transaction. Note that the sender has a minimum reserve of XLM it must hold at all times.|
+|PATH_PAYMENT_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
 |PATH_PAYMENT_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
 |PATH_PAYMENT_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment. |
 |PATH_PAYMENT_NO_DESTINATION| -5| The receiving account does not exist. |
 |PATH_PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
 |PATH_PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
-|PATH_PAYMENT_LINE_FULL| -8| The receiving account only trusts an asset's issuer for a certain amount of credit.  If this transaction succeeded, the receiver's trust limit would be exceeded.|
+|PATH_PAYMENT_LINE_FULL| -8| The destination account (receiver) does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
 |PATH_PAYMENT_NO_ISSUER| -9| The issuer on one of assets is missing.|
 |PATH_PAYMENT_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
 |PATH_PAYMENT_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
@@ -147,13 +145,13 @@ Possible errors:
 |MANAGE_OFFER_BUY_NO_TRUST| -3| The account creating the offer does not have a trustline for the asset it is buying.|
 |MANAGE_OFFER_SELL_NOT_AUTHORIZED| -4| The account creating the offer is not authorized to sell this asset.|
 |MANAGE_OFFER_BUY_NOT_AUTHORIZED| -5| The account creating the offer is not authorized to buy this asset.|
-|MANAGE_OFFER_LINE_FULL| -6| The account creating the offer only trusts the issuer of `buying` to a certain credit limit. If this offer succeeded, the account would exceed its trust limit with the issuer.|
-|MANAGE_OFFER_UNDERFUNDED| -7| The account does not have enough of `selling` to fund this offer.|
+|MANAGE_OFFER_LINE_FULL| -6| The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities.|
+|MANAGE_OFFER_UNDERFUNDED| -7| The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately.|
 |MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
 |MANAGE_OFFER_SELL_NO_ISSUER| -9| The issuer of selling asset does not exist.|
 |MANAGE_OFFER_BUY_NO_ISSUER| -10| The issuer of buying asset does not exist.|
 |MANAGE_OFFER_NOT_FOUND| -11| An offer with that `offerID` cannot be found.|
-|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
+|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 ## Create Passive Offer
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveOffer) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder)
@@ -183,7 +181,6 @@ Result: `CreatePassiveOfferResult`
 
 Possible errors:
 
-
 | Error | Code | Description |
 | ----- | ---- | ------|
 |MANAGE_OFFER_MALFORMED| -1| The input is incorrect and would result in an invalid offer.|
@@ -191,14 +188,13 @@ Possible errors:
 |MANAGE_OFFER_BUY_NO_TRUST| -3| The account creating the offer does not have a trustline for the asset it is buying.|
 |MANAGE_OFFER_SELL_NOT_AUTHORIZED| -4| The account creating the offer is not authorized to sell this asset.|
 |MANAGE_OFFER_BUY_NOT_AUTHORIZED| -5| The account creating the offer is not authorized to buy this asset.|
-|MANAGE_OFFER_LINE_FULL| -6| The account creating the offer only trusts the issuer of `buying` to a certain credit limit. If this offer succeeded, the account would exceed its trust limit with the issuer.|
-|MANAGE_OFFER_UNDERFUNDED| -7| The account does not have enough of `selling` to fund this offer.|
+|MANAGE_OFFER_LINE_FULL| -6| The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities.|
+|MANAGE_OFFER_UNDERFUNDED| -7| The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately.|
 |MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
 |MANAGE_OFFER_SELL_NO_ISSUER| -9| The issuer of selling asset does not exist.|
 |MANAGE_OFFER_BUY_NO_ISSUER| -10| The issuer of buying asset does not exist.|
 |MANAGE_OFFER_NOT_FOUND| -11| An offer with that `offerID` cannot be found.|
-|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
-
+|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
 
 ## Set Options
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.setOptions) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/SetOptionsOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#SetOptionsBuilder)
@@ -231,7 +227,7 @@ Possible errors:
 
 | Error | Code | Description |
 | ----- | ---- | ------|
-|SET_OPTIONS_LOW_RESERVE| -1| The account setting the options does not have enough XLM. For every new signer added to an account, the minimum reserve of XLM that account must hold increases.|
+|SET_OPTIONS_LOW_RESERVE| -1| This account does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every new signer added to an account, the minimum reserve of XLM that account must hold increases.|
 |SET_OPTIONS_TOO_MANY_SIGNERS| -2| 20 is the maximum number of signers an account can have, and adding another signer would exceed that.|
 |SET_OPTIONS_BAD_FLAGS| -3| The flags set and/or cleared are invalid by themselves or in combination.|
 |SET_OPTIONS_INVALID_INFLATION| -4| The destination account set in the `inflation` field does not exist.|
@@ -261,10 +257,8 @@ Possible errors:
 | ----- | ---- | ------|
 |CHANGE_TRUST_MALFORMED| -1| The input to this operation is invalid.|
 |CHANGE_TRUST_NO_ISSUER| -2| The issuer of the asset cannot be found.|
-|CHANGE_TRUST_INVALID_LIMIT| -3| This operation would drop the `limit` of this trustline below the amount of the asset the account currently holds.|
-|CHANGE_TRUST_LOW_RESERVE| -4| The account does not have enough lumens.  For every new trustline added by the account, the minimum reserve of XLM it must hold increases.|
-
-
+|CHANGE_TRUST_INVALID_LIMIT| -3| The `limit` is not sufficient to hold the current balance of the trustline and still satisfy its buying liabilities.|
+|CHANGE_TRUST_LOW_RESERVE| -4| This account does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every new trustline added to an account, the minimum reserve of XLM that account must hold increases.|
 
 ## Allow Trust
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.allowTrust) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AllowTrustOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#AllowTrustBuilder)
@@ -272,6 +266,8 @@ Possible errors:
 Updates the `authorized` flag of an existing trustline. This can only be called by the issuer of a trustline's [asset](./assets.md).
 
 The issuer can only clear the `authorized` flag if the issuer has the `AUTH_REVOCABLE_FLAG` set. Otherwise, the issuer can only set the `authorized` flag.
+
+If the issuer clears the `authorized` flag, all offers owned by the `trustor` that are either selling `type` or buying `type` will be deleted. *(protocol version 10 and above)*
 
 Threshold: Low
 
@@ -314,6 +310,7 @@ Possible errors:
 |ACCOUNT_MERGE_IMMUTABLE_SET| -3| The source account has `AUTH_IMMUTABLE` flag set.|
 |ACCOUNT_MERGE_HAS_SUB_ENTRIES | -4| The source account has trust lines/offers.|
 |ACCOUNT_MERGE_SEQNUM_TOO_FAR | -5| Source's account sequence number is too high. It must be less than `(ledgerSeq << 32) = (ledgerSeq * 0x100000000)`. *(protocol version 10 and above)*|
+|ACCOUNT_MERGE_DEST_FULL| -6| The `destination` account cannot receive the balance of the source account and still satisfy its lumen buying liabilities. *(protocol version 10 and above)*|
 
 ## Inflation
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/build#InflationBuilder)
@@ -329,7 +326,6 @@ Possible errors:
 | Error | Code | Description |
 | ----- | ---- | ------|
 |INFLATION_NOT_TIME| -1| Inflation only runs once a week. This failure means it is not time for a new inflation round yet.|
-
 
 ## Manage Data
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageData) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageDataOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageDataBuilder)
@@ -353,7 +349,7 @@ Possible errors:
 | ----- | ---- | ------|
 |MANAGE_DATA_NOT_SUPPORTED_YET| -1| The network hasn't moved to this protocol change yet. This failure means the network doesn't support this feature yet.|
 |MANAGE_DATA_NAME_NOT_FOUND| -2| Trying to remove a Data Entry that isn't there. This will happen if Name is set (and Value isn't) but the Account doesn't have a DataEntry with that Name.|
-|MANAGE_DATA_LOW_RESERVE| -3| Not enough lumens in the account to create a new Data Entry. Each additional Data Entry increases the minimum balance of the Account.|
+|MANAGE_DATA_LOW_RESERVE| -3| This account does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every new DataEntry added to an account, the minimum reserve of XLM that account must hold increases.|
 |MANAGE_DATA_INVALID_NAME| -4| Name not a valid string.|
 
 ## Bump Sequence
