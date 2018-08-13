@@ -17,7 +17,7 @@ CSP headers tell the browser where it can download static resources from. For ex
 
 Most web frameworks have a configuration file or extensions where you may specify your CSP policy, and the headers will be auto-generated for you. For example, see [Helmet](https://www.npmjs.com/package/helmet) for Node.js.
 
-This would have prevented [Blackwallet Hack](https://www.ccn.com/yet-another-crypto-wallet-hack-causes-users-lose-400000/).
+This would have prevented the [Blackwallet Hack](https://www.ccn.com/yet-another-crypto-wallet-hack-causes-users-lose-400000/).
 
 # HTTP Strict-Transport-Security Headers
 
