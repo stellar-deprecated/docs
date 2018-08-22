@@ -260,6 +260,7 @@ To test that your receive callback works, let’s try sending 1 USD to a custome
 
 ```js
 var StellarSdk = require('stellar-sdk');
+StellarSdk.Network.useTestNetwork()
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair.fromSecret(
   'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
