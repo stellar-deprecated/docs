@@ -356,7 +356,8 @@ Send a payment through your bridge server, but this time, use federated addresse
 ```bash
 # NOTE: `extra_memo` is required for compliance (use it instead of `memo`)
 curl -X POST -d \
-"amount=1&\
+"id=unique_payment_id&\
+amount=1&\
 asset_code=USD&\
 asset_issuer=GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ&\
 destination=amy*your_org.com&\
@@ -372,6 +373,7 @@ var request = require('request');
 request.post({
   url: 'http://localhost:8001/payment',
   form: {
+    id: 'unique_payment_id',
     amount: '1',
     asset_code: 'USD',
     asset_issuer: 'GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ',
@@ -409,6 +411,7 @@ public class PaymentRequest() {
     HttpPost paymentRequest = new HttpPost("http://localhost:8001/payment");
 
     List<NameValuePair> params = new ArrayList<NameValuePair>();
+    params.add(new BasicNameValuePair("id", "unique_payment_id"));
     params.add(new BasicNameValuePair("amount", "1"));
     params.add(new BasicNameValuePair("asset_code", "USD"));
     params.add(new BasicNameValuePair("asset_issuer", "GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"));
