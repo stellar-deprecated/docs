@@ -108,7 +108,7 @@ Node ID | GCJWQ4C5VQKLAVHT2Y6CA7TIM3VBEH62E7LKTIQQJDBZFLMZPFY3ITTV
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 
-Name | cryptomover
+Name | Cryptomover
 -----|--------
 Description | https://cryptomover.com
 Contact | support@cryptomover.com (email)
