@@ -86,7 +86,7 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 Name | Stellar Pool
 ---|---
 Description | A low-fee Stellar community inflation pool.
-Contact | francescomenzani99@gmail.com
+Contact | francescomecryptomovernzani99@gmail.com
 Peer | stellarpool.net (Europe)
 Node ID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
@@ -115,7 +115,14 @@ Contact | support@cryptomover.com (email)
 Node 1 | GCGWABAQ6OUOVUGWJVPRJ5LWBIWYN3CVOVOZYBNQQGIBRULQHYNGQ7GH
 Node 2 | GC7MH45NSXXPBLQJRSEVF2DFUVLGGYOJER5FRUNVCYVMXJYJT5LLQJW5
 Node 3 | GCX7S2QY2VXRFDDVVGKRVSMIVGQZQ4NEDYZ3WB7ZUYIVJKMQ4FVVHVR6
-Node 4 | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
+Name | Koinbros
+----- | --------
+Description | https://koinbros.org
+Contact | support@koinbros.org (email)
+NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | eno
