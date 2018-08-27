@@ -86,7 +86,7 @@ Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 Name | Stellar Pool
 ---|---
 Description | A low-fee Stellar community inflation pool.
-Contact | francescomecryptomovernzani99@gmail.com
+Contact | francescomenzani99@gmail.com
 Peer | stellarpool.net (Europe)
 Node ID | GDC5AL22QGBBMTKNCUCP7WPZZRLAFJJCW3IATOJCURZH4Z67FDMJ6MST
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
