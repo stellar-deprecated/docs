@@ -23,3 +23,4 @@ Community-maintained libraries (in various states of completion) for interacting
 - [C#](https://github.com/QuantozTechnology/csharp-stellar-base)
 - [C++](https://bitbucket.org/bnogal/stellarqore/wiki/Home)
 - [Scala](https://github.com/Synesso/scala-stellar-sdk)
+- [iOS & macOS](https://github.com/Soneso/stellar-ios-mac-sdk)
