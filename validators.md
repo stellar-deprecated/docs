@@ -108,12 +108,21 @@ Node ID | GCJWQ4C5VQKLAVHT2Y6CA7TIM3VBEH62E7LKTIQQJDBZFLMZPFY3ITTV
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 
-Name | cryptomover
+Name | Cryptomover
 -----|--------
 Description | https://cryptomover.com
 Contact | support@cryptomover.com (email)
-NodeID | GCGWABAQ6OUOVUGWJVPRJ5LWBIWYN3CVOVOZYBNQQGIBRULQHYNGQ7GH
-Peer |  cryptodealer.hk
+Node 1 | GBX7KXY43NOGLCV7TMFFM7UPNM5VGQ52W4IAZNTVMXZ44BHYFESA67N3
+Node 2 | GC7MH45NSXXPBLQJRSEVF2DFUVLGGYOJER5FRUNVCYVMXJYJT5LLQJW5
+Node 3 | GCX7S2QY2VXRFDDVVGKRVSMIVGQZQ4NEDYZ3WB7ZUYIVJKMQ4FVVHVR6
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
+Name | Koinbros
+----- | --------
+Description | https://koinbros.org
+Contact | support@koinbros.org (email)
+NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | eno
