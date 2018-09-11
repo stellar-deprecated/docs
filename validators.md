@@ -290,6 +290,14 @@ Peer        | us.stellar.mobius.network
 Node ID     | GB7H5CNUNVCM6KGG6P2LAQE4YZP4D6CHFJRSSS34VNEPDDVIFAWRJ7ZA
 Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name        | Sonic Wallet
+------------|---------------------------------------------------------------------
+Description | http://www.sonicwallet.com
+Contact     | support@infosonic.net
+Peer        | stellar.sonicwallet.com
+Node ID     | GDHDAHSHNXQV3EXHFK76CYIYBEVVBTOFTTJHGNXQ6Z5JMQRJTFKFYSB4
+Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 
 ------
 # Offline servers
