@@ -1,4 +1,4 @@
-Stellar.org doesn't currently run a validator. We do run a couple nodes recording and saving network history.
+Stellar.org supports the network by running a few full validators and Horizon instances.
 
 If you would like to run a validator please:
  - Read the [admin guide](https://www.stellar.org/developers/stellar-core/learn/admin.html).
@@ -298,6 +298,13 @@ Peer        | stellar.sonicwallet.com
 Node ID     | GDHDAHSHNXQV3EXHFK76CYIYBEVVBTOFTTJHGNXQ6Z5JMQRJTFKFYSB4
 Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name        | SDF
+------------|--------
+Description | https://www.stellar.org
+Contact     | hello@stellar.org
+Node ID     | GB7H5CNUNVCM6KGG6P2LAQE4YZP4D6CHFJRSSS34VNEPDDVIFAWRJ7ZA <br/> GCM6QMP3DLRPTAZW2UZPCPX2LF3SXWXKPMP3GKFZBDSF3QZGV2G5QSTK <br/> GABMKJM6I25XI4K7U6XWMULOUQIQ27BCTMLS6BYYSOWKTBUXVRJSXHYQ
+Peer        | core-live-a.stellar.org <br/> core-live-b.stellar.org <br/> core-live-c.stellar.org 
+Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
 # Offline servers
