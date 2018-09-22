@@ -2,12 +2,12 @@
 title: Testnet
 ---
 
-The testnet is a small test Stellar network, open to developers, run by the
-Stellar Development Foundation (SDF).
+The testnet is a small test Stellar network, run by the Stellar Development
+Foundation (SDF), which is open to developers.
 
-Stellar.org runs 3 Stellar Core validators on the testnet.
+SDF runs 3 Stellar Core validators on the testnet.
 
-You can connect a node to the testnet by configuring stellar-core to use this
+You can connect a node to the testnet by configuring [stellar-core](https://github.com/stellar/stellar-core) to use this
 [configuration](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_testnet.cfg).
 
 There is also a [Horizon instance](https://horizon-testnet.stellar.org/) that
@@ -16,26 +16,28 @@ can directly interact with the testnet.
 ## What is the Stellar testnet good for?
 
 * [Creating test accounts](../get-started/create-account.md) (with funding thanks to Friendbot).
-* Developing applications and running through Stellar tutorials without the
-  potential to lose any [assets](../concepts/assets.md).
+* Developing applications and explorer tutorials on Stellar without the
+  potential to lose any valuable [assets](../concepts/assets.md).
 * Test existing applications against new releases or release candidates of
   [Stellar Core](https://github.com/stellar/stellar-core/releases) and [Horizon](https://github.com/stellar/go/releases).
-* Perform data analysis on a smaller, but non-trivial data set compared to the public network.
+* Perform data analysis on a smaller, non-trivial data set compared to the public network.
 
 ## What is the Stellar testnet not good for?
 
-* Load and stress testing. If you want to test for performance, a good place to
-  get started is by taking a look at [Stellar Core's core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval.md#networks-to-test-against).
+* Load and stress testing.
+  * If you want to test for performance, a good place to
+    get started is by taking a look at
+    [Stellar Core's core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval.md#networks-to-test-against).
 * High availability test infrastructure - SDF makes no guarantees around the
   availability of the testnet.
-* Long term storage of data on the network - [the network is ephemeral, and resets perodically](Periodic Reset of Testnet Data).
+* Long term storage of data on the network - [the network is ephemeral, and resets perodically](periodic-reset-of-testnet-data)
 * Your test infrastructure requires more control over the test environment,
   such as:
   * The ability to set the data reset frequency.
   * The need to secure private or sensitive data (before launching on the public network)
 
 Keep in mind that you can always run your own test network for use cases that
-don't work well with SDF test network.
+don't work well with SDF's testnet.
 
 ## Best Practices For Using Testnet
 
@@ -66,12 +68,13 @@ For example:
   the development of a trading client.
 
 As a maintainer of an application, you will want to think about creating a data
-set that is representative enough to test your primary use cases, and able to
-expedite testing even when testnet is not available.
+set that is representative enough to test your primary use cases, and allow for
+robust testing even when testnet is not available.
 
 A script can automate this entire process by [creating an account with
 Friendbot](../get-started/create-account.md), and submitting a set of
-transactions that are predefined as a part of your test infrastructure.
+[transactions](../concepts/transactions.md) that are predefined as a part of
+your test infrastructure.
 
 For additional questions we recommend heading over to
 [Stellar's Stack Exchange](https://stellar.stackexchange.com/).
