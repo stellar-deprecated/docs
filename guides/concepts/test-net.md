@@ -2,51 +2,76 @@
 title: Testnet
 ---
 
-The testnet is a small test Stellar network, open to developers.
+The testnet is a small test Stellar network, open to developers, run by the
+Stellar Development Foundation (SDF).
 
-Stellar.org runs 3 stellar-core validators on this test network.
+Stellar.org runs 3 Stellar Core validators on the testnet.
 
-Set your stellar-core to connect to us by using this [configuration](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_testnet.cfg).
+You can connect a node to the testnet by configuring stellar-core to use this
+[configuration](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_testnet.cfg).
 
-You can also find a [Horizon instance](https://horizon-testnet.stellar.org/) that is connected to the testnet.
+There is also a [Horizon instance](https://horizon-testnet.stellar.org/) that
+can directly interact with the testnet.
 
+## What is the Stellar testnet good for?
 
-## What is testnet good for?
-* [create test accounts](../get-started/create-account.md) (thanks to friend bot) 
-* go over tutorials on the cheap
-* test applications against the most recent release or release candidate of stellar-core / Horizon
-* play around with a non trivial (aka "random") [data set](test-corpus)
+* [Creating test accounts](../get-started/create-account.md) (with funding thanks to Friendbot).
+* Developing applications and running through Stellar tutorials without the
+  potential to lose any [assets](../concepts/assets.md).
+* Test existing applications against new releases or release candidates of
+  [Stellar Core](https://github.com/stellar/stellar-core/releases) and [Horizon](https://github.com/stellar/go/releases).
+* Perform data analysis on a smaller, but non-trivial data set compared to the public network.
 
-## What is testnet not good for?
+## What is the Stellar testnet not good for?
 
-You may have to run on a different test network for a variety of reasons, here are a few.
+* Load and stress testing. If you want to test for performance, a good place to
+  get started is by taking a look at [Stellar Core's core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval.md#networks-to-test-against).
+* High availability test infrastructure - SDF makes no guarantees around the
+  availability of the testnet.
+* Long term storage of data on the network - [the network is ephemeral, and resets perodically](Periodic Reset of Testnet Data).
+* Your test infrastructure requires more control over the test environment,
+  such as:
+  * The ability to set the data reset frequency.
+  * The need to secure private or sensitive data (before launching on the public network)
 
-* Load and stress testing. If you want to check performance, a good place to get started is the [core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval.md#networks-to-test-against)
-* high availability test infrastructure. SDF's testnet can be flaky at times.
-* storing data for long term (as the network is periodically reset).
-* If you need to control
-    * the reset frequency
-    * sensitive data (before launching on the public network)
+Keep in mind that you can always run your own test network for use cases that
+don't work well with SDF test network.
 
-## test corpus
+## Best Practices For Using Testnet
 
-### testnet vs reset
-In order to preserve a good experience for users (time to catchup, no spam, etc), testnet is periodically reset to genesis ledger.
+### Periodic Reset of Testnet Data
+In order to preserve a good experience for developers, the SDF testnet is
+periodically reset to the genesis (initial) ledger. This ensures the removal of
+spam, minimizing the time to catch up to the latest ledger, and easier
+maintenance of the system over time.
 
-When this happens:
-* all ledger entries (accounts, trustlines, etc), transactions and all historical data are cleared (both core and Horizon related data sets are cleared)
-* friendbot is repopulated
-* the network is upgraded to the latest version of the protocol
+When this happens, all ledger entries (such as accounts, trustlines, offers,
+etc), transactions, and historical data are cleared for both Stellar Core and
+Horizon.
 
-In short: don't get attached to any balances or accounts that you have on it.
+As a result, developers should not rely on the existence of any accounts, or
+the state of any balances within testnet.
 
-### test data best practice
+### Test Data Automation
 
-Most applications rely on some data to be present to do anything useful, for example:
-* wallets depend on issuers
-* trading clients depend on the existence of an order book s well as historical trades
+Since most applications rely on data being present to do anything useful, it is
+highly recommended that you have testing infrastructure that can repopulate
+testnet with useful data after a reset. Not only will this make testing more
+reliable, but it will also help you scale out your test infrastructure to
+a private test network if you choose to do so.
 
-As a maintainer of such application, you probably want to build a test corpus that is representative enough of your main use cases.
+For example:
+* Generating issuers of assets for testing the development of a wallet.
+* Generating orders on the order book (both current and historical) for testing
+  the development of a trading client.
 
-The best way to do this is to write a script that creates everything that you need by submitting transactions:
-all you will have to do before testing your application or after a reset is to create an account with friendbot (or better, have your script invoke friendbot) and run your script.
+As a maintainer of an application, you will want to think about creating a data
+set that is representative enough to test your primary use cases, and able to
+expedite testing even when testnet is not available.
+
+A script can automate this entire process by [creating an account with
+Friendbot](../get-started/create-account.md), and submitting a set of
+transactions that are predefined as a part of your test infrastructure.
+
+For additional questions we recommend heading over to
+[Stellar's Stack Exchange](https://stellar.stackexchange.com/).
