@@ -16,8 +16,8 @@ can directly interact with the testnet.
 ## What is the Stellar testnet good for?
 
 * [Creating test accounts](../get-started/create-account.md) (with funding thanks to Friendbot).
-* Developing applications and explorer tutorials on Stellar without the
-  potential to lose any valuable [assets](../concepts/assets.md).
+* Developing applications and exploring tutorials on Stellar without the
+  potential to lose any valuable [assets](assets.md).
 * Test existing applications against new releases or release candidates of
   [Stellar Core](https://github.com/stellar/stellar-core/releases) and [Horizon](https://github.com/stellar/go/releases).
 * Perform data analysis on a smaller, non-trivial data set compared to the public network.
@@ -30,7 +30,7 @@ can directly interact with the testnet.
     [Stellar Core's core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval.md#networks-to-test-against).
 * High availability test infrastructure - SDF makes no guarantees around the
   availability of the testnet.
-* Long term storage of data on the network - [the network is ephemeral, and resets perodically](periodic-reset-of-testnet-data)
+* Long term storage of data on the network - [the network is ephemeral, and resets perodically](test-net.md#periodic-reset-of-testnet-data).
 * Your test infrastructure requires more control over the test environment,
   such as:
   * The ability to set the data reset frequency.
@@ -73,7 +73,7 @@ robust testing even when testnet is not available.
 
 A script can automate this entire process by [creating an account with
 Friendbot](../get-started/create-account.md), and submitting a set of
-[transactions](../concepts/transactions.md) that are predefined as a part of
+[transactions](transactions.md) that are predefined as a part of
 your test infrastructure.
 
 For additional questions we recommend heading over to
