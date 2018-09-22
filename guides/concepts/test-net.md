@@ -31,7 +31,7 @@ can directly interact with the testnet.
 * High availability test infrastructure - SDF makes no guarantees around the
   availability of the testnet.
 * Long term storage of data on the network - [the network is ephemeral, and resets perodically](test-net.md#periodic-reset-of-testnet-data).
-* Your test infrastructure requires more control over the test environment,
+* Your testing infrastructure requires more control over the test environment,
   such as:
   * The ability to set the data reset frequency.
   * The need to secure private or sensitive data (before launching on the public network)
@@ -59,7 +59,7 @@ the state of any balances within testnet.
 Since most applications rely on data being present to do anything useful, it is
 highly recommended that you have testing infrastructure that can repopulate
 testnet with useful data after a reset. Not only will this make testing more
-reliable, but it will also help you scale out your test infrastructure to
+reliable, but it will also help you scale out your testing infrastructure to
 a private test network if you choose to do so.
 
 For example:
@@ -74,7 +74,7 @@ robust testing even when testnet is not available.
 A script can automate this entire process by [creating an account with
 Friendbot](../get-started/create-account.md), and submitting a set of
 [transactions](transactions.md) that are predefined as a part of
-your test infrastructure.
+your testing infrastructure.
 
 For additional questions we recommend heading over to
 [Stellar's Stack Exchange](https://stellar.stackexchange.com/).
