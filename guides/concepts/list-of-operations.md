@@ -81,6 +81,11 @@ Possible errors:
 
 Sends an amount in a specific asset to a destination account through a path of offers. This allows the asset sent (e.g., 450 XLM) to be different from the asset received (e.g, 6 BTC).
 
+A few things to note:
+* path payment doesn't allow intermediate offers to be from the source account as this would yield a worst exchange rate. You'll need to either split the path payment into two smaller path payments, or ensure that the source account's offers are not at the top of the order book.
+* balances are settled at the very end of the operation
+   * this is especially important when `(Destination, Destination Asset) == (Source, Send Asset)` as this provides a functionality equivalent to getting a no interest loan for the duration of the operation.
+
 Threshold: Medium
 
 Result: `PathPaymentResult`
