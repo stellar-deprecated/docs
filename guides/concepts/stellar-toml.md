@@ -4,7 +4,7 @@ title: Stellar.toml
 
 # Introduction
 
-The `stellar.toml` file is used to provide a common place where the Internet can find information about your domain's Stellar integration. Any website can publish Stellar network information. You can announce your validation key, your [federation](./federation.md) server, peers you are running, your quorum set, if you are a anchor, etc.
+The `stellar.toml` file is used to provide a common place where the Internet can find information about your domain's Stellar integration. Any website can publish Stellar network information. You can announce your validation key, your [federation](./federation.md) server, peers you are running, your quorum set, if you are an anchor, etc.
 
 The stellar.toml file is a text file in the [TOML format](https://github.com/toml-lang/toml).
 
