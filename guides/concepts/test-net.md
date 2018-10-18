@@ -54,6 +54,18 @@ Horizon.
 As a result, developers should not rely on the existence of any accounts, or
 the state of any balances within testnet.
 
+Starting in January 2019, the testnet will be reset once per quarter (every
+three months):
+
+* January
+* April
+* July
+* October
+
+SDF will announce the exact date with at least two weeks notice on the [Stellar
+Dashboard](http://dashboard.stellar.org/), along with several of Stellar's
+online developer communities.
+
 ### Test Data Automation
 
 Since most applications rely on data being present to do anything useful, it is
