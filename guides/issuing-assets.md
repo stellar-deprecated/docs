@@ -252,26 +252,49 @@ server.submitTransaction(setHomeDomain);
 
 </code-example>
 
-## Best Practices
 
-Once you begin issuing your own assets, there are a few smart practices you can follow for better security and easier management.
+## Requiring or Revoking Authorization
 
-### Specialized Issuing Accounts
+Accounts have [several flags](concepts/accounts.md#flags) related to issuing assets.
 
-In the simplest situations, you can issue assets from your everyday Stellar account. However, if you operate a financial institution or a business, you should keep a separate account specifically for issuing assets. Why?
+If you’d like to control who can be paid with your asset, or if your asset has some special purpose
+requiring sign-off from you, use the
+[`AUTHORIZATION REQUIRED` flag](concepts/assets.md#controlling-asset-holders), which requires that
+the issuing account also approves a trustline before the receiving account is allowed to be paid
+with the asset.
 
-- Easier tracking: because an asset represents a credit, it disappears when it is sent back to the account that issued it. To better track and control the amount of your asset in circulation, pay a fixed amount of the asset from the issuing account to the working account that you use for normal transactions.
+[`AUTHORIZATION REVOCABLE` flag](concepts/assets.md#controlling-asset-holders) allows you to freeze
+assets you issued in case of theft or other special circumstances. This can be useful for national
+currencies, but is not always applicable to other kinds of assets.
 
-  The issuing account can issue the asset when more of the underlying value (like actual bananas or dollar bills) is on hand and the accounts involved in public transactions never have to worry about how much is available outside Stellar.
+For most cases, you should avoid setting `AUTHORIZATION REVOCABLE` on your asset. In the past, some
+issuers have used the `AUTHORIZATION REVOCABLE` flag in order to impose lock-up periods. However,
+this is a problematic mechanism because it does not provide the user any guarantees with regard to
+when or if the assets will be unlocked.
 
-- Keeping trust simple: as your usage of Stellar grows, you might consider having multiple accounts for a variety of reasons, such as making transactions at high rates. Keeping a canonical issuing account makes it easier for others to know which account to trust.
+More importantly though, _it requires a lot of effort to undo once it has been set_. This is
+because if `AUTHORIZATION REVOCABLE` or `AUTHORIZATION REQUIRED` is disabled on an asset, it has
+no effect on existing user accounts. In order to be able to send your asset to existing accounts
+after these flags have been turned off, you will still need to run the
+[`Allow Trust`](concepts/list-of-operations.md#allow-trust) operation for each existing user account.
+This requires creating a transaction with the following operations for _every_ existing user
+account:
 
+1. [`Set Options`](concepts/list-of-operations.md#set-options) to set the flags on the issuing
+   account to `0x1` to enable `AUTHORIZATION REQUIRED`. This is necessary because you cannot run
+   the [`Allow Trust`](concepts/list-of-operations.md#allow-trust) operation without `AUTHORIZATION
+   REQUIRED` being set on your issuing account.
+2. [`Allow Trust`](concepts/list-of-operations.md#allow-trust) on the existing user's account in
+   order to authorize it. **Note:** You can actually place as many as `MAX OPERATIONS PER
+   TRANSACTION - 2` (currently the [maximum is 100](concepts/transactions.md#list-of-operations))
+   `Allow Trust` operations for different accounts to minimize the number of transactions submitted
+   to the network.
+3. [`Set Options`](concepts/list-of-operations.md#set-options) to set the flags on the issuing
+   account to `0x0` to disable `AUTHORIZATION REQUIRED`.
 
-### Requiring or Revoking Authorization
-
-Accounts have [several flags](concepts/accounts.md#flags) related to issuing assets. Setting the [`AUTHORIZATION REVOCABLE` flag](concepts/assets.md#revoking-access) allows you to freeze assets you issued in case of theft or other special circumstances. This can be useful for national currencies, but is not always applicable to other kinds of assets.
-
-If your asset is special purpose or you’d like to control who can be paid with it, use the [`AUTHORIZATION REQUIRED` flag](concepts/assets.md#controlling-asset-holders), which requires that the issuing account also approves a trustline before the receiving account is allowed to be paid with the asset.
+**These transactions are necessary** as you don't want to effect accounts that have been created
+after you initially disabled authorization on your account - otherwise, they would also need to go
+through this process.
 
 The following example sets authorization to be both required and revocable:
 
@@ -311,6 +334,30 @@ server.submitTransaction(setAuthorization);
 ```
 
 </code-example>
+
+## Best Practices
+
+Once you begin issuing your own assets, there are a few smart practices you can follow for better
+security and easier management.
+
+
+### Submit All Operations as a Single Transaction
+
+All operations on the Stellar network (create account, set options, payment, etc.) should be
+submitted as part of a single Stellar transaction. Transactions in Stellar are atomic, which means
+that all operations succeed, or they all fail together. This ensures that token distribution will
+not get stuck in a middle state, e.g. where an account has been created but has not been funded.
+
+
+### Specialized Issuing Accounts
+
+In the simplest situations, you can issue assets from your everyday Stellar account. However, if you operate a financial institution or a business, you should keep a separate account specifically for issuing assets. Why?
+
+- Easier tracking: because an asset represents a credit, it disappears when it is sent back to the account that issued it. To better track and control the amount of your asset in circulation, pay a fixed amount of the asset from the issuing account to the working account that you use for normal transactions.
+
+  The issuing account can issue the asset when more of the underlying value (like actual bananas or dollar bills) is on hand and the accounts involved in public transactions never have to worry about how much is available outside Stellar.
+
+- Keeping trust simple: as your usage of Stellar grows, you might consider having multiple accounts for a variety of reasons, such as making transactions at high rates. Keeping a canonical issuing account makes it easier for others to know which account to trust.
 
 
 ### Check Trust Before Paying

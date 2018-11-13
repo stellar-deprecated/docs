@@ -268,7 +268,7 @@ Possible errors:
 ## Allow Trust
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.allowTrust) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AllowTrustOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#AllowTrustBuilder)
 
-Updates the `authorized` flag of an existing trustline. This can only be called by the issuer of a trustline's [asset](./assets.md).
+Updates the `authorized` flag of an existing trustline. This can only be called by the issuer of a trustline's [asset](./assets.md), and only when `AUTHORIZATION REQUIRED` (at the minimum) has been set on the issuer's account.
 
 The issuer can only clear the `authorized` flag if the issuer has the `AUTH_REVOCABLE_FLAG` set. Otherwise, the issuer can only set the `authorized` flag.
 
