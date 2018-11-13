@@ -285,7 +285,10 @@ account:
    the [`Allow Trust`](concepts/list-of-operations.md#allow-trust) operation without `AUTHORIZATION
    REQUIRED` being set on your issuing account.
 2. [`Allow Trust`](concepts/list-of-operations.md#allow-trust) on the existing user's account in
-   order to authorize it.
+   order to authorize it. **Note:** You can actually place as many as `MAX OPERATIONS PER
+   TRANSACTION - 2` (currently the [maximum is 100](concepts/transactions.md#list-of-operations))
+   `Allow Trust` operations for different accounts to minimize the number of transactions submitted
+   to the network.
 3. [`Set Options`](concepts/list-of-operations.md#set-options) to set the flags on the issuing
    account to `0x0` to disable `AUTHORIZATION REQUIRED`.
 
