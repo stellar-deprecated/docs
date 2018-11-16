@@ -125,12 +125,12 @@ Peer 		     |  de.stellar.goodx.network (Europe)
 Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -------------
-Name        | GoodX Network [US]
+Name        | GoodX Network [DE2]
 ------------|------------------
 Description | GoodX Network
 Contact   	 | Alex - stellar@goodx.network (email)
 NodeID 		   | GB7ESEJVQQVNE5DOXVX6UUIF4LDH7E5OVKTIVJ72FPU3AL7XGTY4A6MH
-Peer 		     |  us.stellar.goodx.network (Europe)
+Peer 		     |  de2.stellar.goodx.network (Europe)
 Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
