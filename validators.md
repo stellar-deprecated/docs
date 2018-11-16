@@ -116,12 +116,21 @@ NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -------------
-Name        | GoodX Network
+Name        | GoodX Network [DE]
 ------------|------------------
 Description | GoodX Network
 Contact   	 | Alex - stellar@goodx.network (email)
 NodeID 		   | GASN57EFNZWME73BJXYZUTCD34EPX4KIIZQTQDTMBWWVH6JIZJUCBGQX
 Peer 		     |  de.stellar.goodx.network (Europe)
+Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+-------------
+Name        | GoodX Network [DE2]
+------------|------------------
+Description | GoodX Network
+Contact   	 | Alex - stellar@goodx.network (email)
+NodeID 		   | GB7ESEJVQQVNE5DOXVX6UUIF4LDH7E5OVKTIVJ72FPU3AL7XGTY4A6MH
+Peer 		     |  de2.stellar.goodx.network (Europe)
 Status 		   | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
