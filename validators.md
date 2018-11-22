@@ -2,16 +2,17 @@ Stellar.org supports the network by running a few full validators and Horizon in
 
 If you would like to run a validator please:
  - Read the [admin guide](https://www.stellar.org/developers/stellar-core/learn/admin.html).
- - Join the #validators channel on [our slack](http://slack.stellar.org).
+ - Join the #validators channel on [our Keybase team](https://keybase.io/team/stellar.public).
  - See the [example config](./other/stellar-core-validator-example.cfg) for setting up your validator.
  - Start your node.
  - Open a pull request to list it here.
 
-For general validator support, please check out [the stellar-public #validator channel.](https://stellar-public.slack.com/messages/C0AJ5765T)
+For general validator support, please check out [the stellar.public #validator channel](https://keybase.io/team/stellar.public).
 
-Two good community created tools for seeing the live status of the validators:
+A few community created tools for seeing the live status of validators:
 - https://stellarbeat.io
 - https://mystellar.tools/explorer/network
+- https://quorumexplorer.com
 
 ## None of the following validators are recommended by Stellar Development Foundation.
 
@@ -293,6 +294,7 @@ Node 2 | GC5A5WKAPZU5ASNMLNCAMLW7CVHMLJJAKHSZZHE2KWGAJHZ4EW6TQ7PB<br/>(peer ohio
 Node 3 | GBRILQP7RHIEBJPLGZ5XP6YWTYFSOQARAKECACMEMGXR53X6IX75E2L5<br/>(peer ohio-3.stellar.stellarport.io)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+------
 Name | stellar.smoove.net
 -----|--------
 Contact | Chris Erice - cerice@pm.me
