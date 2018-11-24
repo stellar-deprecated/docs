@@ -329,6 +329,14 @@ Contact | umbrel (slack) s@umbrellab.com (email)
 NodeID | GD7FVHL2KUTUYNOJFRUUDJPDRO2MAZJ5KP6EBCU6LKXHYGZDUFBNHXQI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+Name | White Wallet
+-----|--------
+Description | thewwallet.com
+Contact | support@thewwallet.com (email)
+NodeID | GBH42X7GG5TQLBMKY2KNYQ6KY7XOUALQCUUZQH5EOLVNULDJMLCNUNJP
+Peer | validator1.thewwallet.com
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 Name | xaviablaza
 -----|--------
 Description | xaviablaza's validator
