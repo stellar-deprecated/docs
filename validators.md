@@ -44,6 +44,15 @@ Contact | coinplaycenter@gmail.com (email), soufrilasp@gmail.com (email), Panagi
 NodeID | GBFKPET5EK4YDXAD24CQV5XIRFVHQPDPHU2T34ELEMKUPNPFG2MAZBBJ
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+------
+Name | COINQVEST
+-----|--------
+Description | https://www.coinqvest.com/.well-known/stellar.toml
+Contact | service[at]coinqvest.com
+NodeID | GADLA6BJK6VK33EM2IDQM37L5KGVCY5MSHSHVJA4SCNGNUIEOTCR6J5T GD6SZQV3WEJUH352NTVLKEV2JM2RH266VPEM7EH5QLLI7ZZAALMLNUVN
+Peer |  finland.stellar.coinqvest.com (Finland) <br/> germany.stellar.coinqvest.com	(Germany)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 -----
 Name | Collegecoin
 ---|---
