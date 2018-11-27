@@ -29,6 +29,7 @@ While you’ve now learned to handle the core operations of an anchor, there are
 - [Operate your own node and horizon server on the Stellar network](https://stellar.org/developers/stellar-core/software/admin.html). Doing so makes you less reliant on other providers and makes the whole Stellar network stronger.
 - Read our guide on [security](../security.md).
 - Make offers to [buy and sell assets on the distributed exchange](../concepts/exchange.md).
+- Use a [market making bot to automate liquidity provisioning for your asset](https://github.com/lightyeario/kelp).
 - Explore [multisignature systems](../concepts/multi-sig.md) to make critical accounts more secure.
 - Use [channels](../channels.md) to submit more transactions at a time.
 - Talk with other Stellar developers in [Stellar’s Slack community](http://slack.stellar.org/)
