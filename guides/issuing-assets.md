@@ -408,6 +408,13 @@ System.out.println(trusted ? "Trusted :)" : "Not trusted :(");
 </code-example>
 
 
+## Provide Liquidity for your Asset
+
+When someone tries to buy or sell your asset on the decentralized exchange there needs to be a counterparty with whom they can trade. In other words, there needs to be enough [liquidity][liquidity] for your asset.
+
+This can be solved by using a [liquidity provider][market-maker]. This can be someone who is contracted to provide this service for a fee, or as the asset issuer, you can provide this liquidity by using a [market making bot][kelp].
+
+
 ## More About Assets
 
 Now that you have a basic understanding of custom assets, get familiar with the technical details in our [assets concept document](concepts/assets.md).
@@ -415,3 +422,6 @@ Now that you have a basic understanding of custom assets, get familiar with the 
 
 [ISO 4217]: https://en.wikipedia.org/wiki/ISO_4217
 [ISIN]: https://en.wikipedia.org/wiki/International_Securities_Identification_Number
+[liquidity]: https://en.wikipedia.org/wiki/Market_liquidity
+[market-maker]: https://en.wikipedia.org/wiki/Market_maker
+[kelp]: https://github.com/lightyeario/kelp
