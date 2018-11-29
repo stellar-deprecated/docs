@@ -116,6 +116,16 @@ NodeID | GBFZFQRGOPQC5OEAWO76NOY6LBRLUNH4I5QYPUYAK53QSQWVTQ2D4FT5
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -------------
+
+Name | GIN Platform [DE]
+-----|--------
+Description | GIN Platform validator; Horizon available via https://de.stellar.ginplatform.io
+Contact | dragos.badea@ginplatform.io (email)
+Peer | de.stellar.ginplatform.io
+NodeID | GADLCP34TSC2SFN4SJRK3XIQXEIO2YET2YYX67IKF3HRAWI45R2GSAGP
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+-------------
 Name        | GoodX Network [DE]
 ------------|------------------
 Description | GoodX Network
