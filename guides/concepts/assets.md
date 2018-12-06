@@ -22,7 +22,7 @@ In the example above, you must explicitly trust Scott before you can hold orange
 To trust an issuing account, you create a **trustline.** Trustlines are entries that persist in the Stellar ledger. They
 track the limit for which your account trusts the issuing account and the amount of credit from the issuing account that your account currently holds.
 
-Starting in protocol version 10, each trustline also tracks the liabilities for the corresponding account and asset. Buying liabilities equal the total amount of this asset offered to buy aggregated over all offers owned by this account, and selling liabilities equal the total amount of this asset offered to sell aggregated over all offers owned by this account. A trustline must always have balance sufficiently large to satisfy its selling liabilities, and a balance sufficiently below its limit to accomodate its buying liabilities.
+Starting in protocol version 1.0, each trustline also tracks the liabilities for the corresponding account and asset. Buying liabilities equal the total amount of this asset offered to buy aggregated over all offers owned by this account, and selling liabilities equal the total amount of this asset offered to sell aggregated over all offers owned by this account. A trustline must always have balance sufficiently large to satisfy its selling liabilities, and a balance sufficiently below its limit to accomodate its buying liabilities.
 
 ## Lumens (XLM)
 **Lumens (XLM)** are the native currency of the network. A lumen is the only asset type that can be used on the Stellar
