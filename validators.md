@@ -247,13 +247,13 @@ Peer        | validator.stellar.republic.co
 Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
-Name | satoshipay
+Name | SatoshiPay
 -----|--------
 Description | https://satoshipay.io/
-Contact | andrenarchy (slack)
-Node 1 | GC5SXLNAM3C4NMGK2PXK4R34B5GNZ47FYQ24ZIBFDFOCU6D4KBN4POAE<br/>(peer stellar1.satoshipay.io)
-Node 2 | GBJQUIXUO4XSNPAUT6ODLZUJRV2NPXYASKUBY4G5MYP3M47PCVI55MNT<br/>(peer stellar2.satoshipay.io)
-Node 3 | GAK6Z5UVGUVSEK6PEOCAYJISTT5EJBB34PN3NOLEQG2SUKXRVV2F6HZY<br/>(peer stellar3.satoshipay.io)
+Contact | André Gaul (keybase/slack: andrenarchy)
+DE (Frankfurt) | Public key: GC5SXLNAM3C4NMGK2PXK4R34B5GNZ47FYQ24ZIBFDFOCU6D4KBN4POAE<br/>Peer: stellar-de-fra.satoshipay.io<br/>History: https://stellar-history-de-fra.satoshipay.io
+SG (Singapore) | Public key: GBJQUIXUO4XSNPAUT6ODLZUJRV2NPXYASKUBY4G5MYP3M47PCVI55MNT<br/>Peer: stellar-sg-sin.satoshipay.io<br/>History: https://stellar-history-sg-sin.satoshipay.io
+US (Iowa) | Public key: GAK6Z5UVGUVSEK6PEOCAYJISTT5EJBB34PN3NOLEQG2SUKXRVV2F6HZY<br/>Peer: stellar-us-iowa.satoshipay.io<br/>History: https://stellar-history-us-iowa.satoshipay.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ---------
