@@ -220,6 +220,16 @@ Peer | stellar0.numerotron.com
 Node ID | GC7WI424OUF6UVYOLVLZD7IOW7M6HTJTIGDX4USFMTAG3763PYOXGN7Q
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
+------
+Name | Ocyan
+-----|--------
+Description | https://ocyan.com
+Contact | Evangelos Pappas <epappas@ocyan.com> - (keybase:epappas)
+Peer | stellar.ocyan.com
+Node ID | GA5MLJBI3PP4I66XZMZZDGOD4NFL3QM7B6EYHEWBWY67FYD3ZO4UZRWV
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 Name | paywith.glass (Ireland)
 -----|--------
