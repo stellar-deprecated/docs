@@ -189,8 +189,8 @@ func main() {
 Now that you’ve got an account, you can [start sending and receiving payments](transactions.md).
 
 <div class="sequence-navigation">
-  <a class="button button--previous" href="index.html">Back: Stellar Network Overview</a>
-  <a class="button button--next" href="transactions.html">Next: Send and Receive Money</a>
+  <a class="button button--previous" href="index.md">Back: Stellar Network Overview</a>
+  <a class="button button--next" href="transactions.md">Next: Send and Receive Money</a>
 </div>
 
 
