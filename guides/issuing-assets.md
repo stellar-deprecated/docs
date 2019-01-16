@@ -46,7 +46,7 @@ To issue a new type of asset, all you need to do is choose a code. It can be any
 
 However, other people can’t receive your asset until they’ve chosen to trust it. Because a Stellar asset is really a credit, you should trust that the issuer can redeem that credit if necessary later on. You might not want to trust your neighbor to issue banana assets if they don’t even have a banana plant, for example.
 
-An account can create a *trustline,* or a declaration that it trusts a particular asset, using the [change trust operation](concepts/list-of-operations.md#change-trust). A trustline can also be limited to a particular amount. If your banana-growing neighbor only has a few plants, you might not want to trust them for more than about 200 bananas. *Note: each trustline increases an account’s minimum balance by 0.5 lumens (the base reserve). For more details, see the [fees guide](concepts/fees.html#minimum-balance).*
+An account can create a *trustline,* or a declaration that it trusts a particular asset, using the [change trust operation](concepts/list-of-operations.md#change-trust). A trustline can also be limited to a particular amount. If your banana-growing neighbor only has a few plants, you might not want to trust them for more than about 200 bananas. *Note: each trustline increases an account’s minimum balance by 0.5 lumens (the base reserve). For more details, see the [fees guide](concepts/fees.md#minimum-balance).*
 
 Once you’ve chosen an asset code and someone else has created a trustline for your asset, you’re free to start making payment operations to them using your asset. If someone you want to pay doesn’t trust your asset, you might also be able to use the [distributed exchange](concepts/exchange.md).
 

@@ -576,7 +576,7 @@ Agora que você consegue enviar e receber pagamentos usando a API do Stellar, vo
 - [Compliance](../compliance-protocol.md)
 
 <div class="sequence-navigation">
-  <a class="button button--previous" href="create-account.html">Voltar para Passo 2: Criar uma Conta</a>
+  <a class="button button--previous" href="create-account.md">Voltar para Passo 2: Criar uma Conta</a>
 </div>
 
 

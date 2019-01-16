@@ -191,7 +191,7 @@ if err != nil { log.Fatal(err) }
 ## Facilidade de Descoberta e Metainformações
 
 Outra coisa importante ao emitir um ativo é fornecer informações claras sobre o que o seu ativo representa. Essas informações podem ser descobertas e exibidas por clientes para que usuários saibam exatamente o que eles estão ganhando ao deter o seu ativo.
-Para tanto, é preciso fazer duas coisas simples. Primeiro, adicione uma seção em seu [arquivo stellar.toml](concepts/stellar-toml.html) que contenha os seguintes metacampos necessários:
+Para tanto, é preciso fazer duas coisas simples. Primeiro, adicione uma seção em seu [arquivo stellar.toml](concepts/stellar-toml.md) que contenha os seguintes metacampos necessários:
 ```
 # stellar.toml de um ativo hipotético
 [[CURRENCIES]]
