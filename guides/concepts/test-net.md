@@ -66,6 +66,8 @@ SDF will announce the exact date with at least two weeks notice on the [Stellar
 Dashboard](http://dashboard.stellar.org/), along with several of Stellar's
 online developer communities.
 
+The testnet will always restart on the announced reset date at 0900 UTC.
+
 ### Test Data Automation
 
 Since most applications rely on data being present to do anything useful, it is
