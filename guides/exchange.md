@@ -279,7 +279,7 @@ For more information, check out the [federation guide](./concepts/federation.md)
 ### Anchor
 If you're an exchange, it's easy to become a Stellar anchor as well. Anchors are entities people trust to hold their deposits and issue credits into the Stellar network. As such, they act a bridge between existing currencies and the Stellar network.  Becoming a anchor could potentially expand your business.
 
-To learn more about what it means to be an anchor, see the [anchor guide](./anchor/index.html).
+To learn more about what it means to be an anchor, see the [anchor guide](./anchor/).
 
 ### Accepting Other Tokens 
 If you'd like to accept other non-lumen tokens follow these instructions. 

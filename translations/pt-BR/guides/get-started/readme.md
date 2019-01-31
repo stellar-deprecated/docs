@@ -15,7 +15,7 @@ O Stellar.org mantém SDKs baseados em [JavaScript](https://github.com/stellar/j
 
 ## A Base da Rede: Stellar Core
 
-Nos bastidores, cada servidor do Horizon se conecta ao **[Stellar Core](../../stellar-core/learn/admin.html), a base da rede Stellar.** O software do Stellar Core faz o trabalho pesado de validar e concordar com outras instâncias do Core sobre o status de toda transação por meio do [Protocolo de Consenso Stellar](../concepts/scp.html), ou Stellar Consensus Protocol (SCP). A rede Stellar em si é um conjunto de Stellar Cores conectados, sendo rodados por vários indivíduos e entidades ao redor do mundo. Algumas instâncias têm um servidor do Horizon com que é possível se comunicar, enquanto que outras existem apenas para dar mais confiabilidade à rede como um todo.
+Nos bastidores, cada servidor do Horizon se conecta ao **[Stellar Core](https://www.stellar.org/developers/stellar-core/software/admin.html), a base da rede Stellar.** O software do Stellar Core faz o trabalho pesado de validar e concordar com outras instâncias do Core sobre o status de toda transação por meio do [Protocolo de Consenso Stellar](../concepts/scp.md), ou Stellar Consensus Protocol (SCP). A rede Stellar em si é um conjunto de Stellar Cores conectados, sendo rodados por vários indivíduos e entidades ao redor do mundo. Algumas instâncias têm um servidor do Horizon com que é possível se comunicar, enquanto que outras existem apenas para dar mais confiabilidade à rede como um todo.
 
 A maneira mais fácil de instalar o Horizon é usando a [imagem **stellar/quickstart** do docker](https://hub.docker.com/r/stellar/quickstart/).
 

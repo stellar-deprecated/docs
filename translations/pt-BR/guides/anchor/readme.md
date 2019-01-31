@@ -94,7 +94,7 @@ Quando alguém estiver enviando uma transação a você, o fluxo é ligeiramente
 5. O servidor bridge monitora a rede Stellar procurando pela transação e a envia a seu servidor compliance para verificar que era a mesma transação aprovada no passo 3.1.
 6. O servidor bridge contata um serviço que você implementou para notificá-lo sobre a transação. Você pode usar este passo para atualizar os saldos das contas de seus clientes.
 
-**Por mais que estes passos pareçam complicados, os serviços bridge, federation e compliance do Stellar fazem a maior parte do trabalho.** Você só precisa implementar quatro callbacks e criar um arquivo [stellar.toml](../concepts/stellar-toml.html) onde outros podem encontrar a URL de seus serviços.
+**Por mais que estes passos pareçam complicados, os serviços bridge, federation e compliance do Stellar fazem a maior parte do trabalho.** Você só precisa implementar quatro callbacks e criar um arquivo [stellar.toml](../concepts/stellar-toml.md) onde outros podem encontrar a URL de seus serviços.
 
 No resto deste guia, veremos passo a passo como configurar cada parte dessa infraestrutura.
 

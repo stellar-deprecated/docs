@@ -279,7 +279,7 @@ Para mais informações, dê uma olhada no [guia sobre federation](./concepts/fe
 ### Âncora
 Se você for uma exchange, é fácil se tornar uma âncora Stellar também. Os pontos de integração são muito parecidos, com o mesmo nível de dificuldade. Tornar-se uma âncora poderia expandir seus negócios.
 
-Para aprender mais sobre o que significa ser uma âncora, veja o [guia para âncoras](./anchor/index.html).
+Para aprender mais sobre o que significa ser uma âncora, veja o [guia para âncoras](./anchor/).
 
 ### Aceitar ativos não nativos
 Primeiro, abra uma [trustline](https://www.stellar.org/developers/guides/concepts/assets.html#trustlines) com a conta emissora do ativo não nativo; sem isso, não é possível começar a aceitar esse ativo.

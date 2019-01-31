@@ -94,7 +94,7 @@ When someone is sending a transaction to you, the flow is slightly different:
 5. The bridge server monitors the Stellar network for the transaction and sends it to your compliance server to verify that it was the same transaction you approved in step 3.1.
 6. The bridge server contacts a service you implement to notify you about the transaction. You can use this step to update your customer’s account balances.
 
-**While these steps can seem complicated, Stellar’s bridge, federation, and compliance services do most of the work.** You only need to implement four callbacks and create a [stellar.toml](../concepts/stellar-toml.html) file where others can find the URL of your services.
+**While these steps can seem complicated, Stellar’s bridge, federation, and compliance services do most of the work.** You only need to implement four callbacks and create a [stellar.toml](../concepts/stellar-toml.md) file where others can find the URL of your services.
 
 In the rest of this guide, we’ll walk through setting up each part of this infrastructure step by step.
 

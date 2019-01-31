@@ -15,7 +15,7 @@ Stellar.org maintains [JavaScript](https://github.com/stellar/js-stellar-sdk), [
 
 ## Network Backbone: Stellar Core
 
-Behind the scenes, every Horizon server connects to **[Stellar Core](../../stellar-core/learn/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing with other instances of Core on the status of every transaction through the [Stellar Consensus Protocol](../concepts/scp.html) (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
+Behind the scenes, every Horizon server connects to **[Stellar Core](https://www.stellar.org/developers/stellar-core/software/admin.html), the backbone of the Stellar network.** The Stellar Core software does the hard work of validating and agreeing with other instances of Core on the status of every transaction through the [Stellar Consensus Protocol](../concepts/scp.md) (SCP). The Stellar network itself is a collection of connected Stellar Cores run by various individuals and entities around the world. Some instances have a Horizon server you can communicate with, while others exist only to add reliability to the overall network.
 
 The easiest way to install Stellar Core is by using the [**stellar/quickstart** docker image](https://hub.docker.com/r/stellar/quickstart/).
 
