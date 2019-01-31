@@ -5,7 +5,7 @@ title: Stellar Software
 
 Pre-built software and services you can run on your own infrastructure, provided by Stellar.org.
 
-## [Stellar Core](https://www.stellar.org/developers/stellar-core/software/admin.html)
+## [Stellar Core](../stellar-core/software/admin.md)
 Stellar Core is the backbone of the Stellar network and does the hard work of validating and agreeing on the status of every transaction with other instances of Core through the Stellar Consensus Protocol (SCP).
 
 ## [Horizon](https://github.com/stellar/go/tree/master/services/horizon)
