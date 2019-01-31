@@ -30,6 +30,10 @@ Time bounds are limitations on the time period over which a transaction is valid
 
 This overview presents two common design patterns that can be used to create SSCs on the Stellar Network. The transactions can be translated to API requests or can be executed using [Stellar Laboratory](https://www.stellar.org/laboratory/).
 
+**Note: The Stellar network's core protocol is still being actively developed, and currently has
+no guarantee regarding the backwards and forwards compatibility regarding long lived smart
+contracts at this time.**
+
 
 ## 2-Party Multisignature Escrow Account with Time Lock & Recovery
 ### Use Case Scenario
