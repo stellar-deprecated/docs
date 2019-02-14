@@ -130,8 +130,6 @@ func main () {
 		panic(err)
 	}
 
-	passphrase := network.TestNetworkPassphrase
-
 	tx, err := build.Transaction(
 		build.TestNetwork,
 		build.SourceAccount{source},
@@ -250,12 +248,12 @@ What exactly happened there? Let’s break it down.
 
     ```go
     tx, err := build.Transaction(
-		build.Network{passphrase},
-		build.SourceAccount{from},
+		build.TestNetwork,
+		build.SourceAccount{source},
 		build.AutoSequence{horizon.DefaultTestNetClient},
 		build.MemoText{"Test Transaction"},
 		build.Payment(
-			build.Destination{to},
+			build.Destination{destination},
 			build.NativeAmount{"10"},
 		),
 	)
@@ -296,7 +294,8 @@ What exactly happened there? Let’s break it down.
     ```
 
     ```go
-    txe, err := tx.Sign(from)
+    txe, err := tx.Sign(source)
+    txeB64, err := txe.Base64()
     ```
 
     </code-example>
@@ -319,7 +318,7 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-**IMPORTANT** It's possible that you will not receive a response from Horizon server due to a bug, network conditions, etc. In such situation it's impossible to determine the status of your transaction. That's why you should always save a built transaction (or transaction encoded in XDR format) in a variable or a database and resubmit it if you don't know it's status. If the transaction has already been successfully applied to the ledger, Horizon will simply return the saved result and not attempt to submit the transaction again. Only in cases where a transaction’s status is unknown (and thus will have a chance of being included into a ledger) will a resubmission to the network occur.
+**IMPORTANT** It's possible that you will not receive a response from the Horizon server due to a bug, network conditions, etc. In such a situation it's impossible to determine the status of your transaction. That's why you should always save a built transaction (or transaction encoded in XDR format) in a variable or a database and resubmit it if you don't know its status. If the transaction has already been successfully applied to the ledger, Horizon will simply return the saved result and not attempt to submit the transaction again. Only in cases where a transaction’s status is unknown (and thus will have a chance of being included into a ledger) will a resubmission to the network occur.
 
 ## Receive Payments
 
