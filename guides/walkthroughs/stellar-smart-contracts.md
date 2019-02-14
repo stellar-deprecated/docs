@@ -48,6 +48,10 @@ This overview presents two common design patterns that can be used to create SSC
 Network. The transactions can be translated to API requests or can be executed using
 [Stellar Laboratory](https://www.stellar.org/laboratory/).
 
+**Note: The Stellar network's core protocol is still being actively developed, and currently has
+no guarantee regarding the backwards and forwards compatibility regarding long lived smart
+contracts at this time.**
+
 ## 2-Party Multisignature Escrow Account with Time Lock & Recovery
 ### Use Case Scenario
 Ben Bitdiddle sells 50 CODE tokens to Alyssa P. Hacker, under the condition that Alyssa won’t
