@@ -312,11 +312,21 @@ Node 2 | GC5A5WKAPZU5ASNMLNCAMLW7CVHMLJJAKHSZZHE2KWGAJHZ4EW6TQ7PB<br/>(peer ohio
 Node 3 | GBRILQP7RHIEBJPLGZ5XP6YWTYFSOQARAKECACMEMGXR53X6IX75E2L5<br/>(peer ohio-3.stellar.stellarport.io)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+----
 Name | stellar.smoove.net
 -----|--------
 Contact | Chris Erice - cerice@pm.me
 Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU<br/>(Toronto peer v1.stellar.smoove.net)
 Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG<br/>(Singapore peer v2.stellar.smoove.net)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+----
+Name | stellar.sui.li
+-----|--------
+Description | https://stellar.sui.li
+Contact | [github.com/sui77](https://github.com/sui77/) - s@sui.li
+Peer | stellar.sui.li
+Node ID | GBHMXTHDK7R2IJFUIDIUWMR7VAKKDSIPC6PT5TDKLACEAU3FBAR2XSUI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
