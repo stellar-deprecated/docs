@@ -15,7 +15,7 @@ Because the seed must be kept secret, the first step in creating an account is c
 ```js
 // create a completely new and unique pair of keys
 // see more about KeyPair objects: https://stellar.github.io/js-stellar-sdk/Keypair.html
-var pair = StellarSdk.Keypair.random();
+const pair = StellarSdk.Keypair.random();
 
 pair.secret();
 // SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
@@ -68,19 +68,20 @@ To create a test account, send Friendbot the public key you created. It’ll cre
 ```js
 // The SDK does not have tools for creating test accounts, so you'll have to
 // make your own HTTP request.
-var request = require('request');
-request.get({
-  url: 'https://friendbot.stellar.org',
-  qs: { addr: pair.publicKey() },
-  json: true
-}, function(error, response, body) {
-  if (error || response.statusCode !== 200) {
-    console.error('ERROR!', error || body);
-  }
-  else {
-    console.log('SUCCESS! You have a new account :)\n', body);
-  }
-});
+
+// if you're trying this on Node, install the `node-fetch` library and
+// uncomment the next line:
+// const fetch = require('node-fetch');
+
+try {
+  const response = await fetch(
+    `https://friendbot.stellar.org?addr=${encodeURIComponent(pair.publicKey())}`
+  );
+  const responseJSON = await response.json();
+  console.log("SUCCESS! You have a new account :)\n", responseJSON);
+} catch (e) {
+  console.error("ERROR!", e);
+}
 ```
 
 ```java
@@ -109,7 +110,7 @@ import (
 )
 
 func main() {
-	// pair is the pair that was generated from previous example, or create a pair based on 
+	// pair is the pair that was generated from previous example, or create a pair based on
 	// existing keys.
 	address := pair.Address()
 	resp, err := http.Get("https://friendbot.stellar.org/?addr=" + address)
@@ -133,14 +134,13 @@ Now for the last step: Getting the account’s details and checking its balance.
 <code-example name="Getting account details">
 
 ```js
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
 
 // the JS SDK uses promises for most actions, such as retrieving an account
-server.loadAccount(pair.publicKey()).then(function(account) {
-  console.log('Balances for account: ' + pair.publicKey());
-  account.balances.forEach(function(balance) {
-    console.log('Type:', balance.asset_type, ', Balance:', balance.balance);
-  });
+const account = await server.loadAccount(pair.publicKey());
+console.log("Balances for account: " + pair.publicKey());
+account.balances.forEach(function(balance) {
+  console.log("Type:", balance.asset_type, ", Balance:", balance.balance);
 });
 ```
 
@@ -193,9 +193,6 @@ Now that you’ve got an account, you can [start sending and receiving payments]
   <a class="button button--next" href="transactions.md">Next: Send and Receive Money</a>
 </div>
 
-
 [^1]: A private key is still used to encrypt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
-
 [^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances. For more on minimum balances, see [fees](../concepts/fees.md#minimum-account-balance)
-
 [^3]: CoinMarketCap maintains a list of exchanges that sell lumens at http://coinmarketcap.com/currencies/stellar/#markets
