@@ -114,7 +114,7 @@ Here's an example of completed Issuer Documentation:
 
 ### POINT OF CONTACT DOCUMENTATION
 
-Information about the primary point of contact for your organization goes into a TOML **list** called `[[PRINCIPALS]]`.  You need to put contact information for *at least one person* at your organization.  If you don't, exchanges can't verify your offering, and it is unlikely that buyers will be interested.
+Information about the primary point(s) of contact for your organization goes into a TOML [array of tables](https://github.com/toml-lang/toml#array-of-tables) called `[[PRINCIPALS]]`.  You need to put contact information for *at least one person* at your organization.  If you don't, exchanges can't verify your offering, and it is unlikely that buyers will be interested. Multiple principals can be added with additional `[[PRINCIPALS]]` entries.
 
 **Required**: All token issuers should include the following information about their point of contact:
 
@@ -152,7 +152,7 @@ Here's an example of completed Point of Contact Documentation for one principal:
 
 ### TOKEN DOCUMENTATION
 
-Information about your token goes into a TOML **list** called `[[CURRENCIES]]`.  If you are issuing multiple tokens, you can include them all in one stellar.toml.  Each token should have its own `[[CURRENCIES]]` list.
+Information about your token(s) goes into a TOML [array of tables](https://github.com/toml-lang/toml#array-of-tables) called `[[CURRENCIES]]`.  If you are issuing multiple tokens, you can include them all in one stellar.toml.  Each token should have its own `[[CURRENCIES]]` entry.
 
 **Required**: All issuers must provide the following information for each token they issue:
 
