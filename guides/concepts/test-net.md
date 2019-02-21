@@ -47,8 +47,8 @@ periodically reset to the genesis (initial) ledger. Resets declutter the network
 spam, minimize the time required to catch up to the latest ledger, and help
 maintain the system over time.
 
-When this happens, all ledger entries (such as accounts, trustlines, offers,
-etc), transactions, and historical data are cleared for both Stellar Core and
+A reset clears all ledger entries (such as accounts, trustlines, offers,
+etc), transactions, and historical data from both Stellar Core and
 Horizon, which is why developers should not rely on the persistence of any accounts or on the state of any balances when using testnet.
 
 After a reset, you will need to take a few steps to re-join and re-synch to the testnet.  Those steps are outlined [here](https://github.com/stellar/packages#testnet-reset), along with line-by-line instructions for people using core + horizon ubuntu packages.  If you need help with other packages, check [Stellar's Stack Exchange](https://stellar.stackexchange.com/) for guidance.
