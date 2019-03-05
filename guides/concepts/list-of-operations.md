@@ -221,12 +221,12 @@ Parameters:
 |inflation Destination| account ID| Account of the inflation destination.|
 |Clear flags| integer| Indicates which flags to clear. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer subtracts from the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
 |Set flags| integer| Indicates which flags to set. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer adds onto the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
-|Master weight| integer| A number from 0-255 representing the weight of the master key. This account may also add other keys with which to sign transactions using `signer` below. If the weight of the master key is ever updated to 0, the master key is considered to be an invalid key and cannot be used to sign transactions (even for operations with a threshold value of 0).|
-|Low threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a low threshold](./multi-sig.md).|
-|Medium threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.md).|
-|High threshold| integer| A number from 0-255 representing the threshold this account sets on all operations it performs that have [a high threshold](./multi-sig.md). |
+|Master weight| integer| A number from 0-255 (inclusive) representing the weight of the master key. This account may also add other keys with which to sign transactions using `signer` below. If the weight of the master key is ever updated to 0, the master key is considered to be an invalid key and cannot be used to sign transactions (even for operations with a threshold value of 0).|
+|Low threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a low threshold](./multi-sig.md).|
+|Medium threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.md).|
+|High threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a high threshold](./multi-sig.md). |
 |Home domain| string| Sets the home domain of an account. See [Federation](./federation.md).|
-|Signer| {Public Key, weight}| Add, update, or remove a signer from an account. Signer weight is a number from 0-255. The signer is deleted if the weight is 0.|
+|Signer| {Public Key, weight}| Add, update, or remove a signer from an account. Signer weight is a number from 0-255 (inclusive) . The signer is deleted if the weight is 0.|
 
 Possible errors:
 
