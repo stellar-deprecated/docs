@@ -45,7 +45,7 @@ For most cases, it is recommended to set thresholds such that `low <= medium <= 
 ## Additional signing keys
 Accounts are identified by a public key. The private key that corresponds to this public key is called the **master key**. Additional signing keys can be added to the account using the [Set Options](./list-of-operations.md#set-options) operation.
 
-If the weight of the master key is ever updated to 0, the master key is considered to be an invalid key and you cannot sign any transactions with it (even for operations with a threshold value of 0). If there are other signers listed on the account, they can still continue to sign transactions.
+If the weight of the master key is updated to 0, it cannot be used to sign transactions (even for operations with a threshold value of 0), until restored by other signers meeting the high threshold. If there are other signers listed on the account, they can still continue to sign transactions.
 
 "Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight. 
 
@@ -153,4 +153,4 @@ Source account setup:
   medium threshold: 0
   high threshold: 0
 ```
-Note that even though the thresholds are 0 here, the master key cannot successfully sign a transaction because it's own weight is 0, which makes it an invalid signing key.
+Note that even though the thresholds are 0 here, the master key cannot successfully sign a transaction because its own weight is 0.
