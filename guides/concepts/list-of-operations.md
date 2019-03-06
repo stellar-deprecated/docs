@@ -226,7 +226,7 @@ Parameters:
 |Medium threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.md).|
 |High threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a high threshold](./multi-sig.md). |
 |Home domain| string| Sets the home domain of an account. See [Federation](./federation.md).|
-|Signer| {Public Key, weight}| Add, update, or remove a signer from an account. Signer weight is a number from 0-255 (inclusive) . The signer is deleted if the weight is 0.|
+|Signer| {Public Key, weight}| Add, update, or remove a signer from an account. Signer weight is a number from 0-255 (inclusive). The signer is deleted if the weight is 0.|
 
 Possible errors:
 
