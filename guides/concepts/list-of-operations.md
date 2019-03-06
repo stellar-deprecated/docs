@@ -221,7 +221,7 @@ Parameters:
 |inflation Destination| account ID| Account of the inflation destination.|
 |Clear flags| integer| Indicates which flags to clear. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer subtracts from the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
 |Set flags| integer| Indicates which flags to set. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer adds onto the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
-|Master weight| integer| A number from 0-255 (inclusive) representing the weight of the master key. If the weight of the master key is updated to 0, it cannot be used to sign transactions (even for operations with a threshold value of 0), until restored by other signers meeting the high threshold.|
+|Master weight| integer| A number from 0-255 (inclusive) representing the weight of the master key. If the weight of the master key is updated to 0, it is effectively disabled.|
 |Low threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a low threshold](./multi-sig.md).|
 |Medium threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a medium threshold](./multi-sig.md).|
 |High threshold| integer| A number from 0-255 (inclusive) representing the threshold this account sets on all operations it performs that have [a high threshold](./multi-sig.md). |

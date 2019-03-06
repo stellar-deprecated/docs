@@ -47,7 +47,7 @@ Accounts are identified by a public key. The private key that corresponds to thi
 
 If the weight of the master key is updated to 0, it cannot be used to sign transactions (even for operations with a threshold value of 0), until restored by other signers meeting the high threshold. If there are other signers listed on the account, they can still continue to sign transactions.
 
-"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight. 
+"Signers" refers to the master key or to any signing keys added later. A signer is defined as the pair: public key, weight.
 
 Each additional signer beyond the master key increases the account's [minimum balance](./fees.md#minimum-account-balance).
 
