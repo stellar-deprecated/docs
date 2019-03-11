@@ -58,10 +58,10 @@ SDF will try to make testnet resets as painless as possible, and will announce t
 Starting in January 2019, the testnet will be reset once per quarter (every
 three months).  The tentative dates:
 
-* February 27th
-* April
-* July
-* October
+* February 27th, 2019
+* April 24th, 2019
+* July 31st, 2019
+* October 30th, 2019
 
 The testnet will always restart on the announced reset date at 0900 UTC.
 
