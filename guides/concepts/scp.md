@@ -6,6 +6,7 @@ The Stellar Consensus Protocol (SCP) provides a way to reach consensus without r
 
 A few ways to explore SCP:
 * To learn all about the protocol, read the [white paper](https://www.stellar.org/papers/stellar-consensus-protocol.pdf). 
+* A [Simplified SCP](http://www.scs.stanford.edu/~dm/blog/simplified-scp.html) description is shorter and easier to read than the full whitepaper.
 * If you are implementing SCP, see the [internet draft](https://datatracker.ietf.org/doc/draft-mazieres-dinrg-scp/) and send questions and feedback to the [DIN mailing list](https://www.ietf.org/mailman/listinfo/Din).
 * View or contribute to the code in [stellar-core](https://github.com/stellar/stellar-core).
 * If white papers aren't your thing, here's a [technical summary](https://medium.com/a-stellar-journey/on-worldwide-consensus-359e9eb3e949). 
