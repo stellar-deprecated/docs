@@ -247,6 +247,8 @@ Possible errors:
 
 Creates, updates, or deletes a trustline.  For more on trustlines, please refer to the [assets documentation](./assets.md).
 
+To delete an existing trustline, set Line to the asset of the trustline, and Limit to `0`.
+
 Threshold: Medium
 
 Result: `ChangeTrustResult`
