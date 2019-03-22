@@ -80,6 +80,8 @@ server.loadAccount(receivingKeys.publicKey())
         asset: astroDollar,
         limit: '1000'
       }))
+      // setTimeout is required for a transaction
+      .setTimeout(100)
       .build();
     transaction.sign(receivingKeys);
     return server.submitTransaction(transaction);
@@ -96,6 +98,8 @@ server.loadAccount(receivingKeys.publicKey())
         asset: astroDollar,
         amount: '10'
       }))
+      // setTimeout is required for a transaction
+      .setTimeout(100)
       .build();
     transaction.sign(issuingKeys);
     return server.submitTransaction(transaction);
@@ -223,6 +227,8 @@ server.loadAccount(issuingKeys.publicKey())
       .addOperation(StellarSdk.Operation.setOptions({
         homeDomain: 'yourdomain.com',
       }))
+      // setTimeout is required for a transaction
+      .setTimeout(100)
       .build();
     transaction.sign(issuingKeys);
     return server.submitTransaction(transaction);
@@ -306,6 +312,8 @@ var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
   .addOperation(StellarSdk.Operation.setOptions({
     setFlags: StellarSdk.AuthRevocableFlag | StellarSdk.AuthRequiredFlag
   }))
+  // setTimeout is required for a transaction
+  .setTimeout(100)
   .build();
 transaction.sign(issuingKeys);
 server.submitTransaction(transaction);
