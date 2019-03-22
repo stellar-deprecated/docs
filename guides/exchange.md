@@ -209,6 +209,8 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           asset: StellarSdk.Asset.native(),
           amount: amountLumens
         }))
+        // Wait a maximum of three minutes for the transaction
+        .setTimeout(180)
         // Sign the transaction
         .build();
 
@@ -226,6 +228,8 @@ function submitTransaction(exchangeAccount, destinationAddress, amountLumens) {
           // Creating an account requires funding it with XLM
           startingBalance: amountLumens
         }))
+        // Wait a maximum of three minutes for the transaction
+        .setTimeout(180)
         .build();
 
       transaction.sign(StellarSdk.Keypair.fromSecret(config.baseAccountSecret));

@@ -7,11 +7,11 @@ If you are submitting [transactions](./concepts/transactions.md) to the network 
 
 The way to avoid this is with the concept of **channels**.
 
-A channel is simply another Stellar account that is used not to send the funds but as the "source" account of the transaction. Remember transactions in Stellar each have a source account that can be different than the accounts being effected by the operations in the transaction. The source account of the transaction pays the fee and consumes a sequence number. You can then use one common account (your base account) to make the payment [operation](./concepts/operations.md) inside each transaction. The various channel accounts will consume their sequence numbers even though the funds are being sent from your base account. 
+A channel is simply another Stellar account that is used not to send the funds but as the "source" account of the transaction. Remember transactions in Stellar each have a source account that can be different than the accounts being effected by the operations in the transaction. The source account of the transaction pays the fee and consumes a sequence number. You can then use one common account (your base account) to make the payment [operation](./concepts/operations.md) inside each transaction. The various channel accounts will consume their sequence numbers even though the funds are being sent from your base account.
 
 Channels take advantage of the fact that the "source" account of a transaction can be different than the source account of the operations inside the transaction. With this set up you can make as many channels as you need to maintain your desired transaction rate.
 
-You of course will have to sign the transaction with both the base account key and the channel account key.  
+You of course will have to sign the transaction with both the base account key and the channel account key.
 
 For example:
 ```
@@ -29,8 +29,10 @@ var transaction =
       asset: StellarSdk.Asset.native(),
       amount: amountToSend
     }))
+    // Wait a maximum of three minutes for the transaction
+    .setTimeout(180)
     .build();
 
   transaction.sign(baseAccountKey);   // base account must sign to approve the payment
   transaction.sign(channelKeys[channelIndex]);  // channel must sign to approve it being the source of the transaction
-``` 
+```

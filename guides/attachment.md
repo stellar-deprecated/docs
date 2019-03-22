@@ -43,7 +43,7 @@ Name | Data Type | Description
 -----|-----------|------------
 `nonce` | string | [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) is a unique value. Every transaction you send should have a different value. A nonce is needed to distinguish attachments of two transactions sent with otherwise identical details. For example if you send $10 to Bob two days in a row.
 `transaction.sender_info` | JSON | JSON containing KYC info of the sender. This JSON object can be extended with more fields if needed.
-`transaction.route` | string | The route information returned by the receiving federation server (`memo` value). Tells the receiver how to get the transaction to the ultimate recipient. 
+`transaction.route` | string | The route information returned by the receiving federation server (`memo` value). Tells the receiver how to get the transaction to the ultimate recipient.
 `transaction.note` | string | A note attached to transaction.
 `operations[i]` | | `i`th operation data. Can be omitted if transaction has only one operation.
 `operations[i].sender_info` | JSON | `sender_info` for `i`th operation in the transaction. If empty, will inherit value from `transaction`.
