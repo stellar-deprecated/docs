@@ -280,6 +280,8 @@ server.loadAccount(sourceKeys.publicKey())
       }))
       // Use the memo to indicate the customer this payment is intended for.
       .addMemo(StellarSdk.Memo.text('Amy'))
+      // Wait a maximum of three minutes for the transaction
+      .setTimeout(180)
       .build();
     transaction.sign(sourceKeys);
     return server.submitTransaction(transaction);
