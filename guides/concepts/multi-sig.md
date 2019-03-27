@@ -28,10 +28,12 @@ transaction that includes a payment operation (medium security), the transaction
 master key--the key corresponding to the public key that identifies the account she owns--has a
 weight less than 4, she cannot authorize a transaction without other signers.
 
-Once the signature threshold is met if there are any leftover signatures then the transaction is
-regarded as having too many signatures which results in a failed transaction even if the remaining
-signatures are valid, i.e. for a transaction signed with N signatures, if the threshold is reached
-using K signatures then the transaction will fail if N > K.
+Once the signature threshold is met, if there are any leftover signatures then the transaction will
+fail. This will happen even if the signatures are valid. For example, if your transaction requires
+3 signatures, providing more than 3 signatures will result is a failed transaction with
+an `TX_BAD_AUTH_EXTRA` error (even if they are all valid). The reason for this error is performance
+related, as unnecessary signature verification has a large effect on performance before accepting
+transactions in consensus.
 
 Each account can set its own threshold values. By default all thresholds levels are set to 0, and
 the master key is set to weight 1. The [Set Options](./list-of-operations.md#set-options) operation
