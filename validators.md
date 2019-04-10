@@ -177,12 +177,12 @@ NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -----
-Name | localstellarassets.com
+Name | tradedirect.io
 -----|--------
-Description | https://www.localstellarassets.com
+Description | https://www.tradedirect.io
 Contact | hatter (slack) hatter@paywith.glass
 NodeID | GA4UHKRQNTYNOI7TMP6ZK2I52UEIBBHAW3LVLBUTSKVRTGDEDTJVKLI3
-Peer |  localstellarassets.com
+Peer |  tradedirect.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
