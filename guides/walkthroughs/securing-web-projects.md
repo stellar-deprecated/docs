@@ -3,7 +3,7 @@ title: Securing Web-based Projects
 ---
 
 It’s critical for any app managing the flow of cryptocurrency to architect their app to follow security best-practices. Cryptocurrency-enabled apps are significant targets for malicious actors in the sense they enable the attacker to realize immediate monetary gain from exploits.
-The proceeding checklist offers guidance on the most common vulnerabilities. Even if every piece of advice is followed, security is not guaranteed. Web security is constantly evolving and a sufficient level of paranoia is required to remain safe.
+The following checklist offers guidance on the most common vulnerabilities. Even if every piece of advice is followed, security is not guaranteed. Web security is constantly evolving, which warrants a certain degree of paranoia.
 
 # SSL/TLS
 
