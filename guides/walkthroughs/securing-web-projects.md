@@ -28,7 +28,7 @@ This would have prevented the [MyEtherWallet DNS hack](https://bitcoinmagazine.c
 
 # Storing sensitive data
 
-In an ideal world, you don’t have to store much sensitive data. If you must, tread carefully. There are many strategies in storing sensitive data; start by ensuring sensitive data is encrypted using a proven cipher like AES-256, and stored separately from application data. Select the correct mode for your cipher, whether it be block or counter mode. Any communication between the application server and secret server should be in a private network and / or authenticated via HMAC. Your cipher strategy will change based on whether you will be sending the ciphertext over the wire multiple times. Finally, back up any encryption keys you may use offline, and store them only in-memory in your app.
+In an ideal world, you don’t have to store much sensitive data. If you must, tread carefully. There are many strategies in storing sensitive data; start by ensuring sensitive data is encrypted using a proven cipher like AES-256, and stored separately from application data and always pick an AEAD mode. Any communication between the application server and secret server should be in a private network and / or authenticated via HMAC. Your cipher strategy will change based on whether you will be sending the ciphertext over the wire multiple times. Finally, back up any encryption keys you may use offline, and store them only in-memory in your app.
 
 Consult a good cryptographer and read up on best practices. A good place to start is looking into the documentation of your favorite web framework.
 
@@ -45,9 +45,9 @@ If you have logins for users, it is critical that your authentication system is 
 
 Many JSON web token implementations are poorly done, so ensure the library you use is audited.
 
-Hash passwords with a time-tested scheme. The winner of the last password hashing contest was Argon2. 
+Hash passwords with a time-tested scheme. The winner of the last password hashing contest was Argon2. Baloon Hashing is also worth looking into.
 
-Strongly prefer 2FA, and reuire Time-based OTP 2FA for sensitive actions. Use HOTP 2FA for account recovery. quire Time-based OTP 2FA for sensitive actions. Use HOTP 2FA for account recovery. 
+Strongly prefer 2FA, and require U2F or [TOTP](https://tools.ietf.org/html/rfc6238) 2FA for sensitive actions. 
 
 2FA is really important. Email accounts are usually not very secure. Having a second factor of authentication ensures that users who accidentally stay logged on, or have their password guessed are still protected.
 
