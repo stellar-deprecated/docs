@@ -45,7 +45,7 @@ If you have logins for users, it is critical that your authentication system is 
 
 Many JSON web token implementations are poorly done, so ensure the library you use is audited.
 
-Hash passwords with a time-tested scheme. The winner of the last password hashing contest was Argon2. Baloon Hashing is also worth looking into.
+Hash passwords with a time-tested scheme. The winner of the last password hashing contest was Argon2. Balloon Hashing is also worth looking into.
 
 Strongly prefer 2FA, and require U2F or [TOTP](https://tools.ietf.org/html/rfc6238) 2FA for sensitive actions. 
 
