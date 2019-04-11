@@ -66,7 +66,7 @@ behavior. Examining logs defensively can help you catch on to what their trying 
 ensure you’re protected. At the least, you can block their IP, or automate blocking based on
 suspicious behavior you unearth.
 
-Finally, it is worth setting up errror reporting (e.g. [Sentry](https://sentry.io/welcome/)):
+Finally, it is worth setting up error reporting (e.g. [Sentry](https://sentry.io/welcome/)):
 Oftentimes, people trigger strange bugs when they are trying to hack things.
 
 # Authentication weaknesses
