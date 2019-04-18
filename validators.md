@@ -367,6 +367,17 @@ Peer | xaviablaza.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
+Name | Wirex
+-----|--------
+Description | https://wirexapp.com
+Contact | devops@wirexapp.com
+UK | Public key: GBBQQT3EIUSXRJC6TGUCGVA3FVPXVZLGG3OJYACWBEWYBHU46WJLWXEU<br/>Peer: uk.stellar.wirexapp.com
+SG (Singapore) | Public key: GAB3GZIE6XAYWXGZUDM4GMFFLJBFMLE2JDPUCWUZXMOMT3NHXDHEWXAS<br/>Peer: sg.stellar.wirexapp.com
+US | Public key: GDXUKFGG76WJC7ACEH3JUPLKM5N5S76QSMNDBONREUXPCZYVPOLFWXUS<br/>Peer: us.stellar.wirexapp.com
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+
+------
 # Offline servers
 
 Name | snt.lux
