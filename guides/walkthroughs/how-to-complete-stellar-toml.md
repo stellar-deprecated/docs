@@ -128,7 +128,7 @@ Information about the primary point(s) of contact for your organization goes int
 
 * The personal Github account of the point of contact (`github`).
 
-* The personal Keybase account for the point of contact (`keybase`). This account should include proof of ownership of the email address listed above.
+* The personal Keybase account for the point of contact (`keybase`). This account should contain proof of ownership of any public online accounts listed here and may contain proof of ownership of your organization's domain.
 
 Again, the more information you provide, the better. Exchanges might desire additional verifiable information when deciding how to present your token to traders, and prioritize tokens that include it:
 
