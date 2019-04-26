@@ -2,7 +2,7 @@
 title: Issuing Assets
 ---
 
-One of Stellar’s most powerful features is the ability to trade any kind of asset, US dollars, Nigerian naira, bitcoins, special coupons, [ICO tokens](https://www.stellar.org/blog/tokens-on-stellar/) or just about anything you like.
+One of Stellar’s most powerful features is the ability to trade any kind of asset, US dollars, Nigerian naira, bitcoins, special coupons, or just about anything you like.
 
 This works in Stellar because an asset is really just a credit from a particular account. When you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *credited from a particular account.* Often, that account will be a bank, but if your neighbor had a banana plant, they might issue banana assets that you could trade with other people.
 
