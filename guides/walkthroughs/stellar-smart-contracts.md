@@ -320,8 +320,8 @@ following transactions.
 **Account**: Holding Account  
 **Sequence Number**: N+1  
 **Operations**:
-- [Manage Offer - Sell](../concepts/list-of-operations.md#manage-offer): Sell participation tokens
-  at a rate of X per token.
+- [Manage Sell Offer](../concepts/list-of-operations.md#manage-sell-offer): Sell participation
+  tokens at a rate of X per token.
 
 **Signers**: Party A’s account, Party B’s account
 
@@ -346,8 +346,8 @@ manner that enables a total of V to be raised through sales.
 **Account**: Holding Account  
 **Sequence Number**: N+3  
 **Operations**:
-- [Manage Offer - Cancel](../concepts/list-of-operations.md#manage-offer): Cancel pre-existing offer to sell tokens.
- - [Manage Offer - Buy](../concepts/list-of-operations.md#manage-offer): Holding account buys participation tokens at a rate of X per token.
+- [Manage Sell Offer - Cancel](../concepts/list-of-operations.md#manage-sell-offer): Cancel pre-existing offer to sell tokens.
+- [Manage Buy Offer](../concepts/list-of-operations.md#manage-buy-offer): Holding account buys participation tokens at a rate of X per token.
 
 **Time Bounds**:
 - Minimum Time: End of crowdfunding period
@@ -390,7 +390,8 @@ The following steps are carried out in order to become a contributor to the crow
   participation tokens.
     - The trustline creates trust between the contributor and the holding accounts, enabling
       transactions involving participation tokens to be valid.
-2. [Create an offer](../concepts/list-of-operations.md#manage-offer) to buy participation tokens
+2. [Create a buy offer](../concepts/list-of-operations.md#manage-buy-offer) to buy participation
+   tokens.
     - The contributor account will receive participation tokens and the holding account will
       receive the value.
 3. If the crowdfunding:

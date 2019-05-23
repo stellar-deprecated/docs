@@ -113,7 +113,7 @@ Transaction A is created and submitted to the network by the issuing account. By
 #### Transaction 6: Token Distribution
 **Account**: distribution account  
 **Operations**:
-- [Manage Offer - Sell](../concepts/list-of-operations.md#manage-offer): create an offer to sell the created tokens
+- [Manage Sell Offer](../concepts/list-of-operations.md#manage-sell-offer): create an offer to sell the created tokens
 	- selling: created asset code format
 		- code: asset code
 		- issuer account: issuer account

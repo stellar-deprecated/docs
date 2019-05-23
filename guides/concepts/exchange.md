@@ -2,11 +2,14 @@
 title: Distributed Exchange
 ---
 
-
 In addition to supporting the issuing and movement of [assets](./assets.md), the Stellar network also acts as a decentralized **distributed exchange** of any type of asset that people have added to the network. Its ledger stores both balances held by user accounts and offers that user accounts make to buy or sell assets.
 
 ## Offers
-An account can make offers to buy or sell assets using the [Manage Offer](./list-of-operations.md#manage-offer) operation. In order to make an offer, the account must hold the asset it wants to sell. Similarly, the account must trust the issuer of the asset it's trying to buy.
+An account can make offers to buy or sell assets using the [Manage Buy
+Offer](./list-of-operations.md#manage-buy-offer) or [Manage Sell
+Offer](./list-of-operations.md#manage-sell-offer) operation. In order to make an offer, the account
+must hold the asset it wants to sell. Similarly, the account must trust the issuer of the asset
+it's trying to buy.
 
 When an account makes an offer, the offer is checked against the existing orderbook for that asset pair. If the offer crosses an existing offer, it is filled at the price of the existing offer. Let's say that you make an offer to buy 10 XLM for 2 BTC. If an offer already exists to sell 10 XLM for 2 BTC, your offer will take that offer--you'll be 2 BTC poorer but 10 XLM richer.
 
@@ -47,10 +50,19 @@ Looking at the diagram, there are a few orientation things to notice and think a
 Some assets will have a very thin or nonexistent orderbook between them. That's fine: as discussed in greater detail below, paths of orders can facilitate exchange between two thinly traded assets.
 
 
-## Passive offers
-**Passive offers** allow markets to have zero spread. If you want to offer USD from anchor A for USD from anchor B at a 1:1 price, you can create two passive offers so the two offers don't fill each other.
+## Passive Offers
+**Passive offers** allow markets to have zero spread. If you want to offer USD from anchor A for
+USD from anchor B at a 1:1 price, you can create two passive offers so the two offers don't fill
+each other.
 
-A passive offer is an offer that does not take a counteroffer of equal price. It will only fill if the prices are not equal. For example, if the best offer to buy BTC for XLM has a price of 100XLM/BTC, and you make a passive offer to sell BTC at 100XLM/BTC, your passive offer *does not* take that existing offer. If you instead make a passive offer to sell BTC at 99XLM/BTC it would cross the existing offer and fill at 100XLM/BTC.
+A passive offer is an offer that does not take a counteroffer of equal price. It will only fill if
+the prices are not equal. For example, if the best offer to buy BTC for XLM has a price of
+100XLM/BTC, and you make a passive offer to sell BTC at 100XLM/BTC, your passive offer *does not*
+take that existing offer. If you instead make a passive offer to sell BTC at 99XLM/BTC it would
+cross the existing offer and fill at 100XLM/BTC.
+
+An account can place a passive sell offer via the
+[Create Passive Sell Offer](./list-of-operations.md#create-passive-sell-offer) operation.
 
 
 ## Cross-asset payments

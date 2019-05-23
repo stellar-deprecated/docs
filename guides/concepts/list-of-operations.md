@@ -9,8 +9,9 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 - [Create Account](#create-account)
 - [Payment](#payment)
 - [Path Payment](#path-payment)
-- [Manage Offer](#manage-offer)
-- [Create Passive Offer](#create-passive-offer)
+- [Manage Buy Offer](#manage-buy-offer)
+- [Manage Sell Offer](#manage-sell-offer)
+- [Create Passive Sell Offer](#create-passive-sell-offer)
 - [Set Options](#set-options)
 - [Change Trust](#change-trust)
 - [Allow Trust](#allow-trust)
@@ -118,10 +119,11 @@ Possible errors:
 |PATH_PAYMENT_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
 |PATH_PAYMENT_OVER_SENDMAX| -12| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
 
-## Manage Offer
-[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageOffer) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder)
+## Manage Buy Offer
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageBuyOffer) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageBuyOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#ManageBuyOffer)
 
-Creates, updates, or deletes an offer.
+Creates, updates, or deletes an offer to buy one asset for another, otherwise known as a "bid"
+order on a traditional orderbook.
 
 If you want to create a new offer set Offer ID to `0`.
 
@@ -131,75 +133,122 @@ If you want to delete an existing offer set Offer ID to existing offer ID and se
 
 Threshold: Medium
 
-Result: `ManageOfferResult`
+Result: `ManageBuyOfferResult`
 
 |Parameters| Type| Description|
 | --- | --- | --- |
-| Selling| asset| Asset the offer creator is selling. |
-| Buying| asset| Asset the offer creator is buying. |
-| Amount| integer| Amount of `selling` being sold. Set to `0` if you want to delete an existing offer. |
-| Price| {numerator, denominator} | Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}.|
-| Offer ID| unsigned integer| The ID of the offer. `0` for new offer. Set to existing offer ID to update or delete. |
+| Selling | asset | Asset the offer creator is selling. |
+| Buying | asset | Asset the offer creator is buying. |
+| Amount | integer | Amount of `buying` being bought. Set to `0` if you want to delete an existing offer. |
+| Price | {numerator, denominator} | Price of 1 unit of `buying` in terms of `selling`.  For example, if you wanted to buy 30 XLM and sell 5 BTC, the price would be {5,30}. |
+| Offer ID | unsigned integer | The ID of the offer. `0` for new offer. Set to existing offer ID to update or delete. |
 
 Possible errors:
 
 | Error | Code | Description |
-| ----- | ---- | ------|
-|MANAGE_OFFER_MALFORMED| -1| The input is incorrect and would result in an invalid offer.|
-|MANAGE_OFFER_SELL_NO_TRUST| -2| The account creating the offer does not have a trustline for the asset it is selling.|
-|MANAGE_OFFER_BUY_NO_TRUST| -3| The account creating the offer does not have a trustline for the asset it is buying.|
-|MANAGE_OFFER_SELL_NOT_AUTHORIZED| -4| The account creating the offer is not authorized to sell this asset.|
-|MANAGE_OFFER_BUY_NOT_AUTHORIZED| -5| The account creating the offer is not authorized to buy this asset.|
-|MANAGE_OFFER_LINE_FULL| -6| The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities.|
-|MANAGE_OFFER_UNDERFUNDED| -7| The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately.|
-|MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
-|MANAGE_OFFER_SELL_NO_ISSUER| -9| The issuer of selling asset does not exist.|
-|MANAGE_OFFER_BUY_NO_ISSUER| -10| The issuer of buying asset does not exist.|
-|MANAGE_OFFER_NOT_FOUND| -11| An offer with that `offerID` cannot be found.|
-|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
+| ----- | ---- | ------ |
+| MANAGE_BUY_OFFER_MALFORMED | -1 | The input is incorrect and would result in an invalid offer. |
+| MANAGE_BUY_OFFER_SELL_NO_TRUST | -2 | The account creating the offer does not have a trustline for the asset it is selling. |
+| MANAGE_BUY_OFFER_BUY_NO_TRUST | -3 | The account creating the offer does not have a trustline for the asset it is buying. |
+| MANAGE_BUY_OFFER_BUY_NOT_AUTHORIZED | -4 | The account creating the offer is not authorized to sell this asset. |
+| MANAGE_BUY_OFFER_SELL_NOT_AUTHORIZED | -5 | The account creating the offer is not authorized to buy this asset. |
+| MANAGE_BUY_OFFER_LINE_FULL | -6 | The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities. |
+| MANAGE_BUY_OFFER_UNDERFUNDED | -7 | The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately. |
+| MANAGE_BUY_OFFER_CROSS_SELF | -8 | The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself. |
+| MANAGE_BUY_OFFER_SELL_NO_ISSUER | -9 | The issuer of selling asset does not exist. |
+| MANAGE_BUY_OFFER_BUY_NO_ISSUER | -10 | The issuer of buying asset does not exist. |
+| MANAGE_BUY_OFFER_NOT_FOUND | -11 | An offer with that `offerID` cannot be found. |
+| MANAGE_BUY_OFFER_LOW_RESERVE | -12 | The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase. |
 
-## Create Passive Offer
-[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveOffer) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder)
 
-A passive offer is an offer that does not act on and take a reverse offer of equal price. Instead, they only take offers
-of lesser price. For example, if an offer exists to buy 5 BTC for 30 XLM, and you make a passive offer to buy 30 XLM for 5 BTC,
-your passive offer *does not* take the first offer.
+## Manage Sell Offer
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageSellOffer) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageSellOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#ManageSellOffer)
 
-Note that regular offers made later than your passive offer can act on and take your passive offer, even if the regular
-offer is of the same price as your passive offer.
+Creates, updates, or deletes an offer to sell one asset for another, otherwise known as a "ask"
+order or "offer" on a traditional orderbook.
 
-Passive offers allow market makers to have zero spread. If you want to trade EUR for USD at 1:1 price and USD for EUR also
- at 1:1, you can create two passive offers so the two offers don't immediately act on each other.
+If you want to create a new offer set Offer ID to `0`.
 
-Once the passive offer is created, you can manage it like any other offer using the [manage offer](#manage-offer) operation.
+If you want to update an existing offer set Offer ID to existing offer ID.
+
+If you want to delete an existing offer set Offer ID to existing offer ID and set Amount to `0`.
 
 Threshold: Medium
 
-Result: `CreatePassiveOfferResult`
+Result: `ManageSellOfferResult`
 
 |Parameters| Type| Description|
 | --- | --- | --- |
-|Selling| asset| The asset you would like to sell. |
-|Buying| asset| The asset you would like to buy.|
-|Amount| integer| Amount of `selling` being sold.|
-|Price| {numerator, denominator}| Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}. |
+| Selling | asset | Asset the offer creator is selling. |
+| Buying | asset | Asset the offer creator is buying. |
+| Amount | integer | Amount of `selling` being sold. Set to `0` if you want to delete an existing offer. |
+| Price | {numerator, denominator} | Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}. |
+| Offer ID | unsigned integer | The ID of the offer. `0` for new offer. Set to existing offer ID to update or delete. |
 
 Possible errors:
 
 | Error | Code | Description |
-| ----- | ---- | ------|
-|MANAGE_OFFER_MALFORMED| -1| The input is incorrect and would result in an invalid offer.|
-|MANAGE_OFFER_SELL_NO_TRUST| -2| The account creating the offer does not have a trustline for the asset it is selling.|
-|MANAGE_OFFER_BUY_NO_TRUST| -3| The account creating the offer does not have a trustline for the asset it is buying.|
-|MANAGE_OFFER_SELL_NOT_AUTHORIZED| -4| The account creating the offer is not authorized to sell this asset.|
-|MANAGE_OFFER_BUY_NOT_AUTHORIZED| -5| The account creating the offer is not authorized to buy this asset.|
-|MANAGE_OFFER_LINE_FULL| -6| The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities.|
-|MANAGE_OFFER_UNDERFUNDED| -7| The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately.|
-|MANAGE_OFFER_CROSS_SELF| -8| The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself.|
-|MANAGE_OFFER_SELL_NO_ISSUER| -9| The issuer of selling asset does not exist.|
-|MANAGE_OFFER_BUY_NO_ISSUER| -10| The issuer of buying asset does not exist.|
-|MANAGE_OFFER_NOT_FOUND| -11| An offer with that `offerID` cannot be found.|
-|MANAGE_OFFER_LOW_RESERVE| -12| The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase.|
+| ----- | ---- | ------ |
+| MANAGE_SELL_OFFER_MALFORMED | -1 | The input is incorrect and would result in an invalid offer. |
+| MANAGE_SELL_OFFER_SELL_NO_TRUST | -2 | The account creating the offer does not have a trustline for the asset it is selling. |
+| MANAGE_SELL_OFFER_BUY_NO_TRUST | -3 | The account creating the offer does not have a trustline for the asset it is buying. |
+| MANAGE_SELL_OFFER_SELL_NOT_AUTHORIZED | -4 | The account creating the offer is not authorized to sell this asset. |
+| MANAGE_SELL_OFFER_BUY_NOT_AUTHORIZED | -5 | The account creating the offer is not authorized to buy this asset. |
+| MANAGE_SELL_OFFER_LINE_FULL | -6 | The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities. |
+| MANAGE_SELL_OFFER_UNDERFUNDED | -7 | The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately. |
+| MANAGE_SELL_OFFER_CROSS_SELF | -8 | The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself. |
+| MANAGE_SELL_OFFER_SELL_NO_ISSUER | -9 | The issuer of selling asset does not exist. |
+| MANAGE_SELL_OFFER_BUY_NO_ISSUER | -10 | The issuer of buying asset does not exist. |
+| MANAGE_SELL_OFFER_NOT_FOUND | -11 | An offer with that `offerID` cannot be found. |
+| MANAGE_SELL_OFFER_LOW_RESERVE | -12 | The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase. |
+
+## Create Passive Sell Offer
+[JavaScript](https://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveSellOffer) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveSellOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#CreatePassiveSellOffer)
+
+A passive sell offer is an offer that does not act on and take a reverse offer of equal price.
+Instead, they only take offers of lesser price. For example, if an offer exists to buy 5 BTC for 30
+XLM, and you make a passive offer to buy 30 XLM for 5 BTC, your passive offer *does not* take the
+first offer. Passive offers in Stellar are always expressed as "ask" or "offer" orders in a
+traditional orderbook.
+
+Note that regular offers made later than your passive offer can act on and take your passive offer,
+even if the regular offer is of the same price as your passive offer.
+
+Passive offers allow market makers to have zero spread. If you want to trade EUR for USD at 1:1
+price and USD for EUR also at 1:1, you can create two passive offers so the two offers don't
+immediately act on each other.
+
+Once the passive offer is created, you can manage it like any other offer using the [manage
+offer](#manage-offer) operation.
+
+Threshold: Medium
+
+Result: `ManageSellOfferResult`
+
+| Parameters | Type | Description |
+| --- | --- | --- |
+| Selling | asset | Asset the offer creator is selling. |
+| Buying | asset | Asset the offer creator is buying. |
+| Amount | integer | Amount of `selling` being sold. Set to `0` if you want to delete an existing offer. |
+| Price | {numerator, denominator} | Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}. |
+| Offer ID | unsigned integer | The ID of the offer. `0` for new offer. Set to existing offer ID to update or delete. |
+
+Possible errors:
+
+| Error | Code | Description |
+| ----- | ---- | ------ |
+| MANAGE_SELL_OFFER_MALFORMED | -1 | The input is incorrect and would result in an invalid offer. |
+| MANAGE_SELL_OFFER_SELL_NO_TRUST | -2 | The account creating the offer does not have a trustline for the asset it is selling. |
+| MANAGE_SELL_OFFER_BUY_NO_TRUST | -3 | The account creating the offer does not have a trustline for the asset it is buying. |
+| MANAGE_SELL_OFFER_SELL_NOT_AUTHORIZED | -4 | The account creating the offer is not authorized to sell this asset. |
+| MANAGE_SELL_OFFER_BUY_NOT_AUTHORIZED | -5 | The account creating the offer is not authorized to buy this asset. |
+| MANAGE_SELL_OFFER_LINE_FULL | -6 | The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities. |
+| MANAGE_SELL_OFFER_UNDERFUNDED | -7 | The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately. |
+| MANAGE_SELL_OFFER_CROSS_SELF | -8 | The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself. |
+| MANAGE_SELL_OFFER_SELL_NO_ISSUER | -9 | The issuer of selling asset does not exist. |
+| MANAGE_SELL_OFFER_BUY_NO_ISSUER | -10 | The issuer of buying asset does not exist. |
+| MANAGE_SELL_OFFER_NOT_FOUND | -11 | An offer with that `offerID` cannot be found. |
+| MANAGE_SELL_OFFER_LOW_RESERVE | -12 | The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase. |
 
 ## Set Options
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.setOptions) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/SetOptionsOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/build#SetOptionsBuilder)
