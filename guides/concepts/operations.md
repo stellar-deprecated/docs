@@ -2,15 +2,16 @@
 title: Operations
 ---
 
-[Transactions](./transactions.md) are made up of a [list of operations](./list-of-operations.md). Each
-operation is an individual command that mutates the ledger.
+[Transactions](./transactions.md) are made up of a [list of operations](./list-of-operations.md).
+Each operation is an individual command that mutates the ledger.
 
 Here are the possible operation types:
 - [Create Account](./list-of-operations.md#create-account)
 - [Payment](./list-of-operations.md#payment)
 - [Path Payment](./list-of-operations.md#path-payment)
-- [Manage Offer](./list-of-operations.md#manage-offer)
-- [Create Passive Offer](./list-of-operations.md#create-passive-offer)
+- [Manage Buy Offer](./list-of-operations.md#manage-buy-offer)
+- [Manage Sell Offer](./list-of-operations.md#manage-sell-offer)
+- [Create Passive Sell Offer](./list-of-operations.md#create-passive-sell-offer)
 - [Set Options](./list-of-operations.md#set-options)
 - [Change Trust](./list-of-operations.md#change-trust)
 - [Allow Trust](./list-of-operations.md#allow-trust)
