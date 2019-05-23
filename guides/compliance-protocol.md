@@ -4,6 +4,12 @@ title: Compliance Protocol
 
 # Compliance Protocol
 
+_To test and verify that your application adheres to the Stellar Compliance Protocol, please visit
+[our compliance verification tool](https://gostellar.org/app/). With the tool you can run a variety
+of tests for different compliance scenarios for both sending and receiving assets. In addition, the
+[Stellar Laboratory](https://www.stellar.org/laboratory/) also exists to run operations and inspect
+the ledger for additional information._
+
 Complying with Anti-Money Laundering (AML) laws requires financial institutions (FIs) to know not only who their customers are sending money to but who their customers are receiving money from. In some jurisdictions banks are able to trust the AML procedures of other licensed banks. In other jurisdictions each bank must do its own sanction checking of both the sender and the receiver.
 The Compliance Protocol handles all these scenarios.
 
