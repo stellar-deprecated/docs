@@ -2,21 +2,42 @@
 title: Send and Receive Money
 ---
 
-Now that you have an account, you can send and receive funds through the Stellar network. If you haven’t created an account yet, read [step 2 of the Get Started guide](./create-account.md).
+Before continuing with the following examples for Stellar in code, consider going through the
+following examples using the [Stellar Laboratory](https://www.stellar.org/laboratory/). The lab
+allows you create accounts, fund accounts on test net, build transactions, run any operation, and
+inspect responses from Horizon via the Endpoint Explorer.
 
-Most of the time, you’ll be sending money to someone else who has their own account. For this interactive guide, however, you should make a second account to transact with using the same method you used to make your first account.
+Now that you have an account, you can send and receive funds through the Stellar network. If you
+haven’t created an account yet, read [step 2 of the Get Started guide](./create-account.md).
+
+Most of the time, you’ll be sending money to someone else who has their own account. For this
+interactive guide, however, you should make a second account to transact with using the same method
+you used to make your first account.
 
 ## Send Payments
 
-Actions that change things in Stellar, like sending payments, changing your account, or making offers to trade various kinds of currencies, are called **operations.**[^1] In order to actually perform an operation, you create a **transaction**, which is just a group of operations accompanied by some extra information, like what account is making the transaction and a cryptographic signature to verify that the transaction is authentic.[^2]
+Actions that change things in Stellar, like sending payments, changing your account, or making
+offers to trade various kinds of currencies, are called **operations.**[^1] In order to actually
+perform an operation, you create a **transaction**, which is just a group of operations accompanied
+by some extra information, like what account is making the transaction and a cryptographic
+signature to verify that the transaction is authentic.[^2]
 
-If any operation in the transaction fails, they all fail. For example, let’s say you have 100 lumens and you make two payment operations of 60 lumens each. If you make two transactions (each with one operation), the first will succeed and the second will fail because you don’t have enough lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single transaction, they will both fail and you’ll be left with the full 100 lumens still in your account.
+If any operation in the transaction fails, they all fail. For example, let’s say you have 100
+lumens and you make two payment operations of 60 lumens each. If you make two transactions (each
+with one operation), the first will succeed and the second will fail because you don’t have enough
+lumens. You’ll be left with 40 lumens. However, if you group the two payments into a single
+transaction, they will both fail and you’ll be left with the full 100 lumens still in your account.
 
-Finally, every transaction costs a small fee. Like the minimum balance on accounts, this fee helps stop people from overloading the system with lots of transactions. Known as the **base fee**, it is very small—100 stroops per operation (that’s 0.00001 XLM; stroops are easier to talk about than such tiny fractions of a lumen). A transaction with two operations would cost 200 stroops.[^3]
+Finally, every transaction costs a small fee. Like the minimum balance on accounts, this fee helps
+stop people from overloading the system with lots of transactions. Known as the **base fee**, it is
+very small—100 stroops per operation (that’s 0.00001 XLM; stroops are easier to talk about than
+such tiny fractions of a lumen). A transaction with two operations would cost 200 stroops.[^3]
 
 ### Building a Transaction
 
-Stellar stores and communicates transaction data in a binary format called XDR.[^4] Luckily, the Stellar SDKs provide tools that take care of all that. Here’s how you might send 10 lumens to another account:
+Stellar stores and communicates transaction data in a binary format called XDR.[^4] Luckily, the
+Stellar SDKs provide tools that take care of all that. Here’s how you might send 10 lumens to
+another account:
 
 <code-example name="Submitting a Transaction">
 
@@ -175,7 +196,12 @@ func main () {
 
 What exactly happened there? Let’s break it down.
 
-1. Confirm that the account ID you are sending to actually exists by loading the associated account data from the Stellar network. Everything will actually be OK if you skip this step, but doing it gives you an opportunity to avoid making a transaction you know will fail. You can also use this call to perform any other verification you might want to do on a destination account. If you are writing banking software, for example, this is a good place to insert regulatory compliance checks and <abbr title="Know Your Customer">KYC</abbr> verification.
+1. Confirm that the account ID you are sending to actually exists by loading the associated account
+   data from the Stellar network. Everything will actually be OK if you skip this step, but doing
+   it gives you an opportunity to avoid making a transaction you know will fail. You can also use
+   this call to perform any other verification you might want to do on a destination account. If
+   you are writing banking software, for example, this is a good place to insert regulatory
+   compliance checks and <abbr title="Know Your Customer">KYC</abbr> verification.
 
     <code-example name="Load an Account">
 
@@ -196,7 +222,11 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-2. Load data for the account you are sending from. An account can only perform one transaction at a time[^5] and has something called a [**sequence number**,](../concepts/accounts.md#sequence-number) which helps Stellar verify the order of transactions. A transaction’s sequence number needs to match the account’s sequence number, so you need to get the account’s current sequence number from the network.
+2. Load data for the account you are sending from. An account can only perform one transaction at a
+   time[^5] and has something called a [**sequence
+   number**,](../concepts/accounts.md#sequence-number) which helps Stellar verify the order of
+   transactions. A transaction’s sequence number needs to match the account’s sequence number, so
+   you need to get the account’s current sequence number from the network.
 
     <code-example name="Load Source Account">
 
@@ -212,9 +242,12 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-    The SDK will automatically increment the account’s sequence number when you build a transaction, so you won’t need to retrieve this information again if you want to perform a second transaction.
+    The SDK will automatically increment the account’s sequence number when you build a
+    transaction, so you won’t need to retrieve this information again if you want to perform a
+    second transaction.
 
-3. Start building a transaction. This requires an account object, not just an account ID, because it will increment the account’s sequence number.
+3. Start building a transaction. This requires an account object, not just an account ID, because
+   it will increment the account’s sequence number.
 
     <code-example name="Build a Transaction">
 
@@ -234,7 +267,11 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-4. Add the payment operation to the account. Note that you need to specify the type of asset you are sending—Stellar’s “native” currency is the lumen, but you can send any type of asset or currency you like, from dollars to bitcoin to any sort of asset you trust the issuer to redeem [(more details below)](#transacting-in-other-currencies). For now, though, we’ll stick to lumens, which are called “native” assets in the SDK:
+4. Add the payment operation to the account. Note that you need to specify the type of asset you
+   are sending—Stellar’s “native” currency is the lumen, but you can send any type of asset or
+   currency you like, from dollars to bitcoin to any sort of asset you trust the issuer to redeem
+   [(more details below)](#transacting-in-other-currencies). For now, though, we’ll stick to
+   lumens, which are called “native” assets in the SDK:
 
     <code-example name="Add an Operation">
 
@@ -265,9 +302,17 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-    You should also note that the amount is a string rather than a number. When working with extremely small fractions or large values, [floating point math can introduce small inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all systems have a native way to accurately represent extremely small or large decimals, Stellar uses strings as a reliable way to represent the exact amount across any system.
+    You should also note that the amount is a string rather than a number. When working with
+    extremely small fractions or large values, [floating point math can introduce small
+    inaccuracies](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems). Since not all
+    systems have a native way to accurately represent extremely small or large decimals, Stellar
+    uses strings as a reliable way to represent the exact amount across any system.
 
-5. Optionally, you can add your own metadata, called a [**memo,**](../concepts/transactions.md#memo) to a transaction. Stellar doesn’t do anything with this data, but you can use it for any purpose you’d like. If you are a bank that is receiving or sending payments on behalf of other people, for example, you might include the actual person the payment is meant for here.
+5. Optionally, you can add your own metadata, called a
+   [**memo,**](../concepts/transactions.md#memo) to a transaction. Stellar doesn’t do anything with
+   this data, but you can use it for any purpose you’d like. If you are a bank that is receiving or
+   sending payments on behalf of other people, for example, you might include the actual person the
+   payment is meant for here.
 
     <code-example name="Add a Memo">
 
@@ -285,7 +330,9 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-6. Now that the transaction has all the data it needs, you have to cryptographically sign it using your secret seed. This proves that the data actually came from you and not someone impersonating you.
+6. Now that the transaction has all the data it needs, you have to cryptographically sign it using
+   your secret seed. This proves that the data actually came from you and not someone impersonating
+   you.
 
     <code-example name="Sign the Transaction">
 
@@ -322,13 +369,27 @@ What exactly happened there? Let’s break it down.
 
     </code-example>
 
-**IMPORTANT** It's possible that you will not receive a response from the Horizon server due to a bug, network conditions, etc. In such a situation it's impossible to determine the status of your transaction. That's why you should always save a built transaction (or transaction encoded in XDR format) in a variable or a database and resubmit it if you don't know its status. If the transaction has already been successfully applied to the ledger, Horizon will simply return the saved result and not attempt to submit the transaction again. Only in cases where a transaction’s status is unknown (and thus will have a chance of being included into a ledger) will a resubmission to the network occur.
+**IMPORTANT** It's possible that you will not receive a response from the Horizon server due to a
+bug, network conditions, etc. In such a situation it's impossible to determine the status of your
+transaction. That's why you should always save a built transaction (or transaction encoded in XDR
+format) in a variable or a database and resubmit it if you don't know its status. If the
+transaction has already been successfully applied to the ledger, Horizon will simply return the
+saved result and not attempt to submit the transaction again. Only in cases where a transaction’s
+status is unknown (and thus will have a chance of being included into a ledger) will a resubmission
+to the network occur.
 
 ## Receive Payments
 
-You don’t actually need to do anything to receive payments into a Stellar account—if a payer makes a successful transaction to send assets to you, those assets will automatically be added to your account.
+You don’t actually need to do anything to receive payments into a Stellar account—if a payer makes
+a successful transaction to send assets to you, those assets will automatically be added to your
+account.
 
-However, you’ll want to know that someone has actually paid you. If you are a bank accepting payments on behalf of others, you need to find out what was sent to you so you can disburse funds to the intended recipient. If you are operating a retail business, you need to know that your customer actually paid you before you hand them their merchandise. And if you are an automated rental car with a Stellar account, you’ll probably want to verify that the customer in your front seat actually paid before that person can turn on your engine.
+However, you’ll want to know that someone has actually paid you. If you are a bank accepting
+payments on behalf of others, you need to find out what was sent to you so you can disburse funds
+to the intended recipient. If you are operating a retail business, you need to know that your
+customer actually paid you before you hand them their merchandise. And if you are an automated
+rental car with a Stellar account, you’ll probably want to verify that the customer in your front
+seat actually paid before that person can turn on your engine.
 
 A simple program that watches the network for payments and prints each one might look like:
 
@@ -486,7 +547,12 @@ func main() {
 
 </code-example>
 
-There are two main parts to this program. First, you create a query for payments involving a given account. Like most queries in Stellar, this could return a huge number of items, so the API returns paging tokens, which you can use later to start your query from the same point where you previously left off. In the example above, the functions to save and load paging tokens are left blank, but in a real application, you’d want to save the paging tokens to a file or database so you can pick up where you left off in case the program crashes or the user closes it.
+There are two main parts to this program. First, you create a query for payments involving a given
+account. Like most queries in Stellar, this could return a huge number of items, so the API returns
+paging tokens, which you can use later to start your query from the same point where you previously
+left off. In the example above, the functions to save and load paging tokens are left blank, but in
+a real application, you’d want to save the paging tokens to a file or database so you can pick up
+where you left off in case the program crashes or the user closes it.
 
 <code-example name="Create a Payments Query">
 
@@ -508,9 +574,12 @@ if (lastToken != null) {
 
 </code-example>
 
-Second, the results of the query are streamed. This is the easiest way to watch for payments or other transactions. Each existing payment is sent through the stream, one by one. Once all existing payments have been sent, the stream stays open and new payments are sent as they are made.
+Second, the results of the query are streamed. This is the easiest way to watch for payments or
+other transactions. Each existing payment is sent through the stream, one by one. Once all existing
+payments have been sent, the stream stays open and new payments are sent as they are made.
 
-Try it out: Run this program, and then, in another window, create and submit a payment. You should see this program log the payment.
+Try it out: Run this program, and then, in another window, create and submit a payment. You should
+see this program log the payment.
 
 <code-example name="Stream Payments">
 
@@ -533,7 +602,8 @@ paymentsRequest.stream(new EventListener<OperationResponse>() {
 
 </code-example>
 
-You can also request payments in groups, or pages. Once you’ve processed each page of payments, you’ll need to request the next one until there are none left.
+You can also request payments in groups, or pages. Once you’ve processed each page of payments,
+you’ll need to request the next one until there are none left.
 
 <code-example name="Paged Payments">
 
@@ -561,17 +631,33 @@ page = page.getNextPage();
 
 ## Transacting in Other Currencies
 
-One of the amazing things about the Stellar network is that you can send and receive many types of assets, such as US dollars, Nigerian naira, digital currencies like bitcoin, or even your own new kind of asset.
+One of the amazing things about the Stellar network is that you can send and receive many types of
+assets, such as US dollars, Nigerian naira, digital currencies like bitcoin, or even your own new
+kind of asset.
 
-While Stellar’s native asset, the lumen, is fairly simple, all other assets can be thought of like a credit issued by a particular account. In fact, when you trade US dollars on the Stellar network, you don’t actually trade US dollars—you trade US dollars *from a particular account.* That’s why the assets in the example above had both a `code` and an `issuer`. The `issuer` is the ID of the account that created the asset. Understanding what account issued the asset is important—you need to trust that, if you want to redeem your dollars on the Stellar network for actual dollar bills, the issuer will be able to provide them to you. Because of this, you’ll usually only want to trust major financial institutions for assets that represent national currencies.
+While Stellar’s native asset, the lumen, is fairly simple, all other assets can be thought of like
+a credit issued by a particular account. In fact, when you trade US dollars on the Stellar network,
+you don’t actually trade US dollars—you trade US dollars *from a particular account.* That’s why
+the assets in the example above had both a `code` and an `issuer`. The `issuer` is the ID of the
+account that created the asset. Understanding what account issued the asset is important—you need
+to trust that, if you want to redeem your dollars on the Stellar network for actual dollar bills,
+the issuer will be able to provide them to you. Because of this, you’ll usually only want to trust
+major financial institutions for assets that represent national currencies.
 
-Stellar also supports payments sent as one type of asset and received as another. You can send Nigerian naira to a friend in Germany and have them receive euros. These multi-currency transactions are made possible by a built-in market mechanism where people can make offers to buy and sell different types of assets. Stellar will automatically find the best people to exchange currencies with in order to convert your naira to euros. This system is called [distributed exchange](../concepts/exchange.md).
+Stellar also supports payments sent as one type of asset and received as another. You can send
+Nigerian naira to a friend in Germany and have them receive euros. These multi-currency
+transactions are made possible by a built-in market mechanism where people can make offers to buy
+and sell different types of assets. Stellar will automatically find the best people to exchange
+currencies with in order to convert your naira to euros. This system is called [distributed
+exchange](../concepts/exchange.md).
 
 You can read more about the details of assets in the [assets overview](../concepts/assets.md).
 
 ## What Next?
 
-Now that you can send and receive payments using Stellar’s API, you’re on your way to writing all kinds of amazing financial software. Experiment with other parts of the API, then read up on more detailed topics:
+Now that you can send and receive payments using Stellar’s API, you’re on your way to writing all
+kinds of amazing financial software. Experiment with other parts of the API, then read up on more
+detailed topics:
 
 - [Become an anchor](../anchor/)
 - [Security](../security.md)
@@ -583,12 +669,24 @@ Now that you can send and receive payments using Stellar’s API, you’re on yo
 </div>
 
 
-[^1]: A list of all the possible operations can be found on the [operations page](../concepts/operations.md).
+[^1]: A list of all the possible operations can be found on the [operations
+  page](../concepts/operations.md).
 
-[^2]: The full details on transactions can be found on the [transactions page](../concepts/transactions.md).
+[^2]: The full details on transactions can be found on the [transactions
+  page](../concepts/transactions.md).
 
-[^3]: The 100 stroops is called Stellar’s **base fee**. The base fee can be changed, but a change in Stellar’s fees isn’t likely to happen more than once every several years. You can look up the current fees by [checking the details of the latest ledger](https://www.stellar.org/developers/horizon/reference/endpoints/ledgers-single.html).
+[^3]: The 100 stroops is called Stellar’s **base fee**. The base fee can be changed, but a change
+  in Stellar’s fees isn’t likely to happen more than once every several years. You can look up the
+  current fees by [checking the details of the latest
+  ledger](https://www.stellar.org/developers/horizon/reference/endpoints/ledgers-single.html).
 
-[^4]: Even though most responses from the Horizon REST API use JSON, most of the data in Stellar is actually stored in a format called XDR, or External Data Representation. XDR is both more compact than JSON and stores data in a predictable way, which makes signing and verifying an XDR-encoded message easier. You can get more details on [our XDR page](https://www.stellar.org/developers/horizon/reference/xdr.html).
+[^4]: Even though most responses from the Horizon REST API use JSON, most of the data in Stellar is
+  actually stored in a format called XDR, or External Data Representation. XDR is both more compact
+  than JSON and stores data in a predictable way, which makes signing and verifying an XDR-encoded
+  message easier. You can get more details on [our XDR
+  page](https://www.stellar.org/developers/horizon/reference/xdr.html).
 
-[^5]: In situations where you need to perform a high number of transactions in a short period of time (for example, a bank might perform transactions on behalf of many customers using one Stellar account), you can create several Stellar accounts that work simultaneously. Read more about this in [the guide to channels](../channels.md).
+[^5]: In situations where you need to perform a high number of transactions in a short period of
+  time (for example, a bank might perform transactions on behalf of many customers using one
+  Stellar account), you can create several Stellar accounts that work simultaneously. Read more
+  about this in [the guide to channels](../channels.md).
