@@ -2,10 +2,10 @@
 title: Send and Receive Money
 ---
 
-Before continuing with the following examples for Stellar in code, consider going through the
+_Before continuing with the following examples for Stellar in code, consider going through the
 following examples using the [Stellar Laboratory](https://www.stellar.org/laboratory/). The lab
 allows you create accounts, fund accounts on test net, build transactions, run any operation, and
-inspect responses from Horizon via the Endpoint Explorer.
+inspect responses from Horizon via the Endpoint Explorer._
 
 Now that you have an account, you can send and receive funds through the Stellar network. If you
 haven’t created an account yet, read [step 2 of the Get Started guide](./create-account.md).

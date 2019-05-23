@@ -2,10 +2,10 @@
 title: Create an Account
 ---
 
-Before we get started with working with Stellar in code, consider going through the following
+_Before we get started with working with Stellar in code, consider going through the following
 examples using the [Stellar Laboratory](https://www.stellar.org/laboratory/). The lab allows you
-create accounts, fund accounts on test net, build transactions, run any operation, and inspect
-responses from Horizon via the Endpoint Explorer.
+create accounts, fund accounts on the Stellar test network, build transactions, run any operation,
+and inspect responses from Horizon via the Endpoint Explorer._
 
 The first thing you’ll need to do anything on the Stellar network is an account. Accounts hold all
 your money inside Stellar and allow you to send and receive payments—in fact, pretty much
