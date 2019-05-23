@@ -148,14 +148,14 @@ Possible errors:
 | Error | Code | Description |
 | ----- | ---- | ------ |
 | MANAGE_BUY_OFFER_MALFORMED | -1 | The input is incorrect and would result in an invalid offer. |
-| MANAGE_BUY_OFFER_BUY_NO_TRUST | -2 | The account creating the offer does not have a trustline for the asset it is selling. |
+| MANAGE_BUY_OFFER_SELL_NO_TRUST | -2 | The account creating the offer does not have a trustline for the asset it is selling. |
 | MANAGE_BUY_OFFER_BUY_NO_TRUST | -3 | The account creating the offer does not have a trustline for the asset it is buying. |
 | MANAGE_BUY_OFFER_BUY_NOT_AUTHORIZED | -4 | The account creating the offer is not authorized to sell this asset. |
-| MANAGE_BUY_OFFER_BUY_NOT_AUTHORIZED | -5 | The account creating the offer is not authorized to buy this asset. |
+| MANAGE_BUY_OFFER_SELL_NOT_AUTHORIZED | -5 | The account creating the offer is not authorized to buy this asset. |
 | MANAGE_BUY_OFFER_LINE_FULL | -6 | The account creating the offer does not have sufficient limits to receive `buying` and still satisfy its buying liabilities. |
 | MANAGE_BUY_OFFER_UNDERFUNDED | -7 | The account creating the offer does not have sufficient limits to send `selling` and still satisfy its selling liabilities. Note that if selling XLM then the account must additionally maintain its minimum XLM reserve, which is calculated assuming this offer will not completely execute immediately. |
 | MANAGE_BUY_OFFER_CROSS_SELF | -8 | The account has opposite offer of equal or lesser price active, so the account creating this offer would immediately cross itself. |
-| MANAGE_BUY_OFFER_BUY_NO_ISSUER | -9 | The issuer of selling asset does not exist. |
+| MANAGE_BUY_OFFER_SELL_NO_ISSUER | -9 | The issuer of selling asset does not exist. |
 | MANAGE_BUY_OFFER_BUY_NO_ISSUER | -10 | The issuer of buying asset does not exist. |
 | MANAGE_BUY_OFFER_NOT_FOUND | -11 | An offer with that `offerID` cannot be found. |
 | MANAGE_BUY_OFFER_LOW_RESERVE | -12 | The account creating this offer does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every offer an account creates, the minimum amount of XLM that account must hold will increase. |
