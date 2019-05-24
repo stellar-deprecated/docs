@@ -129,6 +129,11 @@ func main() {
 
 </code-example>
 
+Once you have an account with a balance of lumens, you can also create additional accounts via the
+[Create Account](../concepts/list-of-operations.md#create-account) operation, which
+transfers lumens from your existing account to a new account. This is how new accounts are created
+on the public network, often via exchanges.
+
 Now for the last step: Getting the account’s details and checking its balance. Accounts can carry multiple balances—one for each type of currency they hold.
 
 <code-example name="Getting account details">
