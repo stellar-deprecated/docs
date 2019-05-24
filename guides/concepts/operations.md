@@ -41,16 +41,34 @@ Thresholds define the level of privilege an operation needs in order to succeed.
     * Used to change the Set of signers and the thresholds.
 
 
-## Validity of an operation
+## Validity of an Operation
 
-There are two places in a [transaction life cycle](./transactions.md#life-cycle) when operations can fail. The first time is when a transaction is submitted to the network. The node to which the transaction is submitted checks the validity of the operation: in the **validity check**, the node performs some cursory checks to make sure the transaction is properly formed before including it in its transaction set and forwarding the transaction to the rest of the network.
+There are two places in a [transaction life cycle](./transactions.md#life-cycle) when operations
+can fail. The first time is when a transaction is submitted to the network. The node to which the
+transaction is submitted checks the validity of the operation. During the initial validity check,
+the node performs some cursory checks to make sure the transaction is properly formed before
+including it in its transaction set and forwarding the transaction to the rest of the network.
 
-The validity check only looks at the state of the source account. It ensures that:
-1) the outer transaction has enough signatures for the source account of the operation to meet the threshold for that operation.
-2) Operations-specific validity checks pass. These checks are ones that would stay true regardless of the ledger state—for example, are the parameters within the expected bounds? Checks that depend on ledger state don't happen until apply time—for example, a send operation won't check if you have enough balance to send until apply time.
+In order to ensure that the validity check is fast and simple at this level of the protocol, the
+validity check only looks at the state of the source account. It ensures that for each operation in
+the transaction:
 
-Once a transaction passes this first validity check, it is propagated to the network and eventually included in a transaction set. As part of a transaction set, the transaction is applied to the ledger. At that point a fee is taken from the source account regardless of success/failure. Later, the transaction is processed: sequence number and signatures are verified before operations are attempted in the order they occur in the transaction. If any operation fails, the whole transaction fails and the effects of previous operations are rolled back.
+1. The transaction has enough signatures for the source account of the operation to meet the
+   threshold for that operation.
+2. All operations-specific validity checks pass. These checks are ones that would stay true regardless
+   of the ledger state. For example, if a [Set Options](./list-of-operations.md#set-options)
+   operation sets the weight of the master key, is the weight between 0-255? It is of note that any
+   checks that depend on ledger state don't happen until apply time — for example, a
+   [Payment](./list-of-operations.md#payment) operation won't check if you have enough balance for
+   the payment until apply time.
 
+Once a transaction passes this first validity check, it is propagated to the network and eventually
+included in a transaction set. As part of a transaction set, the transaction is applied to the
+ledger. At that point a fee is taken from the source account, and the sequence number of the
+source account is increased by 1 regardless of success/failure. Later, the transaction is processed:
+the sequence number and signatures are verified before operations are attempted in the order they
+occur in the transaction. If any operation fails, the whole transaction fails and the effects of
+previous operations are rolled back.
 
 ## Result
 
