@@ -43,8 +43,24 @@ unit of what you're _selling_ in terms of what you're _buying_. For example, if 
 10 USD in exchange for 100 XLM, you would specify the price as `{100, 10}`, which would be the
 equivalent of 1 USD @ 10 XLM (_nice profit_).
 
-It's important to note that the price is set _after fees_, so be sure to factor that into how you
-determine the price of your offer.
+#### Fees
+
+It's important to note that the price you set is unrelated to the fee you pay for submitting the
+offer as a part of a transaction. In fact, it's absolutely possible it's in a different asset! This
+is because on the Stellar network fees are always paid in the native currency of the network
+(lumens), and are related to the transaction that you submit to the network (which contains your
+offer operation) as opposed to your offer itself.
+
+It's up to you to calculate fees into how you craft the price on your offer. Here's an example:
+
+* You place an offer to _buy_ 100 USD for 135 CAD with a fee of 1000
+  [stroops](./assets.md#one-stroop-multiple-stroops) (.0001 XLM). You immediately lose .0001
+  XLM.
+* When your offer is accepted by a seller, you receive 100 USD and exchange 135 CAD in return.
+* In total, your gain is 100 USD, and your loss is 135 CAD _and_ .0001 XLM.
+
+For more information, take a look at [our guide on fees in Stellar](./fees.md).
+
 
 ## Orderbook
 An **orderbook** is a record of outstanding orders on the Stellar network. This record sits between any two assets. Abstractly, we often discuss assets using two _fictional placeholder_ assets traded in a market, which we call "**wheat**" or "**sheep**". The orderbook for that asset-pair therefore records every account wanting to sell wheat for sheap on one side _and_ every account wanting to sell sheep for wheat on the other side.
