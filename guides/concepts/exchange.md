@@ -17,9 +17,50 @@ If the offer doesn't cross an existing offer, the offer is saved in the orderboo
 
 Starting in protocol version 10, it is no longer possible for an offer to be invalidated because the account owning the offer no longer has the asset for sale. Each offer contributes selling liabilities for the selling asset and buying liabilities for the buying asset, which are aggregated in the account (for lumens) or trustline (for other assets) owned by the account creating the offer. Any operation that would cause an account to be unable to satisfy its liabilities, such as sending away too much balance, will fail. This guarantees that any offer in the orderbook can be executed entirely.
 
-Offers in Stellar behave like limit orders in traditional markets. 
+Offers in Stellar behave like limit orders in traditional markets.
 
-For offers placed at the same price, the older offer is filled before the newer one.  
+For offers placed at the same price, the older offer is filled before the newer one.
+
+### Price
+
+Each offer in Stellar has an associated price with it, which is represented as a ratio of the
+two assets in the offer. This is to ensure there is no loss of precision when representing the
+price of the offer (as opposed to storing the fraction as a floating-point number).
+
+Prices are specified as a `{numerator, denominator}` pair, with both components of the fraction
+represented as 32 bit signed integers. When expressing a price of "Asset A in terms of Asset B",
+the amount of B is always the numerator, and A is always the denominator.
+
+When creating a "buy"/"bid" offer in Stellar via the [Manage Buy
+Offer](./list-of-operations.md#manage-buy-offer) operation, the price is specified as 1 unit of
+what you're _buying_ in terms of what you're _selling_. For example, if you were _buying_ 20 USD in
+exchange for 100 XLM, you would specify the price as `{100, 20}`, which would be the equivalent of
+1 USD @ 5 XLM.
+
+When creating a "sell"/"offer"/"ask" offer in Stellar via the [Manage Sell
+Offer](./list-of-operations.md#manage-sell-offer) operation, the price is specified as 1
+unit of what you're _selling_ in terms of what you're _buying_. For example, if you were _selling_
+10 USD in exchange for 100 XLM, you would specify the price as `{100, 10}`, which would be the
+equivalent of 1 USD @ 10 XLM (_nice profit_).
+
+#### Fees
+
+It's important to note that the price you set is unrelated to the fee you pay for submitting the
+offer as a part of a transaction. In fact, it's absolutely possible it's in a different asset! This
+is because on the Stellar network fees are always paid in the native currency of the network
+(lumens), and are related to the transaction that you submit to the network (which contains your
+offer operation) as opposed to your offer itself.
+
+It's up to you to calculate fees into how you craft the price on your offer. Here's an example:
+
+* You place an offer to _buy_ 100 USD for 135 CAD with a fee of 1000
+  [stroops](./assets.md#one-stroop-multiple-stroops) (.0001 XLM). You immediately lose .0001
+  XLM.
+* When your offer is accepted by a seller, you receive 100 USD and exchange 135 CAD in return.
+* In total, your gain is 100 USD, and your loss is 135 CAD _and_ .0001 XLM.
+
+For more information, take a look at [our guide on fees in Stellar](./fees.md).
+
 
 ## Orderbook
 An **orderbook** is a record of outstanding orders on the Stellar network. This record sits between any two assets. Abstractly, we often discuss assets using two _fictional placeholder_ assets traded in a market, which we call "**wheat**" or "**sheep**". The orderbook for that asset-pair therefore records every account wanting to sell wheat for sheap on one side _and_ every account wanting to sell sheep for wheat on the other side.
@@ -33,7 +74,7 @@ The diagram is split into two stacks of orders. Each stack is the the set of ord
 
 For mnemonic purposes we've arranged the diagram with the sheep "on top" of the wheat here. If it helps you can picture a bunch of sheep standing on a field of wheat or some bushels of wheat, an arrangement less likely to cause chaos than trying to stack bushels of wheat on top of sheep.
 
-![diagram of orderbook](assets/orderbook.png) 
+![diagram of orderbook](assets/orderbook.png)
 
 
 Looking at the diagram, there are a few orientation things to notice and think about:
@@ -76,7 +117,7 @@ This process of finding the best path of a payment is called **pathfinding**. Pa
 
 
 ## Preferred currency
-Because cross-asset payments are so simple with Stellar, users can keep their money in whatever asset they prefer to hold. **Preferred currency** creates a very flexible, open system. 
+Because cross-asset payments are so simple with Stellar, users can keep their money in whatever asset they prefer to hold. **Preferred currency** creates a very flexible, open system.
 
 Imagine a world where, anytime you travel, you never have to exchange currency except at the point of sale. A world where you can choose to keep all your assets in, for example, Google stock, cashing out small amounts as you need to pay for things. Cross-asset payments make this world possible.
 
