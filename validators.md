@@ -28,6 +28,15 @@ Peer | stellar.alchymia.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ----
+Name | AWorld
+-----|--------
+Description | AWorld.org East-US
+Contact | andrea.b@oneabee.com
+NodeID | GC3Q7I44RBNNCAYNIKG3G55HGRGIFCFSXUCEH7NF3XV3C43Y52QLSPZN
+Peer | eastus.stellar.aworld.org
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+----
 Name | badbox - chicago
 -----|--------
 Description | chicago based validator
