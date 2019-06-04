@@ -96,6 +96,8 @@ Transaction transaction = new Transaction.Builder(sourceAccount)
         // A memo allows you to add your own metadata to a transaction. It's
         // optional and does not affect how Stellar treats the transaction.
         .addMemo(Memo.text("Test Transaction"))
+        // Wait a maximum of three minutes for the transaction
+        .setTimeout(180)
         .build();
 // Sign the transaction to prove you are actually the person sending it.
 transaction.sign(source);
