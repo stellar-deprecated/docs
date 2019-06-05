@@ -37,7 +37,16 @@ Each transaction has the following attributes:
 > #### Time bounds
 > *optional* The UNIX timestamp (in seconds), determined by ledger time, of a lower and upper bound of when this transaction will be valid. If a transaction is submitted too early or too late, it will fail to make it into the transaction set. `maxTime` equal `0` means that it's not set.
 
-## Transaction sets
+## Transaction Envelopes
+Once a transaction is ready to be signed, the transaction object is wrapped in an object called a
+Transaction Envelope, which contains the transaction as well as a set of signatures. Most
+transaction envelopes only contain a single signature along with the transaction, but in
+[multi-signature setups](./multi-sig.md) it can contain many signatures.
+
+Ultimately, transaction envelopes are passed around the network and are included in transaction
+sets, as opposed to raw Transaction objects.
+
+## Transaction Sets
 
 Between ledger closings, all the nodes in the network are collecting transactions. When it is time to close the next ledger, the nodes collect these transactions into a transaction set. SCP is run by the network to reach agreement on which transaction set to apply to the last ledger.
 
