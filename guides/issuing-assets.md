@@ -343,6 +343,29 @@ server.submitTransaction(setAuthorization);
 
 </code-example>
 
+## Redeeming Assets
+
+When a user would like to redeem their asset off of the Stellar Network (such as receiving cold,
+hard cash for an asset representing a physical currency), the process takes places in two
+steps:
+
+1. On the Stellar Network, the holder of the asset (i.e. the account with the trustline for the
+   asset) sends funds back to the issuing account via a [Payment
+   operation](./concepts/list-of-operations.md#payment).
+2. Outside of the network, the Asset issuer provides liquidity, such as handing over cash at a
+   cashier or ATM.
+
+It's of note that when tokens are sent back to the issuing (original source) account, they are
+removed from the global supply of tokens. As an asset issuer you may not want this behavior, and
+you can instead establish a distribution account which establishes the first trustline with the
+issuing account. This has the benefit of also setting an initial monetary supply for your asset,
+and doesn't cause your asset's monetary supply to grow or shrink each time that payments are sent
+from or to the issuing account, respectively.
+
+Regardless of which strategy you use for managing your token's supply, as an asset issuer it is
+very important to make it clear to asset holders to send the asset back to a specified account of
+yours, and to provide information on how and when you will provide liquidity upon redemption.
+
 ## Best Practices
 
 Once you begin issuing your own assets, there are a few smart practices you can follow for better
