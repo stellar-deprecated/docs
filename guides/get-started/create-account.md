@@ -59,7 +59,12 @@ func main() {
 
 </code-example>
 
-Now that you have a seed and public key, you can create an account. In order to prevent people from making a huge number of unnecessary accounts, each account must have a minimum balance of 1 lumen (lumens are the built-in currency of the Stellar network).[^2] Since you don’t yet have any lumens, though, you can’t pay for an account. In the real world, you’ll usually pay an exchange that sells lumens in order to create a new account.[^3] On Stellar’s test network, however, you can ask Friendbot, our friendly robot with a very fat wallet, to create an account for you.
+Now that you have a seed and public key, you can create an account. In order to prevent people from
+making a huge number of unnecessary accounts, each account must have a minimum balance of 1 lumen
+(lumens are the built-in currency of the Stellar network).[^2] Since you don’t yet have any lumens,
+though, you can’t pay for an account. In the real world, you’ll usually pay an exchange that sells
+lumens in order to create a new account.[^3][^4] On Stellar’s test network, however, you can ask
+Friendbot, our friendly robot with a very fat wallet, to create an account for you.
 
 To create a test account, send Friendbot the public key you created. It’ll create and fund a new account using that public key as the account ID.
 
@@ -196,3 +201,12 @@ Now that you’ve got an account, you can [start sending and receiving payments]
 [^1]: A private key is still used to encrypt data and sign transactions. When you create a `KeyPair` object using a seed, the private key is immediately generated and stored internally.
 [^2]: Other features of Stellar, like [trust lines](../concepts/assets.md#trustlines), require higher minimum balances. For more on minimum balances, see [fees](../concepts/fees.md#minimum-account-balance)
 [^3]: CoinMarketCap maintains a list of exchanges that sell lumens at http://coinmarketcap.com/currencies/stellar/#markets
+[^4]: Once you have an account with a balance of lumens, you can also create additional accounts
+  via the [Create Account](../concepts/list-of-operations.md#create-account) operation, which
+  transfers lumens from an existing account to a new account. This is how new accounts are
+  created on the public network, often where an exchange is the source account and your account is
+  created by them. To do this yourself, follow the steps for [building a
+  transaction](transactions.md#building-a-transaction) using a [Create Account
+  operation](../concepts/list-of-operations.md#create-account) instead of a [Payment
+  operation](../concepts/list-of-operations.md#payment).
+
