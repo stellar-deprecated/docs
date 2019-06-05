@@ -315,6 +315,7 @@ Possible errors:
 |CHANGE_TRUST_NO_ISSUER| -2| The issuer of the asset cannot be found.|
 |CHANGE_TRUST_INVALID_LIMIT| -3| The `limit` is not sufficient to hold the current balance of the trustline and still satisfy its buying liabilities.|
 |CHANGE_TRUST_LOW_RESERVE| -4| This account does not have enough XLM to satisfy the minimum XLM reserve increase caused by adding a subentry and still satisfy its XLM selling liabilities. For every new trustline added to an account, the minimum reserve of XLM that account must hold increases.|
+| CHANGE_TRUST_SELF_NOT_ALLOWED | -5 | The source account attempted to create a trustline for itself, which is not allowed. |
 
 ## Allow Trust
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.allowTrust) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AllowTrustOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#AllowTrust)
@@ -343,6 +344,7 @@ Possible errors:
 |ALLOW_TRUST_NO_TRUST_LINE| -2| The `trustor` does not have a trustline with the issuer performing this operation.|
 |ALLOW_TRUST_TRUST_NOT_REQUIRED| -3| The source account (issuer performing this operation) does not require trust.  In other words, it does not have the flag `AUTH_REQUIRED_FLAG` set.|
 |ALLOW_TRUST_CANT_REVOKE| -4| The source account is trying to revoke the trustline of the `trustor`, but it cannot do so.|
+| ALLOW_TRUST_SELF_NOT_ALLOWED | -5 | The source account attempted to allow a trustline for itself, which is not allowed because an account cannot create a trustline with itself. |
 
 ## Account Merge
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.accountMerge) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AccountMergeOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#AccountMerge)
