@@ -39,7 +39,7 @@ Each transaction has the following attributes:
 
 ## Transaction Envelopes
 Once a transaction is ready to be signed, the transaction object is wrapped in an object called a
-Transaction Envelope, which contains the transaction as well as a set of signatures. Most
+`Transaction Envelope`, which contains the transaction as well as a set of signatures. Most
 transaction envelopes only contain a single signature along with the transaction, but in
 [multi-signature setups](./multi-sig.md) it can contain many signatures.
 
