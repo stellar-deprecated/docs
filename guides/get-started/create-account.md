@@ -2,13 +2,31 @@
 title: Create an Account
 ---
 
-The first thing you’ll need to do anything on the Stellar network is an account. Accounts hold all your money inside Stellar and allow you to send and receive payments—in fact, pretty much everything in Stellar is in some way tied to an account.
+_Before we get started with working with Stellar in code, consider going through the following
+examples using the [Stellar Laboratory](https://www.stellar.org/laboratory/). The lab allows you
+create accounts, fund accounts on the Stellar test network, build transactions, run any operation,
+and inspect responses from Horizon via the Endpoint Explorer._
 
-Every Stellar account has a **public key** and a **secret seed**. Stellar uses public key cryptography to ensure that every transaction is secure. The public key is always safe to share—other people need it to identify your account and verify that you authorized a transaction. The seed, however, is private information that proves you own your account. You should never share the seed with anyone. It’s kind of like the combination to a lock—anyone who knows the combination can open the lock. In the same way, anyone who knows your account’s seed can control your account.
+The first thing you’ll need to do anything on the Stellar network is an account. Accounts hold all
+your money inside Stellar and allow you to send and receive payments—in fact, pretty much
+everything in Stellar is in some way tied to an account.
 
-If you’re familiar with public key cryptography, you might be wondering how the seed differs from a private key. The seed is actually the single secret piece of data that is used to generate both the public and private key for your account. Stellar’s tools use the seed instead of the private key for convenience: To have full access to an account, you only need to provide a seed instead of both a public key and a private key.[^1]
+Every Stellar account has a **public key** and a **secret seed**. Stellar uses public key
+cryptography to ensure that every transaction is secure. The public key is always safe to
+share—other people need it to identify your account and verify that you authorized a transaction.
+The seed, however, is private information that proves you own your account. You should never share
+the seed with anyone. It’s kind of like the combination to a lock—anyone who knows the combination
+can open the lock. In the same way, anyone who knows your account’s seed can control your account.
 
-Because the seed must be kept secret, the first step in creating an account is creating your own seed and key—when you finally create the account, you’ll send only the public key to a Stellar server. You can generate the seed and key with the following command:
+If you’re familiar with public key cryptography, you might be wondering how the seed differs from a
+private key. The seed is actually the single secret piece of data that is used to generate both the
+public and private key for your account. Stellar’s tools use the seed instead of the private key
+for convenience: To have full access to an account, you only need to provide a seed instead of both
+a public key and a private key.[^1]
+
+Because the seed must be kept secret, the first step in creating an account is creating your own
+seed and key—when you finally create the account, you’ll send only the public key to a Stellar
+server. You can generate the seed and key with the following command:
 
 <code-example name="Generating Keys">
 
@@ -66,7 +84,8 @@ though, you can’t pay for an account. In the real world, you’ll usually pay 
 lumens in order to create a new account.[^3][^4] On Stellar’s test network, however, you can ask
 Friendbot, our friendly robot with a very fat wallet, to create an account for you.
 
-To create a test account, send Friendbot the public key you created. It’ll create and fund a new account using that public key as the account ID.
+To create a test account, send Friendbot the public key you created. It’ll create and fund a new
+account using that public key as the account ID.
 
 <code-example name="Creating a test account">
 
@@ -134,7 +153,8 @@ func main() {
 
 </code-example>
 
-Now for the last step: Getting the account’s details and checking its balance. Accounts can carry multiple balances—one for each type of currency they hold.
+Now for the last step: Getting the account’s details and checking its balance. Accounts can carry
+multiple balances—one for each type of currency they hold.
 
 <code-example name="Getting account details">
 
@@ -209,4 +229,3 @@ Now that you’ve got an account, you can [start sending and receiving payments]
   transaction](transactions.md#building-a-transaction) using a [Create Account
   operation](../concepts/list-of-operations.md#create-account) instead of a [Payment
   operation](../concepts/list-of-operations.md#payment).
-
