@@ -323,23 +323,23 @@ Updates the `authorized` flag of an existing trustline. This can only be called 
 
 The issuer can only clear the `authorized` flag if the issuer has the `AUTH_REVOCABLE_FLAG` set. Otherwise, the issuer can only set the `authorized` flag.
 
-If the issuer clears the `authorized` flag, all offers owned by the `trustor` that are either selling `type` or buying `type` will be deleted. *(protocol version 10 and above)*
+If the issuer clears the `authorized` flag, all offers owned by the `trustor` that are either selling `type` or buying `type` will be deleted. *(Protocol v10 and above)*
 
 Threshold: Low
 
 Result: `AllowTrustResult`
 
-|Parameters| Type| Description|
+| Parameters | Type | Description |
 | --- | --- | --- |
-|Trustor| account ID| The account of the recipient of the trustline.|
-|Type| asset | The asset of the trustline the source account is authorizing. For example, if an anchor wants to allow another account to hold its USD credit, the `type` is USD:anchor.|
-|Authorize| boolean| Flag indicating whether the trustline is authorized.|
+| Trustor | account ID | The account of the recipient of the trustline. |
+| Type | asset code | The 4 or 12 character-maximum asset code of the trustline the source account is authorizing. For example, if an issuing account wants to allow another account to hold its USD credit, the `type` is `USD`. |
+| Authorize | boolean | Flag indicating whether the trustline is authorized. |
 
 Possible errors:
 
 | Error | Code | Description |
 | ----- | ---- | ------|
-|ALLOW_TRUST_MALFORMED| -1| The asset specified in `type` is invalid.|
+| ALLOW_TRUST_MALFORMED | -1 | The asset specified in `type` is invalid. In addition, this error happens when the native asset is specified. |
 |ALLOW_TRUST_NO_TRUST_LINE| -2| The `trustor` does not have a trustline with the issuer performing this operation.|
 |ALLOW_TRUST_TRUST_NOT_REQUIRED| -3| The source account (issuer performing this operation) does not require trust.  In other words, it does not have the flag `AUTH_REQUIRED_FLAG` set.|
 |ALLOW_TRUST_CANT_REVOKE| -4| The source account is trying to revoke the trustline of the `trustor`, but it cannot do so.|
