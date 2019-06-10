@@ -659,7 +659,6 @@ Now that you can send and receive payments using Stellar’s API, you’re on yo
 kinds of amazing financial software. Experiment with other parts of the API, then read up on more
 detailed topics:
 
-- [Become an anchor](../anchor/)
 - [Security](../security.md)
 - [Federation](../concepts/federation.md)
 - [Compliance](../compliance-protocol.md)
