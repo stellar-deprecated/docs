@@ -97,7 +97,7 @@ account using that public key as the account ID.
 // uncomment the next line:
 // const fetch = require('node-fetch');
 
-(async () => {
+(async function main() {
   try {
     const response = await fetch(
       `https://friendbot.stellar.org?addr=${encodeURIComponent(pair.publicKey())}`
