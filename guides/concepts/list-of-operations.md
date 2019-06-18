@@ -23,7 +23,7 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 ## Create Account
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.createAccount) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreateAccountOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#CreateAccount)
 
-This operation creates and funds a new account with the specified starting balance.
+Creates and funds a new account with the specified starting balance.
 
 Threshold: Medium
 
@@ -205,6 +205,9 @@ Possible errors:
 ## Create Passive Sell Offer
 [JavaScript](https://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveSellOffer) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveSellOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#CreatePassiveSellOffer)
 
+Creates, updates, or deletes an offer to sell one asset for another, otherwise known as a "ask"
+order or "offer" on a traditional orderbook, _without taking a reverse offer of equal price_.
+
 A passive sell offer is an offer that does not act on and take a reverse offer of equal price.
 Instead, they only take offers of lesser price. For example, if an offer exists to buy 5 BTC for 30
 XLM, and you make a passive offer to buy 30 XLM for 5 BTC, your passive offer *does not* take the
@@ -253,11 +256,16 @@ Possible errors:
 ## Set Options
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.setOptions) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/SetOptionsOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#SetOptions)
 
-This operation sets the options for an account.
+Sets options for an account, such as setting the inflation destination or adding an additional
+signer on an account.
 
-For more information on the signing options, please refer to the [multi-sig doc](./multi-sig.md).
+This operations allows you to set multiple options on an account in a single operation, such as
+changing a operation threshold and setting the flags on an account at the same time.
 
-When updating signers or other thresholds, the threshold of this operation is high.
+For more information on the options related to signing, please refer our documentation on
+[multi-sig](./multi-sig.md).
+
+When updating signers or other thresholds, the threshold of this operation is High.
 
 Threshold: Medium or High
 
@@ -267,7 +275,7 @@ Parameters:
 
 |Parameters| Type| Description|
 | --- | --- | --- |
-|inflation Destination| account ID| Account of the inflation destination.|
+|Inflation Destination| account ID| Account of the inflation destination.|
 |Clear flags| integer| Indicates which flags to clear. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer subtracts from the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
 |Set flags| integer| Indicates which flags to set. For details about the flags, please refer to the [accounts doc](./accounts.md). The bit mask integer adds onto the existing flags of the account. This allows for setting specific bits without knowledge of existing flags.|
 |Master weight| integer| A number from 0-255 (inclusive) representing the weight of the master key. If the weight of the master key is updated to 0, it is effectively disabled.|
@@ -373,7 +381,11 @@ Possible errors:
 ## Inflation
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#Inflation)
 
-This operation runs inflation.
+Run the inflation process for the entire Stellar network.
+
+Anyone can submit the Inflation operation that triggers the inflation process in the Stellar
+Network. Because it can only be run once a week, this operation will fail if the network has
+already had inflation processed within the past week.
 
 Threshold: Low
 
@@ -388,9 +400,13 @@ Possible errors:
 ## Manage Data
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageData) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageDataOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#ManageData)
 
-Allows you to set,modify or delete a Data Entry (name/value pair) that is attached to a particular account. An account can have an arbitrary amount of DataEntries attached to it. Each DataEntry increases the minimum balance needed to be held by the account.
+Sets, modifies, or deletes a Data Entry (name/value pair) that is attached to a particular account.
 
-DataEntries can be used for application specific things. They are not used by the core Stellar protocol.
+An account can have an arbitrary amount of data entries attached to it. Each data entry increases
+the minimum balance (via the base reserve) needed to be held by the account.
+
+Data entries can be used for storing application specific data on the Stellar Network. They are not
+used by the core Stellar Protocol.
 
 Threshold: Medium
 
@@ -413,9 +429,12 @@ Possible errors:
 ## Bump Sequence
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.bumpSequence) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/BumpSequenceOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#BumpSequence)
 
-*Only available in protocol version 10 and above*
+*Only available in Stellar Protocol >= v10*
 
-Bump sequence allows to bump forward the sequence number of the source account of the operation, allowing to invalidate any transactions with a smaller sequence number.
+Bump forward the sequence number of the source account to the given sequence number.
+
+This operation allows you to invalidate any transactions with a smaller sequence number, and is
+often utilized in complex contracting scenarios.
 
 If the specified `bumpTo` sequence number is greater than the source account's sequence number,
 the account's sequence number is updated with that value, otherwise it's not modified.
