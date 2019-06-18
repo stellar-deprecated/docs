@@ -1,9 +1,9 @@
 ---
 title: How To Connect Your Stablecoin to Stellar Wallets
 ---
-## What this doc is for
+> *Check out [this diagram](https://diagrams.stellar.org/cross-border-payments/) to see an example of the end-to-end user experience enabled by the setup described below.*
 
-As an issuer of a stablecoin on Stellar, you accept customer bank deposits via local rails, issue Stellar-network tokens representing those deposits, and allow customers to withdraw those tokens via those same rails for money in the bank.  
+As an issuer of a stablecoin on Stellar (aka a *fiat anchor*), you accept customer funds via local rails, issue Stellar-network tokens representing those deposits, and allow customers to withdraw those tokens via those same rails for money in their pocket or money in the bank.  
 
 Since customers generally use *wallets* to hold their Stellar tokens, and since there are a lot of wallets to choose from, _**a crucial step in making your token widely accessible is to set up APIs that enable wallets to offer in-app deposits and withdrawals, and to structure those APIs following best practices so that any wallet can easily find and interact with them.**_        
 
@@ -79,7 +79,7 @@ You can set the JWT to expire whenever you want.  The rule of thumb is 24 hours,
 
 ## Complete your stellar.toml file ([SEP-1](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md))
 
-Your stellar.toml file is a vital piece of your Stellar infrastructure, so vital in fact that we published a separate guide dedicated to helping you fill it out.  You should consult that guide, and complete as much of your stellar.toml as possible.  
+Your stellar.toml file is a vital piece of your Stellar infrastructure, so vital in fact that we published [a separate guide](../how-to-complete-stellar-toml.md) dedicated to helping you fill it out.  You should consult that guide, and complete as much of your stellar.toml as possible.  
 
 The stellar.toml specification relies on a simple trick to create a link between your on-chain listing and off-chain information: using a `set_options` [operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#set-options), you set the home domain of your Stellar issuing account to your website.  You then publish a static resource on your website containing information about your Stellar integration.  A user (or a bot) can then look at your Stellar account, find your stellar.toml, and use the structured information there to learn more about your Stellar integration.
 
@@ -93,27 +93,23 @@ So after setting up the APIs discussed above, make sure to add the following fie
 Completing your stellar.toml file is crucial to getting any exposure in the Stellar ecosystem: wallets generally don’t display tokens with incomplete stellar.toml files, and users are reluctant to touch assets that lack expected information.  The fields above are necessary to let wallets know you support in-app deposits and withdrawals, but you should also make sure to complete the Issuer Documentation, Point of Contact Documentation, and Currency Documentation sections.
 
 ## Putting it all together
-Once you implement all the SEPs, a typical deposit flow looks like this:
+Once you implement all the SEPs, you enable the end-to-end user experience outlined in [this diagram](https://diagrams.stellar.org/cross-border-payments/). 
+
+Here's a quick run through of a typical deposit:
 
 ### From a user’s perspective:
-* User opens their favorite wallet
-* Clicks “Deposit Fiat Currency”
-* Chooses an amount
+* Using their wallet of choice, user initiates fiat deposit with you
 * Enters KYC info
 * They’re prompted to send funds via ACH to your bank account
 * Once their ACH deposit clears, your tokens appear in their wallet
 * Like magic!
 
 ### Here’s what’s going on in the background:
-* User initiates deposit
-* Wallet pings your Transfer Server, discovers that you require an authenticated user session
 * Wallet pings your `WEB_AUTH_ENDPOINT`, goes through challenge/response, receives a JWT token to authenticate user session
-* Wallet pings your Transfer Server, discovers KYC requirements
-* Wallet prompts user to enter KYC info
 * Wallet uploads user’s KYC info to your `/customer` endpoint
 * You check customer KYC 
-* Wallet pings your Transfer Server with customer Stellar account public key
-* Since KYC and user authentication requirements are met, your Transfer Server responds with your bank account information
+* Wallet pings your `/deposit` endpoint with customer Stellar account public key
+* Since KYC and user authentication requirements are met, your `/deposit` endpoint responds with your bank account information
 * User sends funds via ACH to your bank account
 * User’s ACH deposit clears
 * You credit user’s Stellar account with tokens
