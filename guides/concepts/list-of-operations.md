@@ -259,10 +259,10 @@ Possible errors:
 Sets options for an account, such as setting the inflation destination or adding an additional
 signer on an account.
 
-This operations allows you to set multiple options on an account in a single operation, such as
-changing a operation threshold and setting the flags on an account at the same time.
+Allows you to set multiple options on an account in a single operation, such as
+changing an operation threshold and setting the flags on an account at the same time.
 
-For more information on the options related to signing, please refer our documentation on
+For more information on the options related to signing, see our docs on
 [multi-sig](./multi-sig.md).
 
 When updating signers or other thresholds, the threshold of this operation is High.
@@ -381,9 +381,9 @@ Possible errors:
 ## Inflation
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#Inflation)
 
-Run the inflation process for the entire Stellar network.
+Runs the inflation process for the entire Stellar network.
 
-Anyone can submit the Inflation operation that triggers the inflation process in the Stellar
+Anyone can submit the Inflation operation that triggers the inflation process on the Stellar
 Network. Because it can only be run once a week, this operation will fail if the network has
 already had inflation processed within the past week.
 
@@ -400,12 +400,13 @@ Possible errors:
 ## Manage Data
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageData) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageDataOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#ManageData)
 
-Sets, modifies, or deletes a Data Entry (name/value pair) that is attached to a particular account.
+Sets, modifies, or deletes a data entry (name/value pair) that is attached to a particular account.
 
-An account can have an arbitrary amount of data entries attached to it. Each data entry increases
-the minimum balance (via the base reserve) needed to be held by the account.
+An account can have a large amount of data entries attached to it (subject to sub-entry limits for
+an account). Each data entry increases the minimum balance (via the base reserve) needed to be held
+by the account.
 
-Data entries can be used for storing application specific data on the Stellar Network. They are not
+Data entries can be used for storing application-specific data on the Stellar Network. They are not
 used by the core Stellar Protocol.
 
 Threshold: Medium
@@ -431,9 +432,9 @@ Possible errors:
 
 *Only available in Stellar Protocol >= v10*
 
-Bump forward the sequence number of the source account to the given sequence number.
+Bumps forward the sequence number of the source account to the given sequence number.
 
-This operation allows you to invalidate any transactions with a smaller sequence number, and is
+This operation invalidates any transactions with a smaller sequence number, and is
 often utilized in complex contracting scenarios.
 
 If the specified `bumpTo` sequence number is greater than the source account's sequence number,
