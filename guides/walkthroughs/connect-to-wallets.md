@@ -31,7 +31,7 @@ Implementing this suite of SEPs allows you to offer customers a pretty amazing e
 
 Here are the steps you need to take, and the SEPs you need to take them.
 
-## Set up a transfer server ([SEP-6](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0060.md))
+## Set up a transfer server ([SEP-6](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0006.md))
 
 The Transfer Server is at the core of the anchor/wallet interaction.  It hosts endpoints that gather and transmit information on deposits, withdrawals, transaction status, and transaction history.  It also cues the wallet to take required steps to authenticate a user session and collect KYC information.  
 
