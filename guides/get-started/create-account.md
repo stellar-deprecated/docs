@@ -97,15 +97,17 @@ account using that public key as the account ID.
 // uncomment the next line:
 // const fetch = require('node-fetch');
 
-try {
-  const response = await fetch(
-    `https://friendbot.stellar.org?addr=${encodeURIComponent(pair.publicKey())}`
-  );
-  const responseJSON = await response.json();
-  console.log("SUCCESS! You have a new account :)\n", responseJSON);
-} catch (e) {
-  console.error("ERROR!", e);
-}
+(async function main() {
+  try {
+    const response = await fetch(
+      `https://friendbot.stellar.org?addr=${encodeURIComponent(pair.publicKey())}`
+    );
+    const responseJSON = await response.json();
+    console.log("SUCCESS! You have a new account :)\n", responseJSON);
+  } catch (e) {
+    console.error("ERROR!", e);
+  }
+})()
 ```
 
 ```java
