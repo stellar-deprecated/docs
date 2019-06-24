@@ -338,6 +338,15 @@ Peer | stellar.sui.li
 Node ID | GBHMXTHDK7R2IJFUIDIUWMR7VAKKDSIPC6PT5TDKLACEAU3FBAR2XSUI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+----
+Name | Stellar Switzerland Group
+-----|--------
+Description | http://node.stellarswitzerland.ch
+Contact | node@stellarswitzerland.ch
+Peer | node.stellarswitzerland.ch
+Node ID | GCTI5PJ3IARLH67N4SJC7P3S3VQWS5PKEGA564WNYBYTPX54FGDAYFFO
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 Name | Stronghold
 -----|--------
