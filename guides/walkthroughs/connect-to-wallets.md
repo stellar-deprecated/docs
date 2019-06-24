@@ -1,5 +1,5 @@
 ---
-title: How To Connect Your Stablecoin to Stellar Wallets
+title: How To Connect Your Anchor Service to Stellar Wallets
 ---
 > *Check out [this diagram](https://diagrams.stellar.org/cross-border-payments/) to see an example of the end-to-end user experience enabled by the setup described below.*
 
