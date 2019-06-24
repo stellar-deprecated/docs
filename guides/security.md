@@ -63,4 +63,4 @@ It’s generally a good idea to make sure access to Stellar Core is extremely li
 
 ## Keep Up to Date with Security Patches
 
-Make sure that you’re using the most secure software available by keeping up-to-date with the latest releases. Stellar.org publishes release announcements on a mailing list you can subscribe to at https://www.freelists.org/list/sdf-releases.
+Make sure that you’re using the most secure software available by keeping up-to-date with the latest releases. Stellar.org publishes release announcements on a mailing list you can subscribe to by emailing [stellar-dev+subscribe@googlegroups.com](mailto:stellar-dev+subscribe@googlegroups.com).
