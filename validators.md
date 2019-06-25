@@ -2,7 +2,7 @@ Stellar.org supports the network by running a few full validators and Horizon in
 
 If you would like to run a validator please:
  - Read the [admin guide](https://www.stellar.org/developers/stellar-core/learn/admin.html).
- - Join the #validators channel on [our slack](http://slack.stellar.org).
+ - Join the #validators channel on [our Keybase](https://keybase.io/team/stellar.public).
  - See the [example config](./other/stellar-core-validator-example.cfg) for setting up your validator.
  - Start your node.
  - Open a pull request to list it here.
@@ -183,6 +183,20 @@ Name | Koinbros
 Description | https://koinbros.org
 Contact | support@koinbros.org (email)
 NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+Name | LAPO BLOCKCHAIN
+-----|--------
+Description | https://lapo.io/
+Contact | devops@lapo.io
+SWITZERLAND | Public key: GBEQN7BMSW3667C5JIN3FMQLESW6G7QY7V73RFBERB2KWQGW67HKSRX7<br/>Peer: ch.stellar.lapo.io
+UNITED KINGDOM | Public key: GDTTWME53QFM24CX6I5OWJPDM2J32S7XPCCCHUSDPH5UYAGVO6CQ6PL3<br/>Peer: uk.stellar.lapo.io
+FRANCE | Public key: GAONVZVWS2DA7KMOGZ5CYADYPLZR5V7AIUOSDXGM3ITVMZTSZBYV2DMK<br/>Peer: fr.stellar.lapo.io
+USA (Canada) | Public key: GBAQSICQ7H2OFJWNVOFU76REAACZ2BIKGA5YBGZ35WOT4N7XFYN3OGFD<br/>Peer: usa.stellar.lapo.io
+AUSTRALIA (Sydney) | Public key: GBJABQW2FESDEGNF4SYML7BGRGAS2TXZ7SZ3VZQ6J7ZPN4ZA2EYME2AV<br/>Peer: au.stellar.lapo.io
+SINGAPORE | Public key: GAGFUP3222MFN4G34B4BCSVD2XJNELFKY65ERHN2NCZH7QPSDML3IH2Z<br/>Peer: sg.stellar.lapo.io
+AFRICA (Cape Town) | Public key: GB2SUPTQKRPIHYAJXWPY2OPTPXTVWD2Z6CA7UIFJGXBGIHY5D4ECL3MQ<br/>Peer: africa.stellar.lapo.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -----
