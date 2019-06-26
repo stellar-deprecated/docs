@@ -92,7 +92,7 @@ Several other fields are useful for compliance with other [SEPs][seps] — for m
 
 Here's an example of a completed `ACCOUNTS` field listing three public keys:
 
-```
+```toml
 ACCOUNTS=[
 "GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U",
 "GAENZLGHJGJRCMX5VCHOLHQXU3EMCU5XWDNU4BGGJFNLI2EL354IVBK7",
@@ -208,7 +208,7 @@ their clients know that your contact information is verified.
 
 Here's an example of completed Point of Contact Documentation for one principal:
 
-```
+```toml
 [[PRINCIPALS]]
 name="Jane Jedidiah Johnson"
 email="jane@domain.com"
@@ -294,7 +294,7 @@ they will list your token.
 
 Here's what an example of completed Currency Documentation for an organization:
 
-```
+```toml
 [[CURRENCIES]]
 code="USD"
 issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"
@@ -346,7 +346,7 @@ don't apply.
 
 Here's an example of completed Validator Documentation for an organization.
 
-```
+```toml
 [[VALIDATORS]]
 ALIAS="domain-us"
 DISPLAY_NAME="Domain United States"
