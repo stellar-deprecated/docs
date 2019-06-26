@@ -46,6 +46,10 @@ transaction envelopes only contain a single signature along with the transaction
 Ultimately, transaction envelopes are passed around the network and are included in transaction
 sets, as opposed to raw Transaction objects.
 
+It's of note that each signer signs the hash of the transaction object in addition to the network
+passphrase. This is done to ensure that a given transaction can only be submitted to the intended
+network by its signers. For more information, see [Networks](networks.md).
+
 ## Transaction Sets
 
 Between ledger closings, all the nodes in the network are collecting transactions. When it is time to close the next ledger, the nodes collect these transactions into a transaction set. SCP is run by the network to reach agreement on which transaction set to apply to the last ledger.
