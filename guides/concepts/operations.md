@@ -29,59 +29,47 @@ Each operation falls under a specific threshold category: low, medium, or high.
 Thresholds define the level of privilege an operation needs in order to succeed.
 
 * Low Security:
-  * AllowTrustTx
-    * Used to allow other signers to allow people to hold credit from this account but not issue credit.
-  * BumpSequence
+  * `AllowTrust`
+  * `BumpSequence`
 * Medium Security:
-  * All else
+  * Everything Else (`Payment`, `ChangeTrust`, etc.).
 * High Security:
-  * AccountMerge
-    * merge an account into another one
-  * SetOptions for Signer and threshold
-    * Used to change the Set of signers and the thresholds.
+  * `AccountMerge`
+  * `SetOptions` (only when changing signers and the thresholds for each category).
 
 
 ## Validity of an Operation
 
-There are two places in a [transaction life cycle](./transactions.md#life-cycle) when operations
-can fail. The first time is when a transaction is submitted to the network. The node to which the
-transaction is submitted checks the validity of the operation. During the initial validity check,
-the node performs some cursory checks to make sure the transaction is properly formed before
-including it in its transaction set and forwarding the transaction to the rest of the network.
+When an operation is submitted as a part of a transaction to the network, the node to which the
+transaction is initially submitted checks the validity of each operation before attempting to
+include the entire transaction in a candidate transaction set. For more details on this process,
+see the [lifecycle of a transaction][tx-lifecycle].
 
-In order to ensure that the validity check is fast and simple at this level of the protocol, the
-validity check only looks at the state of the source account. It ensures that for each operation in
-the transaction:
+The operation validity checks at this level of the protocol are intended to be fast and simple,
+leaving more intensive checks to be applied after fees have been consumed. The following conditions
+determine whether an operation is valid or not:
 
-1. The transaction has enough signatures for the source account of the operation to meet the
-   threshold for that operation.
-2. All operations-specific validity checks pass. These checks are ones that would stay true regardless
-   of the ledger state. For example, if a [Set Options](./list-of-operations.md#set-options)
-   operation sets the weight of the master key, is the weight between 0-255? It is of note that any
-   checks that depend on ledger state don't happen until apply time — for example, a
-   [Payment](./list-of-operations.md#payment) operation won't check if you have enough balance for
-   the payment until apply time.
-
-Once a transaction passes this first validity check, it is propagated to the network and eventually
-included in a transaction set. As part of a transaction set, the transaction is applied to the
-ledger. At that point a fee is taken from the source account, and the sequence number of the
-source account is increased by 1 regardless of success/failure. Later, the transaction is processed:
-the sequence number and signatures are verified before operations are attempted in the order they
-occur in the transaction. If any operation fails, the whole transaction fails and the effects of
-previous operations are rolled back.
+1. The signatures on the transaction are valid for the operation. This includes:
+   * Are the signatures from valid signers for the source account?
+   * Was the appropriate network passphrase part of the transaction hash that was signed by each of
+     the signers? See [Networks](./networks.md) for more on network passphrases.
+   * Does the combined weight of all signatures meet the low threshold for the source account? This
+     is necessary in order for fees to be taken and the sequence number to be incremented later in
+     the transaction lifecycle.
+   * Does the combined weight of all signatures meet the threshold for the operation?
+   * Are the signatures intended for the network that it is submitted on? This means that the
+2. The operation itself is well formed. Typically this means checking the parameters for the
+   operation to see if they're in a valid format.
+   * For example, only positive values can be set for the amount of a payment operation.
+3. Is the operation valid in the current protocol version of the network? Many newer operations are
+   only valid when the current protocol version is greater than or equal to the version where the
+   operation was first introduced, for example `ManageBuyOffer` in Stellar Protocol 11.
 
 ## Result
 
-For each operation, there is a matching result type. In the case of success, this result allows users to gather information about the effects of the operation. In the case of failure, it allows users to learn more about the error.
-
-Stellar Core queues results in the txhistory table for other components to derive data from. This txhistory table is used by the history module in Stellar Core for uploading the history into long-term storage. It can also be used by external processes such as Horizon to gather the network history they need.
-
-## Transactions involving multiple accounts
-
-Typically transactions only involve operations on a single account. For example, if account A wanted to send lumens to account B, only account A needs to authorize the transaction.
-
-It's possible, however, to compose a transaction that includes operations on multiple accounts. In this case, to authorize the operations, the transaction envelope must include signatures of every account in question. For example, you can make a transaction where accounts A and B both send to account C. This transaction would need authorization from both account A and B before it's submitted to the network.
-
+For each operation, there is a matching result type. In the case of success, this result allows
+users to gather information about the effects of the operation. In the case of failure, it allows
+users to learn more about the error.
 
 ## Examples
 ### 1. Exchange without third party
@@ -94,7 +82,7 @@ It's possible, however, to compose a transaction that includes operations on mul
     * source = _null_
     * Payment send XLM --> `Bridget_account`
   * Operation 2
-    * source = _`Bridget_account`
+    * source = `Bridget_account`
     * Payment send BTC --> `Anush_account`
 
    Signatures required:
@@ -104,7 +92,7 @@ It's possible, however, to compose a transaction that includes operations on mul
   * The transaction requires signatures for `Anush_account` to meet low threshold since `Anush_account` is the
     source for the entire transaction.
 
-Therefore, if both `Anush_account` and `Bridget_account` sign the transaction, it will be validated.  
+Therefore, if both `Anush_account` and `Bridget_account` sign the transaction, it will be validated.
 Other, more complex ways of submitting this transaction are possible, but signing with those two accounts is sufficient.
 
 ### 2. Workers
@@ -147,3 +135,5 @@ Transactions that require multiple parties to sign, such as the exchange transac
   * Operation 3
     * source=_null_
     * Account Merge -> "Anush_account"
+
+[tx-lifecycle]: ./transactions.md#life-cycle
