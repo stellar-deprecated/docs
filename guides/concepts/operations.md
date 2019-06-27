@@ -80,8 +80,7 @@ Anush wants to send Bridget some XLM (Operation 1) in exchange for BTC (Operatio
 The following transaction is constructed:
 * Source Account = `Anush_account`
 * Operation 1
-  * Source Account = `null` (_this is inferred from the source account of the transaction, which is
-      `Anush_account`_).
+  * Source Account = `null` (Inferred to be `Anush_account` from the transaction source account)
   * Payment (XLM) --> `Bridget_account`
 * Operation 2
   * Source Account = `Bridget_account`
@@ -97,7 +96,7 @@ The following transaction is constructed:
 
 Therefore, if both `Anush_account` and `Bridget_account` sign the transaction, it will be
 validated. Other, more complex ways of submitting this transaction are possible (typically
-involving [multi-sig](./multi-sig.md), but signing with those two accounts is sufficient.
+involving [multi-sig](./multi-sig.md)), but signing with those two accounts is sufficient.
 
 ### 2. Workers
 
