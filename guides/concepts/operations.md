@@ -171,7 +171,7 @@ If `Anush_account` wants to recover the XLM balance from `Anush_temp` used to fu
 additional operation "Operation 3" can be included in the transaction. If you want to do this,
 `Anush_temp` must add `Anush_account` as a signer with a weight that crosses the high threshold:
   * Operation 3
-    * Source = `null` (Inferred to be `Anush_temp` from the transaction source account)
+    * Source Account = `null` (Inferred to be `Anush_temp` from the transaction source account)
     * Account Merge -> `Anush_account`
 
 This will ultimately merge `Anush_temp`'s balance into `Anush_account`.
