@@ -53,10 +53,11 @@ determine whether an operation is valid or not:
    * Are the signatures from valid signers for the source account?
    * Was the appropriate network passphrase part of the transaction hash that was signed by each of
      the signers? See [Networks](./networks.md) for more on network passphrases.
-   * Does the combined weight of all signatures meet the low threshold for the source account? This
-     is necessary in order for fees to be taken and the sequence number to be incremented later in
-     the transaction lifecycle.
-   * Does the combined weight of all signatures meet the threshold for the operation?
+   * Does the combined weight of all signatures for the source account _of the transaction_ meet
+     the low threshold for the source account? This is necessary in order for fees to be taken and
+     the sequence number to be incremented later in the transaction lifecycle.
+   * Does the combined weight of all signatures for the source account _of the operation_ meet the
+     threshold for the operation?
    * Are the signatures intended for the network that it is submitted on? This means that the
 2. The operation itself is well formed. Typically this means checking the parameters for the
    operation to see if they're in a valid format.
@@ -72,68 +73,108 @@ users to gather information about the effects of the operation. In the case of f
 users to learn more about the error.
 
 ## Examples
-### 1. Exchange without third party
+### 1. Exchanging without a third party
 
-  Anush wants to send Bridget some XLM (Operation 1) in exchange for BTC (Operation 2).
+Anush wants to send Bridget some XLM (Operation 1) in exchange for BTC (Operation 2).
 
-  A transaction is constructed:
-  * source = `Anush_account`
-  * Operation 1
-    * source = _null_
-    * Payment send XLM --> `Bridget_account`
-  * Operation 2
-    * source = `Bridget_account`
-    * Payment send BTC --> `Anush_account`
+The following transaction is constructed:
+* Source Account = `Anush_account`
+* Operation 1
+  * Source Account = `null` (_this is inferred from the source account of the transaction, which is
+      `Anush_account`_).
+  * Payment (XLM) --> `Bridget_account`
+* Operation 2
+  * Source Account = `Bridget_account`
+  * Payment (BTC) --> `Anush_account`
 
-   Signatures required:
-  * Operation 1: requires signatures from `Anush_account` (the operation inherits
-    the source account from the transaction) to meet medium threshold
-  * Operation 2: requires signatures for `Bridget_account` to meet medium threshold
-  * The transaction requires signatures for `Anush_account` to meet low threshold since `Anush_account` is the
-    source for the entire transaction.
+**Signatures**
+* Operation 1: Requires signatures from `Anush_account` (the operation inherits
+  the source account from the transaction) to meet medium threshold for a `Payment` operation.
+* Operation 2: Requires signatures for `Bridget_account` to meet medium threshold for a `Payment`
+  operation.
+* Transaction: Requires signatures for `Anush_account` to meet low threshold since `Anush_account`
+  is the source for the entire transaction.
 
-Therefore, if both `Anush_account` and `Bridget_account` sign the transaction, it will be validated.
-Other, more complex ways of submitting this transaction are possible, but signing with those two accounts is sufficient.
+Therefore, if both `Anush_account` and `Bridget_account` sign the transaction, it will be
+validated. Other, more complex ways of submitting this transaction are possible (typically
+involving [multi-sig](./multi-sig.md), but signing with those two accounts is sufficient.
 
 ### 2. Workers
 
-   An anchor wants to divide the processing of their online ("base") account between machines. That way, each machine will submit transactions from its local account and keep track of its own sequence number. For more on transaction sequence numbers, please refer to [the transactions doc](./transactions.md).
+An anchor wants to divide the processing of their online ("base") account between machines. That
+way, each machine will submit transactions from its local account and keep track of its own
+[sequence number](./transactions.md#sequence-number).
 
-   * Each machine gets a private/key pair associated with it. Let's say there are only 3 machines: Machine_1, Machine_2, and Machine_3. (In practice, there can be as many machines as the anchor wants.)
-   * All three machines are added as Signers to the anchor's base account "baseAccount", with
-     a weight that gives them medium rights. The worker machines can then sign on behalf of the base account. (For more on signing, please refer to the [multisig documentation](multi-sig.md).)
-   * When a machine (say Machine_2) wants to submit a transaction to the network, it constructs the transaction:
-      * source=_public key for Machine_2_
-      * sequence number=_sequence number of Machine_2's account_
-      * Operation
-        * source=_baseAccount_
-        * Payment send an asset --> destination account
-   * sign it with the private key of Machine_2.
-
-   The benefit of this scheme is that each machine can increment its sequence number and submit a transaction without invalidating any transactions submitted by the other machines.  Recall from the [transactions doc](transactions.md) that all transactions from a source account have their own specific sequence number.  Using worker machines, each with an account, allows this anchor to submit as many transactions as possible without sequence number collisions.
-
-### 3. Long-lived transactions
-
-Transactions that require multiple parties to sign, such as the exchange transaction between Anush and Bridget from example #1, can take an arbitrarily long time. Because all transactions are constructed with specific sequence numbers, waiting on the signatures can block Anush's account. To avoid this situation, a scheme similar to Example #2 can be used.
-
-  Anush would create a temporary account `Anush_temp`, fund `Anush_temp` with XLM, and add the `Anush_account` public key as signer to `Anush_temp` with a weight crossing at least the low threshold.
-
-  A transaction is then constructed:
-  * source=_Anush_temp_
-  * sequence number=_Anush_temp seq num_
+* Each machine gets a key pair associated with it. For this example, let's say there are 3
+  machines: `Machine_1`, `Machine_2`, and `Machine_3`.
+* All three machines are added as Signers to the anchor's base account `BaseAccount`, with
+  a weight that gives each individual key the ability to perform medium security transactions. The
+  worker machines can then sign on behalf of the base account. For more on signing, please refer
+  to our [multisig documentation](multi-sig.md).
+* When a machine (say `Machine_2`) wants to submit a transaction to the network, it constructs the
+  following transaction:
+  * Source Account = `Machine_2`
+  * Sequence Number = Sequence number of `Machine_2`'s account
   * Operation 1
-    * source=_Anush_account_
-    * Payment send XLM -> Bridget_account
-  * Operation 2
-    * source=_Bridget_account_
-    * Payment send BTC -> Anush_account
+    * Source Account = `BaseAccount`
+    * Payment (USD) --> `DestinationAccount`
 
-  The transaction would have to be signed by both Anush_account and Bridget_account, but the sequence
-  number consumed will be from account Anush_temp.
+**Signatures**
+* Operation 1: Requires the signatures from `BaseAccount` to meet medium threshold for a `Payment`
+  operation. Since `Machine_2` is a signer on `BaseAccount` which meets medium threshold, the
+  signature is valid and sufficient.
+* Transaction: Requires signatures for `Machine_2` to meet low threshold since `Machine_2` is the
+  source for the entire transaction. Without changing the thresholds for `Machine_2`,
+  `Machine_2`'s key will already be able to perform up to high security operations, and will be
+  valid and sufficient.
 
-  If `Anush_account` wants to recover the XLM balance from `Anush_temp`, an additional operation "Operation 3" can be included in the transaction. If you want to do this, `Anush_temp` must add `Anush_account` as a signer with a weight that crosses the high threshold:
+The benefit of this scheme is that each machine can increment its sequence number and submit a
+transaction without invalidating any transactions submitted by the other machines. Recall from our
+[transactions](transactions.md) documentation that all transactions from a source account have
+their own specific sequence number. Using worker machines, each with their own separate account,
+allows an anchor to submit as many transactions as possible without sequence number collisions.
+
+### 3. Long-lived Transactions
+
+Transactions that require multiple parties to sign, such as the exchange transaction between Anush
+and Bridget from example #1, can take an arbitrarily long time. Because all transactions are
+constructed with specific sequence numbers, waiting on the signatures can block Anush's account. To
+avoid this situation, a scheme similar to Example #2 can be used.
+
+Anush would create a temporary account `Anush_temp`, fund `Anush_temp` with XLM, and add the
+`Anush_account` public key as signer to `Anush_temp` with a weight crossing at least the low
+threshold.
+
+A transaction is then constructed:
+* Source Account = `Anush_temp`
+* Sequence Number = Sequence number of `Anush_temp`'s account
+* Operation 1
+  * Source Account = `Anush_account`
+  * Payment (XLM) -> `Bridget_account`
+* Operation 2
+  * Source Account = `Bridget_account`
+  * Payment (BTC) -> `Anush_account`
+
+**Signatures**
+* Operation 1: Requires the signatures from `Anush_account` to meet the medium threshold for a
+  `Payment` operation.
+* Operation 2: Requires the signatures from `Bridget_account` to meet the medium threshold for a
+  `Payment` operation.
+* Transaction: Requires the signatures for `Anush_temp` to meet low threshold since `Anush_temp` is
+  the source for the entire transaction.
+
+All of these requirements would be met by having `Anush_account` and `Bridget_account` with the
+current setup, but with the additional benefit that the sequence number consumed will be from
+account `Anush_temp`. This allows `Anush_account` to continue to perform other operations while
+awaiting signature.
+
+If `Anush_account` wants to recover the XLM balance from `Anush_temp` used to fund the account, an
+additional operation "Operation 3" can be included in the transaction. If you want to do this,
+`Anush_temp` must add `Anush_account` as a signer with a weight that crosses the high threshold:
   * Operation 3
-    * source=_null_
-    * Account Merge -> "Anush_account"
+    * Source = `null` (Inferred to be `Anush_temp` from the transaction source account)
+    * Account Merge -> `Anush_account`
+
+This will ultimately merge `Anush_temp`'s balance into `Anush_account`.
 
 [tx-lifecycle]: ./transactions.md#life-cycle
