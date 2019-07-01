@@ -4,7 +4,7 @@ title: Compliance Protocol
 
 # Compliance Protocol
 
-_Note, we actually recommend that users use the workflow as specified in [SEP-0006][sep-0006]
+_Note, for most use cases, we actually recommend the workflow specified in [SEP-0006][sep-0006]
 and [SEP-0012][sep-0012] instead of [SEP-0003][sep-0003] (which is described below). In the near
 future, we'll be revamping this doc to support a [SEP-0012][sep-0012] workflow. For more
 information, see our [documentation on stablecoins in
@@ -36,7 +36,7 @@ Protocol is as follows:
    creates an `AUTH_SERVER` and adds its location (URL) to the institution's
    [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html).
 2. The sending FI contacts the receiving FI's `AUTH_SERVER` providing information on the sender,
-   whether in needs AML information on the recipient, the unsigned transaction, and any additional
+   whether it needs AML information on the recipient, the unsigned transaction, and any additional
    attachments.
 3. The receiving FI responds with whether they're willing to send AML information on the recipient
    and whether they'll accept the payment, along with additional information pertaining to their
@@ -52,13 +52,13 @@ service](https://github.com/stellar/bridge-server/blob/master/readme_compliance.
 
 The `AUTH_SERVER` provides a single web endpoint where a compliance request can be sent. The URL is
 up to you and where you host this service, but a simple example would be
-`https://[YOUR_HOSTNAME]/aml`. Once established, you'll need to add this to your
+`https://[YOUR_HOSTNAME]/aml`. Once established, you'll need to add this URL to your
 [stellar.toml](./concepts/stellar-toml.md) under the `AUTH_SERVER` key. See [SEP-0001][sep-0001]
 for more information.
 
 ### Sending A Request
 
-To send a compliance request to the receiving financial institution, you need to send an HTTP POST
+To send a compliance request to the receiving financial institution, submit an HTTP POST
 request to the receiving institution's AUTH_SERVER with the following specification:
 
 * `Content-Type` should equal `application/x-www-form-urlencoded`
@@ -72,8 +72,8 @@ request to the receiving institution's AUTH_SERVER with the following specificat
 |------|-----------|-------------|
 | `sender` | string | The payment address of the customer that is initiating the send. Ex. `bob*bank.com` |
 | `need_info` | boolean | If the caller needs the recipient's AML info in order to send the payment. |
-| `tx` | string: base64 encoded [xdr.Transaction](https://github.com/stellar/stellar-core/blob/4961b8bb4a64c68838632c5865389867e9f02840/src/xdr/Stellar-transaction.x#L297-L322) | The transaction that the sender would like to send in XDR format. This transaction is unsigned and it's sequence number should be equal `0`. |
-| `attachment` | string | The full text of the attachment. The hash of this attachment is included as a memo in the transaction. The **attachment** field follows the [Stellar Attachment Convention](https://www.stellar.org/developers/guides/attachment.html) and should contain at least enough information of the sender to allow the receiving FI to do their sanction check. |
+| `tx` | string: base64 encoded [xdr.Transaction](https://github.com/stellar/stellar-core/blob/4961b8bb4a64c68838632c5865389867e9f02840/src/xdr/Stellar-transaction.x#L297-L322) | The transaction that the sender would like to send in XDR format. This transaction is unsigned and its sequence number should be equal `0`. |
+| `attachment` | string | The full text of the attachment. The hash of this attachment is included as a memo in the transaction. The **attachment** field follows the [Stellar Attachment Convention](https://www.stellar.org/developers/guides/attachment.html) and should contain at least enough information for the sender to allow the receiving FI to do their sanction check. |
 
 `sig` is the signature of the data block made by the sending FI. The receiving institution should
 check that this signature is valid against the public signature key that is posted in the sending
@@ -109,8 +109,8 @@ The receiving institution's `AUTH_SERVER` will return a JSON object with the fol
 
 | Name | Data Type | Description |
 | -----|-----------|------------ |
-| `info_status` | `ok`, `denied`, `pending` | If this FI is willing to share AML information or not. |
-| `tx_status` | `ok`, `denied`, `pending` | If this FI is willing to accept this transaction. |
+| `info_status` | `ok`, `denied`, `pending` | If the receiving institution is willing to share AML information or not. |
+| `tx_status` | `ok`, `denied`, `pending` | If the receiving institution is willing to accept this transaction. |
 | `dest_info` | string | Marshalled JSON of the recipient's AML information. *(only present if `info_status` is `ok`)* |
 | `error` | string | Error message *(only present if `info_status` or `tx_status` is `error` or for internal server errors)* |
 | `pending` | integer | Estimated number of seconds till the sender can check back for a change in status. The sender should just resubmit this request after the given number of seconds. *(only present if `info_status` or `tx_status` is `pending`)* |
@@ -284,14 +284,14 @@ the estimated number of seconds in the response.
 **6) BankSender does AML checks on the receiver (Bogart)**
 
 Once BankSender has been given the `dest_info` from BankReceiver, BankSender does the sanction
-check using the AML info of Bogart. If the AML/KYC check passes, BankSender signs and submits the
+check using Bogart's AML info. If the AML/KYC check passes, BankSender signs and submits the
 transaction to the Stellar network.
 
 **7) BankReceiver handles the incoming payment.**
 
-- It checks the transaction hash against a cache it has or redoes the sanction check on the sender
+- BankReceiver checks the transaction hash against a cache it has or redoes the sanction check on the sender
   (it's up to the receiving FI to implement any caching for performance).
-- It credits Bogart's account with the amount sent or sends the transaction back.
+- BankReceiver credits Bogart's account with the amount sent or sends the transaction back.
 
 ## Testing Your Auth Server
 
