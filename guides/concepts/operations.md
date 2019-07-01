@@ -50,15 +50,9 @@ leaving more intensive checks to be applied after fees have been consumed. The f
 determine whether an operation is valid or not:
 
 1. The signatures on the transaction are valid for the operation. This includes:
-   * Are the signatures from valid signers for the source account?
-   * Was the appropriate network passphrase part of the transaction hash that was signed by each of
-     the signers? See [Networks](./networks.md) for more on network passphrases.
-   * Does the combined weight of all signatures for the source account _of the transaction_ meet
-     the low threshold for the source account? This is necessary in order for fees to be taken and
-     the sequence number to be incremented later in the transaction lifecycle.
+   * Are the signatures from valid signers for the source account of the operation?
    * Does the combined weight of all signatures for the source account _of the operation_ meet the
      threshold for the operation?
-   * Are the signatures intended for the network that it is submitted on? This means that the
 2. The operation itself is well formed. Typically this means checking the parameters for the
    operation to see if they're in a valid format.
    * For example, only positive values can be set for the amount of a payment operation.
