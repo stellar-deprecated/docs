@@ -289,7 +289,7 @@ they will list your token.
 * Any conditions you place on the redemption of your token (`conditions`).
 * A URL to a PNG or GIF image with a transparent background representing your token (`image`). Without it, your token will appear blank on many exchanges.
 * anchor_asset_type
-* anchor_asset/
+* anchor_asset
 
 Here's what an example of completed Currency Documentation for an organization:
 
