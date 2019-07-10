@@ -287,8 +287,7 @@ they will list your token.
 * A description of your token and what it represents (`desc`).  This is a good place to clarify
   what your token does, and why someone might want to own it.
 * Any conditions you place on the redemption of your token (`conditions`).
-* A URL to a PNG image with a transparent background representing your token (`image`). Without it, your token will appear blank on many
-  exchanges.
+* A URL to a PNG or GIF image with a transparent background representing your token (`image`). Without it, your token will appear blank on many exchanges.
 * anchor_asset_type
 * anchor_asset/
 
