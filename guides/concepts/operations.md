@@ -50,15 +50,16 @@ leaving more intensive checks to be applied after fees have been consumed. The f
 determine whether an operation is valid or not:
 
 1. The signatures on the transaction are valid for the operation. This includes:
-   * Are the signatures from valid signers for the source account of the operation?
-   * Does the combined weight of all signatures for the source account _of the operation_ meet the
-     threshold for the operation?
+   * The signatures are from valid signers for the source account of the operation.
+   * The combined weight of all signatures for the source account _of the operation_ meet the
+     threshold for the operation.
 2. The operation itself is well formed. Typically this means checking the parameters for the
    operation to see if they're in a valid format.
    * For example, only positive values can be set for the amount of a payment operation.
-3. Is the operation valid in the current protocol version of the network? Many newer operations are
-   only valid when the current protocol version is greater than or equal to the version where the
-   operation was first introduced, for example `ManageBuyOffer` in Stellar Protocol 11.
+3. The operation must be valid in the current protocol version of the network. Many newer
+   operations are only valid when the current protocol version is greater than or equal to the
+   version where the operation was first introduced, for example `ManageBuyOffer` in Stellar
+   Protocol 11.
 
 ## Result
 
