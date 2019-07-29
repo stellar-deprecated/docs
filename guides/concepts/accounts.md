@@ -29,7 +29,7 @@ Accounts have the following fields:
 > Number of other [entries](./ledger.md#ledger-entries) the account owns. This number is used to calculate the account's [minimum balance](./fees.md#minimum-account-balance).
 >
 > #### Inflation destination
-> (optional) Account designated to receive inflation. Every account can vote to send [inflation](./inflation.md) to a destination account.
+> (optional) Account designated to receive inflation. Every account with a balance of at least 100 XLM can vote to send [inflation](./inflation.md) to a destination account.
 >
 > #### Flags
 > Currently there are three flags, used by issuers of [assets](./assets.md).
