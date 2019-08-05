@@ -26,7 +26,7 @@ A relatively simple project that graphically displays information pulled from Ho
    - Fee pool
 
 # Federation Service
-Implement a simple [Federation server](https://www.stellar.org/developers/guides/concepts/federation.html) and setup a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/guides/concepts/inflation.html) to one provided by your domain.
+Implement a simple [Federation server](https://www.stellar.org/developers/guides/concepts/federation.html) and set up a webpage where anyone can claim a name*yourdomain.com stellar address and associate their stellar account ID with it. The catch is your service will only federate for accounts that set their [inflation destination](https://www.stellar.org/developers/guides/concepts/inflation.html) to one provided by your domain.
 
 You can also contribute to the [federation server](https://github.com/stellar/go/tree/master/services/federation) maintained by Stellar Development Foundation.
 
@@ -42,16 +42,15 @@ This would be a service hosted at `domain.com` that does the following:
   - Watch the network to see if that account is created.
   - If the account is created, you send an email to the given email address with the private half of the keypair with links to a Stellar client.
 
-*Advanced* allow people to manage the stellar account you just created for them by sending emails to control@domain.com. This makes someone's inbox a Stellar client. For example: `send 100 XLM to bob@gmail.com`
+*Advanced*: Allow people to manage the stellar account you just created for them by sending emails to control@domain.com. This makes someone's inbox a Stellar client. For example: `send 100 XLM to bob@gmail.com`
 
 [Adding this feature to a wallet](https://galactictalk.org/d/37-project-idea-sending-lumens-to-any-address)
 
 # Distributed Exchange
 Description and discussion [here.](https://galactictalk.org/d/26-project-idea-distributed-exchange)
 
-
 # Resource Paywall
-Let's say you have a public-facing service, perhaps for streaming or open wifi. You want to allow other people to use this service if they pay you small amounts. These payments could be used for spam prevention or to support your business. This is a job for the **toll collector**...
+Let's say you have a public-facing service, perhaps for streaming or open Wi-Fi. You want to allow other people to use this service if they pay you small amounts. These payments could be used for spam prevention or to support your business. This is a job for the **toll collector**...
 
 ## Toll Collector
 A simple service that keeps track of any XLM sent to a `toll address`. The toll collector has a database of public keys and amounts of XLM it has sent to the toll address. It watches for payments to the toll address on the Stellar network and adds them to this DB.
@@ -62,7 +61,7 @@ The toll collector service has one RPC or endpoint that you can call:
     - `amount XLM charged`
     - `amount of XLM this key has left`
 
-Your app can publish its Stellar toll address for payments. When someone tries to use your service, the server has them authenticate their public key and calls `charge` on the Toll Collector to decrements the consumer's balance in the DB. You can send the consumer a message when their balance is zero.
+Your app can publish its Stellar toll address for payments. When someone tries to use your service, the server has them authenticate their public key and calls `charge` on the Toll Collector to decrement the consumer's balance in the DB. You can send the consumer a message when their balance is zero.
 
 # Multisig Coordinator
 A web application that facilitates creating multisig transactions. Typically you must coordinate between several parties to generate a transaction for an account protected by multisig. This site would make this process much easier and allow you to coordinate in cases where you don't know the other party.
@@ -72,17 +71,18 @@ Ideally, the multisig coordinator includes the following features:
 - Create a tx that you would like to be signed by multiple parties
 - Enter the public keys that you would like to sign the tx
 - If any of these keys have previously associated their email address, then they will be sent a message
-- When you come to the site you see a list of all pending transactions:
-  - You can see the details of each transaction
-  - You can see who initiated the transaction
-  - You can see who else has signed the transaction
-  - You can sign any that are waiting for you
+- When you come to the site you can:
+  - See a list of all pending transactions
+  - See the details of each transaction
+  - See who initiated the transaction
+  - See who else has signed the transaction
+  - Sign any transactions that are waiting for you
 - Once a pending transaction is signed by enough people, it is submitted to the network
 - Once the transaction is submitted, all the signers are notified
 
 # Market Feed
-Data feed for the distributed Exchange inside Stellar. Something equivalent to the [Poloniex API](https://poloniex.com/public?command=returnTicker).
-This will be useful for apps like [stellarTerm](http://stellarterm.com) as well as getting the Stellar trade volume added to charting sites like [CoinMarketCap](http://coinmarketcap.com)
+A data feed for the distributed Exchange inside Stellar. Something equivalent to the [Poloniex API](https://poloniex.com/public?command=returnTicker).
+This will be useful for apps like [StellarTerm](http://stellarterm.com) as well as getting the Stellar trade volume added to charting sites like [CoinMarketCap](http://coinmarketcap.com)
 
 # Quorum Monitor
 A web page that shows the state of the network quorum graph. Ideally, the quorum monitor shows:
@@ -91,7 +91,7 @@ A web page that shows the state of the network quorum graph. Ideally, the quorum
 - Any servers that disagree with the rest of the network
 - Perhaps a history of uptime for each validator
 
-You should be able to view the quorum graph from the point of view of any given validator. You would probably need to run stellar-core to build the quorum monitor. You can get the data from the stellar-core logs and the /quorum command.
+You should be able to view the quorum graph from the point of view of any given validator. You would probably need to run stellar-core to build the quorum monitor. You can get the data from the stellar-core logs and the `/quorum` command.
 
 *Advanced*: Build a server that connects to stellar-core and monitors the externalized messages and the various validator broadcasts.
 
@@ -121,7 +121,7 @@ Or contribute to our existing SDKs:
 - Anywhere ATM or human ATM mobile apps
 
 # Atomic cross-chain swap facilitator
-- End-user software that to facilitate atomic cross-chain swaps with
+- End-user software that helps facilitate atomic cross-chain swaps with
   various other cryptocurrencies (between both Lumens and other
   Stellar currencies).
 - A rendezvous service establishing a marketplace for cross-chain
