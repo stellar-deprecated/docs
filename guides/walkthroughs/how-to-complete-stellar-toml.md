@@ -287,8 +287,7 @@ they will list your token.
 * A description of your token and what it represents (`desc`).  This is a good place to clarify
   what your token does, and why someone might want to own it.
 * Any conditions you place on the redemption of your token (`conditions`).
-* A URL to an image representing token (`image`). Without it, your token will appear blank on many
-  exchanges.
+* A URL to a PNG or GIF image with a transparent background representing your token (`image`). Without it, your token will appear blank on many exchanges.
 * anchor_asset_type
 * anchor_asset
 
@@ -318,7 +317,7 @@ display_decimals=2
 name="goat share"
 desc="1 GOAT token entitles you to a share of revenue from Elkins Goat Farm."
 conditions="There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th"
-image="https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg"
+image="https://static.thenounproject.com/png/2292360-200.png"
 fixed_number=10000
 ```
 
