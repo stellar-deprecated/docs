@@ -1,65 +1,68 @@
 ---
-title: Fees
+title: Transaction Fees, Minimum Balances, and Surge Pricing
 ---
 
-The Stellar network requires small [fees on transactions](#transaction-fee) and [minimum balances on accounts](#minimum-account-balance) in order to prevent people from overwhelming the network and to aid in prioritization.
+To prevent ledger spam and maintain the efficiency of the network, Stellar requires small [transaction fees](#transaction-fees) and [minimum balances on accounts](#minimum-account-balance).  Transaction fees are also used to prioritize transactions when the network enters [surge pricing mode](#surge-pricing).
 
-There are two special values used to calculate fees:
+## Transaction Fees
 
-1. The **base fee** (currently 100 stroops) is used in transaction fees.
-2. The **base reserve** (currently 0.5 XLM) is used in minimum account balances.
+Stellar [transactions](https://www.stellar.org/developers/guides/concepts/transactions.html) can contain anywhere from 1 to a defined limit of 100 [operations](https://www.stellar.org/developers/guides/concepts/operations.html).  The fee for a given transaction is equal to the number of operations the transaction contains multiplied by the [base fee](#base-fee) for a given ledger.  
 
-
-## Transaction Fee
-
-The fee for a transaction is the number of operations the transaction contains multiplied by the **base fee**, which is **100 stroops** (0.00001 XLM).
-
-```math-formula
-([# of operations] * [base fee])
 ```
-
-For example, a transaction that allows trust on an account’s trustline *(operation 1)* and sends a payment to that account *(operation 2)* would have a fee of $$2 * [base fee] = 200 stroops$$.
+Transaction fee = # of operations * base fee
+```
 
 Stellar deducts the entire fee from the transaction’s [source account](./transactions.md#source-account), regardless of which accounts are involved in each operation or who signed the transaction.
 
+### Base Fee
 
-### Transaction Limits
+The base fee for a given ledger is determined dynamically using a version of a [VCG auction](https://en.wikipedia.org/wiki/Vickrey%E2%80%93Clarke%E2%80%93Groves_auction).  When you submit a transaction to the network, you specify the *maximum base fee* you’re willing to pay per operation, but you’re actually charged the *lowest possible fee* based on network activity.   
 
-Each Stellar node usually limits the number of transactions that it will propose to the network when a ledger closes. If too many transactions are submitted, nodes propose the transactions with the highest fees for the ledger’s transaction set. Transactions that aren’t included are held for a future ledger, when fewer transactions are waiting.
+When network activity is below capacity, you pay the network minimum, which is currently **100 stroops (0.00001 XLM)** per operation. 
 
-See [transaction life cycle](./transactions.md#life-cycle) for more information.
+### Surge Pricing
 
-## Fee Pool
+When the number of operations submitted to a ledger exceeds network capacity (**currently 1,000 ops/ledger**), the network enters surge pricing mode, which uses market dynamics to decide which submissions are included. Essentially, submissions that offer a higher fee per operation make it onto the ledger first.
+
+If there’s a tie — in other words multiple transactions offering the same base fee are competing for limited ledger space — the transactions are (pseudo-randomly) shuffled, and transactions at the top of the heap make the ledger.  The rest of the transactions, the ones that didn’t make the cut, are pushed on to the next ledger, or discarded if they’ve been waiting for too long.  For more information, see [transaction life cycle](./transactions.md#life-cycle).
+
+The goal of the transaction pricing specification, which you can read in full [here](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0005.md), is to maximize network throughput while minimizing transaction fees. 
+
+### Fee Stats and Fee Strategy
+
+When choosing a base fee to submit as part of a transaction, you may want to consult the Horizon [`/fee_stats`](https://www.stellar.org/developers/horizon/reference/endpoints/fee-stats.html) endpoint, which provides detailed information about per-operation fee stats for the last five ledgers.  You can find the same information on the fee stats panel of the [dashboard](https://dashboard.stellar.org/)   
+
+By checking recent fee stats, users can make informed decisions about how high to set fees for manual transaction submission, and wallet developers can create dynamic fee strategies to cut down on hung transactions.  All three of the SDF-maintained SDKs allow you to poll the `/fee_stats` endpoint: [Go](https://godoc.org/github.com/stellar/go/clients/horizonclient#Client.FeeStats), [Java](https://stellar.github.io/java-stellar-sdk/), [Javascript](https://stellar.github.io/js-stellar-sdk/Server.html#feeStats).
+
+### Fee Pool
 
 The fee pool is the lot of lumens collected from [transaction fees](./fees.md#transaction-fee).
 
-Stellar does not retain these lumens. They are distributed in the weekly process of [inflation voting](./inflation.md). 
+SDF does not retain these lumens. They are distributed in the weekly process of [inflation voting](./inflation.md). 
 
 If there are any unallocated lumens after the vote, those lumens return to the fee pool for dispersal in the next round. 
 
 ## Minimum Account Balance
 
-All Stellar accounts must maintain a minimum balance of lumens. Any transaction that would reduce an account's balance to less than the minimum will be rejected with an `INSUFFICIENT_BALANCE` error.
+All Stellar accounts must maintain a minimum balance of lumens. The minimum balance is calculated using the **base reserve,** which is currently **0.5 XLM**:
 
-The minimum balance is calculated using the **base reserve,** which is **0.5 XLM**:
-
-```math-formula
-(2 + [# of entries]) * [base reserve]
+```
+Minimum Balance = (2 + # of entries) * base reserve
 ```
 
-The minimum balance for a basic account is $$2 * [base reserve]$$. Each additional entry costs the base reserve. Entries include:
+The absolute minimum balance for an account is 1 XLM, which is equal to `(2 + 0 entries) * 0.5 base reserve`. Each additional entry reserves an additional 0.5 XLM. Entries include:
 
 - Trustlines
 - Offers
 - Signers
 - Data entries
 
-For example, an account with 1 trustline and 2 offers would have a minimum balance of $$(2 + 3) * [base reserve] = 2.5 XLM$$.
+For example, an account with 1 trustline and 2 offers would have a minimum balance of `(2 + 3 entries) * 0.5 base reserve = 2.5 XLM`.
 
-Starting in protocol version 10, an account may also have lumen selling liabilities that must be satisfied in addition to the minimum balance discussed above. In this case, any transaction that would reduce an account's balance to less than the minimum plus lumen selling liabilities will be rejected with an `INSUFFICIENT_BALANCE` error.
+Any transaction that would reduce an account's balance to less than the minimum will be rejected with an `INSUFFICIENT_BALANCE` error.  Likewise, lumen selling liabilities that would reduce an account's balance to less than the minimum plus lumen selling liabilities will be rejected with an `INSUFFICIENT_BALANCE` error.
 
-## Fee Changes
+The minimum balance is held in reserve, and closing an entry frees up the associated base reserve.  For instance: if you zero-out a non-lumen balance and close the associated trustline, the 0.5 XLM base reserve that secured that trustline is added to your available balance. 
 
-The **base reserve** and **base fee** can change, but should not do so more than once every several years. For the most part, you can think of them as fixed values. When they are changed, the change works by the same consensus process as any transaction. For details, see [versioning](https://www.stellar.org/developers/guides/concepts/versioning.html).
+## Changes to Transaction Fees and Minimum Balances
 
-You can look up the current fees by [checking the details of the latest ledger](../../horizon/reference/endpoints/ledgers-single.md).
+Ledger limits, the base reserve, and the minimum base fee can change, but should not do so more than once every several years. For the most part, you can think of them as fixed values. When they are changed, the change works by the same consensus process as any transaction. For details, see [versioning](https://www.stellar.org/developers/guides/concepts/versioning.html).
