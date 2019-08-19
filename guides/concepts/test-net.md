@@ -41,6 +41,12 @@ don't work well with SDF's testnet.
 
 ## Best Practices For Using Testnet
 
+### Surge Pricing on the Testnet
+
+The testnet has a capacity limit of **100 operations per ledger**.  When more than 100 operations are submitted to a given ledger, the network enters surge pricing mode, which uses market dynamics to decide which submissions are included.  It works exactly the same way as [surge pricing on the public network](https://github.com/stellar/docs/blob/master/guides/concepts/fees.md#surge-pricing).
+
+If you are having trouble submitting transactions to the testnet, you may need to offer a higher fee.  You can also take the opportunity to develop a [fee strategy](https://github.com/stellar/docs/blob/master/guides/concepts/fees.md#fee-stats-and-fee-strategy), which may prove useful when you move your project into production.
+
 ### Periodic Reset of Testnet Data
 In order to preserve a good experience for developers, the SDF testnet is
 periodically reset to the genesis (initial) ledger. Resets declutter the network, remove
@@ -64,6 +70,12 @@ three months).  The tentative dates:
 * October 30th, 2019
 
 The testnet will always restart on the announced reset date at 0900 UTC.
+
+### Surge Pricing on the Testnet
+
+The testnet has a capacity limit of **100 operations per ledger**.  When more than 100 operations are submitted to a given ledger, the network enters surge pricing mode, which uses market dynamics to decide which submissions are included.  It works exactly the same way as [surge pricing on the public network](https://github.com/stellar/docs/blob/master/guides/concepts/fees.md#surge-pricing).
+
+If you are having trouble submitting transactions to the testnet, you may need to offer a higher fee.  You can also take the opportunity to develop a [fee strategy]((https://github.com/stellar/docs/blob/master/guides/concepts/fees.md#fee-stats-and-fee-strategy), which may prove useful when you move your project into production.   
 
 ### Test Data Automation
 
