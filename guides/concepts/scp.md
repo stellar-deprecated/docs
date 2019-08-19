@@ -10,7 +10,6 @@ A few ways to explore SCP:
 * If you are implementing SCP, see the [internet draft](https://datatracker.ietf.org/doc/draft-mazieres-dinrg-scp/) and send questions and feedback to the [DIN mailing list](https://www.ietf.org/mailman/listinfo/Din).
 * View or contribute to the code in [stellar-core](https://github.com/stellar/stellar-core).
 * If white papers aren't your thing, here's a [technical summary](https://medium.com/a-stellar-journey/on-worldwide-consensus-359e9eb3e949). 
-* If you're new to consensus, get the basics from our graphic novel, [Adventures in Galactic Consensus](https://www.stellar.org/stories/adventures-in-galactic-consensus-chapter-1/). 
 
 You can also watch Professor David Mazières's [talk on SCP](https://www.youtube.com/watch?v=vmwnhZmEZjc):
 
