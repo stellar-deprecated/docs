@@ -24,15 +24,15 @@ When network activity is below capacity, you pay the network minimum, which is c
 
 When the number of operations submitted to a ledger exceeds network capacity (**currently 1,000 ops/ledger**), the network enters surge pricing mode, which uses market dynamics to decide which submissions are included. Essentially, submissions that offer a higher fee per operation make it onto the ledger first.
 
-If there’s a tie — in other words multiple transactions offering the same base fee are competing for limited ledger space — the transactions are (pseudo-randomly) shuffled, and transactions at the top of the heap make the ledger.  The rest of the transactions, the ones that didn’t make the cut, are pushed on to the next ledger, or discarded if they’ve been waiting for too long.  For more information, see [transaction life cycle](./transactions.md#life-cycle).
+If there’s a tie — in other words multiple transactions that offer the same base fee are competing for the same limited space in the ledger — the transactions are (pseudo-randomly) shuffled, and transactions at the top of the heap make the ledger.  The rest of the transactions, the ones that didn’t make the cut, are pushed on to the next ledger, or discarded if they’ve been waiting for too long.  If your transaction is discarded, Horizon will return a [timeout error](https://www.stellar.org/developers/horizon/reference/errors/timeout.html).  For more information, see [transaction life cycle](./transactions.md#life-cycle).  
 
 The goal of the transaction pricing specification, which you can read in full [here](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0005.md), is to maximize network throughput while minimizing transaction fees. 
 
 ### Fee Stats and Fee Strategy
 
-When choosing a base fee to submit as part of a transaction, you may want to consult the Horizon [`/fee_stats`](https://www.stellar.org/developers/horizon/reference/endpoints/fee-stats.html) endpoint, which provides detailed information about per-operation fee stats for the last five ledgers.  You can find the same information on the fee stats panel of the [dashboard](https://dashboard.stellar.org/)   
+The general rule of thumb: choose the highest fee you're willing to pay to ensure your transaction makes the ledger.  Wallet developers may want to offer users a chance to specify their own base fee, though it may make more sense to set a persistent global base fee multiple orders of magnitude above the market rate — 0.1 XLM, for instance — since the average user will probably not care if they’re paying 0.8 cents or 0.00008 cents.
 
-By checking recent fee stats, users can make informed decisions about how high to set fees for manual transaction submission, and wallet developers can create dynamic fee strategies to cut down on hung transactions.  All three of the SDF-maintained SDKs allow you to poll the `/fee_stats` endpoint: [Go](https://godoc.org/github.com/stellar/go/clients/horizonclient#Client.FeeStats), [Java](https://stellar.github.io/java-stellar-sdk/), [Javascript](https://stellar.github.io/js-stellar-sdk/Server.html#feeStats).
+If you keep getting a [timeout error](https://www.stellar.org/developers/horizon/reference/errors/timeout.html) when you submit a transaction, you may need to increase your base fee, or wait until network activity abates and re-submit your transaction.  To help inform that decision, you can consult the Horizon [`/fee_stats`](https://www.stellar.org/developers/horizon/reference/endpoints/fee-stats.html) endpoint, which provides detailed information about per-operation fee stats for the last five ledgers.  You can find the same information on the fee stats panel of the [dashboard](https://dashboard.stellar.org/).  All three of the SDF-maintained SDKs also allow you to poll the `/fee_stats` endpoint: [Go](https://godoc.org/github.com/stellar/go/clients/horizonclient#Client.FeeStats), [Java](https://stellar.github.io/java-stellar-sdk/), [Javascript](https://stellar.github.io/js-stellar-sdk/Server.html#feeStats).   
 
 ### Fee Pool
 
@@ -63,6 +63,9 @@ Any transaction that would reduce an account's balance to less than the minimum 
 
 The minimum balance is held in reserve, and closing an entry frees up the associated base reserve.  For instance: if you zero-out a non-lumen balance and close the associated trustline, the 0.5 XLM base reserve that secured that trustline is added to your available balance. 
 
+
+
 ## Changes to Transaction Fees and Minimum Balances
 
 Ledger limits, the base reserve, and the minimum base fee can change, but should not do so more than once every several years. For the most part, you can think of them as fixed values. When they are changed, the change works by the same consensus process as any transaction. For details, see [versioning](https://www.stellar.org/developers/guides/concepts/versioning.html).
+
