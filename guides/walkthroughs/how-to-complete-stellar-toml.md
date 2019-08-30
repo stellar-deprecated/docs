@@ -114,6 +114,7 @@ demonstrate that your business is legitimate and trustworthy.
   exchanges and buyers can view the SSL certificate on your website, and feel reasonably confident
   that you are who you say you are.
 * A URL to a company logo (`ORG_LOGO`), which will show up next to your organization on exchanges.
+  This image should be a square aspect ratio transparent PNG, ideally of size 128x128.
   If you fail to provide a logo, the icon next to your organization will appear blank on many
   exchanges.
 * The physical address of your organization (`ORG_PHYSICAL_ADDRESS`). We understand you might want
