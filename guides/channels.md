@@ -14,7 +14,7 @@ Channels take advantage of the fact that the "source" account of a transaction c
 You of course will have to sign the transaction with both the base account key and the channel account key.
 
 For example:
-```
+```js
 StellarSdk.Network.useTestNetwork();
 // channelAccounts[] is an array of accountIDs, one for each channel
 // channelKeys[] is an array of secret keys, one for each channel
