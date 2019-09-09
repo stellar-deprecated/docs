@@ -20,7 +20,7 @@ When another compliance server contacts yours to clear a transaction, a series o
 
 ## Create a Database
 
-The compliance server requires a MySQL or PostgreSQL database in order to save transaction and compliance information. Create a new database named `stellar_compliance` and a user to manage it. You don’t need to add any tables; the server includes [a command to configure and update your database](#start-the-server).
+The compliance server requires a PostgreSQL database in order to save transaction and compliance information. Create a new database named `stellar_compliance` and a user to manage it. You don’t need to add any tables; the server includes [a command to configure and update your database](#start-the-server).
 
 
 ## Download and Configure Compliance Server
@@ -39,8 +39,8 @@ needs_auth = false
 network_passphrase = "Test SDF Network ; September 2015"
 
 [database]
-type = "mysql" # Or "postgres" if you created a PostgreSQL database
-url = "dbuser:dbpassword@/stellar_compliance"
+type = "postgres"
+url = "postgres://dbuser@dbhost/compliance"
 
 [keys]
 # This should be the secret seed for your base account (or another account that
