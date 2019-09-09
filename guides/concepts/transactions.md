@@ -10,7 +10,7 @@ your currency. If you think of the ledger as a database, then transactions are S
 
 Each transaction has the following attributes:
 > #### Source Account
-> This is the account that originates the transaction. The transaction must be signed by this
+> This is the account that originates the transaction. The transaction must be signed
 > by valid signers for this account, and they must collectively meet a low threshold for the
 > account. In addition, the transaction fee must be paid by this account. The sequence number of
 > this transaction is based off this account.
