@@ -14,7 +14,7 @@ When using the bridge server, you send payments by making an HTTP POST request t
 
 ## Create a Database
 
-The bridge server requires a MySQL or PostgreSQL database in order to track and coordinate transaction and compliance information. Create an empty database named `stellar_bridge` and a user to manage it. You don’t need to add any tables; the bridge server has [a special command to do that for you](#start-the-server).
+The bridge server requires a PostgreSQL database in order to track and coordinate transaction and compliance information. Create an empty database named `stellar_bridge` and a user to manage it. You don’t need to add any tables; the bridge server has [a special command to do that for you](#start-the-server).
 
 
 ## Download and Configure Bridge Server
@@ -37,8 +37,8 @@ code="USD"
 issuer="GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"
 
 [database]
-type = "mysql"  # or "postgres" if you created a postgres database
-url = "dbuser:dbpassword@/stellar_bridge"
+type = "postgres"
+url = "postgres://dbuser@dbhost/bridge"
 
 [accounts]
 # The secret seed for your base account, from which payments are made
