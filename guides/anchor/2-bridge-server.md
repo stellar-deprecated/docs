@@ -38,7 +38,7 @@ issuer="GAIUIQNMSXTTR4TGZETSQCGBTIF32G2L5P4AML4LFTMTHKM44UHIN6XQ"
 
 [database]
 type = "postgres"
-url = "postgres://root@localhost/bridge?sslmode=disable"
+url = "postgres://dbuser@dbhost/bridge"
 
 [accounts]
 # The secret seed for your base account, from which payments are made
