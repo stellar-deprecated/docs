@@ -5,7 +5,8 @@ title: Stellar Consensus Protocol
 The Stellar Consensus Protocol (SCP) provides a way to reach consensus without relying on a closed system to accurately record financial transactions. SCP has a set of provable safety properties that optimize for safety over liveness—in the event of partition or misbehaving nodes, it halts progress of the network until consensus can be reached. SCP simultaneously enjoys four key properties: decentralized control, low latency, flexible trust, and asymptotic security.
 
 A few ways to explore SCP:
-* To learn all about the protocol, read the [white paper](https://www.stellar.org/papers/stellar-consensus-protocol.pdf). 
+* Start out with this recent peer-reviewed [conference paper](https://www.stellar.org/papers/fast-and-secure-global-payments-with-stellar.pdf) on Stellar for a technical overview.
+* To learn all about the Stellar Consensus Protocol, read the original [white paper](https://www.stellar.org/papers/stellar-consensus-protocol.pdf). 
 * A [Simplified SCP](http://www.scs.stanford.edu/~dm/blog/simplified-scp.html) description is shorter and easier to read than the full whitepaper.
 * If you are implementing SCP, see the [internet draft](https://datatracker.ietf.org/doc/draft-mazieres-dinrg-scp/) and send questions and feedback to the [DIN mailing list](https://www.ietf.org/mailman/listinfo/Din).
 * View or contribute to the code in [stellar-core](https://github.com/stellar/stellar-core).
