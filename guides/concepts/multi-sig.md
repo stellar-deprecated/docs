@@ -30,7 +30,7 @@ weight less than 4, she cannot authorize a transaction without other signers.
 
 Once the signature threshold is met, if there are any leftover signatures then the transaction will
 fail. This will happen even if the signatures are valid. For example, if your transaction requires
-3 signatures, providing more than 3 signatures will result is a failed transaction with
+3 signatures, providing more than 3 signatures will result in a failed transaction with
 an `TX_BAD_AUTH_EXTRA` error (even if they are all valid). The reason for this error is performance
 related, as unnecessary signature verification has a large effect on performance before accepting
 transactions in consensus.
