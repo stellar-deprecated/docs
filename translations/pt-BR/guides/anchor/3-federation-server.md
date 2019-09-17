@@ -41,8 +41,8 @@ Em seguida, [faça download do servidor federation mais recente](https://github.
 port = 8002
 
 [database]
-type = "mysql" # Ou "postgres" ou "sqlite3"
-dsn = "dbusuario:dbsenha@/internal_accounts"
+type = "postgres" # Ou "sqlite3"
+dsn = "postgres://dbusuario@db____/internal_accounts?sslmode=sslmod"
 
 [queries]
 federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'sua_org.com'"
