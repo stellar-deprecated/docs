@@ -16,7 +16,7 @@ Stellar.org provides a [prebuilt federation server](https://github.com/stellar/g
 
 ## Create a Database
 
-The Stellar federation server is designed to connect to any existing SQL database you might have with a list of account names. It essentially translates a federation request into a SQL query. The server supports PostgreSQL, and SQLite3.
+The Stellar federation server is designed to connect to any existing SQL database you might have with a list of account names. It essentially translates a federation request into a SQL query. The server supports PostgreSQL and SQLite3.
 
 At a minimum, your database should have a table with a column identifying the name to use for each account record.[^federation_tables] In your existing system, you might have a table named `accounts` that looks something like:
 
