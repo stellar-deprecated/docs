@@ -16,7 +16,7 @@ Stellar.org fornece um [servidor federation pré-construído](https://github.com
 
 ## Criar uma Base de Dados
 
-O servidor federation Stellar é feito para conectar com qualquer base de dados SQL que você tiver que contenha uma lista de nomes de contas. Em essência, o servidor traduz uma request federation para um query SQL. O servidor dá suporte a PostgreSQL e SQLite3.
+O servidor federation Stellar é feito para conectar com qualquer base de dados SQL que você tiver que contenha uma lista de nomes de contas. Em essência, o servidor traduz uma request federation para um query SQL. O servidor dá suporte a MySQL, PostgreSQL, e SQLite3.
 
 Sua base de dados deve ter, no mínimo, uma tabela com uma coluna que identifica o nome a ser usado para cada registro de conta.[^federation_tables] Em seu sistema, você pode ter uma tabela de nome `accounts` com mais ou menos essa cara:
 
@@ -41,8 +41,8 @@ Em seguida, [faça download do servidor federation mais recente](https://github.
 port = 8002
 
 [database]
-type = "postgres" # Ou "sqlite3"
-dsn = "postgres://dbusuario@db____/internal_accounts?sslmode=sslmod"
+type = "mysql" # Ou "postgres" ou "sqlite3"
+dsn = "dbusuario:dbsenha@/internal_accounts"
 
 [queries]
 federation = "SELECT 'GAIGZHHWK3REZQPLQX5DNUN4A32CSEONTU6CMDBO7GDWLPSXZDSYA4BU' as id, friendly_id as memo, 'text' as memo_type FROM accounts WHERE friendly_id = ? AND ? = 'sua_org.com'"
