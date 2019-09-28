@@ -74,7 +74,7 @@ By default, anyone can create a trustline with an asset issuer to accept an asse
 * `AUTHORIZATION IMMUTABLE`: with this setting, none of the authorization flags can be set and the account can never be deleted.
 
 ## Amount precision and representation
-Each asset amount is encoded as a signed 64-bit integer in the [XDR structures](https://www.stellar.org/developers/horizon/learn/xdr.html). An asset amount unit (that which is seen by end users) is scaled down by a factor of ten million (10,000,000) to arrive at the native 64-bit integer representation. For example, the integer amount value `25,123,456` equals `2.5123456` units of the asset. This scaling allows for **seven decimal places** of precision in human-friendly amount units.
+Each asset amount is encoded as a signed 64-bit integer in the [XDR structures](./xdr.md). An asset amount unit (that which is seen by end users) is scaled down by a factor of ten million (10,000,000) to arrive at the native 64-bit integer representation. For example, the integer amount value `25,123,456` equals `2.5123456` units of the asset. This scaling allows for **seven decimal places** of precision in human-friendly amount units.
 
 The smallest non-zero amount unit is `0.0000001` (one ten-millionth) represented as an integer value of one. The largest amount unit possible is `((2^63)-1)/(10^7)` (derived from max int64 scaled down) which is `922,337,203,685.4775807`.
 
