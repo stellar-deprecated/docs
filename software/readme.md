@@ -21,7 +21,7 @@ A standalone Federation protocol server designed to be dropped in to your existi
 | Linux 32-bit (arm)  | [federation-arm-amd64](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-linux-arm.tar.gz)       |
 | Windows 64-bit (amd64) | [federation-windows-amd64.exe](https://github.com/stellar/go/releases/download/federation-v0.2.0/federation-v0.2.0-windows-amd64.zip) |
 
-## [Bridge Server](https://github.com/stellar/bridge-server)
+## [Bridge Server](https://github.com/stellar/go/tree/master/services/bridge)
 Stellar’s Bridge server provides a simple interface for the Stellar network. It is meant to simplify compliance operations and other more complicated integrations. Because it stores and manages keys and account information, access to it should be well protected. Unlike Horizon, it should never be exposed to the public internet.
 
 ## [Archivist](https://github.com/stellar/go/tree/master/tools/stellar-archivist)
