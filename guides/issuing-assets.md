@@ -58,7 +58,6 @@ Sending and receiving custom assets is very similar to [sending and receiving lu
 
 ```js
 var StellarSdk = require('stellar-sdk');
-StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // Keys for accounts to issue and receive the new asset
@@ -73,7 +72,10 @@ var astroDollar = new StellarSdk.Asset('AstroDollar', issuingKeys.publicKey());
 // First, the receiving account must trust the asset
 server.loadAccount(receivingKeys.publicKey())
   .then(function(receiver) {
-    var transaction = new StellarSdk.TransactionBuilder(receiver)
+    var transaction = new StellarSdk.TransactionBuilder(receiver, {
+      fee: 100,
+      networkPassphrase: StellarSdk.Networks.TESTNET
+    })
       // The `changeTrust` operation creates (or alters) a trustline
       // The `limit` parameter below is optional
       .addOperation(StellarSdk.Operation.changeTrust({
@@ -86,13 +88,17 @@ server.loadAccount(receivingKeys.publicKey())
     transaction.sign(receivingKeys);
     return server.submitTransaction(transaction);
   })
+  .then(console.log)
 
   // Second, the issuing account actually sends a payment using the asset
   .then(function() {
     return server.loadAccount(issuingKeys.publicKey())
   })
   .then(function(issuer) {
-    var transaction = new StellarSdk.TransactionBuilder(issuer)
+    var transaction = new StellarSdk.TransactionBuilder(issuer, {
+      fee: 100,
+      networkPassphrase: StellarSdk.Networks.TESTNET
+    })
       .addOperation(StellarSdk.Operation.payment({
         destination: receivingKeys.publicKey(),
         asset: astroDollar,
@@ -104,6 +110,7 @@ server.loadAccount(receivingKeys.publicKey())
     transaction.sign(issuingKeys);
     return server.submitTransaction(transaction);
   })
+  .then(console.log)
   .catch(function(error) {
     console.error('Error!', error);
   });
@@ -214,7 +221,6 @@ Second, use the [set options operation](https://www.stellar.org/developers/guide
 
 ```js
 var StellarSdk = require('stellar-sdk');
-StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // Keys for issuing account
@@ -223,7 +229,10 @@ var issuingKeys = StellarSdk.Keypair
 
 server.loadAccount(issuingKeys.publicKey())
   .then(function(issuer) {
-    var transaction = new StellarSdk.TransactionBuilder(issuer)
+    var transaction = new StellarSdk.TransactionBuilder(issuer, {
+      fee: 100,
+      networkPassphrase: StellarSdk.Networks.TESTNET
+    })
       .addOperation(StellarSdk.Operation.setOptions({
         homeDomain: 'yourdomain.com',
       }))
@@ -233,6 +242,7 @@ server.loadAccount(issuingKeys.publicKey())
     transaction.sign(issuingKeys);
     return server.submitTransaction(transaction);
   })
+  .then(console.log)
   .catch(function(error) {
     console.error('Error!', error);
   });
@@ -307,16 +317,34 @@ The following example sets authorization to be both required and revocable:
 <code-example name="Asset Authorization">
 
 ```js
-StellarSdk.Network.useTestNetwork();
-var transaction = new StellarSdk.TransactionBuilder(issuingAccount)
-  .addOperation(StellarSdk.Operation.setOptions({
-    setFlags: StellarSdk.AuthRevocableFlag | StellarSdk.AuthRequiredFlag
-  }))
-  // setTimeout is required for a transaction
-  .setTimeout(100)
-  .build();
-transaction.sign(issuingKeys);
-server.submitTransaction(transaction);
+var StellarSdk = require('stellar-sdk');
+var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+
+// Keys for issuing account
+var issuingKeys = StellarSdk.Keypair.fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
+
+server
+  .loadAccount(issuingKeys.publicKey())
+  .then(function(issuer) {
+    var transaction = new StellarSdk.TransactionBuilder(issuer, {
+      fee: 100,
+      networkPassphrase: StellarSdk.Networks.TESTNET
+    })
+      .addOperation(
+        StellarSdk.Operation.setOptions({
+          setFlags: StellarSdk.AuthRevocableFlag | StellarSdk.AuthRequiredFlag
+        })
+      )
+      // setTimeout is required for a transaction
+      .setTimeout(100)
+      .build()
+    transaction.sign(issuingKeys);
+    return server.submitTransaction(transaction);
+  })
+  .then(console.log)
+  .catch(function(error) {
+    console.error('Error!', error);
+  })
 ```
 
 ```java
@@ -398,6 +426,9 @@ Because every transaction comes with a small fee, you might want to check to ens
 <code-example name="Checking Trust">
 
 ```js
+var StellarSdk = require('stellar-sdk');
+var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+
 var astroDollarCode = 'AstroDollar';
 var astroDollarIssuer =
   'GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF';
