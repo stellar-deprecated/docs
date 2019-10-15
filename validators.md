@@ -186,6 +186,15 @@ NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -----
+Name        | LAPO BLOCKCHAIN
+------------|---------------------------------------------------------------------
+Description | https://lapo.io
+Contact     | devops@lapo.io
+Peer        | ch.stellar.lapo.io
+Node ID     | GBEQN7BMSW3667C5JIN3FMQLESW6G7QY7V73RFBERB2KWQGW67HKSRX7
+Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+-----
 Name | tradedirect.io
 -----|--------
 Description | https://www.tradedirect.io
@@ -336,15 +345,6 @@ Description | https://stellar.sui.li
 Contact | [github.com/sui77](https://github.com/sui77/) - s@sui.li
 Peer | stellar.sui.li
 Node ID | GBHMXTHDK7R2IJFUIDIUWMR7VAKKDSIPC6PT5TDKLACEAU3FBAR2XSUI
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
-
-----
-Name | Stellar Switzerland Group
------|--------
-Description | http://node.stellarswitzerland.ch
-Contact | node@stellarswitzerland.ch
-Peer | node.stellarswitzerland.ch
-Node ID | GCTI5PJ3IARLH67N4SJC7P3S3VQWS5PKEGA564WNYBYTPX54FGDAYFFO
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
