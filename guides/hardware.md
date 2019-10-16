@@ -46,18 +46,6 @@ There is a significant amount of computation that is done on the DB side of Hori
 
 The hardware requirements for these anchor services depend on your own internal usage, i.e. these hardware requirements will not increase as the volume on the network increases. Our suggestions below assume that you will run one machine for each service, although you can combine services onto a single machine with a larger capacity using VMs if you prefer.
 
-## Bridge Server
-
-### Minimum
-**CPU**: 2-Core (4-Thread) Intel i7/Xeon or equivalent (c5.large on AWS)\
-**RAM**: 4GB DDR3/DDR4\
-**SSD**: Needs a DB to hold processed transactions. Above CPU and RAM requirements don’t account for running this database’s hardware. DB size depends on your usage of the network. 20GB seems like a good starting point.
-
-### Recommended
-**CPU**: 4-Core (8-Thread) Intel i7/Xeon or equivalent (c5.xlarge on AWS)\
-**RAM**: 8GB DDR4\
-**SSD**: Needs a DB to hold processed transactions. Above CPU and RAM requirements don’t account for running this database’s hardware. DB size depends on your usage of the network. 20GB seems like a good starting point.
-
 ## Federation Server
 
 ### Minimum
@@ -69,15 +57,3 @@ The hardware requirements for these anchor services depend on your own internal 
 **CPU**: 4-Core (8-Thread) Intel i7/Xeon or equivalent (c5.xlarge on AWS)\
 **RAM**: 8GB DDR4\
 **SSD**: Needs a DB to hold federation table. Above CPU and RAM requirements don’t account for running this database’s hardware. DB size depends on how many accounts you have. See callbacks for more information.
-
-## Compliance Server
-
-### Minimum
-**CPU**: 2-Core (4-Thread) Intel i7/Xeon or equivalent (c5.large on AWS)\
-**RAM**: 4GB DDR3/DDR4\
-**SSD**: Needs a DB to hold processed transactions. Above CPU and RAM requirements don’t account for running this database’s hardware. DB size depends on your usage of the network. 20GB seems like a good starting point.
-
-### Recommended
-**CPU**: 4-Core (8-Thread) Intel i7/Xeon or equivalent (c5.xlarge on AWS)\
-**RAM**: 8GB DDR4\
-**SSD**: Needs a DB to hold processed transactions. Above CPU and RAM requirements don’t account for running this database’s hardware. DB size depends on your usage of the network. 20GB seems like a good starting point.
