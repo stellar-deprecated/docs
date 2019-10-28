@@ -8,7 +8,8 @@ Each operation is an individual command that mutates the ledger.
 Here are the possible operation types:
 - [Create Account](./list-of-operations.md#create-account)
 - [Payment](./list-of-operations.md#payment)
-- [Path Payment](./list-of-operations.md#path-payment)
+- [Path Payment Strict Send](./list-of-operations.md#path-payment-strict-send)
+- [Path Payment Strict Receive](./list-of-operations.md#path-payment-strict-receive)
 - [Manage Buy Offer](./list-of-operations.md#manage-buy-offer)
 - [Manage Sell Offer](./list-of-operations.md#manage-sell-offer)
 - [Create Passive Sell Offer](./list-of-operations.md#create-passive-sell-offer)
@@ -16,7 +17,6 @@ Here are the possible operation types:
 - [Change Trust](./list-of-operations.md#change-trust)
 - [Allow Trust](./list-of-operations.md#allow-trust)
 - [Account Merge](./list-of-operations.md#account-merge)
-- [Inflation](./list-of-operations.md#inflation)
 - [Manage Data](./list-of-operations.md#manage-data)
 - [Bump Sequence](./list-of-operations.md#bump-sequence)
 
