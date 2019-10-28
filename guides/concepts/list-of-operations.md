@@ -88,6 +88,7 @@ A few things to note:
 * path payments don't allow intermediate offers to be from the source account as this would yield a worse exchange rate. You'll need to either split the path payment into two smaller path payments, or ensure that the source account's offers are not at the top of the order book.
 * balances are settled at the very end of the operation
    * this is especially important when `(Destination, Destination Asset) == (Source, Send Asset)` as this provides a functionality equivalent to getting a no interest loan for the duration of the operation.
+* `Destination min` is a protective measure: it allows you to specify a lower bound for an acceptable conversion.  If offers in the order books are not favorable enough for the operation to deliver that amount, the operation will fail.
 
 Threshold: Medium
 
@@ -112,11 +113,11 @@ Possible errors:
 |PATH_PAYMENT_STRICT_SEND_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
 |PATH_PAYMENT_STRICT_SEND_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
 |PATH_PAYMENT_STRICT_SEND_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment. |
-|PATH_PAYMENT_STRICT_SEND_NO_DESTINATION| -5| The receiving account does not exist. |
-|PATH_PAYMENT_STRICT_SEND_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
+|PATH_PAYMENT_STRICT_SEND_NO_DESTINATION| -5| The destination account does not exist. |
+|PATH_PAYMENT_STRICT_SEND_NO_TRUST| -6| The destination account does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
 |PATH_PAYMENT_STRICT_SEND_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
 |PATH_PAYMENT_STRICT_SEND_LINE_FULL| -8| The destination account does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
-|PATH_PAYMENT_STRICT_SEND_NO_ISSUER| -9| The issuer on one of assets is missing.|
+|PATH_PAYMENT_STRICT_SEND_NO_ISSUER| -9| The issuer of one of the assets is missing.|
 |PATH_PAYMENT_STRICT_SEND_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
 |PATH_PAYMENT_STRICT_SEND_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
 |PATH_PAYMENT_STRICT_SEND_UNDER_DESTMIN| -12| The paths that could send `destination amount` of `destination asset` would fall short of  `destination min`.|
@@ -132,6 +133,7 @@ A few things to note:
 * path payment doesn't allow intermediate offers to be from the source account as this would yield a worse exchange rate. You'll need to either split the path payment into two smaller path payments, or ensure that the source account's offers are not at the top of the order book.
 * balances are settled at the very end of the operation
    * this is especially important when `(Destination, Destination Asset) == (Source, Send Asset)` as this provides a functionality equivalent to getting a no interest loan for the duration of the operation.
+* `Send max` is a protective measure: it allows you to specify an upper bound for an acceptable conversion.  If offers in the order books are not favorable enough for the operation to succeed for less than `Send max`, the operation will fail.
 
 Threshold: Medium
 
@@ -156,11 +158,11 @@ Possible errors:
 |PATH_PAYMENT_STRICT_RECEIVE_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
 |PATH_PAYMENT_STRICT_RECEIVE_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
 |PATH_PAYMENT_STRICT_RECEIVE_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment. |
-|PATH_PAYMENT_STRICT_RECEIVE_NO_DESTINATION| -5| The receiving account does not exist. |
-|PATH_PAYMENT_STRICT_RECEIVE_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
+|PATH_PAYMENT_STRICT_RECEIVE_NO_DESTINATION| -5| The destination account does not exist. |
+|PATH_PAYMENT_STRICT_RECEIVE_NO_TRUST| -6| The destination account does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
 |PATH_PAYMENT_STRICT_RECEIVE_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
-|PATH_PAYMENT_STRICT_RECEIVE_LINE_FULL| -8| The destination account (receiver) does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
-|PATH_PAYMENT_STRICT_RECEIVE_NO_ISSUER| -9| The issuer on one of assets is missing.|
+|PATH_PAYMENT_STRICT_RECEIVE_LINE_FULL| -8| The destination account does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
+|PATH_PAYMENT_STRICT_RECEIVE_NO_ISSUER| -9| The issuer of one the of assets is missing.|
 |PATH_PAYMENT_STRICT_RECEIVE_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
 |PATH_PAYMENT_STRICT_RECEIVE_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
 |PATH_PAYMENT_STRICT_RECEIVE_OVER_SENDMAX| -12| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
