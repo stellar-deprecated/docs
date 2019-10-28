@@ -115,7 +115,7 @@ Possible errors:
 |PATH_PAYMENT_STRICT_SEND_NO_DESTINATION| -5| The receiving account does not exist. |
 |PATH_PAYMENT_STRICT_SEND_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
 |PATH_PAYMENT_STRICT_SEND_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
-|PATH_PAYMENT_STRICT_SEND_LINE_FULL| -8| The destination account (receiver) does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
+|PATH_PAYMENT_STRICT_SEND_LINE_FULL| -8| The destination account does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
 |PATH_PAYMENT_STRICT_SEND_NO_ISSUER| -9| The issuer on one of assets is missing.|
 |PATH_PAYMENT_STRICT_SEND_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
 |PATH_PAYMENT_STRICT_SEND_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
