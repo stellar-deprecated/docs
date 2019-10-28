@@ -8,7 +8,8 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 
 - [Create Account](#create-account)
 - [Payment](#payment)
-- [Path Payment](#path-payment)
+- [Path Payment Strict Send](#path-payment-strict-send)
+- [Path Payment Strict Receive](#path-payment-strict-receive)
 - [Manage Buy Offer](#manage-buy-offer)
 - [Manage Sell Offer](#manage-sell-offer)
 - [Create Passive Sell Offer](#create-passive-sell-offer)
@@ -16,7 +17,6 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 - [Change Trust](#change-trust)
 - [Allow Trust](#allow-trust)
 - [Account Merge](#account-merge)
-- [Inflation](#inflation)
 - [Manage Data](#manage-data)
 - [Bump Sequence](#bump-sequence)
 
@@ -77,19 +77,67 @@ Possible errors:
 |PAYMENT_LINE_FULL| -8| The destination account (receiver) does not have sufficient limits to receive `amount` and still satisfy its buying liabilities.|
 |PAYMENT_NO_ISSUER| -9| The issuer of the asset does not exist.|
 
-## Path Payment
-[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.pathPayment) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PathPaymentOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#PathPayment)
+## Path Payment Strict Send
+[JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.pathPaymentStrictSend) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PathPaymentStrictSendOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#PathPaymentStrictSend)
 
-Sends an amount in a specific asset to a destination account through a path of offers. This allows the asset sent (e.g., 450 XLM) to be different from the asset received (e.g, 6 BTC).
+A path payment sends an amount of a specific asset to a destination account through a path of offers. Since the asset sent (e.g., 450 XLM) can be different from the asset received (e.g, 6 BTC), path payments allow for the simultaneous transfer and conversion of currencies.  
+
+A Path Payment Strict Send allows a user to specify the *amount of the asset to send*. The amount received will vary based on offers in the order books.  If you would like to instead specify the amount received, use the [Path Payment Strict Receive](#path-payment-strict-receive) operation.  
 
 A few things to note:
-* path payment doesn't allow intermediate offers to be from the source account as this would yield a worst exchange rate. You'll need to either split the path payment into two smaller path payments, or ensure that the source account's offers are not at the top of the order book.
+* path payments don't allow intermediate offers to be from the source account as this would yield a worse exchange rate. You'll need to either split the path payment into two smaller path payments, or ensure that the source account's offers are not at the top of the order book.
 * balances are settled at the very end of the operation
    * this is especially important when `(Destination, Destination Asset) == (Source, Send Asset)` as this provides a functionality equivalent to getting a no interest loan for the duration of the operation.
+* `Destination min` is a protective measure: it allows you to specify a lower bound for an acceptable conversion.  If offers in the order books are not favorable enough for the operation to deliver that amount, the operation will fail.
 
 Threshold: Medium
 
-Result: `PathPaymentResult`
+Result: `PathPaymentStrictSendResult`
+
+Parameters:
+
+|Parameters| Type| Description|
+| --- | --- | --- |
+|Send asset| asset| The asset deducted from the sender's account.|
+|Send amount| integer| The amount of `send asset` to deduct (excluding fees).|
+|Destination| account ID| Account ID of the recipient.|
+|Destination asset| asset| The asset the destination account receives.|
+|Destination min| integer| The minimum amount of `destination asset` the destination account can receive.|
+|Path| list of assets| The assets (other than `send asset` and `destination asset`) involved in the offers the path takes. For example, if you can only find a path from USD to EUR through XLM and BTC, the path would be USD -> XLM -> BTC -> EUR and the `path` field would contain XLM and BTC.|
+
+Possible errors:
+
+| Error | Code | Description |
+| ----- | ---- | ------|
+|PATH_PAYMENT_STRICT_SEND_MALFORMED| -1| The input to this path payment is invalid.|
+|PATH_PAYMENT_STRICT_SEND_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
+|PATH_PAYMENT_STRICT_SEND_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
+|PATH_PAYMENT_STRICT_SEND_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment. |
+|PATH_PAYMENT_STRICT_SEND_NO_DESTINATION| -5| The destination account does not exist. |
+|PATH_PAYMENT_STRICT_SEND_NO_TRUST| -6| The destination account does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
+|PATH_PAYMENT_STRICT_SEND_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
+|PATH_PAYMENT_STRICT_SEND_LINE_FULL| -8| The destination account does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
+|PATH_PAYMENT_STRICT_SEND_NO_ISSUER| -9| The issuer of one of the assets is missing.|
+|PATH_PAYMENT_STRICT_SEND_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
+|PATH_PAYMENT_STRICT_SEND_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
+|PATH_PAYMENT_STRICT_SEND_UNDER_DESTMIN| -12| The paths that could send `destination amount` of `destination asset` would fall short of  `destination min`.|
+
+## Path Payment Strict Receive
+[JavaScript](https://stellar.github.io/js-stellar-sdk/Operation.html#.pathPaymentStrictReceive) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PathPaymentStrictReceiveOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#PathPaymentStrictReceive)
+
+A path payment sends an amount of a specific asset to a destination account through a path of offers. Since the asset sent (e.g., 450 XLM) can be different from the asset received (e.g, 6 BTC), path payments allow for the simultaneous transfer and conversion of currencies.  
+
+A Path Payment Strict Receive allows a user to specify the *amount of the asset received*. The amount sent varies based on offers in the order books.  If you would like to instead specify the amount sent, use the [Path Payment Strict Send](#path-payment-strict-send) operation.    
+
+A few things to note:
+* path payment doesn't allow intermediate offers to be from the source account as this would yield a worse exchange rate. You'll need to either split the path payment into two smaller path payments, or ensure that the source account's offers are not at the top of the order book.
+* balances are settled at the very end of the operation
+   * this is especially important when `(Destination, Destination Asset) == (Source, Send Asset)` as this provides a functionality equivalent to getting a no interest loan for the duration of the operation.
+* `Send max` is a protective measure: it allows you to specify an upper bound for an acceptable conversion.  If offers in the order books are not favorable enough for the operation to succeed for less than `Send max`, the operation will fail.
+
+Threshold: Medium
+
+Result: `PathPaymentStrictReceiveResult`
 
 Parameters:
 
@@ -106,18 +154,18 @@ Possible errors:
 
 | Error | Code | Description |
 | ----- | ---- | ------|
-|PATH_PAYMENT_MALFORMED| -1| The input to this path payment is invalid.|
-|PATH_PAYMENT_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
-|PATH_PAYMENT_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
-|PATH_PAYMENT_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment. |
-|PATH_PAYMENT_NO_DESTINATION| -5| The receiving account does not exist. |
-|PATH_PAYMENT_NO_TRUST| -6| The receiver does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
-|PATH_PAYMENT_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
-|PATH_PAYMENT_LINE_FULL| -8| The destination account (receiver) does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
-|PATH_PAYMENT_NO_ISSUER| -9| The issuer on one of assets is missing.|
-|PATH_PAYMENT_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
-|PATH_PAYMENT_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
-|PATH_PAYMENT_OVER_SENDMAX| -12| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
+|PATH_PAYMENT_STRICT_RECEIVE_MALFORMED| -1| The input to this path payment is invalid.|
+|PATH_PAYMENT_STRICT_RECEIVE_UNDERFUNDED| -2| The source account (sender) does not have enough funds to send and still satisfy its selling liabilities. Note that if sending XLM then the sender must additionally maintain its minimum XLM reserve.|
+|PATH_PAYMENT_STRICT_RECEIVE_SRC_NO_TRUST| -3| The source account does not trust the issuer of the asset it is trying to send.|
+|PATH_PAYMENT_STRICT_RECEIVE_SRC_NOT_AUTHORIZED| -4| The source account is not authorized to send this payment. |
+|PATH_PAYMENT_STRICT_RECEIVE_NO_DESTINATION| -5| The destination account does not exist. |
+|PATH_PAYMENT_STRICT_RECEIVE_NO_TRUST| -6| The destination account does not trust the issuer of the asset being sent. For more, see the [assets doc](./assets.md).|
+|PATH_PAYMENT_STRICT_RECEIVE_NOT_AUTHORIZED| -7| The destination account is not authorized by the asset's issuer to hold the asset. |
+|PATH_PAYMENT_STRICT_RECEIVE_LINE_FULL| -8| The destination account does not have sufficient limits to receive `destination amount` and still satisfy its buying liabilities.|
+|PATH_PAYMENT_STRICT_RECEIVE_NO_ISSUER| -9| The issuer of one the of assets is missing.|
+|PATH_PAYMENT_STRICT_RECEIVE_TOO_FEW_OFFERS| -10| There is no path of offers connecting the `send asset` and `destination asset`.  Stellar only considers paths of length 5 or shorter.|
+|PATH_PAYMENT_STRICT_RECEIVE_OFFER_CROSS_SELF| -11| The payment would cross one of its own offers.|
+|PATH_PAYMENT_STRICT_RECEIVE_OVER_SENDMAX| -12| The paths that could send `destination amount` of `destination asset` would exceed `send max`.|
 
 ## Manage Buy Offer
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.manageBuyOffer) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageBuyOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#ManageBuyOffer)
