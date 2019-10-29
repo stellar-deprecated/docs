@@ -261,7 +261,7 @@ Transaction setHomeDomain = new Transaction.Builder(sourceAccount)
   .addOperation(new SetOptionsOperation.Builder()
     .setHomeDomain("yourdomain.com").build()
   .build();
-setAuthorization.sign(issuingKeys);
+setHomeDomain.sign(issuingKeys);
 server.submitTransaction(setHomeDomain);
 
 ```
