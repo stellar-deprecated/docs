@@ -61,13 +61,12 @@ After a reset, you will need to take a few steps to re-join and re-synch to the 
 
 SDF will try to make testnet resets as painless as possible, and will announce the exact date at least two weeks in advance on the [Stellar Dashboard](http://dashboard.stellar.org/), and via several of Stellar’s online developer communities.
 
-Starting in January 2019, the testnet will be reset once per quarter (every
-three months).  The tentative dates:
+The testnet resets once per quarter (every three months).  The 2020 dates:
 
-* February 27th, 2019
-* April 24th, 2019
-* July 31st, 2019
-* October 30th, 2019
+* 1/29/20
+* 4/29/20
+* 7/29/20
+* 10/28/20
 
 The testnet will always restart on the announced reset date at 0900 UTC.  
 
