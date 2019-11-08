@@ -75,6 +75,19 @@ func main() {
 }
 ```
 
+```python
+# stellar-sdk >= 2.0.0 required
+# create a completely new and unique pair of keys
+# see more about KeyPair objects: https://stellar-sdk.readthedocs.io/en/latest/api.html#keypair
+from stellar_sdk.keypair import Keypair
+
+pair = Keypair.random()
+print(f"Secret: {pair.secret}")
+# Secret: SCMDRX7A7OVRPAGXLUVRNIYTWBLCS54OV7UH2TF5URSG4B4JQMUADCYU
+print(f"Public Key: {pair.public_key}")
+# Public Key: GAG7SXULMNWCW6LX42JKZOZRA2JJXQT23LYY32OXA6XECUQG7RZTQJHO
+```
+
 </code-example>
 
 Now that you have a seed and public key, you can create an account. In order to prevent people from
@@ -153,6 +166,21 @@ func main() {
 }
 ```
 
+```python
+# The SDK does not have tools for creating test accounts, so you'll have to
+# make your own HTTP request.
+
+# if you're trying this on Python, install the `requests` library.
+import requests
+
+public_key = "GD4NB2FLQAN5JO7PKPGZJMNBDYQXVSNVC7DEIZMOL5WSNSBLEBUTEF5Q"
+response = requests.get(f"https://friendbot.stellar.org?addr={public_key}")
+if response.status_code == 200:
+    print(f"SUCCESS! You have a new account :)\n{response.text}")
+else:
+    print(f"ERROR! Response: \n{response.text}")
+```
+
 </code-example>
 
 Now for the last step: Getting the account’s details and checking its balance. Accounts can carry
@@ -209,6 +237,16 @@ func main() {
 		log.Println(balance)
 	}
 }
+```
+
+```python
+from stellar_sdk.server import Server
+
+server = Server("https://horizon-testnet.stellar.org")
+public_key = "GD4NB2FLQAN5JO7PKPGZJMNBDYQXVSNVC7DEIZMOL5WSNSBLEBUTEF5Q"
+account = server.accounts().account_id(public_key).call()
+for balance in account['balances']:
+    print(f"Type: {balance['asset_type']}, Balance: {balance['balance']}")
 ```
 
 </code-example>
