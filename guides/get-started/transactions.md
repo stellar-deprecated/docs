@@ -704,6 +704,7 @@ String lastToken = loadLastPagingToken();
 if (lastToken != null) {
   paymentsRequest.cursor(lastToken);
 }
+```
 
 ```python
 payments = server.payments().for_account(account_id)
