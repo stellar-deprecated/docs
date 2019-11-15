@@ -2,22 +2,10 @@
 title: Inflation
 ---
 
-The Stellar distributed network has a built-in, fixed, nominal [inflation](#inflation) mechanism. New lumens are added to the network at the rate of 1% each year. Each week, the protocol distributes these lumens to any account that gets over .05% of the "votes" from other accounts in the network that hold a balance of at least 100 XLM.   
+Until the upgrade to version 12 of the protocol, Stellar had a built-in inflation mechanism conceived to allow account holders to collectively direct inflation-generated lumens toward projects built on Stellar.  
 
-## How inflation voting works 
-Using the [set options](./list-of-operations.md#set-options) operation, every account selects another account as its **inflation destination**, or nominee to receive new currency. The inflation destination will persist until changed with another set options operation. 
+As the network evolved and grew, it became increasingly clear that inflation wasn't working as intended — account holders either didn't set their inflation destination or joined inflation pools to claim the inflation themselves, and the operational costs associated with inflation payments continued to rise — and so a [protocol change to disable inflation](
+https://github.com/stellar/stellar-protocol/blob/master/core/cap-0026.md) was proposed, implemented, voted on by validators, and ultimately adopted as part of a network upgrade.  
 
-Voting is weighted according to the number of lumens the voting account holds. For example, if account A has 1200 lumens and sets its inflation destination to B, the network counts 1200 votes for B.  For an account's vote to count at all, it has to hold a balance of at least 100 XLM.  Accounts with less the 100 XLM are _not eligible_ to participate in the inflation vote. 
+For more info, check [here](https://www.stellar.org/blog/our-proposal-to-disable-inflation)
 
-The distribution of new lumens is limited to once a week. Inflation is run in response to an [inflation operation](./list-of-operations.md#inflation) that anyone can submit to the network. This operation will fail if the inflation sequence number isn't one after the last sequence number. It will also fail if (sequence number * 1 week) of time hasn't elapsed since the network start date.  
-
-Each time inflation is run, the lumens used to pay transaction [fees](./fees.md#transaction-fee) since the last voting round are also included in the total lumens distributed.
-
-When inflation is run, nodes carry out the following algorithm:
-
- 1. Calculate the `inflation pool` by (number of lumens in existence)*(weekly inflation rate) + fee pool.
- 2. Calculate the `MIN_VOTE` by (number of lumens in existence)*.0005. This is .05% of the existing lumens, the minimum amount of votes needed to get any part of the inflation pool.
- 2. Tally the votes for each account based on the **inflation destination** set for every account with a balance of at least 100XLM.
- 3. Determine which accounts exceeded the `MIN_VOTE`. These accounts are the winners.
- 4. The winners each get their prorata share of the inflation pool, if their account can receive that amount of lumens and still satisfy its lumen buying liabilities. Otherwise, the winner receives the maximum amount of lumens that it can receive while still satisfying its lumen buying liabilities, with the rest of their prorata share returned to the fee pool. For example, if a winner gets 2% of the votes, it will get 2% of the inflation pool assuming the account can receive that amount.
- 5. Return any unallocated lumens to the fee pool. 
