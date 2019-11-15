@@ -38,9 +38,9 @@ If you keep getting a [timeout error](https://www.stellar.org/developers/horizon
 
 The fee pool is the lot of lumens collected from [transaction fees](./fees.md#transaction-fee).
 
-SDF does not retain these lumens. They are distributed in the weekly process of [inflation voting](./inflation.md). 
+Since the disabling of the inflation mechanism fees are retained in the fee pool and are no longer redistributed. 
 
-If there are any unallocated lumens after the vote, those lumens return to the fee pool for dispersal in the next round. 
+The inflation mechanism was disabled (see [CAP-0026](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0026.md)) in protocol version 12, which was approved by validators on 10/28/19. After this date no further inflation payouts were made.    
 
 ## Minimum Account Balance
 
