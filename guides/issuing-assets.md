@@ -308,7 +308,7 @@ account:
 3. [`Set Options`](concepts/list-of-operations.md#set-options) to set the flags on the issuing
    account to `0x0` to disable `AUTHORIZATION REQUIRED`.
 
-**These transactions are necessary** as you don't want to effect accounts that have been created
+**These transactions are necessary** as you don't want to affect accounts that have been created
 after you initially disabled authorization on your account - otherwise, they would also need to go
 through this process.
 
