@@ -2,7 +2,7 @@
 title: Bifrost Server Setup
 ---
 
-Bifrost is a service that enables users to move BTC/ETH to the Stellar network. It can either be used to give a representation of BTC or ETH on the network or trade it to another custom token. This is particularly useful for ICOs (Initial Coin Oferrings). 
+Bifrost is a service that enables users to move BTC/ETH to the Stellar network. It can either be used to give a representation of BTC or ETH on the network or trade it to another custom token. This is particularly useful for ICOs (Initial Coin Offerings). 
 This guide will focus on how to setup the Bifrost server to move ETH to the Stellar network.
 
 ## What you will need
