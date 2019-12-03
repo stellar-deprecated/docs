@@ -79,7 +79,8 @@ You can set the JWT to expire whenever you want.  The rule of thumb is 24 hours,
 
 ## Complete your stellar.toml file ([SEP-1](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md))
 
-Your stellar.toml file is a vital piece of your Stellar infrastructure, so vital in fact that we published [a separate guide](../how-to-complete-stellar-toml.md) dedicated to helping you fill it out.  You should consult that guide, and complete as much of your stellar.toml as possible.  
+Your stellar.toml file is a vital piece of your Stellar infrastructure, so vital in fact that we published [a separate guide]
+(https://www.stellar.org/developers/guides/concepts/stellar-toml.html) dedicated to helping you fill it out.  You should consult that guide, and complete as much of your stellar.toml as possible.  
 
 The stellar.toml specification relies on a simple trick to create a link between your on-chain listing and off-chain information: using a `set_options` [operation](https://www.stellar.org/developers/guides/concepts/list-of-operations.html#set-options), you set the home domain of your Stellar issuing account to your website.  You then publish a static resource on your website containing information about your Stellar integration.  A user (or a bot) can then look at your Stellar account, find your stellar.toml, and use the structured information there to learn more about your Stellar integration.
 
