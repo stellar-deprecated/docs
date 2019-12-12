@@ -2,7 +2,7 @@
 title: Lumen Supply Metrics
 ---
 
-[SDF’s Dashboard API endpoint](https://dashboard.stellar.org/api/v2/lumens) will always have the up-to-the-second totals for the essential numbers around lumens. This guide explains important supply metrics like Original Supply, Total Supply, and Circulating Supply entailed in that data. 
+[SDF’s Dashboard API endpoint](https://dashboard.stellar.org/api/v2/lumens) will always have the live totals for the essential numbers around lumens. This guide explains important supply metrics like Original Supply, Total Supply, and Circulating Supply entailed in that data. 
 
 ## Dashboard API
 
