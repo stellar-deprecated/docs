@@ -19,7 +19,7 @@ As of December 12, 2019, the Dashboard API shows:
   "feePool": "1807341.5766261",
   "sdfMandate": "29635032570.5297368",
   "circulatingSupply": "19950653556.0541861",
-  "_details": "https://www.stellar.org/developers/guides/concepts/lumen-supply-metrics.html"
+  "_details": "https://www.stellar.org/developers/guides/lumen-supply-metrics.html"
 }
 ```
 
