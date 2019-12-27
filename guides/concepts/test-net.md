@@ -27,7 +27,7 @@ can directly interact with the testnet.
 * Load and stress testing.
   * If you want to test for performance, a good place to
     start is
-    [Stellar Core's core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval.md#networks-to-test-against).
+    [Stellar Core's core performance document](https://github.com/stellar/stellar-core/blob/master/performance-eval/performance-eval.md#networks-to-test-against).
 * High availability test infrastructure - SDF makes no guarantees about the
   availability of the testnet.
 * Long term storage of data on the network - [the network is ephemeral, and resets periodically](test-net.md#periodic-reset-of-testnet-data).
@@ -57,7 +57,7 @@ A reset clears all ledger entries (such as accounts, trustlines, offers,
 etc), transactions, and historical data from both Stellar Core and
 Horizon, which is why developers should not rely on the persistence of any accounts or on the state of any balances when using testnet.
 
-After a reset, you will need to take a few steps to re-join and re-synch to the testnet.  Those steps are outlined [here](https://github.com/stellar/packages#testnet-reset), along with line-by-line instructions for people using core + horizon ubuntu packages.  If you need help with other packages, check [Stellar's Stack Exchange](https://stellar.stackexchange.com/) for guidance.
+After a reset, you will need to take a few steps to re-join and re-synch to the testnet.  Those steps are outlined [here](https://github.com/stellar/packages/blob/master/docs/testnet-reset.md#testnet-reset), along with line-by-line instructions for people using core + horizon ubuntu packages.  If you need help with other packages, check [Stellar's Stack Exchange](https://stellar.stackexchange.com/) for guidance.
 
 SDF will try to make testnet resets as painless as possible, and will announce the exact date at least two weeks in advance on the [Stellar Dashboard](http://dashboard.stellar.org/), and via several of Stellar’s online developer communities.
 
