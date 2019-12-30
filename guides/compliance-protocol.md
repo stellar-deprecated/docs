@@ -44,7 +44,7 @@ Protocol is as follows:
 
 You are free create to implement your own web service that implements the compliance protocol, but
 we recommend that you use our [pre-built compliance
-service](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md).
+service](https://github.com/stellar/go/blob/master/services/compliance/).
 
 ## Implementation
 
@@ -304,7 +304,7 @@ the ledger for additional information.
 ## Reference Implementations
 
 * [Reference Compliance
-  server](https://github.com/stellar/bridge-server/blob/master/readme_compliance.md) developed by
+  server](https://github.com/stellar/go/tree/master/services/compliance/) developed by
   Stellar Development Foundation.
 * [Compliance Structures](https://github.com/stellar/go/tree/master/protocols/compliance).
 
