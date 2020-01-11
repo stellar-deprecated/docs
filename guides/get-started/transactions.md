@@ -43,7 +43,6 @@ another account:
 
 ```js
 var StellarSdk = require('stellar-sdk');
-StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 var sourceKeys = StellarSdk.Keypair
   .fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
@@ -65,7 +64,10 @@ server.loadAccount(destinationId)
   })
   .then(function(sourceAccount) {
     // Start building the transaction.
-    transaction = new StellarSdk.TransactionBuilder(sourceAccount)
+    transaction = new StellarSdk.TransactionBuilder(sourceAccount, {
+      fee: StellarSdk.BASE_FEE,
+      networkPassphrase: StellarSdk.Networks.TESTNET
+    })
       .addOperation(StellarSdk.Operation.payment({
         destination: destinationId,
         // Because Stellar allows transaction in many currencies, you must
