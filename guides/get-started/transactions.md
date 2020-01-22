@@ -58,7 +58,7 @@ server.loadAccount(destinationId)
   .catch(function (error) {
     if (error instanceof StellarSdk.NotFoundError) {
       throw new Error('The destination account does not exist!');
-    }
+    } else return error
   })
   // If there was no error, load up-to-date information on your account.
   .then(function() {
