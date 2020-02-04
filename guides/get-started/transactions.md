@@ -55,8 +55,10 @@ var transaction;
 // the transaction fee when the transaction fails.
 server.loadAccount(destinationId)
   // If the account is not found, surface a nicer error message for logging.
-  .catch(StellarSdk.NotFoundError, function (error) {
-    throw new Error('The destination account does not exist!');
+  .catch(function (error) {
+    if (error instanceof StellarSdk.NotFoundError) {
+      throw new Error('The destination account does not exist!');
+    } else return error
   })
   // If there was no error, load up-to-date information on your account.
   .then(function() {
