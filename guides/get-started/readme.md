@@ -1,7 +1,7 @@
 ---
 title: Stellar Network Overview
 ---
-![Stellar Ecosystem](https://www.stellar.org/old-content/2016/06/Stellar-Ecosystem-v031.png)
+![Stellar Ecosystem](assets/developers.png)
 
 Using the Stellar network, you can build mobile wallets, banking tools, smart devices that pay for themselves, and just about anything else you can dream up involving payments! Even though Stellar is a complex distributed system, working with it doesn’t need to be complicated.
 
