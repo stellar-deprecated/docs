@@ -57,7 +57,7 @@ The SDF Mandate is described in detail [here](https://www.stellar.org/foundation
 |[Jan 1 2022 Escrow](https://stellar.expert/explorer/public/account/GD2D6JG6D3V52ZMPIYSVHYFKVNIMXGYVLYJQ3HYHG5YDPGJ3DCRGPLTP)|
 |[Jan 1 2023 Escrow](https://stellar.expert/explorer/public/account/GA2VRL65L3ZFEDDJ357RGI3MAOKPJZ2Z3IJTPSC24I4KDTNFSVEQURRA)|
 |[Direct Development (Hot 1)](https://stellar.expert/explorer/public/account/GCEZYB47RSSSR6RMHQDTBWL4L6RY5CY2SPJU3QHP3YPB6ALPVRLPN7OQ)|
-|[Direct Development (Hot 2)](https://stellar.expert/explorer/public/account/GB6D7BSIOPC7FTRLVMVRFPBQRFXWWDU3XXFU5YFSOPN4PQALNMQC7ANB)|
+|[Direct Development (Hot 2)](https://stellar.expert/explorer/public/account/GATL3ETTZ3XDGFXX2ELPIKCZL7S5D2HY3VK4T7LRPD6DW5JOLAEZSZBA)|
 |[Direct Development (Hot 3)](https://stellar.expert/explorer/public/account/GCVLWV5B3L3YE6DSCCMHLCK7QIB365NYOLQLW3ZKHI5XINNMRLJ6YHVX)|
 |[Developer Support](https://stellar.expert/explorer/public/account/GCVJDBALC2RQFLD2HYGQGWNFZBCOD2CPOTN3LE7FWRZ44H2WRAVZLFCU)|
 |[Developer Support (Hot)](https://stellar.expert/explorer/public/account/GCKJZ2YVECFGLUDJ5T7NZMJPPWERBNYHCXT2MZPXKELFHUSYQR5TVHJQ)|
