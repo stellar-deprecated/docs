@@ -17,7 +17,6 @@ Two good community created tools for seeing the live status of the validators:
 
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 ------
--
 Name | KrStellar
 -----|--------
 Description | French Node
