@@ -17,7 +17,12 @@ Two good community created tools for seeing the live status of the validators:
 
 We don't know who really controls these nodes. They could all be owned by the same person! This list is purely for informational purposes.
 ------
-
+Name | KrStellar
+-----|--------
+Description | French Node
+Contact | postmaster@renaudkyllian.ovh (email), kyllian (keybase)
+NodeID | GDOIOVCAQWYXTOPBSKV7WIAUESAFU23TT626SDSD6YFH5FTQZ4SOGQYU
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 Name | Alchymia
 -----|--------
