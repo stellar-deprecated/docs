@@ -4,6 +4,11 @@ sequence:
   previous: 4-compliance-server.md
 ---
 
+## Deprecation Notice
+
+This guide explains how to set up a Stellar anchor service using a legacy flow outlined in [SEP-0003](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0003.md).  For most use cases, we actually recommend the workflow specified in [SEP-0024](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0024.md).  We are working on new documentation that explains that workflow, and it will be ready soon.  In the meantime, check the [Basic Anchor Implementation section](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0024.md#basic-anchor-implementation) included in SEP-0024.
+
+
 Congratulations! If you’ve made it to this point, you should now have a working bridge server, federation server, and compliance server, with the ability to make and receive secure, sanctioned payments on the Stellar network.
 
 ## Testing
