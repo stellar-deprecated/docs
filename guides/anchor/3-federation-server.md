@@ -6,7 +6,7 @@ sequence:
 ---
 ## Deprecation Notice
 
-This guide explains how to set up a Stellar anchor service using a legacy flow outlined in [SEP-0003](../../stellar-protocol/blob/master/ecosystem/sep-0003.md).  For most use cases, we actually recommend the workflow specified in [SEP-0024](../../stellar-protocol/blob/master/ecosystem/sep-0024.md).  We are working on new documentation that explains that workflow, and they will be ready soon.  In the meantime, check the [Basic Anchor Implementation section](../../stellar-protocol/blob/master/ecosystem/sep-0024.md#basic-anchor-implementation) included in SEP-0024.
+This guide explains how to set up a Stellar anchor service using a legacy flow outlined in [SEP-0003](../../stellar-protocol/blob/master/ecosystem/sep-0003.md).  For most use cases, we actually recommend the workflow specified in [SEP-0024](../../stellar-protocol/blob/master/ecosystem/sep-0024.md).  We are working on new documentation that explains that workflow, and it will be ready soon.  In the meantime, check the [Basic Anchor Implementation section](../../stellar-protocol/blob/master/ecosystem/sep-0024.md#basic-anchor-implementation) included in SEP-0024.
 
 When testing the bridge server, we added a `memo` to the transaction in order to identify what customer account to credit. However, other people and organizations using Stellar might not know they need to do that. How do they find out?
 
