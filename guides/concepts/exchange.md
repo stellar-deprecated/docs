@@ -70,7 +70,7 @@ An **orderbook** is a record of outstanding orders on the Stellar network. This 
 
 An orderbook can be summarized by a diagram, as shown below. It is often visible on the trading interface of an exchange, though sometimes inverted left-to-right or drawn horizontally. But the idea is the same.
 
-The diagram is split into two stacks of orders. Each stack is the the set of orders related to selling an asset _in a trading pair_ with the other asset. So at the top of the diagram there are the orders of people trying to sell sheep (or, equivalently, buy wheat). At the bottom there are the orders of people trying to sell wheat (or, equivalently, buy sheep).
+The diagram is split into two stacks of orders. Each stack is the set of orders related to selling an asset _in a trading pair_ with the other asset. So at the top of the diagram there are the orders of people trying to sell sheep (or, equivalently, buy wheat). At the bottom there are the orders of people trying to sell wheat (or, equivalently, buy sheep).
 
 For mnemonic purposes we've arranged the diagram with the sheep "on top" of the wheat here. If it helps you can picture a bunch of sheep standing on a field of wheat or some bushels of wheat, an arrangement less likely to cause chaos than trying to stack bushels of wheat on top of sheep.
 
@@ -79,7 +79,7 @@ For mnemonic purposes we've arranged the diagram with the sheep "on top" of the 
 
 Looking at the diagram, there are a few orientation things to notice and think about:
 
-  1. Being willing to sell wheat for sheep is _exactly the same_ as being willing to buy sheep for wheat. There are differences once we get into which direction of price movement you'll accept as "better than your order", but in general it's just a question of which unit you declare the price and quantity for, so for uniformity sake, our order book encodes orders on both sides of a trading pair as as _selling_.
+  1. Being willing to sell wheat for sheep is _exactly the same_ as being willing to buy sheep for wheat. There are differences once we get into which direction of price movement you'll accept as "better than your order", but in general it's just a question of which unit you declare the price and quantity for, so for uniformity sake, our order book encodes orders on both sides of a trading pair as _selling_.
 
   2. Generally more people will be willing to _sell_ more of an asset at higher sale prices. This _makes sense_ intuitively, an embodiment of the notion that "everybody has a price". Not everyone will sell their favourite shoes for $100, but probably everyone will for $1,000 or $10,000. Put another way: higher sale prices for an asset are "better" for people trying to sell it. If you're _selling_ at some price "or better", that means "or higher prices". (Equivalently: "or better" means "or _lower_ price" for _buyers_, but again, we model both sides here as _sellers_). Similarly there is (intuitively) a lowest price at which _anyone_ wants to sell an asset, and likely there aren't _many_ people who want to offer it at that cheapest price. So orders naturally "thin out" toward the center where it wouldn't be especially appealing to bother selling, and "widen out" towards the edges where the prices (should they occur) would be tempting for lots of people to sell at.
 
