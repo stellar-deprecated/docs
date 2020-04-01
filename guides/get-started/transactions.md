@@ -236,7 +236,7 @@ transaction = (
         # optional and does not affect how Stellar treats the transaction.
         .add_text_memo("Test Transaction")
         # Wait a maximum of three minutes for the transaction
-        .set_timeout(10)
+        .set_timeout(180)
         .build()
 )
 
