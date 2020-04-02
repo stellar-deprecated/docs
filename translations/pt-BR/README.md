@@ -76,8 +76,8 @@ Há três tipos diferentes de links, e cada tipo de link tem seu próprio signif
           <li>links a sites externos (como https://www.google.com/)</li>
         </ul>
       </td>
-      <td>https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html</td>
-      <td>https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html</td>
+      <td>https://www.stellar.org/developers/js-stellar-base/reference/building-transactions.html</td>
+      <td>https://www.stellar.org/developers/js-stellar-base/reference/building-transactions.html</td>
     </tr>
   </tbody>
 </table>

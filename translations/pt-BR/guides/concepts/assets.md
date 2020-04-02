@@ -72,7 +72,7 @@ Por padrão, qualquer um pode criar uma trustline com um emissor de um ativo par
 * `AUTHORIZATION IMMUTABLE`: com esta opção, nenhuma das flags de autorização podem ser habilitadas e a conta nunca pode ser deletada.
 
 ## Precisão e representação de quantidades
-Toda quantia de um ativo é codificada nas [estruturas XDR](https://www.stellar.org/developers/horizon/learn/xdr.html) como um número inteiro 64-bits signed. A unidade da quantidade de um ativo (aquela que é vista pelos usuários finais) é reduzida em um fator de dez milhões (10,000,000) para chegar à representação nativa como números inteiros 64-bits. Por exemplo, o valor de número inteiro `25,123,456` equivale a `2.5123456` unidades do ativo. Esse escalamento permite que haja **sete casas decimais** de precisão em unidades mais amigáveis aos usuários.
+Toda quantia de um ativo é codificada nas [estruturas XDR](https://www.stellar.org/developers/horizon/reference/xdr.html) como um número inteiro 64-bits signed. A unidade da quantidade de um ativo (aquela que é vista pelos usuários finais) é reduzida em um fator de dez milhões (10,000,000) para chegar à representação nativa como números inteiros 64-bits. Por exemplo, o valor de número inteiro `25,123,456` equivale a `2.5123456` unidades do ativo. Esse escalamento permite que haja **sete casas decimais** de precisão em unidades mais amigáveis aos usuários.
 
 A menor unidade diferente de zero é `0.0000001` (um decimilionésimo), representada pelo valor `1` em números inteiros. A maior unidade possível é `((2^63)-1)/(10^7)` (derivada da int64 máxima), que é igual a `922,337,203,685.4775807`.
 
