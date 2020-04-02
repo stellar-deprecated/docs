@@ -1,7 +1,7 @@
 Stellar.org supports the network by running a few full validators and Horizon instances.
 
 If you would like to run a validator please:
- - Read the [admin guide](https://www.stellar.org/developers/stellar-core/learn/admin.html).
+ - Read the [admin guide](https://www.stellar.org/developers/stellar-core/software/admin.html).
  - Join the #validators channel on [our Keybase team](https://keybase.io/team/stellar.public).
  - See the [example config](./other/stellar-core-validator-example.cfg) for setting up your validator.
  - Start your node.

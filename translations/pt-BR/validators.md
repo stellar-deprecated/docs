@@ -1,7 +1,7 @@
 Stellar.org atualmente não roda um validador. Porém, rodamos alguns nós que gravam e salvam o histórico da rede.
 
 Caso pretenda rodar um validador, por favor:
- - Leia o [guia para admins](https://www.stellar.org/developers/stellar-core/learn/admin.html).
+ - Leia o [guia para admins](https://www.stellar.org/developers/stellar-core/software/admin.html).
  - Entre no canal #validators no [nosso slack](http://slack.stellar.org).
  - Veja o [exemplo de config](./other/stellar-core-validator-example.cfg) para configurar seu validador.
  - Inicie seu nó.

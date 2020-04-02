@@ -163,7 +163,7 @@ function handlePaymentResponse(record) {
 
 
 ## Submeter saques
-Quando um usuário pede um saque de lumens da sua exchange, você deve gerar uma transação Stellar para enviar os lumens a ele. Aqui se encontra uma documentação adicional sobre [Construir Transações](https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html).
+Quando um usuário pede um saque de lumens da sua exchange, você deve gerar uma transação Stellar para enviar os lumens a ele. Aqui se encontra uma documentação adicional sobre [Construir Transações](https://www.stellar.org/developers/js-stellar-base/reference/building-transactions.html).
 
 A função `handleRequestWithdrawal` irá enfileirar uma transação na tabela `StellarTransactions` da exchange sempre que houver um pedido de saque.
 

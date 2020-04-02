@@ -163,7 +163,7 @@ function handlePaymentResponse(record) {
 
 
 ## Submitting withdrawals
-When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them XLM. See [building transactions](https://www.stellar.org/developers/js-stellar-base/learn/building-transactions.html) for more information.
+When a user requests a lumen withdrawal from your exchange, you must generate a Stellar transaction to send them XLM. See [building transactions](https://www.stellar.org/developers/js-stellar-base/reference/building-transactions.html) for more information.
 
 The function `handleRequestWithdrawal` will queue up a transaction in the exchange's `StellarTransactions` table whenever a withdrawal is requested.
 

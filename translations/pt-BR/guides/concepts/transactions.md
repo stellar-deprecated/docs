@@ -43,7 +43,7 @@ Entre fechamentos dos ledgers, todos os nós na rede coletam transações. Quand
 
 ## Ciclo de vida
 
-1. **Criação**: O usuário cria uma transação, preenche todos os campos, dá a ela o número sequencial correto, adiciona quaisquer operações quiser, etc. Experimente com o [js-stellar-sdk](https://www.stellar.org/developers/js-stellar-sdk/learn/).
+1. **Criação**: O usuário cria uma transação, preenche todos os campos, dá a ela o número sequencial correto, adiciona quaisquer operações quiser, etc. Experimente com o [js-stellar-sdk](https://www.stellar.org/developers/js-stellar-sdk/reference/).
 
 2. **Assinatura**: Após a transação ser preenchida, todas as assinaturas necessárias devem ser coletadas e adicionadas ao envelope da transação. É comum que a única assinatura seja a da conta que realiza a transação, mas arranjos mais complicados podem exigir que sejam colecionadas assinaturas de várias partes. Veja [multi-sig](./multi-sig.md).
 
