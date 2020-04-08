@@ -26,6 +26,12 @@ KeyPair issuer = StellarSdk.Keypair.fromAccountId(
 Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
 ```
 
+```python
+from stellar_sdk import Asset
+
+astro_dollar = Asset("AstroDollar", "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF")
+```
+
 ```json
 // Wherever assets are used in Horizon, they use the following JSON structure:
 {
@@ -197,6 +203,62 @@ _, err = horizon.DefaultTestNetClient.SubmitTransaction(paymentTxeB64)
 if err != nil { log.Fatal(err) }
 ```
 
+```python
+from stellar_sdk import Asset, Server, Keypair, TransactionBuilder, Network
+
+server = Server("https://horizon-testnet.stellar.org")
+
+# Keys for accounts to issue and receive the new asset
+issuing_key = Keypair.from_secret("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4")
+receiving_key = Keypair.from_secret("SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D")
+
+# Create an object to represent the new asset
+astro_dollar = Asset("AstroDollar", issuing_key.public_key)
+
+# First, the receiving account must trust the asset
+receiving_account = server.load_account(receiving_key.public_key)
+trust_transaction = (
+    TransactionBuilder(
+        source_account=receiving_account,
+        network_passphrase=Network.TESTNET_NETWORK_PASSPHRASE,
+        base_fee=100,
+    )
+    # The `change_trust` operation creates (or alters) a trustline
+    # The `limit` parameter below is optional
+    .append_change_trust_op(
+        asset_code=astro_dollar.code, asset_issuer=astro_dollar.issuer, limit="1000"
+    )
+    .set_timeout(100)
+    .build()
+)
+
+trust_transaction.sign(receiving_key)
+trust_resp = server.submit_transaction(trust_transaction)
+print(trust_resp)
+
+# Second, the issuing account actually sends a payment using the asset
+issuing_account = server.load_account(issuing_key.public_key)
+payment_transaction = (
+    TransactionBuilder(
+        source_account=issuing_account,
+        network_passphrase=Network.TESTNET_NETWORK_PASSPHRASE,
+        base_fee=100,
+    )
+    .append_payment_op(
+        asset_code=astro_dollar.code,
+        asset_issuer=astro_dollar.issuer,
+        destination=receiving_key.public_key,
+        amount="10",
+    )
+    .set_timeout(100)
+    .build()
+)
+
+payment_transaction.sign(issuing_key)
+payment_resp = server.submit_transaction(payment_transaction)
+print(payment_resp)
+```
+
 </code-example>
 
 ## Discoverablity and Meta information
@@ -264,6 +326,33 @@ Transaction setHomeDomain = new Transaction.Builder(sourceAccount)
 setHomeDomain.sign(issuingKeys);
 server.submitTransaction(setHomeDomain);
 
+```
+
+```python
+from stellar_sdk import Server, Keypair, TransactionBuilder, Network, Flag
+
+server = Server("https://horizon-testnet.stellar.org")
+
+# Key for issuing account
+issuing_key = Keypair.from_secret("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4")
+issuing_account = server.load_account(issuing_key.public_key)
+
+transaction = (
+    TransactionBuilder(
+        source_account=issuing_account,
+        network_passphrase=Network.TESTNET_NETWORK_PASSPHRASE,
+        base_fee=100,
+    )
+    .append_set_options_op(
+        home_domain="yourdomain.com"
+    )
+    .set_timeout(100)
+    .build()
+)
+
+transaction.sign(issuing_key)
+resp = server.submit_transaction(transaction)
+print(resp)
 ```
 
 </code-example>
@@ -369,6 +458,31 @@ setAuthorization.sign(issuingKeys);
 server.submitTransaction(setAuthorization);
 ```
 
+```python
+from stellar_sdk import Server, Keypair, TransactionBuilder, Network, Flag
+
+server = Server("https://horizon-testnet.stellar.org")
+issuing_key = Keypair.from_secret("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4")
+
+issuing_account = server.load_account(issuing_key.public_key)
+transaction = (
+    TransactionBuilder(
+        source_account=issuing_account,
+        network_passphrase=Network.TESTNET_NETWORK_PASSPHRASE,
+        base_fee=100,
+    )
+    .append_set_options_op(
+        set_flags=Flag.AUTHORIZATION_REQUIRED | Flag.AUTHORIZATION_REVOCABLE
+    )
+    .set_timeout(100)
+    .build()
+)
+
+transaction.sign(issuing_key)
+resp = server.submit_transaction(transaction)
+print(resp)
+```
+
 </code-example>
 
 ## Redeeming Assets
@@ -465,6 +579,24 @@ for (AccountResponse.Balance balance : accountToCheck.getBalances()) {
 }
 
 System.out.println(trusted ? "Trusted :)" : "Not trusted :(");
+```
+
+```python
+from stellar_sdk import Server
+
+server = Server("https://horizon-testnet.stellar.org")
+
+astro_dollar_code = "AstroDollar"
+astro_dollar_issuer = "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF"
+
+account_id = "GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5"
+resp = server.accounts().account_id(account_id).call()
+
+trusted = False
+for balance in resp["balances"]:
+    if balance.get("asset_code") == astro_dollar_code and balance.get("asset_issuer") == astro_dollar_issuer:
+        trusted = True
+print("Trusted :)" if trusted else "Not trusted :(")
 ```
 
 </code-example>
