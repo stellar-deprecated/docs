@@ -11,7 +11,7 @@ A channel is simply another Stellar account that is used not to send the funds b
 
 Channels take advantage of the fact that the "source" account of a transaction can be different than the source account of the operations inside the transaction. With this set up you can make as many channels as you need to maintain your desired transaction rate.
 
-You of course will have to sign the transaction with both the base account key and the channel account key.
+You will, of course, have to sign the transaction with both the base account key and the channel account key.
 
 For example:
 ```js
