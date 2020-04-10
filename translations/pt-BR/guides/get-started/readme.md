@@ -11,7 +11,7 @@ Usando a rede Stellar, você pode construir wallets para celular, ferramentas ba
 
 A maneira mais fácil de instalar o Horizon é usando a [imagem **stellar/quickstart** do docker](https://hub.docker.com/r/stellar/quickstart/).
 
-O Stellar.org mantém SDKs baseados em [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk) e [Go](https://github.com/stellar/go/tree/master/clients/horizon) para comunicar-se com o Horizon. Também há SDKs mantidos pela comunidade para [Ruby](https://github.com/stellar/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base) e [C#](https://github.com/QuantozTechnology/csharp-stellar-base).
+O Stellar.org mantém SDKs baseados em [JavaScript](https://github.com/stellar/js-stellar-sdk), [Java](https://github.com/stellar/java-stellar-sdk) e [Go](https://github.com/stellar/go/tree/master/clients/horizon) para comunicar-se com o Horizon. Também há SDKs mantidos pela comunidade para [Ruby](https://github.com/astroband/ruby-stellar-sdk), [Python](https://github.com/StellarCN/py-stellar-base) e [C#](https://github.com/QuantozTechnology/csharp-stellar-base).
 
 ## A Base da Rede: Stellar Core
 
