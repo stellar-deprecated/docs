@@ -16,10 +16,10 @@ Libraries maintained by Stellar.org:<br />
 - [Java](https://github.com/stellar/java-stellar-sdk)
 - [Go](https://github.com/stellar/go)
 
-Community-maintained libraries (in various states of completion) for interacting with Horizon in other languages:<br>
+Community-maintained libraries for interacting with Horizon in other languages:<br>
 - [Python](https://github.com/StellarCN/py-stellar-base)
 - [C# .NET Standard 2.0](https://github.com/elucidsoft/dotnetcore-stellar-sdk)
 - [C++](https://github.com/bnogalm/StellarQtSDK)
 - [Scala](https://github.com/Synesso/scala-stellar-sdk)
-- [Ruby](https://github.com/bloom-solutions/ruby-stellar-sdk)
+- [Ruby](https://github.com/astroband/ruby-stellar-sdk)
 - [iOS & macOS](https://github.com/Soneso/stellar-ios-mac-sdk)
