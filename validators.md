@@ -368,6 +368,15 @@ Peer | xaviablaza.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
+Name | Weizenbaum Institute
+-----|--------
+Description | https://stellar.weizenbaum.net
+Contact | Charmaine.Ndolo@hu-berlin.de
+NodeID | GARKQDETMVXFFJM3SMG77SCL5TPZN54RLQBWKVO65ZKU3AGITB5VCPBQ
+Peer | stellar.weizenbaum.net
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
 Name | Wirex
 -----|--------
 Description | https://wirexapp.com
