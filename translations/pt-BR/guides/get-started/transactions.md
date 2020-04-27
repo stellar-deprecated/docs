@@ -73,11 +73,10 @@ server.loadAccount(destinationId)
 ```
 
 ```java
-Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 KeyPair source = KeyPair.fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
-KeyPair destination = KeyPair.fromAccountId("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
+String destination = "GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5";
 
 // Primeiro, checar para ter certeza de que a conta de destino existe.
 // Você pode pular isso, mas se a conta não existir, será cobrada
@@ -86,10 +85,10 @@ KeyPair destination = KeyPair.fromAccountId("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKS
 server.accounts().account(destination);
 
 // Se não houver erro, carregar informações atualizadas sobre a sua conta.
-AccountResponse sourceAccount = server.accounts().account(source);
+AccountResponse sourceAccount = server.accounts().account(source.getAccountId());
 
 // Começar a construir a transação.
-Transaction transaction = new Transaction.Builder(sourceAccount)
+Transaction transaction = new Transaction.Builder(sourceAccount, Network.TESTNET)
         .addOperation(new PaymentOperation.Builder(destination, new AssetTypeNative(), "10").build())
         // Um memo permite adicionar seus próprios metadados a uma transação.
         // É opcional e não afeta como o Stellar trata a transação.
@@ -205,7 +204,7 @@ O que exatamente aconteceu aí? Vamos ver por partes.
     ```
 
     ```java
-    AccountResponse sourceAccount = server.accounts().account(source);
+    AccountResponse sourceAccount = server.accounts().account(source.getAccountId());
     ```
 
     </code-example>
@@ -221,7 +220,7 @@ O que exatamente aconteceu aí? Vamos ver por partes.
     ```
 
     ```java
-    Transaction transaction = new Transaction.Builder(sourceAccount)
+    Transaction transaction = new Transaction.Builder(sourceAccount, Network.TESTNET)
     ```
 
     ```go
@@ -390,7 +389,7 @@ function loadLastPagingToken() {
 
 ```java
 Server server = new Server("https://horizon-testnet.stellar.org");
-KeyPair account = KeyPair.fromAccountId("GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
+final String account = "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF";
 
 // Criar uma chamada de API para consultar (query) pagamentos envolvendo a conta.
 PaymentsRequestBuilder paymentsRequest = server.payments().forAccount(account);
@@ -427,7 +426,7 @@ paymentsRequest.stream(new EventListener<OperationResponse>() {
         StringBuilder assetNameBuilder = new StringBuilder();
         assetNameBuilder.append(((AssetTypeCreditAlphaNum) asset).getCode());
         assetNameBuilder.append(":");
-        assetNameBuilder.append(((AssetTypeCreditAlphaNum) asset).getIssuer().getAccountId());
+        assetNameBuilder.append(((AssetTypeCreditAlphaNum) asset).getIssuer());
         assetName = assetNameBuilder.toString();
       }
 
@@ -436,7 +435,7 @@ paymentsRequest.stream(new EventListener<OperationResponse>() {
       output.append(" ");
       output.append(assetName);
       output.append(" from ");
-      output.append(((PaymentOperationResponse) payment).getFrom().getAccountId());
+      output.append(((PaymentOperationResponse) payment).getFrom());
       System.out.println(output.toString());
     }
 
