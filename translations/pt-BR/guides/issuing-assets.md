@@ -21,9 +21,7 @@ var astroDollar = new StellarSdk.Asset(
 ```
 
 ```java
-KeyPair issuer = StellarSdk.Keypair.fromAccountId(
-  "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
-Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
+Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF");
 ```
 
 ```json
@@ -106,7 +104,6 @@ server.loadAccount(receivingKeys.publicKey())
 ```
 
 ```java
-Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 // Chaves para contas emitirem e receberem o novo ativo
@@ -116,11 +113,11 @@ KeyPair receivingKeys = KeyPair
   .fromSecretSeed("SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D");
 
 // Criar um objeto para representar o novo ativo
-Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuingKeys);
+Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuingKeys.getAccountId());
 
 // Primeiro, a conta recipiente deve confiar no ativo
-AccountResponse receiving = server.accounts().account(receivingKeys);
-Transaction allowAstroDollars = new Transaction.Builder(receiving)
+AccountResponse receiving = server.accounts().account(receivingKeys.getAccountId());
+Transaction allowAstroDollars = new Transaction.Builder(receiving, Network.TESTNET)
   .addOperation(
     // A operação `ChangeTrust` cria (ou altera) uma trustline
     // O segundo parâmetro limita a quantidade que a conta pode manter
@@ -130,10 +127,10 @@ allowAstroDollars.sign(receivingKeys);
 server.submitTransaction(allowAstroDollars);
 
 // Depois, a conta emissora de fato envia um pagamento usando o ativo
-AccountResponse issuing = server.accounts().account(issuingKeys);
+AccountResponse issuing = server.accounts().account(issuingKeys.getAccountId());
 Transaction sendAstroDollars = new Transaction.Builder(issuing)
   .addOperation(
-    new PaymentOperation.Builder(receivingKeys, astroDollar, "10").build())
+    new PaymentOperation.Builder(receivingKeys.getAccountId(), astroDollar, "10").build())
   .build();
 sendAstroDollars.sign(issuingKeys);
 server.submitTransaction(sendAstroDollars);
@@ -233,17 +230,16 @@ server.loadAccount(issuingKeys.publicKey())
 ```
 
 ```java
-Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 // Chaves para a conta emissora
 KeyPair issuingKeys = KeyPair
   .fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
-AccountResponse sourceAccount = server.accounts().account(issuingKeys);
+AccountResponse sourceAccount = server.accounts().account(issuingKeys.getAccountId());
 
-Transaction setHomeDomain = new Transaction.Builder(sourceAccount)
+Transaction setHomeDomain = new Transaction.Builder(sourceAccount, Network.TESTNET)
   .addOperation(new SetOptionsOperation.Builder()
-    .setHomeDomain("seudominio.com").build()
+  .setHomeDomain("yourdomain.com")
   .build();
 setAuthorization.sign(issuingKeys);
 server.submitTransaction(setHomeDomain);
@@ -291,15 +287,14 @@ server.submitTransaction(transaction);
 ```java
 import org.stellar.sdk.AccountFlag;
 
-Network.useTestNetwork();
 Server server = new Server("https://horizon-testnet.stellar.org");
 
 // Chaves para a conta emissora
 KeyPair issuingKeys = KeyPair
   .fromSecretSeed("SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4");
-AccountResponse sourceAccount = server.accounts().account(issuingKeys);
+AccountResponse sourceAccount = server.accounts().account(issuingKeys.getAccountId());
 
-Transaction setAuthorization = new Transaction.Builder(sourceAccount)
+Transaction setAuthorization = new Transaction.Builder(sourceAccount, Network.TESTNET)
   .addOperation(new SetOptionsOperation.Builder()
     .setSetFlags(
       AccountFlag.AUTH_REQUIRED_FLAG.getValue() |
@@ -337,14 +332,11 @@ server.loadAccount(accountId).then(function(account) {
 
 ```java
 Asset astroDollar = Asset.createNonNativeAsset(
-  "AstroDollar",
-  KeyPair.fromAccountId(
-    "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF"));
+  "AstroDollar", "GC2BKLYOOYPDEFJKLKY6FNNRQMGFLVHJKQRGNSSRRGSMPGF32LHCQVGF"
+);
 
 // Carregar a conta que se quer verificar
-KeyPair keysToCheck = KeyPair.fromAccountId(
-  "GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
-AccountResponse accountToCheck = server.accounts().account(keysToCheck);
+AccountResponse accountToCheck = server.accounts().account("GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5");
 
 // Ver se há saldos referentes ao código do ativo e emissora que estamos procurando
 boolean trusted = false;
