@@ -1,5 +1,6 @@
 ---
 title: How To Connect Your Anchor Service to Stellar Wallets
+replacement: https://developers.stellar.org/docs/building-apps/connect-to-anchors/
 ---
 > *Check out [this diagram](https://diagrams.stellar.org/cross-border-payments/) to see an example of the end-to-end user experience enabled by the setup described below.*
 

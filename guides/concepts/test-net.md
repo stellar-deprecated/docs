@@ -1,5 +1,6 @@
 ---
 title: Testnet
+replacement: https://developers.stellar.org/docs/glossary/testnet/
 ---
 
 The testnet is a small test Stellar network, run by the Stellar Development

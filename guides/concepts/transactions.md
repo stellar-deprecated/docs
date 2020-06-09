@@ -1,5 +1,6 @@
 ---
 title: Transactions
+replacement: https://developers.stellar.org/docs/glossary/transactions/
 ---
 
 Transactions are commands that modify the ledger state. Among other things, Transactions are used to send payments, enter

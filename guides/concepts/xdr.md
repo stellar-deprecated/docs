@@ -1,5 +1,6 @@
 ---
 title: XDR
+replacement: https://developers.stellar.org/docs/glossary/xdr/
 ---
 
 **XDR**, also known as _External Data Representation_, is used throughout the Stellar network and protocol.  The ledger, transactions, results, history, and even the messages passed between computers running stellar-core are encoded using XDR.

@@ -1,5 +1,6 @@
 ---
 title: Issuing Assets
+replacement: https://developers.stellar.org/docs/issuing-assets/
 ---
 
 One of Stellar’s most powerful features is the ability to trade any kind of asset, US dollars, Nigerian naira, bitcoins, special coupons, or just about anything you like.

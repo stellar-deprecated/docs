@@ -1,5 +1,6 @@
 ---
 title: Build Stellar Apps
+replacement: https://developers.stellar.org/docs/building-apps/
 ---
 Build cool things on Stellar! This list outlines a few ideas for applications. Feel free to add your own or take one here and run with it.
 As always, if you need help building anything with Stellar, just ask on [Slack chat](http://slack.stellar.org/), [IRC](https://kiwiirc.com/client/irc.freenode.net/#stellar-dev), or email developers@stellar.org.

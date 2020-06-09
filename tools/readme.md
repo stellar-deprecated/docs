@@ -1,5 +1,6 @@
 ---
 title: Stellar Tools
+replacement: https://developers.stellar.org/docs/software-and-sdks/
 ---
 # Tools
 

@@ -1,5 +1,6 @@
 ---
 title: Send and Receive Money
+replacement: https://developers.stellar.org/docs/tutorials/send-and-receive-payments/
 ---
 
 _Before continuing with the following examples for Stellar in code, consider going through the
