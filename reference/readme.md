@@ -23,3 +23,4 @@ Community-maintained libraries for interacting with Horizon in other languages:<
 - [Scala](https://github.com/Synesso/scala-stellar-sdk)
 - [Ruby](https://github.com/astroband/ruby-stellar-sdk)
 - [iOS & macOS](https://github.com/Soneso/stellar-ios-mac-sdk)
+- [Flutter](https://github.com/Soneso/stellar_flutter_sdk)
