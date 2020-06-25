@@ -1,5 +1,6 @@
 ---
 title: Stellar.toml
+replacement: https://developers.stellar.org/docs/issuing-assets/publishing-asset-info/
 ---
 
 The stellar.toml file is what you use to publish information about your organization and your Stellar integration.  For the complete spec and more information on what it contains, check out [SEP-0001](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md). 

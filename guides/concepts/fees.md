@@ -1,5 +1,6 @@
 ---
 title: Transaction Fees, Minimum Balances, and Surge Pricing
+replacement: https://developers.stellar.org/docs/glossary/fees/
 ---
 
 To prevent ledger spam and maintain the efficiency of the network, Stellar requires small [transaction fees](#transaction-fees) and [minimum balances on accounts](#minimum-account-balance).  Transaction fees are also used to prioritize transactions when the network enters [surge pricing mode](#surge-pricing).

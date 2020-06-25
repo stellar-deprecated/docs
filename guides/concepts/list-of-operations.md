@@ -1,5 +1,6 @@
 ---
 title: List of Operations
+replacement: https://developers.stellar.org/docs/start/list-of-operations/
 ---
 
 For a description of how operations work in Stellar, see [Operations](./operations.md).

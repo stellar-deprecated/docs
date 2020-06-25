@@ -1,5 +1,6 @@
 ---
 title: Contribution Guide
+replacement: https://github.com/stellar/.github/blob/master/CONTRIBUTING.md
 ---
 
 # How to contribute to a Stellar project

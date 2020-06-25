@@ -2,6 +2,7 @@
 title: Architecture
 sequence:
   next: 2-bridge-server.md
+replacement: https://developers.stellar.org/docs/enabling-deposit-and-withdrawal/
 ---
 
 ## Deprecation Notice

@@ -1,5 +1,6 @@
 ---
 title: Stellar Software
+replacement: https://www.stellar.org/tools
 ---
 # Software
 

@@ -1,5 +1,6 @@
 ---
 title: Versioning and Upgrading
+replacement: https://developers.stellar.org/docs/glossary/versioning/
 ---
 
 

@@ -1,5 +1,6 @@
 ---
 title: Operations
+replacement: https://developers.stellar.org/docs/glossary/operations/
 ---
 
 [Transactions](./transactions.md) are made up of a [list of operations](./list-of-operations.md).

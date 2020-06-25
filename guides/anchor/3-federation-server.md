@@ -3,6 +3,7 @@ title: Federation Server
 sequence:
   previous: 2-bridge-server.md
   next: 4-compliance-server.md
+replacement: https://developers.stellar.org/docs/enabling-deposit-and-withdrawal/
 ---
 ## Deprecation Notice
 

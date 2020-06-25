@@ -3,6 +3,7 @@ title: Compliance Server
 sequence:
   previous: 3-federation-server.md
   next: 5-conclusion.md
+replacement: https://developers.stellar.org/docs/enabling-deposit-and-withdrawal/
 ---
 
 ## Deprecation Notice

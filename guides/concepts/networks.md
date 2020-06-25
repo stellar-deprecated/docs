@@ -1,5 +1,6 @@
 ---
 title: Networks
+replacement: https://developers.stellar.org/docs/glossary/network-passphrase/
 ---
 
 Stellar has two public networks: the Public Network (pubnet), which is the main network used by

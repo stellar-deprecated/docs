@@ -3,6 +3,7 @@ title: Bridge Server
 sequence:
   previous: readme.md
   next: 3-federation-server.md
+replacement: https://developers.stellar.org/docs/enabling-deposit-and-withdrawal/
 ---
 
 ## Deprecation Notice

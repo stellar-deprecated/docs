@@ -1,5 +1,6 @@
 ---
 title: How and Why to Complete Your Stellar.toml
+replacement: https://developers.stellar.org/docs/issuing-assets/publishing-asset-info/
 ---
 
 >*If you are interested in issuing a token on the Stellar network, but haven't yet, start by

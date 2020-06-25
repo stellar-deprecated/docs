@@ -1,5 +1,6 @@
 ---
 title: Hardware Requirements
+replacement: https://developers.stellar.org/docs/run-core-node/prerequisites/
 ---
 
 # Considerations

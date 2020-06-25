@@ -1,5 +1,6 @@
 ---
 title: Custom Assets
+replacement: https://developers.stellar.org/docs/issuing-assets/
 ---
 
 In order to distribute a custom asset or token on the Stellar Network, three unique accounts will be used. First, is the source account. The source account is the account of the entity looking to create a new token. Second is the issuing account. The issuing account is created by the source account as a mechanism to create new tokens. The third account is the distribution account. The goal of distribution account is to act as the mechanism for distributing tokens to the public. 

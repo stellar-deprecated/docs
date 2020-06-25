@@ -1,5 +1,6 @@
 ---
 title: Create an Account
+replacement: https://developers.stellar.org/docs/tutorials/create-account/
 ---
 
 _Before we get started with working with Stellar in code, consider going through the following
