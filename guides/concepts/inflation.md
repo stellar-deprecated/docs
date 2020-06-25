@@ -1,5 +1,6 @@
 ---
 title: Inflation
+replacement: https://developers.stellar.org/docs/glossary/inflation/
 ---
 
 Until the upgrade to version 12 of the protocol, Stellar had a built-in inflation mechanism conceived to allow account holders to collectively direct inflation-generated lumens toward projects built on Stellar.  

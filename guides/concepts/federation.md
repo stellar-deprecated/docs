@@ -1,5 +1,6 @@
 ---
 title: Federation
+replacement: https://developers.stellar.org/docs/glossary/federation/
 ---
 
 The Stellar federation protocol maps Stellar addresses to more information about a given user. It's a way for Stellar client software

@@ -1,5 +1,6 @@
 ---
 title: Stellar Consensus Protocol
+replacement: https://developers.stellar.org/docs/glossary/scp/
 ---
 
 The Stellar Consensus Protocol (SCP) provides a way to reach consensus without relying on a closed system to accurately record financial transactions. SCP has a set of provable safety properties that optimize for safety over liveness—in the event of partition or misbehaving nodes, it halts progress of the network until consensus can be reached. SCP simultaneously enjoys four key properties: decentralized control, low latency, flexible trust, and asymptotic security.

@@ -1,5 +1,6 @@
 ---
 title: Securing Web-based Projects
+replacement: https://developers.stellar.org/docs/tutorials/securing-projects/
 ---
 
 It’s critical for any app managing the flow of cryptocurrency to architect their app to follow

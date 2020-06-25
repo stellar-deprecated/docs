@@ -1,5 +1,6 @@
 ---
 title: Stellar Development Guides
+replacement: https://developers.stellar.org/docs
 ---
 
 These guides are designed to help you learn more about the technical aspects of integrating Stellar into your application or service, from [the very basics](./get-started) to more detailed topics like [submitting transactions at a high rate with channels](./channels.md).

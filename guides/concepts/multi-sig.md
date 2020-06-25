@@ -1,5 +1,6 @@
 ---
 title: Multisignature
+replacement: https://developers.stellar.org/docs/glossary/multisig/
 ---
 
 ## Transaction signatures

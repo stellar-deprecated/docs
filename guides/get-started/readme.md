@@ -1,5 +1,6 @@
 ---
 title: Stellar Network Overview
+replacement: https://developers.stellar.org/docs/start/introduction/
 ---
 ![Stellar Ecosystem](assets/developers.png)
 
