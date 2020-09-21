@@ -186,15 +186,6 @@ NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -----
-Name | tradedirect.io
------|--------
-Description | https://www.tradedirect.io
-Contact | hatter (slack) hatter@paywith.glass
-NodeID | GA4UHKRQNTYNOI7TMP6ZK2I52UEIBBHAW3LVLBUTSKVRTGDEDTJVKLI3
-Peer |  tradedirect.io
-Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
-
-------
 Name | Mcna
 -----|--------
 Description | A Lumen holder
@@ -240,12 +231,12 @@ Node ID | GA5MLJBI3PP4I66XZMZZDGOD4NFL3QM7B6EYHEWBWY67FYD3ZO4UZRWV
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
-Name | paywith.glass (Ireland)
+Name | paywith.glass
 -----|--------
 Description | https://paywith.glass
-Contact | hatter (slack) hatter@paywith.glass
-Node 1 | GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB
-Peer |  ie.paywith.glass
+Contact | glasshatter (keybase)<br/>hatter@paywith.glass
+Ireland | Public key: GDOQLNMARWIZWLEDKBYBOXP5LQYQQF24PS6NEQW4H766RLD4T7AUWQLB<br/>Peer: ie.paywith.glass
+Germany | Public key: GC6YGQAJAFSXCMTPSO4EATYVDQZAQSRPLEDPEXQCQ2EFG3EK4I4D3IWS<br/>Peer: de.paywith.glass
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
