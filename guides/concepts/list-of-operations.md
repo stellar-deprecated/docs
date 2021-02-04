@@ -18,6 +18,7 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 - [Change Trust](#change-trust)
 - [Allow Trust](#allow-trust)
 - [Account Merge](#account-merge)
+- [Inflation (deprecated)](#inflation-deprecated)
 - [Manage Data](#manage-data)
 - [Bump Sequence](#bump-sequence)
 
@@ -426,8 +427,10 @@ Possible errors:
 |ACCOUNT_MERGE_SEQNUM_TOO_FAR | -5| Source's account sequence number is too high. It must be less than `(ledgerSeq << 32) = (ledgerSeq * 0x100000000)`. *(protocol version 10 and above)*|
 |ACCOUNT_MERGE_DEST_FULL| -6| The `destination` account cannot receive the balance of the source account and still satisfy its lumen buying liabilities. *(protocol version 10 and above)*|
 
-## Inflation
+## Inflation (deprecated)
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#Inflation)
+
+This was deprecated in protocol 12 by [CAP-26](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0026.md)
 
 Runs the inflation process for the entire Stellar network.
 
