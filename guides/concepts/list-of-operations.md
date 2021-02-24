@@ -18,6 +18,7 @@ For the protocol specification, see [stellar-transactions.x](https://github.com/
 - [Change Trust](#change-trust)
 - [Allow Trust](#allow-trust)
 - [Account Merge](#account-merge)
+- [Inflation (deprecated)](#inflation-deprecated)
 - [Manage Data](#manage-data)
 - [Bump Sequence](#bump-sequence)
 
@@ -254,7 +255,7 @@ Possible errors:
 ## Create Passive Sell Offer
 [JavaScript](https://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveSellOffer) | [Java](https://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveSellOfferOperation.Builder.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#CreatePassiveSellOffer)
 
-Creates, updates, or deletes an offer to sell one asset for another, otherwise known as a "ask"
+Creates an offer to sell one asset for another, otherwise known as a "ask"
 order or "offer" on a traditional orderbook, _without taking a reverse offer of equal price_.
 
 A passive sell offer is an offer that does not act on and take a reverse offer of equal price.
@@ -281,9 +282,8 @@ Result: `ManageSellOfferResult`
 | --- | --- | --- |
 | Selling | asset | Asset the offer creator is selling. |
 | Buying | asset | Asset the offer creator is buying. |
-| Amount | integer | Amount of `selling` being sold. Set to `0` if you want to delete an existing offer. |
+| Amount | integer | Amount of `selling` being sold. |
 | Price | {numerator, denominator} | Price of 1 unit of `selling` in terms of `buying`.  For example, if you wanted to sell 30 XLM and buy 5 BTC, the price would be {5,30}. |
-| Offer ID | unsigned integer | The ID of the offer. `0` for new offer. Set to existing offer ID to update or delete. |
 
 Possible errors:
 
@@ -427,8 +427,10 @@ Possible errors:
 |ACCOUNT_MERGE_SEQNUM_TOO_FAR | -5| Source's account sequence number is too high. It must be less than `(ledgerSeq << 32) = (ledgerSeq * 0x100000000)`. *(protocol version 10 and above)*|
 |ACCOUNT_MERGE_DEST_FULL| -6| The `destination` account cannot receive the balance of the source account and still satisfy its lumen buying liabilities. *(protocol version 10 and above)*|
 
-## Inflation
+## Inflation (deprecated)
 [JavaScript](http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation) | [Java](http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html) | [Go](https://godoc.org/github.com/stellar/go/txnbuild#Inflation)
+
+This was deprecated in protocol 12 by [CAP-26](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0026.md)
 
 Runs the inflation process for the entire Stellar network.
 
