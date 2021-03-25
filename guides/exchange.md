@@ -1,6 +1,5 @@
 ---
 title: Add Stellar To Your Exchange
-replacement: https://developers.stellar.org/docs/tutorials/exchange/
 ---
 
 This guide describes how to add tokens from the Stellar network to your exchange. First, we walk through adding Stellar's native asset, lumens. Following that, we describe how to add other tokens. This example uses Node.js and the [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk), but it should be easy to adapt to other languages.
