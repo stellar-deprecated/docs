@@ -375,7 +375,7 @@ provided with a simple HTTP request.
 ### Case Study: AnchorUSD
 
 If you want to see a stellar.toml done well, take a look at
-[AnchorUSD’s](https://www.anchorusd.com/.well-known/stellar.toml). You can easily find out
+[AnchorUSD’s](https://stablecoin.anchorusd.com/.well-known/stellar.toml). You can easily find out
 everything you need to know about the company, their Stellar accounts, their points of contact, and
 their tokens, and you can take steps to verify that information.
 
